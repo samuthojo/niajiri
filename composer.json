@@ -11,7 +11,21 @@
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.5"
+        "laravelcollective/html": "^5.5",
+        "alsofronie/eloquent-uuid": "dev-master",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "eusonlito/laravel-meta": "^3.1",
+        "felixkiss/uniquewith-validator": "^3.1",
+        "laracasts/flash": "^3.0",
+        "laravelista/ekko": "^1.3",
+        "league/csv": "^8.2",
+        "mcamara/laravel-localization": "^1.2",
+        "nicolaslopezj/searchable": "^1.9",
+        "owen-it/laravel-auditing": "^4.0",
+        "spatie/laravel-medialibrary": "^5.12",
+        "tucker-eric/eloquentfilter": "^1.1",
+        "watson/rememberable": "^2.0",
+        "zizaco/entrust": "^1.8"
     },
     "require-dev":
     {

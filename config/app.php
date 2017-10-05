@@ -13,7 +13,24 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'niajiri'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Default Setting
+    |--------------------------------------------------------------------------
+    |
+    | These values are default to application.
+    |
+    */
+    'datetime_format' => 'd-m-Y H:m:i',
+    'date_format' => 'd-m-Y',
+    'datepicker_date_format' => 'dd-mm-yyyy',
+    'datepicker_parse_format' => 'd-m-Y',
+    'currency' => [
+        'code' => 'TZS',
+        'display' => 'Tsh. ',
+    ],
 
     /*
     |--------------------------------------------------------------------------
