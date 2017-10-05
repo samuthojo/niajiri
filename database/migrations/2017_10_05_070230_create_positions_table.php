@@ -14,7 +14,7 @@ class CreatePositionsTable extends Migration
     public function up()
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->string('title');
             $table->string('summary');
             $table->string('responsibilities');
@@ -33,6 +33,9 @@ class CreatePositionsTable extends Migration
             $table->foreign('sector_id')->references('id')->on('sectors')
               ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+
+            //indexes
+            $table->primary('id');
         });
     }
 

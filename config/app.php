@@ -195,7 +195,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        
+
 
         /*
          * Application Service Providers...
