@@ -195,6 +195,14 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        Eusonlito\LaravelMeta\MetaServiceProvider::class,
+        Laravelista\Ekko\EkkoServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
+        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
         
 
         /*
@@ -259,6 +267,10 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+        'Meta' => Eusonlito\LaravelMeta\Facade::class,
+        'Ekko' => Laravelista\Ekko\Facades\Ekko::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 
     ],
 
