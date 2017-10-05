@@ -13,7 +13,7 @@ if (!function_exists('is_set')) {
 
 
 /**
- * Display a value or N/A
+ * Display an object field value or N/A
  */
 if (!function_exists('display_or_na')) {
 
@@ -32,7 +32,7 @@ if (!function_exists('display_or_na')) {
 }
 
 /**
- * display currency
+ * Display value as a currency
  */
 if (!function_exists('display_currency')) {
 
@@ -48,7 +48,7 @@ if (!function_exists('display_currency')) {
 }
 
 /**
- * display decimal
+ * Display decimal in as formatted decimal
  */
 if (!function_exists('display_decimal')) {
 
@@ -63,7 +63,7 @@ if (!function_exists('display_decimal')) {
 }
 
 /**
- * display int
+ * Display value as integer
  */
 if (!function_exists('display_int')) {
 
@@ -78,7 +78,7 @@ if (!function_exists('display_int')) {
 }
 
 /**
- * display boolean
+ * Display value as boolean
  */
 if (!function_exists('display_boolean')) {
 
@@ -93,7 +93,7 @@ if (!function_exists('display_boolean')) {
 }
 
 /**
- * Display a date value or N/A
+ * Display value as formatted date or N/A
  */
 if (!function_exists('display_date')) {
 
