@@ -199,7 +199,7 @@ return [
         Eusonlito\LaravelMeta\MetaServiceProvider::class,
         Laravelista\Ekko\EkkoServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
-        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class,
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
@@ -270,7 +270,7 @@ return [
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'Meta' => Eusonlito\LaravelMeta\Facade::class,
         'Ekko' => Laravelista\Ekko\Facades\Ekko::class,
-        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class,
 
     ],
 
