@@ -17,7 +17,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Default Setting
+    | Application Settings
     |--------------------------------------------------------------------------
     |
     | These values are default to application.
@@ -30,6 +30,15 @@ return [
     'currency' => [
         'code' => 'TZS',
         'display' => 'Tsh. ',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Default Settings
+    |-------------------------------------------------------------------------*/
+    'defaults' => [
+        'pageSize' => 25,
+        'password' => 'guest',
     ],
 
     /*
@@ -186,6 +195,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        
 
         /*
          * Application Service Providers...
