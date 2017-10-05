@@ -22,4 +22,31 @@ class Position extends Base
    */
   protected $hidden = [];
 
+  /**
+   * [project description]
+   * @return [type] [description]
+   */
+  public function project()
+  {
+    return $this->belongsTo('App\Models\Project','project_id');
+  }
+
+  /**
+   * [sector description]
+   * @return [type] [description]
+   */
+  public function sector()
+  {
+     return $this->belongsTo('App\Models\Sector', 'sector_id');
+  }
+
+  /**
+   * [organization description]
+   * @return [type] [description]
+   */
+  public function organization()
+  {
+    return $this->belongsTo('App\Models\Organization', 'organization_id');
+  }
+
 }

@@ -20,4 +20,15 @@ class Project extends Base
    */
   protected $hidden = [];
 
+
+  public function organization()
+  {
+    return $this->belongsTo('App\Models\Organization', 'organization_id');
+  }
+
+  public function positions()
+  {
+    return $this->hasMany('App\Models\Position', 'project_id');
+  }
+
 }

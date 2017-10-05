@@ -20,4 +20,15 @@ class Sector extends Base
    * @var array
    */
   protected $hidden = [];
+
+
+  public function organizations()
+  {
+    return $this->hasMany('App\Models\Organization', 'sector_id');
+  }
+
+  public function positions()
+  {
+    return $this->hasMany('App\Models\Position', 'sector_id');
+  }
 }
