@@ -1,9 +1,20 @@
+//lato font family
+@import "node_modules/lato/scss/lato";
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//simple-line-icons
+@import "node_modules/simple-line-icons/scss/simple-line-icons";
+
+//font-awesome
+@import "node_modules/font-awesome/scss/font-awesome";
 
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+//bootstrap datepicker css
+@import "node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3"
+
+//import icons
+@import "icons";
