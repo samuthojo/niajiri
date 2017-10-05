@@ -17,7 +17,7 @@ class CreateOrganizationsTable extends Migration
             $table->increments('id');
             $table->interger('logo')->unsigned();
             $table->integer('sector_id')->unsigned();
-            $table->foreign('logo')->references('id')->on('media')
+            $table->foreign('logo')->references('id')->on('medias')
               ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('sector_id')->references('id')->on('sectors')
               ->onUpdate('cascade')->onDelete('cascade');
