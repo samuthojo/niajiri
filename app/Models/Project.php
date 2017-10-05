@@ -2,33 +2,75 @@
 
 namespace App\Models;
 
-class Project extends Base
+use App\Models\Base as Model;
+
+/**
+ * Class Project
+ * @package App\Models
+ * @version October 5, 2017, 7:51 pm UTC
+ *
+ * @property \App\Models\Organization organization
+ * @property \Illuminate\Database\Eloquent\Collection organizations
+ * @property \Illuminate\Database\Eloquent\Collection permissionRole
+ * @property \Illuminate\Database\Eloquent\Collection Position
+ * @property \Illuminate\Database\Eloquent\Collection roleUser
+ * @property string name
+ * @property date startedAt
+ * @property date endedAt
+ * @property string organization_id
+ */
+class Project extends Model
 {
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
-  protected $fillable = [
-      'organization_id', 'name', 'startedAt', 'endedAt'
-  ];
 
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
-  protected $hidden = [];
+    public $table = 'projects';
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
 
-  public function organization()
-  {
-    return $this->belongsTo('App\Models\Organization', 'organization_id');
-  }
 
-  public function positions()
-  {
-    return $this->hasMany('App\Models\Position', 'project_id');
-  }
+    public $fillable = [
+        'name',
+        'startedAt',
+        'endedAt',
+        'organization_id'
+    ];
 
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'string',
+        'name' => 'string',
+        'startedAt' => 'date',
+        'endedAt' => 'date',
+        'organization_id' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function organization()
+    {
+        return $this->belongsTo(\App\Models\Organization::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function positions()
+    {
+        return $this->hasMany(\App\Models\Position::class);
+    }
 }

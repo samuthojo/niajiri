@@ -2,58 +2,86 @@
 
 namespace App\Models;
 
-class Organization extends Base
+use App\Models\Base as Model;
+
+/**
+ * Class Organization
+ * @package App\Models
+ * @version October 5, 2017, 7:49 pm UTC
+ *
+ * @property \App\Models\Media media
+ * @property \App\Models\Sector sector
+ * @property \Illuminate\Database\Eloquent\Collection permissionRole
+ * @property \Illuminate\Database\Eloquent\Collection Position
+ * @property \Illuminate\Database\Eloquent\Collection Project
+ * @property \Illuminate\Database\Eloquent\Collection roleUser
+ * @property string logo
+ * @property string sector_id
+ */
+class Organization extends Model
 {
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
-  protected $fillable = [
-      'logo', 'sector_id'
-  ];
 
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
-  protected $hidden = [];
+    public $table = 'organizations';
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
 
-  /**
-   * [projects description]
-   * @return [type] [description]
-   */
 
-  public function projects()
-  {
-    return $this->hasMany('App\Models\Project', 'organization_id');
-  }
+    public $fillable = [
+        'logo',
+        'sector_id'
+    ];
 
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'string',
+        'logo' => 'string',
+        'sector_id' => 'string'
+    ];
 
-  /**
-   * [sector description]
-   * @return [type] [description]
-   */
-  public function sector()
-  {
-    return $this->belongsTo('App\Models\Sector', 'sector_id');
-  }
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
 
+    ];
 
-  public function positions()
-  {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function media()
+    {
+        return $this->belongsTo(\App\Models\Media::class);
+    }
 
-    return $this->hasMany('App\Models\Position', 'organization_id');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function sector()
+    {
+        return $this->belongsTo(\App\Models\Sector::class);
+    }
 
-  }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function positions()
+    {
+        return $this->hasMany(\App\Models\Position::class);
+    }
 
-
-  public function logo()
-  {
-     return $this->hasOne('App\Models\Media');
-  }
-
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function projects()
+    {
+        return $this->hasMany(\App\Models\Project::class);
+    }
 }

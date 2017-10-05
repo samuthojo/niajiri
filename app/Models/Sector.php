@@ -2,33 +2,64 @@
 
 namespace App\Models;
 
-class Sector extends Base
+use App\Models\Base as Model;
+
+/**
+ * Class Sector
+ * @package App\Models
+ * @version October 5, 2017, 7:45 pm UTC
+ *
+ * @property \Illuminate\Database\Eloquent\Collection Organization
+ * @property \Illuminate\Database\Eloquent\Collection permissionRole
+ * @property \Illuminate\Database\Eloquent\Collection Position
+ * @property \Illuminate\Database\Eloquent\Collection roleUser
+ * @property string name
+ */
+class Sector extends Model
 {
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
-  protected $fillable = [
-      'name',
-  ];
+    public $table = 'sectors';
 
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
-  protected $hidden = [];
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
 
-  public function organizations()
-  {
-    return $this->hasMany('App\Models\Organization', 'sector_id');
-  }
+    public $fillable = [
+        'name'
+    ];
 
-  public function positions()
-  {
-    return $this->hasMany('App\Models\Position', 'sector_id');
-  }
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'string',
+        'name' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function organizations()
+    {
+        return $this->hasMany(\App\Models\Organization::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function positions()
+    {
+        return $this->hasMany(\App\Models\Position::class);
+    }
 }

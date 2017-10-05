@@ -2,51 +2,102 @@
 
 namespace App\Models;
 
+use App\Models\Base as Model;
 
-class Position extends Base
+/**
+ * Class Position
+ * @package App\Models
+ * @version October 5, 2017, 7:51 pm UTC
+ *
+ * @property \App\Models\Organization organization
+ * @property \App\Models\Project project
+ * @property \App\Models\Sector sector
+ * @property \Illuminate\Database\Eloquent\Collection organizations
+ * @property \Illuminate\Database\Eloquent\Collection permissionRole
+ * @property \Illuminate\Database\Eloquent\Collection roleUser
+ * @property string title
+ * @property string summary
+ * @property string responsibilities
+ * @property string requirements
+ * @property string duration
+ * @property date dueAt
+ * @property date publishedAt
+ * @property string project_id
+ * @property string organization_id
+ * @property string sector_id
+ */
+class Position extends Model
 {
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
-  protected $fillable = [
-      'sector_id', 'project_id', 'organization_id', 'title', 'summary', 'responsibilities',
-      'requirements','duration','dueAt', 'publishedAt'
-  ];
 
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
-  protected $hidden = [];
+    public $table = 'positions';
 
-  /**
-   * [project description]
-   * @return [type] [description]
-   */
-  public function project()
-  {
-    return $this->belongsTo('App\Models\Project','project_id');
-  }
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
-  /**
-   * [sector description]
-   * @return [type] [description]
-   */
-  public function sector()
-  {
-     return $this->belongsTo('App\Models\Sector', 'sector_id');
-  }
 
-  /**
-   * [organization description]
-   * @return [type] [description]
-   */
-  public function organization()
-  {
-    return $this->belongsTo('App\Models\Organization', 'organization_id');
-  }
 
+    public $fillable = [
+        'title',
+        'summary',
+        'responsibilities',
+        'requirements',
+        'duration',
+        'dueAt',
+        'publishedAt',
+        'project_id',
+        'organization_id',
+        'sector_id'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'string',
+        'title' => 'string',
+        'summary' => 'string',
+        'responsibilities' => 'string',
+        'requirements' => 'string',
+        'duration' => 'string',
+        'dueAt' => 'date',
+        'publishedAt' => 'date',
+        'project_id' => 'string',
+        'organization_id' => 'string',
+        'sector_id' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function organization()
+    {
+        return $this->belongsTo(\App\Models\Organization::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function project()
+    {
+        return $this->belongsTo(\App\Models\Project::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function sector()
+    {
+        return $this->belongsTo(\App\Models\Sector::class);
+    }
 }

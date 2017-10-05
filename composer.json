@@ -24,7 +24,9 @@
         "spatie/laravel-medialibrary": "^6.1",
         "tucker-eric/eloquentfilter": "^1.2",
         "watson/rememberable": "^2.0",
-        "zizaco/entrust": "^1.8"
+        "zizaco/entrust": "^1.8",
+        "infyomlabs/laravel-generator": "5.5.x-dev",
+        "doctrine/dbal": "~2.3"
     },
     "require-dev":
     {

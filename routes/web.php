@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('sectors', 'SectorController');
+
+Route::resource('organizations', 'OrganizationController');
+
+Route::resource('projects', 'ProjectController');
+
+Route::resource('positions', 'PositionController');
