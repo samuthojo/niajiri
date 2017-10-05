@@ -1,4 +1,6 @@
 {
+    "name":"niajiri",
+    "description":"Human Resource web platform for Recruitment Agency",
     "private": true,
     "scripts": {
         "dev": "npm run development",
