@@ -15,8 +15,8 @@ class CreateOrganizationsTable extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->uuid('id');
-            $table->integer('logo')->unsigned();
-            $table->integer('sector_id')->unsigned();
+            $table->uuid('logo')->nullable();
+            $table->uuid('sector_id')->nullable();
             $table->foreign('logo')->references('id')->on('medias')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('sector_id')->references('id')->on('sectors')
