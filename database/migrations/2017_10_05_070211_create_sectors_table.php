@@ -14,9 +14,12 @@ class CreateSectorsTable extends Migration
     public function up()
     {
         Schema::create('sectors', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->string('name');
             $table->timestamps();
+
+            //indexes
+            $table->primary('id');
         });
     }
 

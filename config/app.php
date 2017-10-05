@@ -203,7 +203,6 @@ return [
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-        
 
         /*
          * Application Service Providers...
