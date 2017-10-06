@@ -3,7 +3,10 @@
  */
 require('./bootstrap');
 
-require('./theme-responsive');
+/**
+ * Require theme
+ */
+require('./theme');
 
 
 //Next initialize jQuery and its plugins

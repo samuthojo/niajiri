@@ -16,8 +16,20 @@ Route::get('/', function () {
 Route::get('home/dashboard', 'HomeController@index')->name("dashboard");
 Route::get('home/portal', 'HomeController@minor')->name("portal");
 
+Auth::routes();
 
-Route::resource('home/dashboard/sectors', 'SectorController');
+Route::get('/', 'HomeController@index')->name("home");
+Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
+Route::get('/minor', 'HomeController@minor')->name("minor");
+
+//development only routes, should be commented on production
+Route::get('/artisan', 'SiteController@artisan')->name('artisan');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('users', 'UserController');
+Route::get('/users/{user}/change', 'UserController@showChangePassword')->name('users.change_password');
+Route::patch('/users/{user}/change', 'UserController@changePassword')->name('users.change_password');
 
 Route::resource('home/dashboard/organizations', 'OrganizationController');
 
