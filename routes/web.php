@@ -11,6 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name("home");
+Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
+Route::get('/minor', 'HomeController@minor')->name("minor");
+
+//development only routes, should be commented on production
+Route::get('/artisan', 'SiteController@artisan')->name('artisan');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('users', 'UserController');
+Route::get('/users/{user}/change', 'UserController@showChangePassword')->name('users.change_password');
+Route::patch('/users/{user}/change', 'UserController@changePassword')->name('users.change_password');
+
+Route::resource('sectors', 'SectorController');
+
+Route::resource('organizations', 'OrganizationController');
+
+Route::resource('projects', 'ProjectController');
+
+Route::resource('positions', 'PositionController');

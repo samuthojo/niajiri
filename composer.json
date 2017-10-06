@@ -15,7 +15,6 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",
-        "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5",
         "laravelista/ekko": "^1.4",
         "league/csv": "^9.0",
@@ -25,7 +24,9 @@
         "spatie/laravel-medialibrary": "^6.1",
         "tucker-eric/eloquentfilter": "^1.2",
         "watson/rememberable": "^2.0",
-        "zizaco/entrust": "^1.8"
+        "zizaco/entrust": "^1.8",
+        "infyomlabs/laravel-generator": "5.5.x-dev",
+        "doctrine/dbal": "~2.3"
     },
     "require-dev":
     {

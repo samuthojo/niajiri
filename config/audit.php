@@ -24,7 +24,7 @@ return [
      */
 
     'user' => [
-        'model' => App\User::class,
+        'model' => App\Models\User::class,
         'resolver' => function () {
             return Auth::check() ? Auth::user()->getAuthIdentifier() : null;
         },
@@ -54,7 +54,7 @@ return [
             'table' => 'audits',
             'connection' => 'mysql',
         ],
-        'walimu' => [
+        'niajiri' => [
             'table' => 'audits',
             'connection' => 'mysql',
         ],

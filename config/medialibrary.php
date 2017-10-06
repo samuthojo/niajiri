@@ -23,7 +23,7 @@ return [
     /*
      * The class name of the media model to be used.
      */
-    'media_model' => App\Media::class,
+    'media_model' => App\Models\Media::class,
 
     /*
      * The engine that will perform the image conversions.

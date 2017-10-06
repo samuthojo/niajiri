@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\AuditDrivers\Niajiri;
 use Illuminate\Support\ServiceProvider;
+use OwenIt\Auditing\Facades\Auditor;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+       //register walimu audit driver
+        Auditor::extend('niajiri', function () {
+            return $this->app->make(Niajiri::class);
+        });
     }
 
     /**

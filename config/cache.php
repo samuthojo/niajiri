@@ -13,9 +13,20 @@ return [
     |
     | Supported: "apc", "array", "database", "file", "memcached", "redis"
     |
-    */
+     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('CACHE_DRIVER', 'database'),
+
+    /**
+     * Default Cache Times in minutes
+     * @deprecated
+     */
+    'remember' => 1 * 1 * 1, //(days * hours * minutes)
+
+    /**
+     * Default Cache Times in minutes
+     */
+    'ttl' => env('CACHE_TTL', 0), //(days * hours * minutes)
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +37,7 @@ return [
     | well as their drivers. You may even define multiple stores for the
     | same cache driver to group types of items stored in your caches.
     |
-    */
+     */
 
     'stores' => [
 
@@ -41,7 +52,7 @@ return [
         'database' => [
             'driver' => 'database',
             'table' => 'cache',
-            'connection' => null,
+            'connection' => 'mysql',
         ],
 
         'file' => [
@@ -84,11 +95,8 @@ return [
     | be other applications utilizing the same cache. So, we'll specify a
     | value to get prefixed to all our keys so we can avoid collisions.
     |
-    */
+     */
 
-    'prefix' => env(
-        'CACHE_PREFIX',
-        str_slug(env('APP_NAME', 'laravel'), '_').'_cache'
-    ),
+    'prefix' => 'niajiri',
 
 ];
