@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Alsofronie\Uuid\UuidModelTrait;
+use App\Traits\ActAsApplicant;
 use App\Traits\Countable;
 use App\Traits\Sugarize;
 use App\Traits\Withable;
@@ -83,6 +84,11 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
     }
 
     /**
+     * Extend user with applicant capabilities
+     */
+    use ActAsApplicant;
+
+    /**
      * Scope a query with field to count
      */
     use Countable;
@@ -150,7 +156,6 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             'users.middle_name' => 10,
             'users.surname' => 10,
             'users.gender' => 10,
-            'users.title' => 5,
             'users.email' => 10,
             'users.mobile' => 10,
             'users.landline' => 8,

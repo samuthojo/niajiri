@@ -1,0 +1,91 @@
+/*list group*/
+
+.list-group-header {
+    margin-top: 22px;
+}
+
+.list-checkbox-item {
+    border: none !important;
+    .checkbox {
+        margin: 0 !important;
+    }
+}
+
+
+/*filestyle*/
+
+.file label {
+    margin-top: 0px !important;
+    width: 100% !important;
+    padding: 10px 20px;
+    height: 51px !important;
+}
+
+.file .input-group {
+    width: 100% !important;
+}
+
+
+/*change profile avatar*/
+
+.edit-profile-photo img {
+    border-radius: 3px;
+    max-width: 200px;
+    width: 100%;
+}
+
+.edit-profile-photo {
+    position: relative;
+}
+
+.change-photo-btn {
+    border-radius: 2px;
+    display: inline-block;
+    position: absolute;
+    font-size: 13px;
+    bottom: 15px;
+    left: 15px;
+    width: auto;
+    background-color: #fff;
+    color: #333;
+    transition: 0.3s;
+    cursor: pointer;
+    line-height: 28px;
+}
+
+.photoUpload {
+    position: relative;
+    overflow: hidden;
+    padding: 3px 12px;
+    cursor: pointer;
+}
+
+.photoUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.change-photo-btn:hover {
+    color: #fff;
+    background-color: $brand-primary;
+}
+
+.change-photo-btn i {
+    margin-right: 2px;
+}
+
+.text-black{
+    color: #676a6c !important;
+}
+
+/*table*/
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+    background-color: #FFFFFF !important;
+}
