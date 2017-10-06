@@ -16,11 +16,18 @@ class HomeController extends SecureController
 
     public function index(Request $request)
     {
-        return view('pages.dashboard.index');
+        return view('pages.dashboard.index', [
+            'route_title' => 'Dashboard',
+            'route_description' => 'Dashboard'
+        ]);
     }
+    
     public function minor(Request $request)
     {
-        return view('pages.dashboard.minor');
+        return view('pages.dashboard.minor',  [
+            'route_title' => 'Minor',
+            'route_description' => 'Minor'
+        ]);
     }
 
      /**

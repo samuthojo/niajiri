@@ -54,7 +54,7 @@ return [
             'table' => 'audits',
             'connection' => 'mysql',
         ],
-        'walimu' => [
+        'niajiri' => [
             'table' => 'audits',
             'connection' => 'mysql',
         ],
