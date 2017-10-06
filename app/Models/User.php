@@ -150,7 +150,6 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             'users.middle_name' => 10,
             'users.surname' => 10,
             'users.gender' => 10,
-            'users.title' => 5,
             'users.email' => 10,
             'users.mobile' => 10,
             'users.landline' => 8,

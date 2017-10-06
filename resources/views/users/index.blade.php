@@ -61,9 +61,6 @@
                                     {{ trans('users.inputs.avatar.header') }}
                                 </th>
                                 <th>
-                                    {{ trans('users.inputs.title.header') }}
-                                </th>
-                                <th>
                                     {{ trans('users.inputs.name.header') }}
                                 </th>
                                 <th>
@@ -86,7 +83,6 @@
                                 <td>
                                 <img src="{{$item->avatar()}}" alt="{{trans('users.inputs.avatar.placeholder')}}" class="img-circle img-sm" title="{{trans('users.inputs.avatar.placeholder')}}">
                                 </td>
-                                <td>{{ $item->title}}</td>
                                 <td>{{ $item->name}}</td>
                                 <td>{{ $item->email}}</td>
                                 <td>{{ $item->mobile}}</td>
