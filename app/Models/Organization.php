@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Base as Model;
+use App\Models\User as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**

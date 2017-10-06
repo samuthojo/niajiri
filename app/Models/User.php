@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Alsofronie\Uuid\UuidModelTrait;
 use App\Traits\ActAsApplicant;
+use App\Traits\ActAsOrganization;
 use App\Traits\Countable;
 use App\Traits\Sugarize;
 use App\Traits\Withable;
@@ -87,6 +88,13 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
      * Extend user with applicant capabilities
      */
     use ActAsApplicant;
+
+
+    /**
+     * Extend user with organization capabilities
+     */
+    use ActAsOrganization;
+
 
     /**
      * Scope a query with field to count
