@@ -32,7 +32,7 @@ class SectorController extends AppBaseController
         $this->sectorRepository->pushCriteria(new RequestCriteria($request));
         $sectors = $this->sectorRepository->all();
 
-        return view('sectors.index')
+        return view('pages.dashboard.sectors.index')
             ->with('sectors', $sectors);
     }
 
@@ -43,7 +43,7 @@ class SectorController extends AppBaseController
      */
     public function create()
     {
-        return view('sectors.create');
+        return view('pages.sectors.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class SectorController extends AppBaseController
             return redirect(route('sectors.index'));
         }
 
-        return view('sectors.show')->with('sector', $sector);
+        return view('pages.sectors.show')->with('sector', $sector);
     }
 
     /**
@@ -101,7 +101,7 @@ class SectorController extends AppBaseController
             return redirect(route('sectors.index'));
         }
 
-        return view('sectors.edit')->with('sector', $sector);
+        return view('pages.sectors.edit')->with('sector', $sector);
     }
 
     /**

@@ -32,7 +32,7 @@ class ProjectController extends AppBaseController
         $this->projectRepository->pushCriteria(new RequestCriteria($request));
         $projects = $this->projectRepository->all();
 
-        return view('projects.index')
+        return view('pages.dashboard.projects.index')
             ->with('projects', $projects);
     }
 
@@ -43,7 +43,7 @@ class ProjectController extends AppBaseController
      */
     public function create()
     {
-        return view('projects.create');
+        return view('pages.projects.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class ProjectController extends AppBaseController
             return redirect(route('projects.index'));
         }
 
-        return view('projects.show')->with('project', $project);
+        return view('pages.projects.show')->with('project', $project);
     }
 
     /**
@@ -101,7 +101,7 @@ class ProjectController extends AppBaseController
             return redirect(route('projects.index'));
         }
 
-        return view('projects.edit')->with('project', $project);
+        return view('pages.projects.edit')->with('project', $project);
     }
 
     /**

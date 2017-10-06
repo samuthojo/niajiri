@@ -86,7 +86,7 @@ return [
     |
     */
 
-    'model_extend_class' => 'Base',
+    'model_extend_class' => 'App\Models\Base',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
 
     'options' => [
 
-        'softDelete' => false,
+        'softDelete' => true,
 
         'tables_searchable_default' => true,
     ],
@@ -126,7 +126,7 @@ return [
 
         'path' => '',
 
-        'view' => '',  // using backend will create return view('backend.?.index') type the backend views directory
+        'view' => 'pages',  // using backend will create return view('backend.?.index') type the backend views directory
 
         'public' => '',
     ],

@@ -32,7 +32,7 @@ class OrganizationController extends AppBaseController
         $this->organizationRepository->pushCriteria(new RequestCriteria($request));
         $organizations = $this->organizationRepository->all();
 
-        return view('organizations.index')
+        return view('pages.dashboard.organizations.index')
             ->with('organizations', $organizations);
     }
 
@@ -43,7 +43,7 @@ class OrganizationController extends AppBaseController
      */
     public function create()
     {
-        return view('organizations.create');
+        return view('pages.organizations.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class OrganizationController extends AppBaseController
             return redirect(route('organizations.index'));
         }
 
-        return view('organizations.show')->with('organization', $organization);
+        return view('pages.dashboard.organizations.show')->with('organization', $organization);
     }
 
     /**
@@ -101,7 +101,7 @@ class OrganizationController extends AppBaseController
             return redirect(route('organizations.index'));
         }
 
-        return view('organizations.edit')->with('organization', $organization);
+        return view('pages.organizations.edit')->with('organization', $organization);
     }
 
     /**

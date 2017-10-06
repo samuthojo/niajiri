@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Organization
  * @package App\Models
- * @version October 5, 2017, 7:49 pm UTC
+ * @version October 6, 2017, 2:05 am UTC
  *
  * @property \App\Models\Media media
  * @property \App\Models\Sector sector
@@ -20,12 +21,15 @@ use App\Models\Base as Model;
  */
 class Organization extends Model
 {
+    use SoftDeletes;
 
     public $table = 'organizations';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+
+    protected $dates = ['deleted_at'];
 
 
     public $fillable = [

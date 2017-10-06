@@ -32,7 +32,7 @@ class PositionController extends AppBaseController
         $this->positionRepository->pushCriteria(new RequestCriteria($request));
         $positions = $this->positionRepository->all();
 
-        return view('positions.index')
+        return view('pages.dashboard.positions.index')
             ->with('positions', $positions);
     }
 
@@ -43,7 +43,7 @@ class PositionController extends AppBaseController
      */
     public function create()
     {
-        return view('positions.create');
+        return view('pages.positions.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class PositionController extends AppBaseController
             return redirect(route('positions.index'));
         }
 
-        return view('positions.show')->with('position', $position);
+        return view('pages.positions.show')->with('position', $position);
     }
 
     /**
@@ -101,7 +101,7 @@ class PositionController extends AppBaseController
             return redirect(route('positions.index'));
         }
 
-        return view('positions.edit')->with('position', $position);
+        return view('pages.positions.edit')->with('position', $position);
     }
 
     /**

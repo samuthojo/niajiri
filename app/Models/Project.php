@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Project
  * @package App\Models
- * @version October 5, 2017, 7:51 pm UTC
+ * @version October 6, 2017, 2:05 am UTC
  *
  * @property \App\Models\Organization organization
  * @property \Illuminate\Database\Eloquent\Collection organizations
@@ -21,12 +22,15 @@ use App\Models\Base as Model;
  */
 class Project extends Model
 {
+    use SoftDeletes;
 
     public $table = 'projects';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
+
+    protected $dates = ['deleted_at'];
 
 
     public $fillable = [

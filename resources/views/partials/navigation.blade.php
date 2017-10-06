@@ -3,6 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
+                  <span><img alt="image" class="img-circle img-responsive square-80" src="/images/avatar.jpg"/></span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
@@ -18,11 +19,17 @@
                     IN+
                 </div>
             </li>
-            <li class="{{ isActiveRoute('main') }}">
-                <a href="{{ url('/') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Main view</span></a>
+            <li class="{{ isActiveRoute('dashboard') }}">
+                <a href="{{ url('home/dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Admin Dashboard</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                   <li class="{{ isActiveRoute('organizations.index') }}"><a href="{{ url('home/dashboard/organizations') }}">Organization</a></li>
+                   <li class="{{ isActiveRoute('projects.index') }}"><a href="{{ url('home/dashboard/projects') }}">Projects</a></li>
+                   <li class="{{ isActiveRoute('positions.index') }}"><a href="{{ url('home/dashboard/positions') }}">Positions</a></li>
+                   <li class="{{ isActiveRoute('sectors.index') }}"><a href="{{ url('home/dashboard/sectors') }}">Sectors</a></li>
+                </ul>
             </li>
-            <li class="{{ isActiveRoute('minor') }}">
-                <a href="{{ url('/minor') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Minor view</span> </a>
+            <li class="{{ isActiveRoute('home/portal') }}">
+                <a href="{{ url('home/portal') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Organization Portal</span> </a>
             </li>
         </ul>
 

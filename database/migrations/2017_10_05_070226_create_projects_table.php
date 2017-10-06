@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
           $table->foreign('organization_id')->references('id')->on('organizations')
             ->onUpdate('cascade')->onDelete('cascade');
           $table->timestamps();
+          $table->softDeletes();
 
           //indexes
           $table->primary('id');

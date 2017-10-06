@@ -33,6 +33,7 @@ class CreatePositionsTable extends Migration
             $table->foreign('sector_id')->references('id')->on('sectors')
               ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
 
             //indexes
             $table->primary('id');
