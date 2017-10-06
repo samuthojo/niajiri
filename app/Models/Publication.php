@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Base as Model;
 
-class Referee extends Model
+class Publication extends Model
 {
 
     /**
@@ -12,7 +12,7 @@ class Referee extends Model
      *
      * @var string
      */
-    protected $table = 'applicant_referees';
+    protected $table = 'applicant_publications';
 
     /**
      * The database primary key value.
@@ -27,8 +27,8 @@ class Referee extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'organization', 
-        'email', 'mobile', 'applicant_id'
+        'title', 'publisher', 
+        'published_at', 'summary', 'applicant_id'
     ];
 
     /**
@@ -40,6 +40,7 @@ class Referee extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
+        'published_at' => 'date',
     ];
 
     /**
@@ -56,17 +57,15 @@ class Referee extends Model
          * @var array
          */
         'columns' => [
-            'applicant_referees.name' => 10,
-            'applicant_referees.title' => 10,
-            'applicant_referees.organization' => 10,
-            'applicant_referees.email' => 10,
-            'applicant_referees.mobile' => 10,
+            'applicant_publication.title' => 10,
+            'applicant_publication.publisher' => 10,
+            'applicant_publication.summary' => 5,
         ],
     ];
 
 
     /**
-     * Get applicant associate with referee
+     * Get applicant associate with publication
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function applicant()

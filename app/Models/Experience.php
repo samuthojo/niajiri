@@ -69,7 +69,7 @@ class Experience extends Model
 
 
     /**
-     * Get applicant associate with language
+     * Get applicant associate with experience
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function applicant()
