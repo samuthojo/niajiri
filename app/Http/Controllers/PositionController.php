@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
 use App\Repositories\PositionRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class PositionController extends AppBaseController
+class PositionController extends SecureController
 {
     /** @var  PositionRepository */
     private $positionRepository;
@@ -32,8 +32,11 @@ class PositionController extends AppBaseController
         $this->positionRepository->pushCriteria(new RequestCriteria($request));
         $positions = $this->positionRepository->all();
 
-        return view('pages.dashboard.positions.index')
-            ->with('positions', $positions);
+        return view('pages.positions.index',[
+            'route_title' => 'Positions',
+            'route_description' => 'Positions',
+            'sectors' => $positions
+        ]);
     }
 
     /**

@@ -14,6 +14,7 @@ use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Watson\Rememberable\Rememberable;
 use Webpatser\Uuid\Uuid;
+use Carbon\Carbon;
 
 /**
  * Application base model
@@ -92,7 +93,7 @@ class Base extends Model implements AuditableContract {
 	public function fromDateTime($value) {
 		try {
 			if (is_string($value)) {
-				$value = Carbon::createFromFormat(config('app.datepicker_parse_format'), $value);
+				$value =  Carbon::parse($value)->format(config('app.datepicker_parse_format'));
 			}
 			return $value;
 		} catch (Exception $e) {

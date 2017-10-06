@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
 use App\Repositories\OrganizationRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class OrganizationController extends AppBaseController
+class OrganizationController extends SecureController
 {
     /** @var  OrganizationRepository */
     private $organizationRepository;
@@ -32,8 +32,11 @@ class OrganizationController extends AppBaseController
         $this->organizationRepository->pushCriteria(new RequestCriteria($request));
         $organizations = $this->organizationRepository->all();
 
-        return view('pages.dashboard.organizations.index')
-            ->with('organizations', $organizations);
+        return view('pages.organizations.index',[
+            'route_title' => 'Organization',
+            'route_description' => 'Organization',
+            'sectors' => $organizations
+        ]);
     }
 
     /**

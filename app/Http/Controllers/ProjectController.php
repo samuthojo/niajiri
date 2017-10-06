@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\ProjectRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class ProjectController extends AppBaseController
+class ProjectController extends SecureController
 {
     /** @var  ProjectRepository */
     private $projectRepository;
@@ -32,8 +32,11 @@ class ProjectController extends AppBaseController
         $this->projectRepository->pushCriteria(new RequestCriteria($request));
         $projects = $this->projectRepository->all();
 
-        return view('pages.dashboard.projects.index')
-            ->with('projects', $projects);
+        return view('pages.projects.index',[
+            'route_title' => 'Project',
+            'route_description' => 'Project',
+            'sectors' => $projects
+        ]);
     }
 
     /**

@@ -1,8 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('title', 'Main page')
-
-@section('content')
+@section('page')
     <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">
@@ -11,7 +9,7 @@
                                 Welcome in Niajiri
                             </h1>
                             <small>
-                                Here is sectors stuff living.
+                                Here is projects stuff living.
                             </small>
                         </div>
                     </div>

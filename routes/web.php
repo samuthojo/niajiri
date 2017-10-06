@@ -10,11 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return redirect('home/dashboard');
-});
-Route::get('home/dashboard', 'HomeController@index')->name("dashboard");
-Route::get('home/portal', 'HomeController@minor')->name("portal");
 
 Auth::routes();
 
@@ -31,8 +26,11 @@ Route::resource('users', 'UserController');
 Route::get('/users/{user}/change', 'UserController@showChangePassword')->name('users.change_password');
 Route::patch('/users/{user}/change', 'UserController@changePassword')->name('users.change_password');
 
-Route::resource('home/dashboard/organizations', 'OrganizationController');
 
-Route::resource('home/dashboard/projects', 'ProjectController');
+Route::resource('organizations', 'OrganizationController');
 
-Route::resource('home/dashboard/positions', 'PositionController');
+Route::resource('projects', 'ProjectController');
+
+Route::resource('organization/positions', 'PositionController');
+
+Route::resource('sectors', 'SectorController');

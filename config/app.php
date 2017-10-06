@@ -272,6 +272,7 @@ return [
         'Meta' => Eusonlito\LaravelMeta\Facade::class,
         'Ekko' => Laravelista\Ekko\Facades\Ekko::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class,
+        'Carbon' => 'Carbon\Carbon',
 
     ],
 

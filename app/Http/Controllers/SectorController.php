@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateSectorRequest;
 use App\Http\Requests\UpdateSectorRequest;
 use App\Repositories\SectorRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class SectorController extends AppBaseController
+class SectorController extends SecureController
 {
     /** @var  SectorRepository */
     private $sectorRepository;
@@ -32,8 +32,11 @@ class SectorController extends AppBaseController
         $this->sectorRepository->pushCriteria(new RequestCriteria($request));
         $sectors = $this->sectorRepository->all();
 
-        return view('pages.dashboard.sectors.index')
-            ->with('sectors', $sectors);
+        return view('pages.sectors.index', [
+            'route_title' => 'Sector',
+            'route_description' => 'Sector',
+            'sectors' => $sectors
+        ]);
     }
 
     /**
@@ -43,7 +46,10 @@ class SectorController extends AppBaseController
      */
     public function create()
     {
-        return view('pages.sectors.create');
+        return view('pages.sectors.create',[
+            'route_title' => 'Sector',
+            'route_description' => 'Sector'
+        ]);
     }
 
     /**
@@ -101,7 +107,11 @@ class SectorController extends AppBaseController
             return redirect(route('sectors.index'));
         }
 
-        return view('pages.sectors.edit')->with('sector', $sector);
+        return view('pages.sectors.edit',[
+            'route_title' => 'Sector',
+            'route_description' => 'Sector',
+            'sector' => $sector
+        ]);
     }
 
     /**
