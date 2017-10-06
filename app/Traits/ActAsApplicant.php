@@ -35,6 +35,14 @@ trait ActAsApplicant
         return $this->hasMany('App\Models\Referee', 'applicant_id');
     }
 
+    /**
+     * Get the applicant experiences.
+     */
+    public function experiences()
+    {
+        return $this->hasMany('App\Models\Experience', 'applicant_id');
+    }
+
     //------------------------------------------------------------
     //class properties & methods
     //------------------------------------------------------------
