@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Alsofronie\Uuid\UuidModelTrait;
+use App\Traits\ActAsApplicant;
 use App\Traits\Countable;
 use App\Traits\Sugarize;
 use App\Traits\Withable;
@@ -81,6 +82,11 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
     use SoftDeletes {
         restore as __restore;
     }
+
+    /**
+     * Extend user with applicant capabilities
+     */
+    use ActAsApplicant;
 
     /**
      * Scope a query with field to count
