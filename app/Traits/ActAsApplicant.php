@@ -51,6 +51,15 @@ trait ActAsApplicant
         return $this->hasMany('App\Models\Publication', 'applicant_id');
     }
 
+
+     /**
+     * Get the applicant educations.
+     */
+    public function educations()
+    {
+        return $this->hasMany('App\Models\Education', 'applicant_id');
+    }
+
     //------------------------------------------------------------
     //class properties & methods
     //------------------------------------------------------------
