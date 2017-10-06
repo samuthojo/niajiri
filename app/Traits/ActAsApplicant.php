@@ -77,6 +77,15 @@ trait ActAsApplicant
         return $this->hasMany('App\Models\Certificate', 'applicant_id');
     }
 
+
+    /**
+     * Get the applicant  project(assignments).
+     */
+    public function assignments()
+    {
+        return $this->hasMany('App\Models\Assignment', 'applicant_id');
+    }
+
     //------------------------------------------------------------
     //class properties & methods
     //------------------------------------------------------------
