@@ -3,6 +3,11 @@
  */
 require('./bootstrap');
 
+/**
+ * Require theme
+ */
+require('./theme');
+
 
 //Next initialize jQuery and its plugins
 $(document).ready(function($) {

@@ -1,13 +1,13 @@
 /**
  * Hassle free laravel resource delete
  *
- * Examples : 
- *  <a href="posts/2" data-method="delete" data-token="{{csrf_token()}}"> 
+ * Examples :
+ *  <a href="posts/2" data-method="delete" data-token="{{csrf_token()}}">
  *
  *Or, request confirmation in the process -
- *  <a href="posts/2" 
- *     data-method="delete" 
- *     data-token="{{csrf_token()}}" 
+ *  <a href="posts/2"
+ *     data-method="delete"
+ *     data-token="{{csrf_token()}}"
  *     data-confirm="Are you sure?">
  *  </a>
  */

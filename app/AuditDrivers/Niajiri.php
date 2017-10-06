@@ -2,11 +2,11 @@
 
 namespace App\AuditDrivers;
 
-use App\Audit;
+use App\Models\Audit;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Drivers\Database as DatabaseAuditDriver;
 
-class Walimu extends DatabaseAuditDriver
+class Niajiri extends DatabaseAuditDriver
 {
     /**
      * {@inheritdoc}

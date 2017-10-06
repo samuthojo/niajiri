@@ -11,6 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(SectorsTableSeeder::class);
+    	$this->call(PermissionsTableSeeder::class);
+		  $this->call(RolesTableSeeder::class);
+		  $this->call(UsersTableSeeder::class);
+
+  		$environment = \App::environment();
+  		$isLocal = ($environment == 'local') || ($environment == 'development')
+  			|| ($environment == 'test');
+  		if ($isLocal) {
+  			//seed test & development data
+  			// $this->call(SectorsTableSeeder::class);
+  		}
+
     }
 }
