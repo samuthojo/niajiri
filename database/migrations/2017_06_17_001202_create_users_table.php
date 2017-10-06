@@ -31,6 +31,12 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->rememberToken();
 
+            //applicant specific
+            $table->text('skills')->nullable();
+            $table->text('interests')->nullable();
+            $table->text('hobbies')->nullable();
+
+
             $table->timestamps();
             $table->softDeletes();
 

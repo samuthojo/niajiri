@@ -112,6 +112,10 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'gender',
         'dob',
         'password',
+        //applicant specific
+        'skills',
+        'interests',
+        'hobbies',
     ];
 
     /**
@@ -162,6 +166,9 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             'users.fax' => 5,
             'users.postal_address' => 5,
             'users.physical_address' => 5,
+            'users.skills' => 5,
+            'users.interests' => 5,
+            'users.hobbies' => 5,
         ]
     ];
 
