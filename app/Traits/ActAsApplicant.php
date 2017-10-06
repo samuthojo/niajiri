@@ -60,6 +60,23 @@ trait ActAsApplicant
         return $this->hasMany('App\Models\Education', 'applicant_id');
     }
 
+
+    /**
+     * Get the applicant achievements.
+     */
+    public function achievements()
+    {
+        return $this->hasMany('App\Models\Achievement', 'applicant_id');
+    }
+
+    /**
+     * Get the applicant proffessional certificates.
+     */
+    public function certificates()
+    {
+        return $this->hasMany('App\Models\Certificate', 'applicant_id');
+    }
+
     //------------------------------------------------------------
     //class properties & methods
     //------------------------------------------------------------

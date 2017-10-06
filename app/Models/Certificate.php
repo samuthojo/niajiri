@@ -6,7 +6,7 @@ use App\Models\Base as Model;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class Achievement extends Model implements HasMedia 
+class Certificate extends Model implements HasMedia 
 {
 
     /**
@@ -19,7 +19,7 @@ class Achievement extends Model implements HasMedia
      *
      * @var string
      */
-    protected $table = 'applicant_achievements';
+    protected $table = 'applicant_certificates';
 
     /**
      * The database primary key value.
@@ -34,8 +34,9 @@ class Achievement extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'title', 'organization', 'summary',
-        'issued_at', 'applicant_id'
+        'title', 'institution', 'summary',
+        'started_at', 'finished_at', 'expired_at'
+        'applicant_id'
     ];
 
     /**
@@ -47,7 +48,9 @@ class Achievement extends Model implements HasMedia
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
-        'issued_at' => 'date',
+        'started_at' => 'date',
+        'finished_at' => 'date',
+        'expired_at' => 'date',
     ];
 
     /**
@@ -64,18 +67,18 @@ class Achievement extends Model implements HasMedia
          * @var array
          */
         'columns' => [
-            'applicant_achievements.title' => 10,
-            'applicant_achievements.organization' => 10,
-            'applicant_achievements.summary' => 5,
+            'applicant_certificates.title' => 10,
+            'applicant_certificates.institution' => 10,
+            'applicant_certificates.summary' => 5,
         ],
     ];
 
 
     /**
-     * Build education attachement url
+     * Build certificate attachement url
      */
     public function attachement() {
-        //TODO default education attachement
+        //TODO default certificate attachement
         $attachement;
 
         //try obtain custom uploaded attachement
@@ -88,7 +91,7 @@ class Achievement extends Model implements HasMedia
 
 
     /**
-     * Get applicant associate with achievement
+     * Get applicant associate with certificate
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function applicant()
