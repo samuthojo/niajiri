@@ -112,6 +112,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'gender',
         'dob',
         'password',
+        'avatar',
         'skills',
         'interests',
         'hobbies',
@@ -205,7 +206,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
      */
     public function avatar() {
         //default user avatar
-        $avatar = url('/images/avatar.jpg');
+        $avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.jpg');
 
         //try obtain custom uploaded avatar
         $media = $this->getMedia('avatars')->first();
@@ -256,6 +257,83 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
      */
     public function audits() {
         return $this->morphMany('App\Audit', 'auditable');
+    }
+
+
+    //-------------------------------------------------------------
+    //class methods
+    //-------------------------------------------------------------
+
+    /**
+     * Strip unwanted avatar url extra & return url to obtain
+     * original user profile avatar
+     * @param  [string] $avatar   [description]
+     * @param  [string] $provider [description]
+     * @return [string]           [description]
+     */
+    public static function getProviderOriginalAvatar($avatar, $provider)
+    {
+
+        if ($avatar && $provider) {
+            if ($provider == 'google') {
+                $avatar = str_replace('?sz=50', '', $avatar);
+            } elseif ($provider == 'twitter') {
+                $avatar = str_replace('_normal', '', $avatar);
+            } elseif ($provider == 'facebook') {
+                $avatar = str_replace('type=normal', 'type=large', $avatar);
+            }
+        }
+
+        return $avatar;
+    }
+
+
+    /**
+     * create user from social provider
+     * @param  [Object] $user social user
+     * @return [User]
+     */
+    public static function findOrCreateByProvider($provider = 'google', $user = null) {
+        //TODO assign default user role to newly social registered user
+        //TODO obtain more details from social profile gender, bio,passion etc
+        //TODO save user social profile url if need
+
+        //wrap in transaction
+        return \DB::transaction(function () use ($provider, $user) {
+            //obtain user details
+            $name = null;
+            $email = null;
+            $avatar = null;
+
+            //TODO obtain additional details
+            if ($user) {
+                $name = $user->getName();
+                $email = $user->getEmail();
+                $avatar = User::getProviderOriginalAvatar(
+                    $user->getAvatar(), $provider
+                );
+            }
+
+            //find & return existing
+            $user = User::where('email', $email)->first();
+
+            if ($user) {
+                //TODO update existing user details from social profile(s)
+                return $user;
+            }
+
+            //create new user
+            else {
+
+                $user = User::create([
+                    'name' => $name,
+                    'email' => $email,
+                    'avatar' => $avatar
+                ]);
+
+                return $user;
+            }
+        });
     }
 
 }

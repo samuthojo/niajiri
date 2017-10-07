@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('gender')->index()->nullable();
             $table->date('dob')->index()->nullable();
             $table->string('password')->nullable();
+            $table->string('avatar')->nullable(); //placeholder for direct avatar url
             $table->rememberToken();
 
             //applicant specific
