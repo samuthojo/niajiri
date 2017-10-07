@@ -112,7 +112,6 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'gender',
         'dob',
         'password',
-        //applicant specific
         'skills',
         'interests',
         'hobbies',
@@ -186,7 +185,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
                 $value = Carbon::createFromFormat(config('app.datepicker_parse_format'), $value);
             }
             return $value;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return parent::fromDateTime($value);
         }
     }

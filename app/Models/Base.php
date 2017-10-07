@@ -95,7 +95,7 @@ class Base extends Model implements AuditableContract {
 				$value = Carbon::createFromFormat(config('app.datepicker_parse_format'), $value);
 			}
 			return $value;
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			return parent::fromDateTime($value);
 		}
 	}
