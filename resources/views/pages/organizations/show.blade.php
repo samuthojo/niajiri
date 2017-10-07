@@ -26,21 +26,18 @@
                                             <a href="{{ route('organizations.edit', ['id' => $organization->id]) }}" class="btn btn-primary btn-xs pull-right">Edit project</a>
                                             <h2>{{$organization->name}}</h2>
                                         </div>
-                                        <dl class="dl-horizontal">
-                                            <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
-                                        </dl>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5">
                                         <dl class="dl-horizontal">
 
-                                            <dt>Fax:</dt> <dd>{{$organization->fax}}</dd>
-                                            <dt>Email:</dt> <dd>{{$organization->email}}</dd>
-                                            <dt>Website:</dt> <dd><a href="{{ $organization->website}}" target="_blank" class="text-navy">{{$organization->website}}</a> </dd>
-                                            <dt>Mobile:</dt> <dd>{{$organization->mobile}}</dd>
-                                            <dt>Physical Address:</dt> <dd>{{$organization->physical_address}}</dd>
-                                            <dt>Postal Address:</dt> <dd>{{$organization->postal_address}}</dd>
+                                            <dt>{{ trans('organizations.inputs.fax.header') }}:</dt> <dd>{{$organization->fax}}</dd>
+                                            <dt>{{ trans('organizations.inputs.email.header') }}:</dt> <dd>{{$organization->email}}</dd>
+                                            <dt>{{ trans('organizations.inputs.website.header') }}:</dt> <dd><a href="{{ $organization->website}}" target="_blank" class="text-navy">{{$organization->website}}</a> </dd>
+                                            <dt>{{ trans('organizations.inputs.mobile.header') }}:</dt> <dd>{{$organization->mobile}}</dd>
+                                            <dt>{{ trans('organizations.inputs.physical_address.header') }}:</dt> <dd>{{$organization->physical_address}}</dd>
+                                            <dt>{{ trans('organizations.inputs.postal_address.header') }}:</dt> <dd>{{$organization->postal_address}}</dd>
                                         </dl>
                                     </div>
                                     <div class="col-lg-7" id="cluster_info">
@@ -57,8 +54,8 @@
                                     <div class="panel-heading">
                                         <div class="panel-options">
                                             <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab-1" data-toggle="tab">Projects</a></li>
-                                                <li class=""><a href="#tab-2" data-toggle="tab">Positions</a></li>
+                                                <li class="active"><a href="#tab-1" data-toggle="tab">{{ trans('organizations.tabs.projects.name') }}</a></li>
+                                                <li class=""><a href="#tab-2" data-toggle="tab">{{ trans('organizations.tabs.positions.name') }}</a></li>
                                             </ul>
                                         </div>
                                     </div>

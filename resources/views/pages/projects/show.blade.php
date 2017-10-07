@@ -51,7 +51,7 @@
                                     <div class="panel-heading">
                                         <div class="panel-options">
                                             <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab-1" data-toggle="tab">Positions</a></li>
+                                                <li class="active"><a href="#tab-1" data-toggle="tab">{{trans('projects.tabs.positions.name')}}</a></li>
                                             </ul>
                                         </div>
                                     </div>

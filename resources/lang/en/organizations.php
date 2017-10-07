@@ -5,13 +5,13 @@ return [
         'actions' => 'Actions',
     ],
     'tabs' => [
-        'basic_details' => [
-            'name' => 'Basic Details',
-            'title' => 'Basic Organization Details',
+        'positions' => [
+            'name' => 'Positions',
+            'title' => 'Organization positions',
         ],
-        'change_password' => [
-            'name' => 'Change Password',
-            'title' => 'Change Organization Password',
+        'projects' => [
+            'name' => 'Projects',
+            'title' => 'Organization projects',
         ],
     ],
     'actions' => [

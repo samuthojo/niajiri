@@ -1,22 +1,19 @@
 <?php
 
 return [
-    'genders' => [
-        'Male' => 'Male',
-        'Female' => 'Female',
+    'status' => [
+        'active' => 'Active',
+        'inactive' => 'Inactive',
     ],
     'headers' => [
         'actions' => 'Actions',
+        'status'  => 'Status',
     ],
     'tabs' => [
-        'basic_details' => [
-            'name' => 'Basic Details',
-            'title' => 'Basic Project Details',
-        ],
-        'change_password' => [
-            'name' => 'Change Password',
-            'title' => 'Change Project Password',
-        ],
+        'positions' => [
+            'name' => 'Positions',
+            'title' => 'Project positions',
+        ]
     ],
     'actions' => [
         'cancel' => [
@@ -86,13 +83,13 @@ return [
             'description' => 'Full Name of the Organization e.g Cocacola etc.',
         ],
         'startedAt' => [
-            'label' => 'Started At',
+            'label' => 'Starts At',
             'placeholder' => 'Started At',
             'header' => 'Started At',
             'description' => 'Full Date when the project starts e.g 23/4/2019 etc.',
         ],
         'endedAt' => [
-            'label' => 'Ended At',
+            'label' => 'Ends At',
             'placeholder' => 'Endend At',
             'header' => 'Ended At',
             'description' => 'Full Date when the project ends e.g 23/4/2019 etc.',
