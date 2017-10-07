@@ -65,7 +65,31 @@
 
 	        {{-- start sidebar menus --}}
 	        @unless(Auth::guest())
-	        {{-- TODO add(seed) reports permissions --}}
+	        {{-- TODO ensure is applicant --}}
+	        {{-- start applicant menu --}}
+	        {{-- start my applications --}}
+	        <li class="{{areActiveRoutes([
+		        	'my_applications'
+				])}}">
+                <a href="{{route('my_applications')}}">
+                <i class="fa fa-file"></i> 
+                <span class="nav-label">My Applications</span>
+                </a>
+            </li>
+	        {{-- end my applications --}}
+	        {{-- start open positions --}}
+	        <li class="{{areActiveRoutes([
+		        	'open_positions'
+				])}}">
+                <a href="{{route('open_positions')}}">
+                <i class="fa fa-file-o"></i> 
+                <span class="nav-label">Open Positions</span>
+                </a>
+            </li>
+	        {{-- end open positions --}}
+	        {{-- end applicant menu --}}
+
+	        {{-- start dashboard meu --}}
 	        <li class="{{areActiveRoutes([
 		        	'home',
 					'reports.*'
@@ -105,6 +129,7 @@
 	                {{-- TODO add more reports --}}
 	            </ul>
 	        </li>
+	        {{-- end dashboard menu --}}
 
 	        {{-- start project management --}}
             @permission([
