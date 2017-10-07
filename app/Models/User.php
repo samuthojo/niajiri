@@ -209,7 +209,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
      */
     public function avatar() {
         //generate user avatar
-        $avatar;
+        $avatar = '';
 
         //try obtain custom uploaded avatar
         $media = $this->getMedia('avatars')->first();
@@ -328,9 +328,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 
             if ($user) {
                 //TODO update existing user details from social profile(s)
-                if(!is_set($user->avatar)){
-                    $user->avatar = $avatar;
-                }
+                $user->avatar = $avatar;
                 $user->update();
                 return $user;
             }

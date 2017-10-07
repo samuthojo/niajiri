@@ -29,16 +29,10 @@
 		                	{{-- start user full name --}}
 		                	<span class="block m-t-xs" title="User Name">
 		                		<strong class="font-bold">
-		                			{{Auth::user()->name}}
+		                			{{Auth::user()->name}} <b class="caret"></b>
 		                		</strong>
 		                	</span>
 		                	{{-- end user full name --}}
-
-		                	{{-- start user title --}}
-		                 	<span class="text-muted text-xs block">
-			                 {{Auth::user()->title}} <b class="caret"></b>
-			                </span>
-			                {{-- end user title --}}
 
 			            </span>
 		            </a>
