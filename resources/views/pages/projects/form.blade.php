@@ -53,8 +53,8 @@
 {{-- start startedAt --}}
 <div class="form-group {{ $errors->has('startedAt') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
-        {!! Form::date('startedAt', null, [
-            'class' => 'form-control',
+        {!! Form::text('startedAt', null, [
+            'class' => 'form-control date',
             'required' => 'required',
             'aria-describedby'=> 'userstartedAtHelpBlock',
             'placeholder' => trans('projects.inputs.startedAt.placeholder')
@@ -75,8 +75,8 @@
 {{-- start endedAt --}}
 <div class="form-group {{ $errors->has('endedAt') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
-        {!! Form::date('endedAt', null, [
-            'class' => 'form-control',
+        {!! Form::text('endedAt', null, [
+            'class' => 'form-control date',
             'required' => 'required',
             'aria-describedby'=> 'userendedAtHelpBlock',
             'placeholder' => trans('projects.inputs.endedAt.placeholder')
@@ -97,5 +97,13 @@
 {{-- end project form --}}
 
 @push('scripts')
+<script type="text/javascript">
 
+    $('.date').datepicker({
+
+       format: 'yyyy-mm-dd'
+
+     });
+
+</script>
 @endpush

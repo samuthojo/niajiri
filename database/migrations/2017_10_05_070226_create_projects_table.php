@@ -16,8 +16,8 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
           $table->uuid('id');
           $table->string('name');
-          $table->date('startedAt');
-          $table->date('endedAt');
+          $table->string('startedAt');
+          $table->string('endedAt');
           $table->uuid('organization_id')->nullable();
           $table->foreign('organization_id')->references('id')->on('organizations')
             ->onUpdate('cascade')->onDelete('cascade');

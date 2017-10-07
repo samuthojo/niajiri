@@ -81,7 +81,7 @@
                         @foreach($projects as $item)
                             <tr>
                                 <td>{{ $item->name}}</td>
-                                <td>{{ $item->organization}}</td>
+                                <td>{{ $item->organization->name}}</td>
                                 <td>{{ $item->startedAt}}</td>
                                 <td>{{ $item->endedAt}}</td>
                                 <td>

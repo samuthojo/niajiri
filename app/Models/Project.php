@@ -48,8 +48,8 @@ class Project extends Model
     protected $casts = [
         'id' => 'string',
         'name' => 'string',
-        'startedAt' => 'date',
-        'endedAt' => 'date',
+        'startedAt' => 'string',
+        'endedAt' => 'string',
         'organization_id' => 'string'
     ];
 

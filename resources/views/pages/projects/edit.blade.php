@@ -2,48 +2,48 @@
 
 @section('page')
 
-{{-- start open organization edit form --}}
-{!! Form::model($organization, [
+{{-- start open project edit form --}}
+{!! Form::model($project, [
     'method' => 'PATCH',
-    'route' => ['organizations.update', $organization->id],
+    'route' => ['projects.update', $project->id],
     'class' => 'form-horizontal',
     'files' => true
 ]) !!}
 
-	{{-- start organization edit form header --}}
+	{{-- start project edit form header --}}
 	<div class="page-header">
 	    <div class='btn-toolbar pull-right' role="toolbar">
 	     <a
-	        href="{{ route('organizations.index') }}"
+	        href="{{ route('projects.index') }}"
 	        class="btn btn-white"
-	        title="{{ trans('organizations.actions.cancel.title') }}">
-	        {{ trans('organizations.actions.cancel.name') }}
+	        title="{{ trans('projects.actions.cancel.title') }}">
+	        {{ trans('projects.actions.cancel.name') }}
 	    </a>
 	     {!!
 	        Form::button(
-	            trans('organizations.actions.update.name'),
+	            trans('projects.actions.update.name'),
 	            [
 	            'type' => 'submit',
 	            'class' => 'btn btn-primary',
-	            'title' => trans('organizations.actions.update.title'),
+	            'title' => trans('projects.actions.update.title'),
 	        ])
 	    !!}
 	    </div>
 	    <h2>
 	        <small>
-	            {{trans('organizations.actions.update.header')}}
+	            {{trans('projects.actions.update.header')}}
 	        </small>
 	    </h2>
 	</div>
-	{{-- end organization edit form header --}}
+	{{-- end project edit form header --}}
 
 	{{-- start form --}}
     <div class="row m-t-lg m-b-lg">
-	    @include ('pages.organizations.form')
+	    @include ('pages.projects.form')
     </div>
     {{-- end form --}}
 
 {!! Form::close() !!}
-{{-- close organization edit form --}}
+{{-- close project edit form --}}
 
 @endsection

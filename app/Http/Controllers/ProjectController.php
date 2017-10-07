@@ -9,8 +9,10 @@ use App\Repositories\OrganizationRepository;
 use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
+use Input;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Carbon;
 
 class ProjectController extends SecureController
 {
@@ -68,8 +70,12 @@ class ProjectController extends SecureController
     public function store(CreateProjectRequest $request)
     {
         $input = $request->all();
-
-        $project = $this->projectRepository->create($input);
+        $project = $this->projectRepository->create([
+          'name' => Input::get('name'),
+          'organization_id' => Input::get('organization_id'),
+          'startedAt' => Input::get('endedAt'),
+          'endedAt' => Input::get('endedAt')
+        ]);
 
         Flash::success('Project saved successfully.');
 
@@ -86,6 +92,7 @@ class ProjectController extends SecureController
     public function show($id)
     {
         $project = $this->projectRepository->findWithoutFail($id);
+        $organization = $this->organizationRepository->pluck('name', 'id');
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -93,7 +100,12 @@ class ProjectController extends SecureController
             return redirect(route('projects.index'));
         }
 
-        return view('pages.projects.show')->with('project', $project);
+        return view('pages.projects.edit',[
+            'route_title' => 'Project',
+            'route_description' => 'Project',
+            'project' => $project,
+            'organizations' => $organization->toArray(),
+        ]);
     }
 
     /**
@@ -106,6 +118,7 @@ class ProjectController extends SecureController
     public function edit($id)
     {
         $project = $this->projectRepository->findWithoutFail($id);
+        $organization = $this->organizationRepository->pluck('name', 'id');
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -113,7 +126,12 @@ class ProjectController extends SecureController
             return redirect(route('projects.index'));
         }
 
-        return view('pages.projects.edit')->with('project', $project);
+        return view('pages.projects.edit',[
+            'route_title' => 'Project',
+            'route_description' => 'Project',
+            'project' => $project,
+            'organizations' => $organization->toArray(),
+        ]);
     }
 
     /**
