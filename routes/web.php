@@ -34,3 +34,6 @@ Route::resource('projects', 'ProjectController');
 Route::resource('organization/positions', 'PositionController');
 
 Route::resource('sectors', 'SectorController');
+
+
+Route::resource('organizations', 'OrganizationController');

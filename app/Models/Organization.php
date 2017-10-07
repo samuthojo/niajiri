@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\User as Model;
+use App\Models\Base as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
  * Class Organization
  * @package App\Models
- * @version October 6, 2017, 2:05 am UTC
+ * @version October 7, 2017, 5:47 am UTC
  *
  * @property \App\Models\Media media
  * @property \App\Models\Sector sector
@@ -16,12 +18,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection Position
  * @property \Illuminate\Database\Eloquent\Collection Project
  * @property \Illuminate\Database\Eloquent\Collection roleUser
+ * @property string name
+ * @property string email
+ * @property string mobile
+ * @property string landline
+ * @property string fax
+ * @property string physical_address
+ * @property string postal_address
  * @property string logo
  * @property string sector_id
  */
 class Organization extends Model
 {
     use SoftDeletes;
+
+    /**
+     * Allow user to have attached files(media) i.e avatar etc
+     */
+    use HasMediaTrait;
 
     public $table = 'organizations';
 
@@ -33,6 +47,14 @@ class Organization extends Model
 
 
     public $fillable = [
+        'name',
+        'email',
+        'mobile',
+        'landline',
+        'fax',
+        'physical_address',
+        'postal_address',
+        'website',
         'logo',
         'sector_id'
     ];
@@ -44,6 +66,14 @@ class Organization extends Model
      */
     protected $casts = [
         'id' => 'string',
+        'name' => 'string',
+        'email' => 'string',
+        'mobile' => 'string',
+        'landline' => 'string',
+        'fax' => 'string',
+        'website' => 'string',
+        'physical_address' => 'string',
+        'postal_address' => 'string',
         'logo' => 'string',
         'sector_id' => 'string'
     ];
@@ -64,6 +94,23 @@ class Organization extends Model
     {
         return $this->belongsTo(\App\Models\Media::class);
     }
+
+
+    /**
+     * Build user avatar url
+     */
+    public function logo() {
+        //default user avatar
+        $avatar = url('/images/avatar.jpg');
+
+        //try obtain custom uploaded avatar
+        $media = $this->media()->first();
+        if ($media) {
+            $avatar = asset('storage/' . $media->id . '/' . $media->file_name);
+        }
+        return $avatar;
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

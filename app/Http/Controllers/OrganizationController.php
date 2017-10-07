@@ -8,6 +8,7 @@ use App\Repositories\OrganizationRepository;
 use App\Repositories\SectorRepository;
 use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
+use App\Models\Media;
 use Flash;
 use Log;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -71,6 +72,11 @@ class OrganizationController extends SecureController
     {
         $input = $request->all();
 
+        // $logo = Media::create($input['logo']);
+        // $logo_id = $logo->id;
+        //
+        // $input->logo = $logo_id;
+
         $organization = $this->organizationRepository->create($input);
 
         Flash::success('Organization saved successfully.');
@@ -115,7 +121,13 @@ class OrganizationController extends SecureController
             return redirect(route('organizations.index'));
         }
 
-        return view('pages.organizations.edit')->with('organization', $organization);
+        $sectors = $this->sectorRepository->pluck('name', 'id');
+        return view('pages.organizations.edit', [
+            'route_title' => 'Organization',
+            'route_description' => 'Organization',
+            'organization' => $organization,
+            'sectors' => $sectors->toArray()
+        ]);
     }
 
     /**

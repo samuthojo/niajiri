@@ -124,6 +124,8 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'skills',
         'interests',
         'hobbies',
+        //organization specific
+        'sector_id'
     ];
 
     /**

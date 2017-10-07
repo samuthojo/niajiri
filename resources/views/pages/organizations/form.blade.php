@@ -211,10 +211,8 @@
 <div class="form-group m-b-lg {{ $errors->has('logo') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
         <div class="edit-profile-photo">
-          @if(! empty($organization) && $organization->logo())
-            <img src="{{$user->logo()}}" alt="{{trans('organizations.inputs.avatar.placeholder')}}" class="img-thumbnail"
+            <img src="{{$organization->logo()}}" alt="{{trans('organizations.inputs.avatar.placeholder')}}" class="img-thumbnail"
             title="{{trans('organizations.inputs.avatar.placeholder')}}">
-          @endif
           {!! Form::file('logo', null,
               null,
               [  'class' => 'form-control',
