@@ -87,6 +87,7 @@ class SocialAuthController extends Controller
     {
         //TODO ensure user name and email
         //TODO ensure not verified if send email
+        //TODO set default email for changing later
 
         //obtain user social profile
         $user = Socialite::driver($provider)->user();
@@ -105,6 +106,7 @@ class SocialAuthController extends Controller
                 $user->verified = true;
                 $user->save();
             } catch (\Exception $e) {
+                // dd($e);
                 //DO nothing next register will send welcome message
             }
         }
