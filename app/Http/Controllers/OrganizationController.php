@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
 use App\Repositories\OrganizationRepository;
+use App\Repositories\SectorRepository;
 use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
+use App\Models\Media;
+use App\Models\Organization;
 use Flash;
+use Log;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -16,9 +20,13 @@ class OrganizationController extends SecureController
     /** @var  OrganizationRepository */
     private $organizationRepository;
 
-    public function __construct(OrganizationRepository $organizationRepo)
+    /** @var  SectorRepository */
+    private $sectorRepository;
+
+    public function __construct(OrganizationRepository $organizationRepo, SectorRepository $sectorRepo)
     {
         $this->organizationRepository = $organizationRepo;
+        $this->sectorRepository = $sectorRepo;
     }
 
     /**
@@ -35,7 +43,7 @@ class OrganizationController extends SecureController
         return view('pages.organizations.index',[
             'route_title' => 'Organization',
             'route_description' => 'Organization',
-            'sectors' => $organizations
+            'organizations' => $organizations
         ]);
     }
 
@@ -46,7 +54,13 @@ class OrganizationController extends SecureController
      */
     public function create()
     {
-        return view('pages.organizations.create');
+        $sectors = $this->sectorRepository->pluck('name', 'id');
+        return view('pages.organizations.create', [
+            'route_title' => 'Organization',
+            'route_description' => 'Organization',
+            'sectors' => $sectors->toArray(),
+            'organization' => new Organization(),
+        ]);
     }
 
     /**
@@ -59,6 +73,11 @@ class OrganizationController extends SecureController
     public function store(CreateOrganizationRequest $request)
     {
         $input = $request->all();
+
+        // $logo = Media::create($input['logo']);
+        // $logo_id = $logo->id;
+        //
+        // $input->logo = $logo_id;
 
         $organization = $this->organizationRepository->create($input);
 
@@ -84,7 +103,11 @@ class OrganizationController extends SecureController
             return redirect(route('organizations.index'));
         }
 
-        return view('pages.dashboard.organizations.show')->with('organization', $organization);
+        return view('pages.organizations.show', [
+            'route_title' => 'Organization',
+            'route_description' => 'Organization',
+            'organization' => $organization,
+        ]);
     }
 
     /**
@@ -104,7 +127,13 @@ class OrganizationController extends SecureController
             return redirect(route('organizations.index'));
         }
 
-        return view('pages.organizations.edit')->with('organization', $organization);
+        $sectors = $this->sectorRepository->pluck('name', 'id');
+        return view('pages.organizations.edit', [
+            'route_title' => 'Organization',
+            'route_description' => 'Organization',
+            'organization' => $organization,
+            'sectors' => $sectors->toArray()
+        ]);
     }
 
     /**

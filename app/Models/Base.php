@@ -100,4 +100,5 @@ class Base extends Model implements AuditableContract {
 			return parent::fromDateTime($value);
 		}
 	}
+	
 }

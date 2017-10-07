@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Alsofronie\Uuid\UuidModelTrait;
 use App\Traits\ActAsApplicant;
+use App\Traits\ActAsOrganization;
 use App\Traits\Countable;
 use App\Traits\Sugarize;
 use App\Traits\Withable;
@@ -88,6 +89,13 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
      */
     use ActAsApplicant;
 
+
+    /**
+     * Extend user with organization capabilities
+     */
+    use ActAsOrganization;
+
+
     /**
      * Scope a query with field to count
      */
@@ -112,6 +120,11 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'gender',
         'dob',
         'password',
+        'skills',
+        'interests',
+        'hobbies',
+        //organization specific
+        'sector_id'
     ];
 
     /**
@@ -162,6 +175,9 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             'users.fax' => 5,
             'users.postal_address' => 5,
             'users.physical_address' => 5,
+            'users.skills' => 5,
+            'users.interests' => 5,
+            'users.hobbies' => 5,
         ]
     ];
 
@@ -179,7 +195,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
                 $value = Carbon::createFromFormat(config('app.datepicker_parse_format'), $value);
             }
             return $value;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return parent::fromDateTime($value);
         }
     }

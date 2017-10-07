@@ -3,16 +3,23 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class Referee extends Model
+class Achievement extends Model implements HasMedia 
 {
+
+    /**
+     * Allow eduaction to have attached files(media) i.e certificates etc
+     */
+    use HasMediaTrait;
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'applicant_referees';
+    protected $table = 'applicant_achievements';
 
     /**
      * The database primary key value.
@@ -27,8 +34,8 @@ class Referee extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'organization', 
-        'email', 'mobile', 'applicant_id'
+        'title', 'organization', 'summary',
+        'issued_at', 'applicant_id'
     ];
 
     /**
@@ -40,6 +47,7 @@ class Referee extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
+        'issued_at' => 'date',
     ];
 
     /**
@@ -56,17 +64,31 @@ class Referee extends Model
          * @var array
          */
         'columns' => [
-            'applicant_referees.name' => 10,
-            'applicant_referees.title' => 10,
-            'applicant_referees.organization' => 10,
-            'applicant_referees.email' => 10,
-            'applicant_referees.mobile' => 10,
+            'applicant_achievements.title' => 10,
+            'applicant_achievements.organization' => 10,
+            'applicant_achievements.summary' => 5,
         ],
     ];
 
 
     /**
-     * Get applicant associate with referee
+     * Build education attachement url
+     */
+    public function attachement() {
+        //TODO default education attachement
+        $attachement;
+
+        //try obtain custom uploaded attachement
+        $media = $this->getMedia('attachements')->first();
+        if ($media) {
+            $attachement = asset('storage/' . $media->id . '/' . $media->file_name);
+        }
+        return $attachement;
+    }
+
+
+    /**
+     * Get applicant associate with achievement
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function applicant()
