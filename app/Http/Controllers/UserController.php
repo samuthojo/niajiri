@@ -212,13 +212,13 @@ class UserController extends SecureController {
 		//find existing user
 		$user = User::findOrFail($id);
 
+		//update user
+		$user->update($body);
+
 		//sync user roles
 		if (is_set($body['roles'])) {
 			$user->roles()->sync($body['roles']);
 		}
-
-		//update user
-		$user->update($body);
 
 		//upload & store user avatar
 		if ($user && $request->hasFile('avatar')) {

@@ -113,7 +113,7 @@ class Base extends Model implements AuditableContract {
 				$value =  Carbon::parse($value)->format(config('app.date_format'));
 			}
 			return $value;
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			return parent::fromDateTime($value);
 		}
 	}
