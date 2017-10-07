@@ -100,4 +100,21 @@ class Base extends Model implements AuditableContract {
 			return parent::fromDateTime($value);
 		}
 	}
+
+	/**
+	 * Convert a Date to a storable string.
+	 *
+	 * @param  \Date|int|string  $value
+	 * @return string
+	 */
+	public function fromDate($value) {
+		try {
+			if (is_string($value)) {
+				$value =  Carbon::parse($value)->format(config('app.date_format'));
+			}
+			return $value;
+		} catch (Exception $e) {
+			return parent::fromDateTime($value);
+		}
+	}
 }

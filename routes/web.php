@@ -18,7 +18,7 @@ Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
 Route::get('/minor', 'HomeController@minor')->name("minor");
 
 //development only routes, should be commented on production
-Route::get('/artisan', 'SiteController@artisan')->name('artisan');
+//Route::get('/artisan', 'SiteController@artisan')->name('artisan');
 
 Route::resource('roles', 'RoleController');
 

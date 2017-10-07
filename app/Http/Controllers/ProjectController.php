@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\ProjectRepository;
+use App\Repositories\OrganizationRepository;
 use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
@@ -15,10 +16,12 @@ class ProjectController extends SecureController
 {
     /** @var  ProjectRepository */
     private $projectRepository;
+    private $organizationRepository;
 
-    public function __construct(ProjectRepository $projectRepo)
+    public function __construct(ProjectRepository $projectRepo, OrganizationRepository $organizationRepo)
     {
         $this->projectRepository = $projectRepo;
+        $this->organizationRepository = $organizationRepo;
     }
 
     /**
@@ -35,7 +38,7 @@ class ProjectController extends SecureController
         return view('pages.projects.index',[
             'route_title' => 'Project',
             'route_description' => 'Project',
-            'sectors' => $projects
+            'projects' => $projects
         ]);
     }
 
@@ -46,7 +49,13 @@ class ProjectController extends SecureController
      */
     public function create()
     {
-        return view('pages.projects.create');
+      $organization = $this->organizationRepository->pluck('name', 'id');
+
+      return view('pages.projects.create',[
+          'route_title' => 'Project',
+          'route_description' => 'Project',
+          'organizations' => $organization->toArray(),
+      ]);
     }
 
     /**

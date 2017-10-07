@@ -212,15 +212,15 @@
     <div class="col-md-offset-3 col-md-6">
         <div class="edit-profile-photo">
             <img src="{{$organization->logo()}}" alt="{{trans('organizations.inputs.avatar.placeholder')}}" class="img-thumbnail"
-            title="{{trans('organizations.inputs.avatar.placeholder')}}">
-          {!! Form::file('logo', null,
-              null,
-              [  'class' => 'form-control',
-                  'required' => 'required',
-                  'aria-describedby'=> 'usersectorHelpBlock',
-                  'placeholder' => trans('organizations.inputs.logo.placeholder')
-              ])
-          !!}
+            title="{{trans('organizations.inputs.logo.placeholder')}}">
+            <div class="change-photo-btn">
+                <div class="photoUpload">
+                    <span title="Change Profile Avatar">
+                        <i class="fa fa-upload"></i> {{trans('organizations.inputs.logo.change')}}
+                    </span>
+                    <input id="logo" name="logo" type="file" class="upload" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

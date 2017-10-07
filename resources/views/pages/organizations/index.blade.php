@@ -61,6 +61,12 @@
                                     {{ trans('organizations.inputs.name.header') }}
                                 </th>
                                 <th>
+                                    {{ trans('organizations.inputs.email.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('organizations.inputs.mobile.header') }}
+                                </th>
+                                <th>
                                     {{trans('organizations.headers.actions')}}
                                 </th>
                             </tr>
@@ -72,6 +78,8 @@
                         @foreach($organizations as $item)
                             <tr>
                                 <td>{{ $item->name}}</td>
+                                <td>{{ $item->email}}</td>
+                                <td>{{ $item->mobile}}</td>
                                 <td>
                                     @permission('view:organization')
                                     <a href="{{ route('organizations.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('users.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>

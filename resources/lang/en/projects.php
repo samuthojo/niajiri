@@ -77,7 +77,25 @@ return [
             'label' => 'Name',
             'placeholder' => 'Name',
             'header' => 'Name',
-            'description' => 'Full Name of the Project e.g Juma Hamisi etc.',
+            'description' => 'Full Name of the Project e.g CocacolaHR2017 etc.',
+        ],
+        'organization' => [
+            'label' => 'Organization',
+            'placeholder' => 'Organization',
+            'header' => 'Organization',
+            'description' => 'Full Name of the Organization e.g Cocacola etc.',
+        ],
+        'startedAt' => [
+            'label' => 'Started At',
+            'placeholder' => 'Started At',
+            'header' => 'Started At',
+            'description' => 'Full Date when the project starts e.g 23/4/2019 etc.',
+        ],
+        'endedAt' => [
+            'label' => 'Ended At',
+            'placeholder' => 'Endend At',
+            'header' => 'Ended At',
+            'description' => 'Full Date when the project ends e.g 23/4/2019 etc.',
         ]
     ],
 ];
