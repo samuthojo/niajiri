@@ -8,44 +8,44 @@ return [
         ],
         'edit' => [
             'name' => 'Edit',
-            'title' => 'Click To Edit Assignment',
+            'title' => 'Click To Edit Certificate',
         ],
         'view' => [
             'name' => 'View',
-            'title' => 'Click To View Assignment',
+            'title' => 'Click To View Certificate',
         ],
         'save' => [
             'name' => 'Save',
-            'title' => 'Click To Save New Assignment',
-            'header' => 'New Assignment',
+            'title' => 'Click To Save New Certificate',
+            'header' => 'New Certificate',
             'flash' => [
-                'success' => 'Assignment Saved Succeffully',
+                'success' => 'Certificate Saved Succeffully',
             ],
         ],
         'create' => [
-            'name' => 'New Assignment',
-            'title' => 'Click To Add New Assignment',
+            'name' => 'New Certificate',
+            'title' => 'Click To Add New Certificate',
         ],
         'delete' => [
             'name' => 'Delete',
-            'title' => 'Click To Delete Assignment',
+            'title' => 'Click To Delete Certificate',
             'flash' => [
-                'success' => 'Assignment Deleted Succeffully',
+                'success' => 'Certificate Deleted Succeffully',
             ],
         ],
         'update' => [
             'name' => 'Update',
-            'title' => 'Click To Update Assignment',
-            'header' => 'Update Assignment',
-            'permissions' => 'Update Assignment Permissions',
+            'title' => 'Click To Update Certificate',
+            'header' => 'Update Certificate',
+            'permissions' => 'Update Certificate Permissions',
             'flash' => [
-                'success' => 'Assignment Updated Succeffully',
+                'success' => 'Certificate Updated Succeffully',
             ],
         ],
         'search' => [
             'name' => 'Search',
-            'title' => 'Search Assignments',
-            'placeholder' => 'Search Assignments',
+            'title' => 'Search Certificates',
+            'placeholder' => 'Search Certificates',
         ],
     ],
     'inputs' => [
@@ -53,13 +53,13 @@ return [
             'label' => 'Title',
             'placeholder' => 'Title',
             'header' => 'Title',
-            'description' => 'Title of the Assignment e.g Web Development etc.',
+            'description' => 'Title of the Certificate e.g CCNA etc.',
         ],
-        'client' => [
-            'label' => 'Client',
-            'placeholder' => 'Client',
-            'header' => 'Client',
-            'description' => 'Client e.g Niajiri etc.',
+        'institution' => [
+            'label' => 'Institution',
+            'placeholder' => 'Institution',
+            'header' => 'Institution',
+            'description' => 'Issuing Institution e.g UCC etc.',
         ],
         'summary' => [
             'label' => 'Summary',
@@ -78,6 +78,12 @@ return [
             'placeholder' => 'Date Finished',
             'header' => 'Date Finished',
             'description' => 'Date Finished e.g 12-12-2016 etc.',
+        ],
+        'expired_at' => [
+            'label' => 'Date Expired',
+            'placeholder' => 'Date Expired',
+            'header' => 'Date Expired',
+            'description' => 'Date Expired e.g 12-11-2019 etc.',
         ],
         'applicant_id' => [
             'label' => 'Applicant',
