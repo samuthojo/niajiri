@@ -113,6 +113,8 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'dob',
         'password',
         'avatar',
+        'verified',
+        //applicant additionals
         'skills',
         'interests',
         'hobbies',
@@ -138,6 +140,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
         'dob' => 'date',
+        'verified'=> 'boolean',
     ];
 
 
