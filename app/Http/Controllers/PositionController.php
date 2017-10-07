@@ -35,7 +35,7 @@ class PositionController extends SecureController
         return view('pages.positions.index',[
             'route_title' => 'Positions',
             'route_description' => 'Positions',
-            'sectors' => $positions
+            'positions' => $positions
         ]);
     }
 
