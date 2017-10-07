@@ -36,11 +36,10 @@ Route::resource('positions', 'PositionController');
 
 
 //social auth routes
-Route::group(['middleware' => ['web', 'guest']], function () {
 
-    Route::get('/auth/social/provider/{name}', 'Auth\SocialAuthController@signIn')->name('auth.social.provider');
-    Route::get('/auth/social/callback/{name}', 'Auth\SocialAuthController@signInCallback')->name('auth.social.callback');
-    Route::get('/auth/social/existing-user', 'Auth\SocialAuthController@getCurrentUserSignIn')->name('auth.social.existing.user');
-    Route::post('/auth/social/existing-user', 'Auth\SocialAuthController@postCurrentUserSignin');
-
-});
+Route::get('/auth/social/provider/{name}', 'Auth\SocialAuthController@signIn')
+	->name('auth.social.provider');
+Route::get('/auth/social/callback/{name}', 'Auth\SocialAuthController@signInCallback')
+	->name('auth.social.callback');
+Route::get('/auth/social/existing-user', 'Auth\SocialAuthController@getCurrentUserSignIn')->name('auth.social.existing.user');
+Route::post('/auth/social/existing-user', 'Auth\SocialAuthController@postCurrentUserSignin');
