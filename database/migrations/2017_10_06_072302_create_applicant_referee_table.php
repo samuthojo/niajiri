@@ -33,7 +33,7 @@ class CreateApplicantRefereeTable extends Migration
             $table->foreign('applicant_id')->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('cascade');
         });
     }
 
