@@ -100,7 +100,7 @@ class ProjectController extends SecureController
             return redirect(route('projects.index'));
         }
 
-        return view('pages.projects.edit',[
+        return view('pages.projects.show',[
             'route_title' => 'Project',
             'route_description' => 'Project',
             'project' => $project,

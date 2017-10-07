@@ -102,13 +102,11 @@ class OrganizationController extends SecureController
 
             return redirect(route('organizations.index'));
         }
-        $sectors = $this->sectorRepository->pluck('name', 'id');
 
-        return view('pages.organizations.edit', [
+        return view('pages.organizations.show', [
             'route_title' => 'Organization',
             'route_description' => 'Organization',
             'organization' => $organization,
-            'sectors' => $sectors->toArray()
         ]);
     }
 
