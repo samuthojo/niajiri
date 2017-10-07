@@ -23,7 +23,7 @@
 
 	                {{-- start user profile toggle actions --}}
 	                <a data-toggle="dropdown" class="dropdown-toggle"
-	                href="#" title="User Position/Title">
+	                href="#">
 		                <span class="clear">
 
 		                	{{-- start user full name --}}
@@ -40,7 +40,7 @@
 
 		            {{-- start profile toggle menu --}}
 	                <ul class="dropdown-menu animated fadeInRight m-t-xs">
-	                    <li><a href="#">Profile</a></li>
+	                    <li><a href="{{route('profile')}}">Profile</a></li>
 	                    <li class="divider"></li>
 	                    @unless(Auth::guest())
 	                    <li>

@@ -293,4 +293,19 @@ class UserController extends SecureController {
 
 		return redirect('users');
 	}
+
+
+	/**
+	 * Display current user profile
+	 * @return \Illuminate\Http\Response
+	 */
+	public function profile(Request $request)
+    {
+    	//TODO ensure all required info per profile
+        return view('pages.dashboard.index', [
+            'route_title' => 'Profile',
+            'route_description' => 'Profile',
+            'user' => \Auth::user()
+        ]);
+    }
 }

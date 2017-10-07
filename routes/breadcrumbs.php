@@ -19,6 +19,11 @@ Breadcrumbs::register('home', function ($breadcrumbs) {
     $breadcrumbs->push('Home', route('home'));
 });
 
+Breadcrumbs::register('profile', function ($breadcrumbs) {
+    $breadcrumbs->push('Profile', route('profile'));
+});
+
+
 
 //-------------------------------------------------------------------------
 //Reports Routes

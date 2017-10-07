@@ -23,6 +23,7 @@ Route::get('/artisan', 'SiteController@artisan')->name('artisan');
 Route::resource('roles', 'RoleController');
 
 Route::resource('users', 'UserController');
+Route::get('/profile', 'UserController@profile')->name('profile');
 Route::get('/users/{user}/change', 'UserController@showChangePassword')->name('users.change_password');
 Route::patch('/users/{user}/change', 'UserController@changePassword')->name('users.change_password');
 
