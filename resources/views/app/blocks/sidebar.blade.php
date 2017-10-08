@@ -92,7 +92,8 @@
 	        {{-- start cv management --}}
             {{-- @permission([]) --}}
 	        <li class="{{areActiveRoutes([
-	        	'cvs.*'
+	        	'cvs.*',
+	        	'educations.*'
 	        	])}}">
 	            <a href="#">
 	            	<i class="fa fa-address-card-o"></i>
@@ -110,8 +111,8 @@
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="{{isActiveRoute('cvs.education')}}">
-	                	<a href="{{route('cvs.education')}}">
+	                <li class="{{isActiveRoute('educations.*')}}">
+	                	<a href="{{route('educations.index')}}">
 	                		Education
 	                	</a>
 	                </li>

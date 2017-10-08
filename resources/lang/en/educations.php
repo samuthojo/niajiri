@@ -1,6 +1,17 @@
 <?php
 
 return [
+    'levels' => [
+        'Primary' => 'Primary',
+        'Secondary - Ordinary Level' => 'Secondary - Ordinary Level',
+        'Secondary - Advance Level' => 'Secondary - Advance Level',
+        'Certificate' => 'Certificate',
+        'University' => 'University',
+        'University' => 'University',
+    ],
+    'headers' => [
+        'actions' => 'Actions',
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',
@@ -29,6 +40,7 @@ return [
         'delete' => [
             'name' => 'Delete',
             'title' => 'Click To Delete Education',
+            'confirm' => 'Confirm Delete?',
             'flash' => [
                 'success' => 'Education Deleted Succeffully',
             ],
@@ -49,11 +61,11 @@ return [
         ],
     ],
     'inputs' => [
-        'title' => [
-            'label' => 'Title',
-            'placeholder' => 'Title',
-            'header' => 'Title',
-            'description' => 'Title of the Education e.g Primary etc.',
+        'level' => [
+            'label' => 'Level',
+            'placeholder' => 'Level',
+            'header' => 'Level',
+            'description' => 'Level of the Education e.g Primary etc.',
         ],
         'institution' => [
             'label' => 'Institution',

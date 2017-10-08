@@ -17,8 +17,11 @@ class PermissionsTableSeeder extends Seeder
 
         //generate resources permission
         $resources = [
+           'achievement', 'assignment', 'certificate',
+           'education', 'experience', 'language', 
            'organization', 'position',
-           'project', 'role', 'sector', 'user'
+           'project', 'publication', 'referee', 
+           'role', 'sector', 'user'
         ];
         $actions = [
             'list', 'view', 'create', 'edit',
