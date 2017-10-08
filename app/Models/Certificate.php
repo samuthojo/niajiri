@@ -35,7 +35,7 @@ class Certificate extends Model implements HasMedia
      */
     protected $fillable = [
         'title', 'institution', 'summary',
-        'started_at', 'finished_at', 'expired_at'
+        'started_at', 'finished_at', 'expired_at',
         'applicant_id'
     ];
 
