@@ -22,8 +22,13 @@ class CVController extends SecureController
             'instance' => \Auth::user()
         ];
 
-        return view('cvs.basic.edit', $data);
-        
+        return view('cvs.basic.edit', $data); 
+    }
+
+    public function post_basic(Request $request)
+    {
+        //TODO update cv
+        return redirect()->route('cvs.basic');
     }
 
     public function get_education(Request $request)

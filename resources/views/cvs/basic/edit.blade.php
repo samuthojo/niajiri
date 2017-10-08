@@ -9,7 +9,7 @@
         {{-- start open cv basic details form --}}
         {!!
             Form::open([
-                'route' => 'users.store',
+                'route' => 'cvs.basic',
                 'files' => true
             ])
         !!}

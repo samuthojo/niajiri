@@ -354,7 +354,7 @@
                 'id' => 'summary',
                 'class' => 'form-control',
                 'rows' => 2,
-                'required' => 'required',
+                //'required' => 'required',
                 'aria-describedby'=> 'cv_summary_help_block',
                 'placeholder' => trans('cvs.inputs.summary.placeholder')
             ]) !!}

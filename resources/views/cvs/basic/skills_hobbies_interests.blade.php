@@ -25,7 +25,7 @@
                 'id' => 'skills',
                 'class' => 'form-control',
                 'rows' => 2,
-                'required' => 'required',
+                //'required' => 'required',
                 'aria-describedby'=> 'cv_skills_help_block',
                 'placeholder' => trans('cvs.inputs.skills.placeholder')
             ]) !!}
@@ -52,7 +52,7 @@
                 'id' => 'interests',
                 'class' => 'form-control',
                 'rows' => 2,
-                'required' => 'required',
+                //'required' => 'required',
                 'aria-describedby'=> 'cv_interests_help_block',
                 'placeholder' => trans('cvs.inputs.interests.placeholder')
             ]) !!}
@@ -79,7 +79,7 @@
                 'id' => 'hobbies',
                 'class' => 'form-control',
                 'rows' => 2,
-                'required' => 'required',
+                //'required' => 'required',
                 'aria-describedby'=> 'cv_hobbies_help_block',
                 'placeholder' => trans('cvs.inputs.hobbies.placeholder')
             ]) !!}

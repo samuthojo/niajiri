@@ -39,6 +39,7 @@ Route::resource('positions', 'PositionController');
 
 //cv routes
 Route::get('/basic', 'CVController@get_basic')->name("cvs.basic");
+Route::post('/basic', 'CVController@post_basic')->name("cvs.basic");
 Route::get('/education', 'CVController@get_education')->name("cvs.education");
 Route::get('/certificates', 'CVController@get_certificates')->name("cvs.certificates");
 Route::get('/experiences', 'CVController@get_experiences')->name("cvs.experiences");
