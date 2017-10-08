@@ -112,7 +112,7 @@
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('educations.*')}}">
-	                	<a href="{{route('educations.index')}}">
+	                	<a href="{{route('educations.index', ['applicant_id' => Auth::user()->id])}}">
 	                		Education
 	                	</a>
 	                </li>

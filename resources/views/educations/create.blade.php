@@ -41,7 +41,7 @@
                             ])
                         !!}
                         <a
-                            href="{{ route('educations.index') }}"
+                            href="{{ route('educations.index', ['applicant_id'=> $applicant_id]) }}"
                             class="btn btn-white pull-right m-r-sm"
                             title="{{ trans('educations.actions.cancel.title') }}">
                             {{ trans('educations.actions.cancel.name') }}

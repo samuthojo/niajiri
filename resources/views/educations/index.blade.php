@@ -16,7 +16,7 @@
                 <div class="row m-t-md">
                     <div class="col-sm-8 m-b-xs">
                         <div class="btn-group">
-                            <a href="{{route('educations.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('educations.actions.create.title') }}">
+                            <a href="{{route('educations.create', ['applicant_id'=> $applicant_id])}}" class="btn btn-sm btn-white" role="button" title="{{ trans('educations.actions.create.title') }}">
                             <i class="fa fa-plus"></i> {{ trans('educations.actions.create.name') }}</a>
                         </div>
                     </div>
@@ -91,17 +91,17 @@
                                 <td>
 
                                     @permission('view:education')
-                                    <a href="{{ route('educations.edit', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('educations.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
+                                    <a href="{{ route('educations.edit', ['id' => $item->id, 'applicant_id'=> $applicant_id]) }}" class="btn btn-success btn-xs" title="{{trans('educations.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
                                     @endpermission
 
                                     @permission('edit:education')
-                                    <a href="{{ route('educations.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-xs" title="{{trans('educations.actions.edit.title')}}"><span class="fa fa-pencil" aria-hidden="true"/></a>
+                                    <a href="{{ route('educations.edit', ['id' => $item->id , 'applicant_id'=> $applicant_id]) }}" class="btn btn-primary btn-xs" title="{{trans('educations.actions.edit.title')}}"><span class="fa fa-pencil" aria-hidden="true"/></a>
                                     @endpermission
 
                                     @permission('delete:education')
                                     {!! Form::open([
                                         'method'=>'DELETE',
-                                        'url' => route('educations.destroy', ['id' => $item->id]),
+                                        'url' => route('educations.destroy', ['id' => $item->id, 'applicant_id'=> $applicant_id]),
                                         'style' => 'display:inline'
                                     ]) !!}
                                         {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
