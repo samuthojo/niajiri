@@ -28,6 +28,11 @@
                             'style' => 'display:inline'
                         ]) !!}
                         <div class="input-group" title="{{ trans('educations.actions.search.title') }}">
+                            {{--start applicant id--}}
+                            @if(is_set($applicant_id))
+                            <input type="hidden" name="applicant_id" value="{{$applicant_id}}">
+                            @endif
+                            {{--end applicant id--}}
                             <input name="q" value="{{$q}}" type="text" placeholder="{{ trans('educations.actions.search.placeholder') }}" class="input-sm form-control"/>
                                 <span class="input-group-btn">
                                     {!! Form::button(trans('educations.actions.search.name'),[
