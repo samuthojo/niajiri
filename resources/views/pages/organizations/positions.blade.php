@@ -30,7 +30,7 @@
                  <span class="label label-primary">{{$item->duration}}</span>
               </td>
               <td>
-                  {{$item->dueAt}}
+                  {{$item->dueAt->format('d-m-y')}}
               </td>
               <td class="project-actions">
                   <a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
