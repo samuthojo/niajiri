@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Carbon\Carbon;
+
 
 class Experience extends Model
 {
@@ -27,9 +29,9 @@ class Experience extends Model
      * @var array
      */
     protected $fillable = [
-        'organization', 'sector', 'position',
+        'position', 'organization', 'sector', 
         'started_at', 'ended_at',
-        'summary','location', 'applicant_id'
+        'summary', 'location', 'applicant_id'
     ];
 
     /**
@@ -66,6 +68,38 @@ class Experience extends Model
             'applicant_experiences.location' => 10,
         ],
     ];
+
+
+    /**
+     * Get and format the experience's started_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formStartedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
+
+
+    /**
+     * Get and format the experience's finished_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formEndedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
 
 
     /**

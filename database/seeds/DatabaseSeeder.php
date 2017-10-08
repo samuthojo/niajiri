@@ -23,5 +23,13 @@ class DatabaseSeeder extends Seeder
   			// $this->call(SectorsTableSeeder::class);
   		}
 
+  		$environment = \App::environment();
+  		$isLocal = ($environment == 'local') || ($environment == 'development')
+  			|| ($environment == 'test');
+  		if ($isLocal) {
+  			//seed test & development data
+  			$this->call(ApplicantsTableSeeder::class);
+  		}
+
     }
 }

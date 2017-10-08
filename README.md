@@ -38,5 +38,6 @@ $ npm run watch
 
 ## Seed Specific File
 ```sh
+$ composer dump-autoload
 $ php artisan db:seed --class=UsersTableSeeder
 ```

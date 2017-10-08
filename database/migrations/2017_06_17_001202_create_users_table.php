@@ -21,17 +21,22 @@ class CreateUsersTable extends Migration
             $table->string('middle_name')->index()->nullable();
             $table->string('surname')->index()->nullable();
             $table->string('email')->index()->unique();
+            $table->string('website')->index()->nullable();
             $table->string('mobile')->index()->unique();
             $table->string('landline')->index()->nullable();
             $table->string('fax')->index()->nullable();
             $table->string('physical_address')->index()->nullable();
             $table->string('postal_address')->index()->nullable();
-            $table->string('gender')->index()->nullable();
-            $table->date('dob')->index()->nullable();
+            $table->text('summary')->nullable();
             $table->string('password')->nullable();
+            $table->string('avatar')->nullable(); //placeholder for direct avatar url
+            $table->boolean('verified')->default(false);
             $table->rememberToken();
 
             //applicant specific
+            $table->string('gender')->index()->nullable();
+            $table->date('dob')->index()->nullable();
+            $table->string('marital_status')->index()->nullable();
             $table->text('skills')->nullable();
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();

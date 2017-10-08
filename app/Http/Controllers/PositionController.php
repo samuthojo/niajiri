@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
 use App\Repositories\PositionRepository;
-use App\Http\Controllers\SecureController;
+use App\Repositories\OrganizationRepository;
+use App\Repositories\SectorRepository;
+use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -15,10 +17,18 @@ class PositionController extends SecureController
 {
     /** @var  PositionRepository */
     private $positionRepository;
+    private $organizationRepository;
+    private $sectorRepository;
+    private $projectRepository;
 
-    public function __construct(PositionRepository $positionRepo)
+    public function __construct(PositionRepository $positionRepo,
+                                OrganizationRepository $organizationRepo,
+                                SectorRepository $sectorRepo, ProjectRepository $projectRepo)
     {
         $this->positionRepository = $positionRepo;
+        $this->organizationRepository = $organizationRepo;
+        $this->sectorRepository = $sectorRepo;
+        $this->projectRepository = $projectRepo;
     }
 
     /**
@@ -35,7 +45,7 @@ class PositionController extends SecureController
         return view('pages.positions.index',[
             'route_title' => 'Positions',
             'route_description' => 'Positions',
-            'sectors' => $positions
+            'positions' => $positions
         ]);
     }
 
@@ -46,7 +56,17 @@ class PositionController extends SecureController
      */
     public function create()
     {
-        return view('pages.positions.create');
+        $sectors = $this->sectorRepository->pluck('name', 'id')->toArray();
+
+        //only show active projects
+        $projects = $this->projectRepository->findWhere([['endedAt', '>=', date('Y-m-d').' 00:00:00']])->pluck('name', 'id')->toArray();
+        
+        return view('pages.positions.create',[
+            'route_title' => 'Positions',
+            'route_description' => 'Positions',
+            'sectors'        => $sectors,
+            'projects'       => $projects,
+        ]);
     }
 
     /**
@@ -59,6 +79,10 @@ class PositionController extends SecureController
     public function store(CreatePositionRequest $request)
     {
         $input = $request->all();
+
+        $project = $this->projectRepository->findWithoutFail($request['project_id']);
+
+        $input['organization_id'] = $project->organization_id;
 
         $position = $this->positionRepository->create($input);
 
@@ -84,7 +108,11 @@ class PositionController extends SecureController
             return redirect(route('positions.index'));
         }
 
-        return view('pages.positions.show')->with('position', $position);
+        return view('pages.positions.show',[
+            'route_title' => 'Position',
+            'route_description' => 'Position',
+            'position' => $position
+        ]);
     }
 
     /**
@@ -98,13 +126,22 @@ class PositionController extends SecureController
     {
         $position = $this->positionRepository->findWithoutFail($id);
 
+        $sectors = $this->sectorRepository->pluck('name', 'id')->toArray();
+
+        //only show active projects
+        $projects = $this->projectRepository->findWhere([['endedAt', '>=', date('Y-m-d').' 00:00:00']])->pluck('name', 'id')->toArray();
         if (empty($position)) {
             Flash::error('Position not found');
 
             return redirect(route('positions.index'));
         }
-
-        return view('pages.positions.edit')->with('position', $position);
+        return view('pages.positions.edit',[
+            'route_title' => 'Positions',
+            'route_description' => 'Positions',
+            'position'   => $position,
+            'sectors'     => $sectors,
+            'projects'    => $projects
+        ]);
     }
 
     /**
@@ -125,9 +162,11 @@ class PositionController extends SecureController
             return redirect(route('positions.index'));
         }
 
+        $project = $this->projectRepository->findWithoutFail($request['project_id']);
+        $request['organization_id'] = $project->organization_id;
         $position = $this->positionRepository->update($request->all(), $id);
 
-        Flash::success('Position updated successfully.');
+        Flash::success('Positon was updated successfully');
 
         return redirect(route('positions.index'));
     }

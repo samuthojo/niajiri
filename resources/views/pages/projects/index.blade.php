@@ -57,6 +57,9 @@
                         {{-- start table header --}}
                         <thead>
                             <tr>
+                              <th>
+                                  {{ trans('projects.headers.status') }}
+                              </th>
                                 <th>
                                     {{ trans('projects.inputs.name.header') }}
                                 </th>
@@ -80,10 +83,19 @@
                         <tbody>
                         @foreach($projects as $item)
                             <tr>
+                                @if(strtotime($item->endedAt) > time())
+                                <td>
+                                    <span class="label label-primary">{{ trans('projects.status.active') }}</span>
+                                </td>
+                                @else
+                                <td>
+                                    <span class="label label-default">{{ trans('projects.status.inactive') }}</span>
+                                </td>
+                                @endif
                                 <td>{{ $item->name}}</td>
                                 <td>{{ $item->organization->name}}</td>
-                                <td>{{ $item->startedAt}}</td>
-                                <td>{{ $item->endedAt}}</td>
+                                <td>{{ $item->startedAt->format('d-m-y')}}</td>
+                                <td>{{ $item->endedAt->format('d-m-y')}}</td>
                                 <td>
                                     @permission('view:project')
                                     <a href="{{ route('projects.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('users.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>

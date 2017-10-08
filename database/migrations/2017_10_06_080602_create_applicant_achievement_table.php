@@ -13,7 +13,7 @@ class CreateApplicantAchievementTable extends Migration
      */
     public function up()
     {
-        Schema::create('applicant_echievements', function (Blueprint $table) {
+        Schema::create('applicant_achievements', function (Blueprint $table) {
 
             $table->uuid('id');
 
@@ -32,7 +32,7 @@ class CreateApplicantAchievementTable extends Migration
             $table->foreign('applicant_id')->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('cascade');
         });
     }
 
@@ -43,6 +43,6 @@ class CreateApplicantAchievementTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applicant_echievements');
+        Schema::dropIfExists('applicant_achievements');
     }
 }

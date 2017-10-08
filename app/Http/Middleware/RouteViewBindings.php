@@ -30,6 +30,7 @@ class RouteViewBindings
         View::share('route_title', 'Home');
         View::share('route_description', 'Home');
         View::share('instance', null);
+        View::share('applicant_id', null);
 
         return $next($request);
     }

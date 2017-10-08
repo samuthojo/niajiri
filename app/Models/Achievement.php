@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Base as Model;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Carbon\Carbon;
 
 class Achievement extends Model implements HasMedia 
 {
@@ -69,6 +70,21 @@ class Achievement extends Model implements HasMedia
             'applicant_achievements.summary' => 5,
         ],
     ];
+
+    /**
+     * Get and format the achievement's finished_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formIssuedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
 
 
     /**

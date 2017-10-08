@@ -22,10 +22,12 @@
                             <div class="ibox-content">
                                 <div class="row">
                                     <div class="col-lg-12">
+                                        @permission('view:project')
                                         <div class="m-b-md">
-                                            <a href="#" class="btn btn-primary btn-xs pull-right">Edit project</a>
+                                            <a href="{{ route('projects.edit', ['id' => $project->id]) }}" class="btn btn-primary btn-xs pull-right">Edit project</a>
                                             <h2>{{$project->name}}</h2>
                                         </div>
+                                        @endpermission
                                         <dl class="dl-horizontal">
                                             <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
                                         </dl>

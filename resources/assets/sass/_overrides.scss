@@ -34,6 +34,10 @@
     width: 100%;
 }
 
+.edit-profile-photo-cv img {
+    max-width: 140px !important;
+}
+
 .edit-profile-photo {
     position: relative;
 }
@@ -92,4 +96,8 @@
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
+}
+
+.margin-10 {
+  margin: 10px 0;
 }

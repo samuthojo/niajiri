@@ -25,10 +25,10 @@
                  {{$item->name}}
               </td>
               <td class="text-center">
-                 {{$item->startedAt}}
+                 {{$item->startedAt->format('d-m-y')}}
               </td>
               <td class="text-center">
-                  {{$item->endedAt}}
+                  {{$item->endedAt->format('d-m-y')}}
               </td>
               <td class="project-actions text-center">
                   <a href="{{ route('projects.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i>{{ trans('projects.actions.view.name') }}</a>
