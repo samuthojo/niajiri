@@ -2,48 +2,48 @@
 
 @section('page')
 
-{{-- start open sector edit form --}}
-{!! Form::model($sector, [
+{{-- start open position edit form --}}
+{!! Form::model($position, [
     'method' => 'PATCH',
-    'route' => ['sectors.update', $sector->id],
+    'route' => ['positions.update', $position->id],
     'class' => 'form-horizontal',
     'files' => true
 ]) !!}
 
-	{{-- start sector edit form header --}}
+	{{-- start position edit form header --}}
 	<div class="page-header">
 	    <div class='btn-toolbar pull-right' role="toolbar">
 	     <a
-	        href="{{ route('sectors.index') }}"
+	        href="{{ route('positions.index') }}"
 	        class="btn btn-white"
-	        title="{{ trans('sectors.actions.cancel.title') }}">
-	        {{ trans('sectors.actions.cancel.name') }}
+	        title="{{ trans('positions.actions.cancel.title') }}">
+	        {{ trans('positions.actions.cancel.name') }}
 	    </a>
 	     {!!
 	        Form::button(
-	            trans('sectors.actions.update.name'),
+	            trans('positions.actions.update.name'),
 	            [
 	            'type' => 'submit',
 	            'class' => 'btn btn-primary',
-	            'title' => trans('sectors.actions.update.title'),
+	            'title' => trans('positions.actions.update.title'),
 	        ])
 	    !!}
 	    </div>
 	    <h2>
 	        <small>
-	            {{trans('sectors.actions.update.header')}}
+	            {{trans('positions.actions.update.header')}}
 	        </small>
 	    </h2>
 	</div>
-	{{-- end sector edit form header --}}
+	{{-- end position edit form header --}}
 
 	{{-- start form --}}
     <div class="row m-t-lg m-b-lg">
-	    @include ('pages.sectors.form')
+	    @include ('pages.positions.form')
     </div>
     {{-- end form --}}
 
 {!! Form::close() !!}
-{{-- close sector edit form --}}
+{{-- close position edit form --}}
 
 @endsection

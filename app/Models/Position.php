@@ -61,9 +61,9 @@ class Position extends Model
     protected $casts = [
         'id' => 'string',
         'title' => 'string',
-        'summary' => 'string',
-        'responsibilities' => 'string',
-        'requirements' => 'string',
+        'summary' => 'longText',
+        'responsibilities' => 'longText',
+        'requirements' => 'longText',
         'duration' => 'string',
         'dueAt' => 'date',
         'publishedAt' => 'date',

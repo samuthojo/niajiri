@@ -82,8 +82,8 @@
                             <tr>
                                 <td>{{ $item->name}}</td>
                                 <td>{{ $item->organization->name}}</td>
-                                <td>{{ $item->startedAt}}</td>
-                                <td>{{ $item->endedAt}}</td>
+                                <td>{{ $item->startedAt->format('d-m-y')}}</td>
+                                <td>{{ $item->endedAt->format('d-m-y')}}</td>
                                 <td>
                                     @permission('view:project')
                                     <a href="{{ route('projects.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('users.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>

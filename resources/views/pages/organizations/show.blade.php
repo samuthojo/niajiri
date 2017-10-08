@@ -23,7 +23,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="m-b-md">
-                                            <a href="{{ route('organizations.edit', ['id' => $organization->id]) }}" class="btn btn-primary btn-xs pull-right">Edit project</a>
+                                            <a href="{{ route('organizations.edit', ['id' => $organization->id]) }}" class="btn btn-primary btn-xs pull-right">Edit Organization</a>
                                             <h2>{{$organization->name}}</h2>
                                         </div>
                                     </div>

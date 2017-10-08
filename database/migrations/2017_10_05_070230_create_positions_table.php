@@ -16,9 +16,9 @@ class CreatePositionsTable extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->uuid('id');
             $table->string('title');
-            $table->string('summary');
-            $table->string('responsibilities');
-            $table->string('requirements');
+            $table->longText('summary');
+            $table->longText('responsibilities');
+            $table->longText('requirements');
             $table->string('duration')->default('Full Time');
             $table->date('dueAt');
             $table->date('publishedAt');

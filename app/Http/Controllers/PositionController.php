@@ -103,7 +103,11 @@ class PositionController extends SecureController
             return redirect(route('positions.index'));
         }
 
-        return view('pages.positions.show')->with('position', $position);
+        return view('pages.positions.show',[
+            'route_title' => 'Position',
+            'route_description' => 'Position',
+            'position' => $position
+        ]);
     }
 
     /**
@@ -116,6 +120,7 @@ class PositionController extends SecureController
     public function edit($id)
     {
         $position = $this->positionRepository->findWithoutFail($id);
+
         $sectors = $this->sectorRepository->pluck('name', 'id')->toArray();
         $projects = $this->projectRepository->pluck('name', 'id')->toArray();
         if (empty($position)) {
@@ -125,11 +130,11 @@ class PositionController extends SecureController
         }
 
         $organizations = $this->organizationRepository->pluck('name', 'id')->toArray();
-        return view('pages.positions.create',[
+        return view('pages.positions.edit',[
             'route_title' => 'Positions',
             'route_description' => 'Positions',
             'organizations'  => $organizations,
-            'position'   => $Position,
+            'position'   => $position,
             'sectors'     => $sectors,
             'projects'    => $projects
         ]);
