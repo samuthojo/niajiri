@@ -37,9 +37,19 @@ Route::resource('projects', 'ProjectController');
 
 Route::resource('positions', 'PositionController');
 
+//cv routes
+Route::get('/basic', 'CVController@get_basic')->name("cvs.basic");
+Route::get('/education', 'CVController@get_education')->name("cvs.education");
+Route::get('/certificates', 'CVController@get_certificates')->name("cvs.certificates");
+Route::get('/experiences', 'CVController@get_experiences')->name("cvs.experiences");
+Route::get('/languages', 'CVController@get_languages')->name("cvs.languages");
+Route::get('/referees', 'CVController@get_referees')->name("cvs.referees");
+Route::get('/achievements', 'CVController@get_achievements')->name("cvs.achievements");
+Route::get('/assignments', 'CVController@get_assignments')->name("cvs.projects");
+Route::get('/publications', 'CVController@get_publications')->name("cvs.publications");
+
 
 //social auth routes
-
 Route::get('/auth/social/provider/{name}', 'Auth\SocialAuthController@signIn')
 	->name('auth.social.provider');
 Route::get('/auth/social/callback/{name}', 'Auth\SocialAuthController@signInCallback')

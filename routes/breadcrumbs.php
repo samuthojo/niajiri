@@ -34,6 +34,48 @@ Breadcrumbs::register('my_applications', function ($breadcrumbs) {
 
 
 //-------------------------------------------------------------------------
+//My CV Routes
+//-------------------------------------------------------------------------
+
+Breadcrumbs::register('cvs.basic', function ($breadcrumbs) {
+    $breadcrumbs->push('Basic Details', route('cvs.basic'));
+});
+
+Breadcrumbs::register('cvs.education', function ($breadcrumbs) {
+    $breadcrumbs->push('Education Details', route('cvs.education'));
+});
+
+Breadcrumbs::register('cvs.certificates', function ($breadcrumbs) {
+    $breadcrumbs->push('Proffessional Certificates', route('cvs.certificates'));
+});
+
+Breadcrumbs::register('cvs.experiences', function ($breadcrumbs) {
+    $breadcrumbs->push('Work Experiences', route('cvs.experiences'));
+});
+
+Breadcrumbs::register('cvs.languages', function ($breadcrumbs) {
+    $breadcrumbs->push('Languages', route('cvs.languages'));
+});
+
+Breadcrumbs::register('cvs.referees', function ($breadcrumbs) {
+    $breadcrumbs->push('Referees', route('cvs.referees'));
+});
+
+Breadcrumbs::register('cvs.achievements', function ($breadcrumbs) {
+    $breadcrumbs->push('Honors/Awards', route('cvs.achievements'));
+});
+
+Breadcrumbs::register('cvs.projects', function ($breadcrumbs) {
+    $breadcrumbs->push('Projects', route('cvs.projects'));
+});
+
+Breadcrumbs::register('cvs.publications', function ($breadcrumbs) {
+    $breadcrumbs->push('Publications', route('cvs.publications'));
+});
+
+
+
+//-------------------------------------------------------------------------
 //Reports Routes
 //-------------------------------------------------------------------------
 

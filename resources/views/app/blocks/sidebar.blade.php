@@ -91,7 +91,9 @@
 
 	        {{-- start cv management --}}
             {{-- @permission([]) --}}
-	        <li class="">
+	        <li class="{{areActiveRoutes([
+	        	'cvs.*'
+	        	])}}">
 	            <a href="#">
 	            	<i class="fa fa-address-card-o"></i>
 	            	<span class="nav-label">My CV</span>
@@ -100,65 +102,73 @@
 	            <ul class="nav nav-second-level collapse">
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('cvs.basic')}}">
+	                	<a href="{{route('cvs.basic')}}">
 	                		Basic
 	                	</a>
 	                </li>
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('cvs.education')}}">
+	                	<a href="{{route('cvs.education')}}">
 	                		Education
 	                	</a>
 	                </li>
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('cvs.certificates')}}">
+	                	<a href="{{route('cvs.certificates')}}">
 	                		Certificates
 	                	</a>
 	                </li>
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('cvs.experiences')}}">
+	                	<a href="{{route('cvs.experiences')}}">
 	                		Experiences
 	                	</a>
 	                </li>
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('cvs.languages')}}">
+	                	<a href="{{route('cvs.languages')}}">
 	                		Languages
 	                	</a>
 	                </li>
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('cvs.referees')}}">
+	                	<a href="{{route('cvs.referees')}}">
 	                		Referees
 	                	</a>
 	                </li>
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('cvs.achievements')}}">
+	                	<a href="{{route('cvs.achievements')}}">
 	                		Honors/Awards
 	                	</a>
 	                </li>
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('cvs.projects')}}">
+	                	<a href="{{route('cvs.projects')}}">
 	                		Projects
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.publications')}}">
+	                	<a href="{{route('cvs.publications')}}">
+	                		Publications
 	                	</a>
 	                </li>
 	                {{-- @endpermission --}}
