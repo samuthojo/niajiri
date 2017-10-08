@@ -57,7 +57,10 @@ class PositionController extends SecureController
     public function create()
     {
         $sectors = $this->sectorRepository->pluck('name', 'id')->toArray();
-        $projects = $this->projectRepository->pluck('name', 'id')->toArray();
+
+        //only show active projects
+        $projects = $this->projectRepository->findWhere([['endedAt', '>=', date('Y-m-d').' 00:00:00']])->pluck('name', 'id')->toArray();
+        
         return view('pages.positions.create',[
             'route_title' => 'Positions',
             'route_description' => 'Positions',
@@ -78,7 +81,7 @@ class PositionController extends SecureController
         $input = $request->all();
 
         $project = $this->projectRepository->findWithoutFail($request['project_id']);
-        
+
         $input['organization_id'] = $project->organization_id;
 
         $position = $this->positionRepository->create($input);
@@ -124,7 +127,9 @@ class PositionController extends SecureController
         $position = $this->positionRepository->findWithoutFail($id);
 
         $sectors = $this->sectorRepository->pluck('name', 'id')->toArray();
-        $projects = $this->projectRepository->pluck('name', 'id')->toArray();
+
+        //only show active projects
+        $projects = $this->projectRepository->findWhere([['endedAt', '>=', date('Y-m-d').' 00:00:00']])->pluck('name', 'id')->toArray();
         if (empty($position)) {
             Flash::error('Position not found');
 
