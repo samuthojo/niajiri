@@ -41,13 +41,6 @@ Breadcrumbs::register('cvs.basic', function ($breadcrumbs) {
     $breadcrumbs->push('Basic Details', route('cvs.basic'));
 });
 
-Breadcrumbs::register('cvs.education', function ($breadcrumbs) {
-    $breadcrumbs->push('Education Details', route('cvs.education'));
-});
-
-Breadcrumbs::register('cvs.certificates', function ($breadcrumbs) {
-    $breadcrumbs->push('Proffessional Certificates', route('cvs.certificates'));
-});
 
 Breadcrumbs::register('cvs.experiences', function ($breadcrumbs) {
     $breadcrumbs->push('Work Experiences', route('cvs.experiences'));
@@ -173,4 +166,29 @@ Breadcrumbs::register('educations.show', function ($breadcrumbs, $instance) {
 Breadcrumbs::register('educations.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('educations.show', $instance);
     $breadcrumbs->push('Edit', route('educations.edit', $instance->id));
+});
+
+// -------------------Certificates Breadcrumbs--------------------------------------
+// Home > Certificates
+Breadcrumbs::register('certificates.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Certificates', route('certificates.index'));
+});
+
+// Home > Certificates > Create Certificate
+Breadcrumbs::register('certificates.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('certificates.index');
+    $breadcrumbs->push('Create Certificate', route('certificates.create'));
+});
+
+// Home > Certificates > [Certificate Title]
+Breadcrumbs::register('certificates.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('certificates.index');
+    $breadcrumbs->push($instance->title, route('certificates.show', $instance->id));
+});
+
+// Home > Certificates > [Certificate Title] > Edit
+Breadcrumbs::register('certificates.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('certificates.show', $instance);
+    $breadcrumbs->push('Edit', route('certificates.edit', $instance->id));
 });

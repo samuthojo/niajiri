@@ -26,6 +26,7 @@ class CertificateController extends SecureController {
 			'route_description' => 'Certificate List',
 			'certificates' => $certificates,
 			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('certificates.index', $data);
@@ -36,8 +37,11 @@ class CertificateController extends SecureController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-		return view('certificates.create');
+	public function create(Request $request) {
+		$data = [
+			'applicant_id' => $request->input('applicant_id'),
+		];
+		return view('certificates.create', $data);
 	}
 
 	/**
@@ -53,9 +57,9 @@ class CertificateController extends SecureController {
 			'title' => 'required|string',
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'finished_at' => 'nullable|date_format:d-m-Y',
-			'expired_at' => 'nullable|date_format:d-m-Y',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
+			'expired_at' => 'nullable',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -80,7 +84,9 @@ class CertificateController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show certificate
-		return redirect()->route('certificates.show', [$certificate]);
+		return redirect()->route('certificates.index', [
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -90,7 +96,7 @@ class CertificateController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Request $request, $id) {
 
 		//load certificate with permissions
 		$certificate = Certificate::query()->findOrFail($id);
@@ -99,10 +105,11 @@ class CertificateController extends SecureController {
 			'route_title' => 'Show Certificate',
 			'route_description' => 'Show Certificate',
 			'certificate' => $certificate,
-			'instance' => $certificate
+			'instance' => $certificate,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('certificates.show', $data);
+		return view('certificates.edit', $data);
 	}
 
 	/**
@@ -111,7 +118,7 @@ class CertificateController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 
 		$certificate = Certificate::findOrFail($id);
 
@@ -120,6 +127,7 @@ class CertificateController extends SecureController {
 			'route_description' => 'Edit Certificate',
 			'certificate' => $certificate,
 			'instance' => $certificate,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('certificates.edit', $data);
@@ -139,9 +147,9 @@ class CertificateController extends SecureController {
 			'title' => 'required|string',
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'finished_at' => 'nullable|date_format:d-m-Y',
-			'expired_at' => 'nullable|date_format:d-m-Y',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
+			'expired_at' => 'nullable',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -169,7 +177,9 @@ class CertificateController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show certificate
-		return redirect()->route('certificates.index');
+		return redirect()->route('certificates.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -179,7 +189,7 @@ class CertificateController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
 
 		Certificate::destroy($id);
 
@@ -188,6 +198,8 @@ class CertificateController extends SecureController {
 			->success()->important();
 
 		//TODO redirect to specific applicant profile
-		return redirect('certificates');
+		return redirect()->route('certificates.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 	}
 }

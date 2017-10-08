@@ -93,7 +93,8 @@
             {{-- @permission([]) --}}
 	        <li class="{{areActiveRoutes([
 	        	'cvs.*',
-	        	'educations.*'
+	        	'educations.*',
+	        	'certificates.*'
 	        	])}}">
 	            <a href="#">
 	            	<i class="fa fa-address-card-o"></i>
@@ -119,8 +120,8 @@
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="{{isActiveRoute('cvs.certificates')}}">
-	                	<a href="{{route('cvs.certificates')}}">
+	                <li class="{{isActiveRoute('certificates.*')}}">
+	                	<a href="{{route('certificates.index', ['applicant_id' => Auth::user()->id])}}">
 	                		Certificates
 	                	</a>
 	                </li>
