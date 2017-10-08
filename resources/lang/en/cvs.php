@@ -38,7 +38,7 @@ return [
             'title' => 'Click To View User',
         ],
         'save' => [
-            'name' => '&nbsp;&nbsp;Save&nbsp;&nbsp;',
+            'name' => '&nbsp;&nbsp;Save Changes&nbsp;&nbsp;',
             'title' => 'Click To Save',
             'header' => 'New User',
             'flash' => [

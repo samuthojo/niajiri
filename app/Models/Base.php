@@ -14,6 +14,7 @@ use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Watson\Rememberable\Rememberable;
 use Webpatser\Uuid\Uuid;
+use Carbon\Carbon;
 
 /**
  * Application base model

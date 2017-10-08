@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 			|| ($environment == 'test');
 		if ($isLocal) {
 			//seed test & development data
-			// $this->call(SectorsTableSeeder::class);
+			$this->call(ApplicantsTableSeeder::class);
 		}
         
     }
