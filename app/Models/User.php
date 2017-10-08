@@ -109,6 +109,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'fax',
         'physical_address',
         'postal_address',
+        'summary',
         'password',
         'avatar',
         'verified',
