@@ -19,7 +19,7 @@
     {{-- start avatar --}}
     <div class="col-md-offset-9 col-md-3">
         <div class="form-group m-b-lg {{ $errors->has('avatar') ? 'has-error' : ''}}">
-            <div class="edit-profile-photo">
+            <div class="edit-profile-photo edit-profile-photo-cv">
                 <img src="{{$user->avatar()}}" alt="{{trans('cvs.inputs.avatar.placeholder')}}" class="img-thumbnail"
                 title="{{trans('cvs.inputs.avatar.placeholder')}}">
                 <div class="change-photo-btn">

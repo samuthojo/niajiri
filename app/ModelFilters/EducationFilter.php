@@ -7,9 +7,9 @@ namespace App\ModelFilters;
  */
 class EducationFilter extends BaseFilter {
 
-	public function title($value) {
+	public function level($value) {
 		if (!static::isAll($value)) {
-			$this->where('title', $value);
+			$this->where('level', $value);
 		}
 	}
 

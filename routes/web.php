@@ -42,6 +42,8 @@ Route::resource('organizations', 'OrganizationController');
 
 Route::resource('positions', 'PositionController');
 
+Route::resource('educations', 'EducationController');
+
 //cv routes
 Route::get('/basic', 'CVController@get_basic')->name("cvs.basic");
 Route::post('/basic', 'CVController@post_basic')->name("cvs.basic");

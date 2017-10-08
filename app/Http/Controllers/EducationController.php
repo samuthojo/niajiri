@@ -26,6 +26,7 @@ class EducationController extends SecureController {
 			'route_description' => 'Education List',
 			'educations' => $educations,
 			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('educations.index', $data);
@@ -36,8 +37,11 @@ class EducationController extends SecureController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-		return view('educations.create');
+	public function create(Request $request) {
+		$data = [
+			'applicant_id' => $request->input('applicant_id'),
+		];
+		return view('educations.create', $data);
 	}
 
 	/**
@@ -50,11 +54,11 @@ class EducationController extends SecureController {
 
 		//ensure valid education
 		$this->validate($request, [
-			'title' => 'required|string',
+			'level' => 'required|string',
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'finished_at' => 'nullable|date_format:d-m-Y',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
 			'remark' => 'required|string',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
@@ -80,7 +84,9 @@ class EducationController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show education
-		return redirect()->route('educations.show', [$education]);
+		return redirect()->route('educations.index', [
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -90,7 +96,7 @@ class EducationController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Request $request, $id) {
 
 		//load education with permissions
 		$education = Education::query()->findOrFail($id);
@@ -99,10 +105,11 @@ class EducationController extends SecureController {
 			'route_title' => 'Show Education',
 			'route_description' => 'Show Education',
 			'education' => $education,
-			'instance' => $education
+			'instance' => $education,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('educations.show', $data);
+		return view('educations.edit', $data);
 	}
 
 	/**
@@ -111,7 +118,7 @@ class EducationController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 
 		$education = Education::findOrFail($id);
 
@@ -120,6 +127,7 @@ class EducationController extends SecureController {
 			'route_description' => 'Edit Education',
 			'education' => $education,
 			'instance' => $education,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('educations.edit', $data);
@@ -136,11 +144,11 @@ class EducationController extends SecureController {
 		
 		//ensure valid education
 		$this->validate($request, [
-			'title' => 'required|string',
+			'level' => 'required|string',
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'finished_at' => 'nullable|date_format:d-m-Y',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
 			'remark' => 'required|string',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
@@ -169,7 +177,9 @@ class EducationController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show education
-		return redirect()->route('educations.index');
+		return redirect()->route('educations.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -179,7 +189,7 @@ class EducationController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
 
 		Education::destroy($id);
 
@@ -188,6 +198,8 @@ class EducationController extends SecureController {
 			->success()->important();
 
 		//TODO redirect to specific applicant profile
-		return redirect('educations');
+		return redirect()->route('educations.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 	}
 }

@@ -1,6 +1,17 @@
 <?php
 
 return [
+    'levels' => [
+        'Primary' => 'Primary',
+        'Secondary - Ordinary Level' => 'Secondary - Ordinary Level',
+        'Secondary - Advance Level' => 'Secondary - Advance Level',
+        'Certificate' => 'Certificate',
+        'University' => 'University',
+        'University' => 'University',
+    ],
+    'headers' => [
+        'actions' => 'Actions',
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',
@@ -15,7 +26,7 @@ return [
             'title' => 'Click To View Education',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Changes',
             'title' => 'Click To Save New Education',
             'header' => 'New Education',
             'flash' => [
@@ -29,6 +40,7 @@ return [
         'delete' => [
             'name' => 'Delete',
             'title' => 'Click To Delete Education',
+            'confirm' => 'Confirm Delete?',
             'flash' => [
                 'success' => 'Education Deleted Succeffully',
             ],
@@ -49,45 +61,45 @@ return [
         ],
     ],
     'inputs' => [
-        'title' => [
-            'label' => 'Title',
-            'placeholder' => 'Title',
-            'header' => 'Title',
-            'description' => 'Title of the Education e.g Primary etc.',
+        'level' => [
+            'label' => 'Education Level',
+            'placeholder' => 'e.g Primary',
+            'header' => 'Level',
+            'description' => 'Level of the Education e.g Primary etc.',
         ],
         'institution' => [
-            'label' => 'Institution',
-            'placeholder' => 'Institution',
+            'label' => 'School/College/University',
+            'placeholder' => 'e.g Mtakuja',
             'header' => 'Institution',
             'description' => 'Issuing Institution e.g Mtakuja etc.',
         ],
         'summary' => [
-            'label' => 'Summary',
-            'placeholder' => 'Summary',
+            'label' => 'Certificate/Diploma/Degree',
+            'placeholder' => 'e.g Primary, Bsc. in Computer Science',
             'header' => 'Summary',
             'description' => 'Brief Summary',
         ],
         'started_at' => [
             'label' => 'Date Started',
-            'placeholder' => 'Date Started',
+            'placeholder' => 'e.g 12-11-2015',
             'header' => 'Date Started',
             'description' => 'Date Started e.g 12-11-2015 etc.',
         ],
         'finished_at' => [
             'label' => 'Date Finished',
-            'placeholder' => 'Date Finished',
+            'placeholder' => 'e.g 12-12-2016',
             'header' => 'Date Finished',
             'description' => 'Date Finished e.g 12-12-2016 etc.',
         ],
         'remark' => [
-            'label' => 'Remark',
-            'placeholder' => 'Remark',
+            'label' => 'Division/Pass/Fail/GPA',
+            'placeholder' => 'e.g 3.8, Pass, Fail, Division I',
             'header' => 'Remark',
-            'description' => 'Division/Pass/Fail/GPA e.g 3.8',
+            'description' => 'e.g 3.8, Pass, Fail, Division I',
         ],
         'applicant_id' => [
             'label' => 'Applicant',
-            'placeholder' => 'Applicant',
+            'placeholder' => 'e.g Juma Lisu',
             'header' => 'Applicant',
             'description' => 'Applicant e.g Juma Lisu etc.',
         ],

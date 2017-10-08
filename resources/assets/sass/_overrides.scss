@@ -30,8 +30,12 @@
 
 .edit-profile-photo img {
     border-radius: 3px;
-    max-width: 140px;
+    max-width: 200px;
     width: 100%;
+}
+
+.edit-profile-photo-cv img {
+    max-width: 140px !important;
 }
 
 .edit-profile-photo {

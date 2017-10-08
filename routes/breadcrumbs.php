@@ -148,3 +148,29 @@ Breadcrumbs::register('roles.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('roles.show', $instance);
     $breadcrumbs->push('Edit', route('roles.edit', $instance->id));
 });
+
+
+// -------------------Educations Breadcrumbs--------------------------------------
+// Home > Educations
+Breadcrumbs::register('educations.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Educations', route('educations.index'));
+});
+
+// Home > Educations > Create Education
+Breadcrumbs::register('educations.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('educations.index');
+    $breadcrumbs->push('Create Education', route('educations.create'));
+});
+
+// Home > Educations > [Education Title]
+Breadcrumbs::register('educations.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('educations.index');
+    $breadcrumbs->push($instance->level, route('educations.show', $instance->id));
+});
+
+// Home > Educations > [Education Title] > Edit
+Breadcrumbs::register('educations.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('educations.show', $instance);
+    $breadcrumbs->push('Edit', route('educations.edit', $instance->id));
+});

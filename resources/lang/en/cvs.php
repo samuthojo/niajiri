@@ -12,6 +12,25 @@ return [
         'Separated' => 'Separated',
         'Married' => 'Married',
     ],
+    'languages' => [
+        'Swahili' => 'Swahili',
+        'English' => 'English',
+        'French' => 'French',
+        'Chineese' => 'Chineese',
+        'Italian' => 'Italian',
+        'Spanish' => 'Spanish',
+        'Hindi' => 'Hindi',
+        'Portuguese' => 'Portuguese',
+        'Bengali' => 'Bengali',
+        'Russian' => 'Russian',
+    ],
+    'language_fluency' => [
+        'Beginner' => 'Beginner',
+        'Intermediate' => 'Intermediate',
+        'Advanced' => 'Advanced',
+        'Proficient' => 'Proficient',
+        'Native' => 'Native'
+    ],
     'headers' => [
         'actions' => 'Actions',
         'basic_details' => [
@@ -38,7 +57,7 @@ return [
             'title' => 'Click To View User',
         ],
         'save' => [
-            'name' => '&nbsp;&nbsp;Save&nbsp;&nbsp;',
+            'name' => '&nbsp;&nbsp;Save Changes&nbsp;&nbsp;',
             'title' => 'Click To Save',
             'header' => 'New User',
             'flash' => [
