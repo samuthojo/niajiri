@@ -149,6 +149,13 @@ return [
             'description' => 'Landline Phone Number e.g 255222555555 etc.',
         ],
 
+        'summary' => [
+            'label' => 'About Me',
+            'placeholder' => 'e.g Driven Retail Manager with over ten years’ experience in the fashion industry.',
+            'header' => 'About Me',
+            'description' => 'About Me e.g Driven Retail Manager with over ten years’ experience in the fashion industry. etc',
+        ],
+
         'physical_address' => [
             'label' => 'Physical Address',
             'placeholder' => 'e.g Kiusa Street etc',

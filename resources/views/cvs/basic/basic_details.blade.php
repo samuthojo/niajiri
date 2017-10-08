@@ -273,7 +273,7 @@
 
 
 {{-- start physical address, fax & postal address --}}
-<div class="row m-t-md m-b-md">
+<div class="row m-t-md">
 
 	{{-- start physical address --}}
 	<div class="col-md-4">
@@ -341,6 +341,33 @@
 
 </div>
 {{-- end physical address, fax & postal address --}}
+
+{{-- start personal summary --}}
+<div class="row m-t-md m-b-md">
+
+    <div class="col-md-12">
+        <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
+            <label for="summary" title="{{ trans('cvs.inputs.summary.description') }}">
+                {{trans('cvs.inputs.summary.label')}}
+            </label>
+            {!! Form::textarea('description', null, [
+                'id' => 'summary',
+                'class' => 'form-control',
+                'rows' => 2,
+                'required' => 'required',
+                'aria-describedby'=> 'cv_summary_help_block',
+                'placeholder' => trans('cvs.inputs.summary.placeholder')
+            ]) !!}
+            @if($errors->any() && $errors->has('summary'))
+            {!!
+                $errors->first('summary', '<p id="cv_summary_help_block" class="help-block">:message</p>')
+            !!}
+            @endif
+        </div>
+    </div>
+
+</div>
+{{-- end personal summary --}}
 
 
 {{-- end basic details --}}
