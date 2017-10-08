@@ -30,19 +30,13 @@
                     <div class="col-md-12">
                          {!!
                             Form::button(
-                                trans('users.actions.save.name'),
+                                trans('cvs.actions.save.name'),
                                 [
                                 'type' => 'submit',
                                 'class' => 'btn btn-primary pull-right',
-                                'title' => trans('users.actions.save.title'),
+                                'title' => trans('cvs.actions.save.title'),
                             ])
                         !!}
-                        <a
-                            href="{{ route('users.index') }}"
-                            class="btn btn-white pull-right m-r-sm"
-                            title="{{ trans('users.actions.cancel.title') }}">
-                            {{ trans('users.actions.cancel.name') }}
-                        </a>
                     </div>
                 </div>
                 {{-- end bottom actions --}}

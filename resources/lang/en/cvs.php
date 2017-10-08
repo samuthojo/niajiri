@@ -15,18 +15,13 @@ return [
     'headers' => [
         'actions' => 'Actions',
         'basic_details' => [
-            'name' => 'Basic Details',
-            'title' => 'Basic User Details',
+            'name' => 'Personal Details',
+            'title' => 'Personal Details',
         ],
-    ],
-    'tabs' => [
-        'basic_details' => [
-            'name' => 'Basic Details',
-            'title' => 'Basic User Details',
-        ],
-        'change_password' => [
-            'name' => 'Change Password',
-            'title' => 'Change User Password',
+
+        'skills_hobbies_interests' => [
+            'name' => 'Skills, Hobbies & Interests',
+            'title' => 'Skills, Hobbies & Interests',
         ],
     ],
     'actions' => [
@@ -43,11 +38,11 @@ return [
             'title' => 'Click To View User',
         ],
         'save' => [
-            'name' => 'Save',
-            'title' => 'Click To Save New User',
+            'name' => '&nbsp;&nbsp;Save&nbsp;&nbsp;',
+            'title' => 'Click To Save',
             'header' => 'New User',
             'flash' => [
-                'success' => 'User Saved Successffully',
+                'success' => 'Details Saved Successffully',
             ],
         ],
         'create' => [
@@ -195,6 +190,27 @@ return [
             'header' => 'Photo',
             'description' => 'Photo',
             'change' => 'Photo',
+        ],
+
+        'skills' => [
+            'label' => 'Skills',
+            'placeholder' => 'e.g Problem Solving, Self-Confidence',
+            'header' => 'Skills',
+            'description' => 'Skills e.g Problem Solving, Self-Confidence.',
+        ],
+
+        'interests' => [
+            'label' => 'Interests',
+            'placeholder' => 'e.g Reading, Writing',
+            'header' => 'Interests',
+            'description' => 'Interests e.g Reading, Writing.',
+        ],
+
+        'hobbies' => [
+            'label' => 'Hobbies',
+            'placeholder' => 'e.g Dancing, Debate',
+            'header' => 'Hobbies',
+            'description' => 'Hobbies e.g Dancing, Debate.',
         ],
     ],
 ];
