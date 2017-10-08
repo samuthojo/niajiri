@@ -26,17 +26,18 @@ class CreateUsersTable extends Migration
             $table->string('fax')->index()->nullable();
             $table->string('physical_address')->index()->nullable();
             $table->string('postal_address')->index()->nullable();
-            $table->string('gender')->index()->nullable();
-            $table->date('dob')->index()->nullable();
             $table->string('password')->nullable();
             $table->string('avatar')->nullable(); //placeholder for direct avatar url
             $table->boolean('verified')->default(false);
             $table->rememberToken();
 
             //applicant specific
+            $table->string('gender')->index()->nullable();
+            $table->date('dob')->index()->nullable();
             $table->text('skills')->nullable();
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();
+            $table->text('marital_status')->index()->nullable();
 
 
             $table->timestamps();

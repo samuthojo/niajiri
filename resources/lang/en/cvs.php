@@ -5,6 +5,13 @@ return [
         'Male' => 'Male',
         'Female' => 'Female',
     ],
+    'marital_statuses' => [
+        'Single' => 'Single',
+        'Widowed' => 'Widowed',
+        'Divorced' => 'Divorced',
+        'Separated' => 'Separated',
+        'Married' => 'Married',
+    ],
     'headers' => [
         'actions' => 'Actions',
         'basic_details' => [
@@ -79,9 +86,9 @@ return [
     'inputs' => [
         'name' => [
             'label' => 'Name',
-            'placeholder' => 'Name',
+            'placeholder' => 'e.g Juma Hamisi',
             'header' => 'Name',
-            'description' => 'Full Name of the User e.g Juma Hamisi etc.',
+            'description' => 'Full Name e.g Juma Hamisi etc.',
         ],
 
         'first_name' => [
@@ -105,46 +112,11 @@ return [
             'description' => 'Surname e.g Ngoda etc.',
         ],
 
-        'email' => [
-            'label' => 'Email',
-            'placeholder' => 'Email',
-            'header' => 'Email',
-            'description' => 'Email Address of the User e.g user@example.com etc.',
-        ],
-
-        'mobile' => [
-            'label' => 'Mobile',
-            'placeholder' => 'Mobile',
-            'header' => 'Mobile',
-            'description' => 'Mobile Phone Number of the User e.g 255714111111 etc.',
-        ],
-
-        'landline' => [
-            'label' => 'Landline',
-            'placeholder' => 'Landline',
-            'header' => 'Landline',
-            'description' => 'Landline Phone Number of the User e.g 255222555555 etc.',
-        ],
-
-        'fax' => [
-            'label' => 'Fax',
-            'placeholder' => 'Fax',
-            'header' => 'Fax',
-            'description' => 'Fax Number of the User e.g 255222555555 etc.',
-        ],
-
-        'physical_address' => [
-            'label' => 'Physical Address',
-            'placeholder' => 'Physical Address',
-            'header' => 'Physical Address',
-            'description' => 'Physical Address of the User e.g Opposite TTU Office.',
-        ],
-
-        'postal_address' => [
-            'label' => 'Postal Address',
-            'placeholder' => 'Postal Address',
-            'header' => 'Postal Address',
-            'description' => 'Postal Address of the User e.g P.O.BOX 10, Ilala, Dar es salaam.',
+        'dob' => [
+            'label' => 'Date of Birth',
+            'placeholder' => 'e.g 21-06-2017',
+            'header' => 'Date of Birth',
+            'description' => 'Date of Birth e.g 21-06-2017',
         ],
 
         'gender' => [
@@ -154,40 +126,75 @@ return [
             'description' => 'Gender of the User e.g Male, Female',
         ],
 
-        'dob' => [
-            'label' => 'Date of Birth',
-            'placeholder' => 'Date of Birth',
-            'header' => 'Date of Birth',
-            'description' => 'Date of Birth of the User e.g 21-06-2017',
+        'marital_status' => [
+            'label' => 'Marital Status',
+            'placeholder' => 'Marital Status',
+            'header' => 'Marital Status',
+            'description' => 'Marital Status e.g Single, Married',
+        ],
+
+        'email' => [
+            'label' => 'Email',
+            'placeholder' => 'e.g juma.hamisi@example.com',
+            'header' => 'Email',
+            'description' => 'Email Address e.g user@example.com etc.',
+        ],
+
+        'mobile' => [
+            'label' => 'Mobile',
+            'placeholder' => 'e.g 255714333999',
+            'header' => 'Mobile',
+            'description' => 'Mobile Phone Number e.g 255714333999 etc.',
+        ],
+
+        'landline' => [
+            'label' => 'Landline',
+            'placeholder' => 'e.g 255222555555',
+            'header' => 'Landline',
+            'description' => 'Landline Phone Number e.g 255222555555 etc.',
+        ],
+
+        'physical_address' => [
+            'label' => 'Physical Address',
+            'placeholder' => 'e.g Kiusa Street etc',
+            'header' => 'Physical Address',
+            'description' => 'Physical Address e.g Kiusa Street etc',
+        ],
+
+        'fax' => [
+            'label' => 'Fax',
+            'placeholder' => 'e.g 255222555555',
+            'header' => 'Fax',
+            'description' => 'Fax Number e.g 255222555555 etc.',
+        ],
+
+        'postal_address' => [
+            'label' => 'Postal Address',
+            'placeholder' => 'e.g P.O.BOX 10, Ilala, Dar es salaam.',
+            'header' => 'Postal Address',
+            'description' => 'Postal Address e.g P.O.BOX 10, Ilala, Dar es salaam.',
         ],
 
         'password' => [
             'label' => 'Password',
             'placeholder' => 'Password',
             'header' => 'Password',
-            'description' => 'User Login Password e.g 1234 etc',
+            'description' => 'Signin Password e.g 1234 etc',
         ],
 
         'password_confirmation' => [
             'label' => 'Confirm Password',
             'placeholder' => 'Confirm Password',
             'header' => 'Confirm Password',
-            'description' => 'Confirm User Login Password e.g 1234 etc',
-        ],
-
-        'roles' => [
-            'label' => 'Roles',
-            'placeholder' => 'Roles',
-            'header' => 'Roles',
-            'description' => 'User Roles e.g Administrator etc',
+            'description' => 'Confirm Signin Password e.g 1234 etc',
         ],
 
         'avatar' => [
-            'label' => 'Avatar',
-            'placeholder' => 'User Avatar',
-            'header' => 'Avatar',
-            'description' => 'User Avatar',
-            'change' => 'Change Avatar',
+            'label' => 'Photo',
+            'placeholder' => 'Photo',
+            'header' => 'Photo',
+            'description' => 'Photo',
+            'change' => 'Photo',
         ],
     ],
 ];

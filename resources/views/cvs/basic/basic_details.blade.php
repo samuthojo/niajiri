@@ -13,9 +13,33 @@
 </div>
 {{-- end header --}}
 
+{{-- start avatar --}}
+<div class="row">
+
+    {{-- start avatar --}}
+    <div class="col-md-offset-9 col-md-3">
+        <div class="form-group m-b-lg {{ $errors->has('avatar') ? 'has-error' : ''}}">
+            <div class="edit-profile-photo">
+                <img src="{{$user->avatar()}}" alt="{{trans('cvs.inputs.avatar.placeholder')}}" class="img-thumbnail"
+                title="{{trans('cvs.inputs.avatar.placeholder')}}">
+                <div class="change-photo-btn">
+                    <div class="photoUpload">
+                        <span title="Change Profile Avatar">
+                            <i class="fa fa-upload"></i> {{trans('cvs.inputs.avatar.change')}}
+                        </span>
+                        <input id="avatar" name="avatar" type="file" class="upload" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end avatar --}}
+
+</div>
+{{-- end avatar --}}
 
 {{-- start firstname, middlename, surname --}}
-<div class="row m-t-md">
+<div class="row">
 
     {{-- start first name --}}
     <div class="col-md-4">
@@ -111,10 +135,6 @@
 	        {!!
 	            $errors->first('dob', '<p id="cv_dob_help_block" class="help-block">:message</p>')
 	        !!}
-	        @else
-	            <p id="cv_dob_help_block" class="help-block">
-	                {{ trans('cvs.inputs.dob.description') }}
-	            </p>
 	        @endif
 	    </div>
 	</div>
@@ -142,10 +162,6 @@
             {!!
                 $errors->first('gender', '<p id="cv_gender_help_block" class="help-block">:message</p>')
             !!}
-            @else
-                <p id="cv_gender_help_block" class="help-block">
-                    {{ trans('cvs.inputs.gender.description') }}
-                </p>
             @endif
         </div>
     </div>
@@ -153,32 +169,28 @@
 
 	{{-- start marital status --}}
 	<div class="col-md-5">
-        {{-- <div class="form-group {{ $errors->has('maritalstatus_id') ? 'has-error' : ''}}">
-            <label for="maritalstatus" title="{{ trans('cvs.inputs.maritalstatus.description') }}">
-                {{trans('cvs.inputs.maritalstatus.label')}}
+        <div class="form-group {{ $errors->has('marital_status') ? 'has-error' : ''}}">
+            <label for="marital_status" title="{{ trans('cvs.inputs.marital_status.description') }}">
+                {{trans('cvs.inputs.marital_status.label')}}
                 <span class="text-danger">*</span>
             </label>
             <div>
-                @foreach($maritalstatuses->pluck('name', 'id') as $key => $value)
+                @foreach(trans('cvs.marital_statuses') as $key => $value)
                 <label class="radio-inline text-black" for="{{$key}}">
-                  {!! Form::radio('maritalstatus_id', $key, null, [
+                  {!! Form::radio('marital_status', $value, null, [
                       'id' => $key,
-                      'aria-describedby' => 'cv_maritalstatus_help_block'
+                      'aria-describedby'=> 'cv_marital_status_help_block',
                   ]) !!}
                   {{$value}}
                 </label>
                 @endforeach
             </div>
-            @if($errors->any() && $errors->has('maritalstatus_id'))
+            @if($errors->any() && $errors->has('marital_status'))
             {!!
-                $errors->first('maritalstatus_id', '<p id="cv_maritalstatus_help_block" class="help-block">:message</p>')
+                $errors->first('marital_status', '<p id="cv_marital_status_help_block" class="help-block">:message</p>')
             !!}
-            @else
-                <p id="cv_maritalstatus_help_block" class="help-block">
-                    {{ trans('cvs.inputs.maritalstatus.description') }}
-                </p>
             @endif
-        </div> --}}
+        </div>
     </div>
 	{{-- end marital status --}}
 
@@ -207,10 +219,6 @@
             {!!
                 $errors->first('email', '<p id="cv_email_help_block" class="help-block">:message</p>')
             !!}
-            @else
-                <p id="cv_email_help_block" class="help-block">
-                    {{ trans('cvs.inputs.email.description') }}
-                </p>
             @endif
         </div>
     </div>
@@ -234,10 +242,6 @@
             {!!
                 $errors->first('mobile', '<p id="cv_mobile_help_block" class="help-block">:message</p>')
             !!}
-            @else
-                <p id="cv_mobile_help_block" class="help-block">
-                    {{ trans('cvs.inputs.mobile.description') }}
-                </p>
             @endif
         </div>
     </div>
@@ -259,10 +263,6 @@
             {!!
                 $errors->first('landline', '<p id="cv_landline_help_block" class="help-block">:message</p>')
             !!}
-            @else
-                <p id="cv_landline_help_block" class="help-block">
-                    {{ trans('cvs.inputs.landline.description') }}
-                </p>
             @endif
         </div>
     </div>
@@ -273,7 +273,7 @@
 
 
 {{-- start physical address, fax & postal address --}}
-<div class="row m-t-md">
+<div class="row m-t-md m-b-md">
 
 	{{-- start physical address --}}
 	<div class="col-md-4">
@@ -292,10 +292,6 @@
 	        {!!
 	            $errors->first('physical_address', '<p id="cv_physical_address_help_block" class="help-block">:message</p>')
 	        !!}
-	        @else
-	            <p id="cv_physical_address_help_block" class="help-block">
-	                {{ trans('cvs.inputs.physical_address.description') }}
-	            </p>
 	        @endif
 	    </div>
 	</div>
@@ -317,10 +313,6 @@
 	        {!!
 	            $errors->first('fax', '<p id="cv_fax_help_block" class="help-block">:message</p>')
 	        !!}
-	        @else
-	            <p id="cv_fax_help_block" class="help-block">
-	                {{ trans('cvs.inputs.fax.description') }}
-	            </p>
 	        @endif
 	    </div>
 	</div>
@@ -342,10 +334,6 @@
 	        {!!
 	            $errors->first('postal_address', '<p id="cv_postal_address_help_block" class="help-block">:message</p>')
 	        !!}
-	        @else
-	            <p id="cv_postal_address_help_block" class="help-block">
-	                {{ trans('cvs.inputs.postal_address.description') }}
-	            </p>
 	        @endif
 	    </div>
 	</div>
