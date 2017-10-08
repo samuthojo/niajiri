@@ -5,20 +5,25 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\ProjectRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Repositories\OrganizationRepository;
+use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
+use Input;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Carbon;
 
-class ProjectController extends AppBaseController
+class ProjectController extends SecureController
 {
     /** @var  ProjectRepository */
     private $projectRepository;
+    private $organizationRepository;
 
-    public function __construct(ProjectRepository $projectRepo)
+    public function __construct(ProjectRepository $projectRepo, OrganizationRepository $organizationRepo)
     {
         $this->projectRepository = $projectRepo;
+        $this->organizationRepository = $organizationRepo;
     }
 
     /**
@@ -32,8 +37,11 @@ class ProjectController extends AppBaseController
         $this->projectRepository->pushCriteria(new RequestCriteria($request));
         $projects = $this->projectRepository->all();
 
-        return view('projects.index')
-            ->with('projects', $projects);
+        return view('pages.projects.index',[
+            'route_title' => 'Project',
+            'route_description' => 'Project',
+            'projects' => $projects
+        ]);
     }
 
     /**
@@ -43,7 +51,13 @@ class ProjectController extends AppBaseController
      */
     public function create()
     {
-        return view('projects.create');
+      $organization = $this->organizationRepository->pluck('name', 'id');
+
+      return view('pages.projects.create',[
+          'route_title' => 'Project',
+          'route_description' => 'Project',
+          'organizations' => $organization->toArray(),
+      ]);
     }
 
     /**
@@ -56,8 +70,12 @@ class ProjectController extends AppBaseController
     public function store(CreateProjectRequest $request)
     {
         $input = $request->all();
-
-        $project = $this->projectRepository->create($input);
+        $project = $this->projectRepository->create([
+          'name' => Input::get('name'),
+          'organization_id' => Input::get('organization_id'),
+          'startedAt' => Input::get('endedAt'),
+          'endedAt' => Input::get('endedAt')
+        ]);
 
         Flash::success('Project saved successfully.');
 
@@ -74,6 +92,7 @@ class ProjectController extends AppBaseController
     public function show($id)
     {
         $project = $this->projectRepository->findWithoutFail($id);
+        $organization = $this->organizationRepository->pluck('name', 'id');
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -81,7 +100,12 @@ class ProjectController extends AppBaseController
             return redirect(route('projects.index'));
         }
 
-        return view('projects.show')->with('project', $project);
+        return view('pages.projects.show',[
+            'route_title' => 'Project',
+            'route_description' => 'Project',
+            'project' => $project,
+            'organizations' => $organization->toArray(),
+        ]);
     }
 
     /**
@@ -94,6 +118,7 @@ class ProjectController extends AppBaseController
     public function edit($id)
     {
         $project = $this->projectRepository->findWithoutFail($id);
+        $organization = $this->organizationRepository->pluck('name', 'id');
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -101,7 +126,12 @@ class ProjectController extends AppBaseController
             return redirect(route('projects.index'));
         }
 
-        return view('projects.edit')->with('project', $project);
+        return view('pages.projects.edit',[
+            'route_title' => 'Project',
+            'route_description' => 'Project',
+            'project' => $project,
+            'organizations' => $organization->toArray(),
+        ]);
     }
 
     /**

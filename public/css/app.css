@@ -21685,3 +21685,16 @@ body.body-small .vote-icon {
   background-color: #FFFFFF !important;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+
+.margin-10 {
+  margin: 10px 0;
+}
+

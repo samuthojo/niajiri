@@ -17,6 +17,7 @@ class CreateSectorsTable extends Migration
             $table->uuid('id');
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
 
             //indexes
             $table->primary('id');

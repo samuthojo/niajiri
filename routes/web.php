@@ -20,7 +20,7 @@ Route::get('/open_positions', 'HomeController@positions')->name("open_positions"
 Route::get('/minor', 'HomeController@minor')->name("minor");
 
 //development only routes, should be commented on production
-Route::get('/artisan', 'SiteController@artisan')->name('artisan');
+//Route::get('/artisan', 'SiteController@artisan')->name('artisan');
 
 Route::resource('roles', 'RoleController');
 
@@ -29,11 +29,16 @@ Route::get('/profile', 'UserController@profile')->name('profile');
 Route::get('/users/{user}/change', 'UserController@showChangePassword')->name('users.change_password');
 Route::patch('/users/{user}/change', 'UserController@changePassword')->name('users.change_password');
 
-Route::resource('sectors', 'SectorController');
 
 Route::resource('organizations', 'OrganizationController');
 
 Route::resource('projects', 'ProjectController');
+
+Route::resource('positions', 'PositionController');
+
+Route::resource('sectors', 'SectorController');
+
+Route::resource('organizations', 'OrganizationController');
 
 Route::resource('positions', 'PositionController');
 

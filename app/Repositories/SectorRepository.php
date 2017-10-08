@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class SectorRepository
  * @package App\Repositories
- * @version October 5, 2017, 7:45 pm UTC
+ * @version October 6, 2017, 2:02 am UTC
  *
  * @method Sector findWithoutFail($id, $columns = ['*'])
  * @method Sector find($id, $columns = ['*'])

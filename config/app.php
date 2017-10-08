@@ -25,6 +25,7 @@ return [
     */
     'datetime_format' => 'd-m-Y H:m:i',
     'date_format' => 'd-m-Y',
+    'mysql_date_formart' => 'Y-m-d',
     'datepicker_date_format' => 'dd-mm-yyyy',
     'datepicker_parse_format' => 'd-m-Y',
     'currency' => [
@@ -263,6 +264,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
 
         //Package Aliases
         'Form' => Collective\Html\FormFacade::class,
@@ -272,6 +274,7 @@ return [
         'Meta' => Eusonlito\LaravelMeta\Facade::class,
         'Ekko' => Laravelista\Ekko\Facades\Ekko::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class,
+        'Carbon' => 'Carbon\Carbon',
 
     ],
 

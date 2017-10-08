@@ -16,9 +16,9 @@ class CreatePositionsTable extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->uuid('id');
             $table->string('title');
-            $table->string('summary');
-            $table->string('responsibilities');
-            $table->string('requirements');
+            $table->longText('summary');
+            $table->longText('responsibilities');
+            $table->longText('requirements');
             $table->string('duration')->default('Full Time');
             $table->date('dueAt');
             $table->date('publishedAt');
@@ -33,6 +33,7 @@ class CreatePositionsTable extends Migration
             $table->foreign('sector_id')->references('id')->on('sectors')
               ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
 
             //indexes
             $table->primary('id');

@@ -263,7 +263,90 @@
 	            </ul>
 	        </li>
 	        @endpermission
-	        {{-- end member management --}}
+					{{-- start organization management --}}
+            @permission([
+	            'list:organization',
+            ])
+	        <li class="{{areActiveRoutes([
+	        	'organization.*'
+	        	])}}">
+	            <a href="#">
+	            	<i class="fa fa-address-book-o"></i>
+	            	<span class="nav-label">Organizations</span>
+	            	<span class="fa arrow"></span>
+	            </a>
+	            <ul class="nav nav-second-level collapse">
+
+	                @permission([
+		                'list:organization'
+	                ])
+	                <li class="{{isActiveRoute('projects.*')}}">
+	                	<a href="{{route('organizations.index')}}">
+	                		List
+	                	</a>
+	                </li>
+	                @endpermission
+
+	            </ul>
+	        </li>
+	        @endpermission
+					{{-- start sector management --}}
+            @permission([
+	            'list:sector',
+            ])
+	        <li class="{{areActiveRoutes([
+	        	'sectors.*'
+	        	])}}">
+	            <a href="#">
+	            	<i class="fa fa-address-book-o"></i>
+	            	<span class="nav-label">Sectors</span>
+	            	<span class="fa arrow"></span>
+	            </a>
+	            <ul class="nav nav-second-level collapse">
+
+	                @permission([
+		                'list:sector'
+	                ])
+	                <li class="{{isActiveRoute('sectors.*')}}">
+	                	<a href="{{route('sectors.index')}}">
+	                		List
+	                	</a>
+	                </li>
+	                @endpermission
+
+	            </ul>
+	        </li>
+	        @endpermission
+	        {{-- end sector management --}}
+
+					{{-- start positions management --}}
+            @permission([
+	            'list:position',
+            ])
+	        <li class="{{areActiveRoutes([
+	        	'positions.*'
+	        	])}}">
+	            <a href="#">
+	            	<i class="fa fa-address-book-o"></i>
+	            	<span class="nav-label">Position</span>
+	            	<span class="fa arrow"></span>
+	            </a>
+	            <ul class="nav nav-second-level collapse">
+
+	                @permission([
+		                'list:position'
+	                ])
+	                <li class="{{isActiveRoute('positions.*')}}">
+	                	<a href="{{route('positions.index')}}">
+	                		List
+	                	</a>
+	                </li>
+	                @endpermission
+
+	            </ul>
+	        </li>
+	        @endpermission
+	        {{-- end positions management --}}
 
 	        {{-- start user management --}}
             @permission(['list:user', 'list:role'])

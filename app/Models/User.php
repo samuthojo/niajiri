@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Alsofronie\Uuid\UuidModelTrait;
 use App\Traits\ActAsApplicant;
+use App\Traits\ActAsOrganization;
 use App\Traits\Countable;
 use App\Traits\Sugarize;
 use App\Traits\Withable;
@@ -88,6 +89,13 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
      */
     use ActAsApplicant;
 
+
+    /**
+     * Extend user with organization capabilities
+     */
+    use ActAsOrganization;
+
+
     /**
      * Scope a query with field to count
      */
@@ -121,6 +129,8 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'skills',
         'interests',
         'hobbies',
+        //organization specific
+        'sector_id'
     ];
 
     /**

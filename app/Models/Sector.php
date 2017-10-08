@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Sector
  * @package App\Models
- * @version October 5, 2017, 7:45 pm UTC
+ * @version October 6, 2017, 2:02 am UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection Organization
  * @property \Illuminate\Database\Eloquent\Collection permissionRole
@@ -17,11 +18,15 @@ use App\Models\Base as Model;
  */
 class Sector extends Model
 {
+    use SoftDeletes;
 
     public $table = 'sectors';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+
+
+    protected $dates = ['deleted_at'];
 
 
     public $fillable = [

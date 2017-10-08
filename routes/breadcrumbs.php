@@ -348,3 +348,29 @@ Breadcrumbs::register('publications.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('publications.show', $instance);
     $breadcrumbs->push('Edit', route('publications.edit', $instance->id));
 });
+
+
+// ---------------------Organization Breadcrumbs-----------------------------------
+// Home > Users
+Breadcrumbs::register('organizations.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Organizations', route('organizations.index'));
+});
+
+// Home > Users > Create User
+Breadcrumbs::register('organizations.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('organizations.index');
+    $breadcrumbs->push('Create organization', route('organizations.create'));
+});
+
+// Home > Users > [User Name]
+Breadcrumbs::register('organizations.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('organizations.index');
+    $breadcrumbs->push($instance->name, route('organizations.show', $instance->id));
+});
+
+// Home > Users > [User Name] > Edit
+Breadcrumbs::register('organizations.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('organizations.show', $instance);
+    $breadcrumbs->push('Edit', route('organizations.edit', $instance->id));
+});
