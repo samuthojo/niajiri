@@ -163,6 +163,14 @@
 	                </li>
 	                {{-- @endpermission --}}
 
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Generate
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
 	            </ul>
 	        </li>
 	        {{-- @endpermission --}}
