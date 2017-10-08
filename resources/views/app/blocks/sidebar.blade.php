@@ -89,6 +89,85 @@
 	        {{-- end open positions --}}
 	        {{-- end applicant menu --}}
 
+	        {{-- start cv management --}}
+            {{-- @permission([]) --}}
+	        <li class="">
+	            <a href="#">
+	            	<i class="fa fa-address-card-o"></i>
+	            	<span class="nav-label">My CV</span>
+	            	<span class="fa arrow"></span>
+	            </a>
+	            <ul class="nav nav-second-level collapse">
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Basic
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Education
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Certificates
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Experiences
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Languages
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Referees
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Honors/Awards
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Projects
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	            </ul>
+	        </li>
+	        {{-- @endpermission --}}
+	        {{-- end cv management --}}
+
 	        {{-- start dashboard meu --}}
 	        <li class="{{areActiveRoutes([
 		        	'home',
