@@ -62,20 +62,20 @@ return [
     ],
     'inputs' => [
         'level' => [
-            'label' => 'Level',
+            'label' => 'Education Level',
             'placeholder' => 'e.g Primary',
             'header' => 'Level',
             'description' => 'Level of the Education e.g Primary etc.',
         ],
         'institution' => [
-            'label' => 'Institution',
+            'label' => 'School/College/University',
             'placeholder' => 'e.g Mtakuja',
             'header' => 'Institution',
             'description' => 'Issuing Institution e.g Mtakuja etc.',
         ],
         'summary' => [
-            'label' => 'Summary',
-            'placeholder' => 'e.g Primary',
+            'label' => 'Certificate/Diploma/Degree',
+            'placeholder' => 'e.g Primary, Bsc. in Computer Science',
             'header' => 'Summary',
             'description' => 'Brief Summary',
         ],
