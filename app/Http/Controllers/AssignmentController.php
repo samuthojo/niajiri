@@ -26,6 +26,7 @@ class AssignmentController extends SecureController {
 			'route_description' => 'Assignment List',
 			'assignments' => $assignments,
 			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('assignments.index', $data);
@@ -36,8 +37,11 @@ class AssignmentController extends SecureController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-		return view('assignments.create');
+	public function create(Request $request) {
+		$data = [
+			'applicant_id' => $request->input('applicant_id'),
+		];
+		return view('assignments.create', $data);
 	}
 
 	/**
@@ -53,8 +57,8 @@ class AssignmentController extends SecureController {
 			'title' => 'required|string',
 			'client' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'finished_at' => 'required|date_format:d-m-Y',
+			'started_at' => 'required',
+			'finished_at' => 'required',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -70,7 +74,9 @@ class AssignmentController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show assignment
-		return redirect()->route('assignments.show', [$assignment]);
+		return redirect()->route('assignments.index', [
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -80,7 +86,7 @@ class AssignmentController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Request $request, $id) {
 
 		//load assignment with permissions
 		$assignment = Assignment::query()->findOrFail($id);
@@ -89,10 +95,11 @@ class AssignmentController extends SecureController {
 			'route_title' => 'Show Assignment',
 			'route_description' => 'Show Assignment',
 			'assignment' => $assignment,
-			'instance' => $assignment
+			'instance' => $assignment,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('assignments.show', $data);
+		return view('assignments.edit', $data);
 	}
 
 	/**
@@ -101,7 +108,7 @@ class AssignmentController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 
 		$assignment = Assignment::findOrFail($id);
 
@@ -110,6 +117,7 @@ class AssignmentController extends SecureController {
 			'route_description' => 'Edit Assignment',
 			'assignment' => $assignment,
 			'instance' => $assignment,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('assignments.edit', $data);
@@ -129,8 +137,8 @@ class AssignmentController extends SecureController {
 			'title' => 'required|string',
 			'client' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'finished_at' => 'required|date_format:d-m-Y',
+			'started_at' => 'required',
+			'finished_at' => 'required',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -149,7 +157,9 @@ class AssignmentController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show assignment
-		return redirect()->route('assignments.index');
+		return redirect()->route('assignments.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -159,7 +169,7 @@ class AssignmentController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
 
 		Assignment::destroy($id);
 
@@ -168,6 +178,8 @@ class AssignmentController extends SecureController {
 			->success()->important();
 
 		//TODO redirect to specific applicant profile
-		return redirect('assignments');
+		return redirect()->route('assignments.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 	}
 }

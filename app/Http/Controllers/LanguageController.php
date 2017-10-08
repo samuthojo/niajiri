@@ -26,6 +26,7 @@ class LanguageController extends SecureController {
 			'route_description' => 'Language List',
 			'languages' => $languages,
 			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('languages.index', $data);
@@ -36,8 +37,11 @@ class LanguageController extends SecureController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-		return view('languages.create');
+	public function create(Request $request) {
+		$data = [
+			'applicant_id' => $request->input('applicant_id'),
+		];
+		return view('languages.create', $data);
 	}
 
 	/**
@@ -67,7 +71,9 @@ class LanguageController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show language
-		return redirect()->route('languages.show', [$language]);
+		return redirect()->route('languages.index', [
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -77,7 +83,7 @@ class LanguageController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Request $request, $id) {
 
 		//load language with permissions
 		$language = Language::query()->findOrFail($id);
@@ -86,10 +92,11 @@ class LanguageController extends SecureController {
 			'route_title' => 'Show Language',
 			'route_description' => 'Show Language',
 			'language' => $language,
-			'instance' => $language
+			'instance' => $language,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('languages.show', $data);
+		return view('languages.edit', $data);
 	}
 
 	/**
@@ -98,7 +105,7 @@ class LanguageController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 
 		$language = Language::findOrFail($id);
 
@@ -107,6 +114,7 @@ class LanguageController extends SecureController {
 			'route_description' => 'Edit Language',
 			'language' => $language,
 			'instance' => $language,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('languages.edit', $data);
@@ -143,7 +151,9 @@ class LanguageController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show language
-		return redirect()->route('languages.index');
+		return redirect()->route('languages.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -153,7 +163,7 @@ class LanguageController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
 
 		Language::destroy($id);
 
@@ -162,6 +172,8 @@ class LanguageController extends SecureController {
 			->success()->important();
 
 		//TODO redirect to specific applicant profile
-		return redirect('languages');
+		return redirect()->route('languages.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 	}
 }

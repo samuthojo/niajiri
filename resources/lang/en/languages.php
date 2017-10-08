@@ -1,6 +1,28 @@
 <?php
 
 return [
+    'headers' => [
+        'actions' => 'Actions',
+    ],
+    'languages' => [
+        'Swahili' => 'Swahili',
+        'English' => 'English',
+        'French' => 'French',
+        'Chineese' => 'Chineese',
+        'Italian' => 'Italian',
+        'Spanish' => 'Spanish',
+        'Hindi' => 'Hindi',
+        'Portuguese' => 'Portuguese',
+        'Bengali' => 'Bengali',
+        'Russian' => 'Russian',
+    ],
+    'fluencies' => [
+        'Beginner' => 'Beginner',
+        'Intermediate' => 'Intermediate',
+        'Advanced' => 'Advanced',
+        'Proficient' => 'Proficient',
+        'Native' => 'Native'
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',
@@ -15,7 +37,7 @@ return [
             'title' => 'Click To View Language',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Changes',
             'title' => 'Click To Save New Language',
             'header' => 'New Language',
             'flash' => [
@@ -51,13 +73,13 @@ return [
     'inputs' => [
         'name' => [
             'label' => 'Name',
-            'placeholder' => 'Name',
+            'placeholder' => 'e.g English',
             'header' => 'Name',
             'description' => 'Name of the Language e.g English etc.',
         ],
         'fluency' => [
             'label' => 'Fluency',
-            'placeholder' => 'Fluency',
+            'placeholder' => 'e.g Beginner',
             'header' => 'Fluency',
             'description' => 'Fluency e.g Beginner etc.',
         ],

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'headers' => [
+        'actions' => 'Actions',
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',
@@ -15,7 +18,7 @@ return [
             'title' => 'Click To View Certificate',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Changes',
             'title' => 'Click To Save New Certificate',
             'header' => 'New Certificate',
             'flash' => [
@@ -50,38 +53,38 @@ return [
     ],
     'inputs' => [
         'title' => [
-            'label' => 'Title',
-            'placeholder' => 'Title',
+            'label' => 'Title/Name',
+            'placeholder' => 'e.g CCNA, CPA',
             'header' => 'Title',
-            'description' => 'Title of the Certificate e.g CCNA etc.',
+            'description' => 'Title of the Certificate e.g CCNA,CPA etc.',
         ],
         'institution' => [
             'label' => 'Institution',
-            'placeholder' => 'Institution',
+            'placeholder' => 'e.g UCC, Cisco',
             'header' => 'Institution',
             'description' => 'Issuing Institution e.g UCC etc.',
         ],
         'summary' => [
             'label' => 'Summary',
-            'placeholder' => 'Summary',
+            'placeholder' => 'e.g Pass',
             'header' => 'Summary',
             'description' => 'Brief Summary',
         ],
         'started_at' => [
             'label' => 'Date Started',
-            'placeholder' => 'Date Started',
+            'placeholder' => 'e.g 12-11-2015',
             'header' => 'Date Started',
             'description' => 'Date Started e.g 12-11-2015 etc.',
         ],
         'finished_at' => [
             'label' => 'Date Finished',
-            'placeholder' => 'Date Finished',
+            'placeholder' => 'e.g 12-12-2016',
             'header' => 'Date Finished',
             'description' => 'Date Finished e.g 12-12-2016 etc.',
         ],
         'expired_at' => [
             'label' => 'Date Expired',
-            'placeholder' => 'Date Expired',
+            'placeholder' => 'e.g 12-11-2019',
             'header' => 'Date Expired',
             'description' => 'Date Expired e.g 12-11-2019 etc.',
         ],

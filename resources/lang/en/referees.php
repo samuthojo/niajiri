@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'headers' => [
+        'actions' => 'Actions',
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',
@@ -15,7 +18,7 @@ return [
             'title' => 'Click To View Referee',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Changes',
             'title' => 'Click To Save New Referee',
             'header' => 'New Referee',
             'flash' => [
@@ -51,31 +54,31 @@ return [
     'inputs' => [
         'name' => [
             'label' => 'Name',
-            'placeholder' => 'Name',
+            'placeholder' => 'e.g Joshua Julius',
             'header' => 'Name',
             'description' => 'Name of the Referee e.g Joshua Julius etc.',
         ],
         'title' => [
             'label' => 'Title',
-            'placeholder' => 'Title',
+            'placeholder' => 'e.g General Manager',
             'header' => 'Title',
-            'description' => 'Title of the Referee e.g Self Awareness etc.',
+            'description' => 'Title of the Referee e.g General Manager etc.',
         ],
         'organization' => [
-            'label' => 'Organization',
-            'placeholder' => 'Organization',
+            'label' => 'Organization/Company',
+            'placeholder' => 'e.g Vodacom',
             'header' => 'Organization',
             'description' => 'Organization e.g Vodacom etc.',
         ],
         'email' => [
             'label' => 'Email',
-            'placeholder' => 'Email',
+            'placeholder' => 'e.g joshua.julius@vodacom.com',
             'header' => 'Email',
             'description' => 'Referee Email e.g joshua.julius@vodacom.com etc.',
         ],
         'mobile' => [
             'label' => 'Mobile',
-            'placeholder' => 'Mobile',
+            'placeholder' => 'e.g 255714333999',
             'header' => 'Mobile',
             'description' => 'Referee Mobile Number e.g 255714333999 etc.',
         ],

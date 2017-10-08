@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Base as Model;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Carbon\Carbon;
+
 
 class Certificate extends Model implements HasMedia 
 {
@@ -72,6 +74,53 @@ class Certificate extends Model implements HasMedia
             'applicant_certificates.summary' => 5,
         ],
     ];
+
+    /**
+     * Get and format the certificate's started_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formStartedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
+
+
+    /**
+     * Get and format the certificate's finished_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formFinishedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
+
+
+    /**
+     * Get and format the certificate's expired_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formExpiredAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
 
 
     /**

@@ -26,6 +26,7 @@ class RefereeController extends SecureController {
 			'route_description' => 'Referee List',
 			'referees' => $referees,
 			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('referees.index', $data);
@@ -36,8 +37,11 @@ class RefereeController extends SecureController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-		return view('referees.create');
+	public function create(Request $request) {
+		$data = [
+			'applicant_id' => $request->input('applicant_id'),
+		];
+		return view('referees.create', $data);
 	}
 
 	/**
@@ -70,7 +74,9 @@ class RefereeController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show referee
-		return redirect()->route('referees.show', [$referee]);
+		return redirect()->route('referees.index', [
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -80,7 +86,7 @@ class RefereeController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Request $request, $id) {
 
 		//load referee with permissions
 		$referee = Referee::query()->findOrFail($id);
@@ -89,10 +95,11 @@ class RefereeController extends SecureController {
 			'route_title' => 'Show Referee',
 			'route_description' => 'Show Referee',
 			'referee' => $referee,
-			'instance' => $referee
+			'instance' => $referee,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('referees.show', $data);
+		return view('referees.edit', $data);
 	}
 
 	/**
@@ -101,7 +108,7 @@ class RefereeController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 
 		$referee = Referee::findOrFail($id);
 
@@ -110,6 +117,7 @@ class RefereeController extends SecureController {
 			'route_description' => 'Edit Referee',
 			'referee' => $referee,
 			'instance' => $referee,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('referees.edit', $data);
@@ -149,7 +157,9 @@ class RefereeController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show referee
-		return redirect()->route('referees.index');
+		return redirect()->route('referees.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -159,7 +169,7 @@ class RefereeController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
 
 		Referee::destroy($id);
 
@@ -168,6 +178,8 @@ class RefereeController extends SecureController {
 			->success()->important();
 
 		//TODO redirect to specific applicant profile
-		return redirect('referees');
+		return redirect()->route('referees.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 	}
 }

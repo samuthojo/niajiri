@@ -27,7 +27,7 @@ class Language extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'fluence', 'applicant_id'
+        'name', 'fluency', 'applicant_id'
     ];
 
     /**
@@ -56,7 +56,7 @@ class Language extends Model
          */
         'columns' => [
             'applicant_languages.name' => 10,
-            'applicant_languages.fluence' => 10,
+            'applicant_languages.fluency' => 10,
         ],
     ];
 
