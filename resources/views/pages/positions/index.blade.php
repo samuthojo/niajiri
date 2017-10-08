@@ -86,12 +86,12 @@
                         <tbody>
                         @foreach($positions as $item)
                             <tr>
-                                @if(strtotime($item->endedAt) > time())
-                                <td class="text-center">
+                                @if(strtotime($item->dueAt) > time())
+                                <td>
                                     <span class="label label-primary">{{ trans('positions.status.active') }}</span>
                                 </td>
                                 @else
-                                <td class="text-center">
+                                <td>
                                     <span class="label label-default">{{ trans('positions.status.inactive') }}</span>
                                 </td>
                                 @endif

@@ -118,31 +118,6 @@
 </div>
 {{-- end duration --}}
 
-{{-- start organization --}}
-<div class="form-group {{ $errors->has('organization') ? 'has-error' : ''}}">
-    <div class="col-md-offset-3 col-md-6">
-        {!! Form::select('organization_id', $organizations,
-            null,
-            [   'id' => 'organization_id',
-                'class' => 'form-control',
-                'required' => 'required',
-                'aria-describedby'=> 'userorganizationHelpBlock',
-                'placeholder' => trans('positions.inputs.organization.placeholder')
-            ])
-        !!}
-        @if($errors->any() && $errors->has('organization'))
-        {!!
-            $errors->first('organization', '<p class="help-block">:message</p>')
-        !!}
-        @else
-            <p id="userorganizationHelpBlock" class="help-block">
-                {{ trans('positions.inputs.organization.description') }}
-            </p>
-        @endif
-    </div>
-</div>
-{{-- end organization --}}
-
 
 {{-- start projects --}}
 <div class="form-group {{ $errors->has('project') ? 'has-error' : ''}}">

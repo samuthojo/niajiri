@@ -1,6 +1,15 @@
 
 <div class="tab-pane active" id="tab-1">
-
+  {{-- start positions create --}}
+  <div class="row m-t-md">
+      <div class="col-sm-8 m-b-xs">
+          <div class="btn-group">
+              <a href="{{route('positions.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('positions.actions.create.title') }}">
+              <i class="fa fa-plus"></i> {{ trans('positions.actions.create.name') }}</a>
+          </div>
+      </div>
+  </div>
+  {{-- end positions create --}}
     <table class="table table-striped">
         <thead>
         <tr>

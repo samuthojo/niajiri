@@ -56,13 +56,11 @@ class PositionController extends SecureController
      */
     public function create()
     {
-        $organizations = $this->organizationRepository->pluck('name', 'id')->toArray();
         $sectors = $this->sectorRepository->pluck('name', 'id')->toArray();
         $projects = $this->projectRepository->pluck('name', 'id')->toArray();
         return view('pages.positions.create',[
             'route_title' => 'Positions',
             'route_description' => 'Positions',
-            'organizations'  => $organizations,
             'sectors'        => $sectors,
             'projects'       => $projects,
         ]);
@@ -78,6 +76,10 @@ class PositionController extends SecureController
     public function store(CreatePositionRequest $request)
     {
         $input = $request->all();
+
+        $project = $this->projectRepository->findWithoutFail($request['project_id']);
+        
+        $input['organization_id'] = $project->organization_id;
 
         $position = $this->positionRepository->create($input);
 
@@ -128,12 +130,9 @@ class PositionController extends SecureController
 
             return redirect(route('positions.index'));
         }
-
-        $organizations = $this->organizationRepository->pluck('name', 'id')->toArray();
         return view('pages.positions.edit',[
             'route_title' => 'Positions',
             'route_description' => 'Positions',
-            'organizations'  => $organizations,
             'position'   => $position,
             'sectors'     => $sectors,
             'projects'    => $projects
@@ -158,9 +157,11 @@ class PositionController extends SecureController
             return redirect(route('positions.index'));
         }
 
+        $project = $this->projectRepository->findWithoutFail($request['project_id']);
+        $request['organization_id'] = $project->organization_id;
         $position = $this->positionRepository->update($request->all(), $id);
 
-        Flash::success('Position updated successfully.');
+        Flash::success('Positon was updated successfully');
 
         return redirect(route('positions.index'));
     }

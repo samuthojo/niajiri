@@ -2,8 +2,8 @@
 
 return [
     'status' => [
-        'active' => 'Active',
-        'inactive' => 'Inactive',
+        'active' => 'Open',
+        'inactive' => 'Closed',
     ],
     'duration' => [
         'Full Time' => 'Active',
