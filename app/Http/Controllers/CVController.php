@@ -15,10 +15,15 @@ class CVController extends SecureController
 
     public function get_basic(Request $request)
     {
-        return view('pages.dashboard.index', [
+        $data = [
             'route_title' => 'Basic Details',
-            'route_description' => 'Basic Details'
-        ]);
+            'route_description' => 'Basic Details',
+            'user' => \Auth::user(),
+            'instance' => \Auth::user()
+        ];
+
+        return view('cvs.basic.edit', $data);
+        
     }
 
     public function get_education(Request $request)
