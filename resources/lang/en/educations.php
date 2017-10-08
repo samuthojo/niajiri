@@ -26,7 +26,7 @@ return [
             'title' => 'Click To View Education',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Changes',
             'title' => 'Click To Save New Education',
             'header' => 'New Education',
             'flash' => [

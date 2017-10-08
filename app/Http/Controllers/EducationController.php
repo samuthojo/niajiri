@@ -102,7 +102,7 @@ class EducationController extends SecureController {
 			'instance' => $education
 		];
 
-		return view('educations.show', $data);
+		return view('educations.edit', $data);
 	}
 
 	/**

@@ -166,7 +166,7 @@ Breadcrumbs::register('educations.create', function ($breadcrumbs) {
 // Home > Educations > [Education Title]
 Breadcrumbs::register('educations.show', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('educations.index');
-    $breadcrumbs->push($instance->title, route('educations.show', $instance->id));
+    $breadcrumbs->push($instance->level, route('educations.show', $instance->id));
 });
 
 // Home > Educations > [Education Title] > Edit

@@ -91,7 +91,7 @@
                                 <td>
 
                                     @permission('view:education')
-                                    <a href="{{ route('educations.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('educations.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
+                                    <a href="{{ route('educations.edit', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('educations.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
                                     @endpermission
 
                                     @permission('edit:education')

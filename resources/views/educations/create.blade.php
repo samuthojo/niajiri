@@ -21,38 +21,34 @@
             {{-- start page box content --}}
             <div class="ibox-content">
 
-                {{-- start education create form header --}}
-                <div class="page-header">
-                    <div class='btn-toolbar pull-right' role="toolbar">
-                     <a
-                        href="{{ route('educations.index') }}"
-                        class="btn btn-white"
-                        title="{{ trans('educations.actions.cancel.title') }}">
-                        {{ trans('educations.actions.cancel.name') }}
-                    </a>
-                     {!!
-                        Form::button(
-                            trans('educations.actions.save.name'),
-                            [
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary',
-                            'title' => trans('educations.actions.save.title'),
-                        ])
-                    !!}
-                    </div>
-                    <h2>
-                        <small>
-                            {{trans('educations.actions.save.header')}}
-                        </small>
-                    </h2>
-                </div>
-                {{-- end education create form header --}}
-
                 {{-- start form --}}
                 <div class="row m-t-lg m-b-lg">
                     @include ('educations.form')
                 </div>
                 {{-- end form --}}
+
+                {{-- start bottom actions --}}
+                <div class="row m-b-lg">
+                    <div class="hr-line-dashed"></div>
+                    <div class="col-md-12">
+                         {!!
+                            Form::button(
+                                trans('educations.actions.save.name'),
+                                [
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary pull-right',
+                                'title' => trans('educations.actions.save.title'),
+                            ])
+                        !!}
+                        <a
+                            href="{{ route('educations.index') }}"
+                            class="btn btn-white pull-right m-r-sm"
+                            title="{{ trans('educations.actions.cancel.title') }}">
+                            {{ trans('educations.actions.cancel.name') }}
+                        </a>
+                    </div>
+                </div>
+                {{-- end bottom actions --}}
 
             </div>
             {{-- end page box content --}}
