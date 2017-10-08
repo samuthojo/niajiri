@@ -53,8 +53,8 @@ class EducationController extends SecureController {
 			'title' => 'required|string',
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'finished_at' => 'nullable|date_format:d-m-Y',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
 			'remark' => 'required|string',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
@@ -139,8 +139,8 @@ class EducationController extends SecureController {
 			'title' => 'required|string',
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'finished_at' => 'nullable|date_format:d-m-Y',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
 			'remark' => 'required|string',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
