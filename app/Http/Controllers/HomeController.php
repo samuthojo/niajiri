@@ -21,6 +21,24 @@ class HomeController extends SecureController
             'route_description' => 'Dashboard'
         ]);
     }
+
+    //TODO move to applicant controller
+    public function applications(Request $request)
+    {
+        return view('pages.dashboard.index', [
+            'route_title' => 'My Applications',
+            'route_description' => 'My Applications'
+        ]);
+    }
+
+    //TODO move to position controller
+    public function positions(Request $request)
+    {
+        return view('pages.dashboard.index', [
+            'route_title' => 'Open Jobs/Positions',
+            'route_description' => 'Available Jobs/Positions'
+        ]);
+    }
     
     public function minor(Request $request)
     {

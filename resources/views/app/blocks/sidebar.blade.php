@@ -23,22 +23,16 @@
 
 	                {{-- start user profile toggle actions --}}
 	                <a data-toggle="dropdown" class="dropdown-toggle"
-	                href="#" title="User Position/Title">
+	                href="#">
 		                <span class="clear">
 
 		                	{{-- start user full name --}}
 		                	<span class="block m-t-xs" title="User Name">
 		                		<strong class="font-bold">
-		                			{{Auth::user()->name}}
+		                			{{Auth::user()->name}} <b class="caret"></b>
 		                		</strong>
 		                	</span>
 		                	{{-- end user full name --}}
-
-		                	{{-- start user title --}}
-		                 	<span class="text-muted text-xs block">
-			                 {{Auth::user()->title}} <b class="caret"></b>
-			                </span>
-			                {{-- end user title --}}
 
 			            </span>
 		            </a>
@@ -46,7 +40,7 @@
 
 		            {{-- start profile toggle menu --}}
 	                <ul class="dropdown-menu animated fadeInRight m-t-xs">
-	                    <li><a href="#">Profile</a></li>
+	                    <li><a href="{{route('profile')}}">Profile</a></li>
 	                    <li class="divider"></li>
 	                    @unless(Auth::guest())
 	                    <li>
@@ -71,7 +65,128 @@
 
 	        {{-- start sidebar menus --}}
 	        @unless(Auth::guest())
-	        {{-- TODO add(seed) reports permissions --}}
+	        {{-- TODO ensure is applicant --}}
+	        {{-- start applicant menu --}}
+	        {{-- start my applications --}}
+	        <li class="{{areActiveRoutes([
+		        	'my_applications'
+				])}}">
+                <a href="{{route('my_applications')}}">
+                <i class="fa fa-file"></i> 
+                <span class="nav-label">My Applications</span>
+                </a>
+            </li>
+	        {{-- end my applications --}}
+	        {{-- start open positions --}}
+	        <li class="{{areActiveRoutes([
+		        	'open_positions'
+				])}}">
+                <a href="{{route('open_positions')}}">
+                <i class="fa fa-file-o"></i> 
+                <span class="nav-label">Open Positions</span>
+                </a>
+            </li>
+	        {{-- end open positions --}}
+	        {{-- end applicant menu --}}
+
+	        {{-- start cv management --}}
+            {{-- @permission([]) --}}
+	        <li class="{{areActiveRoutes([
+	        	'cvs.*'
+	        	])}}">
+	            <a href="#">
+	            	<i class="fa fa-address-card-o"></i>
+	            	<span class="nav-label">My CV</span>
+	            	<span class="fa arrow"></span>
+	            </a>
+	            <ul class="nav nav-second-level collapse">
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.basic')}}">
+	                	<a href="{{route('cvs.basic')}}">
+	                		Basic
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.education')}}">
+	                	<a href="{{route('cvs.education')}}">
+	                		Education
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.certificates')}}">
+	                	<a href="{{route('cvs.certificates')}}">
+	                		Certificates
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.experiences')}}">
+	                	<a href="{{route('cvs.experiences')}}">
+	                		Experiences
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.languages')}}">
+	                	<a href="{{route('cvs.languages')}}">
+	                		Languages
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.referees')}}">
+	                	<a href="{{route('cvs.referees')}}">
+	                		Referees
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.achievements')}}">
+	                	<a href="{{route('cvs.achievements')}}">
+	                		Honors/Awards
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.projects')}}">
+	                	<a href="{{route('cvs.projects')}}">
+	                		Projects
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="{{isActiveRoute('cvs.publications')}}">
+	                	<a href="{{route('cvs.publications')}}">
+	                		Publications
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	                {{-- @permission([]) --}}
+	                <li class="">
+	                	<a href="#">
+	                		Generate
+	                	</a>
+	                </li>
+	                {{-- @endpermission --}}
+
+	            </ul>
+	        </li>
+	        {{-- @endpermission --}}
+	        {{-- end cv management --}}
+
+	        {{-- start dashboard meu --}}
 	        <li class="{{areActiveRoutes([
 		        	'home',
 					'reports.*'
@@ -111,6 +226,7 @@
 	                {{-- TODO add more reports --}}
 	            </ul>
 	        </li>
+	        {{-- end dashboard menu --}}
 
 	        {{-- start project management --}}
             @permission([
