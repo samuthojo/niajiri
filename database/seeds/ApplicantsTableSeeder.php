@@ -61,7 +61,7 @@ class ApplicantsTableSeeder extends Seeder {
 						'name' => $language
 					], [
 					'name' => $language, 
-					'fluence' => 'Proficient', 
+					'fluency' => 'Proficient', 
 					'applicant_id' => $applicant->id
 				]);
 			}
