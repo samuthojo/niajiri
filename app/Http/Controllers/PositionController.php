@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
 use App\Repositories\PositionRepository;
-use App\Http\Controllers\SecureController;
+use App\Repositories\OrganizationRepository;
+use App\Repositories\SectorRepository;
+use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -15,10 +17,18 @@ class PositionController extends SecureController
 {
     /** @var  PositionRepository */
     private $positionRepository;
+    private $organizationRepository;
+    private $sectorRepository;
+    private $projectRepository;
 
-    public function __construct(PositionRepository $positionRepo)
+    public function __construct(PositionRepository $positionRepo,
+                                OrganizationRepository $organizationRepo,
+                                SectorRepository $sectorRepo, ProjectRepository $projectRepo)
     {
         $this->positionRepository = $positionRepo;
+        $this->organizationRepository = $organizationRepo;
+        $this->sectorRepository = $sectorRepo;
+        $this->projectRepository = $projectRepo;
     }
 
     /**
@@ -46,7 +56,16 @@ class PositionController extends SecureController
      */
     public function create()
     {
-        return view('pages.positions.create');
+        $organizations = $this->organizationRepository->pluck('name', 'id')->toArray();
+        $sectors = $this->sectorRepository->pluck('name', 'id')->toArray();
+        $projects = $this->projectRepository->pluck('name', 'id')->toArray();
+        return view('pages.positions.create',[
+            'route_title' => 'Positions',
+            'route_description' => 'Positions',
+            'organizations'  => $organizations,
+            'sectors'        => $sectors,
+            'projects'       => $projects,
+        ]);
     }
 
     /**
@@ -97,14 +116,23 @@ class PositionController extends SecureController
     public function edit($id)
     {
         $position = $this->positionRepository->findWithoutFail($id);
-
+        $sectors = $this->sectorRepository->pluck('name', 'id')->toArray();
+        $projects = $this->projectRepository->pluck('name', 'id')->toArray();
         if (empty($position)) {
             Flash::error('Position not found');
 
             return redirect(route('positions.index'));
         }
 
-        return view('pages.positions.edit')->with('position', $position);
+        $organizations = $this->organizationRepository->pluck('name', 'id')->toArray();
+        return view('pages.positions.create',[
+            'route_title' => 'Positions',
+            'route_description' => 'Positions',
+            'organizations'  => $organizations,
+            'position'   => $Position,
+            'sectors'     => $sectors,
+            'projects'    => $projects
+        ]);
     }
 
     /**

@@ -58,7 +58,22 @@
                         <thead>
                             <tr>
                                 <th>
-                                    {{ trans('positions.inputs.name.header') }}
+                                  {{ trans('positions.headers.status')}}
+                                </th>
+                                <th>
+                                    {{ trans('positions.inputs.title.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('positions.inputs.organization.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('positions.inputs.project.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('positions.inputs.dueAt.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('positions.inputs.publishedAt.header') }}
                                 </th>
                                 <th>
                                     {{trans('positions.headers.actions')}}
@@ -71,8 +86,24 @@
                         <tbody>
                         @foreach($positions as $item)
                             <tr>
-                                <td>{{ $item->name}}</td>
+                                @if(strtotime($item->endedAt) > time())
+                                <td class="text-center">
+                                    <span class="label label-primary">{{ trans('positions.status.active') }}</span>
+                                </td>
+                                @else
+                                <td class="text-center">
+                                    <span class="label label-default">{{ trans('positions.status.inactive') }}</span>
+                                </td>
+                                @endif
+                                <td>{{ $item->title}}</td>
+                                <td>{{ $item->organization->name}}</td>
+                                <td>{{ $item->project->name}}</td>
+                                <td>{{ $item->dueAt->format('d-m-Y')}}</td>
+                                <td>{{ $item->publishedAt->format('d-m-Y')}}</td>
                                 <td>
+                                    @permission('view:position')
+                                    <a href="{{ route('positions.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('positions.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
+                                    @endpermission
 
                                     @permission('edit:position')
                                     <a href="{{ route('positions.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-xs" title="{{trans('positions.actions.edit.title')}}"><span class="fa fa-pencil" aria-hidden="true"/></a>

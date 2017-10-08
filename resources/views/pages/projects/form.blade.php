@@ -101,7 +101,7 @@
 
     $('.date').datepicker({
 
-       format: 'yyyy-mm-dd'
+       format: 'dd-mm-yyy'
 
      });
 

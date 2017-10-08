@@ -6,10 +6,10 @@
 <div class="row">
     <div class="col-md-12">
 
-        {{-- start open sector create form --}}
+        {{-- start open position create form --}}
         {!!
             Form::open([
-                'route' => 'sectors.store',
+                'route' => 'positions.store',
                 'class' => 'form-horizontal',
                 'files' => true
             ])
@@ -21,36 +21,36 @@
             {{-- start page box content --}}
             <div class="ibox-content">
 
-                {{-- start sector create form header --}}
+                {{-- start position create form header --}}
                 <div class="page-header">
                     <div class='btn-toolbar pull-right' role="toolbar">
                      <a
-                        href="{{ route('sectors.index') }}"
+                        href="{{ route('positions.index') }}"
                         class="btn btn-white"
-                        title="{{ trans('sectors.actions.cancel.title') }}">
-                        {{ trans('sectors.actions.cancel.name') }}
+                        title="{{ trans('positions.actions.cancel.title') }}">
+                        {{ trans('positions.actions.cancel.name') }}
                     </a>
                      {!!
                         Form::button(
-                            trans('sectors.actions.save.name'),
+                            trans('positions.actions.save.name'),
                             [
                             'type' => 'submit',
                             'class' => 'btn btn-primary',
-                            'title' => trans('sectors.actions.save.title'),
+                            'title' => trans('positions.actions.save.title'),
                         ])
                     !!}
                     </div>
                     <h2>
                         <small>
-                            {{trans('sectors.actions.save.header')}}
+                            {{trans('positions.actions.save.header')}}
                         </small>
                     </h2>
                 </div>
-                {{-- end sector create form header --}}
+                {{-- end position create form header --}}
 
                 {{-- start form --}}
                 <div class="row m-t-lg m-b-lg">
-                    @include ('pages.sectors.form')
+                    @include ('pages.positions.form')
                 </div>
                 {{-- end form --}}
 
@@ -62,7 +62,7 @@
 
         {!! Form::close() !!}
 
-        {{-- close sector create form --}}
+        {{-- close position create form --}}
 
     </div>
 </div>

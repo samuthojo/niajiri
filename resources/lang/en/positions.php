@@ -5,6 +5,12 @@ return [
         'active' => 'Active',
         'inactive' => 'Inactive',
     ],
+    'duration' => [
+        'Full Time' => 'Active',
+        'Part Time' => 'Inactive',
+        'Internship' => 'Internship',
+        'Contractor' => 'Contractor',
+    ],
     'headers' => [
         'actions' => 'Actions',
         'status'  => 'Status',
@@ -64,11 +70,35 @@ return [
         ],
     ],
     'inputs' => [
-        'name' => [
-            'label' => 'Name',
-            'placeholder' => 'Name',
-            'header' => 'Name',
-            'description' => 'Full Name of the Position e.g CocacolaHR2017 etc.',
+        'title' => [
+            'label' => 'Title',
+            'placeholder' => 'Title',
+            'header' => 'Title',
+            'description' => 'Full Title of the Position e.g CocacolaHR2017 etc.',
+        ],
+        'duration' => [
+            'label' => 'Duration',
+            'placeholder' => 'Duration',
+            'header' => 'Duration',
+            'description' => 'Duration of the Position e.g Full-Time etc.',
+        ],
+        'summary' => [
+            'label' => 'Summary',
+            'placeholder' => 'Summary',
+            'header' => 'Summary',
+            'description' => 'Full Summary of the Position.',
+        ],
+        'responsibilities' => [
+            'label' => 'Responsibilities',
+            'placeholder' => 'Responsibilities',
+            'header' => 'Responsibilities',
+            'description' => 'Full Responsibilities of the Position.',
+        ],
+        'requirements' => [
+            'label' => 'Requirements',
+            'placeholder' => 'Requirements',
+            'header' => 'Requirements',
+            'description' => 'Full Requirements of the Position.',
         ],
         'organization' => [
             'label' => 'Organization',
@@ -76,17 +106,29 @@ return [
             'header' => 'Organization',
             'description' => 'Full Name of the Organization e.g Cocacola etc.',
         ],
-        'startedAt' => [
-            'label' => 'Starts At',
-            'placeholder' => 'Started At',
-            'header' => 'Started At',
-            'description' => 'Full Date when the Position starts e.g 23/4/2019 etc.',
+        'project' => [
+            'label' => 'Project',
+            'placeholder' => 'Project',
+            'header' => 'Project',
+            'description' => 'Full Name of the Project e.g CocacolaHIRE2028 etc.',
         ],
-        'endedAt' => [
-            'label' => 'Ends At',
+        'sector' => [
+            'label' => 'Sector',
+            'placeholder' => 'Sector',
+            'header' => 'Sector',
+            'description' => 'Full Name of the Sector e.g Finance etc.',
+        ],
+        'dueAt' => [
+            'label' => 'Due At',
+            'placeholder' => 'Due At',
+            'header' => 'Due At',
+            'description' => 'Time when the Position expires e.g 23/4/2019',
+        ],
+        'publishedAt' => [
+            'label' => 'Published At',
             'placeholder' => 'Endend At',
             'header' => 'Ended At',
-            'description' => 'Full Date when the Position ends e.g 23/4/2019 etc.',
+            'description' => 'Full Date when the Position was published e.g 23/4/2019',
         ]
     ],
 ];
