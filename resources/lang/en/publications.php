@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'headers' => [
+        'actions' => 'Actions',
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',
@@ -15,7 +18,7 @@ return [
             'title' => 'Click To View Publication',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Changes',
             'title' => 'Click To Save New Publication',
             'header' => 'New Publication',
             'flash' => [
@@ -51,13 +54,13 @@ return [
     'inputs' => [
         'title' => [
             'label' => 'Title',
-            'placeholder' => 'Title',
+            'placeholder' => 'e.g Self Awareness',
             'header' => 'Title',
             'description' => 'Title of the Publication e.g Self Awareness etc.',
         ],
         'publisher' => [
             'label' => 'Publisher',
-            'placeholder' => 'Publisher',
+            'placeholder' => 'e.g Mkuki',
             'header' => 'Publisher',
             'description' => 'Publisher e.g Mkuki etc.',
         ],
@@ -69,7 +72,7 @@ return [
         ],
         'published_at' => [
             'label' => 'Date Published',
-            'placeholder' => 'Date Published',
+            'placeholder' => 'e.g 12-11-2015',
             'header' => 'Date Published',
             'description' => 'Date Published e.g 12-11-2015 etc.',
         ],

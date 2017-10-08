@@ -26,6 +26,7 @@ class AchievementController extends SecureController {
 			'route_description' => 'Achievement List',
 			'achievements' => $achievements,
 			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('achievements.index', $data);
@@ -36,8 +37,11 @@ class AchievementController extends SecureController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-		return view('achievements.create');
+	public function create(Request $request) {
+		$data = [
+			'applicant_id' => $request->input('applicant_id'),
+		];
+		return view('achievements.create', $data);
 	}
 
 	/**
@@ -53,7 +57,7 @@ class AchievementController extends SecureController {
 			'title' => 'required|string',
 			'organization' => 'required|string',
 			'summary' => 'nullable|string',
-			'issued_at' => 'required|date_format:d-m-Y',
+			'issued_at' => 'required',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -69,7 +73,9 @@ class AchievementController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show achievement
-		return redirect()->route('achievements.show', [$achievement]);
+		return redirect()->route('achievements.index', [
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -79,7 +85,7 @@ class AchievementController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Request $request, $id) {
 
 		//load achievement with permissions
 		$achievement = Achievement::query()->findOrFail($id);
@@ -88,10 +94,11 @@ class AchievementController extends SecureController {
 			'route_title' => 'Show Achievement',
 			'route_description' => 'Show Achievement',
 			'achievement' => $achievement,
-			'instance' => $achievement
+			'instance' => $achievement,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('achievements.show', $data);
+		return view('achievements.edit', $data);
 	}
 
 	/**
@@ -100,7 +107,7 @@ class AchievementController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 
 		$achievement = Achievement::findOrFail($id);
 
@@ -109,6 +116,7 @@ class AchievementController extends SecureController {
 			'route_description' => 'Edit Achievement',
 			'achievement' => $achievement,
 			'instance' => $achievement,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('achievements.edit', $data);
@@ -128,7 +136,7 @@ class AchievementController extends SecureController {
 			'title' => 'required|string',
 			'organization' => 'required|string',
 			'summary' => 'nullable|string',
-			'issued_at' => 'required|date_format:d-m-Y',
+			'issued_at' => 'required',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -147,7 +155,9 @@ class AchievementController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show achievement
-		return redirect()->route('achievements.index');
+		return redirect()->route('achievements.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -157,7 +167,7 @@ class AchievementController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
 
 		Achievement::destroy($id);
 
@@ -166,6 +176,8 @@ class AchievementController extends SecureController {
 			->success()->important();
 
 		//TODO redirect to specific applicant profile
-		return redirect('achievements');
+		return redirect()->route('achievements.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 	}
 }

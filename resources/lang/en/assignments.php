@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'headers' => [
+        'actions' => 'Actions',
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',
@@ -15,7 +18,7 @@ return [
             'title' => 'Click To View Assignment',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Changes',
             'title' => 'Click To Save New Assignment',
             'header' => 'New Assignment',
             'flash' => [
@@ -51,13 +54,13 @@ return [
     'inputs' => [
         'title' => [
             'label' => 'Title',
-            'placeholder' => 'Title',
+            'placeholder' => 'e.g Web Development',
             'header' => 'Title',
             'description' => 'Title of the Assignment e.g Web Development etc.',
         ],
         'client' => [
             'label' => 'Client',
-            'placeholder' => 'Client',
+            'placeholder' => 'e.g Niajiri',
             'header' => 'Client',
             'description' => 'Client e.g Niajiri etc.',
         ],
@@ -69,13 +72,13 @@ return [
         ],
         'started_at' => [
             'label' => 'Date Started',
-            'placeholder' => 'Date Started',
+            'placeholder' => 'e.g 12-11-2015',
             'header' => 'Date Started',
             'description' => 'Date Started e.g 12-11-2015 etc.',
         ],
         'finished_at' => [
             'label' => 'Date Finished',
-            'placeholder' => 'Date Finished',
+            'placeholder' => 'e.g 12-12-2016',
             'header' => 'Date Finished',
             'description' => 'Date Finished e.g 12-12-2016 etc.',
         ],

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Carbon\Carbon;
 
 class Assignment extends Model 
 {
@@ -65,6 +66,38 @@ class Assignment extends Model
             'applicant_assignments.summary' => 5,
         ],
     ];
+
+
+    /**
+     * Get and format the assignement's started_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formStartedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
+
+
+    /**
+     * Get and format the assignement's finished_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formFinishedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
 
 
 

@@ -218,3 +218,133 @@ Breadcrumbs::register('experiences.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('experiences.show', $instance);
     $breadcrumbs->push('Edit', route('experiences.edit', $instance->id));
 });
+
+
+// -------------------Languages Breadcrumbs--------------------------------------
+// Home > Languages
+Breadcrumbs::register('languages.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Languages', route('languages.index'));
+});
+
+// Home > Languages > Create Language
+Breadcrumbs::register('languages.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('languages.index');
+    $breadcrumbs->push('Create Language', route('languages.create'));
+});
+
+// Home > Languages > [Language Title]
+Breadcrumbs::register('languages.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('languages.index');
+    $breadcrumbs->push($instance->name, route('languages.show', $instance->id));
+});
+
+// Home > Languages > [Language Title] > Edit
+Breadcrumbs::register('languages.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('languages.show', $instance);
+    $breadcrumbs->push('Edit', route('languages.edit', $instance->id));
+});
+
+
+// -------------------Referees Breadcrumbs--------------------------------------
+// Home > Referees
+Breadcrumbs::register('referees.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Referees', route('referees.index'));
+});
+
+// Home > Referees > Create Referee
+Breadcrumbs::register('referees.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('referees.index');
+    $breadcrumbs->push('Create Referee', route('referees.create'));
+});
+
+// Home > Referees > [Referee Title]
+Breadcrumbs::register('referees.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('referees.index');
+    $breadcrumbs->push($instance->name, route('referees.show', $instance->id));
+});
+
+// Home > Referees > [Referee Title] > Edit
+Breadcrumbs::register('referees.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('referees.show', $instance);
+    $breadcrumbs->push('Edit', route('referees.edit', $instance->id));
+});
+
+
+// -------------------Achievements Breadcrumbs--------------------------------------
+// Home > Achievements
+Breadcrumbs::register('achievements.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Achievements', route('achievements.index'));
+});
+
+// Home > Achievements > Create Achievement
+Breadcrumbs::register('achievements.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('achievements.index');
+    $breadcrumbs->push('Create Achievement', route('achievements.create'));
+});
+
+// Home > Achievements > [Achievement Title]
+Breadcrumbs::register('achievements.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('achievements.index');
+    $breadcrumbs->push($instance->title, route('achievements.show', $instance->id));
+});
+
+// Home > Achievements > [Achievement Title] > Edit
+Breadcrumbs::register('achievements.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('achievements.show', $instance);
+    $breadcrumbs->push('Edit', route('achievements.edit', $instance->id));
+});
+
+
+// -------------------Assignments Breadcrumbs--------------------------------------
+// Home > Assignments
+Breadcrumbs::register('assignments.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Assignments', route('assignments.index'));
+});
+
+// Home > Assignments > Create Assignment
+Breadcrumbs::register('assignments.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('assignments.index');
+    $breadcrumbs->push('Create Assignment', route('assignments.create'));
+});
+
+// Home > Assignments > [Assignment Title]
+Breadcrumbs::register('assignments.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('assignments.index');
+    $breadcrumbs->push($instance->title, route('assignments.show', $instance->id));
+});
+
+// Home > Assignments > [Assignment Title] > Edit
+Breadcrumbs::register('assignments.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('assignments.show', $instance);
+    $breadcrumbs->push('Edit', route('assignments.edit', $instance->id));
+});
+
+
+// -------------------Publications Breadcrumbs--------------------------------------
+// Home > Publications
+Breadcrumbs::register('publications.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Publications', route('publications.index'));
+});
+
+// Home > Publications > Create Publication
+Breadcrumbs::register('publications.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('publications.index');
+    $breadcrumbs->push('Create Publication', route('publications.create'));
+});
+
+// Home > Publications > [Publication Title]
+Breadcrumbs::register('publications.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('publications.index');
+    $breadcrumbs->push($instance->title, route('publications.show', $instance->id));
+});
+
+// Home > Publications > [Publication Title] > Edit
+Breadcrumbs::register('publications.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('publications.show', $instance);
+    $breadcrumbs->push('Edit', route('publications.edit', $instance->id));
+});

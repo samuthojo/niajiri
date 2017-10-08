@@ -26,6 +26,7 @@ class PublicationController extends SecureController {
 			'route_description' => 'Publication List',
 			'publications' => $publications,
 			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('publications.index', $data);
@@ -36,8 +37,11 @@ class PublicationController extends SecureController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-		return view('publications.create');
+	public function create(Request $request) {
+		$data = [
+			'applicant_id' => $request->input('applicant_id'),
+		];
+		return view('publications.create', $data);
 	}
 
 	/**
@@ -53,7 +57,7 @@ class PublicationController extends SecureController {
 			'title' => 'required|string',
 			'publisher' => 'required|string',
 			'summary' => 'nullable|string',
-			'published_at' => 'required|date_format:d-m-Y',
+			'published_at' => 'required',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -69,7 +73,9 @@ class PublicationController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show publication
-		return redirect()->route('publications.show', [$publication]);
+		return redirect()->route('publications.index', [
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -79,7 +85,7 @@ class PublicationController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Request $request, $id) {
 
 		//load publication with permissions
 		$publication = Publication::query()->findOrFail($id);
@@ -88,10 +94,11 @@ class PublicationController extends SecureController {
 			'route_title' => 'Show Publication',
 			'route_description' => 'Show Publication',
 			'publication' => $publication,
-			'instance' => $publication
+			'instance' => $publication,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('publications.show', $data);
+		return view('publications.edit', $data);
 	}
 
 	/**
@@ -100,7 +107,7 @@ class PublicationController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 
 		$publication = Publication::findOrFail($id);
 
@@ -109,6 +116,7 @@ class PublicationController extends SecureController {
 			'route_description' => 'Edit Publication',
 			'publication' => $publication,
 			'instance' => $publication,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('publications.edit', $data);
@@ -128,7 +136,7 @@ class PublicationController extends SecureController {
 			'title' => 'required|string',
 			'publisher' => 'required|string',
 			'summary' => 'nullable|string',
-			'published_at' => 'required|date_format:d-m-Y',
+			'published_at' => 'required',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -147,7 +155,9 @@ class PublicationController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show publication
-		return redirect()->route('publications.index');
+		return redirect()->route('publications.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -157,7 +167,7 @@ class PublicationController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
 
 		Publication::destroy($id);
 
@@ -166,6 +176,8 @@ class PublicationController extends SecureController {
 			->success()->important();
 
 		//TODO redirect to specific applicant profile
-		return redirect('publications');
+		return redirect()->route('publications.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 	}
 }
