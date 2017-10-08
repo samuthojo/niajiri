@@ -39,11 +39,11 @@ Route::resource('positions', 'PositionController');
 
 Route::resource('educations', 'EducationController');
 Route::resource('certificates', 'CertificateController');
+Route::resource('experiences', 'ExperienceController');
 
 //cv routes
 Route::get('/basic', 'CVController@get_basic')->name("cvs.basic");
 Route::post('/basic', 'CVController@post_basic')->name("cvs.basic");
-Route::get('/experiences', 'CVController@get_experiences')->name("cvs.experiences");
 Route::get('/languages', 'CVController@get_languages')->name("cvs.languages");
 Route::get('/referees', 'CVController@get_referees')->name("cvs.referees");
 Route::get('/achievements', 'CVController@get_achievements')->name("cvs.achievements");

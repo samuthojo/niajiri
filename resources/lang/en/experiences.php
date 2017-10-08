@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'headers' => [
+        'actions' => 'Actions',
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',
@@ -15,7 +18,7 @@ return [
             'title' => 'Click To View Experience',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Changes',
             'title' => 'Click To Save New Experience',
             'header' => 'New Experience',
             'flash' => [
@@ -51,43 +54,43 @@ return [
     'inputs' => [
         'position' => [
             'label' => 'Position',
-            'placeholder' => 'Position',
+            'placeholder' => 'e.g Accountant',
             'header' => 'Position',
-            'description' => 'Positione.g Accountant etc.',
+            'description' => 'Position e.g Accountant etc.',
         ],
         'organization' => [
-            'label' => 'Organization',
-            'placeholder' => 'Organization',
+            'label' => 'Organization/Company',
+            'placeholder' => '.g KPMG',
             'header' => 'Organization',
             'description' => 'Organization/Company e.g KPMG etc.',
         ],
         'sector' => [
             'label' => 'Sector',
-            'placeholder' => 'Sector',
+            'placeholder' => 'e.g Auditing',
             'header' => 'Sector',
             'description' => 'Organization/Company Sector e.g Auditing etc.',
         ],
         'location' => [
             'label' => 'Location',
-            'placeholder' => 'Location',
+            'placeholder' => 'e.g Dar es salaam',
             'header' => 'Location',
             'description' => 'Organization/Company Location e.g Dar es salaam etc.',
         ],
         'summary' => [
-            'label' => 'Summary',
+            'label' => 'Work Summary',
             'placeholder' => 'Summary',
             'header' => 'Summary',
             'description' => 'Brief Summary',
         ],
         'started_at' => [
             'label' => 'Date Started',
-            'placeholder' => 'Date Started',
+            'placeholder' => 'e.g 12-11-2015',
             'header' => 'Date Started',
             'description' => 'Date Started e.g 12-11-2015 etc.',
         ],
         'ended_at' => [
             'label' => 'End Date',
-            'placeholder' => 'End Date',
+            'placeholder' => 'e.g 12-12-2016',
             'header' => 'End Date',
             'description' => 'End Date e.g 12-12-2016 etc.',
         ],

@@ -26,6 +26,7 @@ class ExperienceController extends SecureController {
 			'route_description' => 'Experience List',
 			'experiences' => $experiences,
 			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('experiences.index', $data);
@@ -36,8 +37,11 @@ class ExperienceController extends SecureController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-		return view('experiences.create');
+	public function create(Request $request) {
+		$data = [
+			'applicant_id' => $request->input('applicant_id'),
+		];
+		return view('experiences.create', $data);
 	}
 
 	/**
@@ -54,8 +58,8 @@ class ExperienceController extends SecureController {
 			'organization' => 'required|string',
 			'sector' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'ended_at' => 'required|date_format:d-m-Y',
+			'started_at' => 'required',
+			'ended_at' => 'required',
 			'location' => 'required|string',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
@@ -72,7 +76,9 @@ class ExperienceController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show experience
-		return redirect()->route('experiences.show', [$experience]);
+		return redirect()->route('experiences.index', [
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -82,7 +88,7 @@ class ExperienceController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show(Request $request, $id) {
 
 		//load experience with permissions
 		$experience = Experience::query()->findOrFail($id);
@@ -91,10 +97,11 @@ class ExperienceController extends SecureController {
 			'route_title' => 'Show Experience',
 			'route_description' => 'Show Experience',
 			'experience' => $experience,
-			'instance' => $experience
+			'instance' => $experience,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('experiences.show', $data);
+		return view('experiences.edit', $data);
 	}
 
 	/**
@@ -103,7 +110,7 @@ class ExperienceController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 
 		$experience = Experience::findOrFail($id);
 
@@ -112,6 +119,7 @@ class ExperienceController extends SecureController {
 			'route_description' => 'Edit Experience',
 			'experience' => $experience,
 			'instance' => $experience,
+			'applicant_id' => $request->input('applicant_id'),
 		];
 
 		return view('experiences.edit', $data);
@@ -132,8 +140,8 @@ class ExperienceController extends SecureController {
 			'organization' => 'required|string',
 			'sector' => 'required|string',
 			'summary' => 'nullable|string',
-			'started_at' => 'required|date_format:d-m-Y',
-			'ended_at' => 'required|date_format:d-m-Y',
+			'started_at' => 'required',
+			'ended_at' => 'required',
 			'location' => 'required|string',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
@@ -153,7 +161,9 @@ class ExperienceController extends SecureController {
 
 		//TODO redirect to applicant profile
 		//redirect to show experience
-		return redirect()->route('experiences.index');
+		return redirect()->route('experiences.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 
 	}
 
@@ -163,7 +173,7 @@ class ExperienceController extends SecureController {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
 
 		Experience::destroy($id);
 
@@ -172,6 +182,8 @@ class ExperienceController extends SecureController {
 			->success()->important();
 
 		//TODO redirect to specific applicant profile
-		return redirect('experiences');
+		return redirect()->route('experiences.index',[
+				'applicant_id' => $request->input('applicant_id')
+			]);
 	}
 }

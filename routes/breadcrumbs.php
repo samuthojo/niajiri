@@ -192,3 +192,29 @@ Breadcrumbs::register('certificates.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('certificates.show', $instance);
     $breadcrumbs->push('Edit', route('certificates.edit', $instance->id));
 });
+
+
+// -------------------Experiences Breadcrumbs--------------------------------------
+// Home > Experiences
+Breadcrumbs::register('experiences.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Experiences', route('experiences.index'));
+});
+
+// Home > Experiences > Create Experience
+Breadcrumbs::register('experiences.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('experiences.index');
+    $breadcrumbs->push('Create Experience', route('experiences.create'));
+});
+
+// Home > Experiences > [Experience Title]
+Breadcrumbs::register('experiences.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('experiences.index');
+    $breadcrumbs->push($instance->position, route('experiences.show', $instance->id));
+});
+
+// Home > Experiences > [Experience Title] > Edit
+Breadcrumbs::register('experiences.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('experiences.show', $instance);
+    $breadcrumbs->push('Edit', route('experiences.edit', $instance->id));
+});
