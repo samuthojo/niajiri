@@ -72,14 +72,24 @@ class OrganizationController extends SecureController
      */
     public function store(CreateOrganizationRequest $request)
     {
+        //ensure default values
+        $request->merge([
+            'password' => $request->input('password', config('auth.defaults.password')),
+            'password_confirmation' => $request->input('password_confirmation', config('auth.defaults.password')),
+        ]);
+
         $input = $request->all();
 
-        // $logo = Media::create($input['logo']);
-        // $logo_id = $logo->id;
-        //
-        // $input->logo = $logo_id;
-
         $organization = $this->organizationRepository->create($input);
+
+        //upload & store oganization avatar(logo)
+        if ($oganization && $request->hasFile('avatar')) {
+            //clear existing avatar
+            $oganization->clearMediaCollection('avatars');
+            //attach new avatar
+            $oganization->addMediaFromRequest('avatar')
+                ->toMediaCollection('avatars');
+        }
 
         Flash::success('Organization saved successfully.');
 
@@ -155,6 +165,15 @@ class OrganizationController extends SecureController
         }
 
         $organization = $this->organizationRepository->update($request->all(), $id);
+
+        //upload & store oganization avatar(logo)
+        if ($oganization && $request->hasFile('avatar')) {
+            //clear existing avatar
+            $oganization->clearMediaCollection('avatars');
+            //attach new avatar
+            $oganization->addMediaFromRequest('avatar')
+                ->toMediaCollection('avatars');
+        }
 
         Flash::success('Organization updated successfully.');
 

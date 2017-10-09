@@ -10,6 +10,14 @@ trait ActAsOrganization
     //------------------------------------------------------------
     //instance properties & methods
     //------------------------------------------------------------
+    
+    /**
+     * Build organization logo url
+     */
+    public function logo()
+    {
+        return $this->avatar();
+    }
 
     //------------------------------------------------------------
     //scope

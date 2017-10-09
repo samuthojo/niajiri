@@ -41,6 +41,13 @@ class CreateUsersTable extends Migration
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();
 
+            //organization specific
+            $table->uuid('sector_id')->index()->nullable();
+            $table->foreign('sector_id')->references('id')
+                  ->on('sectors')
+                  ->onUpdate('cascade')
+                  ->onDelete('set null'); //we dont want to delete organization if sector deleted
+
 
             $table->timestamps();
             $table->softDeletes();
