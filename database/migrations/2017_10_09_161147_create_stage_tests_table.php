@@ -14,8 +14,12 @@ class CreateStageTestsTable extends Migration
     public function up()
     {
         Schema::create('stage_tests', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->timestamps();
+            $table->softDeletes();
+
+            //indexes
+            $table->primary('id');
         });
     }
 
