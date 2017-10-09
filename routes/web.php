@@ -42,6 +42,13 @@ Route::resource('organizations', 'OrganizationController');
 
 Route::resource('positions', 'PositionController');
 
+Route::resource('stages', 'StageController');
+
+Route::resource('tests', 'TestController');
+
+Route::resource('questions', 'QuestionController');
+
+
 Route::resource('educations', 'EducationController');
 Route::resource('certificates', 'CertificateController');
 Route::resource('experiences', 'ExperienceController');

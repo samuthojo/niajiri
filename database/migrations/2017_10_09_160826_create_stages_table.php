@@ -17,7 +17,7 @@ class CreateStagesTable extends Migration
           $table->uuid('id');
           $table->string('name');
           $table->string('activities');
-          $table->number('number')->default(1);
+          $table->integer('number')->default(1);
           $table->date('startedAt');
           $table->date('endedAt');
           $table->decimal('passMark', 5, 2);
