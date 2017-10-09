@@ -37,8 +37,8 @@ Breadcrumbs::register('my_applications', function ($breadcrumbs) {
 //My CV Routes
 //-------------------------------------------------------------------------
 
-Breadcrumbs::register('cvs.basic', function ($breadcrumbs) {
-    $breadcrumbs->push('Basic Details', route('cvs.basic'));
+Breadcrumbs::register('users.basic', function ($breadcrumbs) {
+    $breadcrumbs->push('Basic Details', route('users.basic'));
 });
 
 

@@ -305,7 +305,71 @@ class UserController extends SecureController {
         return view('pages.dashboard.index', [
             'route_title' => 'Profile',
             'route_description' => 'Profile',
-            'user' => \Auth::user()
+            'user' => \Auth::user(),
+            'instance' => \Auth::user()
         ]);
+    }
+
+
+    /**
+	 * Display current user basic details
+	 * @return \Illuminate\Http\Response
+	 */
+    public function get_basic(Request $request)
+    {
+    	//load actual current user
+    	$id = \Auth::user()->id;
+		$user = User::findOrFail($id);
+
+        $data = [
+            'route_title' => 'Basic Details',
+            'route_description' => 'Basic Details',
+            'user' => $user,
+            'instance' => $user
+        ];
+
+        return view('users.basic.edit', $data); 
+    }
+
+    /**
+	 * Update current user basic details
+	 * @return \Illuminate\Http\Response
+	 */
+    public function post_basic(Request $request)
+    {
+    	//validate user
+		$this->validate($request, [
+			'first_name' => 'string|min:2|max:255|required',
+			'surname' => 'string|min:2|max:255|required',
+			'email' => 'string|min:2|max:255|required|unique:users,email,' . $id,
+			'mobile' => 'string|min:2|max:255|required|unique:users,mobile,' . $id,
+			'gender' => 'string|min:2|max:255|required',
+			'dob' => 'date|required',
+		]);
+
+		//obtain user updates from form input
+		$body = $request->all();
+
+		//reload current user
+		$id = \Auth::user()->id;
+		$user = User::findOrFail($id);
+
+		//update user
+		$user->update($body);
+
+		//upload & store user avatar
+		if ($user && $request->hasFile('avatar')) {
+			//clear existing avatar
+			$user->clearMediaCollection('avatars');
+			//attach new avatar
+			$user->addMediaFromRequest('avatar')
+				->toMediaCollection('avatars');
+		}
+
+		//flash message
+		flash(trans('users.actions.update.flash.success'))
+			->success()->important();
+
+        return redirect()->route('users.basic');
     }
 }

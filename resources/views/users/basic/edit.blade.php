@@ -7,12 +7,11 @@
     <div class="col-md-12">
 
         {{-- start open cv basic details form --}}
-        {!!
-            Form::open([
-                'route' => 'cvs.basic',
-                'files' => true
-            ])
-        !!}
+        {!! Form::model($user, [
+            'method' => 'PATCH',
+            'route' => ['users.basic', $user->id],
+            'files' => true
+        ]) !!}
 
         {{-- start page box --}}
         <div class="ibox">
@@ -21,7 +20,7 @@
             <div class="ibox-content">
 
                 {{-- start form --}}
-                @include ('cvs.basic.form')
+                @include ('users.basic.form')
                 {{-- end form --}}
 
                 {{-- start bottom actions --}}

@@ -92,7 +92,7 @@
 	        {{-- start cv management --}}
             {{-- @permission([]) --}}
 	        <li class="{{areActiveRoutes([
-	        	'cvs.*',
+	        	'users.basic',
 	        	'educations.*',
 	        	'certificates.*',
 	        	'experiences.*',
@@ -110,8 +110,8 @@
 	            <ul class="nav nav-second-level collapse">
 
 	                {{-- @permission([]) --}}
-	                <li class="{{isActiveRoute('cvs.basic')}}">
-	                	<a href="{{route('cvs.basic')}}">
+	                <li class="{{isActiveRoute('users.basic')}}">
+	                	<a href="{{route('users.basic')}}">
 	                		Basic
 	                	</a>
 	                </li>

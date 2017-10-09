@@ -52,8 +52,8 @@ Route::resource('assignments', 'AssignmentController');
 Route::resource('publications', 'PublicationController');
 
 //cv routes
-Route::get('/basic', 'CVController@get_basic')->name("cvs.basic");
-Route::post('/basic', 'CVController@post_basic')->name("cvs.basic");
+Route::get('/basic', 'UserController@get_basic')->name("users.basic");
+Route::patch('/basic', 'UserController@post_basic')->name("users.basic");
 
 //social auth routes
 Route::get('/auth/social/provider/{name}', 'Auth\SocialAuthController@signIn')
