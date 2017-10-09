@@ -72,7 +72,6 @@ class AssignmentController extends SecureController {
 		flash(trans('assignments.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show assignment
 		return redirect()->route('assignments.index', [
 				'applicant_id' => $request->input('applicant_id')
@@ -88,7 +87,7 @@ class AssignmentController extends SecureController {
 	 */
 	public function show(Request $request, $id) {
 
-		//load assignment with permissions
+		//load assignment
 		$assignment = Assignment::query()->findOrFail($id);
 
 		$data = [
@@ -155,7 +154,6 @@ class AssignmentController extends SecureController {
 		flash(trans('assignments.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show assignment
 		return redirect()->route('assignments.index',[
 				'applicant_id' => $request->input('applicant_id')
@@ -177,7 +175,6 @@ class AssignmentController extends SecureController {
 		flash(trans('assignments.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
 		return redirect()->route('assignments.index',[
 				'applicant_id' => $request->input('applicant_id')
 			]);

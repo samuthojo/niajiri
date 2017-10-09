@@ -72,7 +72,6 @@ class RefereeController extends SecureController {
 		flash(trans('referees.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show referee
 		return redirect()->route('referees.index', [
 				'applicant_id' => $request->input('applicant_id')
@@ -88,7 +87,7 @@ class RefereeController extends SecureController {
 	 */
 	public function show(Request $request, $id) {
 
-		//load referee with permissions
+		//load referee
 		$referee = Referee::query()->findOrFail($id);
 
 		$data = [
@@ -155,7 +154,6 @@ class RefereeController extends SecureController {
 		flash(trans('referees.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show referee
 		return redirect()->route('referees.index',[
 				'applicant_id' => $request->input('applicant_id')
@@ -177,7 +175,6 @@ class RefereeController extends SecureController {
 		flash(trans('referees.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
 		return redirect()->route('referees.index',[
 				'applicant_id' => $request->input('applicant_id')
 			]);

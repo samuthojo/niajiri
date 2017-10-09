@@ -82,7 +82,6 @@ class EducationController extends SecureController {
 		flash(trans('educations.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show education
 		return redirect()->route('educations.index', [
 				'applicant_id' => $request->input('applicant_id')
@@ -98,7 +97,7 @@ class EducationController extends SecureController {
 	 */
 	public function show(Request $request, $id) {
 
-		//load education with permissions
+		//load education
 		$education = Education::query()->findOrFail($id);
 
 		$data = [
@@ -175,7 +174,6 @@ class EducationController extends SecureController {
 		flash(trans('educations.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show education
 		return redirect()->route('educations.index',[
 				'applicant_id' => $request->input('applicant_id')
@@ -197,7 +195,6 @@ class EducationController extends SecureController {
 		flash(trans('educations.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
 		return redirect()->route('educations.index',[
 				'applicant_id' => $request->input('applicant_id')
 			]);

@@ -71,7 +71,6 @@ class PublicationController extends SecureController {
 		flash(trans('publications.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show publication
 		return redirect()->route('publications.index', [
 				'applicant_id' => $request->input('applicant_id')
@@ -87,7 +86,7 @@ class PublicationController extends SecureController {
 	 */
 	public function show(Request $request, $id) {
 
-		//load publication with permissions
+		//load publication
 		$publication = Publication::query()->findOrFail($id);
 
 		$data = [
@@ -153,7 +152,6 @@ class PublicationController extends SecureController {
 		flash(trans('publications.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show publication
 		return redirect()->route('publications.index',[
 				'applicant_id' => $request->input('applicant_id')
@@ -175,7 +173,6 @@ class PublicationController extends SecureController {
 		flash(trans('publications.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
 		return redirect()->route('publications.index',[
 				'applicant_id' => $request->input('applicant_id')
 			]);

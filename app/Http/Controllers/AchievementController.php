@@ -71,7 +71,6 @@ class AchievementController extends SecureController {
 		flash(trans('achievements.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show achievement
 		return redirect()->route('achievements.index', [
 				'applicant_id' => $request->input('applicant_id')
@@ -87,7 +86,7 @@ class AchievementController extends SecureController {
 	 */
 	public function show(Request $request, $id) {
 
-		//load achievement with permissions
+		//load achievement
 		$achievement = Achievement::query()->findOrFail($id);
 
 		$data = [
@@ -153,7 +152,6 @@ class AchievementController extends SecureController {
 		flash(trans('achievements.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show achievement
 		return redirect()->route('achievements.index',[
 				'applicant_id' => $request->input('applicant_id')
@@ -175,7 +173,6 @@ class AchievementController extends SecureController {
 		flash(trans('achievements.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
 		return redirect()->route('achievements.index',[
 				'applicant_id' => $request->input('applicant_id')
 			]);
