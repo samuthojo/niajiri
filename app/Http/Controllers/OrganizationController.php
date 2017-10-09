@@ -10,7 +10,6 @@ use App\Repositories\SectorRepository;
 use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use App\Models\Media;
-use App\Models\Organization;
 use Flash;
 use Log;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -65,7 +64,7 @@ class OrganizationController extends SecureController
             'route_title' => 'Organization',
             'route_description' => 'Organization',
             'sectors' => $sectors->toArray(),
-            'organization' => new Organization(),
+            'organization' => new User(),
         ]);
     }
 
