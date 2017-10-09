@@ -175,6 +175,11 @@ class OrganizationController extends SecureController
             return redirect(route('organizations.index'));
         }
 
+        //enforce user type
+        $request->merge([
+            'type' => User::TYPE_ORGANIZATION
+        ]);
+
         $organization = $this->organizationRepository->update($request->all(), $id);
 
         //upload & store organization avatar(logo)
