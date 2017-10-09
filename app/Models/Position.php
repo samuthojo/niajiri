@@ -86,7 +86,7 @@ class Position extends Model
      **/
     public function organization()
     {
-        return $this->belongsTo(\App\Models\Organization::class);
+        return $this->belongsTo(\App\Models\User::class, 'organization_id');
     }
 
     /**
@@ -94,7 +94,7 @@ class Position extends Model
      **/
     public function project()
     {
-        return $this->belongsTo(\App\Models\Project::class);
+        return $this->belongsTo(\App\Models\Project::class, 'project_id');
     }
 
     /**
@@ -102,6 +102,6 @@ class Position extends Model
      **/
     public function sector()
     {
-        return $this->belongsTo(\App\Models\Sector::class);
+        return $this->belongsTo(\App\Models\Sector::class, 'sector_id');
     }
 }

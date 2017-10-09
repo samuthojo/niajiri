@@ -19,8 +19,11 @@ class CreateProjectsTable extends Migration
           $table->date('startedAt');
           $table->date('endedAt');
           $table->uuid('organization_id')->nullable();
-          $table->foreign('organization_id')->references('id')->on('organizations')
-            ->onUpdate('cascade')->onDelete('cascade');
+          $table->foreign('organization_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
           $table->timestamps();
           $table->softDeletes();
 

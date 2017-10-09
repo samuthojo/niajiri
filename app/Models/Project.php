@@ -67,7 +67,7 @@ class Project extends Model
      **/
     public function organization()
     {
-        return $this->belongsTo(\App\Models\Organization::class);
+        return $this->belongsTo(\App\Models\User::class, 'organization_id');
     }
 
     /**
@@ -75,6 +75,6 @@ class Project extends Model
      **/
     public function positions()
     {
-        return $this->hasMany(\App\Models\Position::class);
+        return $this->hasMany(\App\Models\Position::class, 'organization_id');
     }
 }

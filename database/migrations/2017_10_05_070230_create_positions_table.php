@@ -28,7 +28,7 @@ class CreatePositionsTable extends Migration
 
             $table->foreign('project_id')->references('id')->on('projects')
               ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('organization_id')->references('id')->on('organizations')
+            $table->foreign('organization_id')->references('id')->on('users')
               ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('sector_id')->references('id')->on('sectors')
               ->onUpdate('cascade')->onDelete('cascade');
