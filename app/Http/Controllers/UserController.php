@@ -337,6 +337,9 @@ class UserController extends SecureController {
 	 */
     public function post_basic(Request $request)
     {
+    	//obtain current user id
+    	$id = \Auth::user()->id;
+
     	//validate user
 		$this->validate($request, [
 			'first_name' => 'string|min:2|max:255|required',
@@ -351,7 +354,6 @@ class UserController extends SecureController {
 		$body = $request->all();
 
 		//reload current user
-		$id = \Auth::user()->id;
 		$user = User::findOrFail($id);
 
 		//update user
