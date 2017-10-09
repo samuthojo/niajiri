@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreateUsersTable extends Migration
 {
@@ -16,6 +17,9 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             //columns
             $table->uuid('id');
+            $table->string('type')->default(User::TYPE_NORMAL)
+                  ->index()
+                  ->nullable();
             $table->string('name')->index()->nullable();
             $table->string('first_name')->index()->nullable();
             $table->string('middle_name')->index()->nullable();

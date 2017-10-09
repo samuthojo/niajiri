@@ -102,11 +102,33 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
     use Countable;
 
     /**
+     * Type of users
+     */
+    const TYPE_ORGANIZATION = 'Organization';
+    const TYPE_APPLICANT = 'Applicant';
+    const TYPE_NORMAL = 'Normal';
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
+     * The database primary key value.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'type',
         'name',
         'first_name',
         'middle_name',
