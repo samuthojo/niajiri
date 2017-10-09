@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Requests\CreateOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
 use App\Repositories\OrganizationRepository;
@@ -37,6 +38,11 @@ class OrganizationController extends SecureController
      */
     public function index(Request $request)
     {
+        //ensure organization user type
+        $search = $request->get(config('repository.criteria.params.search', 'search'), '');
+        $search = is_set($search) ? $search.';type:'.User::TYPE_ORGANIZATION : 'type:'.User::TYPE_ORGANIZATION;
+         $request->merge(['search'=>$search]);
+
         $this->organizationRepository->pushCriteria(new RequestCriteria($request));
         $organizations = $this->organizationRepository->all();
 
@@ -81,14 +87,19 @@ class OrganizationController extends SecureController
 
         $input = $request->all();
 
+        //encrypt password before save
+        if (array_has($input, 'password')) {
+            $input['password'] = bcrypt($input['password']);
+        }
+
         $organization = $this->organizationRepository->create($input);
 
-        //upload & store oganization avatar(logo)
-        if ($oganization && $request->hasFile('avatar')) {
+        //upload & store organization avatar(logo)
+        if ($organization && $request->hasFile('avatar')) {
             //clear existing avatar
-            $oganization->clearMediaCollection('avatars');
+            $organization->clearMediaCollection('avatars');
             //attach new avatar
-            $oganization->addMediaFromRequest('avatar')
+            $organization->addMediaFromRequest('avatar')
                 ->toMediaCollection('avatars');
         }
 
@@ -167,12 +178,12 @@ class OrganizationController extends SecureController
 
         $organization = $this->organizationRepository->update($request->all(), $id);
 
-        //upload & store oganization avatar(logo)
-        if ($oganization && $request->hasFile('avatar')) {
+        //upload & store organization avatar(logo)
+        if ($organization && $request->hasFile('avatar')) {
             //clear existing avatar
-            $oganization->clearMediaCollection('avatars');
+            $organization->clearMediaCollection('avatars');
             //attach new avatar
-            $oganization->addMediaFromRequest('avatar')
+            $organization->addMediaFromRequest('avatar')
                 ->toMediaCollection('avatars');
         }
 

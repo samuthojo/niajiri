@@ -20,6 +20,7 @@ class OrganizationRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'type',
         'name',
         'email',
         'mobile',
@@ -31,18 +32,6 @@ class OrganizationRepository extends BaseRepository
         'logo',
         'sector_id'
     ];
-
-    /**
-     * @override
-     */
-    public function findWithoutFail($id, $columns = ['*'])
-    {
-        try {
-            return $this->find($id, $columns)->where('type', User::TYPE_ORGANIZATION);
-        } catch (Exception $e) {
-            return;
-        }
-    }
 
     /**
      * Configure the Model
