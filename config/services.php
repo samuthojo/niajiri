@@ -44,8 +44,8 @@ return [
     ],
 
     'google' => [
-        'client_id' => '928507796206-fuuef8epqdh0ni69h5vjahvd9j1pkqaj.apps.googleusercontent.com',
-        'client_secret' => 'lLoh8MT_EEZyJtgq31AJgIc7',
+        'client_id' => '966221747885-usegtl82at23160ththnvs2tgmticif1.apps.googleusercontent.com',
+        'client_secret' => '_gHMmuaB6wvbphjUUAGebP0w',
         'url' => '/auth/social/provider/google',
         'redirect' => '/auth/social/callback/google',
     ],
