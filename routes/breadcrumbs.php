@@ -42,31 +42,6 @@ Breadcrumbs::register('cvs.basic', function ($breadcrumbs) {
 });
 
 
-Breadcrumbs::register('cvs.experiences', function ($breadcrumbs) {
-    $breadcrumbs->push('Work Experiences', route('cvs.experiences'));
-});
-
-Breadcrumbs::register('cvs.languages', function ($breadcrumbs) {
-    $breadcrumbs->push('Languages', route('cvs.languages'));
-});
-
-Breadcrumbs::register('cvs.referees', function ($breadcrumbs) {
-    $breadcrumbs->push('Referees', route('cvs.referees'));
-});
-
-Breadcrumbs::register('cvs.achievements', function ($breadcrumbs) {
-    $breadcrumbs->push('Honors/Awards', route('cvs.achievements'));
-});
-
-Breadcrumbs::register('cvs.projects', function ($breadcrumbs) {
-    $breadcrumbs->push('Projects', route('cvs.projects'));
-});
-
-Breadcrumbs::register('cvs.publications', function ($breadcrumbs) {
-    $breadcrumbs->push('Publications', route('cvs.publications'));
-});
-
-
 
 //-------------------------------------------------------------------------
 //Reports Routes
