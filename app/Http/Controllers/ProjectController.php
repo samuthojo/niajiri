@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\ProjectRepository;
@@ -51,7 +52,7 @@ class ProjectController extends SecureController
      */
     public function create()
     {
-      $organization = $this->organizationRepository->pluck('name', 'id');
+      $organization = $this->organizationRepository->findWhere(['type'=>User::TYPE_ORGANIZATION])->pluck('name', 'id');
 
       return view('pages.projects.create',[
           'route_title' => 'Project',
@@ -92,7 +93,7 @@ class ProjectController extends SecureController
     public function show($id)
     {
         $project = $this->projectRepository->findWithoutFail($id);
-        $organization = $this->organizationRepository->pluck('name', 'id');
+        $organization = $this->organizationRepository->findWhere(['type'=>User::TYPE_ORGANIZATION])->pluck('name', 'id');
 
         if (empty($project)) {
             Flash::error('Project not found');
@@ -118,7 +119,7 @@ class ProjectController extends SecureController
     public function edit($id)
     {
         $project = $this->projectRepository->findWithoutFail($id);
-        $organization = $this->organizationRepository->pluck('name', 'id');
+        $organization = $this->organizationRepository->findWhere(['type'=>User::TYPE_ORGANIZATION])->pluck('name', 'id');
 
         if (empty($project)) {
             Flash::error('Project not found');
