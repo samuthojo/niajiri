@@ -1,5 +1,23 @@
 <?php
 
+//default MySQL database connection details
+$DB_HOST = env('DB_HOST', 'localhost');
+$DB_PORT = env('DB_PORT', '3306');
+$DB_DATABASE = env('DB_DATABASE', 'niajiri');
+$DB_USERNAME = env('DB_USERNAME', 'niajiri');
+$DB_PASSWORD = env('DB_PASSWORD', 'niajiri');
+
+//try override using heroku provided MySQL
+if (getenv('CLEARDB_DATABASE_URL')) {
+    //parse database url
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+    $DB_HOST = $url['host'];
+    $DB_USERNAME = $url['user'];
+    $DB_PASSWORD = $url['pass'];
+    $DB_DATABASE = substr($url['path'], 1);
+}
+
 return [
 
     /*
@@ -41,11 +59,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'niajiri'),
-            'username' => env('DB_USERNAME', 'niajiri'),
-            'password' => env('DB_PASSWORD', 'niajiri'),
+            'host' => $DB_HOST,
+            'port' => $DB_PORT,
+            'database' => $DB_DATABASE,
+            'username' => $DB_USERNAME,
+            'password' => $DB_PASSWORD,
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
