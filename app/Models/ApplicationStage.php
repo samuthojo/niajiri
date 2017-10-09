@@ -7,20 +7,15 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Carbon\Carbon;
 
-class Application extends Model implements HasMedia 
+class ApplicationStage extends Model implements HasMedia 
 {
-
-    /**
-     * Allow application to have attached files(media) i.e cover letter etc
-     */
-    use HasMediaTrait;
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'applications';
+    protected $table = 'application_stages';
 
     /**
      * The database primary key value.
@@ -35,6 +30,8 @@ class Application extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
+        'score', 'comment',
+        'application_id','stage_id',
         'applicant_id', 'organization_id', 'position_id'
     ];
 
@@ -81,25 +78,29 @@ class Application extends Model implements HasMedia
         return $value;
     }
 
-
+    
     /**
-     * Build application cover_letter url
-     */
-    public function coverLetter() {
-        //TODO default application cover_letter
-        $cover_letter;
-
-        //try obtain custom uploaded cover_letter
-        $media = $this->getMedia('cover_letters')->first();
-        if ($media) {
-            $cover_letter = asset('storage/' . $media->id . '/' . $media->file_name);
-        }
-        return $cover_letter;
+     * Get application associate with application stage
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function application()
+    {
+        return $this->belongsTo('App\Models\Application', 'application_id');
     }
 
 
     /**
-     * Get applicant associate with application
+     * Get stage associate with application stage
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function stage()
+    {
+        return $this->belongsTo('App\Models\Stage', 'stage_id');
+    }
+
+
+    /**
+     * Get applicant associate with application stage
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function applicant()
@@ -109,7 +110,7 @@ class Application extends Model implements HasMedia
 
 
     /**
-     * Get organization associate with application
+     * Get organization associate application stage
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function organization()
@@ -119,7 +120,7 @@ class Application extends Model implements HasMedia
 
 
     /**
-     * Get position associate with application
+     * Get position associate with application stage
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function position()
