@@ -82,7 +82,6 @@ class CertificateController extends SecureController {
 		flash(trans('certificates.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show certificate
 		return redirect()->route('certificates.index', [
 				'applicant_id' => $request->input('applicant_id')
@@ -98,7 +97,7 @@ class CertificateController extends SecureController {
 	 */
 	public function show(Request $request, $id) {
 
-		//load certificate with permissions
+		//load certificate
 		$certificate = Certificate::query()->findOrFail($id);
 
 		$data = [
@@ -175,7 +174,6 @@ class CertificateController extends SecureController {
 		flash(trans('certificates.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show certificate
 		return redirect()->route('certificates.index',[
 				'applicant_id' => $request->input('applicant_id')
@@ -197,7 +195,6 @@ class CertificateController extends SecureController {
 		flash(trans('certificates.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
 		return redirect()->route('certificates.index',[
 				'applicant_id' => $request->input('applicant_id')
 			]);

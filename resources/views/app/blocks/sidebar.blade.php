@@ -69,9 +69,9 @@
 	        {{-- start applicant menu --}}
 	        {{-- start my applications --}}
 	        <li class="{{areActiveRoutes([
-		        	'my_applications'
+		        	'applications.applied'
 				])}}">
-                <a href="{{route('my_applications')}}">
+                <a href="{{route('applications.applied')}}">
                 <i class="fa fa-file"></i> 
                 <span class="nav-label">My Applications</span>
                 </a>
@@ -79,9 +79,9 @@
 	        {{-- end my applications --}}
 	        {{-- start open positions --}}
 	        <li class="{{areActiveRoutes([
-		        	'open_positions'
+		        	'positions.open'
 				])}}">
-                <a href="{{route('open_positions')}}">
+                <a href="{{route('positions.open')}}">
                 <i class="fa fa-file-o"></i> 
                 <span class="nav-label">Open Positions</span>
                 </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Requests\CreateOrganizationRequest;
 use App\Http\Requests\UpdateOrganizationRequest;
 use App\Repositories\OrganizationRepository;
@@ -9,7 +10,6 @@ use App\Repositories\SectorRepository;
 use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use App\Models\Media;
-use App\Models\Organization;
 use Flash;
 use Log;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -37,6 +37,11 @@ class OrganizationController extends SecureController
      */
     public function index(Request $request)
     {
+        //ensure organization user type
+        $search = $request->get(config('repository.criteria.params.search', 'search'), '');
+        $search = is_set($search) ? $search.';type:'.User::TYPE_ORGANIZATION : 'type:'.User::TYPE_ORGANIZATION;
+         $request->merge(['search'=>$search]);
+
         $this->organizationRepository->pushCriteria(new RequestCriteria($request));
         $organizations = $this->organizationRepository->all();
 
@@ -59,7 +64,7 @@ class OrganizationController extends SecureController
             'route_title' => 'Organization',
             'route_description' => 'Organization',
             'sectors' => $sectors->toArray(),
-            'organization' => new Organization(),
+            'organization' => new User(),
         ]);
     }
 
@@ -72,14 +77,30 @@ class OrganizationController extends SecureController
      */
     public function store(CreateOrganizationRequest $request)
     {
+        //ensure default values
+        $request->merge([
+            'type' => User::TYPE_ORGANIZATION,
+            'password' => $request->input('password', config('auth.defaults.password')),
+            'password_confirmation' => $request->input('password_confirmation', config('auth.defaults.password')),
+        ]);
+
         $input = $request->all();
 
-        // $logo = Media::create($input['logo']);
-        // $logo_id = $logo->id;
-        //
-        // $input->logo = $logo_id;
+        //encrypt password before save
+        if (array_has($input, 'password')) {
+            $input['password'] = bcrypt($input['password']);
+        }
 
         $organization = $this->organizationRepository->create($input);
+
+        //upload & store organization avatar(logo)
+        if ($organization && $request->hasFile('avatar')) {
+            //clear existing avatar
+            $organization->clearMediaCollection('avatars');
+            //attach new avatar
+            $organization->addMediaFromRequest('avatar')
+                ->toMediaCollection('avatars');
+        }
 
         Flash::success('Organization saved successfully.');
 
@@ -154,7 +175,21 @@ class OrganizationController extends SecureController
             return redirect(route('organizations.index'));
         }
 
+        //enforce user type
+        $request->merge([
+            'type' => User::TYPE_ORGANIZATION
+        ]);
+
         $organization = $this->organizationRepository->update($request->all(), $id);
+
+        //upload & store organization avatar(logo)
+        if ($organization && $request->hasFile('avatar')) {
+            //clear existing avatar
+            $organization->clearMediaCollection('avatars');
+            //attach new avatar
+            $organization->addMediaFromRequest('avatar')
+                ->toMediaCollection('avatars');
+        }
 
         Flash::success('Organization updated successfully.');
 

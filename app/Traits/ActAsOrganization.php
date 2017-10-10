@@ -10,6 +10,14 @@ trait ActAsOrganization
     //------------------------------------------------------------
     //instance properties & methods
     //------------------------------------------------------------
+    
+    /**
+     * Build organization logo url
+     */
+    public function logo()
+    {
+        return $this->avatar();
+    }
 
     //------------------------------------------------------------
     //scope
@@ -25,7 +33,7 @@ trait ActAsOrganization
      **/
     public function sector()
     {
-        return $this->belongsTo(\App\Models\Sector::class);
+        return $this->belongsTo(\App\Models\Sector::class, 'sector_id');
     }
 
     /**
@@ -34,7 +42,7 @@ trait ActAsOrganization
 
     public function positions()
     {
-        return $this->hasMany(\App\Models\Position::class);
+        return $this->hasMany(\App\Models\Position::class, 'organization_id');
     }
 
 
@@ -43,7 +51,7 @@ trait ActAsOrganization
      **/
     public function projects()
     {
-        return $this->hasMany(\App\Models\Project::class);
+        return $this->hasMany(\App\Models\Project::class, 'organization_id');
     }
 
     //------------------------------------------------------------

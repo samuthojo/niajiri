@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Base as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 /**
  * Class Project
@@ -62,12 +63,43 @@ class Project extends Model
 
     ];
 
+
+    /**
+     * Get and format the project's started_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formStartedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
+
+    /**
+     * Get and format the project's ended_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formEndedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function organization()
     {
-        return $this->belongsTo(\App\Models\Organization::class);
+        return $this->belongsTo(\App\Models\User::class, 'organization_id');
     }
 
     /**
@@ -75,6 +107,6 @@ class Project extends Model
      **/
     public function positions()
     {
-        return $this->hasMany(\App\Models\Position::class);
+        return $this->hasMany(\App\Models\Position::class, 'project_id');
     }
 }

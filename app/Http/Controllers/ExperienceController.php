@@ -74,7 +74,6 @@ class ExperienceController extends SecureController {
 		flash(trans('experiences.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show experience
 		return redirect()->route('experiences.index', [
 				'applicant_id' => $request->input('applicant_id')
@@ -90,7 +89,7 @@ class ExperienceController extends SecureController {
 	 */
 	public function show(Request $request, $id) {
 
-		//load experience with permissions
+		//load experience
 		$experience = Experience::query()->findOrFail($id);
 
 		$data = [
@@ -159,7 +158,6 @@ class ExperienceController extends SecureController {
 		flash(trans('experiences.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show experience
 		return redirect()->route('experiences.index',[
 				'applicant_id' => $request->input('applicant_id')
@@ -181,7 +179,6 @@ class ExperienceController extends SecureController {
 		flash(trans('experiences.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
 		return redirect()->route('experiences.index',[
 				'applicant_id' => $request->input('applicant_id')
 			]);

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreateUsersTable extends Migration
 {
@@ -16,6 +17,9 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             //columns
             $table->uuid('id');
+            $table->string('type')->default(User::TYPE_NORMAL)
+                  ->index()
+                  ->nullable();
             $table->string('name')->index()->nullable();
             $table->string('first_name')->index()->nullable();
             $table->string('middle_name')->index()->nullable();
@@ -40,6 +44,13 @@ class CreateUsersTable extends Migration
             $table->text('skills')->nullable();
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();
+
+            //organization specific
+            $table->uuid('sector_id')->index()->nullable();
+            $table->foreign('sector_id')->references('id')
+                  ->on('sectors')
+                  ->onUpdate('cascade')
+                  ->onDelete('set null'); //we dont want to delete organization if sector deleted
 
 
             $table->timestamps();

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Organization;
 
 class CreateOrganizationRequest extends FormRequest
 {
@@ -25,6 +24,6 @@ class CreateOrganizationRequest extends FormRequest
      */
     public function rules()
     {
-        return Organization::$rules;
+        return [];
     }
 }

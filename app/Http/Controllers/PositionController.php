@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Position;
 use App\Http\Requests\CreatePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
 use App\Repositories\PositionRepository;
@@ -25,6 +26,7 @@ class PositionController extends SecureController
                                 OrganizationRepository $organizationRepo,
                                 SectorRepository $sectorRepo, ProjectRepository $projectRepo)
     {
+        parent::__construct();
         $this->positionRepository = $positionRepo;
         $this->organizationRepository = $organizationRepo;
         $this->sectorRepository = $sectorRepo;
@@ -111,7 +113,8 @@ class PositionController extends SecureController
         return view('pages.positions.show',[
             'route_title' => 'Position',
             'route_description' => 'Position',
-            'position' => $position
+            'position' => $position,
+            'instance' => $position
         ]);
     }
 
@@ -139,6 +142,7 @@ class PositionController extends SecureController
             'route_title' => 'Positions',
             'route_description' => 'Positions',
             'position'   => $position,
+            'instance'   => $position,
             'sectors'     => $sectors,
             'projects'    => $projects
         ]);
@@ -193,5 +197,54 @@ class PositionController extends SecureController
         Flash::success('Position deleted successfully.');
 
         return redirect(route('positions.index'));
+    }
+
+
+    /**
+     * Show the open positions for application
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function open(Request $request) {
+
+        //TODO support additional filters & searches
+
+        //initialize query
+        $query = Position::query()->which()->are()->open();
+
+        //paginate query result
+        $positions = $query->paginate(config('app.defaults.pageSize'));
+
+        $data = [
+            'route_title' => 'Open Positions',
+            'route_description' => 'Available Job Positions',
+            'positions' => $positions,
+            'q' => $request->input('q'),
+        ];
+
+        return view('positions.open.index', $data);
+    }
+
+    /**
+     * Preview the specified position for application
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function preview(Request $request, $id)
+    {
+        //load position
+        $position = Position::findOrFail($id);
+
+        $data = [
+            'route_title' => 'Open Position',
+            'route_description' => 'Open Position',
+            'position' => $position,
+            'instance' => $position,
+            'applicant_id' => $request->input('applicant_id'),
+        ];
+
+        return view('positions.open.preview', $data);
     }
 }

@@ -23,24 +23,18 @@ Breadcrumbs::register('profile', function ($breadcrumbs) {
     $breadcrumbs->push('Profile', route('profile'));
 });
 
-Breadcrumbs::register('open_positions', function ($breadcrumbs) {
-    $breadcrumbs->push('Open Jobs/Positions', route('open_positions'));
+Breadcrumbs::register('positions.open', function ($breadcrumbs) {
+    $breadcrumbs->push('Open Positions', route('positions.open'));
 });
 
-Breadcrumbs::register('my_applications', function ($breadcrumbs) {
-    $breadcrumbs->push('My Applications', route('my_applications'));
+Breadcrumbs::register('positions.preview', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('positions.open');
+    $breadcrumbs->push($instance->title, route('positions.preview', $instance->id));
 });
 
-
-
-//-------------------------------------------------------------------------
-//My CV Routes
-//-------------------------------------------------------------------------
-
-Breadcrumbs::register('users.basic', function ($breadcrumbs) {
-    $breadcrumbs->push('Basic Details', route('users.basic'));
+Breadcrumbs::register('applications.applied', function ($breadcrumbs) {
+    $breadcrumbs->push('My Applications', route('applications.applied'));
 });
-
 
 
 //-------------------------------------------------------------------------
@@ -91,6 +85,10 @@ Breadcrumbs::register('users.change_password', function ($breadcrumbs, $instance
     $breadcrumbs->push('Change Password', route('users.change_password', $instance->id));
 });
 
+//User Basic Details
+Breadcrumbs::register('users.basic', function ($breadcrumbs) {
+    $breadcrumbs->push('Basic Details', route('users.basic'));
+});
 
 // -------------------Roles Breadcrumbs--------------------------------------
 // Home > Roles
@@ -326,26 +324,52 @@ Breadcrumbs::register('publications.edit', function ($breadcrumbs, $instance) {
 
 
 // ---------------------Organization Breadcrumbs-----------------------------------
-// Home > Users
+// Home > Organizations
 Breadcrumbs::register('organizations.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Organizations', route('organizations.index'));
 });
 
-// Home > Users > Create User
+// Home > Organizations > Create Organization
 Breadcrumbs::register('organizations.create', function ($breadcrumbs) {
     $breadcrumbs->parent('organizations.index');
     $breadcrumbs->push('Create organization', route('organizations.create'));
 });
 
-// Home > Users > [User Name]
+// Home > Organizations > [Organization Name]
 Breadcrumbs::register('organizations.show', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('organizations.index');
     $breadcrumbs->push($instance->name, route('organizations.show', $instance->id));
 });
 
-// Home > Users > [User Name] > Edit
+// Home > Organizations > [Organization Name] > Edit
 Breadcrumbs::register('organizations.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('organizations.show', $instance);
     $breadcrumbs->push('Edit', route('organizations.edit', $instance->id));
+});
+
+
+// -------------------Positions Breadcrumbs--------------------------------------
+// Home > Positions
+Breadcrumbs::register('positions.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Positions', route('positions.index'));
+});
+
+// Home > Positions > Create Position
+Breadcrumbs::register('positions.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('positions.index');
+    $breadcrumbs->push('Create Position', route('positions.create'));
+});
+
+// Home > Positions > [Position Title]
+Breadcrumbs::register('positions.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('positions.index');
+    $breadcrumbs->push($instance->title, route('positions.show', $instance->id));
+});
+
+// Home > Positions > [Position Title] > Edit
+Breadcrumbs::register('positions.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('positions.show', $instance);
+    $breadcrumbs->push('Edit', route('positions.edit', $instance->id));
 });

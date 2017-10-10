@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Organization;
+use App\Models\User;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
@@ -10,9 +10,9 @@ use InfyOm\Generator\Common\BaseRepository;
  * @package App\Repositories
  * @version October 7, 2017, 5:47 am UTC
  *
- * @method Organization findWithoutFail($id, $columns = ['*'])
- * @method Organization find($id, $columns = ['*'])
- * @method Organization first($columns = ['*'])
+ * @method User findWithoutFail($id, $columns = ['*'])
+ * @method User find($id, $columns = ['*'])
+ * @method User first($columns = ['*'])
 */
 class OrganizationRepository extends BaseRepository
 {
@@ -20,6 +20,7 @@ class OrganizationRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'type',
         'name',
         'email',
         'mobile',
@@ -37,6 +38,6 @@ class OrganizationRepository extends BaseRepository
      **/
     public function model()
     {
-        return Organization::class;
+        return User::class;
     }
 }

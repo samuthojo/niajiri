@@ -21698,3 +21698,14 @@ h6 {
   margin: 10px 0;
 }
 
+.cart-position-organization-logo {
+  padding-top: 0px !important;
+  height: 80px;
+  width: 80px;
+}
+
+.cart-position-organization-logo img {
+  max-height: 80px;
+  max-width: 80px;
+}
+

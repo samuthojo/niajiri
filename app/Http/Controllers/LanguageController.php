@@ -69,7 +69,6 @@ class LanguageController extends SecureController {
 		flash(trans('languages.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show language
 		return redirect()->route('languages.index', [
 				'applicant_id' => $request->input('applicant_id')
@@ -85,7 +84,7 @@ class LanguageController extends SecureController {
 	 */
 	public function show(Request $request, $id) {
 
-		//load language with permissions
+		//load language
 		$language = Language::query()->findOrFail($id);
 
 		$data = [
@@ -149,7 +148,6 @@ class LanguageController extends SecureController {
 		flash(trans('languages.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
 		//redirect to show language
 		return redirect()->route('languages.index',[
 				'applicant_id' => $request->input('applicant_id')
@@ -171,7 +169,6 @@ class LanguageController extends SecureController {
 		flash(trans('languages.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
 		return redirect()->route('languages.index',[
 				'applicant_id' => $request->input('applicant_id')
 			]);

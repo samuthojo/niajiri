@@ -15,20 +15,18 @@ class DatabaseSeeder extends Seeder
 		  $this->call(RolesTableSeeder::class);
 		  $this->call(UsersTableSeeder::class);
 
-  		$environment = \App::environment();
-  		$isLocal = ($environment == 'local') || ($environment == 'development')
-  			|| ($environment == 'test');
-  		if ($isLocal) {
-  			//seed test & development data
-  			// $this->call(SectorsTableSeeder::class);
-  		}
 
   		$environment = \App::environment();
   		$isLocal = ($environment == 'local') || ($environment == 'development')
   			|| ($environment == 'test');
   		if ($isLocal) {
   			//seed test & development data
-  			$this->call(ApplicantsTableSeeder::class);
+        $this->call(ApplicantsTableSeeder::class);
+        $this->call(SectorsTableSeeder::class);
+        $this->call(OrganizationsTableSeeder::class);
+        $this->call(ProjectsTableSeeder::class);
+  			$this->call(PositionsTableSeeder::class);
+        $this->call(StagesTableSeeder::class);
   		}
 
     }
