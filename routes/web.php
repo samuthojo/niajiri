@@ -16,7 +16,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name("home");
 Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
 Route::get('/my_applications', 'HomeController@applications')->name("my_applications");
-Route::get('/open_positions', 'HomeController@positions')->name("open_positions");
 Route::get('/minor', 'HomeController@minor')->name("minor");
 
 //development only routes, should be commented on production
@@ -34,6 +33,7 @@ Route::resource('organizations', 'OrganizationController');
 
 Route::resource('projects', 'ProjectController');
 
+Route::get('/open', 'PositionController@open')->name("positions.open");
 Route::resource('positions', 'PositionController');
 
 Route::resource('sectors', 'SectorController');
@@ -57,6 +57,8 @@ Route::resource('referees', 'RefereeController');
 Route::resource('achievements', 'AchievementController');
 Route::resource('assignments', 'AssignmentController');
 Route::resource('publications', 'PublicationController');
+Route::resource('applications', 'ApplicationController');
+Route::get('/apply', 'ApplicationController@store')->name('applications.apply');
 
 //cv routes
 Route::get('/basic', 'UserController@get_basic')->name("users.basic");

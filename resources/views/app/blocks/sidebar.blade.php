@@ -79,9 +79,9 @@
 	        {{-- end my applications --}}
 	        {{-- start open positions --}}
 	        <li class="{{areActiveRoutes([
-		        	'open_positions'
+		        	'positions.open'
 				])}}">
-                <a href="{{route('open_positions')}}">
+                <a href="{{route('positions.open')}}">
                 <i class="fa fa-file-o"></i> 
                 <span class="nav-label">Open Positions</span>
                 </a>

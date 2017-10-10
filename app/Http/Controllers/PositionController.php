@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Position;
 use App\Http\Requests\CreatePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
 use App\Repositories\PositionRepository;
@@ -193,5 +194,31 @@ class PositionController extends SecureController
         Flash::success('Position deleted successfully.');
 
         return redirect(route('positions.index'));
+    }
+
+
+    /**
+     * Show the open positions for application
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function open(Request $request) {
+
+        //TODO support additional filters & searches
+
+        //initialize query
+        $query = Position::query()->which()->are()->open();
+
+        //paginate query result
+        $positions = $query->paginate(config('app.defaults.pageSize'));
+
+        $data = [
+            'route_title' => 'Open Jobs/Positions',
+            'route_description' => 'Available Jobs/Positions',
+            'positions' => $positions,
+            'q' => $request->input('q'),
+        ];
+
+        return view('positions.open.index', $data);
     }
 }
