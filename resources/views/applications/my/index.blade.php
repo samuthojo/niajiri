@@ -22,8 +22,8 @@
                             </td>
                             <td class="desc">
                                 <h3>
-                                <a href="{{ route('positions.show', ['id' => $application->position->id]) }}" class="text-navy">
-                                    {{$application->position->title}} - {{$application->organization->name}}
+                                <a href="{{ route('positions.preview', ['id' => $application->position->id]) }}"  class="text-navy">
+                                    {{$application->position->title}} - {{$application->position->organization->name}}
                                 </a>
                                 </h3>
                                 <p class="small">
