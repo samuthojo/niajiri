@@ -324,26 +324,52 @@ Breadcrumbs::register('publications.edit', function ($breadcrumbs, $instance) {
 
 
 // ---------------------Organization Breadcrumbs-----------------------------------
-// Home > Users
+// Home > Organizations
 Breadcrumbs::register('organizations.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Organizations', route('organizations.index'));
 });
 
-// Home > Users > Create User
+// Home > Organizations > Create Organization
 Breadcrumbs::register('organizations.create', function ($breadcrumbs) {
     $breadcrumbs->parent('organizations.index');
     $breadcrumbs->push('Create organization', route('organizations.create'));
 });
 
-// Home > Users > [User Name]
+// Home > Organizations > [Organization Name]
 Breadcrumbs::register('organizations.show', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('organizations.index');
     $breadcrumbs->push($instance->name, route('organizations.show', $instance->id));
 });
 
-// Home > Users > [User Name] > Edit
+// Home > Organizations > [Organization Name] > Edit
 Breadcrumbs::register('organizations.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('organizations.show', $instance);
     $breadcrumbs->push('Edit', route('organizations.edit', $instance->id));
+});
+
+
+// -------------------Positions Breadcrumbs--------------------------------------
+// Home > Positions
+Breadcrumbs::register('positions.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Positions', route('positions.index'));
+});
+
+// Home > Positions > Create Position
+Breadcrumbs::register('positions.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('positions.index');
+    $breadcrumbs->push('Create Position', route('positions.create'));
+});
+
+// Home > Positions > [Position Title]
+Breadcrumbs::register('positions.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('positions.index');
+    $breadcrumbs->push($instance->title, route('positions.show', $instance->id));
+});
+
+// Home > Positions > [Position Title] > Edit
+Breadcrumbs::register('positions.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('positions.show', $instance);
+    $breadcrumbs->push('Edit', route('positions.edit', $instance->id));
 });

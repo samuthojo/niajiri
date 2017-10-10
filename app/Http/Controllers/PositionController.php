@@ -113,7 +113,8 @@ class PositionController extends SecureController
         return view('pages.positions.show',[
             'route_title' => 'Position',
             'route_description' => 'Position',
-            'position' => $position
+            'position' => $position,
+            'instance' => $position
         ]);
     }
 
@@ -141,6 +142,7 @@ class PositionController extends SecureController
             'route_title' => 'Positions',
             'route_description' => 'Positions',
             'position'   => $position,
+            'instance'   => $position,
             'sectors'     => $sectors,
             'projects'    => $projects
         ]);
