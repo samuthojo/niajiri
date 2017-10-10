@@ -29,7 +29,11 @@
                                         </div>
                                         @endpermission
                                         <dl class="dl-horizontal">
-                                            <dt>Status:</dt> <dd><span class="label label-primary">Active</span></dd>
+                                          @if(strtotime($project->dueAt) > time())
+                                            <dt>{{ trans('projects.headers.status') }}</dt> <dd><span class="label label-primary">{{ trans('projects.status.active') }}</span></dd>
+                                          @else
+                                            <dt>{{ trans('projects.headers.status') }}</dt> <dd><span class="label label-primary">{{ trans('projects.status.inactive') }}</span></dd>
+                                          @endif
                                         </dl>
                                     </div>
                                 </div>

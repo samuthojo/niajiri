@@ -16,39 +16,39 @@
             {{-- start page box content --}}
             <div class="ibox-content">
 
-                {{-- start roles table in filter --}}
+                {{-- start stages table in filter --}}
                 <div class="row m-t-md">
                     <div class="col-sm-8 m-b-xs">
                         <div class="btn-group">
-                            <a href="{{route('roles.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('roles.actions.create.title') }}">
-                            <i class="fa fa-plus"></i> {{ trans('roles.actions.create.name') }}</a>
+                            <a href="{{route('stages.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('stages.actions.create.title') }}">
+                            <i class="fa fa-plus"></i> {{ trans('stages.actions.create.name') }}</a>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        {{-- start roles search form --}}
+                        {{-- start stages search form --}}
                         {!! Form::open([
                             'method'=>'GET',
-                            'route' => 'roles.index',
+                            'route' => 'stages.index',
                             'style' => 'display:inline'
                         ]) !!}
-                        <div class="input-group" title="{{ trans('roles.actions.search.title') }}">
-                            <input name="q" value="{{$q}}" type="text" placeholder="{{ trans('roles.actions.search.placeholder') }}" class="input-sm form-control"/>
+                        <div class="input-group" title="{{ trans('stages.actions.search.title') }}">
+                            <input name="name" value="name" type="text" placeholder="{{ trans('stages.actions.search.placeholder') }}" class="input-sm form-control"/>
                                 <span class="input-group-btn">
-                                    {!! Form::button(trans('roles.actions.search.name'),[
+                                    {!! Form::button(trans('stages.actions.search.name'),[
                                             'type' => 'submit',
                                             'class' => 'btn btn-primary btn-sm',
-                                            'title' => trans('roles.actions.search.title'),
+                                            'title' => trans('stages.actions.search.title')
                                         ]) !!}
                                 </span>
                         </div>
                         {!! Form::close() !!}
-                        {{-- end roles search form --}}
+                        {{-- end stages search form --}}
 
                     </div>
                 </div>
-                {{-- end roles table in filter --}}
+                {{-- end stages table in filter --}}
 
-                {{-- start roles table --}}
+                {{-- start stages table --}}
                 <div class="table-responsive m-t-lg">
 
                     {{-- start table --}}
@@ -57,15 +57,11 @@
                         {{-- start table header --}}
                         <thead>
                             <tr>
-                                <th> {{ trans('roles.inputs.name.header') }} </th>
                                 <th>
-                                    {{ trans('roles.inputs.display_name.header') }}
+                                    {{ trans('stages.inputs.name.header') }}
                                 </th>
                                 <th>
-                                    {{ trans('roles.inputs.description.header') }}
-                                </th>
-                                <th>
-                                    {{trans('roles.headers.actions')}}
+                                    {{trans('stages.headers.actions')}}
                                 </th>
                             </tr>
                         </thead>
@@ -73,35 +69,29 @@
 
                         {{-- start table body --}}
                         <tbody>
-                        @foreach($roles as $item)
+                        @foreach($stages as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->display_name }}</td>
-                                <td>{{ $item->description }}</td>
+                                <td>{{ $item->name}}</td>
                                 <td>
 
-                                    @permission('view:role')
-                                    <a href="{{ route('roles.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('roles.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
+                                    @permission('edit:stage')
+                                    <a href="{{ route('stages.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-xs" title="{{trans('stages.actions.edit.title')}}"><span class="fa fa-pencil" aria-hidden="true"/></a>
                                     @endpermission
 
-                                    @permission('edit:role')
-                                    <a href="{{ route('roles.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-xs" title="{{trans('roles.actions.edit.title')}}"><span class="fa fa-pencil" aria-hidden="true"/></a>
-                                    @endpermission
-
-                                     @if(Auth::user()->can('delete:role') && !$item->restrict)
+                                    @permission('delete:stage')
                                     {!! Form::open([
                                         'method'=>'DELETE',
-                                        'url' => route('roles.destroy', ['id' => $item->id]),
+                                        'url' => route('stages.destroy', ['id' => $item->id]),
                                         'style' => 'display:inline'
                                     ]) !!}
                                         {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
                                                 'type' => 'submit',
                                                 'class' => 'btn btn-danger btn-xs',
-                                                'title' => trans('roles.actions.delete.title'),
+                                                'title' => trans('stages.actions.delete.title'),
                                                 'onclick'=>'return confirm("Confirm Delete?")'
                                         ]) !!}
                                     {!! Form::close() !!}
-                                    @endif
+                                    @endpermission
                                 </td>
                             </tr>
                         @endforeach
@@ -112,13 +102,13 @@
                     {{-- end table --}}
 
                     {{-- start pagination --}}
-                    <div class="pagination-wrapper">
-                        {!! $roles->render() !!}
-                    </div>
+                    {{--<div class="pagination-wrapper">
+                        {!! $stages->render() !!}
+                    </div> --}}
                     {{-- end pagination --}}
 
                 </div>
-                {{-- end roles table --}}
+                {{-- end stages table --}}
 
             </div>
            {{-- end page box content --}}

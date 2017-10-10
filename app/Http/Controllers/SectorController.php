@@ -18,6 +18,7 @@ class SectorController extends SecureController
 
     public function __construct(SectorRepository $sectorRepo)
     {
+        parent::__construct();
         $this->sectorRepository = $sectorRepo;
     }
 
@@ -87,7 +88,12 @@ class SectorController extends SecureController
             return redirect(route('sectors.index'));
         }
 
-        return view('pages.sectors.show')->with('sector', $sector);
+        return view('pages.sectors.show',[
+            'route_title' => 'Sector',
+            'route_description' => 'Sector',
+            'sector' => $sector,
+            'instance' => $sector
+        ]);
     }
 
     /**
@@ -110,7 +116,8 @@ class SectorController extends SecureController
         return view('pages.sectors.edit',[
             'route_title' => 'Sector',
             'route_description' => 'Sector',
-            'sector' => $sector
+            'sector' => $sector,
+            'instance' => $sector
         ]);
     }
 

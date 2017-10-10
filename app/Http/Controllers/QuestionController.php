@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
 use App\Repositories\QuestionRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class QuestionController extends AppBaseController
+class QuestionController extends SecureController
 {
     /** @var  QuestionRepository */
     private $questionRepository;

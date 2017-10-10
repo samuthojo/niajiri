@@ -6,115 +6,84 @@
 <div class="row">
     <div class="col-md-12">
 
-        {{-- start role permission edit form --}}
-        {!! Form::model($role, [
-            'method' => 'PATCH',
-            'route' => ['roles.update', $role->id],
-            'class' => 'form-horizontal',
-            'files' => true
-        ]) !!}
-
         {{-- start page box --}}
         <div class="ibox">
 
+            {{-- start table title --}}
+                {{-- TODO place any advance filter here --}}
+            {{-- end table title --}}
+
             {{-- start page box content --}}
             <div class="ibox-content">
-
-                {{-- start role permission edit form header --}}
-                <div class="page-header">
-                    <div class='btn-toolbar pull-right' role="toolbar">
-                        {{-- start action edit --}}
-                        <a
-                          href="{{ route('roles.edit', $role)}}"
-                          class="btn btn-white"
-                          title="{{trans('roles.actions.edit.title')}}">
-                          {{trans('roles.actions.edit.name')}}
-                        </a>
-                        {{-- end action edit --}}
-
-                        {{-- start action update --}}
-                        {!!
-                            Form::button(
-                                trans('roles.actions.update.name'),
-                                [
-                                'type' => 'submit',
-                                'class' => 'btn btn-primary',
-                                'title' => trans('roles.actions.update.permissions')
-                            ])
-                        !!}
-                        {{-- end action update --}}
-
-                        {{-- start action delete --}}
-                        @unless($role->restrict)
-                        <a
-                            href="{{ url('/roles/'. $role->id) }}"
-                            data-method="delete"
-                            data-token="{{csrf_token()}}"
-                            title="{{trans('roles.actions.delete.title')}}"
-                            class="btn btn-danger">
-                            {{trans('roles.actions.delete.name')}}
-                        </a>
-                        @endunless
-                        {{-- end action delete --}}
-
-                    </div>
-                    <h2>
-                        <small>{{$role->name}} {{trans('roles.headers.permissions')}}</small>
-                    </h2>
-                </div>
-                {{-- start role permission edit form header --}}
-
-
-                {{-- start list role permissions --}}
-                <div class="row">
-                    @foreach($permissions as $resource => $permits)
-                        <div class="col-md-3">
-                            <p class="list-group-header" title="{{$resource}} Permits">
-                                {{$resource}}
-                            </p>
-                            <hr/>
-                            <ul class="list-group">
-                                @foreach($permits as $permit)
-                                    <li class="list-group-item list-checkbox-item">
-                                        <div
-                                            class="checkbox"
-                                            title="{{$permit->description}}">
-                                          <label
-                                            for="{{$permit->id}}"
-                                            title="{{$permit->description}}">
-                                          {{
-                                            Form::checkbox(
-                                                'permissions[]',
-                                                $permit->id,
-                                                $role->hasPermission($permit->name)
-                                            )
-                                            }}
-                                          {{$permit->display_name}}
-                                          </label>
+              <div class="row">
+                <div class="col-lg-12">
+                    <div class="wrapper wrapper-content animated fadeInUp">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        @permission('view:stage')
+                                        <div class="m-b-md">
+                                            <a href="{{ route('stages.edit', ['id' => $stage->id]) }}" class="btn btn-primary btn-xs pull-right">{{trans('stages.actions.edit.label')}}</a>
+                                            <h2>{{$stage->name}}</h2>
                                         </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                        @endpermission
+                                        <dl class="dl-horizontal">
+                                          @if(strtotime($stage->endedAt) > time())
+                                            <dt>{{ trans('stages.headers.status') }}</dt> <dd><span class="label label-primary">{{ trans('stages.status.active') }}</span></dd>
+                                          @else
+                                            <dt>{{ trans('stages.headers.status') }}</dt> <dd><span class="label label-primary">{{ trans('stages.status.inactive') }}</span></dd>
+                                          @endif
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <dl class="dl-horizontal">
+                                            <dt>{{trans('stages.inputs.position.label')}}:</dt> <dd><a href="{{ route('positions.show', ['id' => $stage->position->id]) }}" class="text-navy">{{$stage->position->title}}</a> </dd>
+                                            <dt>{{trans('stages.inputs.number.label')}}:</dt> <dd>{{$stage->number}}</dd>
+                                        </dl>
+                                    </div>
+                                    <div class="col-lg-7" id="cluster_info">
+                                        <dl class="dl-horizontal" >
+                                            <dt>Last Updated:</dt><dd>{{$stage->updated_at->diffForHumans()}}</dd>
+                                            <dt>Created:</dt> <dd>{{$stage->created_at->diffForHumans()}}</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="row m-t-sm">
+                                    <div class="col-lg-12">
+                                    <div class="panel blank-panel">
+                                    <div class="panel-heading">
+                                        <div class="panel-options">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab-1" data-toggle="tab">{{trans('stages.tabs.tests.name')}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-body">
+
+                                    <div class="tab-content">
+                                      {{-- @include('pages.stages.tests') --}}
+
+                                    </div>
+                                  </div>
+
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
-                {{-- end list role permissions --}}
+              </div>
 
             </div>
-            {{-- end page box content --}}
+           {{-- end page box content --}}
 
         </div>
         {{-- end page box --}}
-
-        {{-- start hidden role details --}}
-        {!! Form::hidden('name', null) !!}
-        {!! Form::hidden('display_name', null) !!}
-        {!! Form::hidden('description', null) !!}
-        {{-- end hidden role details --}}
-
-
-        {!! Form::close() !!}
-        {{-- end role permission edit form --}}
 
     </div>
 </div>

@@ -11,7 +11,7 @@ return [
     ],
     'tabs' => [
         'tests' => [
-            'name' => 'test',
+            'name' => 'Tests',
             'title' => 'Stage tests',
         ]
     ],
@@ -22,6 +22,7 @@ return [
         ],
         'edit' => [
             'name' => 'Edit',
+            'label' => 'Edit Stage',
             'title' => 'Click To Edit Stage',
         ],
         'view' => [

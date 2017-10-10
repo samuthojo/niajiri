@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateTestRequest;
 use App\Http\Requests\UpdateTestRequest;
 use App\Repositories\TestRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class TestController extends AppBaseController
+class TestController extends SecureController
 {
     /** @var  TestRepository */
     private $testRepository;
