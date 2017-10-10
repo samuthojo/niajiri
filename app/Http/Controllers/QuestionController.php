@@ -143,6 +143,12 @@ class QuestionController extends SecureController
 
         Flash::success('Question updated successfully.');
 
+        if (!empty($question->test_id)) {
+
+          return redirect(route('tests.show',['id' => $question->test_id]));
+
+        }
+
         return redirect(route('questions.index'));
     }
 
@@ -167,6 +173,11 @@ class QuestionController extends SecureController
 
         Flash::success('Question deleted successfully.');
 
-        return back();
+        if (!empty($question->test_id)) {
+
+          return redirect(route('tests.show',['id' => $question->test_id]));
+
+        }
+        return redirect(route('questions.index'));
     }
 }

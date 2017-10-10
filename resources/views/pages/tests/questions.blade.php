@@ -14,7 +14,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>{{trans('questions.inputs.label.label')}}</th>
+            <th class="col-md-6">{{trans('questions.inputs.label.label')}}</th>
             <th class="text-center">{{trans('questions.inputs.weight.label')}}</th>
             <th class="text-center">{{trans('questions.headers.actions')}}</th>
         </tr>
@@ -29,8 +29,22 @@
                  {{$item->weight}}
               </td>
               <td class="project-actions text-center">
-                  <a href="{{ route('questions.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                  <a href="{{ route('questions.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                  <a href="{{ route('questions.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-eye"></i></a>
+                  <a href="{{ route('questions.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i></a>
+                  @permission('delete:question')
+                  {!! Form::open([
+                      'method'=>'DELETE',
+                      'url' => route('questions.destroy', ['id' => $item->id]),
+                      'style' => 'display:inline'
+                  ]) !!}
+                      {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
+                              'type' => 'submit',
+                              'class' => 'btn btn-danger btn-sm',
+                              'title' => trans('questions.actions.delete.title'),
+                              'onclick'=>'return confirm("Confirm Delete?")'
+                      ]) !!}
+                  {!! Form::close() !!}
+                  @endpermission
               </td>
 
           </tr>
