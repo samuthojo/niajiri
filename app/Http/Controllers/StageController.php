@@ -69,7 +69,7 @@ class StageController extends SecureController
         Flash::success('Stage saved successfully.');
 
         return redirect(route('stages.index'));
-        
+
     }
 
     /**
@@ -168,6 +168,6 @@ class StageController extends SecureController
 
         Flash::success('Stage deleted successfully.');
 
-        return redirect(route('stages.index'));
+        return redirect(route('positions.show',['id' => $stage->position_id]));
     }
 }

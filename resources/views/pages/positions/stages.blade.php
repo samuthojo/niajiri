@@ -13,13 +13,13 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>{{trans('stages.headers.status')}}</th>
-            <th>{{trans('stages.inputs.name.label')}}</th>
-            <th>{{trans('stages.inputs.number.label')}}</th>
-            <th>{{trans('stages.inputs.startedAt.label')}}</th>
-            <th>{{trans('stages.inputs.endedAt.label')}}</th>
-            <th>{{trans('stages.inputs.passMark.label')}}</th>
-            <th>{{trans('stages.headers.actions')}}</th>
+            <th class="text-center">{{trans('stages.headers.status')}}</th>
+            <th class="text-center">{{trans('stages.inputs.name.label')}}</th>
+            <th class="text-center">{{trans('stages.inputs.number.label')}}</th>
+            <th class="text-center">{{trans('stages.inputs.startedAt.label')}}</th>
+            <th class="text-center">{{trans('stages.inputs.endedAt.label')}}</th>
+            <th class="text-center">{{trans('stages.inputs.passMark.label')}}</th>
+            <th class="text-center">{{trans('stages.headers.actions')}}</th>
         </tr>
         </thead>
         <tbody>
@@ -37,19 +37,33 @@
               <td>
                  {{$item->name}}
               </td>
-              <td>
+              <td class="text-center">
                  {{$item->number}}
               </td>
-              <td>
+              <td class="text-center">
                  {{$item->startedAt->format('d-m-y')}}
               </td>
-              <td>
+              <td class="text-center">
                   {{$item->endedAt->format('d-m-y')}}
               </td>
-              <td>{{$item->passMark}}</td>
+              <td class="text-center">{{$item->passMark}}</td>
               <td class="project-actions">
-                  <a href="{{ route('stages.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                  <a href="{{ route('stages.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                  <a href="{{ route('stages.show', ['id' => $item->id]) }}" class="btn btn-white btn-xs"><i class="fa fa-folder"></i> View </a>
+                  <a href="{{ route('stages.edit', ['id' => $item->id]) }}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                  @permission('delete:stage')
+                  {!! Form::open([
+                      'method'=>'DELETE',
+                      'url' => route('stages.destroy', ['id' => $item->id]),
+                      'style' => 'display:inline'
+                  ]) !!}
+                      {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""> Delete</span>', [
+                              'type' => 'submit',
+                              'class' => 'btn btn-danger btn-xs',
+                              'title' => trans('stages.actions.delete.title'),
+                              'onclick'=>'return confirm("Confirm Delete?")'
+                      ]) !!}
+                  {!! Form::close() !!}
+                  @endpermission
               </td>
 
           </tr>
