@@ -14,37 +14,55 @@
                     {{-- end position details --}}
                     <div class="col-md-12">
 
+                        {{-- start position title --}}
                         <h2 class="font-bold m-b-xs">
                             {{$position->title}}
                         </h2>
-                        <small>Many desktop publishing packages and web page editors now.</small>
+                        {{-- end position title --}}
+
+                        {{-- start position deafline --}}
+                        <small class="text-muted">
+                            <i class="fa fa-clock-o"></i> Deadline: {{$position->dueAt->toFormattedDateString()}}
+                        </small>
+                        {{-- end position deadline --}}
                         <div class="m-t-md">
-                            <button class="btn btn-primary pull-right">Add to cart</button>
-                            <h2 class="product-main-price">$406,602 <small class="text-muted">Exclude Tax</small> </h2>
+                             <a class="btn btn-primary pull-right" href="{{route('applications.apply', ['applicant_id' => Auth::user()->id, 'position_id' => $position->id, 'organization_id' => $position->organization_id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
+                            <h2 class="product-main-price">
+                                {{$position->organization->name}} 
+                                <small class="text-muted">
+                                {{$position->sector->name}}
+                                </small>
+                            </h2>
                         </div>
                         <hr>
 
-                        <h4>Product description</h4>
-
-                        <div class="small text-muted">
-                            It is a long established fact that a reader will be distracted by the readable
-                            content of a page when looking at its layout. The point of using Lorem Ipsum is
-
-                            <br/>
-                            <br/>
-                            There are many variations of passages of Lorem Ipsum available, but the majority
-                            have suffered alteration in some form, by injected humour, or randomised words
-                            which don't look even slightly believable.
+                        {{-- start position summary --}}
+                        <div class="m-t-xl">
+                            <h3>Description</h3>
+                            <div class="small text-muted">
+                                {!! $position->summary !!}
+                            </div>
                         </div>
-                        <dl class="small m-t-md">
-                            <dt>Description lists</dt>
-                            <dd>A description list is perfect for defining terms.</dd>
-                            <dt>Euismod</dt>
-                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                            <dt>Malesuada porta</dt>
-                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                        </dl>
+                        {{-- end position summary --}}
+
+                        {{-- start position responsibilities --}}
+                        <div class="m-t-xl">
+                            <h3>Responsibilities</h3>
+                            <div class="small text-muted">
+                                {!! $position->responsibilities !!}
+                            </div>
+                        </div>
+                        {{-- end position responsibilities --}}
+
+                        {{-- start position requirements --}}
+                        <div class="m-t-xl">
+                            <h3>Requirements</h3>
+                            <div class="small text-muted">
+                                {!! $position->requirements !!}
+                            </div>
+                        </div>
+                        {{-- end position requirements --}}
+                        
                     </div>
                     {{-- start position details --}}
                 </div>

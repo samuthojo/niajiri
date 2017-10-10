@@ -35,7 +35,7 @@
                                     <span class="text-muted"><i class="fa fa-bullhorn"></i> Sector: {{$position->sector->name}} </span>
                                     {{-- end sector --}}
                                     |
-                                    {{-- start deadlone --}}
+                                    {{-- start deadline --}}
                                     <span class="text-muted"><i class="fa fa-clock-o"></i> Deadline: {{$position->dueAt->toFormattedDateString()}} </span>
                                     {{-- end deadline --}}
                                 </div>
