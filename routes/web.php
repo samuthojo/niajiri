@@ -34,6 +34,7 @@ Route::resource('organizations', 'OrganizationController');
 Route::resource('projects', 'ProjectController');
 
 Route::get('/open', 'PositionController@open')->name("positions.open");
+Route::get('/preview/{position}', 'PositionController@preview')->name("positions.preview");
 Route::resource('positions', 'PositionController');
 
 Route::resource('sectors', 'SectorController');

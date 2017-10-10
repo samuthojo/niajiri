@@ -22,7 +22,7 @@
                             </td>
                             <td class="desc">
                                 <h3>
-                                <a href="{{ route('positions.show', ['id' => $position->id]) }}"  class="text-navy">
+                                <a href="{{ route('positions.preview', ['id' => $position->id]) }}"  class="text-navy">
                                     {{$position->title}} - {{$position->organization->name}}
                                 </a>
                                 </h3>
@@ -35,14 +35,14 @@
                                     <span class="text-muted"><i class="fa fa-bullhorn"></i> Sector: {{$position->sector->name}} </span>
                                     {{-- end sector --}}
                                     |
-                                    {{-- start deadlone --}}
+                                    {{-- start deadline --}}
                                     <span class="text-muted"><i class="fa fa-clock-o"></i> Deadline: {{$position->dueAt->toFormattedDateString()}} </span>
                                     {{-- end deadline --}}
                                 </div>
                             </td>
 
                             <td>
-                                <a class="btn btn-primary" href="{{route('applications.apply', ['applicant_id' => Auth::user()->id, 'position_id' => $position->id, 'organization_id' => $position->organization_id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
+                                <a class="btn btn-primary" href="{{route('positions.preview', ['id' => $position->id, 'applicant_id' => Auth::user()->id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
                             </td>
 
                         </tr>
