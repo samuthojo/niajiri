@@ -71,6 +71,28 @@
                                       <dt class="margin-10">{{trans('positions.inputs.requirements.label')}}:</dt> <dd class="margin-10">{{$position->requirements}}</dd>
                                   </dl>
                                 </div>
+                                <div class="row m-t-sm">
+                                    <div class="col-lg-12">
+                                    <div class="panel blank-panel">
+                                    <div class="panel-heading">
+                                        <div class="panel-options">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tab-1" data-toggle="tab">{{ trans('positions.tabs.stages.name') }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-body">
+
+                                    <div class="tab-content">
+                                    @include('pages.positions.stages')
+
+                                    </div>
+                                  </div>
+
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

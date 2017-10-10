@@ -11,6 +11,12 @@ return [
         'Internship' => 'Internship',
         'Contractor' => 'Contractor',
     ],
+    'tabs' => [
+        'stages' => [
+            'name' => 'Stages',
+            'title' => 'Positon stages',
+        ]
+    ],
     'headers' => [
         'actions' => 'Actions',
         'status'  => 'Status',

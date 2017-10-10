@@ -25,7 +25,7 @@ class Test extends Model
     use SoftDeletes;
 
     public $table = 'tests';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -38,6 +38,39 @@ class Test extends Model
         'stage_id',
         'test_category_id'
     ];
+
+
+
+        /**
+         * Get and format the project's started_at for forms.
+         *
+         * @param  string  $value
+         * @return string
+         * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+         */
+        public function formStartedAtAttribute($value) {
+            if (is_set($value)) {
+                $value = Carbon::parse($value);
+                $value = $value->format(config('app.datepicker_parse_format'));
+            }
+            return $value;
+        }
+
+        /**
+         * Get and format the project's ended_at for forms.
+         *
+         * @param  string  $value
+         * @return string
+         * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+         */
+        public function formEndedAtAttribute($value) {
+            if (is_set($value)) {
+                $value = Carbon::parse($value);
+                $value = $value->format(config('app.datepicker_parse_format'));
+            }
+            return $value;
+        }
+
 
     /**
      * The attributes that should be casted to native types.
@@ -56,7 +89,7 @@ class Test extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**

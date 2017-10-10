@@ -135,7 +135,7 @@ class Position extends Model
         //TODO ensure only published position
         //TODO should we allow application on deadline
         //TODO please use laravel migration convection
-        
+
         $query->where('dueAt', '>', Carbon::now()->format('Y-m-d'));
         $query->whereNotNull('publishedAt');
         $query->orderBy('dueAt','asc');
@@ -166,4 +166,14 @@ class Position extends Model
     {
         return $this->belongsTo(\App\Models\Sector::class, 'sector_id');
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function stages()
+    {
+        return $this->hasMany(\App\Models\Stage::class, 'position_id');
+    }
+
 }
