@@ -22,7 +22,7 @@
                             </td>
                             <td class="desc">
                                 <h3>
-                                <a href="#" class="text-navy">
+                                <a href="{{ route('positions.show', ['id' => $position->id]) }}"  class="text-navy">
                                     {{$position->title}} - {{$position->organization->name}}
                                 </a>
                                 </h3>
@@ -44,7 +44,7 @@
                             <td>
                                 <a class="btn btn-primary" href="{{route('applications.apply', ['applicant_id' => Auth::user()->id, 'position_id' => $position->id, 'organization_id' => $position->organization_id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
                             </td>
-                            
+
                         </tr>
                         </tbody>
                     </table>

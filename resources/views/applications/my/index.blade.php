@@ -22,7 +22,7 @@
                             </td>
                             <td class="desc">
                                 <h3>
-                                <a href="#" class="text-navy">
+                                <a href="{{ route('positions.show', ['id' => $application->position->id]) }}" class="text-navy">
                                     {{$application->position->title}} - {{$application->organization->name}}
                                 </a>
                                 </h3>
@@ -59,7 +59,7 @@
                                     ]) !!}
                                 {!! Form::close() !!}
                             </td>
-                            
+
                         </tr>
                         </tbody>
                     </table>
