@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Base as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 /**
  * Class Sector

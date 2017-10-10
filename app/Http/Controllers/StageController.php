@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateStageRequest;
 use App\Http\Requests\UpdateStageRequest;
 use App\Repositories\StageRepository;
-use App\Http\Controllers\AppBaseController;
+use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class StageController extends AppBaseController
+class StageController extends SecureController
 {
     /** @var  StageRepository */
     private $stageRepository;
 
     public function __construct(StageRepository $stageRepo)
     {
+        parent::__construct();
         $this->stageRepository = $stageRepo;
     }
 
@@ -32,8 +33,11 @@ class StageController extends AppBaseController
         $this->stageRepository->pushCriteria(new RequestCriteria($request));
         $stages = $this->stageRepository->all();
 
-        return view('pages.stages.index')
-            ->with('stages', $stages);
+        return view('pages.stages.index',[
+            'route_title' => 'Stages',
+            'route_description' => 'Stages',
+            'sectors' => $stages
+        ]);
     }
 
     /**
@@ -43,7 +47,10 @@ class StageController extends AppBaseController
      */
     public function create()
     {
-        return view('pages.stages.create');
+      return view('pages.stages.create',[
+          'route_title' => 'Stages',
+          'route_description' => 'Stages',
+      ]);
     }
 
     /**
@@ -62,6 +69,7 @@ class StageController extends AppBaseController
         Flash::success('Stage saved successfully.');
 
         return redirect(route('stages.index'));
+        
     }
 
     /**
@@ -81,7 +89,12 @@ class StageController extends AppBaseController
             return redirect(route('stages.index'));
         }
 
-        return view('pages.stages.show')->with('stage', $stage);
+        return view('pages.stages.show',[
+            'route_title' => 'Stages',
+            'route_description' => 'Stages',
+            'stage' => $stage,
+            'instance' => $stage
+        ]);
     }
 
     /**
@@ -101,7 +114,12 @@ class StageController extends AppBaseController
             return redirect(route('stages.index'));
         }
 
-        return view('pages.stages.edit')->with('stage', $stage);
+        return view('pages.stages.edit',[
+            'route_title' => 'Stages',
+            'route_description' => 'Stages',
+            'stage' => $stage,
+            'instance' => $stage
+        ]);
     }
 
     /**
@@ -126,7 +144,7 @@ class StageController extends AppBaseController
 
         Flash::success('Stage updated successfully.');
 
-        return redirect(route('stages.index'));
+        return redirect(route('stages.show', ['id' => $id]));
     }
 
     /**

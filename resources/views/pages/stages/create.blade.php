@@ -6,10 +6,10 @@
 <div class="row">
     <div class="col-md-12">
 
-        {{-- start open role create form --}}
+        {{-- start open stage create form --}}
         {!!
             Form::open([
-                'route' => 'roles.store',
+                'route' => ['positions.stages.store', $position->id],
                 'class' => 'form-horizontal',
                 'files' => true
             ])
@@ -21,36 +21,36 @@
             {{-- start page box content --}}
             <div class="ibox-content">
 
-                {{-- start role create form header --}}
+                {{-- start stage create form header --}}
                 <div class="page-header">
                     <div class='btn-toolbar pull-right' role="toolbar">
                      <a
-                        href="{{ url('/roles') }}"
+                        href="{{ route('stages.index') }}"
                         class="btn btn-white"
-                        title="{{ trans('roles.actions.cancel.title') }}">
-                        {{ trans('roles.actions.cancel.name') }}
+                        title="{{ trans('stages.actions.cancel.title') }}">
+                        {{ trans('stages.actions.cancel.name') }}
                     </a>
                      {!!
                         Form::button(
-                            trans('roles.actions.save.name'),
+                            trans('stages.actions.save.name'),
                             [
                             'type' => 'submit',
                             'class' => 'btn btn-primary',
-                            'title' => trans('roles.actions.save.title'),
+                            'title' => trans('stages.actions.save.title'),
                         ])
                     !!}
                     </div>
                     <h2>
                         <small>
-                            {{trans('roles.actions.save.header')}}
+                            {{trans('stages.actions.save.header')}}
                         </small>
                     </h2>
                 </div>
-                {{-- end role create form header --}}
+                {{-- end stage create form header --}}
 
                 {{-- start form --}}
                 <div class="row m-t-lg m-b-lg">
-                    @include ('roles.form')
+                    @include ('pages.stages.form')
                 </div>
                 {{-- end form --}}
 
@@ -62,7 +62,7 @@
 
         {!! Form::close() !!}
 
-        {{-- close role create form --}}
+        {{-- close stage create form --}}
 
     </div>
 </div>

@@ -34,6 +34,8 @@ Route::resource('organizations', 'OrganizationController');
 Route::resource('projects', 'ProjectController');
 
 Route::get('/open', 'PositionController@open')->name("positions.open");
+Route::get('/positions/{position}/stages/create', 'PositionController@StageCreate')->name("positions.stages.create");
+Route::post('/positions/{position}/stages', 'PositionController@StageStore')->name("positions.stages.store");
 Route::get('/preview/{position}', 'PositionController@preview')->name("positions.preview");
 Route::resource('positions', 'PositionController');
 

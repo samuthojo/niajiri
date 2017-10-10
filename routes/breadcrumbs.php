@@ -348,7 +348,6 @@ Breadcrumbs::register('organizations.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->push('Edit', route('organizations.edit', $instance->id));
 });
 
-
 // -------------------Positions Breadcrumbs--------------------------------------
 // Home > Positions
 Breadcrumbs::register('positions.index', function ($breadcrumbs) {
@@ -368,8 +367,92 @@ Breadcrumbs::register('positions.show', function ($breadcrumbs, $instance) {
     $breadcrumbs->push($instance->title, route('positions.show', $instance->id));
 });
 
+// Home > Positions > [Position Title] > Create Stage
+Breadcrumbs::register('positions.stages.create', function ($breadcrumbs, $instance) {
+    $breadcrumbs->push('Create Stage', route('positions.stages.create',$instance->id));
+});
+
 // Home > Positions > [Position Title] > Edit
 Breadcrumbs::register('positions.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('positions.show', $instance);
     $breadcrumbs->push('Edit', route('positions.edit', $instance->id));
+});
+
+
+// -------------------Projects Breadcrumbs--------------------------------------
+// Home > Projects
+Breadcrumbs::register('projects.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Projects', route('projects.index'));
+});
+
+// Home > Projects > Create Project
+Breadcrumbs::register('projects.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('projects.index');
+    $breadcrumbs->push('Create Project', route('projects.create'));
+});
+
+// Home > Projects > [Project Title]
+Breadcrumbs::register('projects.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('projects.index');
+    $breadcrumbs->push($instance->name, route('projects.show', $instance->id));
+});
+
+// Home > Projects > [Project Title] > Edit
+Breadcrumbs::register('projects.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('projects.show', $instance);
+    $breadcrumbs->push('Edit', route('projects.edit', $instance->id));
+});
+
+
+// -------------------Sectors Breadcrumbs--------------------------------------
+// Home > Sectors
+Breadcrumbs::register('sectors.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Sectors', route('sectors.index'));
+});
+
+// Home > Sectors > Create Sector
+Breadcrumbs::register('sectors.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('sectors.index');
+    $breadcrumbs->push('Create Sector', route('sectors.create'));
+});
+
+// Home > Sectors > [Sector Title]
+Breadcrumbs::register('sectors.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('sectors.index');
+    $breadcrumbs->push($instance->name, route('sectors.show', $instance->id));
+});
+
+// Home > Sectors > [Sector Title] > Edit
+Breadcrumbs::register('sectors.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('sectors.show', $instance);
+    $breadcrumbs->push('Edit', route('sectors.edit', $instance->id));
+});
+
+
+
+// -------------------Stages Breadcrumbs--------------------------------------
+// Home > Stages
+Breadcrumbs::register('stages.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Stages', route('stages.index'));
+});
+
+// Home > Stages > Create Stage
+Breadcrumbs::register('stages.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('stages.index');
+    $breadcrumbs->push('Create Stage', route('stages.create'));
+});
+
+// Home > Stages > [Stage Title]
+Breadcrumbs::register('stages.show', function ($breadcrumbs, $instance) {
+    //$breadcrumbs->parent('stages.index');
+    $breadcrumbs->push($instance->name, route('stages.show', $instance->id));
+});
+
+// Home > Stages > [Stage Title] > Edit
+Breadcrumbs::register('stages.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('stages.show', $instance);
+    $breadcrumbs->push('Edit', route('stages.edit', $instance->id));
 });

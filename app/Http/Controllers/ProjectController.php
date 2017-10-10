@@ -21,8 +21,10 @@ class ProjectController extends SecureController
     private $projectRepository;
     private $organizationRepository;
 
-    public function __construct(ProjectRepository $projectRepo, OrganizationRepository $organizationRepo)
+    public function __construct(ProjectRepository $projectRepo,
+                                OrganizationRepository $organizationRepo)
     {
+        parent::__construct();
         $this->projectRepository = $projectRepo;
         $this->organizationRepository = $organizationRepo;
     }
@@ -106,6 +108,7 @@ class ProjectController extends SecureController
             'route_description' => 'Project',
             'project' => $project,
             'organizations' => $organization->toArray(),
+            'instance' => $project
         ]);
     }
 
@@ -132,6 +135,7 @@ class ProjectController extends SecureController
             'route_description' => 'Project',
             'project' => $project,
             'organizations' => $organization->toArray(),
+            'instance' => $project
         ]);
     }
 

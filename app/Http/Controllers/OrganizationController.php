@@ -25,6 +25,7 @@ class OrganizationController extends SecureController
 
     public function __construct(OrganizationRepository $organizationRepo, SectorRepository $sectorRepo)
     {
+        parent::__construct();
         $this->organizationRepository = $organizationRepo;
         $this->sectorRepository = $sectorRepo;
     }
@@ -128,6 +129,7 @@ class OrganizationController extends SecureController
             'route_title' => 'Organization',
             'route_description' => 'Organization',
             'organization' => $organization,
+            'instance' => $organization
         ]);
     }
 
@@ -153,7 +155,8 @@ class OrganizationController extends SecureController
             'route_title' => 'Organization',
             'route_description' => 'Organization',
             'organization' => $organization,
-            'sectors' => $sectors->toArray()
+            'sectors' => $sectors->toArray(),
+            'instance' => $organization
         ]);
     }
 

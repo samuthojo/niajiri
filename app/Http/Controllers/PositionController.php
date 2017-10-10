@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Position;
+use App\Http\Requests\CreateStageRequest;
 use App\Http\Requests\CreatePositionRequest;
 use App\Http\Requests\UpdatePositionRequest;
 use App\Repositories\PositionRepository;
 use App\Repositories\OrganizationRepository;
 use App\Repositories\SectorRepository;
 use App\Repositories\ProjectRepository;
+use App\Repositories\StageRepository;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -21,16 +23,19 @@ class PositionController extends SecureController
     private $organizationRepository;
     private $sectorRepository;
     private $projectRepository;
+    private $stageRepository;
 
     public function __construct(PositionRepository $positionRepo,
                                 OrganizationRepository $organizationRepo,
-                                SectorRepository $sectorRepo, ProjectRepository $projectRepo)
+                                SectorRepository $sectorRepo,
+                                ProjectRepository $projectRepo, StageRepository $stageRepo)
     {
         parent::__construct();
         $this->positionRepository = $positionRepo;
         $this->organizationRepository = $organizationRepo;
         $this->sectorRepository = $sectorRepo;
         $this->projectRepository = $projectRepo;
+        $this->stageRepository = $stageRepo;
     }
 
     /**
@@ -62,7 +67,7 @@ class PositionController extends SecureController
 
         //only show active projects
         $projects = $this->projectRepository->findWhere([['endedAt', '>=', date('Y-m-d').' 00:00:00']])->pluck('name', 'id')->toArray();
-        
+
         return view('pages.positions.create',[
             'route_title' => 'Positions',
             'route_description' => 'Positions',
@@ -247,4 +252,47 @@ class PositionController extends SecureController
 
         return view('positions.open.preview', $data);
     }
+
+
+    /**
+     * Show the form for creating a new Position Stage.
+     *
+     * @return Response
+     */
+
+    public function StageCreate($id)
+    {
+      $position = Position::findOrFail($id);
+
+      return view('pages.stages.create',[
+          'route_title' => 'Stages',
+          'route_description' => 'Stages',
+          'position' => $position,
+          'instance' => $position,
+      ]);
+    }
+
+
+
+    /**
+     * Store a newly created Stage in storage.
+     *
+     * @param CreateStageRequest $request
+     *
+     * @return Response
+     */
+    public function Stagestore($id, CreateStageRequest $request)
+    {
+        $input = $request->all();
+
+        $input['position_id'] = $id;
+
+        $stage = $this->stageRepository->create($input);
+
+        Flash::success('Position Stage saved successfully.');
+
+        return redirect(route('positions.show',['id' => $stage->position_id]));
+
+    }
+
 }

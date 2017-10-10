@@ -2,69 +2,48 @@
 
 @section('page')
 
-{{-- start page content --}}
-<div class="row">
-    <div class="col-md-12">
+{{-- start open stage edit form --}}
+{!! Form::model($stage, [
+    'method' => 'PATCH',
+    'route' => ['stages.update', $stage->id],
+    'class' => 'form-horizontal',
+    'files' => true
+]) !!}
 
-        {{-- start open role edit form --}}
-        {!! Form::model($role, [
-            'method' => 'PATCH',
-            'route' => ['roles.update', $role->id],
-            'class' => 'form-horizontal',
-            'files' => true
-        ]) !!}
+	{{-- start stage edit form header --}}
+	<div class="page-header">
+	    <div class='btn-toolbar pull-right' role="toolbar">
+	     <a
+	        href="{{ route('stages.show',['id' => $stage->id]) }}"
+	        class="btn btn-white"
+	        title="{{ trans('stages.actions.cancel.title') }}">
+	        {{ trans('stages.actions.cancel.name') }}
+	    </a>
+	     {!!
+	        Form::button(
+	            trans('stages.actions.update.name'),
+	            [
+	            'type' => 'submit',
+	            'class' => 'btn btn-primary',
+	            'title' => trans('stages.actions.update.title'),
+	        ])
+	    !!}
+	    </div>
+	    <h2>
+	        <small>
+	            {{trans('stages.actions.update.header')}}
+	        </small>
+	    </h2>
+	</div>
+	{{-- end stage edit form header --}}
 
-        {{-- start page box --}}
-        <div class="ibox">
-
-            {{-- start page box content --}}
-            <div class="ibox-content">
-
-                {{-- start role edit form header --}}
-                <div class="page-header">
-                    <div class='btn-toolbar pull-right' role="toolbar">
-                     <a
-                        href="{{ url('/roles') }}"
-                        class="btn btn-white"
-                        title="{{ trans('roles.actions.cancel.title') }}">
-                        {{ trans('roles.actions.cancel.name') }}
-                    </a>
-                     {!!
-                        Form::button(
-                            trans('roles.actions.update.name'),
-                            [
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary',
-                            'title' => trans('roles.actions.update.title'),
-                        ])
-                    !!}
-                    </div>
-                    <h2>
-                        <small>
-                            {{trans('roles.actions.update.header')}}
-                        </small>
-                    </h2>
-                </div>
-                {{-- end role edit form header --}}
-
-                {{-- start form --}}
-                <div class="row m-t-lg m-b-lg">
-                    @include ('roles.form')
-                </div>
-                {{-- end form --}}
-
-            </div>
-            {{-- end page box content --}}
-
-        </div>
-        {{-- end page box --}}
-
-        {!! Form::close() !!}
-
-        {{-- close role edit form --}}
-
+	{{-- start form --}}
+    <div class="row m-t-lg m-b-lg">
+	    @include ('pages.stages.form')
     </div>
-</div>
-{{-- end page content --}}
+    {{-- end form --}}
+
+{!! Form::close() !!}
+{{-- close stage edit form --}}
 
 @endsection
