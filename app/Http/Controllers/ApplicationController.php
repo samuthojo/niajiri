@@ -56,7 +56,7 @@ class ApplicationController extends SecureController {
 
 		//ensure valid application
 		$this->validate($request, [
-            'applicant_id' => 'string|required|exists:users,id',
+            'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id',
             'organization_id' => 'string|required|exists:users,id',
             'position_id' => 'string|required|exists:positions,id'
 		]);
@@ -153,7 +153,7 @@ class ApplicationController extends SecureController {
 		
 		//ensure valid application
 		$this->validate($request, [
-            'applicant_id' => 'string|required|exists:users,id',
+            'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id,ignore:' . $id,
             'organization_id' => 'string|required|exists:users,id',
             'position_id' => 'string|required|exists:positions,id'
 		]);

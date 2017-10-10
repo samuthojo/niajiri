@@ -22,24 +22,30 @@ class CreateApplicationTable extends Migration
             //indexes
             $table->primary('id');
 
+
             //foreigns
-            $table->uuid('applicant_id')->nullable();
+            $table->uuid('applicant_id');
             $table->foreign('applicant_id')->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->uuid('organization_id')->nullable();
+            $table->uuid('organization_id');
             $table->foreign('organization_id')->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->uuid('position_id')->nullable();
+            $table->uuid('position_id');
             $table->foreign('position_id')->references('id')
                 ->on('positions')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
+            //post indexes
+            //enforce unique applicant application per position
+            $table->unique(['applicant_id', 'position_id']);
+
         });
     }
 
