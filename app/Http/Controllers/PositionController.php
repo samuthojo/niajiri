@@ -26,6 +26,7 @@ class PositionController extends SecureController
                                 OrganizationRepository $organizationRepo,
                                 SectorRepository $sectorRepo, ProjectRepository $projectRepo)
     {
+        parent::__construct();
         $this->positionRepository = $positionRepo;
         $this->organizationRepository = $organizationRepo;
         $this->sectorRepository = $sectorRepo;
@@ -213,8 +214,8 @@ class PositionController extends SecureController
         $positions = $query->paginate(config('app.defaults.pageSize'));
 
         $data = [
-            'route_title' => 'Open Jobs/Positions',
-            'route_description' => 'Available Jobs/Positions',
+            'route_title' => 'Open Positions',
+            'route_description' => 'Available Job Positions',
             'positions' => $positions,
             'q' => $request->input('q'),
         ];

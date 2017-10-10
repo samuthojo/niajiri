@@ -23,28 +23,18 @@ Breadcrumbs::register('profile', function ($breadcrumbs) {
     $breadcrumbs->push('Profile', route('profile'));
 });
 
-Breadcrumbs::register('postitions.open', function ($breadcrumbs) {
-    $breadcrumbs->push('Open Jobs/Positions', route('positions.open'));
+Breadcrumbs::register('positions.open', function ($breadcrumbs) {
+    $breadcrumbs->push('Open Positions', route('positions.open'));
 });
 
-Breadcrumbs::register('positions.preview', function ($breadcrumbs) {
-    $breadcrumbs->push('Open Position', route('positions.preview'));
+Breadcrumbs::register('positions.preview', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('positions.open');
+    $breadcrumbs->push($instance->title, route('positions.preview', $instance->id));
 });
 
 Breadcrumbs::register('applications.applied', function ($breadcrumbs) {
     $breadcrumbs->push('My Applications', route('applications.applied'));
 });
-
-
-
-//-------------------------------------------------------------------------
-//My CV Routes
-//-------------------------------------------------------------------------
-
-Breadcrumbs::register('users.basic', function ($breadcrumbs) {
-    $breadcrumbs->push('Basic Details', route('users.basic'));
-});
-
 
 
 //-------------------------------------------------------------------------
@@ -95,6 +85,10 @@ Breadcrumbs::register('users.change_password', function ($breadcrumbs, $instance
     $breadcrumbs->push('Change Password', route('users.change_password', $instance->id));
 });
 
+//User Basic Details
+Breadcrumbs::register('users.basic', function ($breadcrumbs) {
+    $breadcrumbs->push('Basic Details', route('users.basic'));
+});
 
 // -------------------Roles Breadcrumbs--------------------------------------
 // Home > Roles
