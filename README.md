@@ -17,7 +17,7 @@ There will be three users namely Candidate (Job seeker), HR company (They are th
 
 - Copy configuration
 ```sh
-$ cp .env.local .env
+$ cp .env.example .env
 ```
 - Refresh migration every time you pull changes
 ```sh

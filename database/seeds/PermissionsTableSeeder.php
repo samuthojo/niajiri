@@ -22,8 +22,8 @@ class PermissionsTableSeeder extends Seeder
            'education', 'experience', 'language',
            'media', 'organization', 'position',
            'project', 'publication', 'question', 
-           'referee', 'role', 'sector', 'user', 'testcategory',
-           'test','stage', 'question', 'stagetest'
+           'referee', 'role', 'sector', 'stage', 
+           'stagetest', 'test', 'testcategory', 'user',
         ];
         $actions = [
             'list', 'view', 'create', 'edit',

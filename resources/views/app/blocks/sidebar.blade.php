@@ -69,7 +69,8 @@
 	        {{-- start applicant menu --}}
 	        {{-- start my applications --}}
 	        <li class="{{areActiveRoutes([
-		        	'applications.applied'
+		        	'applications.applied',
+		        	'positions.preview'
 				])}}">
                 <a href="{{route('applications.applied')}}">
                 <i class="fa fa-file"></i> 
@@ -324,7 +325,9 @@
 	            'list:position',
             ])
 	        <li class="{{areActiveRoutes([
-	        	'positions.*'
+	        	'positions.index',
+	        	'positions.edit',
+	        	'positions.show',
 	        	])}}">
 	            <a href="#">
 	            	<i class="fa fa-address-book-o"></i>
