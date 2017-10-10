@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OrganizationsTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
   			$this->call(PositionsTableSeeder::class);
+        $this->call(StagesTableSeeder::class);
   		}
 
     }
