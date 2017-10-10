@@ -68,6 +68,13 @@ return [
             'title' => 'Search Positions',
             'placeholder' => 'Search Positions',
         ],
+        'apply' => [
+            'name' => 'Apply',
+            'title' => 'Click To Apply',
+            'flash' => [
+                'success' => 'Application Created Succeffully',
+            ],
+        ],
     ],
     'inputs' => [
         'title' => [

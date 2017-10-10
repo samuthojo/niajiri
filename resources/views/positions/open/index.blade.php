@@ -42,7 +42,7 @@
                             </td>
 
                             <td>
-                                <a class="btn btn-primary" href="{{route('applications.apply', ['applicant_id' => Auth::user()->id, 'position_id' => $position->id, 'organization_id' => $position->organization_id])}}"></i>Apply</a>
+                                <a class="btn btn-primary" href="{{route('applications.apply', ['applicant_id' => Auth::user()->id, 'position_id' => $position->id, 'organization_id' => $position->organization_id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
                             </td>
                             
                         </tr>

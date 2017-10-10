@@ -35,14 +35,29 @@
                                     <span class="text-muted"><i class="fa fa-bullhorn"></i> Sector: {{$application->position->sector->name}} </span>
                                     {{-- end sector --}}
                                     |
-                                    {{-- start deadlone --}}
+                                    {{-- start deadline --}}
                                     <span class="text-muted"><i class="fa fa-clock-o"></i> Deadline: {{$application->created_at->toFormattedDateString()}} </span>
                                     {{-- end deadline --}}
                                 </div>
                             </td>
 
                             <td>
-                                <a class="btn btn-primary" href="#"></i>Edit</a>
+                                <a class="btn btn-primary" href="#" title="{{trans('applications.actions.edit.title')}}"></i>{{trans('applications.actions.edit.name')}}</a>
+                            </td>
+
+                            <td>
+                                {!! Form::open([
+                                    'method'=>'DELETE',
+                                    'url' => route('applications.destroy', ['id' => $application->id, 'applicant_id'=> $application->applicant_id]),
+                                    'style' => 'display:inline'
+                                ]) !!}
+                                    {!! Form::button(trans('applications.actions.delete.name'), [
+                                            'type' => 'submit',
+                                            'class' => 'btn btn-danger',
+                                            'title' => trans('applications.actions.delete.title'),
+                                            'onclick'=>'return confirm("Confirm Delete?")'
+                                    ]) !!}
+                                {!! Form::close() !!}
                             </td>
                             
                         </tr>

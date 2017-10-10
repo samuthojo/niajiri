@@ -204,14 +204,17 @@ class ApplicationController extends SecureController {
 	 */
 	public function destroy(Request $request, $id) {
 
-		Application::destroy($id);
+		//force delete application
+		$application = Application::findOrFail($id);
+		$isApplicant = $application->isApplicant(\Auth::user());
+		$application->forceDelete();
 
 		//flash message
 		flash(trans('applications.actions.delete.flash.success'))
 			->success()->important();
 
 		//redirect to applicant applied list
-		if($application->isApplicant(\Auth::user())){
+		if($isApplicant){
 			return redirect()->route('applications.applied', [
 				'applicant_id' => $request->input('applicant_id')
 			]);
