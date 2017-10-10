@@ -137,7 +137,7 @@ class Position extends Model
         //TODO please use laravel migration convection
         
         $query->where('dueAt', '>', Carbon::now()->format('Y-m-d'));
-        // $query->whereNotNull('publishedAt');
+        $query->whereNotNull('publishedAt');
         $query->orderBy('dueAt','asc');
 
         return $query;

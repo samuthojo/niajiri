@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Base as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 /**
  * Class Project
@@ -61,6 +62,37 @@ class Project extends Model
     public static $rules = [
 
     ];
+
+
+    /**
+     * Get and format the project's started_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formStartedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
+
+    /**
+     * Get and format the project's ended_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formEndedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

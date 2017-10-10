@@ -28,7 +28,11 @@ class DatabaseSeeder extends Seeder
   			|| ($environment == 'test');
   		if ($isLocal) {
   			//seed test & development data
-  			$this->call(ApplicantsTableSeeder::class);
+        $this->call(ApplicantsTableSeeder::class);
+        $this->call(SectorsTableSeeder::class);
+        $this->call(OrganizationsTableSeeder::class);
+        $this->call(ProjectsTableSeeder::class);
+  			$this->call(PositionTableSeeder::class);
   		}
 
     }
