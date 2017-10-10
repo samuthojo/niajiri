@@ -27,8 +27,8 @@ Breadcrumbs::register('open', function ($breadcrumbs) {
     $breadcrumbs->push('Open Jobs/Positions', route('positions.open'));
 });
 
-Breadcrumbs::register('my_applications', function ($breadcrumbs) {
-    $breadcrumbs->push('My Applications', route('my_applications'));
+Breadcrumbs::register('applications.applied', function ($breadcrumbs) {
+    $breadcrumbs->push('My Applications', route('applications.applied'));
 });
 
 

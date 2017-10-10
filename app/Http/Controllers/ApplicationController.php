@@ -56,8 +56,8 @@ class ApplicationController extends SecureController {
 
 		//ensure valid application
 		$this->validate($request, [
-            'applicant_id' => 'string|required|exists:users,id'
-            'organization_id' => 'string|required|exists:users,id'
+            'applicant_id' => 'string|required|exists:users,id',
+            'organization_id' => 'string|required|exists:users,id',
             'position_id' => 'string|required|exists:positions,id'
 		]);
 
@@ -80,11 +80,19 @@ class ApplicationController extends SecureController {
 		flash(trans('applications.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
-		//redirect to show application
-		return redirect()->route('applications.index', [
+		//redirect to applicant applied list
+		if($application->isApplicant(\Auth::user())){
+			return redirect()->route('applications.applied', [
 				'applicant_id' => $request->input('applicant_id')
 			]);
+		}
+
+		//redirect to show applications
+		else{
+			return redirect()->route('applications.index', [
+					'applicant_id' => $request->input('applicant_id')
+				]);
+		}
 
 	}
 
@@ -145,8 +153,8 @@ class ApplicationController extends SecureController {
 		
 		//ensure valid application
 		$this->validate($request, [
-            'applicant_id' => 'string|required|exists:users,id'
-            'organization_id' => 'string|required|exists:users,id'
+            'applicant_id' => 'string|required|exists:users,id',
+            'organization_id' => 'string|required|exists:users,id',
             'position_id' => 'string|required|exists:positions,id'
 		]);
 
@@ -172,11 +180,19 @@ class ApplicationController extends SecureController {
 		flash(trans('applications.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
-		//redirect to show application
-		return redirect()->route('applications.index',[
+		//redirect to applicant applied list
+		if($application->isApplicant(\Auth::user())){
+			return redirect()->route('applications.applied', [
 				'applicant_id' => $request->input('applicant_id')
 			]);
+		}
+		
+		//redirect to show applications
+		else{
+			return redirect()->route('applications.index', [
+					'applicant_id' => $request->input('applicant_id')
+				]);
+		}
 
 	}
 
@@ -194,9 +210,44 @@ class ApplicationController extends SecureController {
 		flash(trans('applications.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
-		return redirect()->route('applications.index',[
+		//redirect to applicant applied list
+		if($application->isApplicant(\Auth::user())){
+			return redirect()->route('applications.applied', [
 				'applicant_id' => $request->input('applicant_id')
 			]);
+		}
+		
+		//redirect to show applications
+		else{
+			return redirect()->route('applications.index', [
+					'applicant_id' => $request->input('applicant_id')
+				]);
+		}
+	}
+
+	/**
+	 * Display a listing of application applications
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function applied(Request $request) {
+
+		//TODO ensure current user as applicant_id
+
+		//initialize query
+		$query = Application::filter($request->all())->orderBy('created_at', 'asc');
+
+		//paginate query result
+		$applications = $query->paginate(config('app.defaults.pageSize'));
+
+		$data = [
+			'route_title' => 'My Applications',
+            'route_description' => 'My Applications',
+			'applications' => $applications,
+			'q' => $request->input('q'),
+			'applicant_id' => $request->input('applicant_id'),
+		];
+
+		return view('applications.my.index', $data);
 	}
 }

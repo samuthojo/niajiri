@@ -30,6 +30,15 @@ class Application extends Model implements HasMedia
     protected $primaryKey = 'id';
 
     /**
+     * Relations to eager load
+     */
+    protected $withables = [
+        'applicant',
+        'organization',
+        'position',
+    ];
+
+    /**
      * Attributes that should be mass-assignable.
      *
      * @var array
@@ -79,6 +88,20 @@ class Application extends Model implements HasMedia
             $value = $value->format(config('app.datepicker_parse_format'));
         }
         return $value;
+    }
+
+    /**
+     * Check if provided user is an applicant for this application
+     * @param  App\Models\User  $user
+     * @return boolean
+     */
+    public function isApplicant($user = null)
+    {
+        if(is_set($user)){
+            return $this->applicant_id === $user->id;
+        }
+
+        return false;
     }
 
 

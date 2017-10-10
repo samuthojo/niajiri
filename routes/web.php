@@ -59,6 +59,7 @@ Route::resource('assignments', 'AssignmentController');
 Route::resource('publications', 'PublicationController');
 Route::resource('applications', 'ApplicationController');
 Route::get('/apply', 'ApplicationController@store')->name('applications.apply');
+Route::get('/applied', 'ApplicationController@applied')->name('applications.applied');
 
 //cv routes
 Route::get('/basic', 'UserController@get_basic')->name("users.basic");
