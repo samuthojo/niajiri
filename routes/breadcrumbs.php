@@ -456,3 +456,9 @@ Breadcrumbs::register('stages.edit', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('stages.show', $instance);
     $breadcrumbs->push('Edit', route('stages.edit', $instance->id));
 });
+
+// Home > Stages > Create Stage
+Breadcrumbs::register('stages.tests.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('stages.index');
+    $breadcrumbs->push('Test Create', route('stages.create'));
+});
