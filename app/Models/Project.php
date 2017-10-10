@@ -107,6 +107,6 @@ class Project extends Model
      **/
     public function positions()
     {
-        return $this->hasMany(\App\Models\Position::class, 'organization_id');
+        return $this->hasMany(\App\Models\Position::class, 'project_id');
     }
 }
