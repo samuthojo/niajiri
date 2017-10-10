@@ -43,6 +43,40 @@
                                         </dl>
                                     </div>
                                 </div>
+                                <div class="row">
+                                  {{-- start Question label --}}
+                                  <div class="m-t-xl">
+                                      <h3>{{trans('questions.inputs.label.label')}}</h3>
+                                      <div class="">
+                                          {!! $question->label !!}
+                                      </div>
+                                  </div>
+                                  {{-- end Question label --}}
+
+                                  <div class="col-md-offset-2">
+                                      <dl class="dl-horizontal" >
+                                          <dt>{{trans('questions.inputs.firstChoice.label')}}:</dt><dd>{{$question->firstChoice}}</dd>
+                                          <dt>{{trans('questions.inputs.secondChoice.label')}}:</dt><dd>{{$question->secondChoice}}</dd>
+                                          <dt>{{trans('questions.inputs.thirdChoice.label')}}:</dt><dd>{{$question->thirdChoice}}</dd>
+                                          <dt>{{trans('questions.inputs.fourthChoice.label')}}:</dt><dd>{{$question->fourthChoice}}</dd>
+                                          <dt>{{trans('questions.inputs.fifthChoice.label')}}:</dt><dd>{{$question->fifthChoice}}</dd>
+                                      </dl>
+                                  </div>
+
+                                  <div class="m-t-xl">
+                                      <h3>{{trans('questions.inputs.correct.label')}}</h3>
+                                      <div class="">
+                                          {!! $question->correct !!}
+                                      </div>
+                                  </div>
+                                  <div class="m-t-xl">
+                                      <h3>{{trans('questions.inputs.weight.label')}}</h3>
+                                      <div class="">
+                                          {!! $question->weight !!}
+                                      </div>
+                                  </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
