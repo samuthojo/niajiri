@@ -32,8 +32,12 @@ class QuestionController extends SecureController
         $this->questionRepository->pushCriteria(new RequestCriteria($request));
         $questions = $this->questionRepository->all();
 
-        return view('pages.questions.index')
-            ->with('questions', $questions);
+        return view('pages.questions.index',[
+            'route_title' => 'Questions',
+            'route_description' => 'Questions',
+            'questions' => $questions,
+            'instance'  => $questions,
+        ]);
     }
 
     /**
@@ -43,7 +47,10 @@ class QuestionController extends SecureController
      */
     public function create()
     {
-        return view('pages.questions.create');
+      return view('pages.questions.create',[
+          'route_title' => 'Questions',
+          'route_description' => 'Questions'
+      ]);
     }
 
     /**
@@ -81,7 +88,12 @@ class QuestionController extends SecureController
             return redirect(route('questions.index'));
         }
 
-        return view('pages.questions.show')->with('question', $question);
+        return view('pages.questions.show',[
+            'route_title' => 'Questions',
+            'route_description' => 'Questions',
+            'question' => $question,
+            'instance'  => $question,
+        ]);
     }
 
     /**
@@ -101,7 +113,12 @@ class QuestionController extends SecureController
             return redirect(route('questions.index'));
         }
 
-        return view('pages.questions.edit')->with('question', $question);
+        return view('pages.questions.edit',[
+            'route_title' => 'Questions',
+            'route_description' => 'Questions',
+            'question' => $question,
+            'instance'  => $question,
+        ]);
     }
 
     /**
@@ -150,6 +167,6 @@ class QuestionController extends SecureController
 
         Flash::success('Question deleted successfully.');
 
-        return redirect(route('questions.index'));
+        return back();
     }
 }

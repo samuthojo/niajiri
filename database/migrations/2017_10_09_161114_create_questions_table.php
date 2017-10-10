@@ -15,14 +15,14 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
               $table->uuid('id');
-              $table->string('label');
-              $table->string('firstChoice');
-              $table->string('secondChoice');
-              $table->string('thirdChoice');
-              $table->string('fourthChoice');
-              $table->string('fifthChoice');
-              $table->string('correct');
-              $table->decimal('weight', 5, 2);
+              $table->text('label');
+              $table->string('firstChoice')->nullable();
+              $table->string('secondChoice')->nullable();
+              $table->string('thirdChoice')->nullable();
+              $table->string('fourthChoice')->nullable();
+              $table->string('fifthChoice')->nullable();
+              $table->string('correct')->nullable();
+              $table->decimal('weight', 15, 2)->nullable();
               $table->uuid('test_id')->nullable();
               $table->foreign('test_id')
                     ->references('id')

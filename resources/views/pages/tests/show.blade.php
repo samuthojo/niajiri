@@ -58,7 +58,7 @@
                                     <div class="panel-body">
 
                                     <div class="tab-content">
-                                      {{-- @include('pages.questions.tests') --}}
+                                    @include('pages.tests.questions')
 
                                     </div>
                                   </div>

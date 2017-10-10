@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateTestRequest;
 use App\Http\Requests\UpdateTestRequest;
 use App\Repositories\TestRepository;
+use App\Repositories\QuestionRepository;
 use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Flash;
@@ -15,10 +16,12 @@ class TestController extends SecureController
 {
     /** @var  TestRepository */
     private $testRepository;
+    private $questionRepository;
 
-    public function __construct(TestRepository $testRepo)
+    public function __construct(TestRepository $testRepo, QuestionRepository $questionRepo)
     {
         $this->testRepository = $testRepo;
+        $this->questionRepository = $questionRepo;
     }
 
     /**
@@ -186,5 +189,45 @@ class TestController extends SecureController
         }
 
         return redirect(route('tests.index'));
+    }
+
+
+
+    /**
+     * Show the form for creating a new Question and attach to test.
+     *
+     * @return Response
+     */
+    public function QuestionCreate($id)
+    {
+      $test = $this->testRepository->findWithoutFail($id);
+
+      return view('pages.tests.questions.create',[
+          'route_title' => 'Question Create',
+          'route_description' => 'Question',
+          'test'  => $test,
+      ]);
+    }
+
+
+
+    /**
+     * Store a newly created Test  and attach to Stage in storage.
+     *
+     * @param CreateTestRequest $request
+     *
+     * @return Response
+     */
+    public function QuestionStore($id, Request $request)
+    {
+        $input = $request->all();
+        $input['stage_id'] = $id;
+
+        $question = $this->questionRepository->create($input);
+
+        Flash::success('Stage Test saved successfully.');
+
+        return redirect(route('tests.show',['id' => $question->test_id]));
+
     }
 }

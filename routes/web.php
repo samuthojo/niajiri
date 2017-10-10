@@ -52,6 +52,10 @@ Route::post('/stages/{stage}/tests/store', 'StageController@TestStore')->name("s
 
 Route::resource('tests', 'TestController');
 
+Route::get('/tests/{test}/questions/create', 'TestController@QuestionCreate')->name("tests.questions.create");
+
+Route::post('/tests/{test}/questions', 'TestController@QuestionStore')->name("tests.questions.store");
+
 Route::resource('questions', 'QuestionController');
 
 

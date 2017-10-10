@@ -1,32 +1,36 @@
 
 <div class="tab-pane active" id="tab-1">
-  {{-- start tests create --}}
+  {{-- start questions create --}}
   <div class="row m-t-md">
       <div class="col-sm-8 m-b-xs">
           <div class="btn-group">
-              <a href="{{route('tests.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('tests.actions.create.title') }}">
-              <i class="fa fa-plus"></i> {{ trans('tests.actions.create.name') }}</a>
+              <a href="{{route('tests.questions.create', $test->id)}}" class="btn btn-sm btn-white" role="button" title="{{ trans('questions.actions.create.title') }}">
+              <i class="fa fa-plus"></i> {{ trans('questions.actions.create.name') }}</a>
           </div>
       </div>
   </div>
-  {{-- end tests create --}}
-  @if (count($stage->tests) > 0)
+  {{-- end questions create --}}
+  @if (count($test->questions) > 0)
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>{{trans('tests.inputs.duration.label')}}</th>
-            <th>{{trans('tests.headers.actions')}}</th>
+            <th>{{trans('questions.inputs.label.label')}}</th>
+            <th class="text-center">{{trans('questions.inputs.weight.label')}}</th>
+            <th class="text-center">{{trans('questions.headers.actions')}}</th>
         </tr>
         </thead>
         <tbody>
-          @foreach($stage->tests as $item)
+          @foreach($test->questions as $item)
           <tr>
               <td>
-                 {{$item->duration}}
+                 {{$item->label}}
               </td>
-              <td class="project-actions">
-                  <a href="{{ route('tests.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                  <a href="{{ route('tests.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+              <td class="text-center">
+                 {{$item->weight}}
+              </td>
+              <td class="project-actions text-center">
+                  <a href="{{ route('questions.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
+                  <a href="{{ route('questions.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
               </td>
 
           </tr>
@@ -34,6 +38,8 @@
 
         </tbody>
     </table>
+  @else
+    <h3 class="text-center">No Questions found</h3>
   @endif
 
 </div>
