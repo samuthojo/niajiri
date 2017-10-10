@@ -16,12 +16,13 @@ class StagesTableSeeder extends Seeder {
 			];
 
 			foreach ($stages as $key => $value) {
-				Stage::updateOrCreate(['position_id' => $position->id], [
+
+				Stage::Create([
 						'name' => $value,
 						'position_id' => $position->id,
-						'activities' => 'Review '.$key,
+						'activities' => 'Review '.$value,
 						'passMark' => 200,
-						'number' => $key,
+						'number' => ($key + 1),
 						'startedAt' => '05-05-2017',
 						'endedAt' => '12-12-2017',
 					]);
