@@ -221,4 +221,27 @@ class PositionController extends SecureController
 
         return view('positions.open.index', $data);
     }
+
+    /**
+     * Preview the specified position for application
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function preview(Request $request, $id)
+    {
+        //load position
+        $position = Position::findOrFail($id);
+
+        $data = [
+            'route_title' => 'Open Position',
+            'route_description' => 'Open Position',
+            'position' => $position,
+            'instance' => $position,
+            'applicant_id' => $request->input('applicant_id'),
+        ];
+
+        return view('positions.open.preview', $data);
+    }
 }

@@ -23,8 +23,12 @@ Breadcrumbs::register('profile', function ($breadcrumbs) {
     $breadcrumbs->push('Profile', route('profile'));
 });
 
-Breadcrumbs::register('open', function ($breadcrumbs) {
+Breadcrumbs::register('postitions.open', function ($breadcrumbs) {
     $breadcrumbs->push('Open Jobs/Positions', route('positions.open'));
+});
+
+Breadcrumbs::register('positions.preview', function ($breadcrumbs) {
+    $breadcrumbs->push('Open Position', route('positions.preview'));
 });
 
 Breadcrumbs::register('applications.applied', function ($breadcrumbs) {
