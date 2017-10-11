@@ -46,8 +46,15 @@ Route::resource('organizations', 'OrganizationController');
 Route::resource('positions', 'PositionController');
 
 Route::resource('stages', 'StageController');
+Route::get('/stages/{stage}/tests/create', 'StageController@TestCreate')->name("stages.tests.create");
+
+Route::post('/stages/{stage}/tests/store', 'StageController@TestStore')->name("stages.tests.store");
 
 Route::resource('tests', 'TestController');
+
+Route::get('/tests/{test}/questions/create', 'TestController@QuestionCreate')->name("tests.questions.create");
+
+Route::post('/tests/{test}/questions', 'TestController@QuestionStore')->name("tests.questions.store");
 
 Route::resource('questions', 'QuestionController');
 

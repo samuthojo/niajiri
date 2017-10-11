@@ -218,7 +218,7 @@
                     <span title="Change Profile Avatar">
                         <i class="fa fa-upload"></i> {{trans('organizations.inputs.logo.change')}}
                     </span>
-                    <input id="logo" name="logo" type="file" class="upload" />
+                    <input id="avatar" name="avatar" type="file" class="upload" />
                 </div>
             </div>
         </div>

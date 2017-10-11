@@ -10,9 +10,9 @@ return [
         'status'  => 'Status',
     ],
     'tabs' => [
-        'positions' => [
-            'name' => 'Positions',
-            'title' => 'Test positions',
+        'questions' => [
+            'name' => 'Questions',
+            'title' => 'Test Questions',
         ]
     ],
     'actions' => [
@@ -22,6 +22,7 @@ return [
         ],
         'edit' => [
             'name' => 'Edit',
+            'label' => 'Edit Test',
             'title' => 'Click To Edit Test',
         ],
         'view' => [
@@ -70,17 +71,17 @@ return [
         ],
     ],
     'inputs' => [
-        'name' => [
-            'label' => 'Name',
-            'placeholder' => 'Name',
-            'header' => 'Name',
-            'description' => 'Full Name of the Test e.g CocacolaHR2017 etc.',
+        'duration' => [
+            'label' => 'Duration',
+            'placeholder' => 'Duration',
+            'header' => 'Duration',
+            'description' => 'Full Duration of the Test in minutes e.g 180 etc.',
         ],
-        'organization' => [
-            'label' => 'Organization',
-            'placeholder' => 'Organization',
-            'header' => 'Organization',
-            'description' => 'Full Name of the Organization e.g Cocacola etc.',
+        'stage' => [
+            'label' => 'stage',
+            'placeholder' => 'stage',
+            'header' => 'stage',
+            'description' => 'Full Stage of the tests e.g Apptitude etc.',
         ],
         'startedAt' => [
             'label' => 'Starts At',
