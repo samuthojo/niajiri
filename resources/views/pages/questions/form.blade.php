@@ -6,9 +6,10 @@
 {{-- start label --}}
 <div class="form-group {{ $errors->has('label') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
-        {!! Form::text('label', null, [
+        {!! Form::textarea('label', null, [
             'class' => 'form-control',
             'required' => 'required',
+            'rows' => 4,
             'aria-describedby'=> 'testNameHelpBlock',
             'placeholder' => trans('questions.inputs.label.placeholder')
         ]) !!}
