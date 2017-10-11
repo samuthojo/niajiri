@@ -15,12 +15,16 @@
         <thead>
         <tr>
             <th>{{trans('tests.inputs.duration.label')}}</th>
+            <th>{{trans('tests.inputs.applicants.label')}}</th>
             <th>{{trans('tests.headers.actions')}}</th>
         </tr>
         </thead>
         <tbody>
           @foreach($stage->tests as $item)
           <tr>
+              <td>
+                 {{$item->duration}}
+              </td>
               <td>
                  {{$item->duration}}
               </td>

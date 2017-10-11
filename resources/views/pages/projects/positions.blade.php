@@ -4,7 +4,7 @@
   <div class="row m-t-md">
       <div class="col-sm-8 m-b-xs">
           <div class="btn-group">
-              <a href="{{route('positions.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('positions.actions.create.title') }}">
+              <a href="{{route('positions.create',['project_id' => $project->id])}}" class="btn btn-sm btn-white" role="button" title="{{ trans('positions.actions.create.title') }}">
               <i class="fa fa-plus"></i> {{ trans('positions.actions.create.name') }}</a>
           </div>
       </div>

@@ -16,12 +16,12 @@ class CreatePositionsTable extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->uuid('id');
             $table->string('title');
-            $table->longText('summary');
-            $table->longText('responsibilities');
+            $table->longText('summary')->nullable();
+            $table->longText('responsibilities')->nullable();
             $table->longText('requirements');
             $table->string('duration')->default('Full Time');
             $table->date('dueAt');
-            $table->date('publishedAt');
+            $table->date('publishedAt')->nullable();
             $table->uuid('project_id')->nullable();
             $table->uuid('organization_id')->nullable();
             $table->uuid('sector_id')->nullable();

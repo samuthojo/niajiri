@@ -78,10 +78,16 @@ return [
             'description' => 'Full Duration of the Test in minutes e.g 180 etc.',
         ],
         'stage' => [
-            'label' => 'stage',
-            'placeholder' => 'stage',
-            'header' => 'stage',
+            'label' => 'Stage',
+            'placeholder' => 'Stage',
+            'header' => 'Stage',
             'description' => 'Full Stage of the tests e.g Apptitude etc.',
+        ],
+        'applicants' => [
+            'label' => 'Applicants',
+            'placeholder' => 'Applicants',
+            'header' => 'Applicants',
+            'description' => 'Applicants in this stages e.g 20 etc.',
         ],
         'startedAt' => [
             'label' => 'Starts At',

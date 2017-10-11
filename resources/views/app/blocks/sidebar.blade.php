@@ -73,7 +73,7 @@
 		        	'positions.preview'
 				])}}">
                 <a href="{{route('applications.applied')}}">
-                <i class="fa fa-file"></i> 
+                <i class="fa fa-file"></i>
                 <span class="nav-label">My Applications</span>
                 </a>
             </li>
@@ -83,7 +83,7 @@
 		        	'positions.open'
 				])}}">
                 <a href="{{route('positions.open')}}">
-                <i class="fa fa-file-o"></i> 
+                <i class="fa fa-file-o"></i>
                 <span class="nav-label">Open Positions</span>
                 </a>
             </li>
@@ -245,7 +245,7 @@
 	        	'projects.*'
 	        	])}}">
 	            <a href="#">
-	            	<i class="fa fa-address-book-o"></i>
+	            	<i class="fa fa-tasks"></i>
 	            	<span class="nav-label">Projects</span>
 	            	<span class="fa arrow"></span>
 	            </a>
@@ -272,7 +272,7 @@
 	        	'organization.*'
 	        	])}}">
 	            <a href="#">
-	            	<i class="fa fa-address-book-o"></i>
+	            	<i class="fa fa-building-o"></i>
 	            	<span class="nav-label">Organizations</span>
 	            	<span class="fa arrow"></span>
 	            </a>
@@ -299,7 +299,7 @@
 	        	'sectors.*'
 	        	])}}">
 	            <a href="#">
-	            	<i class="fa fa-address-book-o"></i>
+	            	<i class="fa fa-object-group"></i>
 	            	<span class="nav-label">Sectors</span>
 	            	<span class="fa arrow"></span>
 	            </a>

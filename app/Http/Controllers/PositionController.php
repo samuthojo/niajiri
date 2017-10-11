@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Input;
 
 class PositionController extends SecureController
 {
