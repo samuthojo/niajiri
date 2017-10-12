@@ -74,7 +74,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::text('fax', null, [
             'class' => 'form-control',
-            'required' => 'required',
             'aria-describedby'=> 'userFaxHelpBlock',
             'placeholder' => trans('organizations.inputs.fax.placeholder')
         ]) !!}
@@ -97,7 +96,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::text('landline', null, [
             'class' => 'form-control',
-            'required' => 'required',
             'aria-describedby'=> 'userLandlineHelpBlock',
             'placeholder' => trans('organizations.inputs.landline.placeholder')
         ]) !!}
@@ -119,7 +117,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::text('website', null, [
             'class' => 'form-control',
-            'required' => 'required',
             'aria-describedby'=> 'userWebsiteHelpBlock',
             'placeholder' => trans('organizations.inputs.website.placeholder')
         ]) !!}
@@ -163,7 +160,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::text('postal_address', null, [
             'class' => 'form-control',
-            'required' => 'required',
             'aria-describedby'=> 'userWebsiteHelpBlock',
             'placeholder' => trans('organizations.inputs.postal_address.placeholder')
         ]) !!}
@@ -188,7 +184,6 @@
             null,
             [   'id' => 'sector_id',
                 'class' => 'form-control',
-                'required' => 'required',
                 'aria-describedby'=> 'usersectorHelpBlock',
                 'placeholder' => trans('organizations.inputs.sector.placeholder')
             ])

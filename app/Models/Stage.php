@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 
@@ -45,6 +46,16 @@ class Stage extends Model
         'passMark',
         'position_id'
     ];
+
+
+    protected static function boot()
+  	{
+  	    parent::boot();
+  	    static::addGlobalScope('orderStageNumber', function(Builder $builder) {
+  	        $builder->orderby('number', 'asc');
+  	    });
+
+    }
 
     /**
      * The attributes that should be casted to native types.

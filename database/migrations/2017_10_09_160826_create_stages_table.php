@@ -16,11 +16,11 @@ class CreateStagesTable extends Migration
         Schema::create('stages', function (Blueprint $table) {
           $table->uuid('id');
           $table->string('name');
-          $table->string('activities');
+          $table->string('activities')->nullable();
           $table->integer('number')->default(1);
           $table->date('startedAt');
           $table->date('endedAt');
-          $table->decimal('passMark', 5, 2);
+          $table->decimal('passMark', 5, 2)->nullable();
           $table->uuid('position_id')->nullable();
           $table->foreign('position_id')
                 ->references('id')

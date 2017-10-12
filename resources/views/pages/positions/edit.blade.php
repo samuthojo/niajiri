@@ -14,7 +14,7 @@
 	<div class="page-header">
 	    <div class='btn-toolbar pull-right' role="toolbar">
 	     <a
-	        href="{{ route('positions.index') }}"
+	        href="{{ url()->previous() }}"
 	        class="btn btn-white"
 	        title="{{ trans('positions.actions.cancel.title') }}">
 	        {{ trans('positions.actions.cancel.name') }}

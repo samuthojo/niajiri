@@ -30,7 +30,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::textarea('summary', null, [
             'class' => 'form-control',
-            'required' => 'required',
             'rows' => 2,
             'aria-describedby'=> 'positionSummaryHelpBlock',
             'placeholder' => trans('positions.inputs.summary.placeholder')
@@ -54,7 +53,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::textarea('responsibilities', null, [
             'class' => 'form-control',
-            'required' => 'required',
             'rows' => 4,
             'aria-describedby'=> 'positionSummaryHelpBlock',
             'placeholder' => trans('positions.inputs.responsibilities.placeholder')
@@ -101,7 +99,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::text('duration', null, [
             'class' => 'form-control',
-            'required' => 'required',
             'aria-describedby'=> 'positionSummaryHelpBlock',
             'placeholder' => trans('positions.inputs.duration.placeholder')
         ]) !!}
@@ -118,7 +115,7 @@
 </div>
 {{-- end duration --}}
 
-
+@if(!(Request::get('project_id')))
 {{-- start projects --}}
 <div class="form-group {{ $errors->has('project') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
@@ -126,7 +123,6 @@
             null,
             [   'id' => 'project_id',
                 'class' => 'form-control',
-                'required' => 'required',
                 'aria-describedby'=> 'userorganizationHelpBlock',
                 'placeholder' => trans('positions.inputs.project.placeholder')
             ])
@@ -143,6 +139,10 @@
     </div>
 </div>
 {{-- end projects --}}
+@else
+<input name="project_id" type="hidden" value="{{Request::get('project_id')}}">
+@endif
+
 
 
 {{-- start sector --}}
@@ -152,7 +152,6 @@
             null,
             [   'id' => 'sector_id',
                 'class' => 'form-control',
-                'required' => 'required',
                 'aria-describedby'=> 'usersectorHelpBlock',
                 'placeholder' => trans('positions.inputs.sector.placeholder')
             ])
@@ -198,7 +197,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::text('publishedAt', null, [
             'class' => 'form-control date',
-            'required' => 'required',
             'aria-describedby'=> 'userpublishedAtHelpBlock',
             'placeholder' => trans('positions.inputs.publishedAt.placeholder')
         ]) !!}
@@ -221,16 +219,6 @@
 
 @push('scripts')
 <script>
-  document.addEventListener('DOMContentLoaded',function() {
-    document.querySelector('select[name="organization_id"]').onchange=changeEventHandler;
-  },false);
-
-    function changeEventHandler(event) {
-      // You can use “this” to refer to the selected element.
-      if(!event.target.value) console.log('Please Select One');
-      else console.log('You like ' + event.target.value + ' ice cream.');
-  }
-
   $('.date').datepicker({
 
      format: 'dd-mm-yyyy'
