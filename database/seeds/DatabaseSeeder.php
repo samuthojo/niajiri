@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
 		  $this->call(RolesTableSeeder::class);
 		  $this->call(UsersTableSeeder::class);
 
-
+      $isHeroku = getenv('CLEARDB_DATABASE_URL');
   		$environment = \App::environment();
   		$isLocal = ($environment == 'local') || ($environment == 'development')
-  			|| ($environment == 'test');
+  			|| ($environment == 'test') || $isHeroku;
   		if ($isLocal) {
   			//seed test & development data
         $this->call(ApplicantsTableSeeder::class);
