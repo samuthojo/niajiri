@@ -20,6 +20,7 @@ class CreateStagesTable extends Migration
           $table->integer('number')->default(1);
           $table->date('startedAt');
           $table->date('endedAt');
+          $table->boolean('hasTest');
           $table->decimal('passMark', 5, 2)->nullable();
           $table->uuid('position_id')->nullable();
           $table->foreign('position_id')

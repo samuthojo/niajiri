@@ -44,6 +44,7 @@ class Stage extends Model
         'startedAt',
         'endedAt',
         'passMark',
+        'hasTest',
         'position_id'
     ];
 
@@ -69,6 +70,7 @@ class Stage extends Model
         'number' => 'integer',
         'startedAt' => 'date',
         'endedAt' => 'date',
+        'hasTest' => 'boolean',
         'position_id' => 'string'
     ];
 

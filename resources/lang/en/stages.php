@@ -5,6 +5,10 @@ return [
         'active' => 'Active',
         'inactive' => 'Inactive',
     ],
+    'hasTest' => [
+        '1' => 'True',
+        '0' => 'False',
+    ],
     'headers' => [
         'actions' => 'Actions',
         'status'  => 'Status',
@@ -100,6 +104,12 @@ return [
             'placeholder' => 'Position',
             'header' => 'Position',
             'description' => 'Full Name of the Position e.g Sales Manager etc.',
+        ],
+        'hasTest' => [
+            'label' => 'Stage has test',
+            'placeholder' => 'Stage has test',
+            'header'  => 'Stage has test',
+            'description' => 'Check if the stage has test',
         ],
         'startedAt' => [
             'label' => 'Starts At',

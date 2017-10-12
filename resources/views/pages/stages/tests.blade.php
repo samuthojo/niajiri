@@ -16,6 +16,7 @@
         <tr>
             <th>{{trans('tests.inputs.duration.label')}}</th>
             <th>{{trans('tests.inputs.applicants.label')}}</th>
+            <th>{{trans('tests.inputs.testCategory.label')}}</th>
             <th>{{trans('tests.headers.actions')}}</th>
         </tr>
         </thead>
@@ -27,6 +28,9 @@
               </td>
               <td>
                  {{$item->duration}}
+              </td>
+              <td>
+                 {{trans('tests.testCategories.'.$item->test_category)}}
               </td>
               <td class="project-actions">
                   <a href="{{ route('tests.show', ['id' => $item->id]) }}" class="btn btn-white btn-xs"><i class="fa fa-folder"></i> View </a>

@@ -13,6 +13,7 @@ class TestsTableSeeder extends Seeder {
 			Test::updateOrCreate(['stage_id' => $stage->id], [
 					'duration' => 180,
 					'stage_id' =>  $stage->id,
+					'test_category' => 'numerical',
 				]);
 
 		});

@@ -5,6 +5,13 @@ return [
         'active' => 'Active',
         'inactive' => 'Inactive',
     ],
+    'testCategories' => [
+        'numerical' => 'Quantitative Aptitude',
+        'verbal' => 'Verbal (English)',
+        'reasoning' => 'Reasoning',
+        'programming' => 'Programming',
+        'interview'  => 'Interview',
+    ],
     'headers' => [
         'actions' => 'Actions',
         'status'  => 'Status',
@@ -87,7 +94,13 @@ return [
             'label' => 'Applicants',
             'placeholder' => 'Applicants',
             'header' => 'Applicants',
-            'description' => 'Applicants in this stages e.g 20 etc.',
+            'description' => 'Applicants in this test e.g 20 etc.',
+        ],
+        'testCategory' => [
+            'label' => 'Test category',
+            'placeholder' => 'Test category',
+            'header' => 'Test category',
+            'description' => 'Test category of the test e.g 20 etc.',
         ],
         'startedAt' => [
             'label' => 'Starts At',
