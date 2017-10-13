@@ -1,6 +1,6 @@
 <?php
 
-return [
+return collect([
   'AF' => 'Afghanistan',
   'AL' => 'Albania',
   'DZ' => 'Algeria',
@@ -242,4 +242,7 @@ return [
   'YE' => 'Yemen',
   'ZM' => 'Zambia',
   'ZW' => 'Zimbabwe'
-];
+])->map(function($name, $code)
+{
+  return ['name' => $name, 'code' => $code];
+});

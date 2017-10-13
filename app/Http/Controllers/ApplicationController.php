@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\ApplicationStage;
+use App\Models\Position;
 use Illuminate\Http\Request;
 
 //TODO refactor to use repository as Makonda
@@ -52,7 +54,9 @@ class ApplicationController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//TODO check CV validit
+		//TODO check CV validity
+		//TODO notify applicant on application
+		//TODO notify applicant on stage
 
 		//ensure valid application
 		$this->validate($request, [
@@ -64,6 +68,14 @@ class ApplicationController extends SecureController {
 		//obtain all application form inputs
 		$body = $request->all();
 
+		//TODO make use of transaction
+		
+		//load position
+		$position = Position::query()->findOrFail($request->input('position_id'));
+
+		//get position first stage
+		$stage = $position->firstStage();
+		
 		//create application
 		$application = Application::create($body);
 
@@ -75,6 +87,16 @@ class ApplicationController extends SecureController {
 			$application->addMediaFromRequest('cover_letter')
 				->toMediaCollection('cover_letters');
 		}
+
+		//create first application stage
+		$applicationStage = ApplicationStage::create([ 
+	        'application_id' => $application->id,
+	        'stage_id' => $stage->id,
+	        'applicant_id' => $application->applicant_id, 
+	        'organization_id' => $application->organization_id, 
+	        'position_id' => $position->id
+	    ]);
+		
 
 		//flash message
 		flash(trans('applications.actions.save.flash.success'))

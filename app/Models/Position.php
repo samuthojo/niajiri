@@ -47,6 +47,7 @@ class Position extends Model
         'organization',
         'project',
         'sector',
+        'stages'
     ];
 
 
@@ -174,6 +175,56 @@ class Position extends Model
     public function stages()
     {
         return $this->hasMany(\App\Models\Stage::class, 'position_id');
+    }
+
+    /**
+     * Obtain position first stage
+     * @return [Stage]
+     */
+    public function firstStage()
+    {
+        $sorted_stages = $this->stages->sortBy('number');
+        $first_stage = $sorted_stages->first();
+        return $first_stage;
+    }
+
+    /**
+     * Obtain position last stage
+     * @return [Stage]
+     */
+    public function lastStage()
+    {
+        $sorted_stages = $this->stages->sortBy('number');
+        $last_stage = $sorted_stages->last();
+        return $last_stage;
+    }
+
+    /**
+     * Obtain position next stage after specified stage
+     * @param  [Stage]  $stage
+     * @return [Stage]
+     */
+    public function nextStage($stage)
+    {
+        //default to last stage
+        $next_stage = $this->lastStage();
+
+        if ($stage != null) {
+            //get next stage number
+            $next_stage_number = $stage->number + 1;
+
+            //get next stage
+            $next_stage = $this->stages->first(function ($stage) use ($next_stage_number) {
+                return $stage->number == $next_stage_number;
+            });
+
+            if ($next_stage == null) {
+                $next_stage = $this->last_stage();
+            }
+
+        }
+
+        return $next_stage;
     }
 
 }

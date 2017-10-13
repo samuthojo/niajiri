@@ -11,6 +11,11 @@ class ApplicationStage extends Model implements HasMedia
 {
 
     /**
+     * Allow eduaction to have attached files(media) i.e certificates etc
+     */
+    use HasMediaTrait;
+
+    /**
      * The database table used by the model.
      *
      * @var string

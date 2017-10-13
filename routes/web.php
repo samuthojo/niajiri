@@ -15,8 +15,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name("home");
 Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
-Route::get('/my_applications', 'HomeController@applications')->name("my_applications");
 Route::get('/minor', 'HomeController@minor')->name("minor");
+Route::get('/states', 'HomeController@get_states')->name("states");
 
 //development only routes, should be commented on production
 //Route::get('/artisan', 'SiteController@artisan')->name('artisan');

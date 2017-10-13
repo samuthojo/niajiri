@@ -2,9 +2,8 @@
 
 @section('content')
     <div class="middle-box text-center loginscreen animated fadeInDown">
-		<img src="{{ asset('images/logo.png') }}">
-		<h3>Welcome to {{config('app.name')}}</h3>
-		<form class="m-t" role="form" method="POST" action="{{ route('login') }}">
+		<img src="{{ asset('images/logo.png') }}" width="160" height="120">
+		<form role="form" method="POST" action="{{ route('login') }}">
 			{{ csrf_field() }}
 
 			<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
