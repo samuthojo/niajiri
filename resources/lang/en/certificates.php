@@ -94,5 +94,12 @@ return [
             'header' => 'Applicant',
             'description' => 'Applicant e.g Juma Lisu etc.',
         ],
+        'attachment' => [
+            'label' => 'Attachment',
+            'placeholder' => 'Certificate Attachment',
+            'header' => 'Attachment',
+            'description' => 'Certificate Attachment',
+            'change' => 'Attachment',
+        ],
     ],
 ];

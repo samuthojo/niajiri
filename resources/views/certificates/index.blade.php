@@ -77,6 +77,9 @@
                                     {{ trans('certificates.inputs.expired_at.header') }}
                                 </th>
                                 <th>
+                                    {{ trans('certificates.inputs.attachment.header') }}
+                                </th>
+                                <th>
                                     {{trans('certificates.headers.actions')}}
                                 </th>
                             </tr>
@@ -93,6 +96,15 @@
                                 <td>{{ display_date($item->started_at)}}</td>
                                 <td>{{ display_date($item->finished_at)}}</td>
                                 <td>{{ display_date($item->expired_at)}}</td>
+                                @if($item->attachment())
+                                <td>
+                                    <a href="{{$item->attachment()->public_url()}}" target="_blank">
+                                        {{$item->attachment()->file_name}}
+                                    </a>
+                                </td>
+                                @else
+                                <td>N/A</td>
+                                @endif
                                 <td>
 
                                     @permission('view:certificate')

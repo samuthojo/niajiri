@@ -124,18 +124,19 @@ class Certificate extends Model implements HasMedia
 
 
     /**
-     * Build certificate attachement url
+     * Build experience attachment
      */
-    public function attachement() {
-        //TODO default certificate attachement
-        $attachement;
+    public function attachment() {
+        //default experience attachment
+        $attachment = null;
 
-        //try obtain custom uploaded attachement
-        $media = $this->getMedia('attachements')->first();
+        //try obtain custom uploaded attachment
+        $media = $this->getMedia('attachments')->first();
         if ($media) {
-            $attachement = asset('storage/' . $media->id . '/' . $media->file_name);
+            $attachment = $media;
         }
-        return $attachement;
+        
+        return $attachment;
     }
 
 

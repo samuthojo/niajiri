@@ -99,6 +99,6 @@ return [
             'placeholder' => 'Applicant',
             'header' => 'Applicant',
             'description' => 'Applicant e.g Juma Lisu etc.',
-        ],
+        ]
     ],
 ];

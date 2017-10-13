@@ -151,4 +151,23 @@
 </div>
 {{-- end expired_at --}}
 
+{{-- start attachment edit --}}
+<div class="col-md-offset-2 col-md-6 m-t-md">
+    <div class="form-group m-b-lg {{ $errors->has('attachment') ? 'has-error' : ''}}">
+        <div class="edit-profile-photo edit-profile-photo-cv">
+            <img src="{{url('/images/attachment.jpg') }}" alt="{{trans('certificates.inputs.attachment.placeholder')}}" class="img-thumbnail"
+            title="{{trans('certificates.inputs.attachment.placeholder')}}">
+            <div class="change-photo-btn">
+                <div class="photoUpload">
+                    <span title="{{trans('certificates.inputs.attachment.placeholder')}}">
+                        <i class="fa fa-upload"></i> {{trans('certificates.inputs.attachment.change')}}
+                    </span>
+                    <input id="attachment" name="attachment" type="file" class="upload" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- end attachment edit --}}
+
 {{-- end certificate form --}}

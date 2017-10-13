@@ -109,10 +109,10 @@ class Education extends Model implements HasMedia
 
 
     /**
-     * Build education attachment url
+     * Build education attachment
      */
     public function attachment() {
-        //TODO default education attachment
+        //default education attachment
         $attachment = null;
 
         //try obtain custom uploaded attachment
@@ -120,7 +120,7 @@ class Education extends Model implements HasMedia
         if ($media) {
             $attachment = $media;
         }
-        
+
         return $attachment;
     }
 
