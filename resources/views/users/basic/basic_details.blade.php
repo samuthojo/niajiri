@@ -352,9 +352,9 @@
                 {{trans('cvs.inputs.country.label')}}
                 <span class="text-danger">*</span>
             </label>
-            {!! Form::select('country', [], null, [
+            {!! Form::select('country', collect(config('countries'))->pluck('name', 'name'), null, [
                 'id' => 'country',
-                'class' => 'form-control bfh-countries',
+                'class' => 'form-control',
                 //'required' => 'required',
                 'aria-describedby'=> 'cv_country_help_block',
                 'placeholder' => trans('cvs.inputs.country.placeholder')
