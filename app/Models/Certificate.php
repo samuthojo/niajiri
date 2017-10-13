@@ -124,10 +124,10 @@ class Certificate extends Model implements HasMedia
 
 
     /**
-     * Build experience attachment
+     * Build certificate attachment
      */
     public function attachment() {
-        //default experience attachment
+        //default certificate attachment
         $attachment = null;
 
         //try obtain custom uploaded attachment

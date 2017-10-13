@@ -67,6 +67,15 @@ class AchievementController extends SecureController {
 		//create achievement
 		$achievement = Achievement::create($body);
 
+		//upload & store achievement attachment
+		if ($achievement && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$achievement->clearMediaCollection('attachments');
+			//attach new attachment
+			$achievement->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
 		//flash message
 		flash(trans('achievements.actions.save.flash.success'))
 			->success()->important();
@@ -147,6 +156,15 @@ class AchievementController extends SecureController {
 
 		//update achievement
 		$achievement->update($body);
+
+		//upload & store achievement attachment
+		if ($achievement && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$achievement->clearMediaCollection('attachments');
+			//attach new attachment
+			$achievement->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
 
 		//flash message
 		flash(trans('achievements.actions.update.flash.success'))

@@ -82,5 +82,12 @@ return [
             'header' => 'Applicant',
             'description' => 'Applicant e.g Juma Lisu etc.',
         ],
+        'attachment' => [
+            'label' => 'Attachment',
+            'placeholder' => 'Achievement Attachment',
+            'header' => 'Attachment',
+            'description' => 'Achievement Attachment',
+            'change' => 'Attachment',
+        ],
     ],
 ];

@@ -71,6 +71,9 @@
                                     {{ trans('achievements.inputs.issued_at.header') }}
                                 </th>
                                 <th>
+                                    {{ trans('achievements.inputs.attachment.header') }}
+                                </th>
+                                <th>
                                     {{trans('achievements.headers.actions')}}
                                 </th>
                             </tr>
@@ -85,6 +88,15 @@
                                 <td>{{ $item->organization}}</td>
                                 <td>{{ $item->summary}}</td>
                                 <td>{{ display_date($item->issued_at)}}</td>
+                                @if($item->attachment())
+                                <td>
+                                    <a href="{{$item->attachment()->public_url()}}" target="_blank">
+                                        {{$item->attachment()->file_name}}
+                                    </a>
+                                </td>
+                                @else
+                                <td>N/A</td>
+                                @endif
                                 <td>
 
                                     @permission('view:achievement')
