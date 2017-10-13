@@ -219,5 +219,21 @@ return [
             'header' => 'Hobbies',
             'description' => 'Hobbies e.g Dancing, Debate.',
         ],
+
+        'country' => [
+            'label' => 'Country',
+            'placeholder' => 'Country',
+            'header' => 'Country',
+            'description' => 'Country',
+            'change' => 'Country',
+        ],
+
+        'state' => [
+            'label' => 'State',
+            'placeholder' => 'State',
+            'header' => 'State',
+            'description' => 'State',
+            'change' => 'State',
+        ],
     ],
 ];
