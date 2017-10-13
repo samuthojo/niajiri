@@ -349,8 +349,9 @@
         <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
             <label for="summary" title="{{ trans('cvs.inputs.summary.description') }}">
                 {{trans('cvs.inputs.summary.label')}}
+                <span class="text-danger">*</span>
             </label>
-            {!! Form::textarea('description', null, [
+            {!! Form::textarea('summary', null, [
                 'id' => 'summary',
                 'class' => 'form-control',
                 'rows' => 2,
