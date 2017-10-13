@@ -183,11 +183,19 @@ class StageController extends SecureController
     {
       $stage = $this->stageRepository->findWithoutFail($stage_id);
 
+      if (empty($stage)) {
+          Flash::error('Stage not found');
+
+          return redirect(route('stages.index'));
+      }
+
       return view('pages.stages.tests.create',[
-          'route_title' => 'Test Create',
-          'route_description' => 'Stages',
-          'stage'  => $stage,
+          'route_title' => 'Stage Test',
+          'route_description' => 'Stage Test',
+          'stage' => $stage,
+          'instance' => $stage,
       ]);
+
     }
 
 

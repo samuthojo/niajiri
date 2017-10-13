@@ -29,15 +29,6 @@
                         title="{{ trans('roles.actions.cancel.title') }}">
                         {{ trans('roles.actions.cancel.name') }}
                     </a>
-                     {!!
-                        Form::button(
-                            trans('roles.actions.update.name'),
-                            [
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary',
-                            'title' => trans('roles.actions.update.title'),
-                        ])
-                    !!}
                     </div>
                     <h2>
                         <small>
@@ -52,6 +43,24 @@
                     @include ('roles.form')
                 </div>
                 {{-- end form --}}
+
+                {{-- start bottom actions --}}
+                <div class="row m-b-lg">
+                    <div class="hr-line-dashed"></div>
+                    <div class="col-md-12">
+                     {!!
+                        Form::button(
+                            trans('roles.actions.update.name'),
+                            [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary pull-right',
+                            'title' => trans('roles.actions.update.title'),
+                        ])
+                    !!}
+                    </div>
+                </div>
+                {{-- end bottom actions --}}
+
 
             </div>
             {{-- end page box content --}}

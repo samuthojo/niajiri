@@ -19,15 +19,6 @@
 	        title="{{ trans('tests.actions.cancel.title') }}">
 	        {{ trans('tests.actions.cancel.name') }}
 	    </a>
-	     {!!
-	        Form::button(
-	            trans('tests.actions.update.name'),
-	            [
-	            'type' => 'submit',
-	            'class' => 'btn btn-primary',
-	            'title' => trans('tests.actions.update.title'),
-	        ])
-	    !!}
 	    </div>
 	    <h2>
 	        <small>
@@ -42,6 +33,18 @@
 	    @include ('pages.tests.form')
     </div>
     {{-- end form --}}
+
+    <div class="col-md-12">
+	     {!!
+	        Form::button(
+	            trans('tests.actions.update.name'),
+	            [
+	            'type' => 'submit',
+	            'class' => 'btn btn-primary pull-right',
+	            'title' => trans('tests.actions.update.title'),
+	        ])
+	    !!}
+    </div>
 
 {!! Form::close() !!}
 {{-- close test edit form --}}

@@ -369,6 +369,7 @@ Breadcrumbs::register('positions.show', function ($breadcrumbs, $instance) {
 
 // Home > Positions > [Position Title] > Create Stage
 Breadcrumbs::register('positions.stages.create', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('positions.show', $instance);
     $breadcrumbs->push('Create Stage', route('positions.stages.create',$instance->id));
 });
 
@@ -447,7 +448,7 @@ Breadcrumbs::register('stages.create', function ($breadcrumbs) {
 
 // Home > Stages > [Stage Title]
 Breadcrumbs::register('stages.show', function ($breadcrumbs, $instance) {
-    //$breadcrumbs->parent('stages.index');
+    $breadcrumbs->push($instance->position->title, route('positions.show', $instance->position_id));
     $breadcrumbs->push($instance->name, route('stages.show', $instance->id));
 });
 
@@ -458,7 +459,7 @@ Breadcrumbs::register('stages.edit', function ($breadcrumbs, $instance) {
 });
 
 // Home > Stages > Create Stage
-Breadcrumbs::register('stages.tests.create', function ($breadcrumbs) {
-    $breadcrumbs->parent('stages.index');
+Breadcrumbs::register('stages.tests.create', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('stages.show', $instance);
     $breadcrumbs->push('Test Create', route('stages.create'));
 });

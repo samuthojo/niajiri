@@ -33,8 +33,8 @@
                   {{$item->dueAt->format('d-m-y')}}
               </td>
               <td class="project-actions">
-                  <a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                  <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                  <a href="{{ route('positions.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
+                  <a href="{{ route('positions.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
               </td>
 
           </tr>

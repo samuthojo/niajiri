@@ -46,6 +46,7 @@ Route::resource('organizations', 'OrganizationController');
 Route::resource('positions', 'PositionController');
 
 Route::resource('stages', 'StageController');
+
 Route::get('/stages/{stage}/tests/create', 'StageController@TestCreate')->name("stages.tests.create");
 
 Route::post('/stages/{stage}/tests/store', 'StageController@TestStore')->name("stages.tests.store");

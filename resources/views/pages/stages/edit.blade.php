@@ -19,15 +19,6 @@
 	        title="{{ trans('stages.actions.cancel.title') }}">
 	        {{ trans('stages.actions.cancel.name') }}
 	    </a>
-	     {!!
-	        Form::button(
-	            trans('stages.actions.update.name'),
-	            [
-	            'type' => 'submit',
-	            'class' => 'btn btn-primary',
-	            'title' => trans('stages.actions.update.title'),
-	        ])
-	    !!}
 	    </div>
 	    <h2>
 	        <small>
@@ -42,6 +33,19 @@
 	    @include ('pages.stages.form')
     </div>
     {{-- end form --}}
+
+
+    <div class="col-md-12">
+      {!!
+         Form::button(
+             trans('stages.actions.update.name'),
+             [
+             'type' => 'submit',
+             'class' => 'btn btn-primary pull-right',
+             'title' => trans('stages.actions.update.title'),
+         ])
+     !!}
+    </div>
 
 {!! Form::close() !!}
 {{-- close stage edit form --}}

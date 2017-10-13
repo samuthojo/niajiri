@@ -34,7 +34,7 @@ return [
             'title' => 'Click To View Stage',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Stage',
             'title' => 'Click To Save New Stage',
             'header' => 'New Stage',
             'flash' => [

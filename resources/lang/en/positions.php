@@ -35,7 +35,7 @@ return [
             'title' => 'Click To View Position',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Position',
             'title' => 'Click To Save New Position',
             'header' => 'New Position',
             'flash' => [

@@ -30,7 +30,7 @@ return [
             'title' => 'Click To View Question',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Question',
             'title' => 'Click To Save New Question',
             'header' => 'New Question',
             'flash' => [

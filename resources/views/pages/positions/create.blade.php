@@ -30,15 +30,6 @@
                         title="{{ trans('positions.actions.cancel.title') }}">
                         {{ trans('positions.actions.cancel.name') }}
                     </a>
-                     {!!
-                        Form::button(
-                            trans('positions.actions.save.name'),
-                            [
-                            'type' => 'submit',
-                            'class' => 'btn btn-primary',
-                            'title' => trans('positions.actions.save.title'),
-                        ])
-                    !!}
                     </div>
                     <h2>
                         <small>
@@ -53,6 +44,23 @@
                     @include ('pages.positions.form')
                 </div>
                 {{-- end form --}}
+
+                {{-- start bottom actions --}}
+                <div class="row m-b-lg">
+                    <div class="hr-line-dashed"></div>
+                    <div class="col-md-12">
+                      {!!
+                         Form::button(
+                             trans('positions.actions.save.name'),
+                             [
+                             'type' => 'submit',
+                             'class' => 'btn btn-primary pull-right',
+                             'title' => trans('positions.actions.save.title'),
+                         ])
+                     !!}
+                    </div>
+                </div>
+                {{-- end bottom actions --}}
 
             </div>
             {{-- end page box content --}}

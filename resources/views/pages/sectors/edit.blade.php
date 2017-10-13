@@ -19,15 +19,6 @@
 	        title="{{ trans('sectors.actions.cancel.title') }}">
 	        {{ trans('sectors.actions.cancel.name') }}
 	    </a>
-	     {!!
-	        Form::button(
-	            trans('sectors.actions.update.name'),
-	            [
-	            'type' => 'submit',
-	            'class' => 'btn btn-primary',
-	            'title' => trans('sectors.actions.update.title'),
-	        ])
-	    !!}
 	    </div>
 	    <h2>
 	        <small>
@@ -42,6 +33,18 @@
 	    @include ('pages.sectors.form')
     </div>
     {{-- end form --}}
+
+    <div class="col-md-12">
+      {!!
+         Form::button(
+             trans('sectors.actions.update.name'),
+             [
+             'type' => 'submit',
+             'class' => 'btn btn-primary pull-right',
+             'title' => trans('sectors.actions.update.title'),
+         ])
+     !!}
+    </div>
 
 {!! Form::close() !!}
 {{-- close sector edit form --}}
