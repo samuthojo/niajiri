@@ -11,6 +11,7 @@
             <div class="ibox-content">
 
                 <div class="row">
+
                     {{-- end position details --}}
                     <div class="col-md-12">
 
@@ -32,7 +33,6 @@
                         </small>
                         {{-- end application date --}}
                         <div class="m-t-md">
-                             <a class="btn btn-primary pull-right" href="{{route('applications.apply', ['applicant_id' => Auth::user()->id, 'position_id' => $application->position->id, 'organization_id' => $application->organization_id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
                             <h2 class="product-main-price">
                                 {{$application->organization->name}} 
                                 <small class="text-muted">
@@ -71,6 +71,30 @@
                         
                     </div>
                     {{-- start position details --}}
+
+                    {{-- start position cover letter --}}
+                    <div class="col-md-12 m-t-lg">
+                        <hr/>
+                        <div class="m-t-lg">
+                            <div class="file-box">
+                                <div class="file">
+                                    <a href="#">
+                                        <span class="corner"></span>
+
+                                        <div class="icon">
+                                            <i class="fa fa-file"></i>
+                                        </div>
+                                        <div class="file-name">
+                                            Document_2014.doc
+                                            <br>
+                                            <small>Added: Jan 11, 2014</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- end position cover letter --}}
                 </div>
 
             </div>
