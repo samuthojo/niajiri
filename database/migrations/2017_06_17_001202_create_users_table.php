@@ -52,6 +52,10 @@ class CreateUsersTable extends Migration
                   ->onUpdate('cascade')
                   ->onDelete('set null'); //we dont want to delete organization if sector deleted
 
+            //location specific
+            $table->string('country')->index()->nullable();
+            $table->string('state')->index()->nullable();
+
 
             $table->timestamps();
             $table->softDeletes();

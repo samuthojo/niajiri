@@ -17,6 +17,7 @@
     "axios": "^0.16.2",
     "bootstrap-datepicker": "^1.6.4",
     "bootstrap-filestyle": "^1.2.1",
+    "bootstrap-formhelpers": "git+https://github.com/winmarkltd/BootstrapFormHelpers.git",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.0.1",
     "font-awesome": "^4.7.0",
