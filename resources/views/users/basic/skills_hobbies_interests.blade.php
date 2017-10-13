@@ -21,7 +21,7 @@
             <label for="skills" title="{{ trans('cvs.inputs.skills.description') }}">
                 {{trans('cvs.inputs.skills.label')}}
             </label>
-            {!! Form::textarea('description', null, [
+            {!! Form::textarea('skills', null, [
                 'id' => 'skills',
                 'class' => 'form-control',
                 'rows' => 2,
@@ -48,7 +48,7 @@
             <label for="interests" title="{{ trans('cvs.inputs.interests.description') }}">
                 {{trans('cvs.inputs.interests.label')}}
             </label>
-            {!! Form::textarea('description', null, [
+            {!! Form::textarea('interests', null, [
                 'id' => 'interests',
                 'class' => 'form-control',
                 'rows' => 2,
@@ -75,7 +75,7 @@
             <label for="hobbies" title="{{ trans('cvs.inputs.hobbies.description') }}">
                 {{trans('cvs.inputs.hobbies.label')}}
             </label>
-            {!! Form::textarea('description', null, [
+            {!! Form::textarea('hobbies', null, [
                 'id' => 'hobbies',
                 'class' => 'form-control',
                 'rows' => 2,
