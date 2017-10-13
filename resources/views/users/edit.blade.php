@@ -19,15 +19,6 @@
 	        title="{{ trans('users.actions.cancel.title') }}">
 	        {{ trans('users.actions.cancel.name') }}
 	    </a>
-	     {!!
-	        Form::button(
-	            trans('users.actions.update.name'),
-	            [
-	            'type' => 'submit',
-	            'class' => 'btn btn-primary',
-	            'title' => trans('users.actions.update.title'),
-	        ])
-	    !!}
 	    </div>
 	    <h2>
 	        <small>
@@ -42,6 +33,17 @@
 	    @include ('users.form')
     </div>
     {{-- end form --}}
+    <div class="col-md-12">
+      {!!
+         Form::button(
+             trans('users.actions.update.name'),
+             [
+             'type' => 'submit',
+             'class' => 'btn btn-primary',
+             'title' => trans('users.actions.update.title'),
+         ])
+     !!}
+    </div>
 
 {!! Form::close() !!}
 {{-- close user edit form --}}

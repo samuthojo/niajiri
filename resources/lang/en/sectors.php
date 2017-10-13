@@ -32,7 +32,7 @@ return [
             'title' => 'Click To View Sector',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Sector',
             'title' => 'Click To Save New Sector',
             'header' => 'New Sector',
             'flash' => [
@@ -51,7 +51,7 @@ return [
             ],
         ],
         'update' => [
-            'name' => 'Update',
+            'name' => 'Update Sector',
             'title' => 'Click To Update Sector',
             'header' => 'Update Sector',
             'flash' => [

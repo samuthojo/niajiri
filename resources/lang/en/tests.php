@@ -37,7 +37,7 @@ return [
             'title' => 'Click To View Test',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Test',
             'title' => 'Click To Save New Test',
             'header' => 'New Test',
             'flash' => [

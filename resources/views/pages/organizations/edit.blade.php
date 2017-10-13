@@ -19,15 +19,6 @@
 	        title="{{ trans('organizations.actions.cancel.title') }}">
 	        {{ trans('organizations.actions.cancel.name') }}
 	    </a>
-	     {!!
-	        Form::button(
-	            trans('organizations.actions.update.name'),
-	            [
-	            'type' => 'submit',
-	            'class' => 'btn btn-primary',
-	            'title' => trans('organizations.actions.update.title'),
-	        ])
-	    !!}
 	    </div>
 	    <h2>
 	        <small>
@@ -42,6 +33,20 @@
 	    @include ('pages.organizations.form')
     </div>
     {{-- end form --}}
+
+
+    <div class="col-md-12">
+
+       {!!
+          Form::button(
+              trans('organizations.actions.update.name'),
+              [
+              'type' => 'submit',
+              'class' => 'btn btn-primary pull-right',
+              'title' => trans('organizations.actions.update.title'),
+          ])
+      !!}
+    </div>
 
 {!! Form::close() !!}
 {{-- close organization edit form --}}

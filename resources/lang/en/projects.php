@@ -29,7 +29,7 @@ return [
             'title' => 'Click To View Project',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Project',
             'title' => 'Click To Save New Project',
             'header' => 'New Project',
             'flash' => [

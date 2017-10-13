@@ -32,7 +32,7 @@ return [
             'title' => 'Click To View Organization',
         ],
         'save' => [
-            'name' => 'Save',
+            'name' => 'Save Organization',
             'title' => 'Click To Save New Organization',
             'header' => 'New Organization',
             'flash' => [
