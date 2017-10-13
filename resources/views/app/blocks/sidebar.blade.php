@@ -69,8 +69,7 @@
 	        {{-- start applicant menu --}}
 	        {{-- start my applications --}}
 	        <li class="{{areActiveRoutes([
-		        	'applications.applied',
-		        	'positions.preview'
+		        	'applications.applied'
 				])}}">
                 <a href="{{route('applications.applied')}}">
                 <i class="fa fa-file"></i>
@@ -80,7 +79,8 @@
 	        {{-- end my applications --}}
 	        {{-- start open positions --}}
 	        <li class="{{areActiveRoutes([
-		        	'positions.open'
+		        	'positions.open',
+		        	'positions.preview'
 				])}}">
                 <a href="{{route('positions.open')}}">
                 <i class="fa fa-file-o"></i>
@@ -353,7 +353,11 @@
 
 	        {{-- start user management --}}
             @permission(['list:user', 'list:role'])
-	        <li class="{{areActiveRoutes(['users.*','roles.*'])}}">
+	        <li class="{{areActiveRoutes([
+	        		'users.index',
+	        		'users.edit',
+	        		'users.show',
+	        		'roles.*'])}}">
 	            <a href="#">
 	            	<i class="fa fa-users"></i>
 	            	<span class="nav-label">Users</span>

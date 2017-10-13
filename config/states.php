@@ -1,5 +1,5 @@
 <?php
-return [
+return collect([
   'AF'=> [
     '1' => ['code'=> 'BAL','name'=> 'Balkh'],
     '2' => ['code'=> 'BAM','name'=> 'Bamian'],
@@ -4761,4 +4761,15 @@ return [
     '9' => ['code'=> 'MS','name'=> 'Matabeleland South'],
     '10' => ['code'=> 'MD','name'=> 'Midlands']
   ]
-];
+])->map(function ($states, $countryCode)
+{
+    $_states = collect([]);
+    collect($states)->each(function ($state, $index) use ($countryCode, $_states)
+    {
+        $state['countryCode'] = $countryCode;
+        $_states->push($state);
+    });
+
+    return $_states;
+
+})->flatten(1);

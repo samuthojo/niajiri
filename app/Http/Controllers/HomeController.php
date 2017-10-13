@@ -21,24 +21,6 @@ class HomeController extends SecureController
             'route_description' => 'Dashboard'
         ]);
     }
-
-    //TODO move to applicant controller
-    public function applications(Request $request)
-    {
-        return view('pages.dashboard.index', [
-            'route_title' => 'My Applications',
-            'route_description' => 'My Applications'
-        ]);
-    }
-
-    //TODO move to position controller
-    public function positions(Request $request)
-    {
-        return view('pages.dashboard.index', [
-            'route_title' => 'Open Jobs/Positions',
-            'route_description' => 'Available Jobs/Positions'
-        ]);
-    }
     
     public function minor(Request $request)
     {
@@ -46,6 +28,37 @@ class HomeController extends SecureController
             'route_title' => 'Minor',
             'route_description' => 'Minor'
         ]);
+    }
+
+    /**
+     * Obtain country states/region/cities
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function get_states(Request $request)
+    {
+      $countryName = $request->input('country');
+
+      $country = collect(config('countries'))->first(function ($country) use ($countryName)
+      {
+         return $country['name'] === $countryName;
+      });
+
+      //obtain specific country states
+      if($country){
+        $states = collect(config('states'))
+        ->filter(function ($state) use ($country){
+            return $state['countryCode'] === $country['code'];
+        })->pluck('name', 'name')->sort();
+        return $states;
+      }
+      
+      //no states found
+      else{
+        return [];
+      }
+
     }
 
      /**

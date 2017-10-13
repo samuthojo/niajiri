@@ -375,9 +375,9 @@
                 {{trans('cvs.inputs.state.label')}}
                 <span class="text-danger">*</span>
             </label>
-            {!! Form::select('state', [], null, [
+            {!! Form::select('state', collect(config('states'))->pluck('name', 'name'), null, [
                 'id' => 'state',
-                'class' => 'form-control bfh-states',
+                'class' => 'form-control',
                 'data-country' => 'country',
                 //'required' => 'required',
                 'aria-describedby'=> 'cv_state_help_block',
@@ -425,3 +425,31 @@
 
 
 {{-- end basic details --}}
+
+@push('scripts')
+<script type="text/javascript">
+
+var stateSelect = $('#state');
+
+function append(key, value, isSelected) {
+    var option = $('<option></option>').attr('value', key).text(value);
+    if(isSelected){
+        option.attr('selected','selected');
+    }
+    stateSelect.append(option);
+}
+
+$('#country').change(function(event) {
+    var parent = event.target.value;
+    var url = '{{route('states')}}';
+    $.getJSON(url+'?country=' + parent, function(data) {
+        data = data || {};
+        stateSelect.empty();
+        $.each(data, function(key, value) {
+             append(key, value);
+        });
+    });
+});
+
+</script>
+@endpush

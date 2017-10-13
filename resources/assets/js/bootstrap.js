@@ -15,5 +15,4 @@ require('bootstrap-sass');
 require('metismenu');
 require('bootstrap-datepicker');
 require('bootstrap-filestyle');
-require('./bootstrap-formhelpers/js/bootstrap-formhelpers.js');
 window.autosize = window.autosize ? window.autosize : require('autosize');

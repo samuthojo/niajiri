@@ -229,7 +229,7 @@ return [
         ],
 
         'state' => [
-            'label' => 'State',
+            'label' => 'State/Region/City',
             'placeholder' => 'State',
             'header' => 'State',
             'description' => 'State',
