@@ -127,7 +127,7 @@ class ApplicationController extends SecureController {
 	public function show(Request $request, $id) {
 		//TODO check CV validity
 
-		//load application with permissions
+		//load application
 		$application = Application::query()->findOrFail($id);
 
 		$data = [
@@ -274,5 +274,27 @@ class ApplicationController extends SecureController {
 		];
 
 		return view('applications.my.index', $data);
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function application(Request $request, $id) {
+
+		//load application
+		$application = Application::query()->findOrFail($id);
+
+		$data = [
+			'route_title' => 'Application',
+			'route_description' => 'Application',
+			'application' => $application,
+			'instance' => $application,
+			'applicant_id' => $request->input('applicant_id'),
+		];
+
+		return view('applications.my.application', $data);
 	}
 }

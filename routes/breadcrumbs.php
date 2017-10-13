@@ -36,6 +36,11 @@ Breadcrumbs::register('applications.applied', function ($breadcrumbs) {
     $breadcrumbs->push('My Applications', route('applications.applied'));
 });
 
+Breadcrumbs::register('applications.application', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('applications.applied');
+    $breadcrumbs->push('Application', route('applications.applied', $instance->id));
+});
+
 
 //-------------------------------------------------------------------------
 //Reports Routes
