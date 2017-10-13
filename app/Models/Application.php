@@ -36,6 +36,7 @@ class Application extends Model implements HasMedia
         'applicant',
         'organization',
         'position',
+        'stages'
     ];
 
     /**
@@ -148,6 +149,15 @@ class Application extends Model implements HasMedia
     public function position()
     {
         return $this->belongsTo('App\Models\Position', 'position_id');
+    }
+
+    /**
+     * Get the application stages
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stages()
+    {
+        return $this->hasMany('App\Models\ApplicationStage', 'application_id');
     }
 
 }
