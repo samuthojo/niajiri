@@ -17,15 +17,10 @@ class CreateTestsTable extends Migration
           $table->uuid('id');
           $table->decimal('duration', 5, 2);
           $table->uuid('stage_id')->nullable();
-          $table->uuid('test_category_id')->nullable();
+          $table->uuid('test_category')->nullable();
           $table->foreign('stage_id')
                 ->references('id')
                 ->on('stages')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-          $table->foreign('test_category_id')
-                ->references('id')
-                ->on('test_categories')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
           $table->timestamps();

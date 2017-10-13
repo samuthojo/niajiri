@@ -23,6 +23,7 @@ class StagesTableSeeder extends Seeder {
 						'activities' => 'Review '.$value,
 						'passMark' => 200,
 						'number' => ($key + 1),
+						'hasTest' => ($value == 'Aptitude test') ? 1 : 0,
 						'startedAt' => '05-05-2017',
 						'endedAt' => '12-12-2017',
 					]);

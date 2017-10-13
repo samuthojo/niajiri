@@ -30,7 +30,6 @@
     <div class="col-md-offset-3 col-md-6">
         {!! Form::text('activities', null, [
             'class' => 'form-control',
-            'required' => 'required',
             'aria-describedby'=> 'stageNameHelpBlock',
             'placeholder' => trans('stages.inputs.activities.placeholder')
         ]) !!}
@@ -92,6 +91,33 @@
     </div>
 </div>
 {{-- end passMark --}}
+
+{{-- start hasTest --}}
+      <div class="form-group {{ $errors->has('hasTest') ? 'has-error' : ''}}">
+        <div class="col-md-offset-3 col-md-6">
+          <label for="hasTest" title="{{ trans('stages.inputs.hasTest.description') }}">
+              {{trans('stages.inputs.hasTest.label')}}
+              <span class="text-danger">*</span>
+          </label>
+          <div>
+              @foreach(trans('stages.hasTest') as $key => $value)
+              <label class="radio-inline text-black" for="{{$key}}">
+                {!! Form::radio('hasTest', $key, null, [
+                    'id' => $key,
+                    'aria-describedby'=> 'stage_hasTest_help_block',
+                ]) !!}
+                {{$value}}
+              </label>
+              @endforeach
+          </div>
+          @if($errors->any() && $errors->has('hasTest'))
+          {!!
+              $errors->first('hasTest', '<p id="cv_hasTest_help_block" class="help-block">:message</p>')
+          !!}
+          @endif
+      </div>
+  </div>
+{{-- end hasTest --}}
 
 {{-- start startedAt --}}
 <div class="form-group {{ $errors->has('startedAt') ? 'has-error' : ''}}">

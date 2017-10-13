@@ -37,7 +37,7 @@ class Test extends Model
     public $fillable = [
         'duration',
         'stage_id',
-        'test_category_id'
+        'test_category'
     ];
 
 
@@ -81,7 +81,7 @@ class Test extends Model
     protected $casts = [
         'id' => 'string',
         'stage_id' => 'string',
-        'test_category_id' => 'string'
+        'test_category' => 'string'
     ];
 
     /**

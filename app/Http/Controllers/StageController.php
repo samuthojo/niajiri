@@ -211,5 +211,5 @@ class StageController extends SecureController
         return redirect(route('stages.show',['id' => $test->stage_id]));
 
     }
-    
+
 }

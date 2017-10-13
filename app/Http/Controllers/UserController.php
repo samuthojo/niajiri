@@ -319,7 +319,7 @@ class UserController extends SecureController {
     {
     	//load actual current user
     	$id = \Auth::user()->id;
-		$user = User::findOrFail($id);
+			$user = User::findOrFail($id);
 
         $data = [
             'route_title' => 'Basic Details',
@@ -328,7 +328,7 @@ class UserController extends SecureController {
             'instance' => $user
         ];
 
-        return view('users.basic.edit', $data); 
+        return view('users.basic.edit', $data);
     }
 
     /**

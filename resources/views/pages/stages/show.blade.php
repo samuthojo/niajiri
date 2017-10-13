@@ -46,11 +46,12 @@
                                     </div>
                                     <div class="col-lg-7" id="cluster_info">
                                         <dl class="dl-horizontal" >
-                                            <dt>Last Updated:</dt><dd>{{$stage->updated_at->diffForHumans()}}</dd>
-                                            <dt>Created:</dt> <dd>{{$stage->created_at->diffForHumans()}}</dd>
+                                            <dt>{{trans('stages.inputs.startedAt.label')}}:</dt><dd>{{$stage->startedAt->format('d-m-y')}}</dd>
+                                            <dt>{{trans('stages.inputs.endedAt.label')}}:</dt> <dd>{{$stage->endedAt->format('d-m-y')}}</dd>
                                         </dl>
                                     </div>
                                 </div>
+                              @if($stage->hasTest)
                                 <div class="row m-t-sm">
                                     <div class="col-lg-12">
                                     <div class="panel blank-panel">
@@ -73,6 +74,7 @@
                                     </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
