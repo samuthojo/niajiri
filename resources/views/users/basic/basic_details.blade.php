@@ -342,6 +342,59 @@
 </div>
 {{-- end physical address, fax & postal address --}}
 
+{{-- start country & state --}}
+<div class="row m-t-md">
+
+    {{-- start country --}}
+    <div class="col-md-6">
+        <div class="form-group {{ $errors->has('country') ? 'has-error' : ''}}">
+            <label for="country" title="{{ trans('cvs.inputs.country.description') }}">
+                {{trans('cvs.inputs.country.label')}}
+                <span class="text-danger">*</span>
+            </label>
+            {!! Form::select('country', [], null, [
+                'id' => 'country',
+                'class' => 'form-control bfh-countries',
+                //'required' => 'required',
+                'aria-describedby'=> 'cv_country_help_block',
+                'placeholder' => trans('cvs.inputs.country.placeholder')
+            ]) !!}
+            @if($errors->any() && $errors->has('country'))
+            {!!
+                $errors->first('country', '<p id="cv_country_help_block" class="help-block">:message</p>')
+            !!}
+            @endif
+        </div>
+    </div>
+    {{-- end country --}}
+
+    {{-- start state --}}
+    <div class="col-md-6">
+        <div class="form-group {{ $errors->has('state') ? 'has-error' : ''}}">
+            <label for="state" title="{{ trans('cvs.inputs.state.description') }}">
+                {{trans('cvs.inputs.state.label')}}
+                <span class="text-danger">*</span>
+            </label>
+            {!! Form::select('state', [], null, [
+                'id' => 'state',
+                'class' => 'form-control bfh-states',
+                'data-country' => 'country',
+                //'required' => 'required',
+                'aria-describedby'=> 'cv_state_help_block',
+                'placeholder' => trans('cvs.inputs.state.placeholder')
+            ]) !!}
+            @if($errors->any() && $errors->has('state'))
+            {!!
+                $errors->first('state', '<p id="cv_state_help_block" class="help-block">:message</p>')
+            !!}
+            @endif
+        </div>
+    </div>
+    {{-- end state --}}
+
+</div>
+{{-- start country & state --}}
+
 {{-- start personal summary --}}
 <div class="row m-t-md m-b-md">
 

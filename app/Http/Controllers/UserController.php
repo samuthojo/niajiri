@@ -348,6 +348,8 @@ class UserController extends SecureController {
 			'mobile' => 'string|min:2|max:255|required|unique:users,mobile,' . $id,
 			'physical_address' => 'string|min:2|max:255|required',
 			'summary' => 'string|required',
+			'country' => 'string|required',
+			'state' => 'string|required',
 			'gender' => 'string|min:2|max:255|required',
 			'dob' => 'date|required',
 			'marital_status' => 'string|min:2|max:255|required'
