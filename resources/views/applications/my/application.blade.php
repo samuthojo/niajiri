@@ -1,18 +1,84 @@
 @extends('layouts.page')
 
 @section('page')
-    <div class="wrapper wrapper-content animated fadeInRight">
+{{-- start position preview --}}
+<div class="row">
+    <div class="col-md-12">
+
+        {{-- start box --}}
+        <div class="ibox product-detail">
+            {{-- start box content --}}
+            <div class="ibox-content">
+
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center m-t-lg">
-                            <h1>
-                               TODO
-                            </h1>
-                            <small>
-                                Go make me look good.
-                            </small>
+                    {{-- end position details --}}
+                    <div class="col-md-12">
+
+                        {{-- start position title --}}
+                        <h2 class="font-bold m-b-xs">
+                            {{$application->position->title}}
+                        </h2>
+                        {{-- end position title --}}
+
+                        {{-- start position deadline --}}
+                        <small class="text-muted">
+                            <i class="fa fa-clock-o"></i> Deadline: {{$application->position->dueAt->toFormattedDateString()}}
+                        </small>
+                        {{-- end position deadline --}}
+                        |
+                        {{-- start application date --}}
+                        <small class="text-muted">
+                            <i class="fa fa-clock-o"></i> Date Applied: {{$application->created_at->toFormattedDateString()}}
+                        </small>
+                        {{-- end application date --}}
+                        <div class="m-t-md">
+                             <a class="btn btn-primary pull-right" href="{{route('applications.apply', ['applicant_id' => Auth::user()->id, 'position_id' => $application->position->id, 'organization_id' => $application->organization_id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
+                            <h2 class="product-main-price">
+                                {{$application->organization->name}} 
+                                <small class="text-muted">
+                                {{$application->position->sector->name}}
+                                </small>
+                            </h2>
                         </div>
+                        <hr>
+
+                        {{-- start position summary --}}
+                        <div class="m-t-xl">
+                            <h3>Description</h3>
+                            <div class="small text-muted">
+                                {!! $application->position->summary !!}
+                            </div>
+                        </div>
+                        {{-- end position summary --}}
+
+                        {{-- start position responsibilities --}}
+                        <div class="m-t-xl">
+                            <h3>Responsibilities</h3>
+                            <div class="small text-muted">
+                                {!! $application->position->responsibilities !!}
+                            </div>
+                        </div>
+                        {{-- end position responsibilities --}}
+
+                        {{-- start position requirements --}}
+                        <div class="m-t-xl">
+                            <h3>Requirements</h3>
+                            <div class="small text-muted">
+                                {!! $application->position->requirements !!}
+                            </div>
+                        </div>
+                        {{-- end position requirements --}}
+                        
                     </div>
+                    {{-- start position details --}}
                 </div>
+
             </div>
+            {{-- end box content --}}
+        </div>
+        {{-- end box --}}
+
+    </div>
+</div>
+{{-- end position preview --}}
 @endsection

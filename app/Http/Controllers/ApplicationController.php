@@ -283,6 +283,8 @@ class ApplicationController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function application(Request $request, $id) {
+		//TODO flash missing details
+		//TODO flash missing cover letter
 
 		//load application
 		$application = Application::query()->findOrFail($id);
