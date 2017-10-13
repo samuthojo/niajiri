@@ -103,5 +103,13 @@ return [
             'header' => 'Applicant',
             'description' => 'Applicant e.g Juma Lisu etc.',
         ],
+
+        'attachment' => [
+            'label' => 'Attachment',
+            'placeholder' => 'Education Attachment',
+            'header' => 'Attachment',
+            'description' => 'Education Attachment',
+            'change' => 'Attachment',
+        ],
     ],
 ];

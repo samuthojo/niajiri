@@ -39,6 +39,7 @@ class EducationController extends SecureController {
 	 */
 	public function create(Request $request) {
 		$data = [
+			'education' => new Education(),
 			'applicant_id' => $request->input('applicant_id'),
 		];
 		return view('educations.create', $data);

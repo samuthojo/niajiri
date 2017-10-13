@@ -109,18 +109,19 @@ class Education extends Model implements HasMedia
 
 
     /**
-     * Build education attachement url
+     * Build education attachment url
      */
-    public function attachement() {
-        //TODO default education attachement
-        $attachement;
+    public function attachment() {
+        //TODO default education attachment
+        $attachment = null;
 
-        //try obtain custom uploaded attachement
-        $media = $this->getMedia('attachements')->first();
+        //try obtain custom uploaded attachment
+        $media = $this->getMedia('attachments')->first();
         if ($media) {
-            $attachement = asset('storage/' . $media->id . '/' . $media->file_name);
+            $attachment = $media;
         }
-        return $attachement;
+        
+        return $attachment;
     }
 
 

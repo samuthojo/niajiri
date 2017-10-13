@@ -5,7 +5,6 @@
 {{-- start page content --}}
 <div class="row">
     <div class="col-md-12">
-
         {{-- start open education edit form --}}
         {!! Form::model($education, [
 		    'method' => 'PATCH',

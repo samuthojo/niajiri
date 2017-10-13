@@ -77,6 +77,9 @@
                                     {{ trans('educations.inputs.remark.header') }}
                                 </th>
                                 <th>
+                                    {{ trans('educations.inputs.attachment.header') }}
+                                </th>
+                                <th>
                                     {{trans('educations.headers.actions')}}
                                 </th>
                             </tr>
@@ -93,6 +96,15 @@
                                 <td>{{ display_date($item->started_at)}}</td>
                                 <td>{{ display_date($item->finished_at)}}</td>
                                 <td>{{ $item->remark}}</td>
+                                @if($item->attachment())
+                                <td>
+                                    <a href="{{$item->attachment()->public_url()}}" target="_blank">
+                                        {{$item->attachment()->file_name}}
+                                    </a>
+                                </td>
+                                @else
+                                <td>N/A</td>
+                                @endif
                                 <td>
 
                                     @permission('view:education')
