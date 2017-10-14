@@ -204,6 +204,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             'users.middle_name' => 10,
             'users.surname' => 10,
             'users.gender' => 10,
+            'users.marital_status' => 10,
             'users.email' => 10,
             'users.mobile' => 10,
             'users.landline' => 8,
@@ -213,6 +214,8 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             'users.skills' => 5,
             'users.interests' => 5,
             'users.hobbies' => 5,
+            'users.country' => 10,
+            'users.state' => 10,
         ]
     ];
 
@@ -284,6 +287,16 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             $value = $value->format(config('app.datepicker_parse_format'));
         }
         return $value;
+    }
+
+
+    /**
+     * Derive full user name
+     * @return sting
+     */
+    public function fullName()
+    {
+        return $this->first_name .' '. $this->middle_name .' '. $this->surname;
     }
 
 

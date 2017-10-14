@@ -34,7 +34,7 @@ class ApplicationStage extends Model implements HasMedia
      */
     protected $withables = [
         'application',
-        'stage'
+        'stage',
         'applicant',
         'organization',
         'position',
@@ -77,6 +77,27 @@ class ApplicationStage extends Model implements HasMedia
          * @var array
          */
         'columns' => [
+            //applicant searchable fields
+            'applicant.name' => 10,
+            'applicant.first_name' => 10,
+            'applicant.middle_name' => 10,
+            'applicant.surname' => 10,
+            'applicant.gender' => 10,
+            'applicant.marital_status' => 10,
+            'applicant.email' => 10,
+            'applicant.mobile' => 10,
+            'applicant.landline' => 8,
+            'applicant.fax' => 5,
+            'applicant.postal_address' => 5,
+            'applicant.physical_address' => 5,
+            'applicant.skills' => 5,
+            'applicant.interests' => 5,
+            'applicant.hobbies' => 5,
+            'applicant.country' => 10,
+            'applicant.state' => 10,
+        ],
+        'joins' => [ //ensure relations are also eager loaded. see query below
+            'users as applicant' => ['applicant.id', 'application_stages.applicant_id'],
         ],
     ];
 

@@ -232,7 +232,7 @@ class Application extends Model implements HasMedia
             $applicationStage = ApplicationStage::create([
                     'application_id' => $this->id,
                     'stage_id' => $nextStage->id,
-                    'applicant_id' => $this->application_id, 
+                    'applicant_id' => $this->applicant_id, 
                     'organization_id' => $this->organization_id, 
                     'position_id' => $this->position_id
                 ]);

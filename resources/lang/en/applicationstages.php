@@ -51,8 +51,8 @@ return [
         ],
         'search' => [
             'name' => 'Search',
-            'title' => 'Search Applications',
-            'placeholder' => 'Search Applications',
+            'title' => 'Search Applicants',
+            'placeholder' => 'Search Applicants',
         ],
         'advance' => [
             'name' => 'Advance',
@@ -95,7 +95,7 @@ return [
             'header' => 'Date Applied',
             'description' => 'Date Applied e.g 12-11-2015 etc.',
         ],
-        'applicant_id' => [
+        'applicant' => [
             'label' => 'Applicant',
             'placeholder' => 'Applicant',
             'header' => 'Applicant',
@@ -112,6 +112,12 @@ return [
             'placeholder' => 'Comment',
             'header' => 'Comment',
             'description' => 'Comment',
+        ],
+        'status' => [
+            'label' => 'Status',
+            'placeholder' => 'Status',
+            'header' => 'Status',
+            'description' => 'Status',
         ],
     ],
 ];
