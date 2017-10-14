@@ -190,7 +190,7 @@ class Position extends Model
 
     /**
      * Obtain position last stage
-     * @return [Stage]
+     * @return App\Models\Stage
      */
     public function lastStage()
     {
@@ -199,12 +199,29 @@ class Position extends Model
         return $last_stage;
     }
 
+
+    /**
+     * Check if provided stage is last position applying stage
+     * @param  App\Models\Stage  $stage
+     * @return boolean
+     */
+    public function isLastStage($stage = null)
+    {
+        if(is_set($stage)){
+            $last_stage = $this->lastStage();
+            $is_last_stage = ($last_stage->id === $stage->id);
+            return $is_last_stage;
+        }
+
+        return true;
+    }
+
     /**
      * Obtain position next stage after specified stage
      * @param  [Stage]  $stage
      * @return [Stage]
      */
-    public function nextStage($stage)
+    public function nextStage($stage = null)
     {
         //default to last stage
         $next_stage = $this->lastStage();
