@@ -52,7 +52,7 @@ class ApplicationStageController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//TODO check CV validit
+		//TODO check CV validity
 
 		//ensure valid applicationstage
 		$this->validate($request, [
@@ -63,12 +63,24 @@ class ApplicationStageController extends SecureController {
             'position_id' => 'string|required|exists:positions,id'
 		]);
 
+		//TODO make use of transaction
+
 		//obtain all applicationstage form inputs
 		$body = $request->all();
 
-		//create applicationstage
-		$applicationstage = ApplicationStage::create($body);
+		//ensure application stage does not exists
+		//TODO ensure unique
+		$finders = array_only($body, [
+			'organization_id', 'position_id'
+			'application_id', 'stage_id',
+			'applicant_id'
+		]);
+		$applicationstage = ApplicationStage::where($finders)->first();
 
+		//create applicationstage
+		if(!isset($applicationstage)){
+			$applicationstage = ApplicationStage::create($body);
+		}
 
 		//flash message
 		flash(trans('applicationstages.actions.save.flash.success'))
