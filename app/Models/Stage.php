@@ -71,6 +71,7 @@ class Stage extends Model
         'startedAt' => 'date',
         'endedAt' => 'date',
         'hasTest' => 'boolean',
+        'passMark' => 'double',
         'position_id' => 'string'
     ];
 

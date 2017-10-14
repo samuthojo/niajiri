@@ -48,7 +48,8 @@ class ApplicationStage extends Model implements HasMedia
     protected $casts = [
         'created_at' => 'datetime', //used as application date
         'updated_at' => 'datetime',
-        'deleted_at' => 'datetime'
+        'deleted_at' => 'datetime',
+        'score' => 'double'
     ];
 
     /**
@@ -81,6 +82,50 @@ class ApplicationStage extends Model implements HasMedia
             $value = $value->format(config('app.datepicker_parse_format'));
         }
         return $value;
+    }
+
+    /**
+     * Check if application stage has test
+     * @return boolean
+     */
+    public function hasTest()
+    {
+        $has_test = $this->stage !== null && $this->stage->hasTest;
+        return $has_test;
+    }
+
+    /**
+     * Check if applicant has pass the stage
+     * @return boolean
+     */
+    public function hasPass()
+    {
+        //TODO compute score from test
+        $has_pass = $this->score >= $this->stage->passMark;
+        return $has_pass;
+    }
+
+
+    /**
+     * Check if provided user is application applicant
+     * @param  App\Models\User  $user
+     * @return boolean
+     */
+    public function isApplicant($user = null)
+    {
+        $is_applicant = (is_set($user) && is_set($user->id)) ? ($user->id === $this->applicant_id) : false;
+        return $is_applicant;
+    }
+
+    /**
+     * Check if current user can take test and stage has test
+     * @param  App\Models\User  $user
+     * @return boolean
+     */
+    public function canTakeTest($user = null)
+    {
+        $can_take_test = $this->isApplicant($user) && $this->hasTest();
+        return $can_take_test;
     }
 
     
