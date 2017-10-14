@@ -16,7 +16,7 @@
     <div class="project-list">
         <table class="table">
             <tbody>
-                @foreach($application->stages as $applicationStage)
+                @foreach($application->stages->sortBy('stage.number') as $applicationStage)
                 <tr>
                     <td class="project-status">
                         <span class="label {{display_boolean($applicationStage->hasPass(), 'label-primary', 'label-danger')}}">
@@ -41,11 +41,13 @@
                             {{trans('applicationstages.actions.score.name')}}
                         </a>
                         @endpermission
+                        @if($applicationStage->hasPass())
                         @permission('edit:applicationstage')
                         <a href="{{route('applications.advance', ['id' => $application->id, 'applicant_id' => $application->applicant_id])}}" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.advance.title')}}">
                             {{trans('applicationstages.actions.advance.name')}}
                         </a>
                         @endpermission
+                        @endif
                         @endif
                     </td>
                 </tr>

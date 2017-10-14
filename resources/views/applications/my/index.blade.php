@@ -42,10 +42,6 @@
                             </td>
 
                             <td>
-                                <a class="btn btn-primary" href="{{ route('applications.application', ['id' => $application->id, 'applicant_id' => $application->applicant_id]) }}" title="{{trans('applications.actions.edit.title')}}"></i>{{trans('applications.actions.edit.name')}}</a>
-                            </td>
-
-                            <td>
                                 {!! Form::open([
                                     'method'=>'DELETE',
                                     'url' => route('applications.destroy', ['id' => $application->id, 'applicant_id'=> $application->applicant_id]),
