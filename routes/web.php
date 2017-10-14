@@ -73,6 +73,8 @@ Route::get('/application/{application}', 'ApplicationController@application')->n
 Route::get('/advance/{application}', 'ApplicationController@advance')->name('applications.advance');
 Route::get('/apply', 'ApplicationController@store')->name('applications.apply');
 Route::get('/applied', 'ApplicationController@applied')->name('applications.applied');
+Route::resource('applicationstages', 'ApplicationStageController');
+
 
 //cv routes
 Route::get('/basic', 'UserController@get_basic')->name("users.basic");

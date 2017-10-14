@@ -468,3 +468,29 @@ Breadcrumbs::register('stages.tests.create', function ($breadcrumbs, $instance) 
     $breadcrumbs->parent('stages.show', $instance);
     $breadcrumbs->push('Test Create', route('stages.create'));
 });
+
+
+// -------------------ApplicationStages Breadcrumbs--------------------------------------
+// Home > Application Stages
+Breadcrumbs::register('applicationstages.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('ApplicationStages', route('applicationstages.index'));
+});
+
+// Home > Application Stages > Create ApplicationStage
+Breadcrumbs::register('applicationstages.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('applicationstages.index');
+    $breadcrumbs->push('Create ApplicationStage', route('applicationstages.create'));
+});
+
+// Home > Application Stages > [ApplicationStage Name]
+Breadcrumbs::register('applicationstages.show', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('applicationstages.index');
+    $breadcrumbs->push($instance->name, route('applicationstages.show', $instance->id));
+});
+
+// Home > Application Stages > [ApplicationStage Name] > Edit
+Breadcrumbs::register('applicationstages.edit', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('applicationstages.show', $instance);
+    $breadcrumbs->push('Edit', route('applicationstages.edit', $instance->id));
+});
