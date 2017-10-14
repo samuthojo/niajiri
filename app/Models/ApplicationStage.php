@@ -30,6 +30,17 @@ class ApplicationStage extends Model implements HasMedia
     protected $primaryKey = 'id';
 
     /**
+     * Relations to eager load
+     */
+    protected $withables = [
+        'application',
+        'stage'
+        'applicant',
+        'organization',
+        'position',
+    ];
+
+    /**
      * Attributes that should be mass-assignable.
      *
      * @var array
