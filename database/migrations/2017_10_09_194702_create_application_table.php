@@ -42,8 +42,14 @@ class CreateApplicationTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            $table->uuid('stage_id')->nullable();
+            $table->foreign('stage_id')->references('id')
+                ->on('stages')
+                ->onUpdate('cascade')
+                ->onDelete('SET NULL');
+
             //post indexes
-            //enforce unique applicant application per position
+            //enforce unique application per applicant per position
             $table->unique(['applicant_id', 'position_id']);
 
         });

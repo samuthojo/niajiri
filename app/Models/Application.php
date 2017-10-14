@@ -36,7 +36,8 @@ class Application extends Model implements HasMedia
         'applicant',
         'organization',
         'position',
-        'stages'
+        'stages',
+        'stage'
     ];
 
     /**
@@ -45,7 +46,8 @@ class Application extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'applicant_id', 'organization_id', 'position_id'
+        'applicant_id', 'organization_id', 
+        'position_id', 'stage_id'
     ];
 
     /**
@@ -152,12 +154,41 @@ class Application extends Model implements HasMedia
     }
 
     /**
+     * Get current stage associate with application
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function stage()
+    {
+        return $this->belongsTo('App\Models\Stage', 'stage_id');
+    }
+
+    /**
      * Get the application stages
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function stages()
     {
         return $this->hasMany('App\Models\ApplicationStage', 'application_id');
+    }
+
+
+    /**
+     * Advance application to next stage
+     * @return App\Modela\ApplicationStage
+     */
+    public function advance()
+    {
+        //TODO wrap in transaction
+        
+        //1. get current stage
+        $currentStage = $this->stage;
+        
+        //2. set current stage if not exists
+        if(!isset($currentStage)){
+            $currentStage = $this->position->firstStage();
+            $this->stage_id = $currentStage->id;
+            $this->save();
+        }
     }
 
 }
