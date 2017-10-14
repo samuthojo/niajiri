@@ -70,8 +70,8 @@
 	        @if($position->stages && $position->stages->count() > 0)
 	        @foreach($position->stages->sortBy('number') as $stage)
 	        {{-- start stage menu --}}
-	        <li class="{{areActiveURL('/applicationstages?stage_id='.$stage->id)}}">
-                <a href="{{route('applicationstages.index', ['stage_id' => $stage->id])}}" title="{{$stage->name}}">
+	        <li class="{{isActivePath('/applicationstages?position_id='.$position->id.'&stage_id='.$stage->id)}}">
+                <a href="{{route('applicationstages.index', ['position_id' => $position->id, 'stage_id' => $stage->id])}}" title="{{$stage->name}}">
                 <span class="nav-label">
                 	{{$stage->name}}
                 </span>

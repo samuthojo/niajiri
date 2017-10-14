@@ -32,7 +32,7 @@
     <div id="wrapper">
 
         {{-- start include sidebar --}}
-        @include('position.blocks.sidebar')
+        @include('positions.blocks.sidebar')
         {{-- end include sidebar --}}
 
         {{-- start page content --}}

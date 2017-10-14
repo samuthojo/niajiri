@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //register helpers
         require_once __DIR__ . '/../Helpers/strings.php';
+        require_once __DIR__ . '/../Helpers/url.php';
 
         //register oauth callback uri & urls
         foreach (Config::get('services') as $key => $config) {

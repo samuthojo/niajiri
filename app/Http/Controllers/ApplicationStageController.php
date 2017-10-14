@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ApplicationStage;
+use App\Models\Position;
+use App\Models\Stage;
 use Illuminate\Http\Request;
 
 //TODO refactor to use repository as Makonda
@@ -18,6 +20,12 @@ class ApplicationStageController extends SecureController {
 		//initialize query
 		$query = ApplicationStage::filter($request->all())->orderBy('created_at', 'asc');
 
+		//load position
+		$position = Position::find($request->input('position_id'));
+
+		//load stage
+		$stage = Stage::find($request->input('stage_id'));
+
 		//paginate query result
 		$applicationstages = $query->paginate(config('app.defaults.pageSize'));
 
@@ -25,6 +33,8 @@ class ApplicationStageController extends SecureController {
 			'route_title' => 'ApplicationStages',
 			'route_description' => 'ApplicationStage List',
 			'applicationstages' => $applicationstages,
+			'position' => $position,
+			'stage' => $stage,
 			'q' => $request->input('q'),
 			'applicant_id' => $request->input('applicant_id'),
 		];
@@ -56,10 +66,10 @@ class ApplicationStageController extends SecureController {
 
 		//ensure valid applicationstage
 		$this->validate($request, [
-            'application_id' => 'string|required|exists:applications,id'
-            'stage_id' => 'string|required|exists:stages,id'
-            'applicant_id' => 'string|required|exists:users,id'
-            'organization_id' => 'string|required|exists:users,id'
+            'application_id' => 'string|required|exists:applications,id',
+            'stage_id' => 'string|required|exists:stages,id',
+            'applicant_id' => 'string|required|exists:users,id',
+            'organization_id' => 'string|required|exists:users,id',
             'position_id' => 'string|required|exists:positions,id'
 		]);
 
@@ -138,10 +148,10 @@ class ApplicationStageController extends SecureController {
 		
 		//ensure valid applicationstage
 		$this->validate($request, [
-            'application_id' => 'string|required|exists:applications,id'
-            'stage_id' => 'string|required|exists:stages,id'
-            'applicant_id' => 'string|required|exists:users,id'
-            'organization_id' => 'string|required|exists:users,id'
+            'application_id' => 'string|required|exists:applications,id',
+            'stage_id' => 'string|required|exists:stages,id',
+            'applicant_id' => 'string|required|exists:users,id',
+            'organization_id' => 'string|required|exists:users,id',
             'position_id' => 'string|required|exists:positions,id'
 		]);
 
