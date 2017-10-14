@@ -30,6 +30,7 @@
                         Score: {{display_decimal($applicationStage->score)}}%
                     </td>
                     <td class="project-actions">
+                        @if($application->canAdvance($applicationStage->stage))
                         @if($applicationStage->canTakeTest(Auth::user()))
                         <a href="#" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.take_test.title')}}">
                             {{trans('applicationstages.actions.take_test.name')}}
@@ -41,10 +42,11 @@
                         </a>
                         @endpermission
                         @permission('edit:applicationstage')
-                        <a href="#" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.advance.title')}}">
+                        <a href="{{route('applications.advance', ['id' => $application->id, 'applicant_id' => $application->applicant_id])}}" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.advance.title')}}">
                             {{trans('applicationstages.actions.advance.name')}}
                         </a>
                         @endpermission
+                        @endif
                     </td>
                 </tr>
                 @endforeach

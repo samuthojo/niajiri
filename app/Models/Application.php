@@ -6,6 +6,7 @@ use App\Models\Base as Model;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Carbon\Carbon;
+use App\Models\ApplicationStage;
 
 class Application extends Model implements HasMedia 
 {
@@ -109,6 +110,33 @@ class Application extends Model implements HasMedia
 
 
     /**
+     * Check if provided position stage is current application stage
+     * @param  App\Models\Stage  $stage
+     * @return boolean
+     */
+    public function isCurrentStage($stage = null)
+    {
+        if(is_set($stage)){
+            return $this->stage_id === $stage->id;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Check if application in current stage can advance in next stage
+     * @param  App\Models\Stage $stage
+     * @return boolean
+     */
+    public function canAdvance($stage = null)
+    {
+        $can_advance = $this->isCurrentStage($stage) && !$this->position->isLastStage($stage);
+        return $can_advance;
+    }
+
+
+    /**
      * Build application cover_letter url
      */
     public function coverLetter() {
@@ -182,13 +210,38 @@ class Application extends Model implements HasMedia
         
         //1. get current stage
         $currentStage = $this->stage;
+        $nextStage = null;
         
-        //2. set current stage if not exists
-        if(!isset($currentStage)){
-            $currentStage = $this->position->firstStage();
-            $this->stage_id = $currentStage->id;
-            $this->save();
+        //2. obtain application next stage
+        $nextStage = ($currentStage === null) ? $this->position->firstStage() : $this->position->nextStage($currentStage);
+        //TODO ensure next stage is not null
+
+        //3. obtain existing application stage(ensure next stage not exists)
+        $applicationStage = ApplicationStage::query()->where([
+                'application_id'=> $this->id,
+                'position_id' => $this->position_id,
+                'stage_id' => $nextStage->id
+            ])->first();
+
+        //4. set application current stage
+        $this->stage_id = $nextStage->id;
+        $this->save();
+
+        //5. advance application to next stage
+        if($applicationStage === null){
+            $applicationStage = ApplicationStage::create([
+                    'application_id' => $this->id,
+                    'stage_id' => $nextStage->id,
+                    'applicant_id' => $this->application_id, 
+                    'organization_id' => $this->organization_id, 
+                    'position_id' => $this->position_id
+                ]);
+            //TODO send mail to applicant to notify next stage
         }
+        
+        //6. return current application stage
+        return $applicationStage;
+
     }
 
 }

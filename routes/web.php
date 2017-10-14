@@ -70,6 +70,7 @@ Route::resource('assignments', 'AssignmentController');
 Route::resource('publications', 'PublicationController');
 Route::resource('applications', 'ApplicationController');
 Route::get('/application/{application}', 'ApplicationController@application')->name('applications.application');
+Route::get('/advance/{application}', 'ApplicationController@advance')->name('applications.advance');
 Route::get('/apply', 'ApplicationController@store')->name('applications.apply');
 Route::get('/applied', 'ApplicationController@applied')->name('applications.applied');
 

@@ -57,40 +57,17 @@ class ApplicationStageController extends SecureController {
 		//ensure valid applicationstage
 		$this->validate($request, [
             'application_id' => 'string|required|exists:applications,id'
-            // 'stage_id' => 'string|required|exists:stages,id'
+            'stage_id' => 'string|required|exists:stages,id'
             'applicant_id' => 'string|required|exists:users,id'
             'organization_id' => 'string|required|exists:users,id'
             'position_id' => 'string|required|exists:positions,id'
 		]);
 
-		//TODO refactor to ApplicationStage#advance
-		//TODO make use of transaction
-		
-		//obtain position
-		$position  = $request->input('position_id');
-		$position = Position::findOrFail($position);
-
 		//obtain all applicationstage form inputs
 		$body = $request->all();
 
-		//obtain next stage
-		if(!array_has($body, 'stage_id')){
-			//obtain application next stages
-		}
-
-		//ensure application stage does not exists
-		//TODO ensure unique
-		$finders = array_only($body, [
-			'organization_id', 'position_id'
-			'application_id', 'stage_id',
-			'applicant_id'
-		]);
-		$applicationstage = ApplicationStage::where($finders)->first();
-
 		//create applicationstage
-		if(!isset($applicationstage)){
-			$applicationstage = ApplicationStage::create($body);
-		}
+		$applicationstage = ApplicationStage::create($body);
 
 		//flash message
 		flash(trans('applicationstages.actions.save.flash.success'))
@@ -176,7 +153,6 @@ class ApplicationStageController extends SecureController {
 
 		//update applicationstage
 		$applicationstage->update($body);
-
 
 		//flash message
 		flash(trans('applicationstages.actions.update.flash.success'))

@@ -236,7 +236,7 @@ class Position extends Model
             });
 
             if ($next_stage == null) {
-                $next_stage = $this->last_stage();
+                $next_stage = $this->lastStage();
             }
 
         }
