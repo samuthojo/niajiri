@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-md-12">
             {{-- start score --}}
-            <div class="col-md-offset-1 col-md-9">
+            <div class="col-md-offset-1 col-md-11">
                 <div class="form-group {{ $errors->has('score') ? 'has-error' : ''}}">
                     <label for="score" title="{{ trans('applicationstages.inputs.score.description') }}">
                         {{trans('applicationstages.inputs.score.label')}}
@@ -38,7 +38,7 @@
             {{-- end score --}}
 
             {{--start comment--}}
-            <div class="col-md-offset-1 col-md-9 m-t-md">
+            <div class="col-md-offset-1 col-md-11 m-t-md">
               <div class="form-group {{ $errors->has('comment') ? 'has-error' : ''}}">
                   <label for="comment" title="{{ trans('applicationstages.inputs.comment.description') }}">
                       {{trans('applicationstages.inputs.comment.label')}}
