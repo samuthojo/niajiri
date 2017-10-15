@@ -141,7 +141,7 @@ class Application extends Model implements HasMedia
      */
     public function coverLetter() {
         //default application cover_letter
-        $cover_letter;
+        $cover_letter = null;
 
         //try obtain custom uploaded cover_letter
         $media = $this->getMedia('cover_letters')->first();
