@@ -55,7 +55,10 @@ class QuestionsTableSeeder extends Seeder {
 
 			foreach ($sampleQuestions as $question) {
 				$question['test_id'] = $test->id;
-				Question::Create($question);
+				Question::updateOrCreate([
+						'test_id' => $question['test_id'],
+						'label' => $question['label'],
+					], $question);
 			};
 
 		});
