@@ -61,7 +61,16 @@
                         <thead>
                             <tr>
                                 <th>
-                                    {{ trans('applicationstages.inputs.applicant.header') }}
+                                    {{ trans('applicationstages.inputs.created_at.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('cvs.inputs.name.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('cvs.inputs.mobile.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('cvs.inputs.email.header') }}
                                 </th>
                                 <th>
                                     {{ trans('applicationstages.inputs.score.header') }}
@@ -80,8 +89,19 @@
                         <tbody>
                         @foreach($applicationstages->sortBy('score') as $item)
                             <tr>
+                                <td>
+                                    {{ $item->created_at->format(config('app.datetime_format'))}}
+                                </td>
                                 <td>{{ $item->applicant->fullName()}}</td>
-                                <td>{{ display_decimal($item->score)}}%</td>
+                                <td>
+                                    {{ display_or_na($item->applicant->mobile)}}
+                                </td>
+                                <td>
+                                    {{ display_or_na($item->applicant->email)}}
+                                </td>
+                                <td>
+                                    {{ display_decimal($item->score)}}%
+                                </td>
                                 <td>
                                     <span class="label {{display_boolean($item->hasPass(), 'label-primary', 'label-danger')}}">
                                         {{display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
