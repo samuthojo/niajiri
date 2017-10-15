@@ -109,12 +109,15 @@ class ApplicationStageController extends SecureController {
 		$data = [
 			'route_title' => 'Show Application Stage',
 			'route_description' => 'Show Application Stage',
-			'applicationstage' => $applicationstage,
+			'position' => $applicationstage->position,
+			'application' => $applicationstage->application,
 			'instance' => $applicationstage,
+			'applicationstage' => $applicationstage,
+			'stage' => $applicationstage->stage,
 			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('applicationstages.edit', $data);
+		return view('applicationstages.application', $data);
 	}
 
 	/**
@@ -127,17 +130,20 @@ class ApplicationStageController extends SecureController {
 
 		//TODO check CV validity
 
-		$applicationstage = ApplicationStage::findOrFail($id);
+		$applicationstage = ApplicationStage::query()->findOrFail($id);
 
 		$data = [
 			'route_title' => 'Edit Application Stage',
 			'route_description' => 'Edit Application Stage',
-			'applicationstage' => $applicationstage,
+			'position' => $applicationstage->position,
+			'application' => $applicationstage->application,
 			'instance' => $applicationstage,
+			'applicationstage' => $applicationstage,
+			'stage' => $applicationstage->stage,
 			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('applicationstages.edit', $data);
+		return view('applicationstages.application', $data);
 	}
 
 	/**
