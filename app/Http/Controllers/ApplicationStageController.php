@@ -30,10 +30,10 @@ class ApplicationStageController extends SecureController {
 		$applicationstages = $query->paginate(config('app.defaults.pageSize'));
 
 		$data = [
-			'route_title' => 'ApplicationStages',
-			'route_description' => 'ApplicationStage List',
+			'route_title' => 'Application Stages',
+			'route_description' => 'Application Stage List',
 			'applicationstages' => $applicationstages,
-			'instance' => $position,
+			'instance' => $stage,
 			'position' => $position,
 			'stage' => $stage,
 			'q' => $request->input('q'),
@@ -105,8 +105,8 @@ class ApplicationStageController extends SecureController {
 		$applicationstage = ApplicationStage::query()->findOrFail($id);
 
 		$data = [
-			'route_title' => 'Show ApplicationStage',
-			'route_description' => 'Show ApplicationStage',
+			'route_title' => 'Show Application Stage',
+			'route_description' => 'Show Application Stage',
 			'applicationstage' => $applicationstage,
 			'instance' => $applicationstage,
 			'applicant_id' => $request->input('applicant_id'),
@@ -128,8 +128,8 @@ class ApplicationStageController extends SecureController {
 		$applicationstage = ApplicationStage::findOrFail($id);
 
 		$data = [
-			'route_title' => 'Edit ApplicationStage',
-			'route_description' => 'Edit ApplicationStage',
+			'route_title' => 'Edit Application Stage',
+			'route_description' => 'Edit Application Stage',
 			'applicationstage' => $applicationstage,
 			'instance' => $applicationstage,
 			'applicant_id' => $request->input('applicant_id'),

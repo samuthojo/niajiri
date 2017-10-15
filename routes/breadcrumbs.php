@@ -473,14 +473,14 @@ Breadcrumbs::register('stages.tests.create', function ($breadcrumbs, $instance) 
 // -------------------ApplicationStages Breadcrumbs--------------------------------------
 // Home > Application Stages
 Breadcrumbs::register('applicationstages.index', function ($breadcrumbs, $instance) {
-    $breadcrumbs->parent('positions.show', $instance);
-    $breadcrumbs->push('ApplicationStages', route('applicationstages.index'));
+    $breadcrumbs->parent('positions.show', $instance->position);
+    $breadcrumbs->push($instance->name, route('applicationstages.index'));
 });
 
 // Home > Application Stages > Create ApplicationStage
 Breadcrumbs::register('applicationstages.create', function ($breadcrumbs) {
     $breadcrumbs->parent('applicationstages.index');
-    $breadcrumbs->push('Create ApplicationStage', route('applicationstages.create'));
+    $breadcrumbs->push('Create Application Stage', route('applicationstages.create'));
 });
 
 // Home > Application Stages > [ApplicationStage Name]
