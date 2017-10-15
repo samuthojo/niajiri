@@ -128,12 +128,16 @@ class ApplicationStage extends Model implements HasMedia
 
     /**
      * Check if applicant has pass the stage
+     * @param App\Model\Stage $stage
      * @return boolean
      */
-    public function hasPass()
+    public function hasPass($stage = null)
     {
         //TODO compute score from test
         $has_pass = $this->score >= $this->stage->passMark;
+        if($stage !== null){
+            $has_pass = $has_pass && ($this->stage_id === $stage->id) && $this->application->isCurrentStage($stage);
+        }
         return $has_pass;
     }
 

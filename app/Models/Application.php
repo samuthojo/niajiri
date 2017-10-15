@@ -131,7 +131,7 @@ class Application extends Model implements HasMedia
      */
     public function canAdvance($stage = null)
     {
-        $can_advance = $this->isCurrentStage($stage) && !$this->position->isLastStage($stage);
+        $can_advance = $this->isCurrentStage($stage);
         return $can_advance;
     }
 

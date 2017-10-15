@@ -31,9 +31,11 @@
                     </td>
                     <td class="project-actions">
                         @if($applicationStage->canTakeTest(Auth::user()))
+                        @if($applicationStage->application->isCurrentStage($applicationStage->stage))
                         <a href="#" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.take_test.title')}}">
                             {{trans('applicationstages.actions.take_test.name')}}
                         </a>
+                        @endif
                         @endif
                     </td>
                 </tr>

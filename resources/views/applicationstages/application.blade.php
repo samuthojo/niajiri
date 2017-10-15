@@ -40,6 +40,15 @@
                         {{--end current application stage--}}
 
                         <div class="m-t-md">
+                            @if($applicationstage->hasPass($stage))
+                            @if(!$applicationstage->position->isLastStage($stage))
+                            @permission('edit:applicationstage')
+                            <a href="{{route('applications.advance', ['id' => $applicationstage->application_id, 'applicant_id' => $applicationstage->applicant_id, 'position_id'=>$applicationstage->position_id])}}" class="btn btn-primary pull-right" title="{{trans('applicationstages.actions.advance.title')}}">
+                                {{trans('applicationstages.actions.advance.name')}}
+                            </a>
+                            @endpermission
+                            @endif
+                            @endif
                             <h2 class="product-main-price">
                                 {{$application->organization->name}} 
                                 <small class="text-muted">
