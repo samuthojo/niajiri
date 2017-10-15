@@ -305,9 +305,20 @@ class ApplicationController extends SecureController {
 		flash(trans('applicationstages.actions.advance.flash.success'))
 			->success()->important();
 
-		return redirect()->route('applications.application', [
+		//redirect to next application stage listing
+		if(is_set($request->input('position_id'))){
+			return redirect()->route('applicationstages.index', [
+					'position_id' => $request->input('position_id'),
+					'stage_id' => $application->stage_id
+				]);
+		}
+
+		//redirect to current application view
+		else{
+			return redirect()->route('applications.application', [
 					'id' => $application->id,
 					'applicant_id' => $request->input('applicant_id')
 				]);
+		}
 	}
 }
