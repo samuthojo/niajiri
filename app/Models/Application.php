@@ -140,13 +140,13 @@ class Application extends Model implements HasMedia
      * Build application cover_letter url
      */
     public function coverLetter() {
-        //TODO default application cover_letter
+        //default application cover_letter
         $cover_letter;
 
         //try obtain custom uploaded cover_letter
         $media = $this->getMedia('cover_letters')->first();
         if ($media) {
-            $cover_letter = asset('storage/' . $media->id . '/' . $media->file_name);
+            $cover_letter = $media;
         }
         return $cover_letter;
     }
