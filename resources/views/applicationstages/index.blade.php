@@ -120,7 +120,7 @@
                                     <button class="btn btn-info btn-xs" title="{{trans('applicationstages.actions.score.title')}}" data-toggle="modal" data-target="#application-score-modal">
                                         {{trans('applicationstages.actions.score.name')}}
                                     </button>
-                                    @include('applicationstages.blocks.score_modal')
+                                    @include('applicationstages.blocks.score_modal', ['applicationstage' => $item])
                                     @endpermission
                                     {{-- @if($item->hasPass()) --}}
                                     @permission('edit:applicationstage')
