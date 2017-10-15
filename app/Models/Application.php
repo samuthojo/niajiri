@@ -207,6 +207,7 @@ class Application extends Model implements HasMedia
     public function advance()
     {
         //TODO wrap in transaction
+        //TODO compute latest stage score
         
         //1. get current stage
         $currentStage = $this->stage;

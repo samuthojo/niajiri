@@ -23,7 +23,7 @@ return [
         ],
         'save' => [
             'name' => 'Save Changes',
-            'title' => 'Click To Save New Application',
+            'title' => 'Click To Save Changes',
             'header' => 'New Application',
             'flash' => [
                 'success' => 'Application Saved Succeffully',
@@ -63,6 +63,7 @@ return [
         ],
         'score' => [
             'name' => 'Score',
+            'label' => 'Score Application',
             'title' => 'Click To Score Application',
             'flash' => [
                 'success' => 'Application Score Added Succeffully',

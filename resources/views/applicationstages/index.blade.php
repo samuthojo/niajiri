@@ -117,9 +117,10 @@
 
                                     @if($item->application->canAdvance($item->stage))
                                     @permission('edit:applicationstage')
-                                    <a href="#" class="btn btn-info btn-xs" title="{{trans('applicationstages.actions.score.title')}}">
+                                    <button class="btn btn-info btn-xs" title="{{trans('applicationstages.actions.score.title')}}" data-toggle="modal" data-target="#application-score-modal">
                                         {{trans('applicationstages.actions.score.name')}}
-                                    </a>
+                                    </button>
+                                    @include('applicationstages.blocks.score_modal')
                                     @endpermission
                                     {{-- @if($item->hasPass()) --}}
                                     @permission('edit:applicationstage')

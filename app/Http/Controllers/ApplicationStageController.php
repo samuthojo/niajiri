@@ -18,7 +18,9 @@ class ApplicationStageController extends SecureController {
 	public function index(Request $request) {
 
 		//initialize query
-		$query = ApplicationStage::filter($request->all())->orderBy('created_at', 'asc');
+		$query = ApplicationStage::filter($request->all())
+				->orderBy('created_at', 'asc')
+				->orderBy('score', 'desc');
 
 		//load position
 		$position = Position::find($request->input('position_id'));
