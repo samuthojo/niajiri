@@ -80,9 +80,15 @@
                                     <div class="col-lg-12">
                                     <div class="panel blank-panel">
                                     <div class="panel-heading">
-                                        <div class="panel-options">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab-1" data-toggle="tab">{{ trans('positions.tabs.stages.name') }}</a></li>
+                                        <div class="tabpanel panel-options">
+                                            <ul class="nav nav-tabs" role="tablist" >
+                                                @foreach($position->stages as $index => $stage)
+
+                                                     <li role="presentation" @if($index == 0) class="active" @endif>
+                                                         <a href="#tab-{{ $stage->number }}" aria-controls="#tab-{{ $stage->number }}" role="tab" data-toggle="tab">{{ $stage->name }}</a
+                                                     </li>
+
+                                                 @endforeach
                                             </ul>
                                         </div>
                                     </div>
