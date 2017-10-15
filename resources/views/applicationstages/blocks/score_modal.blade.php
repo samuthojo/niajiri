@@ -36,6 +36,23 @@
                 </div>
             </div>
             {{-- end score --}}
+
+            {{--start comment--}}
+            <div class="col-md-offset-1 col-md-9 m-t-md">
+              <div class="form-group {{ $errors->has('comment') ? 'has-error' : ''}}">
+                  <label for="comment" title="{{ trans('applicationstages.inputs.comment.description') }}">
+                      {{trans('applicationstages.inputs.comment.label')}}
+                  </label>
+                  {!! Form::textarea('comment', null, [
+                      'id' => 'comment',
+                      'class' => 'form-control',
+                      'rows' => 2,
+                      'placeholder' => trans('applicationstages.inputs.comment.placeholder')
+                  ]) !!}
+              </div>
+          </div>
+            {{--end comment--}}
+
           </div>
         </div>
       </div>
