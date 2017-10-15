@@ -110,12 +110,25 @@
                                 <td>
                                 {{-- TODO score, advance, view application, view cv --}}
                                     @permission('view:applicationstage')
-                                    <a href="{{ route('applicationstages.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('applicationstages.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
+                                    <a href="{{ route('applicationstages.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('applicationstages.actions.view.title')}}">
+                                        {{trans('applicationstages.actions.view.name')}}
+                                    </a>
                                     @endpermission
 
+                                    @if($item->application->canAdvance($item->stage))
                                     @permission('edit:applicationstage')
-                                    <a href="{{ route('applicationstages.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.edit.title')}}"><span class="fa fa-pencil" aria-hidden="true"/></a>
+                                    <a href="#" class="btn btn-info btn-xs" title="{{trans('applicationstages.actions.score.title')}}">
+                                        {{trans('applicationstages.actions.score.name')}}
+                                    </a>
                                     @endpermission
+                                    {{-- @if($item->hasPass()) --}}
+                                    @permission('edit:applicationstage')
+                                    <a href="{{route('applications.advance', ['id' => $item->application_id, 'applicant_id' => $item->applicant_id])}}" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.advance.title')}}">
+                                        {{trans('applicationstages.actions.advance.name')}}
+                                    </a>
+                                    @endpermission
+                                    {{-- @endif --}}
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
