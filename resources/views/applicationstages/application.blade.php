@@ -87,6 +87,9 @@
                     @include('applicationstages.blocks.cover_letter')
                     {{-- end application cover letter --}}
 
+
+                    {{--TODO add cv viewer--}}
+
                 </div>
 
             </div>
