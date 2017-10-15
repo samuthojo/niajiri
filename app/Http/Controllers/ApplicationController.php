@@ -57,6 +57,8 @@ class ApplicationController extends SecureController {
 		//TODO check CV validity
 		//TODO notify applicant on application
 		//TODO notify applicant on stage
+		//TODO refactor
+		//TODO make use of transaction
 
 		//ensure valid application
 		$this->validate($request, [
@@ -67,14 +69,6 @@ class ApplicationController extends SecureController {
 
 		//obtain all application form inputs
 		$body = $request->all();
-
-		//TODO make use of transaction
-		
-		//load position
-		$position = Position::query()->findOrFail($request->input('position_id'));
-
-		//get position first stage
-		$stage = $position->firstStage();
 		
 		//create application
 		$application = Application::create($body);
@@ -88,14 +82,8 @@ class ApplicationController extends SecureController {
 				->toMediaCollection('cover_letters');
 		}
 
-		//create first application stage
-		$applicationStage = ApplicationStage::create([ 
-	        'application_id' => $application->id,
-	        'stage_id' => $stage->id,
-	        'applicant_id' => $application->applicant_id, 
-	        'organization_id' => $application->organization_id, 
-	        'position_id' => $position->id
-	    ]);
+		//advance application to next stage
+		$applicationStage = $application->advance();
 		
 
 		//flash message
@@ -127,7 +115,7 @@ class ApplicationController extends SecureController {
 	public function show(Request $request, $id) {
 		//TODO check CV validity
 
-		//load application with permissions
+		//load application
 		$application = Application::query()->findOrFail($id);
 
 		$data = [
@@ -274,5 +262,63 @@ class ApplicationController extends SecureController {
 		];
 
 		return view('applications.my.index', $data);
+	}
+
+	/**
+	 * Display application the specified id.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function application(Request $request, $id) {
+		//TODO flash missing details
+		//TODO flash missing cover letter
+
+		//load application
+		$application = Application::query()->findOrFail($id);
+
+		$data = [
+			'route_title' => 'Application',
+			'route_description' => 'Application',
+			'application' => $application,
+			'instance' => $application,
+			'applicant_id' => $request->input('applicant_id'),
+		];
+
+		return view('applications.my.application', $data);
+	}
+
+	/**
+	 * Advance application to next stage
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function advance(Request $request, $id)
+	{
+		//advance application to next stage
+		$application = Application::findOrFail($id);
+
+		$application->advance();
+
+		//flash message
+		flash(trans('applicationstages.actions.advance.flash.success'))
+			->success()->important();
+
+		//redirect to next application stage listing
+		if(is_set($request->input('position_id'))){
+			return redirect()->route('applicationstages.index', [
+					'position_id' => $request->input('position_id'),
+					'stage_id' => $application->stage_id
+				]);
+		}
+
+		//redirect to current application view
+		else{
+			return redirect()->route('applications.application', [
+					'id' => $application->id,
+					'applicant_id' => $request->input('applicant_id')
+				]);
+		}
 	}
 }

@@ -81,6 +81,10 @@ return [
                 'success' => 'Application Created Succeffully',
             ],
         ],
+        'applicants' => [
+            'name' => 'View Applicants',
+            'title' => 'Click to View Applicants'
+        ],
     ],
     'inputs' => [
         'title' => [

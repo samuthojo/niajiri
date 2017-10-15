@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ApplicationStage;
+use App\Models\Position;
+use App\Models\Stage;
 use Illuminate\Http\Request;
 
 //TODO refactor to use repository as Makonda
@@ -16,15 +18,26 @@ class ApplicationStageController extends SecureController {
 	public function index(Request $request) {
 
 		//initialize query
-		$query = ApplicationStage::filter($request->all())->orderBy('created_at', 'asc');
+		$query = ApplicationStage::filter($request->all())
+				->orderBy('created_at', 'asc')
+				->orderBy('score', 'desc');
+
+		//load position
+		$position = Position::find($request->input('position_id'));
+
+		//load stage
+		$stage = Stage::find($request->input('stage_id'));
 
 		//paginate query result
 		$applicationstages = $query->paginate(config('app.defaults.pageSize'));
 
 		$data = [
-			'route_title' => 'ApplicationStages',
-			'route_description' => 'ApplicationStage List',
+			'route_title' => 'Application Stages',
+			'route_description' => 'Application Stage List',
 			'applicationstages' => $applicationstages,
+			'instance' => $stage,
+			'position' => $position,
+			'stage' => $stage,
 			'q' => $request->input('q'),
 			'applicant_id' => $request->input('applicant_id'),
 		];
@@ -52,14 +65,14 @@ class ApplicationStageController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//TODO check CV validit
+		//TODO check CV validity
 
 		//ensure valid applicationstage
 		$this->validate($request, [
-            'application_id' => 'string|required|exists:applications,id'
-            'stage_id' => 'string|required|exists:stages,id'
-            'applicant_id' => 'string|required|exists:users,id'
-            'organization_id' => 'string|required|exists:users,id'
+            'application_id' => 'string|required|exists:applications,id',
+            'stage_id' => 'string|required|exists:stages,id',
+            'applicant_id' => 'string|required|exists:users,id',
+            'organization_id' => 'string|required|exists:users,id',
             'position_id' => 'string|required|exists:positions,id'
 		]);
 
@@ -68,7 +81,6 @@ class ApplicationStageController extends SecureController {
 
 		//create applicationstage
 		$applicationstage = ApplicationStage::create($body);
-
 
 		//flash message
 		flash(trans('applicationstages.actions.save.flash.success'))
@@ -95,8 +107,8 @@ class ApplicationStageController extends SecureController {
 		$applicationstage = ApplicationStage::query()->findOrFail($id);
 
 		$data = [
-			'route_title' => 'Show ApplicationStage',
-			'route_description' => 'Show ApplicationStage',
+			'route_title' => 'Show Application Stage',
+			'route_description' => 'Show Application Stage',
 			'applicationstage' => $applicationstage,
 			'instance' => $applicationstage,
 			'applicant_id' => $request->input('applicant_id'),
@@ -118,8 +130,8 @@ class ApplicationStageController extends SecureController {
 		$applicationstage = ApplicationStage::findOrFail($id);
 
 		$data = [
-			'route_title' => 'Edit ApplicationStage',
-			'route_description' => 'Edit ApplicationStage',
+			'route_title' => 'Edit Application Stage',
+			'route_description' => 'Edit Application Stage',
 			'applicationstage' => $applicationstage,
 			'instance' => $applicationstage,
 			'applicant_id' => $request->input('applicant_id'),
@@ -139,10 +151,10 @@ class ApplicationStageController extends SecureController {
 		
 		//ensure valid applicationstage
 		$this->validate($request, [
-            'application_id' => 'string|required|exists:applications,id'
-            'stage_id' => 'string|required|exists:stages,id'
-            'applicant_id' => 'string|required|exists:users,id'
-            'organization_id' => 'string|required|exists:users,id'
+            'application_id' => 'string|required|exists:applications,id',
+            'stage_id' => 'string|required|exists:stages,id',
+            'applicant_id' => 'string|required|exists:users,id',
+            'organization_id' => 'string|required|exists:users,id',
             'position_id' => 'string|required|exists:positions,id'
 		]);
 
@@ -154,7 +166,6 @@ class ApplicationStageController extends SecureController {
 
 		//update applicationstage
 		$applicationstage->update($body);
-
 
 		//flash message
 		flash(trans('applicationstages.actions.update.flash.success'))

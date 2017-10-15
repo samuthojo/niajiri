@@ -6,6 +6,7 @@ use App\Models\Base as Model;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Carbon\Carbon;
+use App\Models\ApplicationStage;
 
 class Application extends Model implements HasMedia 
 {
@@ -36,7 +37,8 @@ class Application extends Model implements HasMedia
         'applicant',
         'organization',
         'position',
-        'stages'
+        'stages',
+        'stage'
     ];
 
     /**
@@ -45,7 +47,8 @@ class Application extends Model implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'applicant_id', 'organization_id', 'position_id'
+        'applicant_id', 'organization_id', 
+        'position_id', 'stage_id'
     ];
 
     /**
@@ -107,6 +110,33 @@ class Application extends Model implements HasMedia
 
 
     /**
+     * Check if provided position stage is current application stage
+     * @param  App\Models\Stage  $stage
+     * @return boolean
+     */
+    public function isCurrentStage($stage = null)
+    {
+        if(is_set($stage)){
+            return $this->stage_id === $stage->id;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Check if application in current stage can advance in next stage
+     * @param  App\Models\Stage $stage
+     * @return boolean
+     */
+    public function canAdvance($stage = null)
+    {
+        $can_advance = $this->isCurrentStage($stage) && !$this->position->isLastStage($stage);
+        return $can_advance;
+    }
+
+
+    /**
      * Build application cover_letter url
      */
     public function coverLetter() {
@@ -152,12 +182,67 @@ class Application extends Model implements HasMedia
     }
 
     /**
+     * Get current stage associate with application
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function stage()
+    {
+        return $this->belongsTo('App\Models\Stage', 'stage_id');
+    }
+
+    /**
      * Get the application stages
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function stages()
     {
         return $this->hasMany('App\Models\ApplicationStage', 'application_id');
+    }
+
+
+    /**
+     * Advance application to next stage
+     * @return App\Modela\ApplicationStage
+     */
+    public function advance()
+    {
+        //TODO wrap in transaction
+        //TODO compute latest stage score
+        
+        //1. get current stage
+        $currentStage = $this->stage;
+        $nextStage = null;
+        
+        //2. obtain application next stage
+        $nextStage = ($currentStage === null) ? $this->position->firstStage() : $this->position->nextStage($currentStage);
+        //TODO ensure next stage is not null
+
+        //3. obtain existing application stage(ensure next stage not exists)
+        $applicationStage = ApplicationStage::query()->where([
+                'application_id'=> $this->id,
+                'position_id' => $this->position_id,
+                'stage_id' => $nextStage->id
+            ])->first();
+
+        //4. set application current stage
+        $this->stage_id = $nextStage->id;
+        $this->save();
+
+        //5. advance application to next stage
+        if($applicationStage === null){
+            $applicationStage = ApplicationStage::create([
+                    'application_id' => $this->id,
+                    'stage_id' => $nextStage->id,
+                    'applicant_id' => $this->applicant_id, 
+                    'organization_id' => $this->organization_id, 
+                    'position_id' => $this->position_id
+                ]);
+            //TODO send mail to applicant to notify next stage
+        }
+        
+        //6. return current application stage
+        return $applicationStage;
+
     }
 
 }

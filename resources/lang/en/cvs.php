@@ -23,6 +23,16 @@ return [
             'name' => 'Skills, Hobbies & Interests',
             'title' => 'Skills, Hobbies & Interests',
         ],
+
+        'cover_letter' => [
+            'name' => 'Cover Letter',
+            'title' => 'Cover Letter'
+        ],
+
+        'stages' => [
+            'name' => 'Stages',
+            'title' => 'Stages'
+        ],
     ],
     'actions' => [
         'cancel' => [

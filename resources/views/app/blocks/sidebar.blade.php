@@ -69,7 +69,8 @@
 	        {{-- start applicant menu --}}
 	        {{-- start my applications --}}
 	        <li class="{{areActiveRoutes([
-		        	'applications.applied'
+		        	'applications.applied',
+		        	'applications.application'
 				])}}">
                 <a href="{{route('applications.applied')}}">
                 <i class="fa fa-file"></i>
