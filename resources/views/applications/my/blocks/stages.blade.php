@@ -41,13 +41,13 @@
                             {{trans('applicationstages.actions.score.name')}}
                         </a>
                         @endpermission
-                        @if($applicationStage->hasPass())
+                        {{-- @if($applicationStage->hasPass()) --}}
                         @permission('edit:applicationstage')
                         <a href="{{route('applications.advance', ['id' => $application->id, 'applicant_id' => $application->applicant_id])}}" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.advance.title')}}">
                             {{trans('applicationstages.actions.advance.name')}}
                         </a>
                         @endpermission
-                        @endif
+                        {{-- @endif --}}
                         @endif
                     </td>
                 </tr>

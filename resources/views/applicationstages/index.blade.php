@@ -25,10 +25,16 @@
                         {{-- start applicationstages search form --}}
                         {!! Form::open([
                             'method'=>'GET',
-                            'url' => \Request::fullUrl(),
+                            'route' => 'applicationstages.index',
                             'style' => 'display:inline'
                         ]) !!}
                         <div class="input-group" title="{{ trans('applicationstages.actions.search.title') }}">
+                            @if(is_set($position))
+                            <input type="hidden" name="position_id" value="{{$position->id}}">
+                            @endif
+                            @if(is_set($stage))
+                            <input type="hidden" name="stage_id" value="{{$stage->id}}">
+                            @endif
                             <input name="q" value="{{$q}}" type="text" placeholder="{{ trans('applicationstages.actions.search.placeholder') }}" class="input-sm form-control"/>
                                 <span class="input-group-btn">
                                     {!! Form::button(trans('applicationstages.actions.search.name'),[
@@ -82,7 +88,7 @@
                                     </span>
                                 </td>
                                 <td>
-
+                                {{-- TODO score, advance, view application, view cv --}}
                                     @permission('view:applicationstage')
                                     <a href="{{ route('applicationstages.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('applicationstages.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
                                     @endpermission

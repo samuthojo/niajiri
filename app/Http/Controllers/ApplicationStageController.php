@@ -33,6 +33,7 @@ class ApplicationStageController extends SecureController {
 			'route_title' => 'ApplicationStages',
 			'route_description' => 'ApplicationStage List',
 			'applicationstages' => $applicationstages,
+			'instance' => $position,
 			'position' => $position,
 			'stage' => $stage,
 			'q' => $request->input('q'),
