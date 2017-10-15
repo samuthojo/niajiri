@@ -148,15 +148,6 @@ class ApplicationStageController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		
-		//ensure valid applicationstage
-		$this->validate($request, [
-            'application_id' => 'string|required|exists:applications,id',
-            'stage_id' => 'string|required|exists:stages,id',
-            'applicant_id' => 'string|required|exists:users,id',
-            'organization_id' => 'string|required|exists:users,id',
-            'position_id' => 'string|required|exists:positions,id'
-		]);
 
 		//obtain all applicationstage form inputs
 		$body = $request->all();
@@ -171,10 +162,10 @@ class ApplicationStageController extends SecureController {
 		flash(trans('applicationstages.actions.update.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
-		//redirect to show applicationstage
+		//redirect to application stage listing
 		return redirect()->route('applicationstages.index',[
-				'applicant_id' => $request->input('applicant_id')
+				'position_id' => $applicationstage->position_id,
+				'stage_id' => $applicationstage->stage_id
 			]);
 
 	}
@@ -187,7 +178,9 @@ class ApplicationStageController extends SecureController {
 	 */
 	public function destroy(Request $request, $id) {
 
-		ApplicationStage::destroy($id);
+		//force delete application stage
+		$applicationstage = ApplicationStage::findOrFail($id);
+		$applicationstage->forceDelete();
 
 		//flash message
 		flash(trans('applicationstages.actions.delete.flash.success'))
@@ -195,7 +188,8 @@ class ApplicationStageController extends SecureController {
 
 		//TODO redirect to specific applicant profile
 		return redirect()->route('applicationstages.index',[
-				'applicant_id' => $request->input('applicant_id')
+				'position_id' => $applicationstage->position_id,
+				'stage_id' => $applicationstage->stage_id
 			]);
 	}
 }

@@ -29,9 +29,16 @@
                         |
                         {{-- start application date --}}
                         <small class="text-muted">
-                            <i class="fa fa-clock-o"></i> Date Applied: {{$application->created_at->toFormattedDateString()}}
+                            <i class="fa fa-calendar-o"></i> Date Applied: {{$application->created_at->toFormattedDateString()}}
                         </small>
                         {{-- end application date --}}
+                        |
+                        {{--start current application stage--}}
+                        <small class="text-muted">
+                            <i class="fa fa-clone"></i> Current Stage: {{$application->stage->name}}
+                        </small>
+                        {{--end current application stage--}}
+
                         <div class="m-t-md">
                             <h2 class="product-main-price">
                                 {{$application->organization->name}} 
