@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\ApplicationStage;
 use App\Models\Position;
+use App\Models\Test;
 use Illuminate\Http\Request;
 
 //TODO refactor to use repository as Makonda
@@ -320,5 +321,33 @@ class ApplicationController extends SecureController {
 					'applicant_id' => $request->input('applicant_id')
 				]);
 		}
+	}
+
+	/**
+	 * Display application the specified id.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function test(Request $request, $id) {
+
+		//load application
+		$application = Application::query()->findOrFail($id);
+
+		//load current application stage questions
+		$test = Test::query()
+				->where(['stage_id' => $application->stage_id])
+				->first();
+		$questions = $test->questions;
+
+		$data = [
+			'route_title' => 'Application',
+			'route_description' => 'Application',
+			'application' => $application,
+			'instance' => $application,
+			'applicant_id' => $request->input('applicant_id'),
+		];
+
+		return view('applications.my.application', $data);
 	}
 }

@@ -47,3 +47,8 @@ $ php artisan db:seed --class=UsersTableSeeder
 $ mysql -u b0ec9ea8c94a4f -h us-cdbr-iron-east-05.cleardb.net -p heroku_9f5d769e926b625
 ```
 pwd: bc049b54
+
+
+## Reviews
+- [https://app.enhancv.com/resume/new](https://app.enhancv.com/resume/new)
+- [https://www.shortlist.net/job-seeker/](https://www.shortlist.net/job-seeker/)

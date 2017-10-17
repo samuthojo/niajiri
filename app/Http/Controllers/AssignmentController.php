@@ -56,6 +56,7 @@ class AssignmentController extends SecureController {
 		$this->validate($request, [
 			'title' => 'required|string',
 			'client' => 'required|string',
+			'location' => 'required|string',
 			'summary' => 'nullable|string',
 			'started_at' => 'required',
 			'finished_at' => 'required',
@@ -135,6 +136,7 @@ class AssignmentController extends SecureController {
 		$this->validate($request, [
 			'title' => 'required|string',
 			'client' => 'required|string',
+			'location' => 'required|string',
 			'summary' => 'nullable|string',
 			'started_at' => 'required',
 			'finished_at' => 'required',

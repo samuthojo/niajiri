@@ -18,3 +18,15 @@ if (!function_exists('isActivePath')) {
     }
 
 }
+
+if (!function_exists('display_url')) {
+    function display_url($url = null)
+    {
+        if(is_set($url) && !(starts_with('http://', $url) || starts_with('https://', $url))){
+            $url = 'http://'.$url;
+        }
+
+        return $url;
+    }
+}
+

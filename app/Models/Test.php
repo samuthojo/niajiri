@@ -33,6 +33,14 @@ class Test extends Model
 
     protected $dates = ['deleted_at'];
 
+    /**
+     * Relations to eager load
+     */
+    protected $withables = [
+        'stage',
+        'questions'
+    ];
+
 
     public $fillable = [
         'duration',

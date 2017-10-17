@@ -204,6 +204,7 @@ return [
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -274,6 +275,7 @@ return [
         'Meta' => Eusonlito\LaravelMeta\Facade::class,
         'Ekko' => Laravelista\Ekko\Facades\Ekko::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Carbon' => 'Carbon\Carbon',
 
     ],

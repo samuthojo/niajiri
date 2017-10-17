@@ -346,7 +346,7 @@
 <div class="row m-t-md">
 
     {{-- start country --}}
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group {{ $errors->has('country') ? 'has-error' : ''}}">
             <label for="country" title="{{ trans('cvs.inputs.country.description') }}">
                 {{trans('cvs.inputs.country.label')}}
@@ -369,7 +369,7 @@
     {{-- end country --}}
 
     {{-- start state --}}
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group {{ $errors->has('state') ? 'has-error' : ''}}">
             <label for="state" title="{{ trans('cvs.inputs.state.description') }}">
                 {{trans('cvs.inputs.state.label')}}
@@ -391,6 +391,28 @@
         </div>
     </div>
     {{-- end state --}}
+
+    {{-- start website --}}
+    <div class="col-md-4">
+        <div class="form-group {{ $errors->has('website') ? 'has-error' : ''}}">
+            <label for="website" title="{{ trans('cvs.inputs.website.description') }}">
+                {{trans('cvs.inputs.website.label')}}
+            </label>
+            {!! Form::text('website', null, [
+                'id' => 'website',
+                'class' => 'form-control',
+                //'required' => 'required',
+                'aria-describedby'=> 'cv_website_help_block',
+                'placeholder' => trans('cvs.inputs.website.placeholder')
+            ]) !!}
+            @if($errors->any() && $errors->has('website'))
+            {!!
+                $errors->first('website', '<p id="cv_website_help_block" class="help-block">:message</p>')
+            !!}
+            @endif
+        </div>
+    </div>
+    {{-- end website --}}
 
 </div>
 {{-- start country & state --}}

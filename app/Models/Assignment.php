@@ -29,8 +29,8 @@ class Assignment extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'client', 'summary',
-        'started_at', 'finished_at',
+        'title', 'client', 'location', 
+        'summary', 'started_at', 'finished_at',
         'applicant_id'
     ];
 
