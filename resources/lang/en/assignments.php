@@ -64,6 +64,12 @@ return [
             'header' => 'Client',
             'description' => 'Client e.g Niajiri etc.',
         ],
+        'location' => [
+            'label' => 'Location',
+            'placeholder' => 'e.g Dar es salaam',
+            'header' => 'Location',
+            'description' => 'Client e.g Dar es salaam etc.',
+        ],
         'summary' => [
             'label' => 'Summary',
             'placeholder' => 'Summary',

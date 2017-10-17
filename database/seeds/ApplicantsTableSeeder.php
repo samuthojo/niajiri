@@ -89,6 +89,7 @@ class ApplicantsTableSeeder extends Seeder {
 			Assignment::updateOrCreate($finder, [
 					'title' => 'Quality Assurance',
 					'client' => 'University of Dar es salaam',
+					'location' => 'Dar es salaam',
 					'summary' => 'Develop Education Quality Assurance Platform',
 	        		'started_at' => '20-08-2008',
 	        		'finished_at' => '25-09-2012',
