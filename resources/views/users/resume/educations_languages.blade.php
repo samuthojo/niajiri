@@ -10,27 +10,27 @@
 		@if($user->educations && $user->educations->count() > 0)
 			@foreach($user->educations as $education)
 			<div>
-				<h3>
+				<h3 title="{{trans('educations.inputs.summary.description')}}">
 					{{$education->summary}}
 		        </h3>
-		        <h4>
+		        <h4 title="{{trans('educations.inputs.institution.description')}}">
 		            {{$education->institution}}
 		            <span class="pull-right">Remark</span>
 	            </h4>
 		        <h5>
                     <i class="fa fa-calendar-o"></i> 
                     <span title="{{trans('educations.inputs.started_at.description')}}">
-                    	{{$education->started_at->format(config('app.date_format'))}}
+                    	{{display_date($education->started_at)}}
                     </span> 
                     to 
                     @if($education->finished_at)
                     <span title="{{trans('educations.inputs.finished_at.description')}}">
-                    	{{$education->finished_at->format(config('app.date_format'))}}
+                    	{{display_date($education->finished_at)}}
                     </span>
                     @else
-                    <span>Current</span>
+                    <span title="{{trans('educations.inputs.finished_at.description')}}">Current</span>
                     @endif
-                    <span class="pull-right">
+                    <span class="pull-right" title="{{trans('educations.inputs.remark.description')}}">
                     	{{display_or_na($education->remark)}}
                     </span>
                 </h5>
@@ -50,10 +50,10 @@
 		@if($user->languages && $user->languages->count() > 0)
 			@foreach($user->languages as $language)
 			<div>
-				<h3>
+				<h3 title="{{trans('languages.inputs.name.description')}}">
 					{{$language->name}}
 		        </h3>
-		        <h5>
+		        <h5 title="{{trans('languages.inputs.fluency.description')}}">
 		            {{$language->fluency}}
 	            </h5>
 				<hr class="hr-line-dashed" />
