@@ -19,6 +19,7 @@ class CreateApplicantAssignmentTable extends Migration
 
             $table->string('title')->index();
             $table->string('client')->index();
+            $table->string('location')->index();
             $table->text('summary')->nullable();
             $table->date('started_at')->index()->nullable();
             $table->date('finished_at')->index()->nullable();
