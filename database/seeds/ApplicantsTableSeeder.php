@@ -9,11 +9,14 @@ use App\Models\Referee;
 use App\Models\Achievement;
 use App\Models\Assignment;
 use App\Models\Publication;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class ApplicantsTableSeeder extends Seeder {
 	public function run() {
 		DB::transaction(function () {
+
+			$roles = Role::where('name', Role::APPLICANT)->get();
 
 			$applicant = User::updateOrCreate([
 						'email' => 'applicant@niajiri.com',
@@ -36,6 +39,10 @@ class ApplicantsTableSeeder extends Seeder {
 			        'country' => 'Tanzania',
 			        'state' => 'Arusha'
 			]);
+			$applicant->detachRoles();
+			$applicant->save();
+			$applicant->attachRoles($roles);
+			$applicant->save();
 
 			//prepare finder
 			$finder = ['applicant_id'=>$applicant->id];
