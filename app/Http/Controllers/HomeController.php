@@ -18,7 +18,7 @@ class HomeController extends SecureController
     {
       //redirect applicant
       if(\Auth::user()->roles->count() === 0){
-        redirect('users.basic');
+        return redirect()->route('users.basic');
       }else{
         return view('pages.dashboard.index', [
             'route_title' => 'Dashboard',

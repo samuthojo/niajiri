@@ -72,7 +72,7 @@
 		        	'applications.applied',
 		        	'applications.application'
 				])}}">
-                <a href="{{route('applications.applied')}}">
+                <a href="{{route('applications.applied', ['applicant_id' => Auth::user()->id])}}">
                 <i class="fa fa-file"></i>
                 <span class="nav-label">My Applications</span>
                 </a>
