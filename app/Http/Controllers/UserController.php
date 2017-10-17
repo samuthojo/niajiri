@@ -379,4 +379,25 @@ class UserController extends SecureController {
 
         return redirect()->route('users.basic');
     }
+
+
+    /**
+	 * Display current user resume
+	 * @return \Illuminate\Http\Response
+	 */
+    public function get_resume(Request $request, $id)
+    {
+    	//load actual current user
+    	$id = is_set($id) ? $id : \Auth::user()->id;
+		$user = User::query()->findOrFail($id);
+
+        $data = [
+            'route_title' => $user->fullName().' - Resume',
+            'route_description' => $user->fullName().' - Resume',
+            'user' => $user,
+            'instance' => $user
+        ];
+
+        return view('users.resume.index', $data);
+    }
 }

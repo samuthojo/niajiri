@@ -95,6 +95,7 @@
             {{-- @permission([]) --}}
 	        <li class="{{areActiveRoutes([
 	        	'users.basic',
+	        	'users.resume',
 	        	'educations.*',
 	        	'certificates.*',
 	        	'experiences.*',
@@ -184,8 +185,8 @@
 	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
-	                <li class="">
-	                	<a href="#">
+	                <li class="{{isActiveRoute('users.resume')}}">
+	                	<a href="{{route('users.resume', ['id' => Auth::user()->id])}}">
 	                		Generate
 	                	</a>
 	                </li>

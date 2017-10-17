@@ -39,6 +39,14 @@ class Question extends Model
     protected $dates = ['deleted_at'];
 
 
+    /**
+     * Relations to eager load
+     */
+    protected $withables = [
+        'test'
+    ];
+
+
     public $fillable = [
         'label',
         'firstChoice',
