@@ -13,6 +13,10 @@
 
             {{-- start page box content --}}
             <div class="ibox-content">
+            
+            {{-- start summary --}}
+            @include('users.resume.summary')
+            {{-- end summary --}}
 
             </div>
             {{-- end page box content --}}

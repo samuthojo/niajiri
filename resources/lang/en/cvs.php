@@ -145,6 +145,13 @@ return [
             'description' => 'Email Address e.g user@example.com etc.',
         ],
 
+        'website' => [
+            'label' => 'Website/Link',
+            'placeholder' => 'e.g www.example.com',
+            'header' => 'Website',
+            'description' => 'Website e.g www.example.com etc.',
+        ],
+
         'mobile' => [
             'label' => 'Mobile',
             'placeholder' => 'e.g 255714333999',
