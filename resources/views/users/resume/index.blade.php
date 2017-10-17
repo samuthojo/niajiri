@@ -34,6 +34,10 @@
             @include('users.resume.publications_referees')
             {{-- end publications_referees --}}
 
+            {{-- start skills_hobbies_interests --}}
+            @include('users.resume.skills_hobbies_interests')
+            {{-- end skills_hobbies_interests --}}
+
             </div>
             {{-- end page box content --}}
 
