@@ -16,10 +16,15 @@ class HomeController extends SecureController
 
     public function index(Request $request)
     {
+      //redirect applicant
+      if(\Auth::user()->roles->count() === 0){
+        redirect('users.basic');
+      }else{
         return view('pages.dashboard.index', [
             'route_title' => 'Dashboard',
             'route_description' => 'Dashboard'
         ]);
+      }
     }
     
     public function minor(Request $request)

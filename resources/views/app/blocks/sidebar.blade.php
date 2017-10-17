@@ -29,7 +29,7 @@
 		                	{{-- start user full name --}}
 		                	<span class="block m-t-xs" title="User Name">
 		                		<strong class="font-bold">
-		                			{{Auth::user()->name}} <b class="caret"></b>
+		                			{{Auth::user()->fullName()}} <b class="caret"></b>
 		                		</strong>
 		                	</span>
 		                	{{-- end user full name --}}
@@ -40,8 +40,8 @@
 
 		            {{-- start profile toggle menu --}}
 	                <ul class="dropdown-menu animated fadeInRight m-t-xs">
-	                    <li><a href="{{route('profile')}}">Profile</a></li>
-	                    <li class="divider"></li>
+	                    {{-- <li><a href="{{route('profile')}}">Profile</a></li>
+	                    <li class="divider"></li> --}}
 	                    @unless(Auth::guest())
 	                    <li>
 		                    <a href="{{ url('/logout') }}"
@@ -198,6 +198,9 @@
 	        {{-- end cv management --}}
 
 	        {{-- start dashboard meu --}}
+	        @permission([
+                'view:report'
+            ])
 	        <li class="{{areActiveRoutes([
 		        	'home',
 					'reports.*'
@@ -237,6 +240,7 @@
 	                {{-- TODO add more reports --}}
 	            </ul>
 	        </li>
+	        @endpermission
 	        {{-- end dashboard menu --}}
 
 	        {{-- start project management --}}
