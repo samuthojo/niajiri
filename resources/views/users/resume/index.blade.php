@@ -18,6 +18,22 @@
             @include('users.resume.summary')
             {{-- end summary --}}
 
+            {{-- start experiences_achievements --}}
+            @include('users.resume.experiences_achievements')
+            {{-- end experiences_achievements --}}
+
+            {{-- start educations_languages --}}
+            @include('users.resume.educations_languages')
+            {{-- end educations_languages --}}
+
+            {{-- start certificates_projects --}}
+            @include('users.resume.certificates_projects')
+            {{-- end certificates_projects --}}
+
+            {{-- start publications_referees --}}
+            @include('users.resume.publications_referees')
+            {{-- end publications_referees --}}
+
             </div>
             {{-- end page box content --}}
 

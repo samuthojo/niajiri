@@ -1,6 +1,6 @@
 <div class="row m-b-lg m-t-lg">
     <div class="col-md-9">
-        <div class="profile-info">
+        <div class="">
             <div class="">
                 <div>
                     <h2 class="no-margins">
