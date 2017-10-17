@@ -22,7 +22,7 @@
                     </a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row m-t-xs">
                 <div class="col-md-6" title="{{trans('cvs.inputs.website.description')}}">
                     <i class="fa fa-link"></i> 
                     <a href="{{display_url($user->website)}}" target="_blank">
