@@ -20,7 +20,15 @@ class HomeController extends SecureController
       //redirect applicant
       if(\Auth::user()->hasRole(Role::APPLICANT)){
         return redirect()->route('users.basic');
-      }else{
+      }
+
+      //redirect hr agency
+      else if(\Auth::user()->hasRole(Role::HR_AGENCY)){
+        return redirect()->route('positions.index');
+      }
+
+      //TODO redirect organization
+      else{
         return view('pages.dashboard.index', [
             'route_title' => 'Dashboard',
             'route_description' => 'Dashboard'

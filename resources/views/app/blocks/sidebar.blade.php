@@ -66,6 +66,7 @@
 	        {{-- start sidebar menus --}}
 	        @unless(Auth::guest())
 	        {{-- TODO ensure is applicant --}}
+	        @role(['applicant'])
 	        {{-- start applicant menu --}}
 	        {{-- start my applications --}}
 	        <li class="{{areActiveRoutes([
@@ -196,6 +197,7 @@
 	        </li>
 	        {{-- @endpermission --}}
 	        {{-- end cv management --}}
+	        @endrole
 
 	        {{-- start dashboard meu --}}
 	        @permission([
