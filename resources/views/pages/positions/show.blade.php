@@ -26,9 +26,11 @@
                                         <div class="m-b-md">
                                             <a href="{{ route('positions.edit', ['id' => $position->id]) }}" class="btn btn-primary btn-xs pull-right">Edit position</a>
                                             {{-- start view applicant action --}}
+                                            @if(!empty($position->firstStage()->id))
                                             <a href="{{ route('applicationstages.index', ['position_id' => $position->id, 'stage_id' => $position->firstStage()->id]) }}" class="btn btn-primary btn-xs m-r-sm pull-right" title="{{trans('positions.actions.applicants.title')}}">
                                                 {{trans('positions.actions.applicants.name')}}
                                             </a>
+                                            @endif
                                             {{-- end view applicants action --}}
                                             <h2>{{$position->title}}</h2>
                                         </div>
