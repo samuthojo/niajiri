@@ -66,7 +66,7 @@
 	        {{-- start sidebar menus --}}
 	        @unless(Auth::guest())
 	        {{-- TODO ensure is applicant --}}
-	        @role(['applicant'])
+	        @role(['Applicant'])
 	        {{-- start applicant menu --}}
 	        {{-- start my applications --}}
 	        <li class="{{areActiveRoutes([
