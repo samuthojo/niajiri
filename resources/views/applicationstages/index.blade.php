@@ -122,12 +122,14 @@
                                     </button>
                                     @include('applicationstages.blocks.score_modal', ['applicationstage' => $item])
                                     @endpermission
-                                    @if($item->hasPass())
+                                    @if($item->hasPass($stage))
+                                    @if(!$item->position->isLastStage($stage))
                                     @permission('edit:applicationstage')
                                     <a href="{{route('applications.advance', ['id' => $item->application_id, 'applicant_id' => $item->applicant_id, 'position_id'=>$item->position_id])}}" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.advance.title')}}">
                                         {{trans('applicationstages.actions.advance.name')}}
                                     </a>
                                     @endpermission
+                                    @endif
                                     @endif
                                     @endif
                                 </td>

@@ -296,6 +296,9 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
      */
     public function fullName()
     {
+        if(is_set($this->name)){
+            return $this->name;
+        }
         return $this->first_name .' '. $this->middle_name .' '. $this->surname;
     }
 

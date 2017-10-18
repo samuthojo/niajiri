@@ -95,6 +95,11 @@ Breadcrumbs::register('users.basic', function ($breadcrumbs) {
     $breadcrumbs->push('Basic Details', route('users.basic'));
 });
 
+//User Resume/CV
+Breadcrumbs::register('users.resume', function ($breadcrumbs, $instance) {
+    $breadcrumbs->push($instance->fullName().' - Resume', route('users.resume', $instance->id));
+});
+
 // -------------------Roles Breadcrumbs--------------------------------------
 // Home > Roles
 Breadcrumbs::register('roles.index', function ($breadcrumbs) {
@@ -474,23 +479,23 @@ Breadcrumbs::register('stages.tests.create', function ($breadcrumbs, $instance) 
 // Home > Application Stages
 Breadcrumbs::register('applicationstages.index', function ($breadcrumbs, $instance) {
     $breadcrumbs->parent('positions.show', $instance->position);
-    $breadcrumbs->push($instance->name, route('applicationstages.index'));
+    $breadcrumbs->push($instance->name, route('applicationstages.index',['position_id' => $instance->position_id, 'stage_id'=> $instance->id]));
 });
 
 // Home > Application Stages > Create ApplicationStage
-Breadcrumbs::register('applicationstages.create', function ($breadcrumbs) {
-    $breadcrumbs->parent('applicationstages.index');
+Breadcrumbs::register('applicationstages.create', function ($breadcrumbs, $instance) {
+    $breadcrumbs->parent('applicationstages.index', $instance);
     $breadcrumbs->push('Create Application Stage', route('applicationstages.create'));
 });
 
 // Home > Application Stages > [ApplicationStage Name]
 Breadcrumbs::register('applicationstages.show', function ($breadcrumbs, $instance) {
-    $breadcrumbs->parent('applicationstages.index');
-    $breadcrumbs->push($instance->name, route('applicationstages.show', $instance->id));
+    $breadcrumbs->parent('applicationstages.index', $instance->stage);
+    $breadcrumbs->push($instance->applicant->fullName(), route('applicationstages.show', $instance->id));
 });
 
 // Home > Application Stages > [ApplicationStage Name] > Edit
 Breadcrumbs::register('applicationstages.edit', function ($breadcrumbs, $instance) {
-    $breadcrumbs->parent('applicationstages.show', $instance);
-    $breadcrumbs->push('Edit', route('applicationstages.edit', $instance->id));
+    $breadcrumbs->parent('applicationstages.show', $instance->stage);
+    $breadcrumbs->push($instance->applicant->fullName(), route('applicationstages.edit', $instance->id));
 });

@@ -65,6 +65,9 @@
                                     {{ trans('assignments.inputs.client.header') }}
                                 </th>
                                 <th>
+                                    {{ trans('assignments.inputs.location.header') }}
+                                </th>
+                                <th>
                                     {{ trans('assignments.inputs.summary.header') }}
                                 </th>
                                 <th>
@@ -86,6 +89,7 @@
                             <tr>
                                 <td>{{ $item->title}}</td>
                                 <td>{{ $item->client}}</td>
+                                <td>{{ $item->location}}</td>
                                 <td>{{ $item->summary}}</td>
                                 <td>{{ display_date($item->started_at)}}</td>
                                 <td>{{ display_date($item->finished_at)}}</td>

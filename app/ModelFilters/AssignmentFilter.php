@@ -19,6 +19,12 @@ class AssignmentFilter extends BaseFilter {
 		}
 	}
 
+    public function location($value) {
+        if (!static::isAll($value)) {
+            $this->where('location', $value);
+        }
+    }
+
 	public function applicant($value) {
 		if (!static::isAll($value)) {
 			$this->where('applicant_id', $value);

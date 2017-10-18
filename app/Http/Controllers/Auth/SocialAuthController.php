@@ -94,6 +94,16 @@ class SocialAuthController extends Controller
 
         $user = User::findOrCreateByProvider($provider, $user);
 
+        //assing applicant role by default if no role at all
+        if($user->roles->count() === 0){
+            $roles = Role::where('name', Role::APPLICANT)->get();
+            $user->detachRoles();
+            $user->save();
+            $user->attachRoles($roles);
+            $user->save();
+        }
+
+
         //welcome user
         if (!$user->verified) {
             try {

@@ -42,6 +42,9 @@ class Role extends EntrustRole {
 	 * default system roles
 	 */
 	const ADMINISTRATOR = 'Administrator';
+	const APPLICANT = 'Applicant';
+	const ORGANIZATION = 'Organization';
+	const HR_AGENCY = 'Human Resource Agency';
 
 	/**
 	 * The database table used by the model.

@@ -79,6 +79,7 @@ Route::resource('applicationstages', 'ApplicationStageController');
 //cv routes
 Route::get('/basic', 'UserController@get_basic')->name("users.basic");
 Route::patch('/basic', 'UserController@post_basic')->name("users.basic");
+Route::get('/resume/{applicant}', 'UserController@get_resume')->name("users.resume");
 
 //social auth routes
 Route::get('/auth/social/provider/{name}', 'Auth\SocialAuthController@signIn')

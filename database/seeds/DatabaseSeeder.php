@@ -21,14 +21,15 @@ class DatabaseSeeder extends Seeder
   			|| ($environment == 'test') || $isHeroku;
   		if ($isLocal) {
   			//seed test & development data
-        $this->call(ApplicantsTableSeeder::class);
         $this->call(SectorsTableSeeder::class);
         $this->call(OrganizationsTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
-  			$this->call(PositionsTableSeeder::class);
+        $this->call(PositionsTableSeeder::class);
         $this->call(StagesTableSeeder::class);
         $this->call(TestsTableSeeder::class);
         $this->call(QuestionsTableSeeder::class);
+        $this->call(ApplicantsTableSeeder::class);
+        $this->call(HamanResourceAgenciesTableSeeder::class);
   		}
 
     }

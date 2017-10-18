@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\SecureController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use App\Models\Role;
 
 
 class HomeController extends SecureController
@@ -16,10 +17,23 @@ class HomeController extends SecureController
 
     public function index(Request $request)
     {
+      //redirect applicant
+      if(\Auth::user()->hasRole(Role::APPLICANT)){
+        return redirect()->route('users.basic');
+      }
+
+      //redirect hr agency
+      else if(\Auth::user()->hasRole(Role::HR_AGENCY)){
+        return redirect()->route('positions.index');
+      }
+
+      //TODO redirect organization
+      else{
         return view('pages.dashboard.index', [
             'route_title' => 'Dashboard',
             'route_description' => 'Dashboard'
         ]);
+      }
     }
     
     public function minor(Request $request)

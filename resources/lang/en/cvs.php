@@ -14,9 +14,55 @@ return [
     ],
     'headers' => [
         'actions' => 'Actions',
+        
         'basic_details' => [
             'name' => 'Personal Details',
             'title' => 'Personal Details',
+        ],
+
+        'basic' => [
+            'name' => 'Basic',
+            'title' => 'Personal Details',
+        ],
+
+        'educations' => [
+            'name' => 'Education',
+            'title' => 'Education Details',
+        ],
+
+        'certificates' => [
+            'name' => 'Certifications',
+            'title' => 'Certifications Details',
+        ],
+
+        'experiences' => [
+            'name' => 'Work Experiences',
+            'title' => 'Work Experiences Details',
+        ],
+
+        'referees' => [
+            'name' => 'Referees',
+            'title' => 'Referees Details',
+        ],
+
+        'languages' => [
+            'name' => 'Languages',
+            'title' => 'Communication Skills Details',
+        ],
+
+        'achievements' => [
+            'name' => 'Honors/Awards',
+            'title' => 'Honor/Awards Details',
+        ],
+
+        'projects' => [
+            'name' => 'Projects',
+            'title' => 'Projects Details',
+        ],
+
+        'publications' => [
+            'name' => 'Publications',
+            'title' => 'Publications Details',
         ],
 
         'skills_hobbies_interests' => [
@@ -32,6 +78,11 @@ return [
         'stages' => [
             'name' => 'Stages',
             'title' => 'Stages'
+        ],
+
+        'generate' => [
+            'name' => 'Generate',
+            'title' => 'Generate CV/Resume',
         ],
     ],
     'actions' => [
@@ -143,6 +194,13 @@ return [
             'placeholder' => 'e.g juma.hamisi@example.com',
             'header' => 'Email',
             'description' => 'Email Address e.g user@example.com etc.',
+        ],
+
+        'website' => [
+            'label' => 'Website/Link',
+            'placeholder' => 'e.g www.example.com',
+            'header' => 'Website',
+            'description' => 'Website e.g www.example.com etc.',
         ],
 
         'mobile' => [

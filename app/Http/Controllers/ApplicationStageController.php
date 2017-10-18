@@ -51,10 +51,20 @@ class ApplicationStageController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create(Request $request) {
-		//TODO check CV validity
+		
+		//load position
+		$position = Position::find($request->input('position_id'));
+
+		//load stage
+		$stage = Stage::find($request->input('stage_id'));
+
 		$data = [
+			'instance' => $stage,
+			'position' => $position,
+			'stage' => $stage,
 			'applicant_id' => $request->input('applicant_id'),
 		];
+		
 		return view('applicationstages.create', $data);
 	}
 
@@ -86,10 +96,10 @@ class ApplicationStageController extends SecureController {
 		flash(trans('applicationstages.actions.save.flash.success'))
 			->success()->important();
 
-		//TODO redirect to applicant profile
-		//redirect to show applicationstage
-		return redirect()->route('applicationstages.index', [
-				'applicant_id' => $request->input('applicant_id')
+		//redirect to show application stage listing
+		return redirect()->route('applicationstages.index',[
+				'position_id' => $applicationstage->position_id,
+				'stage_id' => $applicationstage->stage_id
 			]);
 
 	}
@@ -109,12 +119,15 @@ class ApplicationStageController extends SecureController {
 		$data = [
 			'route_title' => 'Show Application Stage',
 			'route_description' => 'Show Application Stage',
-			'applicationstage' => $applicationstage,
+			'position' => $applicationstage->position,
+			'application' => $applicationstage->application,
 			'instance' => $applicationstage,
+			'applicationstage' => $applicationstage,
+			'stage' => $applicationstage->stage,
 			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('applicationstages.edit', $data);
+		return view('applicationstages.application', $data);
 	}
 
 	/**
@@ -127,17 +140,20 @@ class ApplicationStageController extends SecureController {
 
 		//TODO check CV validity
 
-		$applicationstage = ApplicationStage::findOrFail($id);
+		$applicationstage = ApplicationStage::query()->findOrFail($id);
 
 		$data = [
 			'route_title' => 'Edit Application Stage',
 			'route_description' => 'Edit Application Stage',
-			'applicationstage' => $applicationstage,
+			'position' => $applicationstage->position,
+			'application' => $applicationstage->application,
 			'instance' => $applicationstage,
+			'applicationstage' => $applicationstage,
+			'stage' => $applicationstage->stage,
 			'applicant_id' => $request->input('applicant_id'),
 		];
 
-		return view('applicationstages.edit', $data);
+		return view('applicationstages.application', $data);
 	}
 
 	/**
@@ -186,7 +202,7 @@ class ApplicationStageController extends SecureController {
 		flash(trans('applicationstages.actions.delete.flash.success'))
 			->success()->important();
 
-		//TODO redirect to specific applicant profile
+		//redirect to application stage listing
 		return redirect()->route('applicationstages.index',[
 				'position_id' => $applicationstage->position_id,
 				'stage_id' => $applicationstage->stage_id

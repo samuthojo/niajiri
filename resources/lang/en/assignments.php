@@ -11,44 +11,44 @@ return [
         ],
         'edit' => [
             'name' => 'Edit',
-            'title' => 'Click To Edit Assignment',
+            'title' => 'Click To Edit Project',
         ],
         'view' => [
             'name' => 'View',
-            'title' => 'Click To View Assignment',
+            'title' => 'Click To View Project',
         ],
         'save' => [
             'name' => 'Save Changes',
-            'title' => 'Click To Save New Assignment',
-            'header' => 'New Assignment',
+            'title' => 'Click To Save New Project',
+            'header' => 'New Project',
             'flash' => [
-                'success' => 'Assignment Saved Succeffully',
+                'success' => 'Project Saved Succeffully',
             ],
         ],
         'create' => [
-            'name' => 'New Assignment',
-            'title' => 'Click To Add New Assignment',
+            'name' => 'New Project',
+            'title' => 'Click To Add New Project',
         ],
         'delete' => [
             'name' => 'Delete',
-            'title' => 'Click To Delete Assignment',
+            'title' => 'Click To Delete Project',
             'flash' => [
-                'success' => 'Assignment Deleted Succeffully',
+                'success' => 'Project Deleted Succeffully',
             ],
         ],
         'update' => [
             'name' => 'Update',
-            'title' => 'Click To Update Assignment',
-            'header' => 'Update Assignment',
-            'permissions' => 'Update Assignment Permissions',
+            'title' => 'Click To Update Project',
+            'header' => 'Update Project',
+            'permissions' => 'Update Project Permissions',
             'flash' => [
-                'success' => 'Assignment Updated Succeffully',
+                'success' => 'Project Updated Succeffully',
             ],
         ],
         'search' => [
             'name' => 'Search',
-            'title' => 'Search Assignments',
-            'placeholder' => 'Search Assignments',
+            'title' => 'Search Projects',
+            'placeholder' => 'Search Projects',
         ],
     ],
     'inputs' => [
@@ -56,13 +56,19 @@ return [
             'label' => 'Title',
             'placeholder' => 'e.g Web Development',
             'header' => 'Title',
-            'description' => 'Title of the Assignment e.g Web Development etc.',
+            'description' => 'Title of the Project e.g Web Development etc.',
         ],
         'client' => [
             'label' => 'Client',
             'placeholder' => 'e.g Niajiri',
             'header' => 'Client',
             'description' => 'Client e.g Niajiri etc.',
+        ],
+        'location' => [
+            'label' => 'Location',
+            'placeholder' => 'e.g Dar es salaam',
+            'header' => 'Location',
+            'description' => 'Client e.g Dar es salaam etc.',
         ],
         'summary' => [
             'label' => 'Summary',

@@ -53,6 +53,29 @@
 </div>
 {{-- end client --}}
 
+{{-- start location --}}
+<div class="col-md-offset-2 col-md-6 m-t-md">
+    <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
+        <label for="location" title="{{ trans('assignments.inputs.location.description') }}">
+            {{trans('assignments.inputs.location.label')}}
+            <span class="text-danger">*</span>
+        </label>
+        {!! Form::text('location', null, [
+            'id' => 'location',
+            'class' => 'form-control',
+            //'required' => 'required',
+            'aria-describedby'=> 'assignment_location_help_block',
+            'placeholder' => trans('assignments.inputs.location.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('location'))
+        {!!
+            $errors->first('location', '<p id="assignment_location_help_block" class="help-block">:message</p>')
+        !!}
+        @endif
+    </div>
+</div>
+{{-- end location --}}
+
 
 {{-- start summary --}}
 <div class="col-md-offset-2 col-md-6 m-t-md">
