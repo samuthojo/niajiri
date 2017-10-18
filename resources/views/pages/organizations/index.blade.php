@@ -113,9 +113,9 @@
                     {{-- end table --}}
 
                     {{-- start pagination --}}
-                    {{--<div class="pagination-wrapper">
+                    <div class="pagination-wrapper">
                         {!! $organizations->render() !!}
-                    </div> --}}
+                    </div>
                     {{-- end pagination --}}
 
                 </div>

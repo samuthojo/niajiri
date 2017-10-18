@@ -38,7 +38,7 @@ class ProjectController extends SecureController
     public function index(Request $request)
     {
         $this->projectRepository->pushCriteria(new RequestCriteria($request));
-        $projects = $this->projectRepository->all();
+        $projects = $this->projectRepository->paginate(config('app.defaults.pageSize'));
 
         return view('pages.projects.index',[
             'route_title' => 'Project',

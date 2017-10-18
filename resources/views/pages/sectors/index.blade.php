@@ -102,9 +102,9 @@
                     {{-- end table --}}
 
                     {{-- start pagination --}}
-                    {{--<div class="pagination-wrapper">
+                    <div class="pagination-wrapper">
                         {!! $sectors->render() !!}
-                    </div> --}}
+                    </div>
                     {{-- end pagination --}}
 
                 </div>

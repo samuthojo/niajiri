@@ -48,7 +48,7 @@ class PositionController extends SecureController
     public function index(Request $request)
     {
         $this->positionRepository->pushCriteria(new RequestCriteria($request));
-        $positions = $this->positionRepository->all();
+        $positions = $this->positionRepository->paginate(config('app.defaults.pageSize'));
 
         return view('pages.positions.index',[
             'route_title' => 'Positions',

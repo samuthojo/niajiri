@@ -44,7 +44,7 @@ class OrganizationController extends SecureController
          $request->merge(['search'=>$search]);
 
         $this->organizationRepository->pushCriteria(new RequestCriteria($request));
-        $organizations = $this->organizationRepository->all();
+        $organizations = $this->organizationRepository->paginate(config('app.defaults.pageSize'));
 
         return view('pages.organizations.index',[
             'route_title' => 'Organization',
