@@ -21,6 +21,7 @@ class ApplicantsTableSeeder extends Seeder {
 			$applicant = User::updateOrCreate([
 						'email' => 'applicant@niajiri.com',
 					],[
+					'type' => User::TYPE_APPLICANT,
 					'first_name' => 'Rose',
 					'middle_name' => 'Isaya',
 					'surname' => 'Mgonja',

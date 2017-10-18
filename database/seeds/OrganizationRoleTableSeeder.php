@@ -4,7 +4,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 
-class HumanResourceAgencyRoleTableSeeder extends Seeder {
+class OrganizationRoleTableSeeder extends Seeder {
 	public function run() {
 		DB::transaction(function () {
 			
@@ -13,10 +13,9 @@ class HumanResourceAgencyRoleTableSeeder extends Seeder {
 	           'achievement', 'application', 'applicationstage', 
 	           'assignment', 'certificate',
 	           'education', 'experience', 'language',
-	           'media', 'organization', 'position',
-	           'project', 'publication', 'question', 
-	           'referee', 'sector', 'stage', 
-	           'stagetest', 'test', 'testcategory'
+	           'media', 'position',
+	           'project', 'publication',
+	           'referee'
 	        ];
 	        $actions = [
 	            'list', 'view', 'create', 'edit',
@@ -31,24 +30,24 @@ class HumanResourceAgencyRoleTableSeeder extends Seeder {
 	        }
 			$permissions = Permission::whereIn('name', $permissions)->get();
 
-			$hr = Role::where('name', Role::HR_AGENCY)
+			$organization = Role::where('name', Role::ORGANIZATION)
 				->first();
 
-			if (is_null($hr)) {
+			if (is_null($organization)) {
 				$role = [
-					'name' => Role::HR_AGENCY,
-					'display_name' => Role::HR_AGENCY,
-					'description' => 'Human Resource Agency',
+					'name' => Role::ORGANIZATION,
+					'display_name' => Role::ORGANIZATION,
+					'description' => 'Organization',
 					'restrict' => true,
 				];
 
-				$hr = Role::create($role);
+				$organization = Role::create($role);
 			}
 
-			$hr->detachPermissions();
-			$hr->save();
-			$hr->attachPermissions($permissions);
-			$hr->save();
+			$organization->detachPermissions();
+			$organization->save();
+			$organization->attachPermissions($permissions);
+			$organization->save();
 		});
 	}
 }

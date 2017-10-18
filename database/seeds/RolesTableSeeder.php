@@ -7,5 +7,6 @@ class RolesTableSeeder extends Seeder {
 		$this->call(AdministratorRoleTableSeeder::class);
 		$this->call(ApplicantRoleTableSeeder::class);
 		$this->call(HumanResourceAgencyRoleTableSeeder::class);
+		$this->call(OrganizationRoleTableSeeder::class);
 	}
 }

@@ -23,7 +23,7 @@ class HomeController extends SecureController
       }
 
       //redirect hr agency
-      else if(\Auth::user()->hasRole(Role::HR_AGENCY)){
+      else if(\Auth::user()->hasRole([Role::HR_AGENCY, Role::ORGANIZATION])){
         return redirect()->route('positions.index');
       }
 
