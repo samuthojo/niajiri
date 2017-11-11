@@ -91,6 +91,8 @@ class PositionController extends SecureController
         $project = $this->projectRepository->findWithoutFail($request['project_id']);
 
         $input['organization_id'] = $project->organization_id;
+        $input['dueAt'] = $project->endedAt;
+        $input['publishedAt']  = $project->startedAt;
 
         $position = $this->positionRepository->create($input);
 

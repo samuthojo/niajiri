@@ -20,17 +20,15 @@ class CreatePositionsTable extends Migration
             $table->longText('responsibilities')->nullable();
             $table->longText('requirements');
             $table->string('duration')->default('Full Time');
+            $table->string('sector')->nullable();
             $table->date('dueAt');
             $table->date('publishedAt')->nullable();
             $table->uuid('project_id')->nullable();
             $table->uuid('organization_id')->nullable();
-            $table->uuid('sector_id')->nullable();
 
             $table->foreign('project_id')->references('id')->on('projects')
               ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('organization_id')->references('id')->on('users')
-              ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('sector_id')->references('id')->on('sectors')
               ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

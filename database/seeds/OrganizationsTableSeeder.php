@@ -8,11 +8,9 @@ class OrganizationsTableSeeder extends Seeder {
 	public function run() {
 		DB::transaction(function () {
 
-			$sector = Sector::first();
-
 			User::updateOrCreate(['email' => 'hr@vodacom.com'], [
 					'type' => User::TYPE_ORGANIZATION,
-					'sector_id' => $sector->id,
+					'sector' => 'Telecomunication',
 					'email' => 'hr@vodacom.com',
 					'name' => 'Vodacom',
 					'summary' => 'Telecommunication Company',

@@ -29,7 +29,7 @@ class PositionRepository extends BaseRepository
         'publishedAt',
         'project_id',
         'organization_id',
-        'sector_id'
+        'sector'
     ];
 
     /**

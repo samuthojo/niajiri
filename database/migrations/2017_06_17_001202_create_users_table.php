@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name')->index()->nullable();
             $table->string('middle_name')->index()->nullable();
             $table->string('surname')->index()->nullable();
+            $table->string('contact_person')->index()->nullable();
             $table->string('email')->index()->unique();
             $table->string('website')->index()->nullable();
             $table->string('mobile')->index()->unique();
@@ -35,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('avatar')->nullable(); //placeholder for direct avatar url
             $table->boolean('verified')->default(false);
+            $table->string('sector')->nullable();
             $table->rememberToken();
 
             //applicant specific
@@ -44,13 +46,6 @@ class CreateUsersTable extends Migration
             $table->text('skills')->nullable();
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();
-
-            //organization specific
-            $table->uuid('sector_id')->index()->nullable();
-            $table->foreign('sector_id')->references('id')
-                  ->on('sectors')
-                  ->onUpdate('cascade')
-                  ->onDelete('set null'); //we dont want to delete organization if sector deleted
 
             //location specific
             $table->string('country')->index()->nullable();

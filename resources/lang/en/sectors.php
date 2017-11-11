@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'sectors' => [
+      'Telecomunication' => 'Telecomunication',
+      'Software Engineering/Development'  => 'Software Engineering/Development',
+      'Human Resources' => 'Human Resources'
+    ],
     'genders' => [
         'Male' => 'Male',
         'Female' => 'Female',
