@@ -108,6 +108,13 @@ return [
             'description' => 'Email Address of the User e.g user@example.com etc.',
         ],
 
+        'secondary_email' => [
+            'label' => 'Secondary Email',
+            'placeholder' => 'Secondary Email',
+            'header' => 'Secondary Email',
+            'description' => 'Secondary Email Address of the User e.g user@example.com etc.',
+        ],
+
         'mobile' => [
             'label' => 'Mobile',
             'placeholder' => 'Mobile',
@@ -120,6 +127,13 @@ return [
             'placeholder' => 'Landline',
             'header' => 'Landline',
             'description' => 'Landline Phone Number of the User e.g 255222555555 etc.',
+        ],
+
+        'alternative_mobile' => [
+            'label' => 'Alternative Mobile',
+            'placeholder' => 'Alternative Mobile',
+            'header' => 'Alternative Mobile',
+            'description' => 'Alternative Mobile Number of the User e.g 255714111111 etc.',
         ],
 
         'fax' => [

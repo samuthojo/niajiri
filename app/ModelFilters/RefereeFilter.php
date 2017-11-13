@@ -37,6 +37,12 @@ class RefereeFilter extends BaseFilter {
 		}
 	}
 
+	public function alternative_mobile($value) {
+		if (!static::isAll($value)) {
+			$this->where('alternative_mobile', $value);
+		}
+	}
+
 	public function applicant($value) {
 		if (!static::isAll($value)) {
 			$this->where('applicant_id', $value);

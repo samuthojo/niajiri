@@ -16,7 +16,7 @@ class LanguageController extends SecureController {
 	public function index(Request $request) {
 
 		//initialize query
-		$query = Language::filter($request->all())->orderBy('fluency', 'desc');
+		$query = Language::filter($request->all())->orderBy('name', 'desc');
 
 		//paginate query result
 		$languages = $query->paginate(config('app.defaults.pageSize'));
@@ -55,7 +55,8 @@ class LanguageController extends SecureController {
 		//ensure valid language
 		$this->validate($request, [
 			'name' => 'required|string',
-			'fluency' => 'required|string',
+			'write_fluency' => 'required|string',
+			'speak_fluency' => 'required|string',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 
@@ -131,7 +132,8 @@ class LanguageController extends SecureController {
 		//ensure valid language
 		$this->validate($request, [
 			'name' => 'required|string',
-			'fluency' => 'required|string',
+			'write_fluency' => 'required|string',
+			'speak_fluency' => 'required|string',
             'applicant_id' => 'string|required|exists:users,id'
 		]);
 

@@ -82,6 +82,12 @@ return [
             'header' => 'Mobile',
             'description' => 'Referee Mobile Number e.g 255714333999 etc.',
         ],
+        'alternative_mobile' => [
+            'label' => 'Alternative Mobile',
+            'placeholder' => 'e.g 255754222777',
+            'header' => 'Alternative Mobile',
+            'description' => 'Referee Alternative Mobile Number e.g 255754222777 etc.',
+        ],
         'applicant_id' => [
             'label' => 'Applicant',
             'placeholder' => 'Applicant',

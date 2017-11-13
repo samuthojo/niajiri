@@ -22,8 +22,8 @@ class EducationController extends SecureController {
 		$educations = $query->paginate(config('app.defaults.pageSize'));
 
 		$data = [
-			'route_title' => 'Educations',
-			'route_description' => 'Education List',
+			'route_title' => 'Education Levels',
+			'route_description' => 'Education Levels',
 			'educations' => $educations,
 			'q' => $request->input('q'),
 			'applicant_id' => $request->input('applicant_id'),
@@ -102,8 +102,8 @@ class EducationController extends SecureController {
 		$education = Education::query()->findOrFail($id);
 
 		$data = [
-			'route_title' => 'Show Education',
-			'route_description' => 'Show Education',
+			'route_title' => 'Show Education Level',
+			'route_description' => 'Show Education Level',
 			'education' => $education,
 			'instance' => $education,
 			'applicant_id' => $request->input('applicant_id'),
@@ -123,8 +123,8 @@ class EducationController extends SecureController {
 		$education = Education::findOrFail($id);
 
 		$data = [
-			'route_title' => 'Edit Education',
-			'route_description' => 'Edit Education',
+			'route_title' => 'Edit Education Level',
+			'route_description' => 'Edit Education Level',
 			'education' => $education,
 			'instance' => $education,
 			'applicant_id' => $request->input('applicant_id'),

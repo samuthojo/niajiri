@@ -26,17 +26,13 @@
             @include('users.resume.educations_languages')
             {{-- end educations_languages --}}
 
-            {{-- start certificates_projects --}}
-            @include('users.resume.certificates_projects')
-            {{-- end certificates_projects --}}
+            {{-- start certificates_publications --}}
+            @include('users.resume.certificates_publications')
+            {{-- end certificates_publications --}}
 
-            {{-- start publications_referees --}}
-            @include('users.resume.publications_referees')
-            {{-- end publications_referees --}}
-
-            {{-- start skills_hobbies_interests --}}
-            @include('users.resume.skills_hobbies_interests')
-            {{-- end skills_hobbies_interests --}}
+            {{-- start skills_hobbies_interests_referees --}}
+            @include('users.resume.skills_hobbies_interests_referees')
+            {{-- end skills_hobbies_interests_referees --}}
 
             </div>
             {{-- end page box content --}}

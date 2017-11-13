@@ -130,13 +130,13 @@ Breadcrumbs::register('roles.edit', function ($breadcrumbs, $instance) {
 // Home > Educations
 Breadcrumbs::register('educations.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Educations', route('educations.index'));
+    $breadcrumbs->push('Education Levels', route('educations.index'));
 });
 
 // Home > Educations > Create Education
 Breadcrumbs::register('educations.create', function ($breadcrumbs) {
     $breadcrumbs->parent('educations.index');
-    $breadcrumbs->push('Create Education', route('educations.create'));
+    $breadcrumbs->push('Create Education Level', route('educations.create'));
 });
 
 // Home > Educations > [Education Title]
@@ -259,13 +259,13 @@ Breadcrumbs::register('referees.edit', function ($breadcrumbs, $instance) {
 // Home > Achievements
 Breadcrumbs::register('achievements.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Achievements', route('achievements.index'));
+    $breadcrumbs->push('Honors/Awards', route('achievements.index'));
 });
 
 // Home > Achievements > Create Achievement
 Breadcrumbs::register('achievements.create', function ($breadcrumbs) {
     $breadcrumbs->parent('achievements.index');
-    $breadcrumbs->push('Create Achievement', route('achievements.create'));
+    $breadcrumbs->push('Create Honor/Award', route('achievements.create'));
 });
 
 // Home > Achievements > [Achievement Title]

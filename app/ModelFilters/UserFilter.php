@@ -45,10 +45,17 @@ class UserFilter extends BaseFilter
         }
     }
 
-    public function mobile($value)
+    public function secondaryEmail($value)
     {
         if (!static::isAll($value)) {
-            $this->where('mobile', $value);
+            $this->where('secondary_email', $value);
+        }
+    }
+
+    public function alternativeMobile($value)
+    {
+        if (!static::isAll($value)) {
+            $this->where('alternative_mobile', $value);
         }
     }
 

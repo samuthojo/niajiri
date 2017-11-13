@@ -64,9 +64,9 @@ class ApplicantsTableSeeder extends Seeder {
 
 			Education::updateOrCreate([
 					'applicant_id'=>$applicant->id,
-					'level' => 'A Level',
+					'level' => 'Certificate',
 				], [
-					'level' => 'A Level',
+					'level' => 'Certificate',
 					'institution' => 'Maryan Girls Secondary School',
 					'summary' => 'PCM',
 	        		'started_at' => '20-02-2006',
@@ -77,9 +77,9 @@ class ApplicantsTableSeeder extends Seeder {
 
 			Education::updateOrCreate([
 					'applicant_id'=>$applicant->id,
-					'level' => 'O Level',
+					'level' => 'Certificate',
 				], [
-					'level' => 'O Level',
+					'level' => 'Certificate',
 					'institution' => 'Kifungilo Girls Secondary School',
 					'summary' => 'Science',
 	        		'started_at' => '20-02-2002',
@@ -165,7 +165,8 @@ class ApplicantsTableSeeder extends Seeder {
 						'name' => $language
 					], [
 					'name' => $language,
-					'fluency' => 'Proficient', 
+					'write_fluency' => 'Fair', 
+					'speak_fluency' => 'Fair', 
 					'applicant_id' => $applicant->id
 				]);
 			}

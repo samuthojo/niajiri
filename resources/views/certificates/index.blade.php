@@ -74,9 +74,6 @@
                                     {{ trans('certificates.inputs.finished_at.header') }}
                                 </th>
                                 <th>
-                                    {{ trans('certificates.inputs.expired_at.header') }}
-                                </th>
-                                <th>
                                     {{ trans('certificates.inputs.attachment.header') }}
                                 </th>
                                 <th>
@@ -95,7 +92,6 @@
                                 <td>{{ $item->summary}}</td>
                                 <td>{{ display_date($item->started_at)}}</td>
                                 <td>{{ display_date($item->finished_at)}}</td>
-                                <td>{{ display_date($item->expired_at)}}</td>
                                 @if($item->attachment())
                                 <td>
                                     <a href="{{$item->attachment()->public_url()}}" target="_blank">

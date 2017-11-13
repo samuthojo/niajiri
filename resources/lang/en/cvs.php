@@ -26,8 +26,8 @@ return [
         ],
 
         'educations' => [
-            'name' => 'Education',
-            'title' => 'Education Details',
+            'name' => 'Education Levels',
+            'title' => 'Education Level Details',
         ],
 
         'certificates' => [
@@ -193,7 +193,15 @@ return [
             'label' => 'Email',
             'placeholder' => 'e.g juma.hamisi@example.com',
             'header' => 'Email',
-            'description' => 'Email Address e.g user@example.com etc.',
+            'description' => 'Email Address e.g e.g juma.hamisi@example.com',
+        ],
+
+
+        'secondary_email' => [
+            'label' => 'Secondary Email',
+            'placeholder' => 'e.g joseph.john@example.com',
+            'header' => 'Secondary Email',
+            'description' => 'Email Address e.g joseph.john@example.com',
         ],
 
         'website' => [
@@ -215,6 +223,13 @@ return [
             'placeholder' => 'e.g 255222555555',
             'header' => 'Landline',
             'description' => 'Landline Phone Number e.g 255222555555 etc.',
+        ],
+
+        'alternative_mobile' => [
+            'label' => 'Alternative Mobile',
+            'placeholder' => 'e.g 255714111111',
+            'header' => 'Alternative Mobile',
+            'description' => 'Alternative Mobile Phone Number e.g 255714111111 etc.',
         ],
 
         'summary' => [

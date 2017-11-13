@@ -22,8 +22,8 @@ class AchievementController extends SecureController {
 		$achievements = $query->paginate(config('app.defaults.pageSize'));
 
 		$data = [
-			'route_title' => 'Achievements',
-			'route_description' => 'Achievement List',
+			'route_title' => 'Honors/Awards',
+			'route_description' => 'Honors/Awards',
 			'achievements' => $achievements,
 			'q' => $request->input('q'),
 			'applicant_id' => $request->input('applicant_id'),
@@ -99,8 +99,8 @@ class AchievementController extends SecureController {
 		$achievement = Achievement::query()->findOrFail($id);
 
 		$data = [
-			'route_title' => 'Show Achievement',
-			'route_description' => 'Show Achievement',
+			'route_title' => 'Show Honor/Award',
+			'route_description' => 'Show Honor/Award',
 			'achievement' => $achievement,
 			'instance' => $achievement,
 			'applicant_id' => $request->input('applicant_id'),
@@ -120,8 +120,8 @@ class AchievementController extends SecureController {
 		$achievement = Achievement::findOrFail($id);
 
 		$data = [
-			'route_title' => 'Edit Achievement',
-			'route_description' => 'Edit Achievement',
+			'route_title' => 'Edit Honor/Award',
+			'route_description' => 'Edit Honor/Award',
 			'achievement' => $achievement,
 			'instance' => $achievement,
 			'applicant_id' => $request->input('applicant_id'),

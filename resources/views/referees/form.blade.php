@@ -123,5 +123,27 @@
 </div>
 {{-- end mobile --}}
 
+{{-- start alternative_mobile --}}
+<div class="col-md-offset-2 col-md-6 m-t-md">
+    <div class="form-group {{ $errors->has('alternative_mobile') ? 'has-error' : ''}}">
+        <label for="alternative_mobile" title="{{ trans('referees.inputs.alternative_mobile.description') }}">
+            {{trans('referees.inputs.alternative_mobile.label')}}
+        </label>
+        {!! Form::text('alternative_mobile', null, [
+            'id' => 'alternative_mobile',
+            'class' => 'form-control',
+            //'required' => 'required',
+            'aria-describedby'=> 'referee_alternative_mobile_help_block',
+            'placeholder' => trans('referees.inputs.alternative_mobile.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('alternative_mobile'))
+        {!!
+            $errors->first('alternative_mobile', '<p id="referee_alternative_mobile_help_block" class="help-block">:message</p>')
+        !!}
+        @endif
+    </div>
+</div>
+{{-- end alternative_mobile --}}
+
 
 {{-- end referee form --}}
