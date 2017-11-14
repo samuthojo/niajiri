@@ -84,15 +84,15 @@ return [
         ],
         'started_at' => [
             'label' => 'Date Started',
-            'placeholder' => 'e.g 12-11-2015',
+            'placeholder' => 'e.g 11-2015',
             'header' => 'Date Started',
-            'description' => 'Date Started e.g 12-11-2015 etc.',
+            'description' => 'Date Started e.g 11-2015 etc.',
         ],
         'ended_at' => [
             'label' => 'End Date',
-            'placeholder' => 'e.g 12-12-2016',
+            'placeholder' => 'e.g 12-2016',
             'header' => 'End Date',
-            'description' => 'End Date e.g 12-12-2016 etc.',
+            'description' => 'End Date e.g 12-2016 etc.',
         ],
         'applicant_id' => [
             'label' => 'Applicant',

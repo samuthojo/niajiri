@@ -27,6 +27,8 @@ return [
     'date_format' => 'd-m-Y',
     'mysql_date_formart' => 'Y-m-d',
     'datepicker_date_format' => 'dd-mm-yyyy',
+    'datepicker_month_year_format' => 'mm-yyyy',
+    'datepicker_parse_month_year_format' => 'm-Y',
     'datepicker_parse_format' => 'd-m-Y',
     'currency' => [
         'code' => 'TZS',

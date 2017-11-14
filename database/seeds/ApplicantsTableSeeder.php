@@ -37,6 +37,7 @@ class ApplicantsTableSeeder extends Seeder {
         			'skills' => 'Problem Solving, Adaptability, Collaboration, Strong Work Ethic, Time Management, Critical Thinking, Self-Confidence, Handling Pressure.',
 			        'interests' => 'Air Sports, Archery, Astronomy, Baseball, Basketball',
 			        'hobbies' => 'Traveling, Fishing, Hunting',
+			        'extracurricular_activities' => 'Bodybuilding, Cheerleading, Cycling, Fencing',
 			        'country' => 'Tanzania',
 			        'state' => 'Arusha'
 			]);
@@ -54,39 +55,27 @@ class ApplicantsTableSeeder extends Seeder {
 					'level' => 'University',
 				], [
 					'level' => 'University',
-					'institution' => 'University of Dar es salaam',
+					'institution' => 'University of Dar es Salaam',
 					'summary' => 'Bsc. in Computer Engineering',
-	        		'started_at' => '20-08-2008',
-	        		'finished_at' => '25-09-2012',
+	        		'started_at' => '08-2008',
+	        		'finished_at' => '09-2004',
 	        		'remark' => '3.8',
 	        		'applicant_id' => $applicant->id
 				]);
 
 			Education::updateOrCreate([
 					'applicant_id'=>$applicant->id,
-					'level' => 'Certificate',
+					'level' => 'Masters',
 				], [
-					'level' => 'Certificate',
-					'institution' => 'Maryan Girls Secondary School',
-					'summary' => 'PCM',
-	        		'started_at' => '20-02-2006',
-	        		'finished_at' => '25-03-2008',
-	        		'remark' => 'I.3',
+					'level' => 'Masters',
+					'institution' => 'University of Dar es Salaam',
+					'summary' => 'Masters of Science and Economics',
+	        		'started_at' => '02-2016',
+	        		'finished_at' => '03-2008',
+	        		'remark' => '4.6',
 	        		'applicant_id' => $applicant->id
 				]);
 
-			Education::updateOrCreate([
-					'applicant_id'=>$applicant->id,
-					'level' => 'Certificate',
-				], [
-					'level' => 'Certificate',
-					'institution' => 'Kifungilo Girls Secondary School',
-					'summary' => 'Science',
-	        		'started_at' => '20-02-2002',
-	        		'finished_at' => '25-03-2005',
-	        		'remark' => 'I.10',
-	        		'applicant_id' => $applicant->id
-				]);
 
 			//save certificate details
 			Certificate::updateOrCreate([
@@ -96,9 +85,9 @@ class ApplicantsTableSeeder extends Seeder {
 					'title' => 'CCNA',
 					'institution' => 'Cisco Net Academy',
 					'summary' => 'Basic Networking',
-			        'started_at' => '12-06-2009',
-			        'finished_at' => '14-07-2010',
-			        'expired_at' => '08-06-2012',
+			        'started_at' => '06-2009',
+			        'finished_at' => '07-2010',
+			        'expired_at' => '06-2012',
 	        		'applicant_id' => $applicant->id
 				]);
 
@@ -109,9 +98,9 @@ class ApplicantsTableSeeder extends Seeder {
 					'title' => 'CPA',
 					'institution' => 'NIBS - Tanzania',
 					'summary' => 'Certified Accountant',
-			        'started_at' => '12-06-2010',
-			        'finished_at' => '14-07-2014',
-			        'expired_at' => '08-06-2018',
+			        'started_at' => '06-2010',
+			        'finished_at' => '07-2014',
+			        'expired_at' => '06-2018',
 	        		'applicant_id' => $applicant->id
 				]);
 
@@ -123,8 +112,8 @@ class ApplicantsTableSeeder extends Seeder {
 					'position' => 'Job Order - Web Master',
 					'organization' => 'Vodacom Tanzania Limited',
 					'sector' => 'Telecommunication',
-			        'started_at' => '20-08-2009',
-			        'ended_at' => '20-11-2011',
+			        'started_at' => '08-2009',
+			        'ended_at' => '11-2011',
 			        'summary' => 'Technical Support',
 			        'location' => 'Dar es salaam',
 	        		'applicant_id' => $applicant->id
@@ -137,8 +126,8 @@ class ApplicantsTableSeeder extends Seeder {
 					'position' => 'Web Master',
 					'organization' => 'Tigo Tanzania Limited',
 					'sector' => 'Telecommunication',
-			        'started_at' => '20-08-2011',
-			        'ended_at' => '20-11-2013',
+			        'started_at' => '08-2011',
+			        'ended_at' => '11-2013',
 			        'summary' => 'Technical Support',
 			        'location' => 'Dar es salaam',
 	        		'applicant_id' => $applicant->id
@@ -151,7 +140,7 @@ class ApplicantsTableSeeder extends Seeder {
 					'position' => 'Web Master',
 					'organization' => 'TCU - Tanzania',
 					'sector' => 'Public Education',
-			        'started_at' => '20-08-2014',
+			        'started_at' => '08-2014',
 			        'ended_at' => null,
 			        'summary' => 'Web System Administrator',
 			        'location' => 'Dar es salaam',
@@ -204,7 +193,7 @@ class ApplicantsTableSeeder extends Seeder {
 					'title' => 'Employee of Year',
 					'organization' => 'Tigo Tanzania Limited',
 					'summary' => 'Most Valuable Contributor',
-			        'issued_at' => '20-11-2013',
+			        'issued_at' => '11-2013',
 	        		'applicant_id' => $applicant->id
 				]);
 
@@ -215,7 +204,7 @@ class ApplicantsTableSeeder extends Seeder {
 					'title' => 'A Level - Best Student',
 					'organization' => 'NECTA - Tanzania',
 					'summary' => 'Best Student',
-			        'issued_at' => '20-11-2008',
+			        'issued_at' => '11-2008',
 	        		'applicant_id' => $applicant->id
 				]);
 

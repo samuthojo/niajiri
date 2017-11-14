@@ -21,7 +21,10 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+
                         {{-- start assignments search form --}}
+                        @if(is_set($assignments) && 
+                        ($assignments->count() > config('app.defaults.pageSize')))
                         {!! Form::open([
                             'method'=>'GET',
                             'route' => 'assignments.index',
@@ -43,6 +46,7 @@
                                 </span>
                         </div>
                         {!! Form::close() !!}
+                        @endif
                         {{-- end assignments search form --}}
 
                     </div>

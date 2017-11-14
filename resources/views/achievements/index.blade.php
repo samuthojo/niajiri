@@ -21,7 +21,10 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+
                         {{-- start achievements search form --}}
+                        @if(is_set($achievements) && 
+                        ($achievements->count() > config('app.defaults.pageSize')))
                         {!! Form::open([
                             'method'=>'GET',
                             'route' => 'achievements.index',
@@ -43,6 +46,7 @@
                                 </span>
                         </div>
                         {!! Form::close() !!}
+                        @endif
                         {{-- end achievements search form --}}
 
                     </div>
@@ -87,7 +91,9 @@
                                 <td>{{ $item->title}}</td>
                                 <td>{{ $item->organization}}</td>
                                 <td>{{ $item->summary}}</td>
-                                <td>{{ display_date($item->issued_at)}}</td>
+                                <td>
+                                    {{ display_date($item->issued_at, config('app.datepicker_parse_month_year_format'))}}
+                                </td>
                                 @if($item->attachment())
                                 <td>
                                     <a href="{{$item->attachment()->public_url()}}" target="_blank">

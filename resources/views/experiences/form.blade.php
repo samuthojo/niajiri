@@ -138,7 +138,9 @@
             'placeholder' => trans('experiences.inputs.started_at.placeholder'),
             'aria-describedby'=> 'experience_started_at_help_block',
             'data-provide' => 'datepicker',
-            'data-date-format' => config('app.datepicker_date_format')
+            'data-date-start-view' => 'months',
+            'data-date-min-view-mode' => 'months',
+            'data-date-format' => config('app.datepicker_month_year_format')
         ]) !!}
        @if($errors->any() && $errors->has('started_at'))
         {!!
@@ -163,7 +165,9 @@
             'placeholder' => trans('experiences.inputs.ended_at.placeholder'),
             'aria-describedby'=> 'experience_ended_at_help_block',
             'data-provide' => 'datepicker',
-            'data-date-format' => config('app.datepicker_date_format')
+            'data-date-start-view' => 'months',
+            'data-date-min-view-mode' => 'months',
+            'data-date-format' => config('app.datepicker_month_year_format')
         ]) !!}
        @if($errors->any() && $errors->has('ended_at'))
         {!!

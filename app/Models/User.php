@@ -154,6 +154,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'skills',
         'interests',
         'hobbies',
+        'extracurricular_activities',
 
         //organization specific
         'sector_id',
@@ -218,6 +219,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             'users.skills' => 5,
             'users.interests' => 5,
             'users.hobbies' => 5,
+            'users.extracurricular_activities' => 5,
             'users.country' => 10,
             'users.state' => 10,
         ]

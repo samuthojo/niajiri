@@ -30,6 +30,8 @@ class Education extends Model implements HasMedia
      */
     protected $primaryKey = 'id';
 
+    protected $parseFormat = 'm-Y';
+
     /**
      * Attributes that should be mass-assignable.
      *
@@ -76,6 +78,18 @@ class Education extends Model implements HasMedia
     ];
 
 
+     /**
+     * Create a new Eloquent model instance.
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
+
+
     /**
      * Get and format the education's started_at for forms.
      *
@@ -86,7 +100,7 @@ class Education extends Model implements HasMedia
     public function formStartedAtAttribute($value) {
         if (is_set($value)) {
             $value = Carbon::parse($value);
-            $value = $value->format(config('app.datepicker_parse_format'));
+            $value = $value->format(config('app.datepicker_parse_month_year_format'));
         }
         return $value;
     }
@@ -102,7 +116,7 @@ class Education extends Model implements HasMedia
     public function formFinishedAtAttribute($value) {
         if (is_set($value)) {
             $value = Carbon::parse($value);
-            $value = $value->format(config('app.datepicker_parse_format'));
+            $value = $value->format(config('app.datepicker_parse_month_year_format'));
         }
         return $value;
     }

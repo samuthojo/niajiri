@@ -20,12 +20,12 @@
 		        <h5>
                     <i class="fa fa-calendar-o"></i> 
                     <span title="{{trans('educations.inputs.started_at.description')}}">
-                    	{{display_date($education->started_at)}}
+                    	{{display_date($education->started_at, config('app.datepicker_parse_month_year_format'))}}
                     </span> 
                     to 
                     @if($education->finished_at)
                     <span title="{{trans('educations.inputs.finished_at.description')}}">
-                    	{{display_date($education->finished_at)}}
+                    	{{display_date($education->finished_at, config('app.datepicker_parse_month_year_format'))}}
                     </span>
                     @else
                     <span title="{{trans('educations.inputs.finished_at.description')}}">Current</span>
@@ -53,8 +53,13 @@
 				<h3 title="{{trans('languages.inputs.name.description')}}">
 					{{$language->name}}
 		        </h3>
-		        <h5 title="{{trans('languages.inputs.fluency.description')}}">
-		            {{$language->fluency}}
+		        <h5>
+			        <p title="{{trans('languages.inputs.write_fluency.description')}}">
+			            {{trans('languages.inputs.write_fluency.label')}} - {{$language->write_fluency}}
+		            </p>
+		            <p title="{{trans('languages.inputs.speak_fluency.description')}}">
+			            {{trans('languages.inputs.speak_fluency.label')}} - {{$language->speak_fluency}}
+		            </p>
 	            </h5>
 				<hr class="hr-line-dashed" />
 			</div>

@@ -72,9 +72,9 @@ return [
         ],
         'issued_at' => [
             'label' => 'Date Issued',
-            'placeholder' => 'e.g 12-11-2015',
+            'placeholder' => 'e.g 11-2015',
             'header' => 'Date Issued',
-            'description' => 'Date Issued e.g 12-11-2015 etc.',
+            'description' => 'Date Issued e.g 11-2015 etc.',
         ],
         'applicant_id' => [
             'label' => 'Applicant',

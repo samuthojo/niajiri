@@ -97,10 +97,11 @@ if (!function_exists('display_boolean')) {
  */
 if (!function_exists('display_date')) {
 
-    function display_date($value = null)
+    function display_date($value = null, $format = null)
     {
         if (is_set($value)) {
-            return $value->format(config('app.datepicker_parse_format'));
+            $format = is_set($format) ? $format : config('app.datepicker_parse_format');
+            return $value->format($format);
         } else {
             return 'N/A';
         }

@@ -12,9 +12,10 @@ return [
         'Separated' => 'Separated',
         'Married' => 'Married',
     ],
+
     'headers' => [
         'actions' => 'Actions',
-        
+
         'basic_details' => [
             'name' => 'Personal Details',
             'title' => 'Personal Details',
@@ -72,12 +73,12 @@ return [
 
         'cover_letter' => [
             'name' => 'Cover Letter',
-            'title' => 'Cover Letter'
+            'title' => 'Cover Letter',
         ],
 
         'stages' => [
             'name' => 'Stages',
-            'title' => 'Stages'
+            'title' => 'Stages',
         ],
 
         'generate' => [
@@ -196,12 +197,11 @@ return [
             'description' => 'Email Address e.g e.g juma.hamisi@example.com',
         ],
 
-
         'secondary_email' => [
             'label' => 'Secondary Email',
             'placeholder' => 'e.g joseph.john@example.com',
             'header' => 'Secondary Email',
-            'description' => 'Email Address e.g joseph.john@example.com',
+            'description' => 'Secondary Email Address e.g joseph.john@example.com',
         ],
 
         'website' => [
@@ -301,6 +301,13 @@ return [
             'placeholder' => 'e.g Dancing, Debate',
             'header' => 'Hobbies',
             'description' => 'Hobbies e.g Dancing, Debate.',
+        ],
+
+        'extracurricular_activities' => [
+            'label' => 'Extracurricular Activities',
+            'placeholder' => 'e.g Cycling',
+            'header' => 'Extracurricular Activities',
+            'description' => 'Extracurricular Activities e.g Cycling.',
         ],
 
         'country' => [

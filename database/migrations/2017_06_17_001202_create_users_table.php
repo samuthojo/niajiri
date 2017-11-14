@@ -46,6 +46,7 @@ class CreateUsersTable extends Migration
             $table->text('skills')->nullable();
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();
+            $table->text('extracurricular_activities')->nullable();
 
             //organization specific
             $table->uuid('sector_id')->index()->nullable();

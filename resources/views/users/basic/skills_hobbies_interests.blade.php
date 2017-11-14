@@ -1,4 +1,4 @@
-{{-- start skills, hobbies, interests details --}}
+{{-- start skills, hobbies, interests, extracurricular activities details --}}
 
 
 {{-- start header --}}
@@ -68,7 +68,7 @@
 {{-- end interests --}}
 
 {{-- start hobbies --}}
-<div class="row m-t-md m-b-lg">
+<div class="row m-t-md">
 
     <div class="col-md-12">
         <div class="form-group {{ $errors->has('hobbies') ? 'has-error' : ''}}">
@@ -94,4 +94,31 @@
 </div>
 {{-- end hobbies --}}
 
-{{-- end skills, hobbies, interests details --}}
+{{--extracurricular_activitieshobbies --}}
+<div class="row m-t-md m-b-lg">
+
+    <div class="col-md-12">
+        <div class="form-group {{ $errors->has('extracurricular_activities') ? 'has-error' : ''}}">
+            <label for="extracurricular_activities" title="{{ trans('cvs.inputs.extracurricular_activities.description') }}">
+                {{trans('cvs.inputs.extracurricular_activities.label')}}
+            </label>
+            {!! Form::textarea('extracurricular_activities', null, [
+                'id' => 'extracurricular_activities',
+                'class' => 'form-control',
+                'rows' => 2,
+                //'required' => 'required',
+                'aria-describedby'=> 'cv_extracurricular_activities_help_block',
+                'placeholder' => trans('cvs.inputs.extracurricular_activities.placeholder')
+            ]) !!}
+            @if($errors->any() && $errors->has('extracurricular_activities'))
+            {!!
+                $errors->first('extracurricular_activities', '<p id="cv_extracurricular_activities_help_block" class="help-block">:message</p>')
+            !!}
+            @endif
+        </div>
+    </div>
+
+</div>
+{{-- end extracurricular_activities --}}
+
+{{-- end skills, hobbies, interests, extracurricular activities details --}}

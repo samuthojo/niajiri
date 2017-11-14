@@ -21,7 +21,10 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+
                         {{-- start certificates search form --}}
+                        @if(is_set($certificates) && 
+                        ($certificates->count() > config('app.defaults.pageSize')))
                         {!! Form::open([
                             'method'=>'GET',
                             'route' => 'certificates.index',
@@ -43,6 +46,7 @@
                                 </span>
                         </div>
                         {!! Form::close() !!}
+                        @endif
                         {{-- end certificates search form --}}
 
                     </div>
@@ -90,8 +94,12 @@
                                 <td>{{ $item->title}}</td>
                                 <td>{{ $item->institution}}</td>
                                 <td>{{ $item->summary}}</td>
-                                <td>{{ display_date($item->started_at)}}</td>
-                                <td>{{ display_date($item->finished_at)}}</td>
+                                <td>
+                                    {{ display_date($item->started_at, config('app.datepicker_parse_month_year_format'))}}
+                                </td>
+                                <td>
+                                    {{ display_date($item->finished_at, config('app.datepicker_parse_month_year_format'))}}
+                                </td>
                                 @if($item->attachment())
                                 <td>
                                     <a href="{{$item->attachment()->public_url()}}" target="_blank">

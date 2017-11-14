@@ -21,7 +21,10 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+
                         {{-- start publications search form --}}
+                        @if(is_set($publications) && 
+                        ($publications->count() > config('app.defaults.pageSize')))
                         {!! Form::open([
                             'method'=>'GET',
                             'route' => 'publications.index',
@@ -43,6 +46,7 @@
                                 </span>
                         </div>
                         {!! Form::close() !!}
+                        @endif
                         {{-- end publications search form --}}
 
                     </div>

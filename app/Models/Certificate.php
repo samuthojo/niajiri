@@ -30,6 +30,8 @@ class Certificate extends Model implements HasMedia
      */
     protected $primaryKey = 'id';
 
+    protected $parseFormat = 'm-Y';
+
     /**
      * Attributes that should be mass-assignable.
      *
@@ -85,7 +87,7 @@ class Certificate extends Model implements HasMedia
     public function formStartedAtAttribute($value) {
         if (is_set($value)) {
             $value = Carbon::parse($value);
-            $value = $value->format(config('app.datepicker_parse_format'));
+            $value = $value->format(config('app.datepicker_parse_month_year_format'));
         }
         return $value;
     }
@@ -101,7 +103,7 @@ class Certificate extends Model implements HasMedia
     public function formFinishedAtAttribute($value) {
         if (is_set($value)) {
             $value = Carbon::parse($value);
-            $value = $value->format(config('app.datepicker_parse_format'));
+            $value = $value->format(config('app.datepicker_parse_month_year_format'));
         }
         return $value;
     }
@@ -117,7 +119,7 @@ class Certificate extends Model implements HasMedia
     public function formExpiredAtAttribute($value) {
         if (is_set($value)) {
             $value = Carbon::parse($value);
-            $value = $value->format(config('app.datepicker_parse_format'));
+            $value = $value->format(config('app.datepicker_parse_month_year_format'));
         }
         return $value;
     }
