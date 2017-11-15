@@ -62,7 +62,10 @@
                                     {{ trans('languages.inputs.name.header') }}
                                 </th>
                                 <th>
-                                    {{ trans('languages.inputs.fluency.header') }}
+                                    {{ trans('languages.inputs.write_fluency.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('languages.inputs.speak_fluency.header') }}
                                 </th>
                                 <th>
                                     {{trans('languages.headers.actions')}}
@@ -76,7 +79,8 @@
                         @foreach($languages as $item)
                             <tr>
                                 <td>{{ $item->name}}</td>
-                                <td>{{ $item->fluency}}</td>
+                                <td>{{ $item->write_fluency}}</td>
+                                <td>{{ $item->speak_fluency}}</td>
                                 <td>
 
                                     @permission('view:language')

@@ -2,17 +2,20 @@
 
 use App\Models\User;
 use App\Models\Sector;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class OrganizationsTableSeeder extends Seeder {
 	public function run() {
 		DB::transaction(function () {
 
-			User::updateOrCreate(['email' => 'hr@vodacom.com'], [
+			$roles = Role::where('name', Role::ORGANIZATION)->get();
+
+			$organization = User::updateOrCreate(['email' => 'hr@vodacom.com'], [
 					'type' => User::TYPE_ORGANIZATION,
 					'sector' => 'Telecomunication',
 					'email' => 'hr@vodacom.com',
-					'name' => 'Vodacom',
+					'name' => 'Vodacom Tanzania Limited',
 					'summary' => 'Telecommunication Company',
 					'mobile' => '255715789878',
 					'fax' => '255715789878',
@@ -21,7 +24,17 @@ class OrganizationsTableSeeder extends Seeder {
 					'website' => 'https://vodacom.co.tz',
 					'physical_address' => 'Kijitonyama, Dar es salaam',
 					'postal_address' => 'P.O.BOX 1414, Kijitonyama, Dar es salaam',
+					'password' => bcrypt('vodacom'),
+			        'website' => 'www.vodacom.co.tz',
+			        'physical_address' => 'Old Bagamoyo Road',
+        			'summary' => 'A highly motivated and best place to work',
+			        'country' => 'Tanzania',
+			        'state' => 'Dar es Salaam'
 				]);
+			$organization->detachRoles();
+			$organization->save();
+			$organization->attachRoles($roles);
+			$organization->save();
 
 		});
 	}

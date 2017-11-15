@@ -13,9 +13,15 @@ class LanguageFilter extends BaseFilter {
 		}
 	}
 
-	public function fluency($value) {
+	public function writeFluency($value) {
 		if (!static::isAll($value)) {
-			$this->where('fluency', $value);
+			$this->where('write_fluency', $value);
+		}
+	}
+
+	public function speakFluency($value) {
+		if (!static::isAll($value)) {
+			$this->where('speak_fluency', $value);
 		}
 	}
 

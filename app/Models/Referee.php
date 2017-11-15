@@ -28,7 +28,8 @@ class Referee extends Model
      */
     protected $fillable = [
         'name', 'title', 'organization', 
-        'email', 'mobile', 'applicant_id'
+        'email', 'mobile', 'alternative_mobile', 
+        'applicant_id'
     ];
 
     /**
@@ -61,6 +62,7 @@ class Referee extends Model
             'applicant_referees.organization' => 10,
             'applicant_referees.email' => 10,
             'applicant_referees.mobile' => 10,
+            'applicant_referees.alternative_mobile' => 10,
         ],
     ];
 

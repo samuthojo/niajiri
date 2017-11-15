@@ -66,7 +66,7 @@
 	        {{-- start sidebar menus --}}
 	        @unless(Auth::guest())
 	        {{-- TODO ensure is applicant --}}
-	        @role(['applicant'])
+	        @role(['Applicant'])
 	        {{-- start applicant menu --}}
 	        {{-- start my applications --}}
 	        <li class="{{areActiveRoutes([
@@ -169,13 +169,6 @@
 	                </li>
 	                {{-- @endpermission --}}
 
-	                {{-- @permission([]) --}}
-	                <li class="{{isActiveRoute('assignments.*')}}">
-	                	<a href="{{route('assignments.index', ['applicant_id' => Auth::user()->id])}}" title="{{trans('cvs.headers.projects.title')}}">
-	                		{{trans('cvs.headers.projects.name')}}
-	                	</a>
-	                </li>
-	                {{-- @endpermission --}}
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('publications.*')}}">

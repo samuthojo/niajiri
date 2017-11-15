@@ -247,26 +247,26 @@
     </div>
     {{-- end mobile number --}}
 
-    {{-- start landline number --}}
+    {{-- start alternative_mobile number --}}
     <div class="col-md-4">
-        <div class="form-group {{ $errors->has('landline') ? 'has-error' : ''}}">
-             <label for="landline" title="{{ trans('cvs.inputs.landline.description') }}">
-                {{trans('cvs.inputs.landline.label')}}
+        <div class="form-group {{ $errors->has('alternative_mobile') ? 'has-error' : ''}}">
+             <label for="alternative_mobile" title="{{ trans('cvs.inputs.alternative_mobile.description') }}">
+                {{trans('cvs.inputs.alternative_mobile.label')}}
             </label>
-            {!! Form::text('landline', null, [
-                'id' => 'landline',
+            {!! Form::text('alternative_mobile', null, [
+                'id' => 'alternative_mobile',
                 'class' => 'form-control',
-                'aria-describedby'=> 'cv_landline_help_block',
-                'placeholder' => trans('cvs.inputs.landline.placeholder')
+                'aria-describedby'=> 'cv_alternative_mobile_help_block',
+                'placeholder' => trans('cvs.inputs.alternative_mobile.placeholder')
             ]) !!}
-            @if($errors->any() && $errors->has('landline'))
+            @if($errors->any() && $errors->has('alternative_mobile'))
             {!!
-                $errors->first('landline', '<p id="cv_landline_help_block" class="help-block">:message</p>')
+                $errors->first('alternative_mobile', '<p id="cv_alternative_mobile_help_block" class="help-block">:message</p>')
             !!}
             @endif
         </div>
     </div>
-    {{-- end landline number --}}
+    {{-- end alternative_mobile number --}}
 
 </div>
 {{-- start email & mobile numbers --}}
@@ -275,51 +275,31 @@
 {{-- start physical address, fax & postal address --}}
 <div class="row m-t-md">
 
-	{{-- start physical address --}}
-	<div class="col-md-4">
-	    <div class="form-group {{ $errors->has('physical_address') ? 'has-error' : ''}}">
-            <label for="physical_address" title="{{ trans('cvs.inputs.physical_address.description') }}">
-                {{trans('cvs.inputs.physical_address.label')}}
-                <span class="text-danger">*</span>
+	{{-- start secondary_email --}}
+    <div class="col-md-4">
+        <div class="form-group {{ $errors->has('secondary_email') ? 'has-error' : ''}}">
+            <label for="secondary_email" title="{{ trans('cvs.inputs.secondary_email.description') }}">
+                {{trans('cvs.inputs.secondary_email.label')}}
             </label>
-	        {!! Form::text('physical_address', null, [
-                'id' => 'physical_address',
-	            'class' => 'form-control',
-	            'aria-describedby'=> 'cv_physical_address_help_block',
-	            'placeholder' => trans('cvs.inputs.physical_address.placeholder')
-	        ]) !!}
-	        @if($errors->any() && $errors->has('physical_address'))
-	        {!!
-	            $errors->first('physical_address', '<p id="cv_physical_address_help_block" class="help-block">:message</p>')
-	        !!}
-	        @endif
-	    </div>
-	</div>
-	{{-- end physical address --}}
+            {!! Form::text('secondary_email', null, [
+                'id' => 'secondary_email',
+                'class' => 'form-control',
+                //'required' => 'required',
+                'aria-describedby'=> 'cv_secondary_email_help_block',
+                'placeholder' => trans('cvs.inputs.secondary_email.placeholder')
+            ]) !!}
+            @if($errors->any() && $errors->has('secondary_email'))
+            {!!
+                $errors->first('secondary_email', '<p id="cv_secondary_email_help_block" class="help-block">:message</p>')
+            !!}
+            @endif
+        </div>
+    </div>
+    {{-- end secondary_email --}}
 
-	{{-- start fax --}}
-	<div class="col-md-3">
-	    <div class="form-group {{ $errors->has('fax') ? 'has-error' : ''}}">
-	        <label for="fax" title="{{ trans('cvs.inputs.fax.description') }}">
-                {{trans('cvs.inputs.fax.label')}}
-            </label>
-            {!! Form::text('fax', null, [
-                'id' => 'fax',
-	            'class' => 'form-control',
-	            'aria-describedby'=> 'cv_fax_help_block',
-	            'placeholder' => trans('cvs.inputs.fax.placeholder')
-	        ]) !!}
-	        @if($errors->any() && $errors->has('fax'))
-	        {!!
-	            $errors->first('fax', '<p id="cv_fax_help_block" class="help-block">:message</p>')
-	        !!}
-	        @endif
-	    </div>
-	</div>
-	{{-- end fax --}}
 
 	{{-- start postal address --}}
-	<div class="col-md-5">
+	<div class="col-md-8">
 	    <div class="form-group {{ $errors->has('postal_address') ? 'has-error' : ''}}">
             <label for="postal_address" title="{{ trans('cvs.inputs.postal_address.description') }}">
                 {{trans('cvs.inputs.postal_address.label')}}
@@ -392,27 +372,28 @@
     </div>
     {{-- end state --}}
 
-    {{-- start website --}}
+    {{-- start physical address --}}
     <div class="col-md-4">
-        <div class="form-group {{ $errors->has('website') ? 'has-error' : ''}}">
-            <label for="website" title="{{ trans('cvs.inputs.website.description') }}">
-                {{trans('cvs.inputs.website.label')}}
+        <div class="form-group {{ $errors->has('physical_address') ? 'has-error' : ''}}">
+            <label for="physical_address" title="{{ trans('cvs.inputs.physical_address.description') }}">
+                {{trans('cvs.inputs.physical_address.label')}}
+                <span class="text-danger">*</span>
             </label>
-            {!! Form::text('website', null, [
-                'id' => 'website',
+            {!! Form::text('physical_address', null, [
+                'id' => 'physical_address',
                 'class' => 'form-control',
-                //'required' => 'required',
-                'aria-describedby'=> 'cv_website_help_block',
-                'placeholder' => trans('cvs.inputs.website.placeholder')
+                'aria-describedby'=> 'cv_physical_address_help_block',
+                'placeholder' => trans('cvs.inputs.physical_address.placeholder')
             ]) !!}
-            @if($errors->any() && $errors->has('website'))
+            @if($errors->any() && $errors->has('physical_address'))
             {!!
-                $errors->first('website', '<p id="cv_website_help_block" class="help-block">:message</p>')
+                $errors->first('physical_address', '<p id="cv_physical_address_help_block" class="help-block">:message</p>')
             !!}
             @endif
         </div>
     </div>
-    {{-- end website --}}
+    {{-- end physical address --}}
+
 
 </div>
 {{-- start country & state --}}

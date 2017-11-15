@@ -17,11 +17,9 @@ return [
         'Russian' => 'Russian',
     ],
     'fluencies' => [
-        'Beginner' => 'Beginner',
-        'Intermediate' => 'Intermediate',
-        'Advanced' => 'Advanced',
-        'Proficient' => 'Proficient',
-        'Native' => 'Native'
+        'Good' => 'Good',
+        'Fair' => 'Fair',
+        'Excellent' => 'Excellent'
     ],
     'actions' => [
         'cancel' => [
@@ -77,11 +75,17 @@ return [
             'header' => 'Name',
             'description' => 'Name of the Language e.g English etc.',
         ],
-        'fluency' => [
-            'label' => 'Fluency',
-            'placeholder' => 'e.g Beginner',
-            'header' => 'Fluency',
-            'description' => 'Fluency e.g Beginner etc.',
+        'write_fluency' => [
+            'label' => 'Writting',
+            'placeholder' => 'e.g Fair',
+            'header' => 'Writting',
+            'description' => 'Writting e.g Fair etc.',
+        ],
+        'speak_fluency' => [
+            'label' => 'Speaking',
+            'placeholder' => 'e.g Good',
+            'header' => 'Speaking',
+            'description' => 'Speaking e.g Good etc.',
         ],
         'applicant_id' => [
             'label' => 'Applicant',

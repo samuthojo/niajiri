@@ -22,6 +22,7 @@ class CreateApplicantRefereeTable extends Migration
             $table->string('organization')->index();
             $table->string('email')->index();
             $table->string('mobile')->index();
+            $table->string('alternative_mobile')->index()->nullable();
             $table->timestamps();
             $table->softDeletes();
 

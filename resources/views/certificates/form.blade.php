@@ -126,30 +126,6 @@
 </div>
 {{-- end finished_at --}}
 
-{{-- start expired_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
-    <div class="form-group {{ $errors->has('expired_at') ? 'has-error' : ''}}">
-        <label for="expired_at" title="{{ trans('certificates.inputs.expired_at.description') }}">
-            {{trans('certificates.inputs.expired_at.label')}}
-            <span class="text-danger">*</span>
-        </label>
-        {!! Form::text('expired_at', null, [
-            'id' => 'expired_at',
-            'class' => 'form-control datepicker',
-            //'required' => 'required',
-            'placeholder' => trans('certificates.inputs.expired_at.placeholder'),
-            'aria-describedby'=> 'certificate_expired_at_help_block',
-            'data-provide' => 'datepicker',
-            'data-date-format' => config('app.datepicker_date_format')
-        ]) !!}
-       @if($errors->any() && $errors->has('expired_at'))
-        {!!
-            $errors->first('expired_at', '<p id="certificate_expired_at_help_block" class="help-block">:message</p>')
-        !!}
-        @endif
-    </div>
-</div>
-{{-- end expired_at --}}
 
 {{-- start attachment edit --}}
 <div class="col-md-offset-2 col-md-6 m-t-md">

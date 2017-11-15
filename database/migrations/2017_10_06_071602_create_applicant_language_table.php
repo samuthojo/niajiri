@@ -18,7 +18,8 @@ class CreateApplicantLanguageTable extends Migration
             $table->uuid('id');
 
             $table->string('name')->index();
-            $table->string('fluency')->index();
+            $table->string('write_fluency')->index();
+            $table->string('speak_fluency')->index();
             $table->timestamps();
             $table->softDeletes();
 

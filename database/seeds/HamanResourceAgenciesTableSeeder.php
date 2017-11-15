@@ -21,6 +21,7 @@ class HamanResourceAgenciesTableSeeder extends Seeder {
 			$hr = User::updateOrCreate([
 						'email' => 'humanresource@niajiri.com',
 					],[
+					'type' => User::TYPE_HR_AGENCY,
 					'first_name' => 'James',
 					'middle_name' => 'Ramadbani',
 					'surname' => 'Kibakaya',

@@ -2,12 +2,10 @@
 
 return [
     'levels' => [
-        'Primary' => 'Primary',
-        'Secondary - Ordinary Level' => 'Secondary - Ordinary Level',
-        'Secondary - Advance Level' => 'Secondary - Advance Level',
         'Certificate' => 'Certificate',
-        'University' => 'University',
-        'University' => 'University',
+        'Diploma' => 'Diploma', 
+        'Degree' => 'Degree', 
+        'Masters' => 'Masters'
     ],
     'headers' => [
         'actions' => 'Actions',
@@ -19,50 +17,50 @@ return [
         ],
         'edit' => [
             'name' => 'Edit',
-            'title' => 'Click To Edit Education',
+            'title' => 'Click To Edit Education Level',
         ],
         'view' => [
             'name' => 'View',
-            'title' => 'Click To View Education',
+            'title' => 'Click To View Education Level',
         ],
         'save' => [
             'name' => 'Save Changes',
-            'title' => 'Click To Save New Education',
-            'header' => 'New Education',
+            'title' => 'Click To Save New Education Level',
+            'header' => 'New Education Level',
             'flash' => [
-                'success' => 'Education Saved Succeffully',
+                'success' => 'Education Level Saved Succeffully',
             ],
         ],
         'create' => [
-            'name' => 'New Education',
-            'title' => 'Click To Add New Education',
+            'name' => 'New Education Level',
+            'title' => 'Click To Add New Education Level',
         ],
         'delete' => [
             'name' => 'Delete',
-            'title' => 'Click To Delete Education',
+            'title' => 'Click To Delete Education Level',
             'confirm' => 'Confirm Delete?',
             'flash' => [
-                'success' => 'Education Deleted Succeffully',
+                'success' => 'Education Level Deleted Succeffully',
             ],
         ],
         'update' => [
             'name' => 'Update',
-            'title' => 'Click To Update Education',
-            'header' => 'Update Education',
-            'permissions' => 'Update Education Permissions',
+            'title' => 'Click To Update Education Level',
+            'header' => 'Update Education Level',
+            'permissions' => 'Update Education Level Permissions',
             'flash' => [
-                'success' => 'Education Updated Succeffully',
+                'success' => 'Education Level Updated Succeffully',
             ],
         ],
         'search' => [
             'name' => 'Search',
-            'title' => 'Search Educations',
-            'placeholder' => 'Search Educations',
+            'title' => 'Search Education Levels',
+            'placeholder' => 'Search Education Levels',
         ],
     ],
     'inputs' => [
         'level' => [
-            'label' => 'Education Level',
+            'label' => 'Level',
             'placeholder' => 'e.g Primary',
             'header' => 'Level',
             'description' => 'Level of the Education e.g Primary etc.',
@@ -76,8 +74,8 @@ return [
         'summary' => [
             'label' => 'Certificate/Diploma/Degree',
             'placeholder' => 'e.g Primary, Bsc. in Computer Science',
-            'header' => 'Summary',
-            'description' => 'Brief Summary',
+            'header' => 'Qualification',
+            'description' => 'Brief Qualification Details',
         ],
         'started_at' => [
             'label' => 'Date Started',
@@ -106,9 +104,9 @@ return [
 
         'attachment' => [
             'label' => 'Attachment',
-            'placeholder' => 'Education Attachment',
+            'placeholder' => 'Education Level Attachment',
             'header' => 'Attachment',
-            'description' => 'Education Attachment',
+            'description' => 'Education Level Attachment',
             'change' => 'Attachment',
         ],
     ],

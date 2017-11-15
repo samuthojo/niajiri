@@ -73,6 +73,9 @@
                                 <th>
                                     {{ trans('referees.inputs.mobile.header') }}
                                 </th>
+                                 <th>
+                                    {{ trans('referees.inputs.alternative_mobile.header') }}
+                                </th>
                                 <th>
                                     {{trans('referees.headers.actions')}}
                                 </th>
@@ -89,6 +92,9 @@
                                 <td>{{ $item->organization}}</td>
                                 <td>{{ $item->email}}</td>
                                 <td>{{ $item->mobile}}</td>
+                                <td>
+                                    {{ display_or_na($item->alternative_mobile)}}
+                                </td>
                                 <td>
 
                                     @permission('view:referee')
