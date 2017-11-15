@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
           $table->string('name');
           $table->date('startedAt');
           $table->date('endedAt');
+          $table->string('status')->default('open');
           $table->uuid('organization_id')->nullable();
           $table->foreign('organization_id')
                 ->references('id')

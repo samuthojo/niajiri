@@ -22,8 +22,22 @@
                             <div class="ibox-content">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        @permission('view:project')
+                                        @permission('edit:project')
                                         <div class="m-b-md">
+                                          @if($project->status === "open")
+                                          {!! Form::open([
+                                              'method'=>'PATCH',
+                                              'url' => route('projects.close_project', ['id' => $project->id]),
+                                              'style' => 'display:inline'
+                                          ]) !!}
+                                              {!! Form::button('<span aria-hidden="true" title="">Close Project</span>', [
+                                                      'type' => 'submit',
+                                                      'class' => 'btn btn-danger btn-xs pull-right',
+                                                      'title' => trans('positions.actions.delete.title'),
+                                                      'onclick'=>'return confirm("Confirm Close project?")'
+                                              ]) !!}
+                                          {!! Form::close() !!}
+                                          @endif
                                             <a href="{{ route('projects.edit', ['id' => $project->id]) }}" class="btn btn-primary btn-xs pull-right">Edit project</a>
                                             <h2>{{$project->name}}</h2>
                                         </div>
@@ -34,6 +48,7 @@
                                           @else
                                             <dt>{{ trans('projects.headers.status') }}</dt> <dd><span class="label label-primary">{{ trans('projects.status.inactive') }}</span></dd>
                                           @endif
+                                          <dt>{{ trans('projects.headers.status') }}</dt> <dd><span class={{ $project->status === "open" ? "label label-primary" : "label label-danger" }}>{{ $project->status }}</span></dd>
                                         </dl>
                                     </div>
                                 </div>

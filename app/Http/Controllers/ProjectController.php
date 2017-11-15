@@ -187,4 +187,32 @@ class ProjectController extends SecureController
 
         return redirect(route('projects.index'));
     }
+
+
+    /**
+     * Close the specified Project from storage.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function closeProject($id)
+    {
+        $project = $this->projectRepository->findWithoutFail($id);
+
+        if (empty($project)) {
+            Flash::error('Project not found');
+
+            return redirect(route('projects.index'));
+        }
+        $update = [
+          "status" => "closed"
+        ];
+
+        $project = $this->projectRepository->update($update, $id);
+
+        Flash::success('Project was closed successfully.');
+
+        return redirect()->back();
+    }
 }
