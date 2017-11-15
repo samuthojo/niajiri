@@ -38,7 +38,7 @@ class ProjectController extends SecureController
     public function index(Request $request)
     {
         $this->projectRepository->pushCriteria(new RequestCriteria($request));
-        $projects = $this->projectRepository->all();
+        $projects = $this->projectRepository->paginate(config('app.defaults.pageSize'));
 
         return view('pages.projects.index',[
             'route_title' => 'Project',
@@ -186,5 +186,33 @@ class ProjectController extends SecureController
         Flash::success('Project deleted successfully.');
 
         return redirect(route('projects.index'));
+    }
+
+
+    /**
+     * Close the specified Project from storage.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function closeProject($id)
+    {
+        $project = $this->projectRepository->findWithoutFail($id);
+
+        if (empty($project)) {
+            Flash::error('Project not found');
+
+            return redirect(route('projects.index'));
+        }
+        $update = [
+          "status" => "closed"
+        ];
+
+        $project = $this->projectRepository->update($update, $id);
+
+        Flash::success('Project was closed successfully.');
+
+        return redirect()->back();
     }
 }

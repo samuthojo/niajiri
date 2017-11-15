@@ -1,43 +1,35 @@
 <div class="tab-pane active" id="tab-1">
-  <table class="table table-striped">
-      <thead>
-      <tr>
-          <th class="text-center">{{ trans('projects.headers.status') }}</th>
-          <th class="text-center">{{ trans('projects.inputs.name.header') }}</th>
-          <th class="text-center">{{ trans('projects.inputs.startedAt.header') }}</th>
-          <th class="text-center">{{ trans('projects.inputs.endedAt.header') }}</th>
-          <th class="text-center">{{ trans('projects.headers.actions') }}</th>
-      </tr>
-      </thead>
-      <tbody>
-        @foreach($organization->projects as $item)
-          <tr>
-              @if(strtotime($item->endedAt) > time())
-              <td class="text-center">
-                  <span class="label label-primary">{{ trans('projects.status.active') }}</span>
-              </td>
-              @else
-              <td class="text-center">
-                  <span class="label label-default">{{ trans('projects.status.inactive') }}</span>
-              </td>
-              @endif
-              <td class="text-center">
-                 {{$item->name}}
-              </td>
-              <td class="text-center">
-                 {{$item->startedAt->format('d-m-y')}}
-              </td>
-              <td class="text-center">
-                  {{$item->endedAt->format('d-m-y')}}
-              </td>
-              <td class="project-actions text-center">
-                  <a href="{{ route('projects.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i>{{ trans('projects.actions.view.name') }}</a>
-                  <a href="{{ route('projects.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i>{{ trans('projects.actions.edit.name') }}</a>
-              </td>
+  {{-- start organizations table --}}
+  <div class="wrapper wrapper-content animated fadeInRight">
+  @foreach ($organization->projects->chunk(3) as $chunkedProject)
+  <div class="row">
+    @foreach ($chunkedProject as $item)
 
-          </tr>
-          @endforeach
+  <a href="{{ route('projects.show', ['id' => $item->id]) }}">
+    <div class="col-md-4">
+      <div class="payment-card">
+          <h2>
+              {{$item->name}}
+          </h2>
+          <div class="row">
+              <div class="col-sm-12">
+                  <small>
+                      <strong>Start At:</strong> {{$item->startedAt->format('d-m-y')}}
+                      <br/>
+                      <strong>End At:</strong> {{$item->endedAt->format('d-m-y')}}
+                  </small>
+              </div>
+              <div class="col-sm-12">
+                  <a href="{{ route('projects.show', ['id' => $item->id]) }}" class="btn btn-xs btn-outline btn-primary">More Info <i class="fa fa-long-arrow-right"></i> </a>
+              </div>
+          </div>
+      </div>
+    </div>
+    </a>
+    @endforeach
+  </div>
+  @endforeach
 
-      </tbody>
-  </table>
+  </div>
+  {{-- end organizations table --}}
 </div>
