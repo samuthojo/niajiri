@@ -31,7 +31,7 @@ class SectorController extends SecureController
     public function index(Request $request)
     {
         $this->sectorRepository->pushCriteria(new RequestCriteria($request));
-        $sectors = $this->sectorRepository->all();
+        $sectors = $this->sectorRepository->paginate(config('app.defaults.pageSize'));
 
         return view('pages.sectors.index', [
             'route_title' => 'Sector',

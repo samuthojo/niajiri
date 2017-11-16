@@ -242,7 +242,7 @@
             @permission([
 	            'list:project',
             ])
-	        <li class="{{areActiveRoutes([
+	        <!-- <li class="{{areActiveRoutes([
 	        	'projects.*'
 	        	])}}">
 	            <a href="#">
@@ -263,7 +263,7 @@
 	                @endpermission
 
 	            </ul>
-	        </li>
+	        </li> -->
 	        @endpermission
 					{{-- start organization management --}}
             @permission([
@@ -274,7 +274,7 @@
 	        	])}}">
 	            <a href="#">
 	            	<i class="fa fa-building-o"></i>
-	            	<span class="nav-label">Organizations</span>
+	            	<span class="nav-label">Clients</span>
 	            	<span class="fa arrow"></span>
 	            </a>
 	            <ul class="nav nav-second-level collapse">

@@ -148,12 +148,13 @@
 {{-- start sector --}}
 <div class="form-group {{ $errors->has('sector') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
-        {!! Form::select('sector_id', $sectors,
+        {!! Form::select('sector', trans('sectors.sectors'),
             null,
-            [   'id' => 'sector_id',
+            [
+                'id' => 'sector',
                 'class' => 'form-control',
-                'aria-describedby'=> 'usersectorHelpBlock',
-                'placeholder' => trans('positions.inputs.sector.placeholder')
+                //'required' => 'required',
+                'aria-describedby'=> 'education_level_help_block',
             ])
         !!}
         @if($errors->any() && $errors->has('sector'))
@@ -168,50 +169,6 @@
     </div>
 </div>
 {{-- end sector --}}
-
-
-{{-- start dueAt --}}
-<div class="form-group {{ $errors->has('dueAt') ? 'has-error' : ''}}">
-    <div class="col-md-offset-3 col-md-6">
-        {!! Form::text('dueAt', null, [
-            'class' => 'form-control date',
-            'required' => 'required',
-            'aria-describedby'=> 'userdueAtHelpBlock',
-            'placeholder' => trans('positions.inputs.dueAt.placeholder')
-        ]) !!}
-        @if($errors->any() && $errors->has('dueAt'))
-        {!!
-            $errors->first('dueAt', '<p class="help-block">:message</p>')
-        !!}
-        @else
-            <p id="userdueAtHelpBlock" class="help-block">
-                {{ trans('positions.inputs.dueAt.description') }}
-            </p>
-        @endif
-    </div>
-</div>
-{{-- end dueAt --}}
-
-{{-- start publishedAt --}}
-<div class="form-group {{ $errors->has('publishedAt') ? 'has-error' : ''}}">
-    <div class="col-md-offset-3 col-md-6">
-        {!! Form::text('publishedAt', null, [
-            'class' => 'form-control date',
-            'aria-describedby'=> 'userpublishedAtHelpBlock',
-            'placeholder' => trans('positions.inputs.publishedAt.placeholder')
-        ]) !!}
-        @if($errors->any() && $errors->has('publishedAt'))
-        {!!
-            $errors->first('publishedAt', '<p class="help-block">:message</p>')
-        !!}
-        @else
-            <p id="userpublishedAtHelpBlock" class="help-block">
-                {{ trans('positions.inputs.publishedAt.description') }}
-            </p>
-        @endif
-    </div>
-</div>
-{{-- end publishedAt --}}
 
 {{-- end position form --}}
 

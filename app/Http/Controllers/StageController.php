@@ -33,7 +33,7 @@ class StageController extends SecureController
     public function index(Request $request)
     {
         $this->stageRepository->pushCriteria(new RequestCriteria($request));
-        $stages = $this->stageRepository->all();
+        $stages = $this->stageRepository->paginate(config('app.defaults.pageSize'));
 
         return view('pages.stages.index',[
             'route_title' => 'Stages',

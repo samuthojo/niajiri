@@ -33,7 +33,7 @@ class TestController extends SecureController
     public function index(Request $request)
     {
         $this->testRepository->pushCriteria(new RequestCriteria($request));
-        $tests = $this->testRepository->all();
+        $tests = $this->testRepository->paginate(config('app.defaults.pageSize'));
 
         return view('pages.tests.index',[
             'route_title' => 'Tests',

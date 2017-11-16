@@ -13,7 +13,6 @@ class PositionsTableSeeder extends Seeder {
 			$organization = User::where('email','hr@vodacom.com')->first();
 
 			Position::updateOrCreate([
-					'sector_id' => $organization->sector_id,
 					'organization_id' => $organization->id,
 					'project_id' => $project->id
 					], [
@@ -22,7 +21,7 @@ class PositionsTableSeeder extends Seeder {
 			        'responsibilities' => 'Readable content of a page when looking at its layout. The point of using Lorem Ipsum.Readable content of a page when looking at its layout. The point of using Lorem Ipsum',
 			        'requirements' => 'Readable content of a page when looking at its layout. The point of using Lorem Ipsum.Readable content of a page when looking at its layout. The point of using Lorem Ipsum',
 			        'duration' => 'Full Time',
-					'sector_id' => $organization->sector_id,
+					'sector' => $organization->sector,
 					'organization_id' => $organization->id,
 					'project_id' => $project->id,
 					'publishedAt' => '05-06-2017',

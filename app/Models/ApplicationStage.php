@@ -7,7 +7,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Carbon\Carbon;
 
-class ApplicationStage extends Model implements HasMedia 
+class ApplicationStage extends Model implements HasMedia
 {
 
     /**
@@ -164,7 +164,7 @@ class ApplicationStage extends Model implements HasMedia
         return $can_take_test;
     }
 
-    
+
     /**
      * Get application associate with application stage
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
