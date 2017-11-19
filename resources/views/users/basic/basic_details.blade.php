@@ -201,31 +201,8 @@
 {{-- start email & mobile numbers --}}
 <div class="row m-t-md">
 
-    {{-- start email --}}
-    <div class="col-md-4">
-        <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
-            <label for="email" title="{{ trans('cvs.inputs.email.description') }}">
-                {{trans('cvs.inputs.email.label')}}
-                <span class="text-danger">*</span>
-            </label>
-            {!! Form::email('email', null, [
-                'id' => 'email',
-                'class' => 'form-control',
-                //'required' => 'required',
-                'aria-describedby'=> 'cv_email_help_block',
-                'placeholder' => trans('cvs.inputs.email.placeholder')
-            ]) !!}
-            @if($errors->any() && $errors->has('email'))
-            {!!
-                $errors->first('email', '<p id="cv_email_help_block" class="help-block">:message</p>')
-            !!}
-            @endif
-        </div>
-    </div>
-    {{-- end email --}}
-
     {{-- start mobile number --}}
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group {{ $errors->has('mobile') ? 'has-error' : ''}}">
             <label for="mobile" title="{{ trans('cvs.inputs.mobile.description') }}">
                 {{trans('cvs.inputs.mobile.label')}}
@@ -248,7 +225,7 @@
     {{-- end mobile number --}}
 
     {{-- start alternative_mobile number --}}
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group {{ $errors->has('alternative_mobile') ? 'has-error' : ''}}">
              <label for="alternative_mobile" title="{{ trans('cvs.inputs.alternative_mobile.description') }}">
                 {{trans('cvs.inputs.alternative_mobile.label')}}
@@ -275,6 +252,29 @@
 {{-- start physical address, fax & postal address --}}
 <div class="row m-t-md">
 
+     {{-- start email --}}
+    <div class="col-md-4">
+        <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
+            <label for="email" title="{{ trans('cvs.inputs.email.description') }}">
+                {{trans('cvs.inputs.email.label')}}
+                <span class="text-danger">*</span>
+            </label>
+            {!! Form::email('email', null, [
+                'id' => 'email',
+                'class' => 'form-control',
+                //'required' => 'required',
+                'aria-describedby'=> 'cv_email_help_block',
+                'placeholder' => trans('cvs.inputs.email.placeholder')
+            ]) !!}
+            @if($errors->any() && $errors->has('email'))
+            {!!
+                $errors->first('email', '<p id="cv_email_help_block" class="help-block">:message</p>')
+            !!}
+            @endif
+        </div>
+    </div>
+    {{-- end email --}}
+
 	{{-- start secondary_email --}}
     <div class="col-md-4">
         <div class="form-group {{ $errors->has('secondary_email') ? 'has-error' : ''}}">
@@ -299,7 +299,7 @@
 
 
 	{{-- start postal address --}}
-	<div class="col-md-8">
+	<div class="col-md-4">
 	    <div class="form-group {{ $errors->has('postal_address') ? 'has-error' : ''}}">
             <label for="postal_address" title="{{ trans('cvs.inputs.postal_address.description') }}">
                 {{trans('cvs.inputs.postal_address.label')}}
