@@ -19,9 +19,13 @@
                 @foreach($application->stages->sortBy('stage.number') as $applicationStage)
                 <tr>
                     <td class="project-status">
-                        <span class="label {{display_boolean($applicationStage->hasPass(), 'label-primary', 'label-danger')}}">
-                            {{display_boolean($applicationStage->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
-                        </span>
+                        @if($applicationStage->score <= 0)
+                            <span class="label">N/A</span>
+                        @else
+                            <span class="label {{display_boolean($applicationStage->hasPass(), 'label-primary', 'label-danger')}}">
+                                {{display_boolean($applicationStage->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
+                            </span>
+                        @endif
                     </td>
                     <td class="project-title">
                         <strong>{{$applicationStage->stage->name}}</strong>
