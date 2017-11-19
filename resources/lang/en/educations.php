@@ -137,6 +137,7 @@ return [
         'Dar es Salaam University College of Education' => 'Dar es Salaam University College of Education',
         'Dar es Institute of Technology' => 'Dar es Institute of Technology',
         'St. Joseph College Of Information Technology' => 'St. Joseph College Of Information Technology',
+        'Other' => 'Other'
     ],
 
     'qualifications' => [
