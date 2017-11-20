@@ -20,7 +20,9 @@
                 <tr>
                     <td class="project-status">
                         @if($applicationStage->score <= 0)
-                            <span class="label">N/A</span>
+                            <span class="label">
+                                {{trans('applicationstages.scores.na')}}
+                            </span>
                         @else
                             <span class="label {{display_boolean($applicationStage->hasPass(), 'label-primary', 'label-danger')}}">
                                 {{display_boolean($applicationStage->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}

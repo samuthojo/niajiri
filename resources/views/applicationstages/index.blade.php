@@ -2,6 +2,10 @@
 
 @section('page')
 
+{{-- start applciation stage summary --}}
+@include('applicationstages.blocks.applicationstage_summary')
+{{-- end application stage summary --}}
+
 {{-- start page content --}}
 <div class="row">
     <div class="col-md-12">
@@ -104,7 +108,9 @@
                                 </td>
                                 <td>
                                     @if($item->score <= 0)
-                                        <span class="label">N/A</span>
+                                        <span class="label">
+                                        {{trans('applicationstages.scores.na')}}
+                                        </span>
                                     @else
                                         <span class="label {{display_boolean($item->hasPass(), 'label-primary', 'label-danger')}}">
                                             {{display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
