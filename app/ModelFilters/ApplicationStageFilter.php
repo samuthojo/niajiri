@@ -43,19 +43,24 @@ class ApplicationStageFilter extends BaseFilter {
 		}
 	}
 
-	public function startCreatedAt($value)
-    {
-        $value = static::parseDate($value);
-        if (!empty($value)) {
-            $this->whereDate('created_at', '>=', $value);
-        }
-    }
+	public function startCreatedAt($value) {
+		$value = static::parseDate($value);
+		if (!empty($value)) {
+			$this->whereDate('created_at', '>=', $value);
+		}
+	}
 
-    public function endCreatedAt($value)
-    {
-        $value = static::parseDate($value);
-        if (!empty($value)) {
-            $this->whereDate('created_at', '<=', $value);
-        }
-    }
+	public function endCreatedAt($value) {
+		$value = static::parseDate($value);
+		if (!empty($value)) {
+			$this->whereDate('created_at', '<=', $value);
+		}
+	}
+
+	//TODO improve
+	public function educations($ids) {
+		return $this->whereHas('educations', function ($query) use ($ids) {
+			return $query->whereIn('id', $ids);
+		});
+	}
 }

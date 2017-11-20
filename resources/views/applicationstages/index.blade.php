@@ -65,10 +65,13 @@
                         <thead>
                             <tr>
                                 <th>
-                                    {{ trans('applicationstages.inputs.created_at.header') }}
+                                    {{ trans('cvs.inputs.name.header') }}
                                 </th>
                                 <th>
-                                    {{ trans('cvs.inputs.name.header') }}
+                                    {{ trans('cvs.inputs.age.header') }}
+                                </th>
+                                <th>
+                                    {{ trans('cvs.inputs.gender.header') }}
                                 </th>
                                 <th>
                                     {{ trans('cvs.inputs.mobile.header') }}
@@ -93,10 +96,9 @@
                         <tbody>
                         @foreach($applicationstages->sortBy('score') as $item)
                             <tr>
-                                <td>
-                                    {{ $item->created_at->format(config('app.datetime_format'))}}
-                                </td>
                                 <td>{{ $item->applicant->fullName()}}</td>
+                                <td>{{display_int($item->applicant->age())}}</td>
+                                <td>{{display_or_na($item->applicant->gender)}}</td>
                                 <td>
                                     {{ display_or_na($item->applicant->mobile)}}
                                 </td>
