@@ -88,6 +88,8 @@
                         <th>{{ trans('cvs.inputs.name.header') }}</th>
                         <th>{{ trans('cvs.inputs.mobile.header') }}</th>
                         <th>{{ trans('cvs.inputs.email.header') }}</th>
+                        <th>{{ trans('users.inputs.age.header') }}</th>
+                        <th>{{ trans('users.inputs.gender.header') }}</th>
                         <th>{{ trans('applicationstages.inputs.score.header') }}</th>
                         <th>{{ trans('applicationstages.inputs.status.header') }}</th>
                         <th>{{ trans('applicationstages.headers.actions')}}</th>
@@ -102,6 +104,12 @@
                             </td>
                             <td>
                                 {{ display_or_na($item->applicant->email)}}
+                            </td>
+                            <td>
+                                {{ display_or_na($item->applicant->age())}}
+                            </td>
+                            <td>
+                                {{ display_or_na($item->applicant->gender)}}
                             </td>
                             <td>
                                 {{ display_decimal($item->score)}}%
