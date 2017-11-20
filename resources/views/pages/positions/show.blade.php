@@ -59,7 +59,7 @@
                                             <dt>{{trans('positions.inputs.project.label')}}:</dt> <dd><a href="{{ route('projects.show', ['id' => $position->project->id]) }}" class="text-navy">{{$position->project->name}}</a> </dd>
                                           @endpermission
                                           @permission('view:project')
-                                            <dt>{{trans('positions.inputs.sector.label')}}:</dt> <dd><a href="{{ route('sectors.show', ['id' => $position->sector->id]) }}" class="text-navy">{{$position->sector->name}}</a> </dd>
+                                            <dt>{{trans('positions.inputs.sector.label')}}:</dt> <dd><span>{{$position->sector}}</span> </dd>
                                           @endpermission
                                             <dt>{{trans('positions.inputs.duration.label')}}:</dt><dd><span class="label label-primary">{{ $position->duration }}</span></dd>
                                         </dl>

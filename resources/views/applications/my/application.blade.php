@@ -43,7 +43,7 @@
                             <h2 class="product-main-price">
                                 {{$application->organization->name}} 
                                 <small class="text-muted">
-                                {{$application->position->sector->name}}
+                                {{$application->position->sector}}
                                 </small>
                             </h2>
                         </div>
