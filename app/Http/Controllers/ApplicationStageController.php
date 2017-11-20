@@ -19,8 +19,8 @@ class ApplicationStageController extends SecureController {
 
 		//initialize query
 		$query = ApplicationStage::filter($request->all())
-				->orderBy('created_at', 'asc')
-				->orderBy('score', 'desc');
+			->orderBy('created_at', 'asc')
+			->orderBy('score', 'desc');
 
 		//load position
 		$position = Position::find($request->input('position_id'));
@@ -31,6 +31,14 @@ class ApplicationStageController extends SecureController {
 		//paginate query result
 		$applicationstages = $query->paginate(config('app.defaults.pageSize'));
 
+		//load summary
+		$summary = [
+			'applied' => ApplicationStage::totalApplied($position, $stage),
+			'passed' => ApplicationStage::totalPassed($position, $stage),
+			'failed' => ApplicationStage::totalFailed($position, $stage),
+			'unreviewed' => ApplicationStage::totalUnreviewed($position, $stage),
+		];
+
 		$data = [
 			'route_title' => 'Application Stages',
 			'route_description' => 'Application Stage List',
@@ -38,6 +46,7 @@ class ApplicationStageController extends SecureController {
 			'instance' => $stage,
 			'position' => $position,
 			'stage' => $stage,
+			'summary' => $summary,
 			'q' => $request->input('q'),
 			'applicant_id' => $request->input('applicant_id'),
 		];
@@ -51,7 +60,7 @@ class ApplicationStageController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create(Request $request) {
-		
+
 		//load position
 		$position = Position::find($request->input('position_id'));
 
@@ -64,7 +73,7 @@ class ApplicationStageController extends SecureController {
 			'stage' => $stage,
 			'applicant_id' => $request->input('applicant_id'),
 		];
-		
+
 		return view('applicationstages.create', $data);
 	}
 
@@ -79,11 +88,11 @@ class ApplicationStageController extends SecureController {
 
 		//ensure valid applicationstage
 		$this->validate($request, [
-            'application_id' => 'string|required|exists:applications,id',
-            'stage_id' => 'string|required|exists:stages,id',
-            'applicant_id' => 'string|required|exists:users,id',
-            'organization_id' => 'string|required|exists:users,id',
-            'position_id' => 'string|required|exists:positions,id'
+			'application_id' => 'string|required|exists:applications,id',
+			'stage_id' => 'string|required|exists:stages,id',
+			'applicant_id' => 'string|required|exists:users,id',
+			'organization_id' => 'string|required|exists:users,id',
+			'position_id' => 'string|required|exists:positions,id',
 		]);
 
 		//obtain all applicationstage form inputs
@@ -97,10 +106,10 @@ class ApplicationStageController extends SecureController {
 			->success()->important();
 
 		//redirect to show application stage listing
-		return redirect()->route('applicationstages.index',[
-				'position_id' => $applicationstage->position_id,
-				'stage_id' => $applicationstage->stage_id
-			]);
+		return redirect()->route('applicationstages.index', [
+			'position_id' => $applicationstage->position_id,
+			'stage_id' => $applicationstage->stage_id,
+		]);
 
 	}
 
@@ -179,10 +188,10 @@ class ApplicationStageController extends SecureController {
 			->success()->important();
 
 		//redirect to application stage listing
-		return redirect()->route('applicationstages.index',[
-				'position_id' => $applicationstage->position_id,
-				'stage_id' => $applicationstage->stage_id
-			]);
+		return redirect()->route('applicationstages.index', [
+			'position_id' => $applicationstage->position_id,
+			'stage_id' => $applicationstage->stage_id,
+		]);
 
 	}
 
@@ -203,9 +212,9 @@ class ApplicationStageController extends SecureController {
 			->success()->important();
 
 		//redirect to application stage listing
-		return redirect()->route('applicationstages.index',[
-				'position_id' => $applicationstage->position_id,
-				'stage_id' => $applicationstage->stage_id
-			]);
+		return redirect()->route('applicationstages.index', [
+			'position_id' => $applicationstage->position_id,
+			'stage_id' => $applicationstage->stage_id,
+		]);
 	}
 }
