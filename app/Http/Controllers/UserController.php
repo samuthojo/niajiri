@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Application;
 use Illuminate\Http\Request;
 
 class UserController extends SecureController {
@@ -408,14 +409,17 @@ class UserController extends SecureController {
     {
     	//load actual current user
     	$id = is_set($id) ? $id : \Auth::user()->id;
-		$user = User::query()->findOrFail($id);
+		  $user = User::query()->findOrFail($id);
 
-        $data = [
-            'route_title' => $user->fullName().' - Resume',
-            'route_description' => $user->fullName().' - Resume',
-            'user' => $user,
-            'instance' => $user
-        ];
+      $application = Application::find($request->input('application_id'));
+
+      $data = [
+          'route_title' => $user->fullName().' - Resume',
+          'route_description' => $user->fullName().' - Resume',
+          'user' => $user,
+          'application' => $application,
+          'instance' => $user
+      ];
 
         return view('users.resume.index', $data);
     }

@@ -106,7 +106,7 @@
                                 <td>
                                 {{-- TODO score, advance, view application, view cv --}}
                                     @permission('view:applicationstage')
-                                    <a href="{{ route('applicationstages.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('applicationstages.actions.view.title')}}">
+                                    <a href="{{ route('users.resume', ['id' => $item->applicant->id, 'application_id' => $item->application_id]) }}" class="btn btn-success btn-xs" title="{{trans('applicationstages.actions.view.title')}}">
                                         {{trans('applicationstages.actions.view.name')}}
                                     </a>
                                     @endpermission
