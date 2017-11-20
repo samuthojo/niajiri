@@ -75,11 +75,76 @@
                                     </div>
                                 </div>
                                 @endif
+
                             </div>
                         </div>
                     </div>
                 </div>
               </div>
+              @if(count($stage->applicationStages) > 0)
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>{{ trans('cvs.inputs.name.header') }}</th>
+                        <th>{{ trans('cvs.inputs.mobile.header') }}</th>
+                        <th>{{ trans('cvs.inputs.email.header') }}</th>
+                        <th>{{ trans('applicationstages.inputs.score.header') }}</th>
+                        <th>{{ trans('applicationstages.inputs.status.header') }}</th>
+                        <th>{{ trans('applicationstages.headers.actions')}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($stage->applicationstages->sortBy('score') as $item)
+                        <tr>
+                            <td>{{ $item->applicant->fullName()}}</td>
+                            <td>
+                                {{ display_or_na($item->applicant->mobile)}}
+                            </td>
+                            <td>
+                                {{ display_or_na($item->applicant->email)}}
+                            </td>
+                            <td>
+                                {{ display_decimal($item->score)}}%
+                            </td>
+                            <td>
+                                <span class="label {{display_boolean($item->hasPass(), 'label-primary', 'label-danger')}}">
+                                    {{display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
+                                </span>
+                            </td>
+                            <td>
+                            {{-- TODO score, advance, view application, view cv --}}
+                                @permission('view:applicationstage')
+                                <a href="{{ route('applicationstages.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('applicationstages.actions.view.title')}}">
+                                    {{trans('applicationstages.actions.view.name')}}
+                                </a>
+                                @endpermission
+
+                                @if($item->application->canAdvance($item->stage))
+                                @permission('edit:applicationstage')
+                                <button class="btn btn-info btn-xs" title="{{trans('applicationstages.actions.score.title')}}" data-toggle="modal" data-target="#application-score-modal">
+                                    {{trans('applicationstages.actions.score.name')}}
+                                </button>
+                                @include('applicationstages.blocks.score_modal', ['applicationstage' => $item])
+                                @endpermission
+                                @if($item->hasPass())
+                                @permission('edit:applicationstage')
+                                <a href="{{route('applications.advance', ['id' => $item->application_id, 'applicant_id' => $item->applicant_id, 'position_id'=>$item->position_id])}}" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.advance.title')}}">
+                                    {{trans('applicationstages.actions.advance.name')}}
+                                </a>
+                                @endpermission
+                                @endif
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+
+                @else
+                <h3 class="text-center">No applicants found in {{$stage->name}} stage.</h3>
+                @endif
+
 
             </div>
            {{-- end page box content --}}
