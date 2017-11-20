@@ -23,7 +23,15 @@
                 {{-- start applicationstages table in filter --}}
                 <div class="row m-t-md">
                     <div class="col-sm-8 m-b-xs">
-                        &nbsp;
+                         @if($position->isFirstStage($stage))
+                         @permission('edit:applicationstage')
+                             <div class="btn-group">
+                                <button class="btn btn-sm btn-white" role="button" title="{{ trans('applicationstages.actions.screen.title') }}" data-toggle="modal" data-target="#application-screening-modal">
+                                <i class="fa fa-filter"></i> {{ trans('applicationstages.actions.screen.name') }}</button>
+                            </div>
+                            @include('applicationstages.blocks.screening_modal')
+                        @endpermission
+                        @endif
                     </div>
                     <div class="col-sm-4">
                         {{-- start applicationstages search form --}}

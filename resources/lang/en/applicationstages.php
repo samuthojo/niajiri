@@ -32,6 +32,10 @@ return [
 			'name' => 'Cancel',
 			'title' => 'Click To Cancel',
 		],
+		'clear' => [
+			'name' => 'Clear',
+			'title' => 'Click To Clear',
+		],
 		'edit' => [
 			'name' => 'Edit',
 			'title' => 'Click To Edit Application',
@@ -95,6 +99,14 @@ return [
 				'success' => 'Test Taken Added Succeffully',
 			],
 		],
+		'screen' => [
+			'name' => 'Screen',
+			'label' => 'Screening Applicants',
+			'title' => 'Click To Screen Applicants',
+			'flash' => [
+				'success' => 'Applicants Screened Succeffully',
+			],
+		],
 	],
 	'inputs' => [
 		'organization' => [
@@ -138,6 +150,40 @@ return [
 			'placeholder' => 'Status',
 			'header' => 'Status',
 			'description' => 'Status',
+		],
+	],
+	'filters' => [
+		'levels' => [
+			'id' => 'levels',
+			'name' => 'Education Level',
+			'title' => 'Education Levels',
+		],
+		'institutions' => [
+			'id' => 'institutions',
+			'name' => 'Institutions',
+			'title' => 'Studied Institution',
+		],
+		'ages' => [
+			'id' => 'ages',
+			'name' => 'Age',
+			'title' => 'Age Range',
+		],
+		'genders' => [
+			'id' => 'genders',
+			'name' => 'Gender',
+			'title' => 'Gender',
+		],
+		'experiences' => [
+			'id' => 'experiences',
+			'name' => 'Work Experiences',
+			'title' => 'Work Experiences',
+			'description' => 'Has Work Experiences',
+		],
+		'achievements' => [
+			'id' => 'achievements',
+			'name' => 'Honors/Awards',
+			'title' => 'Honors/Awards',
+			'description' => 'Has Honors/Awards',
 		],
 	],
 ];
