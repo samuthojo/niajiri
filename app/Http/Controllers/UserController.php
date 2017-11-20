@@ -299,16 +299,35 @@ class UserController extends SecureController {
 	 * Display current user profile
 	 * @return \Illuminate\Http\Response
 	 */
-	public function profile(Request $request)
+	public function profile($id)
     {
+      //find existing user
+  		$user = User::findOrFail($id);
+
     	//TODO ensure all required info per profile
         return view('pages.dashboard.index', [
             'route_title' => 'Profile',
             'route_description' => 'Profile',
-            'user' => \Auth::user(),
-            'instance' => \Auth::user()
+            'user' => $user,
+            'instance' => $user
         ]);
     }
+
+
+    /**
+  	 * Display user profile
+  	 * @return \Illuminate\Http\Response
+  	 */
+  	public function userProfile(Request $request)
+      {
+      	//TODO ensure all required info per profile
+          return view('pages.dashboard.index', [
+              'route_title' => 'Profile',
+              'route_description' => 'Profile',
+              'user' => \Auth::user(),
+              'instance' => \Auth::user()
+          ]);
+      }
 
 
     /**

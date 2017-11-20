@@ -47,7 +47,7 @@
   </div>
   @if(count($stage->applicationStages) > 0)
     <dl class="dl-horizontal" >
-        <dt>Number of Applicants:</dt><dd><a href="{{ route('stages.show', ['id' => $stage->id]) }}">{{count($stage->applicationStages)}} <small>(Click to see more...)</small></a></dd>
+        <dt>Number of Applicants:</dt><dd><a href="{{ route('applicationstages.index', ['position_id' => $position->id, 'stage_id' => $stage->id]) }}" >{{count($stage->applicationStages)}} <small>applicant(s)</small></a></dd>
     </dl>
   @else
   <h3 class="text-center">No applicants found in {{$stage->name}} stage.</h3>

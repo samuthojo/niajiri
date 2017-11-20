@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 class UsersTableSeeder extends Seeder {
 	public function run() {
 		DB::transaction(function () {
-			
+
 			$roles = Role::all();
 
 			$users = [
