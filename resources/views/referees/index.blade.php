@@ -21,7 +21,10 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+
                         {{-- start referees search form --}}
+                        @if(is_set($referees) && 
+                        ($referees->count() > config('app.defaults.pageSize')))
                         {!! Form::open([
                             'method'=>'GET',
                             'route' => 'referees.index',
@@ -43,6 +46,7 @@
                                 </span>
                         </div>
                         {!! Form::close() !!}
+                        @endif
                         {{-- end referees search form --}}
 
                     </div>

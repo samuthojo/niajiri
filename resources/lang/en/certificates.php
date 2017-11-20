@@ -72,15 +72,15 @@ return [
         ],
         'started_at' => [
             'label' => 'Date Started',
-            'placeholder' => 'e.g 12-11-2015',
+            'placeholder' => 'e.g 11-2015',
             'header' => 'Date Started',
-            'description' => 'Date Started e.g 12-11-2015 etc.',
+            'description' => 'Date Started e.g 11-2015 etc.',
         ],
         'finished_at' => [
             'label' => 'Date Finished',
-            'placeholder' => 'e.g 12-12-2016',
+            'placeholder' => 'e.g 12-2016',
             'header' => 'Date Finished',
-            'description' => 'Date Finished e.g 12-12-2016 etc.',
+            'description' => 'Date Finished e.g 12-2016 etc.',
         ],
         'expired_at' => [
             'label' => 'Date Expired',

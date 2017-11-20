@@ -44,6 +44,18 @@
 		</div>
 		@endif
 
+		@if($user->extracurricular_activities)
+		<div>
+			<h3 title="{{trans('cvs.inputs.extracurricular_activities.description')}}">
+				{{trans('cvs.inputs.extracurricular_activities.label')}}
+	        </h3>
+	        <h5 title="{{trans('cvs.inputs.extracurricular_activities.description')}}">
+	            {{$user->extracurricular_activities}}
+            </h5>
+			<hr class="hr-line-dashed" />
+		</div>
+		@endif
+
 	</div>
 	{{--end skills_hobbies_interests--}}
 

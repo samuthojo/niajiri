@@ -6,6 +6,7 @@
 @endif
 {{--end applicant id--}}
 
+{{-- {{dd($errors)}} --}}
 
 {{-- start level --}}
 <div class="col-md-offset-2 col-md-6">
@@ -39,7 +40,7 @@
             {{trans('educations.inputs.institution.label')}}
             <span class="text-danger">*</span>
         </label>
-        {!! Form::text('institution', null, [
+        {!! Form::select('institution', trans('educations.institutions'), null, [
             'id' => 'institution',
             'class' => 'form-control',
             //'required' => 'required',
@@ -62,7 +63,7 @@
             {{trans('educations.inputs.summary.label')}}
             <span class="text-danger">*</span>
         </label>
-        {!! Form::text('summary', null, [
+        {!! Form::select('summary', trans('educations.qualifications'), null, [
             'id' => 'summary',
             'class' => 'form-control',
             //'required' => 'required',
@@ -92,7 +93,9 @@
             'placeholder' => trans('educations.inputs.started_at.placeholder'),
             'aria-describedby'=> 'education_started_at_help_block',
             'data-provide' => 'datepicker',
-            'data-date-format' => config('app.datepicker_date_format')
+            'data-date-start-view' => 'months',
+            'data-date-min-view-mode' => 'months',
+            'data-date-format' => config('app.datepicker_month_year_format')
         ]) !!}
        @if($errors->any() && $errors->has('started_at'))
         {!!
@@ -117,7 +120,9 @@
             'placeholder' => trans('educations.inputs.finished_at.placeholder'),
             'aria-describedby'=> 'education_finished_at_help_block',
             'data-provide' => 'datepicker',
-            'data-date-format' => config('app.datepicker_date_format')
+            'data-date-start-view' => 'months',
+            'data-date-min-view-mode' => 'months',
+            'data-date-format' => config('app.datepicker_month_year_format')
         ]) !!}
        @if($errors->any() && $errors->has('finished_at'))
         {!!

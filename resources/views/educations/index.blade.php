@@ -21,7 +21,10 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+
                         {{-- start educations search form --}}
+                        @if(is_set($educations) && 
+                        ($educations->count() > config('app.defaults.pageSize')))
                         {!! Form::open([
                             'method'=>'GET',
                             'route' => 'educations.index',
@@ -43,6 +46,7 @@
                                 </span>
                         </div>
                         {!! Form::close() !!}
+                        @endif
                         {{-- end educations search form --}}
 
                     </div>
@@ -93,8 +97,12 @@
                                 <td>{{ $item->level}}</td>
                                 <td>{{ $item->institution}}</td>
                                 <td>{{ $item->summary}}</td>
-                                <td>{{ display_date($item->started_at)}}</td>
-                                <td>{{ display_date($item->finished_at)}}</td>
+                                <td>
+                                    {{ display_date($item->started_at, config('app.datepicker_parse_month_year_format'))}}
+                                </td>
+                                <td>
+                                    {{ display_date($item->finished_at, config('app.datepicker_parse_month_year_format'))}}
+                                </td>
                                 <td>{{ $item->remark}}</td>
                                 @if($item->attachment())
                                 <td>

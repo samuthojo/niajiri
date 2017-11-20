@@ -4,30 +4,27 @@
  */
 if (!function_exists('is_set')) {
 
-    function is_set($value = null)
-    {
-        return isset($value) && !empty($value);
-    }
+	function is_set($value = null) {
+		return isset($value) && !empty($value);
+	}
 
 }
-
 
 /**
  * Display an object field value or N/A
  */
 if (!function_exists('display_or_na')) {
 
-    function display_or_na($value = null, $field = null)
-    {
-        if (is_set($value)) {
-            if(is_object($value) && is_set($field)){
-                $value = object_get($value, $field, 'N/A');
-            }
-            return $value;
-        } else {
-            return 'N/A';
-        }
-    }
+	function display_or_na($value = null, $field = null) {
+		if (is_set($value)) {
+			if (is_object($value) && is_set($field)) {
+				$value = object_get($value, $field, 'N/A');
+			}
+			return $value;
+		} else {
+			return 'N/A';
+		}
+	}
 
 }
 
@@ -36,14 +33,13 @@ if (!function_exists('display_or_na')) {
  */
 if (!function_exists('display_currency')) {
 
-    function display_currency($value = null)
-    {
-        if (is_set($value)) {
-            return config('app.currency.display') . number_format($value, 2);
-        } else {
-            return config('app.currency.display') . ' 0.0';
-        }
-    }
+	function display_currency($value = null) {
+		if (is_set($value)) {
+			return config('app.currency.display') . number_format($value, 2);
+		} else {
+			return config('app.currency.display') . ' 0.0';
+		}
+	}
 
 }
 
@@ -52,14 +48,13 @@ if (!function_exists('display_currency')) {
  */
 if (!function_exists('display_decimal')) {
 
-    function display_decimal($value = null)
-    {
-        if (is_set($value)) {
-            return number_format($value, 2);
-        } else {
-            return '0';
-        }
-    }
+	function display_decimal($value = null) {
+		if (is_set($value)) {
+			return number_format($value, 2);
+		} else {
+			return '0';
+		}
+	}
 }
 
 /**
@@ -67,14 +62,13 @@ if (!function_exists('display_decimal')) {
  */
 if (!function_exists('display_int')) {
 
-    function display_int($value = null)
-    {
-        if (is_set($value)) {
-            return number_format($value, 0);
-        } else {
-            return '0';
-        }
-    }
+	function display_int($value = null) {
+		if (is_set($value)) {
+			return number_format($value, 0);
+		} else {
+			return '0';
+		}
+	}
 }
 
 /**
@@ -82,14 +76,13 @@ if (!function_exists('display_int')) {
  */
 if (!function_exists('display_boolean')) {
 
-    function display_boolean($value = null, $yesLabel = 'Yes', $falseLabel = 'No')
-    {
-        if (is_set($value)) {
-            return $value ? $yesLabel : $noLabel;
-        } else {
-            return $falseLabel;
-        }
-    }
+	function display_boolean($value = null, $yesLabel = 'Yes', $falseLabel = 'No') {
+		if (is_set($value)) {
+			return $value ? $yesLabel : $noLabel;
+		} else {
+			return $falseLabel;
+		}
+	}
 }
 
 /**
@@ -97,13 +90,28 @@ if (!function_exists('display_boolean')) {
  */
 if (!function_exists('display_date')) {
 
-    function display_date($value = null)
-    {
-        if (is_set($value)) {
-            return $value->format(config('app.datepicker_parse_format'));
-        } else {
-            return 'N/A';
-        }
-    }
+	function display_date($value = null, $format = null) {
+		if (is_set($value)) {
+			$format = is_set($format) ? $format : config('app.datepicker_parse_format');
+			return $value->format($format);
+		} else {
+			return 'N/A';
+		}
+	}
 
+}
+
+/**
+ * Display value as percentage
+ */
+if (!function_exists('display_percentage')) {
+
+	function display_percentage($value = 0, $total = 0) {
+		if (is_set($value) && is_set($total) && $total !== 0 && $total >= $value) {
+			$percentage = ($value / $total) * 100;
+			return number_format($percentage, 2) . '%';
+		} else {
+			return '0%';
+		}
+	}
 }

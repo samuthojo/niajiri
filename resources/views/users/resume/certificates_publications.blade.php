@@ -19,21 +19,16 @@
 		        <h5>
                     <i class="fa fa-calendar-o"></i> 
                     <span title="{{trans('certificates.inputs.started_at.description')}}">
-                    	{{display_date($certificate->started_at)}}
+                    	{{display_date($certificate->started_at, config('app.datepicker_parse_month_year_format'))}}
                     </span> 
                     to 
                     @if($certificate->finished_at)
                     <span title="{{trans('certificates.inputs.finished_at.description')}}">
-                    	{{display_date($certificate->finished_at)}}
+                    	{{display_date($certificate->finished_at, config('app.datepicker_parse_month_year_format'))}}
                     </span>
                     @else
                     <span title="{{trans('certificates.inputs.finished_at.description')}}">Current</span>
                     @endif
-                     | 
-                    <span title="{{trans('certificates.inputs.expired_at.description')}}">
-                    	<i class="fa fa-clock-o"></i> 
-                    	{{display_date($certificate->expired_at)}}
-                    </span>
                 </h5>
 				<hr class="hr-line-dashed" />
 			</div>

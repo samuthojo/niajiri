@@ -48,6 +48,7 @@ class CreateUsersTable extends Migration
             $table->text('skills')->nullable();
             $table->text('interests')->nullable();
             $table->text('hobbies')->nullable();
+            $table->text('extracurricular_activities')->nullable();
 
             //location specific
             $table->string('country')->index()->nullable();

@@ -21,7 +21,10 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
+
                         {{-- start experiences search form --}}
+                        @if(is_set($experiences) && 
+                        ($experiences->count() > config('app.defaults.pageSize')))
                         {!! Form::open([
                             'method'=>'GET',
                             'route' => 'experiences.index',
@@ -43,6 +46,7 @@
                                 </span>
                         </div>
                         {!! Form::close() !!}
+                        @endif
                         {{-- end experiences search form --}}
 
                     </div>
@@ -87,8 +91,12 @@
                                 <td>{{ $item->position}}</td>
                                 <td>{{ $item->organization}}</td>
                                 <td>{{ $item->location}}</td>
-                                <td>{{ display_date($item->started_at)}}</td>
-                                <td>{{ display_date($item->ended_at)}}</td>
+                                <td>
+                                    {{ display_date($item->started_at, config('app.datepicker_parse_month_year_format'))}}
+                                </td>
+                                <td>
+                                    {{ display_date($item->ended_at, config('app.datepicker_parse_month_year_format'))}}
+                                </td>
                                 <td>
 
                                     @permission('view:experience')

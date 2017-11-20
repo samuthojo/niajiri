@@ -91,7 +91,9 @@
             'placeholder' => trans('achievements.inputs.issued_at.placeholder'),
             'aria-describedby'=> 'achievement_issued_at_help_block',
             'data-provide' => 'datepicker',
-            'data-date-format' => config('app.datepicker_date_format')
+            'data-date-start-view' => 'months',
+            'data-date-min-view-mode' => 'months',
+            'data-date-format' => config('app.datepicker_month_year_format')
         ]) !!}
        @if($errors->any() && $errors->has('issued_at'))
         {!!
