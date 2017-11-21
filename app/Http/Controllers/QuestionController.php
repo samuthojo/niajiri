@@ -30,7 +30,7 @@ class QuestionController extends SecureController
     public function index(Request $request)
     {
         $this->questionRepository->pushCriteria(new RequestCriteria($request));
-        $questions = $this->questionRepository->all();
+        $questions = $this->questionRepository->all()->paginate(config('app.defaults.pageSize'));
 
         return view('pages.questions.index',[
             'route_title' => 'Questions',

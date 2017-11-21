@@ -1,6 +1,33 @@
 <?php
 
 return [
+    'sectors' => [
+      "Agricultural Sector"  =>"Agricultural Sector" ,
+      "NGO's" =>"NGO's",
+      "Telecommunication" => "Telecommunication",
+      "Legal services" => "Legal services",
+      "Construction" => "Construction",
+      "Food processing" => "Food processing",
+      "Consulting" => "Consulting",
+      "Retail sales" => "Retail sales",
+      "Real estate" => "Real estate",
+      "Education" => "Education",
+      "Pharmaceuticals" => "Pharmaceuticals",
+      "Hospitality/Tourism" => "Hospitality/Tourism",
+      "Mass media" => "Mass media",
+      "Healthcare/hospitals" => "Healthcare/hospitals",
+      "Public health" => "Public health",
+      "Information technology" => "Information technology",
+      "Banking" => "Banking",
+      "Insurance" => "Insurance",
+      "Financial services" => "Financial services",
+      "FMCG" => "FMCG",
+      "Agriculture" => "Agriculture",
+      "Forestry and fishing" => "Forestry and fishing",
+      "Mining" => "Mining",
+      "Extraction of oil and gas etc." => "Extraction of oil and gas etc.",
+      "Logistic" => "Logistic",
+    ],
     'genders' => [
         'Male' => 'Male',
         'Female' => 'Female',

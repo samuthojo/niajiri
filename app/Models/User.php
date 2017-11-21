@@ -146,7 +146,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'password',
         'avatar',
         'verified',
-        
+
         //applicant specific
         'gender',
         'dob',
@@ -157,7 +157,8 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         'extracurricular_activities',
 
         //organization specific
-        'sector_id',
+        'sector',
+        'contatact_person',
 
         //location specific
         'country',
@@ -222,6 +223,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             'users.extracurricular_activities' => 5,
             'users.country' => 10,
             'users.state' => 10,
+            'users.contact_person' => 5,
         ]
     ];
 
@@ -272,7 +274,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
             if(property_exists($this, 'avatar')){
                 $avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.jpg');
             }else{
-               $avatar = url('/images/avatar.jpg'); 
+               $avatar = url('/images/avatar.jpg');
             }
         }
 

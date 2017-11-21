@@ -37,6 +37,7 @@ class Project extends Model
     public $fillable = [
         'name',
         'startedAt',
+        'status',
         'endedAt',
         'organization_id'
     ];
@@ -51,6 +52,7 @@ class Project extends Model
         'name' => 'string',
         'startedAt' => 'date',
         'endedAt' => 'date',
+        'status' => 'string',
         'organization_id' => 'string'
     ];
 

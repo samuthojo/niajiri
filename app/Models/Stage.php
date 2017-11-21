@@ -132,4 +132,13 @@ class Stage extends Model
     {
         return $this->hasMany(\App\Models\Test::class);
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function applicationStages()
+    {
+        return $this->hasMany(\App\Models\ApplicationStage::class);
+    }
 }

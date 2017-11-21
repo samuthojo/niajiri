@@ -70,12 +70,6 @@
                                     {{ trans('positions.inputs.project.header') }}
                                 </th>
                                 <th>
-                                    {{ trans('positions.inputs.dueAt.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('positions.inputs.publishedAt.header') }}
-                                </th>
-                                <th>
                                     {{trans('positions.headers.actions')}}
                                 </th>
                             </tr>
@@ -98,8 +92,6 @@
                                 <td>{{ $item->title}}</td>
                                 <td>{{ $item->organization->name}}</td>
                                 <td>{{ $item->project->name}}</td>
-                                <td>{{ $item->dueAt->format('d-m-Y')}}</td>
-                                <td>{{ $item->publishedAt->format('d-m-Y')}}</td>
                                 <td>
                                     @permission('view:position')
                                     <a href="{{ route('positions.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('positions.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
@@ -133,9 +125,9 @@
                     {{-- end table --}}
 
                     {{-- start pagination --}}
-                    {{--<div class="pagination-wrapper">
+                    <div class="pagination-wrapper">
                         {!! $positions->render() !!}
-                    </div> --}}
+                    </div>
                     {{-- end pagination --}}
 
                 </div>

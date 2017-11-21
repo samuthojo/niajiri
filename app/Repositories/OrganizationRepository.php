@@ -30,7 +30,7 @@ class OrganizationRepository extends BaseRepository
         'postal_address',
         'website',
         'logo',
-        'sector_id'
+        'sector'
     ];
 
     /**

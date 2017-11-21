@@ -25,6 +25,28 @@
 </div>
 {{-- end name --}}
 
+{{-- start Contact Person --}}
+<div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
+    <div class="col-md-offset-3 col-md-6">
+        {!! Form::text('contact_person', null, [
+            'class' => 'form-control',
+            'required' => 'required',
+            'aria-describedby'=> 'organizationNameHelpBlock',
+            'placeholder' => trans('organizations.inputs.contact_person.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('contact_person'))
+        {!!
+            $errors->first('name', '<p class="help-block">:message</p>')
+        !!}
+        @else
+            <p id="organizationContactPersonHelpBlock" class="help-block">
+                {{ trans('organizations.inputs.contact_person.description') }}
+            </p>
+        @endif
+    </div>
+</div>
+{{-- end Contact Person --}}
+
 {{-- start email --}}
 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
@@ -180,14 +202,15 @@
 {{-- start sector --}}
 <div class="form-group {{ $errors->has('sector') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
-        {!! Form::select('sector_id', $sectors,
-            null,
-            [   'id' => 'sector_id',
-                'class' => 'form-control',
-                'aria-describedby'=> 'usersectorHelpBlock',
-                'placeholder' => trans('organizations.inputs.sector.placeholder')
-            ])
-        !!}
+      {!! Form::select('sector', trans('sectors.sectors'),
+          null,
+          [
+              'id' => 'sector',
+              'class' => 'form-control',
+              //'required' => 'required',
+              'aria-describedby'=> 'education_level_help_block',
+          ])
+      !!}
         @if($errors->any() && $errors->has('sector'))
         {!!
             $errors->first('sector', '<p class="help-block">:message</p>')

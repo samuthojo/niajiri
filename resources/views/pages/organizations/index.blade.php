@@ -49,73 +49,39 @@
                 {{-- end organizations table in filter --}}
 
                 {{-- start organizations table --}}
-                <div class="table-responsive m-t-lg">
+                <div class="wrapper wrapper-content animated fadeInRight">
+                @foreach ($organizations->chunk(4) as $chunkedOrgs)
+                <div class="row">
+                  @foreach ($chunkedOrgs as $item)
 
-                    {{-- start table --}}
-                    <table class="table table-borderless">
-
-                        {{-- start table header --}}
-                        <thead>
-                            <tr>
-                                <th>
-                                    {{ trans('organizations.inputs.name.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('organizations.inputs.email.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('organizations.inputs.mobile.header') }}
-                                </th>
-                                <th>
-                                    {{trans('organizations.headers.actions')}}
-                                </th>
-                            </tr>
-                        </thead>
-                        {{-- end table header --}}
-
-                        {{-- start table body --}}
-                        <tbody>
-                        @foreach($organizations as $item)
-                            <tr>
-                                <td>{{ $item->name}}</td>
-                                <td>{{ $item->email}}</td>
-                                <td>{{ $item->mobile}}</td>
-                                <td>
-                                    @permission('view:organization')
-                                    <a href="{{ route('organizations.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('users.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
-                                    @endpermission
-
-                                    @permission('edit:organization')
-                                    <a href="{{ route('organizations.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-xs" title="{{trans('organizations.actions.edit.title')}}"><span class="fa fa-pencil" aria-hidden="true"/></a>
-                                    @endpermission
-
-                                    @permission('delete:organization')
-                                    {!! Form::open([
-                                        'method'=>'DELETE',
-                                        'url' => route('organizations.destroy', ['id' => $item->id]),
-                                        'style' => 'display:inline'
-                                    ]) !!}
-                                        {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
-                                                'type' => 'submit',
-                                                'class' => 'btn btn-danger btn-xs',
-                                                'title' => trans('organizations.actions.delete.title'),
-                                                'onclick'=>'return confirm("Confirm Delete?")'
-                                        ]) !!}
-                                    {!! Form::close() !!}
-                                    @endpermission
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        {{-- end table body --}}
-
-                    </table>
-                    {{-- end table --}}
+                <a href="{{ route('organizations.show', ['id' => $item->id]) }}">
+                  <div class="col-md-3">
+                    <div class="payment-card">
+                        <i class="fa fa-cc-visa payment-icon-big text-success"></i>
+                        <h2>
+                            {{$item->name}}
+                        </h2>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <small>
+                                    <strong>Sector:</strong> {{$item->sector}}
+                                </small>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <a href="{{ route('organizations.show', ['id' => $item->id]) }}" class="btn btn-xs btn-outline btn-primary">More Info <i class="fa fa-long-arrow-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  </a>
+                  @endforeach
+                </div>
+                @endforeach
 
                     {{-- start pagination --}}
-                    {{--<div class="pagination-wrapper">
+                    <div class="pagination-wrapper">
                         {!! $organizations->render() !!}
-                    </div> --}}
+                    </div>
                     {{-- end pagination --}}
 
                 </div>
