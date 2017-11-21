@@ -35,6 +35,11 @@ class ApplicationStage extends Model implements HasMedia {
 	protected $primaryKey = 'id';
 
 	/**
+	 * Obtain applicant local key used in applicant relations
+	 */
+	protected $applicantLocalKey = 'applicant_id';
+
+	/**
 	 * Relations to eager load
 	 */
 	protected $withables = [

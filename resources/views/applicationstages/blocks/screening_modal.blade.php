@@ -44,7 +44,7 @@
                               for="{{$key}}"
                               title="{{$value}}">
                             {{
-                              Form::checkbox('levels[]', $key, null )}}
+                              Form::checkbox('level[]', $key, null )}}
                             {{$value}}
                             </label>
                           </div>
@@ -71,7 +71,7 @@
                               for="{{$key}}"
                               title="{{$value}}">
                             {{
-                              Form::checkbox('institutions[]', $key, null )}}
+                              Form::checkbox('institution[]', $key, null )}}
                             {{$value}}
                             </label>
                           </div>
@@ -156,7 +156,7 @@
                           for="experiences"
                           title="{{trans('applicationstages.filters.experiences.description')}}">
                         {{
-                          Form::checkbox('experiences', '1', false )}}
+                          Form::checkbox('experience', '1', false )}}
                         {{trans('applicationstages.filters.experiences.description')}}
                         </label>
                       </div>
@@ -182,7 +182,7 @@
                           for="achievements"
                           title="{{trans('applicationstages.filters.achievements.description')}}">
                         {{
-                          Form::checkbox('achievements', '1', false )}}
+                          Form::checkbox('achievement', '1', false )}}
                         {{trans('applicationstages.filters.achievements.description')}}
                         </label>
                       </div>
@@ -199,7 +199,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" title="{{trans('applicationstages.actions.cancel.title')}}">
           {{trans('applicationstages.actions.cancel.name')}}
         </button>
-        <a href="{{route('applicationstages.index', ['position_id' => $position->id, 'stage_id' => $stage])}}" role="button" class="btn btn-default" title="{{trans('applicationstages.actions.clear.title')}}">
+        <a href="{{route('applicationstages.index', ['position_id' => $position->id, 'stage_id' => $stage])}}" role="button" class="btn btn-danger" title="{{trans('applicationstages.actions.clear.title')}}">
           {{trans('applicationstages.actions.clear.name')}}
         </a>
         {!!
