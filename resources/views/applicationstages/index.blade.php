@@ -66,12 +66,20 @@
                 {{-- start applicationstages table --}}
                 <div class="table-responsive m-t-lg">
 
+                    {{-- start advance all form --}}
+                    {!! Form::open([
+                            'method'=>'POST',
+                            'route' => 'applications.advance',
+                        ]) !!}
                     {{-- start table --}}
                     <table class="table table-borderless">
 
                         {{-- start table header --}}
                         <thead>
                             <tr>
+                                <th>
+                                    <input type="checkbox" id="selectAll" />
+                                </th>
                                 <th>
                                     {{ trans('cvs.inputs.name.header') }}
                                 </th>
@@ -104,6 +112,9 @@
                         <tbody>
                         @foreach($applicationstages->sortBy('score') as $item)
                             <tr>
+                                <td>
+                                {{Form::checkbox('applications[]', $item->application_id, false , ['id' => $item->application_id])}}
+                                </td>
                                 <td>{{ $item->applicant->fullName()}}</td>
                                 <td>{{display_int($item->applicant->age())}}</td>
                                 <td>{{display_or_na($item->applicant->gender)}}</td>
@@ -160,6 +171,9 @@
 
                     </table>
                     {{-- end table --}}
+                    {!! Form::close() !!}
+                    {{-- end advance all form --}}
+
 
                     {{-- start pagination --}}
                     <div class="pagination-wrapper">
@@ -181,3 +195,14 @@
 {{-- end page content --}}
 
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+    $('#selectAll').click(function (/*event*/) {
+        $(this)
+            .closest('table')
+            .find('td input:checkbox')
+            .prop('checked', this.checked);
+    });
+</script>
+@endpush
