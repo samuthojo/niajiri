@@ -64,7 +64,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <small>
-                                    <strong>Sector:</strong> {{$item->sector}}
+                                    <strong>Sector:</strong> {{$item->sector->name}}
                                 </small>
                             </div>
                             <div class="col-sm-6 text-right">
