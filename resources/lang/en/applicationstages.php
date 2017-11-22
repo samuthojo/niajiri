@@ -82,8 +82,18 @@ return [
 			'title' => 'Click To Advance Application',
 			'flash' => [
 				'success' => 'Application Advanced Succeffully',
+				'warning' => 'No Application Advanced',
 			],
 		],
+
+		'advance_all' => [
+			'name' => 'Advance',
+			'title' => 'Click To Advance Selected Applications',
+			'flash' => [
+				'success' => 'Applications Advanced Succeffully',
+			],
+		],
+
 		'score' => [
 			'name' => 'Score',
 			'label' => 'Score Application',
