@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
-use App\Models\ApplicationStage;
-use App\Models\Position;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
@@ -63,14 +61,14 @@ class ApplicationController extends SecureController {
 
 		//ensure valid application
 		$this->validate($request, [
-            'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id',
-            'organization_id' => 'string|required|exists:users,id',
-            'position_id' => 'string|required|exists:positions,id'
+			'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id',
+			'organization_id' => 'string|required|exists:users,id',
+			'position_id' => 'string|required|exists:positions,id',
 		]);
 
 		//obtain all application form inputs
 		$body = $request->all();
-		
+
 		//create application
 		$application = Application::create($body);
 
@@ -85,24 +83,23 @@ class ApplicationController extends SecureController {
 
 		//advance application to next stage
 		$applicationStage = $application->advance();
-		
 
 		//flash message
 		flash(trans('applications.actions.save.flash.success'))
 			->success()->important();
 
 		//redirect to applicant applied list
-		if($application->isApplicant(\Auth::user())){
+		if ($application->isApplicant(\Auth::user())) {
 			return redirect()->route('applications.applied', [
-				'applicant_id' => $request->input('applicant_id')
+				'applicant_id' => $request->input('applicant_id'),
 			]);
 		}
 
 		//redirect to show applications
-		else{
+		else {
 			return redirect()->route('applications.index', [
-					'applicant_id' => $request->input('applicant_id')
-				]);
+				'applicant_id' => $request->input('applicant_id'),
+			]);
 		}
 
 	}
@@ -161,12 +158,12 @@ class ApplicationController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		
+
 		//ensure valid application
 		$this->validate($request, [
-            'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id,ignore:' . $id,
-            'organization_id' => 'string|required|exists:users,id',
-            'position_id' => 'string|required|exists:positions,id'
+			'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id,ignore:' . $id,
+			'organization_id' => 'string|required|exists:users,id',
+			'position_id' => 'string|required|exists:positions,id',
 		]);
 
 		//obtain all application form inputs
@@ -192,17 +189,17 @@ class ApplicationController extends SecureController {
 			->success()->important();
 
 		//redirect to applicant applied list
-		if($application->isApplicant(\Auth::user())){
+		if ($application->isApplicant(\Auth::user())) {
 			return redirect()->route('applications.applied', [
-				'applicant_id' => $request->input('applicant_id')
+				'applicant_id' => $request->input('applicant_id'),
 			]);
 		}
-		
+
 		//redirect to show applications
-		else{
+		else {
 			return redirect()->route('applications.index', [
-					'applicant_id' => $request->input('applicant_id')
-				]);
+				'applicant_id' => $request->input('applicant_id'),
+			]);
 		}
 
 	}
@@ -225,17 +222,17 @@ class ApplicationController extends SecureController {
 			->success()->important();
 
 		//redirect to applicant applied list
-		if($isApplicant){
+		if ($isApplicant) {
 			return redirect()->route('applications.applied', [
-				'applicant_id' => $request->input('applicant_id')
+				'applicant_id' => $request->input('applicant_id'),
 			]);
 		}
-		
+
 		//redirect to show applications
-		else{
+		else {
 			return redirect()->route('applications.index', [
-					'applicant_id' => $request->input('applicant_id')
-				]);
+				'applicant_id' => $request->input('applicant_id'),
+			]);
 		}
 	}
 
@@ -256,7 +253,7 @@ class ApplicationController extends SecureController {
 
 		$data = [
 			'route_title' => 'My Applications',
-            'route_description' => 'My Applications',
+			'route_description' => 'My Applications',
 			'applications' => $applications,
 			'q' => $request->input('q'),
 			'applicant_id' => $request->input('applicant_id'),
@@ -290,36 +287,47 @@ class ApplicationController extends SecureController {
 	}
 
 	/**
-	 * Advance application to next stage
+	 * Advance application(s) to next stage
 	 *
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function advance(Request $request, $id)
-	{
-		//advance application to next stage
-		$application = Application::findOrFail($id);
+	public function advance(Request $request) {
 
-		$application->advance();
+		//obtain application to advance
+		$ids = collect($request->input('applications'));
 
-		//flash message
-		flash(trans('applicationstages.actions.advance.flash.success'))
-			->success()->important();
+		//ensure $ids
+		if ($ids->count() == 0) {
+			//flash message
+			flash(trans('applicationstages.actions.advance.flash.warning'))
+				->warning()->important();
+		}
 
-		//redirect to next application stage listing
-		if(is_set($request->input('position_id'))){
+		//try to advance applications
+		else {
+			//advance applications to next stage
+			Application::advances($ids);
+
+			//flash message
+			flash(trans('applicationstages.actions.advance.flash.success'))
+				->success()->important();
+		}
+
+		//redirect to application stage listing
+		if (is_set($request->input('position_id'))) {
 			return redirect()->route('applicationstages.index', [
-					'position_id' => $request->input('position_id'),
-					'stage_id' => $application->stage_id
-				]);
+				'position_id' => $request->input('position_id'),
+				'stage_id' => $request->input('stage_id'),
+			]);
 		}
 
 		//redirect to current application view
-		else{
+		else {
 			return redirect()->route('applications.application', [
-					'id' => $application->id,
-					'applicant_id' => $request->input('applicant_id')
-				]);
+				'id' => $ids->first(),
+				'applicant_id' => $request->input('applicant_id'),
+			]);
 		}
 	}
 
@@ -336,8 +344,8 @@ class ApplicationController extends SecureController {
 
 		//load current application stage questions
 		$test = Test::query()
-				->where(['stage_id' => $application->stage_id])
-				->first();
+			->where(['stage_id' => $application->stage_id])
+			->first();
 		$questions = $test->questions;
 
 		$data = [

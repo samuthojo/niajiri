@@ -32,6 +32,10 @@ return [
 			'name' => 'Cancel',
 			'title' => 'Click To Cancel',
 		],
+		'clear' => [
+			'name' => 'Clear',
+			'title' => 'Click To Clear',
+		],
 		'edit' => [
 			'name' => 'Edit',
 			'title' => 'Click To Edit Application',
@@ -78,8 +82,18 @@ return [
 			'title' => 'Click To Advance Application',
 			'flash' => [
 				'success' => 'Application Advanced Succeffully',
+				'warning' => 'No Application Advanced',
 			],
 		],
+
+		'advance_all' => [
+			'name' => 'Advance',
+			'title' => 'Click To Advance Selected Applications',
+			'flash' => [
+				'success' => 'Applications Advanced Succeffully',
+			],
+		],
+
 		'score' => [
 			'name' => 'Score',
 			'label' => 'Score Application',
@@ -93,6 +107,14 @@ return [
 			'title' => 'Click To Take Test',
 			'flash' => [
 				'success' => 'Test Taken Added Succeffully',
+			],
+		],
+		'screen' => [
+			'name' => 'Screen',
+			'label' => 'Screening Applicants',
+			'title' => 'Click To Screen Applicants',
+			'flash' => [
+				'success' => 'Applicants Screened Succeffully',
 			],
 		],
 	],
@@ -138,6 +160,40 @@ return [
 			'placeholder' => 'Status',
 			'header' => 'Status',
 			'description' => 'Status',
+		],
+	],
+	'filters' => [
+		'levels' => [
+			'id' => 'levels',
+			'name' => 'Education Level',
+			'title' => 'Education Levels',
+		],
+		'institutions' => [
+			'id' => 'institutions',
+			'name' => 'Institutions',
+			'title' => 'Studied Institution',
+		],
+		'ages' => [
+			'id' => 'ages',
+			'name' => 'Age',
+			'title' => 'Age Range',
+		],
+		'genders' => [
+			'id' => 'genders',
+			'name' => 'Gender',
+			'title' => 'Gender',
+		],
+		'experiences' => [
+			'id' => 'experiences',
+			'name' => 'Work Experiences',
+			'title' => 'Work Experiences',
+			'description' => 'Has Work Experiences',
+		],
+		'achievements' => [
+			'id' => 'achievements',
+			'name' => 'Honors/Awards',
+			'title' => 'Honors/Awards',
+			'description' => 'Has Honors/Awards',
 		],
 	],
 ];

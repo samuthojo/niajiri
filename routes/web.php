@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Auth::routes();
 
@@ -27,7 +27,6 @@ Route::resource('users', 'UserController');
 Route::get('/profile', 'UserController@profile')->name('profile');
 Route::get('/users/{user}/change', 'UserController@showChangePassword')->name('users.change_password');
 Route::patch('/users/{user}/change', 'UserController@changePassword')->name('users.change_password');
-
 
 Route::resource('organizations', 'OrganizationController');
 
@@ -60,7 +59,6 @@ Route::post('/tests/{test}/questions', 'TestController@QuestionStore')->name("te
 
 Route::resource('questions', 'QuestionController');
 
-
 Route::resource('educations', 'EducationController');
 Route::resource('certificates', 'CertificateController');
 Route::resource('experiences', 'ExperienceController');
@@ -71,11 +69,11 @@ Route::resource('assignments', 'AssignmentController');
 Route::resource('publications', 'PublicationController');
 Route::resource('applications', 'ApplicationController');
 Route::get('/application/{application}', 'ApplicationController@application')->name('applications.application');
-Route::get('/advance/{application}', 'ApplicationController@advance')->name('applications.advance');
+Route::get('/advance', 'ApplicationController@advance')->name('applications.advance');
+Route::patch('/advance', 'ApplicationController@advance')->name('applications.advance');
 Route::get('/apply', 'ApplicationController@store')->name('applications.apply');
 Route::get('/applied', 'ApplicationController@applied')->name('applications.applied');
 Route::resource('applicationstages', 'ApplicationStageController');
-
 
 //cv routes
 Route::get('/basic', 'UserController@get_basic')->name("users.basic");

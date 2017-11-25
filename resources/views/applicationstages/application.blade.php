@@ -43,14 +43,14 @@
                             @if($applicationstage->hasPass($stage))
                             @if(!$applicationstage->position->isLastStage($stage))
                             @permission('edit:applicationstage')
-                            <a href="{{route('applications.advance', ['id' => $applicationstage->application_id, 'applicant_id' => $applicationstage->applicant_id, 'position_id'=>$applicationstage->position_id])}}" class="btn btn-primary pull-right" title="{{trans('applicationstages.actions.advance.title')}}">
+                            <a href="{{route('applications.advance', ['applications[]' => $applicationstage->application_id, 'stage_id' => $applicationstage->stage_id, 'position_id' => $applicationstage->position_id])}}" class="btn btn-primary pull-right" title="{{trans('applicationstages.actions.advance.title')}}">
                                 {{trans('applicationstages.actions.advance.name')}}
                             </a>
                             @endpermission
                             @endif
                             @endif
                             <h2 class="product-main-price">
-                                {{$application->organization->name}} 
+                                {{$application->organization->name}}
                                 <small class="text-muted">
                                 {{$application->position->sector}}
                                 </small>
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         {{-- end position requirements --}}
-                        
+
                     </div>
                     {{-- start position details --}}
 

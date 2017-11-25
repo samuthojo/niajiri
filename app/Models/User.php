@@ -22,399 +22,384 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable implements AuditableContract, HasMedia {
-    /**
-     * Use notifiable
-     */
-    use Notifiable;
+	/**
+	 * Use notifiable
+	 */
+	use Notifiable;
 
-    /**
-     * Use Uuid as primary key
-     */
-    use UuidModelTrait;
+	/**
+	 * Use Uuid as primary key
+	 */
+	use UuidModelTrait;
 
-    /**
-     * Enable user to be searchable
-     */
-    use SearchableTrait;
+	/**
+	 * Enable user to be searchable
+	 */
+	use SearchableTrait;
 
-    /**
-     * give user roles and permissions
-     */
-    use EntrustUserTrait {
-        restore as _restore;
-    }
+	/**
+	 * give user roles and permissions
+	 */
+	use EntrustUserTrait {
+		restore as _restore;
+	}
 
-    /**
-     * Make user auditable
-     */
-    use Auditable;
+	/**
+	 * Make user auditable
+	 */
+	use Auditable;
 
-    /**
-     * Allow user to have attached files(media) i.e avatar etc
-     */
-    use HasMediaTrait;
+	/**
+	 * Allow user to have attached files(media) i.e avatar etc
+	 */
+	use HasMediaTrait;
 
-    /**
-     * Provide access to form accessor
-     */
-    use FormAccessible;
+	/**
+	 * Provide access to form accessor
+	 */
+	use FormAccessible;
 
-    /**
-     * Make model to eager load defined relations
-     * @see App\Traits\Withable
-     */
-    use Withable;
+	/**
+	 * Make model to eager load defined relations
+	 * @see App\Traits\Withable
+	 */
+	use Withable;
 
-    /**
-     * Extend model query builder with english words
-     * @see App\Traits\Sugarize
-     */
-    use Sugarize;
+	/**
+	 * Extend model query builder with english words
+	 * @see App\Traits\Sugarize
+	 */
+	use Sugarize;
 
-    /**
-     * Make a model filterable
-     * @see EloquentFilter\Filterable;
-     */
-    use Filterable;
+	/**
+	 * Make a model filterable
+	 * @see EloquentFilter\Filterable;
+	 */
+	use Filterable;
 
-    /**
-     * Do not actually remove the model from the database.
-     */
-    use SoftDeletes {
-        restore as __restore;
-    }
+	/**
+	 * Do not actually remove the model from the database.
+	 */
+	use SoftDeletes {
+		restore as __restore;
+	}
 
-    /**
-     * Extend user with applicant capabilities
-     */
-    use ActAsApplicant;
+	/**
+	 * Extend user with applicant capabilities
+	 */
+	use ActAsApplicant;
 
+	/**
+	 * Extend user with organization capabilities
+	 */
+	use ActAsOrganization;
 
-    /**
-     * Extend user with organization capabilities
-     */
-    use ActAsOrganization;
+	/**
+	 * Scope a query with field to count
+	 */
+	use Countable;
 
+	/**
+	 * Type of users
+	 */
+	const TYPE_ORGANIZATION = 'Organization';
+	const TYPE_APPLICANT = 'Applicant';
+	const TYPE_HR_AGENCY = 'Human Resource Agency';
+	const TYPE_NORMAL = 'Normal';
 
-    /**
-     * Scope a query with field to count
-     */
-    use Countable;
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'users';
 
-    /**
-     * Type of users
-     */
-    const TYPE_ORGANIZATION = 'Organization';
-    const TYPE_APPLICANT = 'Applicant';
-    const TYPE_HR_AGENCY = 'Human Resource Agency';
-    const TYPE_NORMAL = 'Normal';
+	/**
+	 * The database primary key value.
+	 *
+	 * @var string
+	 */
+	protected $primaryKey = 'id';
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'type',
+		'name',
+		'first_name',
+		'middle_name',
+		'surname',
+		'email',
+		'secondary_email',
+		'website',
+		'alternative_mobile',
+		'landline',
+		'fax',
+		'physical_address',
+		'postal_address',
+		'summary',
+		'password',
+		'avatar',
+		'verified',
 
-    /**
-     * The database primary key value.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'id';
+		//applicant specific
+		'gender',
+		'dob',
+		'marital_status',
+		'skills',
+		'interests',
+		'hobbies',
+		'extracurricular_activities',
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'type',
-        'name',
-        'first_name',
-        'middle_name',
-        'surname',
-        'email',
-        'secondary_email',
-        'website',
-        'alternative_mobile',
-        'landline',
-        'fax',
-        'physical_address',
-        'postal_address',
-        'summary',
-        'password',
-        'avatar',
-        'verified',
+		//organization specific
+		'sector_id',
+		'contact_person',
 
-        //applicant specific
-        'gender',
-        'dob',
-        'marital_status',
-        'skills',
-        'interests',
-        'hobbies',
-        'extracurricular_activities',
+		//location specific
+		'country',
+		'state',
+	];
 
-        //organization specific
-        'sector',
-        'contatact_person',
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+		'password', 'remember_token',
+	];
 
-        //location specific
-        'country',
-        'state'
-    ];
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'created_at' => 'datetime',
+		'updated_at' => 'datetime',
+		'deleted_at' => 'datetime',
+		'dob' => 'date',
+		'verified' => 'boolean',
+	];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+	/**
+	 * Searchable rules.
+	 *
+	 * @var array
+	 */
+	protected $searchable = [
+		/**
+		 * Columns and their priority in search results.
+		 * Columns with higher values are more important.
+		 * Columns with equal values have equal importance.
+		 *
+		 * @var array
+		 */
+		'columns' => [
+			'users.name' => 10,
+			'users.first_name' => 10,
+			'users.middle_name' => 10,
+			'users.surname' => 10,
+			'users.gender' => 10,
+			'users.marital_status' => 10,
+			'users.email' => 10,
+			'users.secondary_email' => 10,
+			'users.mobile' => 10,
+			'users.alternative_mobile' => 10,
+			'users.landline' => 8,
+			'users.fax' => 5,
+			'users.postal_address' => 5,
+			'users.physical_address' => 5,
+			'users.skills' => 5,
+			'users.interests' => 5,
+			'users.hobbies' => 5,
+			'users.extracurricular_activities' => 5,
+			'users.country' => 10,
+			'users.state' => 10,
+			'users.contact_person' => 5,
+		],
+	];
 
+	/**
+	 * Convert a DateTime to a storable string.
+	 *
+	 * @param  \DateTime|int|string  $value
+	 * @return string
+	 * @override
+	 */
+	public function fromDateTime($value) {
+		try {
+			if (is_string($value)) {
+				$value = Carbon::createFromFormat(config('app.datepicker_parse_format'), $value);
+			}
+			return $value;
+		} catch (\Exception $e) {
+			return parent::fromDateTime($value);
+		}
+	}
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'dob' => 'date',
-        'verified'=> 'boolean',
-    ];
+	/**
+	 * Override parent(s) restores
+	 */
+	public function restore() {
+		$this->_restore();
+		$this->__restore();
+	}
 
+	/**
+	 * Build user avatar url
+	 */
+	public function avatar() {
+		//generate user avatar
+		$avatar = '';
 
-    /**
-     * Searchable rules.
-     *
-     * @var array
-     */
-    protected $searchable = [
-        /**
-         * Columns and their priority in search results.
-         * Columns with higher values are more important.
-         * Columns with equal values have equal importance.
-         *
-         * @var array
-         */
-        'columns' => [
-            'users.name' => 10,
-            'users.first_name' => 10,
-            'users.middle_name' => 10,
-            'users.surname' => 10,
-            'users.gender' => 10,
-            'users.marital_status' => 10,
-            'users.email' => 10,
-            'users.secondary_email' => 10,
-            'users.mobile' => 10,
-            'users.alternative_mobile' => 10,
-            'users.landline' => 8,
-            'users.fax' => 5,
-            'users.postal_address' => 5,
-            'users.physical_address' => 5,
-            'users.skills' => 5,
-            'users.interests' => 5,
-            'users.hobbies' => 5,
-            'users.extracurricular_activities' => 5,
-            'users.country' => 10,
-            'users.state' => 10,
-            'users.contact_person' => 5,
-        ]
-    ];
+		//try obtain custom uploaded avatar
+		$media = $this->getMedia('avatars')->first();
+		if ($media) {
+			$avatar = asset('storage/' . $media->id . '/' . $media->file_name);
+		}
 
+		//use social media or default avatar
+		if (!is_set($avatar)) {
+			if (property_exists($this, 'avatar')) {
+				$avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.jpg');
+			} else {
+				$avatar = url('/images/avatar.jpg');
+			}
+		}
 
-    /**
-     * Convert a DateTime to a storable string.
-     *
-     * @param  \DateTime|int|string  $value
-     * @return string
-     * @override
-     */
-    public function fromDateTime($value) {
-        try {
-            if (is_string($value)) {
-                $value = Carbon::createFromFormat(config('app.datepicker_parse_format'), $value);
-            }
-            return $value;
-        } catch (\Exception $e) {
-            return parent::fromDateTime($value);
-        }
-    }
+		return $avatar;
+	}
 
+	/**
+	 * Get and format the user's dob for forms.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+	 */
+	public function formDobAttribute($value) {
+		if (is_set($value)) {
+			$value = Carbon::parse($value);
+			$value = $value->format(config('app.datepicker_parse_format'));
+		}
+		return $value;
+	}
 
-    /**
-     * Override parent(s) restores
-     */
-    public function restore() {
-        $this->_restore();
-        $this->__restore();
-    }
+	/**
+	 * Derive full user name
+	 * @return sting
+	 */
+	public function fullName() {
+		if (is_set($this->name)) {
+			return $this->name;
+		}
+		return $this->first_name . ' ' . $this->middle_name . ' ' . $this->surname;
+	}
 
+	/**
+	 * Compute user(member) age
+	 * @return [type] [description]
+	 */
+	public function age() {
+		$age = 0;
+		if (is_set($this->dob)) {
+			$age = Carbon::now()->diffInYears($this->dob);
+		}
+		return $age;
+	}
 
-    /**
-     * Build user avatar url
-     */
-    public function avatar() {
-        //generate user avatar
-        $avatar = '';
+	//-------------------------------------------------------------
+	//relations
+	//-------------------------------------------------------------
 
-        //try obtain custom uploaded avatar
-        $media = $this->getMedia('avatars')->first();
-        if ($media) {
-            $avatar = asset('storage/' . $media->id . '/' . $media->file_name);
-        }
+	/**
+	 * Auditable Model audits.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+	 */
+	public function audits() {
+		return $this->morphMany('App\Audit', 'auditable');
+	}
 
-        //use social media or default avatar
-        if(!is_set($avatar)){
-            if(property_exists($this, 'avatar')){
-                $avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.jpg');
-            }else{
-               $avatar = url('/images/avatar.jpg');
-            }
-        }
+	//-------------------------------------------------------------
+	//class methods
+	//-------------------------------------------------------------
 
-        return $avatar;
-    }
+	/**
+	 * Strip unwanted avatar url extra & return url to obtain
+	 * original user profile avatar
+	 * @param  [string] $avatar   [description]
+	 * @param  [string] $provider [description]
+	 * @return [string]           [description]
+	 */
+	public static function getProviderOriginalAvatar($avatar, $provider) {
 
+		if ($avatar && $provider) {
+			if ($provider == 'google') {
+				$avatar = str_replace('?sz=50', '', $avatar);
+			} elseif ($provider == 'twitter') {
+				$avatar = str_replace('_normal', '', $avatar);
+			} elseif ($provider == 'facebook') {
+				$avatar = str_replace('type=normal', 'type=large', $avatar);
+			}
+		}
 
-    /**
-     * Get and format the user's dob for forms.
-     *
-     * @param  string  $value
-     * @return string
-     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
-     */
-    public function formDobAttribute($value) {
-        if (is_set($value)) {
-            $value = Carbon::parse($value);
-            $value = $value->format(config('app.datepicker_parse_format'));
-        }
-        return $value;
-    }
+		return $avatar;
+	}
 
+	/**
+	 * create user from social provider
+	 * @param  [Object] $user social user
+	 * @return [User]
+	 */
+	public static function findOrCreateByProvider($provider = 'google', $user = null) {
+		//TODO assign default user role to newly social registered user
+		//TODO obtain more details from social profile gender, bio,passion etc
+		//TODO save user social profile url if need
 
-    /**
-     * Derive full user name
-     * @return sting
-     */
-    public function fullName()
-    {
-        if(is_set($this->name)){
-            return $this->name;
-        }
-        return $this->first_name .' '. $this->middle_name .' '. $this->surname;
-    }
+		//wrap in transaction
+		return \DB::transaction(function () use ($provider, $user) {
+			//obtain user details
+			$name = null;
+			$email = null;
+			$avatar = null;
 
+			//TODO obtain additional details
+			if ($user) {
+				$name = $user->getName();
+				$email = $user->getEmail();
+				$avatar = User::getProviderOriginalAvatar(
+					$user->getAvatar(), $provider
+				);
+			}
 
-    /**
-     * Compute user(member) age
-     * @return [type] [description]
-     */
-    public function age() {
-        $age = 0;
-        if (is_set($this->dob)) {
-            $age = Carbon::now()->diffInYears($this->dob);
-        }
-        return $age;
-    }
+			//find & return existing
+			$user = User::where('email', $email)->first();
 
+			if ($user) {
+				//TODO update existing user details from social profile(s)
+				$user->avatar = $avatar;
+				$user->update();
+				return $user;
+			}
 
-    //-------------------------------------------------------------
-    //relations
-    //-------------------------------------------------------------
+			//create new user
+			else {
 
-    /**
-     * Auditable Model audits.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function audits() {
-        return $this->morphMany('App\Audit', 'auditable');
-    }
+				$user = User::create([
+					'name' => $name,
+					'email' => $email,
+					'avatar' => $avatar,
+				]);
 
-
-    //-------------------------------------------------------------
-    //class methods
-    //-------------------------------------------------------------
-
-    /**
-     * Strip unwanted avatar url extra & return url to obtain
-     * original user profile avatar
-     * @param  [string] $avatar   [description]
-     * @param  [string] $provider [description]
-     * @return [string]           [description]
-     */
-    public static function getProviderOriginalAvatar($avatar, $provider)
-    {
-
-        if ($avatar && $provider) {
-            if ($provider == 'google') {
-                $avatar = str_replace('?sz=50', '', $avatar);
-            } elseif ($provider == 'twitter') {
-                $avatar = str_replace('_normal', '', $avatar);
-            } elseif ($provider == 'facebook') {
-                $avatar = str_replace('type=normal', 'type=large', $avatar);
-            }
-        }
-
-        return $avatar;
-    }
-
-
-    /**
-     * create user from social provider
-     * @param  [Object] $user social user
-     * @return [User]
-     */
-    public static function findOrCreateByProvider($provider = 'google', $user = null) {
-        //TODO assign default user role to newly social registered user
-        //TODO obtain more details from social profile gender, bio,passion etc
-        //TODO save user social profile url if need
-
-        //wrap in transaction
-        return \DB::transaction(function () use ($provider, $user) {
-            //obtain user details
-            $name = null;
-            $email = null;
-            $avatar = null;
-
-            //TODO obtain additional details
-            if ($user) {
-                $name = $user->getName();
-                $email = $user->getEmail();
-                $avatar = User::getProviderOriginalAvatar(
-                    $user->getAvatar(), $provider
-                );
-            }
-
-            //find & return existing
-            $user = User::where('email', $email)->first();
-
-            if ($user) {
-                //TODO update existing user details from social profile(s)
-                $user->avatar = $avatar;
-                $user->update();
-                return $user;
-            }
-
-            //create new user
-            else {
-
-                $user = User::create([
-                    'name' => $name,
-                    'email' => $email,
-                    'avatar' => $avatar
-                ]);
-
-                return $user;
-            }
-        });
-    }
+				return $user;
+			}
+		});
+	}
 
 
     /**

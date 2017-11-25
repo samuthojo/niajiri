@@ -1,9 +1,9 @@
 {{-- start application stage score modal --}}
-<div class="modal fade" id="application-score-modal" tabindex="-1" role="dialog" aria-labelledby="applicationScoreModalLabel" aria-hidden="true">
+<div class="modal fade" id="application-score-modal-{{$applicationstage->id}}" tabindex="-1" role="dialog" aria-labelledby="applicationScoreModalLabel-{{$applicationstage->id}}" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="applicationScoreModalLabel">
+        <h3 class="modal-title" id="applicationScoreModalLabel-{{$applicationstage->id}}">
           <strong>
             {{trans('applicationstages.actions.score.label')}}
           </strong>
@@ -14,7 +14,8 @@
       {!! Form::model($applicationstage, [
             'method' => 'PATCH',
             'route' => ['applicationstages.update', $applicationstage->id],
-            'files' => true
+            'files' => true,
+            'id' => 'applicationstage_scoring_form'
       ]) !!}
       <div class="modal-body">
         <div class="row">
