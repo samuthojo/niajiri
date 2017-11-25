@@ -171,6 +171,13 @@ return [
             'description' => 'Date of Birth of the User e.g 21-06-2017',
         ],
 
+        'age' => [
+            'label' => 'Age',
+            'placeholder' => 'Age',
+            'header' => 'Age',
+            'description' => 'Age of the User e.g 21-06-2017',
+        ],
+
         'password' => [
             'label' => 'Password',
             'placeholder' => 'Password',

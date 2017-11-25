@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Application;
 use Illuminate\Http\Request;
 
 class UserController extends SecureController {
@@ -299,16 +300,35 @@ class UserController extends SecureController {
 	 * Display current user profile
 	 * @return \Illuminate\Http\Response
 	 */
-	public function profile(Request $request)
+	public function profile($id)
     {
+      //find existing user
+  		$user = User::findOrFail($id);
+
     	//TODO ensure all required info per profile
         return view('pages.dashboard.index', [
             'route_title' => 'Profile',
             'route_description' => 'Profile',
-            'user' => \Auth::user(),
-            'instance' => \Auth::user()
+            'user' => $user,
+            'instance' => $user
         ]);
     }
+
+
+    /**
+  	 * Display user profile
+  	 * @return \Illuminate\Http\Response
+  	 */
+  	public function userProfile(Request $request)
+      {
+      	//TODO ensure all required info per profile
+          return view('pages.dashboard.index', [
+              'route_title' => 'Profile',
+              'route_description' => 'Profile',
+              'user' => \Auth::user(),
+              'instance' => \Auth::user()
+          ]);
+      }
 
 
     /**
@@ -389,14 +409,17 @@ class UserController extends SecureController {
     {
     	//load actual current user
     	$id = is_set($id) ? $id : \Auth::user()->id;
-		$user = User::query()->findOrFail($id);
+		  $user = User::query()->findOrFail($id);
 
-        $data = [
-            'route_title' => $user->fullName().' - Resume',
-            'route_description' => $user->fullName().' - Resume',
-            'user' => $user,
-            'instance' => $user
-        ];
+      $application = Application::find($request->input('application_id'));
+
+      $data = [
+          'route_title' => $user->fullName().' - Resume',
+          'route_description' => $user->fullName().' - Resume',
+          'user' => $user,
+          'application' => $application,
+          'instance' => $user
+      ];
 
         return view('users.resume.index', $data);
     }

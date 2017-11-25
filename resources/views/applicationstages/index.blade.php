@@ -64,38 +64,24 @@
                         {{-- start table header --}}
                         <thead>
                             <tr>
-                                <th>
-                                    {{ trans('applicationstages.inputs.created_at.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('cvs.inputs.name.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('cvs.inputs.mobile.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('cvs.inputs.email.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('applicationstages.inputs.score.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('applicationstages.inputs.status.header') }}
-                                </th>
-                                <th>
-                                    {{trans('applicationstages.headers.actions')}}
-                                </th>
+                              <tr>
+                                  <th>{{ trans('cvs.inputs.name.header') }}</th>
+                                  <th>{{ trans('cvs.inputs.mobile.header') }}</th>
+                                  <th>{{ trans('cvs.inputs.email.header') }}</th>
+                                  <th>{{ trans('users.inputs.age.header') }}</th>
+                                  <th>{{ trans('users.inputs.gender.header') }}</th>
+                                  <th>{{ trans('applicationstages.inputs.score.header') }}</th>
+                                  <th>{{ trans('applicationstages.inputs.status.header') }}</th>
+                                  <th>{{ trans('applicationstages.headers.actions')}}</th>
+                              </tr>
                             </tr>
                         </thead>
                         {{-- end table header --}}
 
                         {{-- start table body --}}
                         <tbody>
-                        @foreach($applicationstages->sortBy('score') as $item)
+                            @foreach($stage->applicationstages->sortBy('score') as $item)
                             <tr>
-                                <td>
-                                    {{ $item->created_at->format(config('app.datetime_format'))}}
-                                </td>
                                 <td>{{ $item->applicant->fullName()}}</td>
                                 <td>
                                     {{ display_or_na($item->applicant->mobile)}}
@@ -104,23 +90,23 @@
                                     {{ display_or_na($item->applicant->email)}}
                                 </td>
                                 <td>
+                                    {{ display_or_na($item->applicant->age())}}
+                                </td>
+                                <td>
+                                    {{ display_or_na($item->applicant->gender)}}
+                                </td>
+                                <td>
                                     {{ display_decimal($item->score)}}%
                                 </td>
                                 <td>
-                                    @if($item->score <= 0)
-                                        <span class="label">
-                                        {{trans('applicationstages.scores.na')}}
-                                        </span>
-                                    @else
-                                        <span class="label {{display_boolean($item->hasPass(), 'label-primary', 'label-danger')}}">
-                                            {{display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
-                                        </span>
-                                    @endif
+                                    <span class="label {{display_boolean($item->hasPass(), 'label-primary', 'label-danger')}}">
+                                        {{display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
+                                    </span>
                                 </td>
                                 <td>
                                 {{-- TODO score, advance, view application, view cv --}}
                                     @permission('view:applicationstage')
-                                    <a href="{{ route('applicationstages.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('applicationstages.actions.view.title')}}">
+                                    <a href="{{ route('users.resume', ['id' => $item->applicant->id, 'application_id' => $item->application_id]) }}" class="btn btn-success btn-xs" title="{{trans('applicationstages.actions.view.title')}}">
                                         {{trans('applicationstages.actions.view.name')}}
                                     </a>
                                     @endpermission
@@ -132,8 +118,7 @@
                                     </button>
                                     @include('applicationstages.blocks.score_modal', ['applicationstage' => $item])
                                     @endpermission
-                                    @if($item->hasPass($stage))
-                                    @if(!$item->position->isLastStage($stage))
+                                    @if($item->hasPass())
                                     @permission('edit:applicationstage')
                                     <a href="{{route('applications.advance', ['id' => $item->application_id, 'applicant_id' => $item->applicant_id, 'position_id'=>$item->position_id])}}" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.advance.title')}}">
                                         {{trans('applicationstages.actions.advance.name')}}
@@ -141,10 +126,10 @@
                                     @endpermission
                                     @endif
                                     @endif
-                                    @endif
                                 </td>
                             </tr>
                         @endforeach
+
                         </tbody>
                         {{-- end table body --}}
 

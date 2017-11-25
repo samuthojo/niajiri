@@ -416,4 +416,29 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
         });
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function education()
+    {
+        return $this->hasMany(\App\Models\Education::class, 'applicant_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    **/
+    public function experience()
+    {
+        return $this->hasMany(\App\Models\Experience::class, 'applicant_id');
+    }
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    **/
+    public function certificates()
+    {
+        return $this->hasMany(\App\Models\Certificate::class, 'applicant_id');
+    }
+
 }

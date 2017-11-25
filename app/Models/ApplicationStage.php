@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use App\Traits\ActAsApplicant;
 use Carbon\Carbon;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
@@ -13,6 +14,11 @@ class ApplicationStage extends Model implements HasMedia {
 	 * Allow eduaction to have attached files(media) i.e certificates etc
 	 */
 	use HasMediaTrait;
+
+	/**
+	 * Extend appliction stage with applicant capabilities
+	 */
+	use ActAsApplicant;
 
 	/**
 	 * The database table used by the model.

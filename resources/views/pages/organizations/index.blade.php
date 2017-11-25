@@ -49,30 +49,25 @@
                 {{-- end organizations table in filter --}}
 
                 {{-- start organizations table --}}
-                <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="wrapper wrapper-content animated fadeInRight gray-bg">
                 @foreach ($organizations->chunk(4) as $chunkedOrgs)
                 <div class="row">
                   @foreach ($chunkedOrgs as $item)
 
                 <a href="{{ route('organizations.show', ['id' => $item->id]) }}">
-                  <div class="col-md-3">
-                    <div class="payment-card">
-                        <i class="fa fa-cc-visa payment-icon-big text-success"></i>
-                        <h2>
-                            {{$item->name}}
-                        </h2>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <small>
-                                    <strong>Sector:</strong> {{$item->sector}}
-                                </small>
+                  <div class="col-lg-3 float-e-margins">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <span class="label label-success pull-right">{{$item->sector}}</span>
+                                <h5>Income</h5>
                             </div>
-                            <div class="col-sm-6 text-right">
-                                <a href="{{ route('organizations.show', ['id' => $item->id]) }}" class="btn btn-xs btn-outline btn-primary">More Info <i class="fa fa-long-arrow-right"></i> </a>
+                            <div class="ibox-content">
+                                <h2>{{$item->name}}</h2>
+                                <div class="stat-percent">{{count($item->positions)}} position(s)</div>
+                                <small>{{count($item->projects)}} project(s)</small>
                             </div>
                         </div>
                     </div>
-                  </div>
                   </a>
                   @endforeach
                 </div>

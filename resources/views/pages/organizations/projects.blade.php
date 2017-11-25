@@ -1,4 +1,4 @@
-<div class="tab-pane active" id="tab-1">
+<div class="tab-pane active gray-bg" id="tab-1">
   {{-- start organizations table --}}
   <div class="wrapper wrapper-content animated fadeInRight">
   @foreach ($organization->projects->chunk(3) as $chunkedProject)
