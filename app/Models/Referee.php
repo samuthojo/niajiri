@@ -27,9 +27,9 @@ class Referee extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'organization', 
-        'email', 'mobile', 'alternative_mobile', 
-        'applicant_id'
+        'name', 'title', 'organization',
+        'email', 'mobile', 'alternative_mobile',
+        'applicant_id','project_id',
     ];
 
     /**

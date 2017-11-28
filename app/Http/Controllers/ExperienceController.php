@@ -66,6 +66,7 @@ class ExperienceController extends SecureController {
 
 		//obtain all experience form inputs
 		$body = $request->all();
+    $body['project_id'] = $request->session()->get('project_id');
 
 		//create experience
 		$experience = Experience::create($body);
@@ -132,7 +133,7 @@ class ExperienceController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		
+
 		//ensure valid experience
 		$this->validate($request, [
 			'position' => 'required|string',

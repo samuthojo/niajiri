@@ -62,6 +62,7 @@ class LanguageController extends SecureController {
 
 		//obtain all language form inputs
 		$body = $request->all();
+    $body['project_id'] = $request->session()->get('project_id');
 
 		//create language
 		$language = Language::create($body);
@@ -128,7 +129,7 @@ class LanguageController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		
+
 		//ensure valid language
 		$this->validate($request, [
 			'name' => 'required|string',

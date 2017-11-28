@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Carbon\Carbon;
 
 
-class Education extends Model implements HasMedia 
+class Education extends Model implements HasMedia
 {
 
     /**
@@ -40,7 +40,7 @@ class Education extends Model implements HasMedia
     protected $fillable = [
         'level', 'institution', 'summary',
         'started_at', 'finished_at',
-        'remark', 'applicant_id'
+        'remark', 'applicant_id','project_id',
     ];
 
     /**

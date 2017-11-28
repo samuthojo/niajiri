@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Base as Model;
 use Carbon\Carbon;
 
-class Assignment extends Model 
+class Assignment extends Model
 {
 
 
@@ -29,9 +29,9 @@ class Assignment extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'client', 'location', 
+        'title', 'client', 'location',
         'summary', 'started_at', 'finished_at',
-        'applicant_id'
+        'applicant_id','project_id',
     ];
 
     /**

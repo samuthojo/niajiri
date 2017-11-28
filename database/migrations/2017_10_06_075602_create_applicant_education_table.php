@@ -35,6 +35,11 @@ class CreateApplicantEducationTable extends Migration
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->uuid('project_id')->nullable();
+            $table->foreign('project_id')->references('id')
+                ->on('projects')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
