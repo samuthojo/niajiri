@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->string('surname')->index()->nullable();
 			$table->string('contact_person')->index()->nullable();
 			$table->string('email')->index()->unique();
+      $table->string('sector')->index()->nullable();
 			$table->string('secondary_email')->index()->nullable();
 			$table->string('website')->index()->nullable();
 			$table->string('mobile')->index()->unique();
@@ -57,12 +58,6 @@ class CreateUsersTable extends Migration {
 			//indexes
 			$table->primary('id');
 
-			//foreigns
-			$table->uuid('sector_id')->nullable();
-			$table->foreign('sector_id')->references('id')
-				->on('sectors')
-				->onUpdate('cascade')
-				->onDelete('SET NULL');
 		});
 	}
 

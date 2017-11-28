@@ -213,6 +213,7 @@ class PositionController extends SecureController
      *
      * @return \Illuminate\Http\Response
      */
+
     public function open(Request $request) {
 
         //TODO support additional filters & searches

@@ -18,6 +18,7 @@ class CreatePositionsTable extends Migration {
 			$table->longText('responsibilities')->nullable();
 			$table->longText('requirements');
 			$table->string('duration')->default('Full Time');
+      $table->string('sector')->nullable();
 			$table->date('dueAt');
 			$table->date('publishedAt')->nullable();
 			$table->uuid('project_id')->nullable();
@@ -32,13 +33,6 @@ class CreatePositionsTable extends Migration {
 
 			//indexes
 			$table->primary('id');
-
-			//foreigns
-			$table->uuid('sector_id')->nullable();
-			$table->foreign('sector_id')->references('id')
-				->on('sectors')
-				->onUpdate('cascade')
-				->onDelete('SET NULL');
 		});
 	}
 
