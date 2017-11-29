@@ -53,13 +53,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-7">
                                         <dl class="dl-horizontal">
                                             <dt>Client:</dt> <dd><a href="{{ route('organizations.show', ['id' => $project->organization->id]) }}" class="text-navy">{{$project->organization->name}}</a> </dd>
-                                            <dt>Version:</dt> <dd>v1</dd>
+                                            <dt>Application link:</dt> <dd><a href="{{ route('projects.open_position', ['id' => $project->id]) }}" class="text-navy">{{ route('projects.open_position', ['id' => $project->id]) }}</a></dd>
                                         </dl>
                                     </div>
-                                    <div class="col-lg-7" id="cluster_info">
+                                    <div class="col-lg-5" id="cluster_info">
                                         <dl class="dl-horizontal" >
                                             <dt>Last Updated:</dt><dd>{{$project->updated_at->diffForHumans()}}</dd>
                                             <dt>Created:</dt> <dd>{{$project->created_at->diffForHumans()}}</dd>
