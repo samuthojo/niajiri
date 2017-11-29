@@ -84,7 +84,7 @@
 		        	'positions.open',
 		        	'positions.preview'
 				])}}">
-                <a href="{{route('positions.open')}}">
+                <a href="{{route('positions.open', ['project_id' => Session::get('project_id')])}}">
                 <i class="fa fa-file-o"></i>
                 <span class="nav-label">Open Positions</span>
                 </a>
@@ -123,7 +123,7 @@
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('educations.*')}}">
-	                	<a href="{{route('educations.index', ['applicant_id' => Auth::user()->id])}}" title="{{trans('cvs.headers.educations.title')}}">
+	                	<a href="{{route('educations.index', ['applicant_id' => Auth::user()->id, 'project_id' => Session::get('project_id')])}}" title="{{trans('cvs.headers.educations.title')}}">
 	                		{{trans('cvs.headers.educations.name')}}
 	                	</a>
 	                </li>
@@ -131,7 +131,7 @@
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('certificates.*')}}">
-	                	<a href="{{route('certificates.index', ['applicant_id' => Auth::user()->id])}}" title="{{trans('cvs.headers.certificates.title')}}">
+	                	<a href="{{route('certificates.index', ['applicant_id' => Auth::user()->id, 'project_id' => Session::get('project_id')])}}" title="{{trans('cvs.headers.certificates.title')}}">
 	                		{{trans('cvs.headers.certificates.name')}}
 	                	</a>
 	                </li>
@@ -139,7 +139,7 @@
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('experiences.*')}}">
-	                	<a href="{{route('experiences.index', ['applicant_id' => Auth::user()->id])}}" title="{{trans('cvs.headers.experiences.title')}}">
+	                	<a href="{{route('experiences.index', ['applicant_id' => Auth::user()->id, 'project_id' => Session::get('project_id')])}}" title="{{trans('cvs.headers.experiences.title')}}">
 	                		{{trans('cvs.headers.experiences.name')}}
 	                	</a>
 	                </li>
@@ -147,7 +147,7 @@
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('languages.*')}}">
-	                	<a href="{{route('languages.index', ['applicant_id' => Auth::user()->id])}}" title="{{trans('cvs.headers.languages.title')}}">
+	                	<a href="{{route('languages.index', ['applicant_id' => Auth::user()->id, 'project_id' => Session::get('project_id')])}}" title="{{trans('cvs.headers.languages.title')}}">
 	                		{{trans('cvs.headers.languages.name')}}
 	                	</a>
 	                </li>
@@ -155,7 +155,7 @@
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('referees.*')}}">
-	                	<a href="{{route('referees.index', ['applicant_id' => Auth::user()->id])}}" title="{{trans('cvs.headers.referees.title')}}">
+	                	<a href="{{route('referees.index', ['applicant_id' => Auth::user()->id, 'project_id' => Session::get('project_id')])}}" title="{{trans('cvs.headers.referees.title')}}">
 	                		{{trans('cvs.headers.referees.name')}}
 	                	</a>
 	                </li>
@@ -163,7 +163,7 @@
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('achievements.*')}}">
-	                	<a href="{{route('achievements.index', ['applicant_id' => Auth::user()->id])}}" title="{{trans('cvs.headers.achievements.title')}}">
+	                	<a href="{{route('achievements.index', ['applicant_id' => Auth::user()->id, 'project_id' => Session::get('project_id')])}}" title="{{trans('cvs.headers.achievements.title')}}">
 	                		{{trans('cvs.headers.achievements.name')}}
 	                	</a>
 	                </li>
@@ -172,7 +172,7 @@
 
 	                {{-- @permission([]) --}}
 	                <li class="{{isActiveRoute('publications.*')}}">
-	                	<a href="{{route('publications.index', ['applicant_id' => Auth::user()->id])}}" title="{{trans('cvs.headers.publications.title')}}">
+	                	<a href="{{route('publications.index', ['applicant_id' => Auth::user()->id, 'project_id' => Session::get('project_id')])}}" title="{{trans('cvs.headers.publications.title')}}">
 	                		{{trans('cvs.headers.publications.name')}}
 	                	</a>
 	                </li>

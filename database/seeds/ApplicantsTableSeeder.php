@@ -10,6 +10,7 @@ use App\Models\Publication;
 use App\Models\Referee;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Project;
 use Illuminate\Database\Seeder;
 
 class ApplicantsTableSeeder extends Seeder {
@@ -17,6 +18,7 @@ class ApplicantsTableSeeder extends Seeder {
 		DB::transaction(function () {
 
 			$roles = Role::where('name', Role::APPLICANT)->get();
+      $project = Project::first();
 
 			$applicant = User::updateOrCreate([
 				'email' => 'applicant@niajiri.com',
@@ -61,6 +63,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'finished_at' => '09-2004',
 				'remark' => '3.8',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			Education::updateOrCreate([
@@ -74,6 +77,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'finished_at' => '03-2008',
 				'remark' => '4.6',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			//save certificate details
@@ -88,6 +92,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'finished_at' => '07-2010',
 				'expired_at' => '06-2012',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			Certificate::updateOrCreate([
@@ -101,6 +106,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'finished_at' => '07-2014',
 				'expired_at' => '06-2018',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			//save experience details
@@ -116,6 +122,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'summary' => 'Technical Support',
 				'location' => 'Dar es salaam',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			Experience::updateOrCreate([
@@ -130,6 +137,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'summary' => 'Technical Support',
 				'location' => 'Dar es salaam',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			Experience::updateOrCreate([
@@ -144,6 +152,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'summary' => 'Web System Administrator',
 				'location' => 'Dar es salaam',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			//save language details
@@ -156,6 +165,7 @@ class ApplicantsTableSeeder extends Seeder {
 					'write_fluency' => 'Fair',
 					'speak_fluency' => 'Fair',
 					'applicant_id' => $applicant->id,
+          'project_id' => $project->id,
 				]);
 			}
 
@@ -170,6 +180,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'email' => 'john.doe@github.com',
 				'mobile' => '255687999777',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			Referee::updateOrCreate([
@@ -182,6 +193,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'email' => 'lisa.oray@google.com',
 				'mobile' => '255697999777',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			//save honor or awards details
@@ -194,6 +206,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'summary' => 'Most Valuable Contributor',
 				'issued_at' => '11-2013',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			Achievement::updateOrCreate([
@@ -205,6 +218,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'summary' => 'Best Student',
 				'issued_at' => '11-2008',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			//save project details
@@ -216,6 +230,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'started_at' => '20-08-2008',
 				'finished_at' => '25-09-2012',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 			//save publication details
@@ -225,6 +240,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'summary' => 'The art of Software Testing',
 				'published_at' => '20-08-2008',
 				'applicant_id' => $applicant->id,
+        'project_id' => $project->id,
 			]);
 
 		});
