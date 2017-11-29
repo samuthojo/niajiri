@@ -111,4 +111,64 @@ class StageTest extends Model {
 		return $this->belongsTo('App\Models\ApplicationStage', 'applicationstage_id');
 	}
 
+	/**
+	 * Get question attempts associate with stage test
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function questionAttempts() {
+		return $this->hasMany('App\Models\QuestionAttempt', 'stagetest_id');
+	}
+
+	/**
+	 * Compute application test score
+	 * @return int
+	 */
+	public function computeScore() {
+		//1..initialize stage test score
+		$score = 0;
+
+		//2..obtain question attempts
+		$attempts = $this->questionAttempts();
+
+		//3..accumulate score if attempt answer is correct
+		if ($attempts !== null && $attempts->count() > 0) {
+
+			$score = $attempts->sum(function ($attempt) {
+				//..initialize question score
+				$questionScore = 0;
+
+				//3.1...obtain question attempt question
+				$question = $attempt->question();
+
+				if ($question !== null) {
+
+					//3.2...check for correctness
+					$isCorrect =
+						($attempt->answer === $question->correct);
+
+					//3.3...prepare question score
+					$questionScore =
+						($isCorrect ? $question->weight : 0);
+
+				}
+
+				//return questionScore
+				return $questionScore;
+
+			});
+
+			//4.. compute percentage score
+
+			//4.1... obtain test questions count
+			$test = $this->test();
+
+			$questionCount = $test->questions()->count();
+
+			$score = ($score / $questionCount) * 100;
+
+		}
+
+		return $score;
+	}
+
 }
