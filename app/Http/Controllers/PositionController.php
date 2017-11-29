@@ -213,12 +213,17 @@ class PositionController extends SecureController
      *
      * @return \Illuminate\Http\Response
      */
+
     public function open(Request $request) {
 
         //TODO support additional filters & searches
 
         //initialize query
         $query = Position::query()->which()->are()->open();
+
+        if(is_set($request->input('project_id'))){
+          $query = $query->where('project_id', $request->input('project_id'));
+        }
 
         //paginate query result
         $positions = $query->paginate(config('app.defaults.pageSize'));

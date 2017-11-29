@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Position;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\ProjectRepository;
@@ -214,5 +215,43 @@ class ProjectController extends SecureController
         Flash::success('Project was closed successfully.');
 
         return redirect()->back();
+    }
+
+
+    /**
+     * Close the specified Project from storage.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function showOpenPosition($id, Request $request)
+    {
+        $project = $this->projectRepository->findWithoutFail($id);
+
+        if (empty($project)) {
+            Flash::error('Project not found');
+
+            return redirect(route('projects.index'));
+        }
+
+        $request->session()->put('project_id', $project->id);
+
+        //initialize query
+        $query = $project->positions()->open();
+
+        //paginate query result
+        $positions = $query->paginate(config('app.defaults.pageSize'));
+
+        $data = [
+            'route_title' => 'Open Positions',
+            'route_description' => 'Available Job Positions',
+            'positions' => $positions,
+            'q' => $request->input('q'),
+            'instance' => $project,
+        ];
+
+        return view('pages.projects.positions_open')->with($data);
+
     }
 }

@@ -155,7 +155,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		'extracurricular_activities',
 
 		//organization specific
-		'sector_id',
+		'sector',
 		'contact_person',
 
 		//location specific

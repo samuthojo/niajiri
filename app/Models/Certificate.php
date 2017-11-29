@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Carbon\Carbon;
 
 
-class Certificate extends Model implements HasMedia 
+class Certificate extends Model implements HasMedia
 {
 
     /**
@@ -40,7 +40,7 @@ class Certificate extends Model implements HasMedia
     protected $fillable = [
         'title', 'institution', 'summary',
         'started_at', 'finished_at', 'expired_at',
-        'applicant_id'
+        'applicant_id', 'project_id',
     ];
 
     /**
@@ -137,7 +137,7 @@ class Certificate extends Model implements HasMedia
         if ($media) {
             $attachment = $media;
         }
-        
+
         return $attachment;
     }
 

@@ -27,8 +27,8 @@ class Publication extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'publisher', 
-        'published_at', 'summary', 'applicant_id'
+        'title', 'publisher',
+        'published_at', 'summary', 'applicant_id','project_id',
     ];
 
     /**

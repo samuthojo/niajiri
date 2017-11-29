@@ -32,9 +32,9 @@ class Experience extends Model
      * @var array
      */
     protected $fillable = [
-        'position', 'organization', 'sector', 
+        'position', 'organization', 'sector',
         'started_at', 'ended_at',
-        'summary', 'location', 'applicant_id'
+        'summary', 'location', 'applicant_id','project_id',
     ];
 
     /**
