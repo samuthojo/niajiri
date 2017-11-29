@@ -12,6 +12,7 @@ class CreateQuestionsTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('questions', function (Blueprint $table) {
+
 			$table->uuid('id');
 			$table->text('label');
 			$table->string('firstChoice')->nullable();
@@ -21,17 +22,20 @@ class CreateQuestionsTable extends Migration {
 			$table->string('fifthChoice')->nullable();
 			$table->string('correct')->nullable();
 			$table->decimal('weight', 15, 2)->default(1);
-			$table->uuid('test_id')->nullable();
-			$table->foreign('test_id')
-				->references('id')
-				->on('tests')
-				->onUpdate('cascade')
-				->onDelete('cascade');
 			$table->timestamps();
 			$table->softDeletes();
 
 			//indexes
 			$table->primary('id');
+
+			//foreigns
+			$table->uuid('test_id');
+			$table->foreign('test_id')
+				->references('id')
+				->on('tests')
+				->onUpdate('cascade')
+				->onDelete('cascade');
+
 		});
 	}
 

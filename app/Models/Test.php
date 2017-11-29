@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Test
@@ -21,115 +21,117 @@ use Carbon\Carbon;
  * @property string stage_id
  * @property string test_category_id
  */
-class Test extends Model
-{
-    use SoftDeletes;
+class Test extends Model {
+	use SoftDeletes;
 
-    public $table = 'tests';
+	public $table = 'tests';
 
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
+	const CREATED_AT = 'created_at';
+	const UPDATED_AT = 'updated_at';
 
+	protected $dates = ['deleted_at'];
 
-    protected $dates = ['deleted_at'];
+	/**
+	 * Relations to eager load
+	 */
+	protected $withables = [
+		'position',
+		'stage',
+		'questions',
+	];
 
-    /**
-     * Relations to eager load
-     */
-    protected $withables = [
-        'stage',
-        'questions'
-    ];
+	public $fillable = [
+		'duration',
+		'stage_id',
+		'test_category',
+	];
 
+	/**
+	 * Get and format the project's started_at for forms.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+	 */
+	public function formStartedAtAttribute($value) {
+		if (is_set($value)) {
+			$value = Carbon::parse($value);
+			$value = $value->format(config('app.datepicker_parse_format'));
+		}
+		return $value;
+	}
 
-    public $fillable = [
-        'duration',
-        'stage_id',
-        'test_category'
-    ];
+	/**
+	 * Get and format the project's ended_at for forms.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+	 */
+	public function formEndedAtAttribute($value) {
+		if (is_set($value)) {
+			$value = Carbon::parse($value);
+			$value = $value->format(config('app.datepicker_parse_format'));
+		}
+		return $value;
+	}
 
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'id' => 'string',
+		'position_id' => 'string',
+		'stage_id' => 'string',
+		//Makonda: Is this a model or a string? am get confused
+		//Check your migration
+		'test_category' => 'string',
+	];
 
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
 
-        /**
-         * Get and format the project's started_at for forms.
-         *
-         * @param  string  $value
-         * @return string
-         * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
-         */
-        public function formStartedAtAttribute($value) {
-            if (is_set($value)) {
-                $value = Carbon::parse($value);
-                $value = $value->format(config('app.datepicker_parse_format'));
-            }
-            return $value;
-        }
+	];
 
-        /**
-         * Get and format the project's ended_at for forms.
-         *
-         * @param  string  $value
-         * @return string
-         * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
-         */
-        public function formEndedAtAttribute($value) {
-            if (is_set($value)) {
-                $value = Carbon::parse($value);
-                $value = $value->format(config('app.datepicker_parse_format'));
-            }
-            return $value;
-        }
+	/**
+	 * Get position associated with this test
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function position() {
+		return $this->belongsTo('App\Models\Position', 'position_id');
+	}
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function stage() {
+		return $this->belongsTo(\App\Models\Stage::class);
+	}
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'string',
-        'stage_id' => 'string',
-        'test_category' => 'string'
-    ];
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function testCategory() {
+		return $this->belongsTo(\App\Models\TestCategory::class);
+	}
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function questionAttempts() {
+		return $this->hasMany(\App\Models\QuestionAttempt::class);
+	}
 
-    ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function stage()
-    {
-        return $this->belongsTo(\App\Models\Stage::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function testCategory()
-    {
-        return $this->belongsTo(\App\Models\TestCategory::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function questionAttempts()
-    {
-        return $this->hasMany(\App\Models\QuestionAttempt::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function questions()
-    {
-        return $this->hasMany(\App\Models\Question::class);
-    }
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function questions() {
+		return $this->hasMany(\App\Models\Question::class);
+	}
 }
