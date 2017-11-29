@@ -30,8 +30,7 @@ class CreateQuestionsTable extends Migration {
 
 			//foreigns
 			$table->uuid('test_id');
-			$table->foreign('test_id')
-				->references('id')
+			$table->foreign('test_id')->references('id')
 				->on('tests')
 				->onUpdate('cascade')
 				->onDelete('cascade');

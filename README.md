@@ -25,6 +25,12 @@ $ composer update
 $ php artisan optimize
 $ php artisan migrate:refresh --seed
 ```
+
+- If migrations fails to refresh, run
+```sh
+$ php artisan migrate:fresh --seed
+```
+
 - Ensure file storage is enables
 ```sh
 $ php artisan storage:link

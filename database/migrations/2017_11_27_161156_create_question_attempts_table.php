@@ -23,37 +23,37 @@ class CreateQuestionAttemptsTable extends Migration {
 			$table->primary('id');
 
 			//foreigns
-			$table->uuid('applicant_id')->nullable();
+			$table->uuid('applicant_id');
 			$table->foreign('applicant_id')->references('id')
 				->on('users')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('position_id')->nullable();
+			$table->uuid('position_id');
 			$table->foreign('position_id')->references('id')
 				->on('positions')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('stage_id')->nullable();
+			$table->uuid('stage_id');
 			$table->foreign('stage_id')->references('id')
 				->on('stages')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('test_id')->nullable();
+			$table->uuid('test_id');
 			$table->foreign('test_id')->references('id')
 				->on('tests')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('question_id')->nullable();
+			$table->uuid('question_id');
 			$table->foreign('question_id')->references('id')
 				->on('questions')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('stagetest_id')->nullable();
+			$table->uuid('stagetest_id');
 			$table->foreign('stagetest_id')->references('id')
 				->on('stage_tests')
 				->onUpdate('cascade')

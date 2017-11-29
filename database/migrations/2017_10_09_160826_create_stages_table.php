@@ -27,7 +27,7 @@ class CreateStagesTable extends Migration {
 			$table->primary('id');
 
 			//foreigns
-			$table->uuid('position_id')->nullable();
+			$table->uuid('position_id');
 			$table->foreign('position_id')
 				->references('id')
 				->on('positions')

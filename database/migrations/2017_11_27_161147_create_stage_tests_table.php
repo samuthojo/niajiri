@@ -21,37 +21,37 @@ class CreateStageTestsTable extends Migration {
 			$table->primary('id');
 
 			//foreigns
-			$table->uuid('applicant_id')->nullable();
+			$table->uuid('applicant_id');
 			$table->foreign('applicant_id')->references('id')
 				->on('users')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('application_id')->nullable();
+			$table->uuid('application_id');
 			$table->foreign('application_id')->references('id')
 				->on('applications')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('position_id')->nullable();
+			$table->uuid('position_id');
 			$table->foreign('position_id')->references('id')
 				->on('positions')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('stage_id')->nullable();
+			$table->uuid('stage_id');
 			$table->foreign('stage_id')->references('id')
 				->on('stages')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('test_id')->nullable();
+			$table->uuid('test_id');
 			$table->foreign('test_id')->references('id')
 				->on('tests')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('applicationstage_id')->nullable();
+			$table->uuid('applicationstage_id');
 			$table->foreign('applicationstage_id')->references('id')
 				->on('application_stages')
 				->onUpdate('cascade')
