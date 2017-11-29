@@ -32,7 +32,7 @@
 
                                 <div class="m-t-sm">
                                     {{-- start sector --}}
-                                    <span class="text-muted"><i class="fa fa-bullhorn"></i> Sector: {{$position->sector}} </span>
+                                    <span class="text-muted"><i class="fa fa-bullhorn"></i> Sector: {{$position->sector->name}} </span>
                                     {{-- end sector --}}
                                     |
                                     {{-- start deadline --}}
