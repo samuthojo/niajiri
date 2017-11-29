@@ -134,6 +134,7 @@ class StageTest extends Model {
 		if ($attempts !== null && $attempts->count() > 0) {
 
 			$score = $attempts->sum(function ($attempt) {
+
 				//..initialize question score
 				$questionScore = 0;
 
