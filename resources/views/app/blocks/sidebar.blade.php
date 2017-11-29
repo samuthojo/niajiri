@@ -242,7 +242,8 @@
             @permission([
 	            'list:project',
             ])
-	        <!-- <li class="{{areActiveRoutes([
+          @role(['Organization'])
+	        <li class="{{areActiveRoutes([
 	        	'projects.*'
 	        	])}}">
 	            <a href="#">
@@ -263,7 +264,8 @@
 	                @endpermission
 
 	            </ul>
-	        </li> -->
+	        </li>
+          @endrole
 	        @endpermission
 					{{-- start organization management --}}
             @permission([
