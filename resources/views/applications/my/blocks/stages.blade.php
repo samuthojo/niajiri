@@ -30,6 +30,7 @@
                         Score: {{display_decimal($applicationStage->score)}}%
                     </td>
                     <td class="project-actions">
+                        @unless($applicationStage->testIsAlreadyTaken())
                         @if($applicationStage->canTakeTest(Auth::user()))
                         @if($applicationStage->application->isCurrentStage($applicationStage->stage))
                         <a href="{{route('stagetests.create',['applicant_id' => $applicationStage->applicant_id, 'position_id' => $applicationStage->position_id, 'stage_id' => $applicationStage->stage_id, 'application_id' => $applicationStage->application_id, 'applicationstage_id'=> $applicationStage->id])}}" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.take_test.title')}}">
@@ -37,6 +38,7 @@
                         </a> {{--TODO just pass application stage id?--}}
                         @endif
                         @endif
+                        @endunless
                     </td>
                 </tr>
                 @endforeach

@@ -155,12 +155,20 @@ class ApplicationStage extends Model implements HasMedia {
 	}
 
 	/**
+	 * Check if application stage test has been taken already
+	 * @return boolean
+	 */
+	public function testIsAlreadyTaken() {
+		return $this->tests->count() > 0;
+	}
+
+	/**
 	 * Check if applicant has pass the stage
 	 * @param App\Model\Stage $stage
 	 * @return boolean
 	 */
 	public function hasPass($stage = null) {
-		//compute score from test
+		//compute score
 		$has_pass = $this->score >= $this->stage->passMark;
 
 		if ($stage !== null) {
