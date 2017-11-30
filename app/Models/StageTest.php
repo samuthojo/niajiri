@@ -121,8 +121,8 @@ class StageTest extends Model {
 	}
 
 	/**
-	 * Compute application test score
-	 * @return int
+	 * Compute application stage test score
+	 * @return float
 	 */
 	public function computeScore() {
 		//1..initialize stage test score

@@ -113,6 +113,24 @@ class ApplicationStage extends Model implements HasMedia {
 	];
 
 	/**
+	 * Get computed applation stage score
+	 *
+	 * @param  float  $value
+	 * @return float
+	 */
+	public function getScoreAttribute($value) {
+
+		//compute score from test
+		if ($this->tests->count() > 0) {
+			$this->score = $this->tests->avg(function ($test) {
+				return $test->computeScore();
+			});
+		}
+
+		return $value;
+	}
+
+	/**
 	 * Get and format the achievement's finished_at for forms.
 	 *
 	 * @param  string  $value
@@ -143,15 +161,12 @@ class ApplicationStage extends Model implements HasMedia {
 	 */
 	public function hasPass($stage = null) {
 		//compute score from test
-		if ($this->tests->count() > 0) {
-			$this->score = $this->tests->avg(function ($test) {
-				return $test->computeScore();
-			});
-		}
 		$has_pass = $this->score >= $this->stage->passMark;
+
 		if ($stage !== null) {
 			$has_pass = $has_pass && ($this->stage_id === $stage->id) && $this->application->isCurrentStage($stage);
 		}
+
 		return $has_pass;
 	}
 
@@ -289,5 +304,4 @@ class ApplicationStage extends Model implements HasMedia {
 
 		return $unreviewed;
 	}
-
 }
