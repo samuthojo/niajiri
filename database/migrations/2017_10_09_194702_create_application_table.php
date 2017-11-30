@@ -39,7 +39,7 @@ class CreateApplicationTable extends Migration {
 				->onUpdate('cascade')
 				->onDelete('cascade');
 
-			$table->uuid('stage_id');
+			$table->uuid('stage_id')->nullable(); //current application stage
 			$table->foreign('stage_id')->references('id')
 				->on('stages')
 				->onUpdate('cascade')

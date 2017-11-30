@@ -133,12 +133,6 @@
                                     {{ display_or_na($item->applicant->email)}}
                                 </td>
                                 <td>
-                                    {{ display_or_na($item->applicant->age())}}
-                                </td>
-                                <td>
-                                    {{ display_or_na($item->applicant->gender)}}
-                                </td>
-                                <td>
                                     {{ display_decimal($item->score)}}%
                                 </td>
                                 <td>

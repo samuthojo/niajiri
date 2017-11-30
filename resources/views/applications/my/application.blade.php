@@ -41,9 +41,9 @@
 
                         <div class="m-t-md">
                             <h2 class="product-main-price">
-                                {{$application->organization->name}} 
+                                {{$application->organization->name}}
                                 <small class="text-muted">
-                                {{$application->position->sector}}
+                                {{$application->position->sector->name}}
                                 </small>
                             </h2>
                         </div>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         {{-- end position requirements --}}
-                        
+
                     </div>
                     {{-- start position details --}}
 

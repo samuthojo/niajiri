@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Application;
 use Illuminate\Http\Request;
 
 class UserController extends SecureController {
@@ -42,7 +42,7 @@ class UserController extends SecureController {
 
 		$data = [
 			'user' => new User(),
-			'roles' => $roles
+			'roles' => $roles,
 		];
 
 		return view('users.create', $data);
@@ -131,7 +131,7 @@ class UserController extends SecureController {
 			'route_description' => 'Show User',
 			'user' => $user,
 			'instance' => $user,
-			'roles' => $roles
+			'roles' => $roles,
 		];
 
 		return view('users.edit', $data);
@@ -154,7 +154,7 @@ class UserController extends SecureController {
 			'route_description' => 'Change User Password',
 			'user' => $user,
 			'instance' => $user,
-			'roles' => $roles
+			'roles' => $roles,
 		];
 
 		return view('users.change_password', $data);
@@ -177,7 +177,7 @@ class UserController extends SecureController {
 			'route_description' => 'Edit User',
 			'user' => $user,
 			'instance' => $user,
-			'roles' => $roles
+			'roles' => $roles,
 		];
 
 		return view('users.edit', $data);
@@ -295,72 +295,69 @@ class UserController extends SecureController {
 		return redirect('users');
 	}
 
-
 	/**
 	 * Display current user profile
 	 * @return \Illuminate\Http\Response
 	 */
-	public function profile($id)
-    {
-      //find existing user
-  		$user = User::findOrFail($id);
+	public function profile(Request $request, $id = null) {
+		//load actual current user
+		$id = is_set($id) ? $id : \Auth::user()->id;
+		$user = User::query()->findOrFail($id);
 
-    	//TODO ensure all required info per profile
-        return view('pages.dashboard.index', [
-            'route_title' => 'Profile',
-            'route_description' => 'Profile',
-            'user' => $user,
-            'instance' => $user
-        ]);
-    }
+		//find existing user
+		$user = User::findOrFail($id);
 
+		//TODO ensure all required info per profile
+		return view('pages.dashboard.index', [
+			'route_title' => 'Profile',
+			'route_description' => 'Profile',
+			'user' => $user,
+			'instance' => $user,
+		]);
+	}
 
-    /**
-  	 * Display user profile
-  	 * @return \Illuminate\Http\Response
-  	 */
-  	public function userProfile(Request $request)
-      {
-      	//TODO ensure all required info per profile
-          return view('pages.dashboard.index', [
-              'route_title' => 'Profile',
-              'route_description' => 'Profile',
-              'user' => \Auth::user(),
-              'instance' => \Auth::user()
-          ]);
-      }
+	/**
+	 * Display user profile
+	 * @return \Illuminate\Http\Response
+	 */
+	public function userProfile(Request $request) {
+		//TODO ensure all required info per profile
+		return view('pages.dashboard.index', [
+			'route_title' => 'Profile',
+			'route_description' => 'Profile',
+			'user' => \Auth::user(),
+			'instance' => \Auth::user(),
+		]);
+	}
 
-
-    /**
+	/**
 	 * Display current user basic details
 	 * @return \Illuminate\Http\Response
 	 */
-    public function get_basic(Request $request)
-    {
-    	//load actual current user
-    	$id = \Auth::user()->id;
-			$user = User::findOrFail($id);
+	public function get_basic(Request $request) {
+		//load actual current user
+		$id = \Auth::user()->id;
+		$user = User::findOrFail($id);
 
-        $data = [
-            'route_title' => 'Basic Details',
-            'route_description' => 'Basic Details',
-            'user' => $user,
-            'instance' => $user
-        ];
+		$data = [
+			'route_title' => 'Basic Details',
+			'route_description' => 'Basic Details',
+			'user' => $user,
+			'instance' => $user,
+		];
 
-        return view('users.basic.edit', $data);
-    }
+		return view('users.basic.edit', $data);
+	}
 
-    /**
+	/**
 	 * Update current user basic details
 	 * @return \Illuminate\Http\Response
 	 */
-    public function post_basic(Request $request)
-    {
-    	//obtain current user id
-    	$id = \Auth::user()->id;
+	public function post_basic(Request $request) {
+		//obtain current user id
+		$id = \Auth::user()->id;
 
-    	//validate user
+		//validate user
 		$this->validate($request, [
 			'first_name' => 'string|min:2|max:255|required',
 			'surname' => 'string|min:2|max:255|required',
@@ -372,7 +369,7 @@ class UserController extends SecureController {
 			'state' => 'string|required',
 			'gender' => 'string|min:2|max:255|required',
 			'dob' => 'date|required',
-			'marital_status' => 'string|min:2|max:255|required'
+			'marital_status' => 'string|min:2|max:255|required',
 		]);
 
 		//obtain user updates from form input
@@ -397,30 +394,28 @@ class UserController extends SecureController {
 		flash(trans('users.actions.update.flash.success'))
 			->success()->important();
 
-        return redirect()->route('users.basic');
-    }
+		return redirect()->route('users.basic');
+	}
 
-
-    /**
+	/**
 	 * Display current user resume
 	 * @return \Illuminate\Http\Response
 	 */
-    public function get_resume(Request $request, $id)
-    {
-    	//load actual current user
-    	$id = is_set($id) ? $id : \Auth::user()->id;
-		  $user = User::query()->findOrFail($id);
+	public function get_resume(Request $request, $id = null) {
+		//load actual current user
+		$id = is_set($id) ? $id : \Auth::user()->id;
+		$user = User::query()->findOrFail($id);
 
-      $application = Application::find($request->input('application_id'));
+		$application = Application::find($request->input('application_id'));
 
-      $data = [
-          'route_title' => $user->fullName().' - Resume',
-          'route_description' => $user->fullName().' - Resume',
-          'user' => $user,
-          'application' => $application,
-          'instance' => $user
-      ];
+		$data = [
+			'route_title' => $user->fullName() . ' - Resume',
+			'route_description' => $user->fullName() . ' - Resume',
+			'user' => $user,
+			'application' => $application,
+			'instance' => $user,
+		];
 
-        return view('users.resume.index', $data);
-    }
+		return view('users.resume.index', $data);
+	}
 }

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use App\Models\QuestionAttempt;
+use App\Models\StageTest;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -133,5 +135,67 @@ class Test extends Model {
 	 **/
 	public function questions() {
 		return $this->hasMany(\App\Models\Question::class);
+	}
+
+	/**
+	 * Attempt position stage test
+	 * @param  array $attempt test attempt input collection
+	 * @return \App\Models\StageTest
+	 */
+	public static function attempt($attempt = null) {
+
+		//0...ensure attempt
+		if (is_set($attempt)) {
+
+			//1...record test question attempts
+			return \DB::transaction(function () use ($attempt) {
+
+				//1.1..check for attempted questions
+				$has_attempts = array_has($attempt, 'attempts');
+				$attempts = $attempt['attempts'];
+				$has_attempts = $has_attempts && is_set($attempts);
+
+				if ($has_attempts) {
+
+					//2..persist stage test
+					$stagetest = [
+						'applicant_id' => $attempt['applicant_id'],
+						'application_id' => $attempt['application_id'],
+						'position_id' => $attempt['position_id'],
+						'stage_id' => $attempt['stage_id'],
+						'test_id' => $attempt['test_id'],
+						'applicationstage_id' => $attempt['applicationstage_id'],
+					];
+					$stagetest = StageTest::create($stagetest);
+
+					//2.1...persists question attempted
+					$attempted = [
+						'applicant_id' => $attempt['applicant_id'],
+						'position_id' => $attempt['position_id'],
+						'stage_id' => $attempt['stage_id'],
+						'test_id' => $attempt['test_id'],
+						'stagetest_id' => $stagetest->id,
+					];
+
+					foreach ($attempts as $question_id => $answer) {
+						$question_attempt = [
+							'question_id' => $question_id,
+							'answer' => $answer,
+						];
+
+						$question_attempt =
+							array_merge([], $attempted, $question_attempt);
+
+						//3..persist question attempt
+						QuestionAttempt::create($question_attempt);
+					}
+
+					//4.. return stage test
+					return $stagetest;
+				}
+
+			});
+		}
+
 	}
 }

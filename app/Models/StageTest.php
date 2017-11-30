@@ -52,6 +52,7 @@ class StageTest extends Model {
 		'stage',
 		'test',
 		'applicationStage',
+		'questionAttempts',
 	];
 
 	/**
@@ -128,10 +129,10 @@ class StageTest extends Model {
 		$score = 0;
 
 		//2..obtain question attempts
-		$attempts = $this->questionAttempts();
+		$attempts = $this->questionAttempts;
 
 		//3..accumulate score if attempt answer is correct
-		if ($attempts !== null && $attempts->count() > 0) {
+		if ($attempts->count() > 0) {
 
 			$score = $attempts->sum(function ($attempt) {
 
@@ -139,7 +140,7 @@ class StageTest extends Model {
 				$questionScore = 0;
 
 				//3.1...obtain question attempt question
-				$question = $attempt->question();
+				$question = $attempt->question;
 
 				if ($question !== null) {
 
@@ -161,9 +162,9 @@ class StageTest extends Model {
 			//4.. compute percentage score
 
 			//4.1... obtain test questions count
-			$test = $this->test();
+			$test = $this->test;
 
-			$questionCount = $test->questions()->count();
+			$questionCount = $test->questions->count();
 
 			$score = ($score / $questionCount) * 100;
 

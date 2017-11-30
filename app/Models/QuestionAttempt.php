@@ -29,6 +29,7 @@ class QuestionAttempt extends Model {
 		'applicant_id', 'position_id',
 		'stage_id', 'test_id',
 		'question_id', 'stagetest_id',
+		'answer',
 	];
 
 	/**

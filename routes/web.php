@@ -67,6 +67,7 @@ Route::resource('referees', 'RefereeController');
 Route::resource('achievements', 'AchievementController');
 Route::resource('assignments', 'AssignmentController');
 Route::resource('publications', 'PublicationController');
+Route::resource('stagetests', 'StageTestController');
 Route::resource('applications', 'ApplicationController');
 Route::get('/application/{application}', 'ApplicationController@application')->name('applications.application');
 Route::get('/advance', 'ApplicationController@advance')->name('applications.advance');
@@ -78,7 +79,7 @@ Route::resource('applicationstages', 'ApplicationStageController');
 //cv routes
 Route::get('/basic', 'UserController@get_basic')->name("users.basic");
 Route::patch('/basic', 'UserController@post_basic')->name("users.basic");
-Route::get('/resume/{applicant}', 'UserController@get_resume')->name("users.resume");
+Route::get('/resume/{applicant?}', 'UserController@get_resume')->name("users.resume");
 
 //social auth routes
 Route::get('/auth/social/provider/{name}', 'Auth\SocialAuthController@signIn')
