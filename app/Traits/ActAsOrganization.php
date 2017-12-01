@@ -10,7 +10,7 @@ trait ActAsOrganization
     //------------------------------------------------------------
     //instance properties & methods
     //------------------------------------------------------------
-    
+
     /**
      * Build organization logo url
      */
@@ -28,13 +28,13 @@ trait ActAsOrganization
     //------------------------------------------------------------
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function sector()
-    {
-        return $this->belongsTo(\App\Models\Sector::class, 'sector_id');
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    //  **/
+    // public function sector()
+    // {
+    //     return $this->belongsTo(\App\Models\Sector::class, 'sector_id');
+    // }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
