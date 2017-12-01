@@ -135,6 +135,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		'email',
 		'secondary_email',
 		'website',
+    'mobile',
 		'alternative_mobile',
 		'landline',
 		'fax',

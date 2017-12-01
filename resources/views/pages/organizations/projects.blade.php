@@ -1,6 +1,10 @@
-<div class="tab-pane active gray-bg" id="tab-1">
+<div class="tab-pane active" id="tab-1">
+  <div class="btn-group">
+      <a href="{{route('projects.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('projects.actions.create.title') }}">
+      <i class="fa fa-plus"></i> {{ trans('projects.actions.create.name') }}</a>
+  </div>
   {{-- start organizations table --}}
-  <div class="wrapper wrapper-content animated fadeInRight">
+  <div class="wrapper wrapper-content animated fadeInRight gray-bg">
   @foreach ($organization->projects->chunk(3) as $chunkedProject)
   <div class="row">
     @foreach ($chunkedProject as $item)
