@@ -310,7 +310,9 @@
 	        {{-- end sector management --}}
 
 					{{-- start positions management --}}
-            @role('Administrator')
+            @permission([
+	            'list:position',
+            ])
 	        <li class="{{areActiveRoutes([
 	        	'positions.index',
 	        	'positions.edit',
@@ -335,7 +337,7 @@
 
 	            </ul>
 	        </li>
-	        @endrole
+	        @endpermission
 	        {{-- end positions management --}}
 
 	        {{-- start user management --}}
