@@ -1,5 +1,5 @@
 
-<div class="tab-pane active" id="tab-1">
+<div>
   {{-- start positions create --}}
   <div class="row m-t-md">
       <div class="col-sm-8 m-b-xs">
@@ -10,46 +10,30 @@
       </div>
   </div>
   {{-- end positions create --}}
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>{{trans('positions.headers.status')}}</th>
-            <th>{{trans('positions.inputs.title.label')}}</th>
-            <th>{{trans('positions.inputs.duration.label')}}</th>
-            <th>{{trans('positions.inputs.dueAt.label')}}</th>
-            <th>{{trans('positions.headers.actions')}}</th>
-        </tr>
-        </thead>
-        <tbody>
-          @foreach($project->positions as $item)
-          <tr>
-              @if(strtotime($item->dueAt) > time())
-                <td class="text-center">
-                    <span class="label label-primary">{{ trans('positions.status.active') }}</span>
-                </td>
-              @else
-                <td class="text-center">
-                    <span class="label label-default">{{ trans('positions.status.inactive') }}</span>
-                </td>
-              @endif
-              <td>
-                 {{$item->title}}
-              </td>
-              <td>
-                 <span class="label label-primary">{{$item->duration}}</span>
-              </td>
-              <td>
-                  {{$item->dueAt}}
-              </td>
-              <td class="project-actions">
-                  <a href="{{ route('positions.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                  <a href="{{ route('positions.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
-              </td>
+    <div class="col-12 gray-bg">
+      @foreach ($project->positions->chunk(3) as $chunkedPosition)
+      <div class="row wrapper">
+        @foreach ($chunkedPosition as $item)
 
-          </tr>
+      <a href="{{ route('positions.show', ['id' => $item->id]) }}">
+        <div class="col-md-4">
+          <div class="widget white-bg text-center">
+            <div class="m-b-md">
+              <h1 class="font-bold text-black">
+                  {{$item->title}}
+              </h1>
+              <h3>Position Status: <span class="text-navy">{{$item->firstStage()->name}}</span></h3>
+              <hr>
+              <div class="col-12">
+                <a href="{{ route('positions.show', ['id' => $item->id]) }}"  class="btn btn-sm btn-primary m-t-n-xs"><strong>View</strong></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
         @endforeach
-
-        </tbody>
-    </table>
+      </div>
+      @endforeach
+    </div>
 
 </div>
