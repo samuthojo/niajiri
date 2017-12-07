@@ -246,24 +246,10 @@
 	        <li class="{{areActiveRoutes([
 	        	'projects.*'
 	        	])}}">
-	            <a href="#">
+	            <a href="{{route('projects.index')}}">
 	            	<i class="fa fa-tasks"></i>
 	            	<span class="nav-label">Projects</span>
-	            	<span class="fa arrow"></span>
 	            </a>
-	            <ul class="nav nav-second-level collapse">
-
-	                @permission([
-		                'list:project'
-	                ])
-	                <li class="{{isActiveRoute('projects.*')}}">
-	                	<a href="{{route('projects.index')}}">
-	                		List
-	                	</a>
-	                </li>
-	                @endpermission
-
-	            </ul>
 	        </li>
           @endrole
 	        @endpermission
@@ -274,7 +260,7 @@
 	        <li class="{{areActiveRoutes([
 	        	'organization.*'
 	        	])}}">
-	            <a href="#">
+	            <a href="{{route('organizations.index')}}">
 	            	<i class="fa fa-building-o"></i>
 	            	<span class="nav-label">Clients</span>
 	            	<span class="fa arrow"></span>
