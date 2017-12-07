@@ -138,7 +138,7 @@ class AchievementController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		
+
 		//ensure valid achievement
 		$this->validate($request, [
 			'title' => 'required|string',
@@ -150,6 +150,7 @@ class AchievementController extends SecureController {
 
 		//obtain all achievement form inputs
 		$body = $request->all();
+    $body['project_id'] = $request->session()->get('project_id');
 
 		//find existing achievement
 		$achievement = Achievement::findOrFail($id);

@@ -23,11 +23,15 @@ class HomeController extends SecureController
       }
 
       //redirect hr agency
-      else if(\Auth::user()->hasRole([Role::HR_AGENCY, Role::ORGANIZATION])){
-        return redirect()->route('positions.index');
+      else if(\Auth::user()->hasRole([Role::HR_AGENCY])){
+        return redirect()->route('organizations.index');
       }
 
       //TODO redirect organization
+      else if(\Auth::user()->hasRole([Role::ORGANIZATION])){
+        return redirect()->route('projects.index');
+      }
+
       else{
         return view('pages.dashboard.index', [
             'route_title' => 'Dashboard',
@@ -35,7 +39,7 @@ class HomeController extends SecureController
         ]);
       }
     }
-    
+
     public function minor(Request $request)
     {
         return view('pages.dashboard.minor',  [
@@ -67,7 +71,7 @@ class HomeController extends SecureController
         })->pluck('name', 'name')->sort();
         return $states;
       }
-      
+
       //no states found
       else{
         return [];

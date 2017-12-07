@@ -48,94 +48,31 @@
                 </div>
                 {{-- end projects table in filter --}}
 
-                {{-- start projects table --}}
-                <div class="table-responsive m-t-lg">
+                <div class="tab-pane active gray-bg" id="tab-1">
+                  {{-- start organizations table --}}
+                  <div class="wrapper wrapper-content animated fadeInRight">
+                  @foreach ($projects->chunk(3) as $chunkedProject)
+                  <div class="row">
+                    @foreach ($chunkedProject as $item)
 
-                    {{-- start table --}}
-                    <table class="table table-borderless">
-
-                        {{-- start table header --}}
-                        <thead>
-                            <tr>
-                              <th>
-                                  {{ trans('projects.headers.status') }}
-                              </th>
-                                <th>
-                                    {{ trans('projects.inputs.name.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('projects.inputs.organization.header')}}
-                                </th>
-                                <th>
-                                    {{ trans('projects.inputs.startedAt.header') }}
-                                </th>
-                                <th>
-                                    {{ trans('projects.inputs.endedAt.header') }}
-                                </th>
-                                <th>
-                                    {{trans('projects.headers.actions')}}
-                                </th>
-                            </tr>
-                        </thead>
-                        {{-- end table header --}}
-
-                        {{-- start table body --}}
-                        <tbody>
-                        @foreach($projects as $item)
-                            <tr>
-                                @if(strtotime($item->endedAt) > time())
-                                <td>
-                                    <span class="label label-primary">{{ trans('projects.status.active') }}</span>
-                                </td>
-                                @else
-                                <td>
-                                    <span class="label label-default">{{ trans('projects.status.inactive') }}</span>
-                                </td>
-                                @endif
-                                <td>{{ $item->name}}</td>
-                                <td>{{ $item->organization->name}}</td>
-                                <td>{{ $item->startedAt->format('d-m-y')}}</td>
-                                <td>{{ $item->endedAt->format('d-m-y')}}</td>
-                                <td>
-                                    @permission('view:project')
-                                    <a href="{{ route('projects.show', ['id' => $item->id]) }}" class="btn btn-success btn-xs" title="{{trans('users.actions.view.title')}}"><span class="fa fa-eye" aria-hidden="true"/></a>
-                                    @endpermission
-
-                                    @permission('edit:project')
-                                    <a href="{{ route('projects.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-xs" title="{{trans('projects.actions.edit.title')}}"><span class="fa fa-pencil" aria-hidden="true"/></a>
-                                    @endpermission
-
-                                    @permission('delete:project')
-                                    {!! Form::open([
-                                        'method'=>'DELETE',
-                                        'url' => route('projects.destroy', ['id' => $item->id]),
-                                        'style' => 'display:inline'
-                                    ]) !!}
-                                        {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
-                                                'type' => 'submit',
-                                                'class' => 'btn btn-danger btn-xs',
-                                                'title' => trans('projects.actions.delete.title'),
-                                                'onclick'=>'return confirm("Confirm Delete?")'
-                                        ]) !!}
-                                    {!! Form::close() !!}
-                                    @endpermission
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        {{-- end table body --}}
-
-                    </table>
-                    {{-- end table --}}
-
-                    {{-- start pagination --}}
-                    <div class="pagination-wrapper">
-                        {!! $projects->render() !!}
+                  <a href="{{ route('projects.show', ['id' => $item->id]) }}">
+                    <div class="col-md-4">
+                      <div class="widget red-bg p-lg text-center">
+                        <div class="m-b-md">
+                          <h1>
+                              {{$item->name}}
+                          </h1>
+                        </div>
+                      </div>
                     </div>
-                    {{-- end pagination --}}
+                    </a>
+                    @endforeach
+                  </div>
+                  @endforeach
 
+                  </div>
+                  {{-- end organizations table --}}
                 </div>
-                {{-- end projects table --}}
 
             </div>
            {{-- end page box content --}}

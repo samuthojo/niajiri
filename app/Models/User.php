@@ -135,6 +135,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		'email',
 		'secondary_email',
 		'website',
+		'mobile',
 		'alternative_mobile',
 		'landline',
 		'fax',
@@ -155,7 +156,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		'extracurricular_activities',
 
 		//organization specific
-		'sector_id',
+		'sector',
 		'contact_person',
 
 		//location specific
@@ -401,29 +402,29 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		});
 	}
 
+	//
+	//TODO duplicates
+	//Please makonda see ActAsApplicant and lets clean this
+	//
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function education() {
+		return $this->hasMany(\App\Models\Education::class, 'applicant_id');
+	}
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function education()
-    {
-        return $this->hasMany(\App\Models\Education::class, 'applicant_id');
-    }
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function experience() {
+		return $this->hasMany(\App\Models\Experience::class, 'applicant_id');
+	}
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    **/
-    public function experience()
-    {
-        return $this->hasMany(\App\Models\Experience::class, 'applicant_id');
-    }
-
-     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    **/
-    public function certificates()
-    {
-        return $this->hasMany(\App\Models\Certificate::class, 'applicant_id');
-    }
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function certificates() {
+		return $this->hasMany(\App\Models\Certificate::class, 'applicant_id');
+	}
 
 }

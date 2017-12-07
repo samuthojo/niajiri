@@ -63,6 +63,7 @@ class PublicationController extends SecureController {
 
 		//obtain all publication form inputs
 		$body = $request->all();
+    $body['project_id'] = $request->session()->get('project_id');
 
 		//create publication
 		$publication = Publication::create($body);
@@ -129,7 +130,7 @@ class PublicationController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		
+
 		//ensure valid publication
 		$this->validate($request, [
 			'title' => 'required|string',

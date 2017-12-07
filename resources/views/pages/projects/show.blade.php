@@ -16,7 +16,7 @@
             {{-- start page box content --}}
             <div class="ibox-content">
               <div class="row">
-                <div class="col-lg-9">
+                <div class="col-lg-12">
                     <div class="wrapper wrapper-content animated fadeInUp">
                         <div class="ibox">
                             <div class="ibox-content">
@@ -39,61 +39,26 @@
                                           {!! Form::close() !!}
                                           @endif
                                             <a href="{{ route('projects.edit', ['id' => $project->id]) }}" class="btn btn-primary btn-xs pull-right">Edit project</a>
-                                            <h2>{{$project->name}}</h2>
+                                            <h1 class="font-bold">{{$project->name}}</h1>
+                                            <h4 class="text-navy">Open until {{$project->endedAt->formatLocalized('%A %d %B %Y')}}</h4>
                                         </div>
                                         @endpermission
-                                        <dl class="dl-horizontal">
-                                          @if(strtotime($project->dueAt) > time())
-                                            <dt>{{ trans('projects.headers.status') }}</dt> <dd><span class="label label-primary">{{ trans('projects.status.active') }}</span></dd>
-                                          @else
-                                            <dt>{{ trans('projects.headers.status') }}</dt> <dd><span class="label label-primary">{{ trans('projects.status.inactive') }}</span></dd>
-                                          @endif
-                                          <dt>{{ trans('projects.headers.status') }}</dt> <dd><span class={{ $project->status === "open" ? "label label-primary" : "label label-danger" }}>{{ $project->status }}</span></dd>
-                                        </dl>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-5">
-                                        <dl class="dl-horizontal">
-                                            <dt>Client:</dt> <dd><a href="{{ route('organizations.show', ['id' => $project->organization->id]) }}" class="text-navy">{{$project->organization->name}}</a> </dd>
-                                            <dt>Version:</dt> <dd>v1</dd>
-                                        </dl>
-                                    </div>
-                                    <div class="col-lg-7" id="cluster_info">
-                                        <dl class="dl-horizontal" >
-                                            <dt>Last Updated:</dt><dd>{{$project->updated_at->diffForHumans()}}</dd>
-                                            <dt>Created:</dt> <dd>{{$project->created_at->diffForHumans()}}</dd>
-                                        </dl>
+                                    <div class="col-lg-12">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     </div>
                                 </div>
                                 <div class="row m-t-sm">
                                     <div class="col-lg-12">
-                                    <div class="panel blank-panel">
-                                    <div class="panel-heading">
-                                        <div class="panel-options">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab-1" data-toggle="tab">{{trans('projects.tabs.positions.name')}}</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="panel-body">
-
-                                    <div class="tab-content">
+                                      <h2 class="font-bold">Positions</h2>
                                       @include('pages.projects.positions')
-
-                                    </div>
-                                  </div>
-
-                                    </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                      @include('pages.projects.description')
                 </div>
               </div>
 

@@ -400,6 +400,10 @@ Breadcrumbs::register('projects.edit', function ($breadcrumbs, $instance) {
 	$breadcrumbs->push('Edit', route('projects.edit', $instance->id));
 });
 
+Breadcrumbs::register('projects.open_position', function ($breadcrumbs, $instance) {
+	$breadcrumbs->push('Open Positions', route('projects.open_position', $instance->id));
+});
+
 // -------------------Sectors Breadcrumbs--------------------------------------
 // Home > Sectors
 Breadcrumbs::register('sectors.index', function ($breadcrumbs) {

@@ -7,7 +7,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Carbon\Carbon;
 
-class Achievement extends Model implements HasMedia 
+class Achievement extends Model implements HasMedia
 {
 
     /**
@@ -38,7 +38,7 @@ class Achievement extends Model implements HasMedia
      */
     protected $fillable = [
         'title', 'organization', 'summary',
-        'issued_at', 'applicant_id'
+        'issued_at', 'applicant_id', 'project_id',
     ];
 
     /**
@@ -101,7 +101,7 @@ class Achievement extends Model implements HasMedia
         if ($media) {
             $attachment = $media;
         }
-        
+
         return $attachment;
     }
 

@@ -59,7 +59,6 @@
                         <div class="ibox">
                             <div class="ibox-title">
                                 <span class="label label-success pull-right">{{$item->sector}}</span>
-                                <h5>Income</h5>
                             </div>
                             <div class="ibox-content">
                                 <h2>{{$item->name}}</h2>
