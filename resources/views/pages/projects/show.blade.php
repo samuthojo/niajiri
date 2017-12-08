@@ -41,6 +41,7 @@
                                             <a href="{{ route('projects.edit', ['id' => $project->id]) }}" class="btn btn-primary btn-xs pull-right">Edit project</a>
                                             <h1 class="font-bold">{{$project->name}}</h1>
                                             <h4 class="text-navy">Open until {{$project->endedAt->formatLocalized('%A %d %B %Y')}}</h4>
+                                            <h4 class="text-navy">Link for candidate: <a href="{{ route('projects.open_position', ['id' => $project->id]) }}">{{ route('projects.open_position', ['id' => $project->id]) }}</a></h4>
                                         </div>
                                         @endpermission
                                     </div>
