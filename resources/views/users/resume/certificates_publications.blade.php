@@ -1,5 +1,5 @@
 {{-- start certificates & projects --}}
-<div class="row m-t-lg">
+<div role="tabpanel" class="tab-pane row m-b-lg m-t-lg"  id="tab-4">
 
 	{{--start certificates--}}
 	<div class="col-md-6">
@@ -17,11 +17,11 @@
 		            {{$certificate->institution}}
 	            </h4>
 		        <h5>
-                    <i class="fa fa-calendar-o"></i> 
+                    <i class="fa fa-calendar-o"></i>
                     <span title="{{trans('certificates.inputs.started_at.description')}}">
                     	{{display_date($certificate->started_at, config('app.datepicker_parse_month_year_format'))}}
-                    </span> 
-                    to 
+                    </span>
+                    to
                     @if($certificate->finished_at)
                     <span title="{{trans('certificates.inputs.finished_at.description')}}">
                     	{{display_date($certificate->finished_at, config('app.datepicker_parse_month_year_format'))}}
@@ -53,10 +53,10 @@
 		            {{$publication->publisher}}
 	            </h4>
 		        <h5>
-                    <i class="fa fa-calendar-o"></i> 
+                    <i class="fa fa-calendar-o"></i>
                     <span title="{{trans('publications.inputs.published_at.description')}}">
                     	{{display_date($publication->published_at)}}
-                    </span> 
+                    </span>
                 </h5>
                 <h5 title="{{trans('publications.inputs.summary.description')}}">
                 	Publication Summary
@@ -71,6 +71,6 @@
 		@endif
 	</div>
 	{{--end publications--}}
-	
+
 </div>
 {{-- start certificates & projects --}}
