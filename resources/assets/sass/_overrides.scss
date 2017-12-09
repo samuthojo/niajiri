@@ -130,11 +130,13 @@ Triangle breadcrumb
     /* reset basic style */
     background-color: transparent;
     padding: 0;
+    display: flex;
   }
   .cd-breadcrumb.triangle li {
     position: relative;
     padding: 0;
     margin: 4px 4px 4px 0;
+    flex: 1;
   }
   .cd-breadcrumb.triangle li:last-of-type {
     margin-right: 0;

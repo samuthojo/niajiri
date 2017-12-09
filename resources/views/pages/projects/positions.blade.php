@@ -1,6 +1,7 @@
 
 <div>
   {{-- start positions create --}}
+ @permission('create:position')
   <div class="row m-t-md">
       <div class="col-sm-8 m-b-xs">
           <div class="btn-group">
@@ -9,6 +10,7 @@
           </div>
       </div>
   </div>
+  @endpermission
   {{-- end positions create --}}
     <div class="col-12 gray-bg">
       @foreach ($project->positions->chunk(3) as $chunkedPosition)
@@ -25,7 +27,7 @@
               <h3>Position Status: <span class="text-navy">{{$item->firstStage()->name}}</span></h3>
               <hr>
               <div class="col-12">
-                <a href="{{ route('positions.show', ['id' => $item->id]) }}"  class="btn btn-sm btn-primary m-t-n-xs"><strong>View</strong></a>
+                <a href="{{ route('positions.show', ['id' => $item->id]) }}"  class="btn btn-block btn-primary m-t-n-xs"><strong>View</strong></a>
               </div>
             </div>
           </div>
