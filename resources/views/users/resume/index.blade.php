@@ -30,20 +30,20 @@
               <div class="panel blank-panel">
                 <div class="panel-heading">
                     <div class="tabpanel panel-options">
-                        <ul class="nav nav-tabs" role="tablist" >
-                           <li role="presentation" class="active">
+                        <ul class="nav nav-tabs resume_ul" role="tablist" >
+                           <li role="presentation" class="active resume_li">
                                <a href="#tab-1" aria-controls="#tab-1" role="tab" data-toggle="tab">Summary</a>
                            </li>
-                           <li role="presentation">
+                           <li role="presentation" class="resume_li">
                                <a href="#tab-2" aria-controls="#tab-2" role="tab" data-toggle="tab">Education Background</a>
                            </li>
-                           <li role="presentation">
+                           <li role="presentation" class="resume_li">
                                <a href="#tab-3" aria-controls="#tab-3" role="tab" data-toggle="tab">Work Experience</a>
                            </li>
-                           <li role="presentation">
+                           <li role="presentation" class="resume_li">
                                <a href="#tab-4" aria-controls="#tab-4" role="tab" data-toggle="tab">Honors</a>
                            </li>
-                           <li role="presentation">
+                           <li role="presentation" class="resume_li">
                                <a href="#tab-5" aria-controls="#tab-5" role="tab" data-toggle="tab">Stage Summary</a>
                            </li>
                         </ul>

@@ -21839,3 +21839,26 @@ Triangle breadcrumb
 }
 }
 
+.nav.nav-tabs.resume_ul {
+  /* reset basic style */
+  background-color: #ddd;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav.nav-tabs.resume_ul li.resume_li {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.nav.nav-tabs.resume_ul li.resume_li a {
+  color: black;
+}
+
+.nav.nav-tabs.resume_ul li.active.resume_li a {
+  background: #19aa8d;
+}
+
