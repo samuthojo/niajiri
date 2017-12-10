@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 
 class QuestionsTableSeeder extends Seeder {
 	public function run() {
+
 		DB::transaction(function () {
 
 			$tests = Test::all();
@@ -64,5 +65,6 @@ class QuestionsTableSeeder extends Seeder {
 			}
 
 		});
+
 	}
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 
 class StagesTableSeeder extends Seeder {
 	public function run() {
+
 		DB::transaction(function () {
 
 			$position = Position::first();
@@ -18,7 +19,10 @@ class StagesTableSeeder extends Seeder {
 
 			foreach ($stages as $key => $value) {
 
-				Stage::Create([
+				Stage::updateOrCreate([
+					'position_id' => $position->id,
+					'name' => $value,
+				], [
 					'name' => $value,
 					'position_id' => $position->id,
 					'activities' => 'Review ' . $value,
@@ -29,6 +33,8 @@ class StagesTableSeeder extends Seeder {
 					'endedAt' => '12-12-2017',
 				]);
 			}
+
 		});
+
 	}
 }
