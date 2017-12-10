@@ -51,6 +51,7 @@ class StageTest extends Model {
 		'position',
 		'stage',
 		'test',
+		'questions',
 		'applicationStage',
 		'questionAttempts',
 	];
@@ -121,10 +122,19 @@ class StageTest extends Model {
 	}
 
 	/**
+	 * Get question associate with stage test
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function questions() {
+		return $this->hasMany('App\Models\Question', 'test_id', 'test_id');
+	}
+
+	/**
 	 * Compute application stage test score
 	 * @return float
 	 */
 	public function computeScore() {
+
 		//1..initialize stage test score
 		$score = 0;
 
@@ -161,12 +171,11 @@ class StageTest extends Model {
 
 			//4.. compute percentage score
 
-			//4.1... obtain test questions count
-			$test = $this->test;
+			//4.0.. compute total score weight
+			$totalScore = $this->questions->sum('weight');
 
-			$questionCount = $test->questions->count();
-
-			$score = ($score / $questionCount) * 100;
+			//4.1 compute average weight score
+			$score = ($score / $totalScore) * 100;
 
 		}
 

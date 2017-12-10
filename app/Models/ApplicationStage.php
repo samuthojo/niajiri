@@ -158,8 +158,40 @@ class ApplicationStage extends Model implements HasMedia {
 	 * Check if application stage test has been taken already
 	 * @return boolean
 	 */
-	public function testIsAlreadyTaken() {
-		return $this->tests->count() > 0;
+	public function testIsAlreadyTaken($test = null) {
+
+		$stageTest = null;
+
+		if ($test) {
+			$stageTest = $this->tests->first(function ($stageTest) use ($test) {
+				return $stageTest->test_id === $test->id;
+			});
+		}
+
+		return $stageTest !== null;
+
+	}
+
+	/**
+	 * Obtain stage test score of the specified test
+	 * @return float
+	 */
+	public function getTestScore($test = null) {
+
+		$score = 0;
+
+		if ($test) {
+			$stageTest = $this->tests->first(function ($stageTest) use ($test) {
+				return $stageTest->test_id === $test->id;
+			});
+
+			if ($stageTest) {
+				$score = $stageTest->computeScore();
+			}
+		}
+
+		return $score;
+
 	}
 
 	/**

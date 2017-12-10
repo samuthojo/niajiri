@@ -52,10 +52,10 @@
                         <strong>{{$test->category}}</strong>
                     </td>
                     <td class="project-completion">
-                        Score: 0.0% {{--TODO display score--}}
+                        Score: {{display_decimal($applicationStage->getTestScore($test))}}%
                     </td>
                     <td class="project-actions">
-                        @unless($applicationStage->testIsAlreadyTaken())
+                        @unless($applicationStage->testIsAlreadyTaken($test))
                         @if($applicationStage->canTakeTest(Auth::user()))
                         @if($applicationStage->application->isCurrentStage($applicationStage->stage))
                         <a href="{{route('stagetests.create',['applicant_id' => $applicationStage->applicant_id, 'position_id' => $applicationStage->position_id, 'stage_id' => $applicationStage->stage_id, 'application_id' => $applicationStage->application_id, 'applicationstage_id'=> $applicationStage->id, 'test_id' => $test->id])}}" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.take_test.title')}}">
