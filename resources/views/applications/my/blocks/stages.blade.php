@@ -43,18 +43,18 @@
                     </td>
                 </tr>
                 {{--start display stage tests--}}
-                @foreach($applicationStage->stage->tests as $test)
+                @foreach($applicationStage->stage->tests as $index => $test)
                 <tr class="testable-stage-test">
-                    <td class="project-status">
+                    <td class="project-status {{($index+1) !== $applicationStage->stage->tests->count() ? 'no-border-bottom' : ''  }}">
                         &nbsp;
                     </td>
                     <td class="project-title">
-                        <strong>{{$test->category}}</strong>
+                        {{$test->category}}
                     </td>
                     <td class="project-completion">
                         Score: {{display_decimal($applicationStage->getTestScore($test))}}%
                     </td>
-                    <td class="project-actions">
+                    <td class="project-actions {{($index+1) !== $applicationStage->stage->tests->count() ? 'no-border-bottom' : ''  }}">
                         @unless($applicationStage->testIsAlreadyTaken($test))
                         @if($applicationStage->canTakeTest(Auth::user()))
                         @if($applicationStage->application->isCurrentStage($applicationStage->stage))

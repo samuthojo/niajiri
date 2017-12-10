@@ -53,6 +53,7 @@ class StageTestController extends SecureController {
 		$test = Test::query()
 			->where('position_id', $request->input('position_id'))
 			->where('stage_id', $request->input('stage_id'))
+			->where('id', $request->input('test_id'))
 			->firstOrFail();
 
 		//prepare data
