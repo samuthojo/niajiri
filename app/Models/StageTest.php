@@ -65,6 +65,10 @@ class StageTest extends Model {
 
 	];
 
+	public function getScoreAttribute($value) {
+		return $this->computeScore();
+	}
+
 	/**
 	 * Get applicant associate with stage test
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

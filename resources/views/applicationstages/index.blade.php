@@ -171,6 +171,22 @@
                                     @endif
                                 </td>
                             </tr>
+                            @if($item->hasTest())
+                            @foreach($item->tests as $index => $stageTest)
+                            <tr>
+                                <td class="no-border-top">&nbsp;</td>
+                                <td class="no-border-top">&nbsp;</td>
+                                <td class="no-border-top">&nbsp;</td>
+                                <td class="no-border-top">&nbsp;</td>
+                                <td class="no-border-top">&nbsp;</td>
+                                <td>{{$stageTest->test->category}}</td>
+                                <td>{{display_decimal($stageTest->score)}}</td>
+                                <td class="no-border-top">&nbsp;</td>
+                                <td class="no-border-top">&nbsp;</td>
+                                <td class="no-border-top">&nbsp;</td>
+                            </tr>
+                            @endforeach
+                            @endif
                         @endforeach
 
                         </tbody>
