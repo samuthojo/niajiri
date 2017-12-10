@@ -180,7 +180,7 @@
                                 <td class="no-border-top">&nbsp;</td>
                                 <td class="no-border-top">&nbsp;</td>
                                 <td>{{$stageTest->test->category}}</td>
-                                <td>{{display_decimal($stageTest->score)}}</td>
+                                <td>{{display_decimal($stageTest->score)}}%</td>
                                 <td class="no-border-top">&nbsp;</td>
                                 <td class="no-border-top">&nbsp;</td>
                                 <td class="no-border-top">&nbsp;</td>
