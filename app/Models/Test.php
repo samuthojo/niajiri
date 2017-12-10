@@ -21,9 +21,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection roleUser
  * @property decimal duration
  * @property string stage_id
- * @property string test_category_id
+ * @property string category
  */
 class Test extends Model {
+
 	use SoftDeletes;
 
 	public $table = 'tests';
@@ -45,7 +46,58 @@ class Test extends Model {
 	public $fillable = [
 		'duration',
 		'stage_id',
-		'test_category',
+		'position_id',
+		'category',
+	];
+
+	/**
+	 * Searchable rules.
+	 *
+	 * @var array
+	 */
+	protected $searchable = [
+		/**
+		 * Columns and their priority in search results.
+		 * Columns with higher values are more important.
+		 * Columns with equal values have equal importance.
+		 *
+		 * @var array
+		 */
+		'columns' => [
+			'tests.category' => 10,
+
+			//position searchable fields
+			'position.title' => 10,
+
+			//stage searchable fields
+			'stage.name' => 10,
+		],
+
+		'joins' => [ //ensure relations are also eager loaded. see query below
+			'positions as position' => ['position.id', 'tests.position_id'],
+			'stages as stage' => ['stage.id', 'tests.stage_id'],
+		],
+	];
+
+	/**
+	 * The attributes that should be casted to native types.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'id' => 'string',
+		'position_id' => 'string',
+		'stage_id' => 'string',
+		'category' => 'string',
+	];
+
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
+	public static $rules = [
+
 	];
 
 	/**
@@ -79,29 +131,6 @@ class Test extends Model {
 	}
 
 	/**
-	 * The attributes that should be casted to native types.
-	 *
-	 * @var array
-	 */
-	protected $casts = [
-		'id' => 'string',
-		'position_id' => 'string',
-		'stage_id' => 'string',
-		//Makonda: Is this a model or a string? am get confused
-		//Check your migration
-		'test_category' => 'string',
-	];
-
-	/**
-	 * Validation rules
-	 *
-	 * @var array
-	 */
-	public static $rules = [
-
-	];
-
-	/**
 	 * Get position associated with this test
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 **/
@@ -114,20 +143,6 @@ class Test extends Model {
 	 **/
 	public function stage() {
 		return $this->belongsTo(\App\Models\Stage::class);
-	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 **/
-	public function testCategory() {
-		return $this->belongsTo(\App\Models\TestCategory::class);
-	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function questionAttempts() {
-		return $this->hasMany(\App\Models\QuestionAttempt::class);
 	}
 
 	/**

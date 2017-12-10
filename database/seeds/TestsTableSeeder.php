@@ -14,7 +14,7 @@ class TestsTableSeeder extends Seeder {
 				'duration' => 180,
 				'position_id' => $stage->position_id,
 				'stage_id' => $stage->id,
-				'test_category' => 'numerical',
+				'category' => 'Quantitative Aptitude',
 			]);
 
 		});

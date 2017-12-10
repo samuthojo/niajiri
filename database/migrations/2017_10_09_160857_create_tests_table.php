@@ -14,6 +14,7 @@ class CreateTestsTable extends Migration {
 		Schema::create('tests', function (Blueprint $table) {
 			$table->uuid('id');
 			$table->decimal('duration', 5, 2);
+			$table->string('category');
 			$table->timestamps();
 			$table->softDeletes();
 
@@ -32,9 +33,6 @@ class CreateTestsTable extends Migration {
 				->on('stages')
 				->onUpdate('cascade')
 				->onDelete('cascade');
-
-			//Makonda: Here is the confusion please check it
-			$table->uuid('test_category')->nullable();
 
 		});
 	}
