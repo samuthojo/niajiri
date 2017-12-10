@@ -22,9 +22,15 @@
                 {{-- start display stage with test--}}
                 <tr class="testable-stage">
                     <td class="project-status">
+                        @if($applicationStage->score)
                         <span class="label {{display_boolean($applicationStage->hasPass(), 'label-primary', 'label-danger')}}">
                             {{display_boolean($applicationStage->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
                         </span>
+                        @else
+                        <span class="label">
+                            {{trans('applicationstages.scores.na')}}
+                        </span>
+                        @endif
                     </td>
                     <td class="project-title">
                         <strong>{{$applicationStage->stage->name}}</strong>
@@ -69,9 +75,15 @@
                 {{-- start display no test stage--}}
                 <tr>
                     <td class="project-status">
+                        @if($applicationStage->score)
                         <span class="label {{display_boolean($applicationStage->hasPass(), 'label-primary', 'label-danger')}}">
                             {{display_boolean($applicationStage->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
                         </span>
+                        @else
+                        <span class="label">
+                            {{trans('applicationstages.scores.na')}}
+                        </span>
+                        @endif
                     </td>
                     <td class="project-title">
                         <strong>{{$applicationStage->stage->name}}</strong>

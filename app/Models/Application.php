@@ -212,7 +212,6 @@ class Application extends Model implements HasMedia {
 
 			//3.0.1 update current stage score using current stage passMark
 			if ($currentApplicationStage && !$currentApplicationStage->score) {
-				dd($currentApplicationStage);
 				$currentApplicationStage->score = $currentStage->passMark;
 				$currentApplicationStage->save();
 			}

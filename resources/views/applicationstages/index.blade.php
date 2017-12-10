@@ -136,9 +136,15 @@
                                     {{ display_decimal($item->score)}}%
                                 </td>
                                 <td>
+                                    @if($item->score)
                                     <span class="label {{display_boolean($item->hasPass(), 'label-primary', 'label-danger')}}">
                                         {{display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
                                     </span>
+                                    @else
+                                    <span class="label">
+                                        {{trans('applicationstages.scores.na')}}
+                                    </span>
+                                    @endif
                                 </td>
                                 <td>
                                 {{-- TODO score, advance, view application, view cv --}}
