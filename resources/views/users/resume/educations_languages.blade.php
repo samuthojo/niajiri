@@ -1,5 +1,5 @@
 {{-- start educations & languages --}}
-<div class="row m-t-lg">
+<div role="tabpanel" class="tab-pane row m-b-lg m-t-lg"  id="tab-2">
 
 	{{--start educations--}}
 	<div class="col-md-6">
@@ -18,11 +18,11 @@
 		            <span class="pull-right">Remark</span>
 	            </h4>
 		        <h5>
-                    <i class="fa fa-calendar-o"></i> 
+                    <i class="fa fa-calendar-o"></i>
                     <span title="{{trans('educations.inputs.started_at.description')}}">
                     	{{display_date($education->started_at, config('app.datepicker_parse_month_year_format'))}}
-                    </span> 
-                    to 
+                    </span>
+                    to
                     @if($education->finished_at)
                     <span title="{{trans('educations.inputs.finished_at.description')}}">
                     	{{display_date($education->finished_at, config('app.datepicker_parse_month_year_format'))}}
@@ -67,6 +67,6 @@
 		@endif
 	</div>
 	{{--end languages--}}
-	
+
 </div>
 {{-- start educations & languages --}}

@@ -19,10 +19,12 @@
                 {{-- start projects table in filter --}}
                 <div class="row m-t-md">
                     <div class="col-sm-8 m-b-xs">
+                      @permission('edit:project')
                         <div class="btn-group">
                             <a href="{{route('projects.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('projects.actions.create.title') }}">
                             <i class="fa fa-plus"></i> {{ trans('projects.actions.create.name') }}</a>
                         </div>
+                      @endpermission
                     </div>
                     <div class="col-sm-4">
                         {{-- start projects search form --}}
@@ -57,8 +59,8 @@
 
                   <a href="{{ route('projects.show', ['id' => $item->id]) }}">
                     <div class="col-md-4">
-                      <div class="widget red-bg p-lg text-center">
-                        <div class="m-b-md">
+                      <div class="widget bg-warning p-xl text-center">
+                        <div class="m-md">
                           <h1>
                               {{$item->name}}
                           </h1>

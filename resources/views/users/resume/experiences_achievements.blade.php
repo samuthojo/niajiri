@@ -1,5 +1,5 @@
 {{-- start experiences & achievements --}}
-<div class="row m-t-lg">
+<div role="tabpanel" class="tab-pane row m-b-lg m-t-lg"  id="tab-3">
 
 	{{--start experiences--}}
 	<div class="col-md-6">
@@ -17,11 +17,11 @@
 		            {{$experience->organization}}
 	            </h4>
 		        <h5>
-                    <i class="fa fa-calendar-o"></i> 
+                    <i class="fa fa-calendar-o"></i>
                     <span title="{{trans('experiences.inputs.started_at.description')}}">
                     	{{display_date($experience->started_at, config('app.datepicker_parse_month_year_format'))}}
-                    </span> 
-                    to 
+                    </span>
+                    to
                     @if($experience->ended_at)
                     <span title="{{trans('experiences.inputs.ended_at.description')}}">
                     	{{display_date($experience->ended_at, config('app.datepicker_parse_month_year_format'))}}
@@ -31,7 +31,7 @@
                     @endif
                     <span class="m-l-md" title="{{trans('experiences.inputs.location.description')}}">
                     	<i class="fa fa-map-marker"></i>
-                    	{{$experience->location}} 
+                    	{{$experience->location}}
                     </span>
                 </h5>
                 <h5 title="{{trans('experiences.inputs.summary.description')}}">
@@ -64,10 +64,10 @@
 		            {{$achievement->organization}}
 	            </h4>
 		        <h5>
-                    <i class="fa fa-calendar-o"></i> 
+                    <i class="fa fa-calendar-o"></i>
                     <span title="{{trans('achievements.inputs.issued_at.description')}}">
                     	{{display_date($achievement->issued_at, config('app.datepicker_parse_month_year_format'))}}
-                    </span> 
+                    </span>
                 </h5>
                 <h5 title="{{trans('achievements.inputs.summary.description')}}">
                 	Brief Summary
@@ -82,6 +82,6 @@
 		@endif
 	</div>
 	{{--end achievements--}}
-	
+
 </div>
 {{-- start experiences & achievements --}}

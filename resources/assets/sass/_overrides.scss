@@ -130,11 +130,13 @@ Triangle breadcrumb
     /* reset basic style */
     background-color: transparent;
     padding: 0;
+    display: flex;
   }
   .cd-breadcrumb.triangle li {
     position: relative;
     padding: 0;
     margin: 4px 4px 4px 0;
+    flex: 1;
   }
   .cd-breadcrumb.triangle li:last-of-type {
     margin-right: 0;
@@ -222,4 +224,23 @@ Triangle breadcrumb
       border-left-style: dashed;
     }
   }
+}
+
+.nav.nav-tabs.resume_ul {
+  /* reset basic style */
+  background-color: #ddd;
+  padding: 0;
+  display: flex;
+}
+
+.nav.nav-tabs.resume_ul li.resume_li {
+  flex: 1;
+}
+
+.nav.nav-tabs.resume_ul li.resume_li a {
+  color: black;
+}
+
+.nav.nav-tabs.resume_ul li.active.resume_li a {
+  background: #19aa8d;
 }
