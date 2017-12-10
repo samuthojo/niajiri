@@ -23,15 +23,30 @@
                 {{-- start applicationstages table in filter --}}
                 <div class="row m-t-md">
                     <div class="col-sm-8 m-b-xs">
-                         @if($position->isFirstStage($stage))
                          @permission('edit:applicationstage')
                              <div class="btn-group">
+                                @if($position->isFirstStage($stage))
+                                {{--start filter--}}
                                 <button class="btn btn-sm btn-white" role="button" title="{{ trans('applicationstages.actions.screen.title') }}" data-toggle="modal" data-target="#application-screening-modal">
-                                <i class="fa fa-filter"></i> {{ trans('applicationstages.actions.screen.name') }}</button>
+                                <i class="fa fa-filter"></i> {{ trans('applicationstages.actions.screen.name') }}
+                                </button>
+                                @endif
+                                {{--end filter--}}
+                                {{--start export--}}
+                                @if($stage->applicationstages->count() > 0)
+                                <a
+                                    class="btn btn-sm btn-white"
+                                    href="{{route('applicationstages.export', ['position_id' => $position->id, 'stage_id' => $stage->id])}}"
+                                    role="button"
+                                    title="{{ trans('applicationstages.actions.export.title') }}" target="_blank">
+                                    <i class="fa fa-file-excel-o"></i>
+                                    {{ trans('applicationstages.actions.export.title') }}
+                                </a>
+                                @endif
+                                {{--end export--}}
                             </div>
                             @include('applicationstages.blocks.screening_modal')
                         @endpermission
-                        @endif
                     </div>
                     <div class="col-sm-4">
                         {{-- start applicationstages search form --}}

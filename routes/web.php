@@ -75,6 +75,7 @@ Route::get('/advance', 'ApplicationController@advance')->name('applications.adva
 Route::patch('/advance', 'ApplicationController@advance')->name('applications.advance');
 Route::get('/apply', 'ApplicationController@store')->name('applications.apply');
 Route::get('/applied', 'ApplicationController@applied')->name('applications.applied');
+Route::get('applicationstages/export', 'ApplicationStageController@export')->name('applicationstages.export');
 Route::resource('applicationstages', 'ApplicationStageController');
 
 //cv routes

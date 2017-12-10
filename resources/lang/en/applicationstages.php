@@ -117,6 +117,13 @@ return [
 				'success' => 'Applicants Screened Succeffully',
 			],
 		],
+		'export' => [
+			'name' => 'Export',
+			'title' => 'Export Applicants',
+			'flash' => [
+				'success' => 'Applicants Exported Succeffully',
+			],
+		],
 	],
 	'inputs' => [
 		'organization' => [

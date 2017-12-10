@@ -224,7 +224,7 @@ class ApplicationStageController extends SecureController {
 	 *
 	 * @return void
 	 */
-	private function export(Request $request) {
+	public function export(Request $request) {
 
 		//initialize query
 		$query = ApplicationStage::filter($request->all())
@@ -246,10 +246,13 @@ class ApplicationStageController extends SecureController {
 		//prepare sheet name
 		$sheet = snake_case($position->title) . '_' . snake_case($stage->name);
 
-		Excel::create($workbook, function ($excel) use ($applicationstages) {
+		//build workbook
+		Excel::create($workbook, function ($excel) use ($applicationstages, $sheet) {
 
+			//build sheet
 			$excel->sheet($sheet, function ($sheet) use ($applicationstages) {
 
+				//set headers
 				$sheet->row(1, [
 					trans('cvs.inputs.name.header'),
 					trans('cvs.inputs.age.header'),
@@ -262,6 +265,7 @@ class ApplicationStageController extends SecureController {
 
 				$rowCount = 2;
 
+				//set data to export
 				foreach ($applicationstages as $item) {
 
 					$sheet->row($rowCount, [
@@ -271,7 +275,7 @@ class ApplicationStageController extends SecureController {
 						display_or_na($item->applicant->mobile),
 						display_or_na($item->applicant->email),
 						display_decimal($item->score),
-						$item->score !== null ? trans('applicationstages.scores.na') : display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed')),
+						$item->score === null ? trans('applicationstages.scores.na') : display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed')),
 					]);
 
 					$rowCount++;
