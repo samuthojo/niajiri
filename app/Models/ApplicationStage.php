@@ -335,7 +335,7 @@ class ApplicationStage extends Model implements HasMedia {
 	public static function totalUnreviewed($position = null, $stage = null) {
 		$unreviewed = ApplicationStage::where('position_id', $position->id)
 			->where('stage_id', $stage->id)
-			->where('score', '<=', 0)
+			->whereNull('score')
 			->count();
 
 		if (!$unreviewed) {
