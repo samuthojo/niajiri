@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ApplicationStage;
 use App\Models\Position;
 use App\Models\Stage;
+use Excel;
 use Illuminate\Http\Request;
 
 //TODO refactor to use repository as Makonda
@@ -216,5 +217,68 @@ class ApplicationStageController extends SecureController {
 			'position_id' => $applicationstage->position_id,
 			'stage_id' => $applicationstage->stage_id,
 		]);
+	}
+
+	/**
+	 * Export application stage(applicant, stage and score)
+	 *
+	 * @return void
+	 */
+	private function export(Request $request) {
+
+		//initialize query
+		$query = ApplicationStage::filter($request->all())
+			->orderBy('created_at', 'asc')
+			->orderBy('score', 'desc');
+
+		//load position
+		$position = Position::query()->findOrFail($request->input('position_id'));
+
+		//load stage
+		$stage = Stage::findOrFail($request->input('stage_id'));
+
+		//obtain application stages(applicant plus stage)
+		$applicationstages = $query->get();
+
+		//prepare workbook name
+		$workbook = snake_case($position->organization->name) . '_' . snake_case($position->project->name);
+
+		//prepare sheet name
+		$sheet = snake_case($position->title) . '_' . snake_case($stage->name);
+
+		Excel::create($workbook, function ($excel) use ($applicationstages) {
+
+			$excel->sheet($sheet, function ($sheet) use ($applicationstages) {
+
+				$sheet->row(1, [
+					trans('cvs.inputs.name.header'),
+					trans('cvs.inputs.age.header'),
+					trans('cvs.inputs.gender.header'),
+					trans('cvs.inputs.mobile.header'),
+					trans('cvs.inputs.email.header'),
+					trans('applicationstages.inputs.score.header'),
+					trans('applicationstages.inputs.status.header'),
+				]);
+
+				$rowCount = 2;
+
+				foreach ($applicationstages as $item) {
+
+					$sheet->row($rowCount, [
+						display_or_na($item->applicant->fullName()),
+						display_int($item->applicant->age()),
+						display_or_na($item->applicant->gender),
+						display_or_na($item->applicant->mobile),
+						display_or_na($item->applicant->email),
+						display_decimal($item->score),
+						$item->score !== null ? trans('applicationstages.scores.na') : display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed')),
+					]);
+
+					$rowCount++;
+				}
+
+			});
+
+		})->export('xls');
 	}
 }
