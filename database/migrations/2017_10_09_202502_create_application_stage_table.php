@@ -14,7 +14,7 @@ class CreateApplicationStageTable extends Migration {
 		Schema::create('application_stages', function (Blueprint $table) {
 
 			$table->uuid('id');
-			$table->decimal('score', 5, 2)->default(0)->index();
+			$table->decimal('score', 5, 2)->nullable()->index();
 			$table->text('comment')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
