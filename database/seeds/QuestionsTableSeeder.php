@@ -8,7 +8,7 @@ class QuestionsTableSeeder extends Seeder {
 	public function run() {
 		DB::transaction(function () {
 
-			$test = Test::first();
+			$tests = Test::all();
 
 			$sampleQuestions = [
 				[
@@ -53,13 +53,15 @@ class QuestionsTableSeeder extends Seeder {
 				],
 			];
 
-			foreach ($sampleQuestions as $question) {
-				$question['test_id'] = $test->id;
-				Question::updateOrCreate([
-					'test_id' => $question['test_id'],
-					'label' => $question['label'],
-				], $question);
-			};
+			foreach ($tests as $test) {
+				foreach ($sampleQuestions as $question) {
+					$question['test_id'] = $test->id;
+					Question::updateOrCreate([
+						'test_id' => $question['test_id'],
+						'label' => $question['label'],
+					], $question);
+				}
+			}
 
 		});
 	}

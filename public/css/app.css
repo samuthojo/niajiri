@@ -21588,6 +21588,16 @@ body.body-small .vote-icon {
   }
 }
 
+/*borders*/
+
+.no-border-top {
+  border-top: none !important;
+}
+
+.no-border-bottom {
+  border-bottom: none !important;
+}
+
 /*list group*/
 
 .list-group-header {

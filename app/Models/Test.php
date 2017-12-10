@@ -153,6 +153,14 @@ class Test extends Model {
 	}
 
 	/**
+	 * Obtain stage test based on specief criteria
+	 * @return App\Models\TestStage
+	 */
+	public function stageTest() {
+		# code...
+	}
+
+	/**
 	 * Attempt position stage test
 	 * @param  array $attempt test attempt input collection
 	 * @return \App\Models\StageTest

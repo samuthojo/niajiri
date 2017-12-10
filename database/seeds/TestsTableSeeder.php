@@ -17,6 +17,13 @@ class TestsTableSeeder extends Seeder {
 				'category' => 'Quantitative Aptitude',
 			]);
 
+			Test::updateOrCreate(['stage_id' => $stage->id], [
+				'duration' => 180,
+				'position_id' => $stage->position_id,
+				'stage_id' => $stage->id,
+				'category' => 'Reasoning',
+			]);
+
 		});
 	}
 }
