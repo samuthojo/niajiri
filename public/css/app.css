@@ -21598,6 +21598,24 @@ body.body-small .vote-icon {
   border-bottom: none !important;
 }
 
+/*stage*/
+
+.testable-stage .project-status {
+  border-bottom: none !important;
+}
+
+.testable-stage .project-actions {
+  border-bottom: none !important;
+}
+
+.testable-stage-test:not(:last-child) .project-status {
+  border-bottom: none !important;
+}
+
+.testable-stage-test:not(:last-child) .project-actions {
+  border-bottom: none !important;
+}
+
 /*list group*/
 
 .list-group-header {

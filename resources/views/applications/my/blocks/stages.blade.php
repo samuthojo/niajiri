@@ -20,8 +20,8 @@
                 @if($applicationStage->hasTest())
 
                 {{-- start display stage with test--}}
-                <tr>
-                    <td class="project-status no-border-bottom">
+                <tr class="testable-stage">
+                    <td class="project-status">
                         <span class="label {{display_boolean($applicationStage->hasPass(), 'label-primary', 'label-danger')}}">
                             {{display_boolean($applicationStage->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
                         </span>
@@ -32,14 +32,14 @@
                     <td class="project-completion">
                         Score: {{display_decimal($applicationStage->score)}}%
                     </td>
-                    <td class="project-actions no-border-bottom">
+                    <td class="project-actions">
                         &nbsp;
                     </td>
                 </tr>
                 {{--start display stage tests--}}
                 @foreach($applicationStage->stage->tests as $test)
-                <tr>
-                    <td class="project-status no-border-top">
+                <tr class="testable-stage-test">
+                    <td class="project-status">
                         &nbsp;
                     </td>
                     <td class="project-title">
@@ -48,7 +48,7 @@
                     <td class="project-completion">
                         Score: 0.0% {{--TODO display score--}}
                     </td>
-                    <td class="project-actions no-border-top">
+                    <td class="project-actions">
                         @unless($applicationStage->testIsAlreadyTaken())
                         @if($applicationStage->canTakeTest(Auth::user()))
                         @if($applicationStage->application->isCurrentStage($applicationStage->stage))
