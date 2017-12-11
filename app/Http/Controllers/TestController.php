@@ -28,8 +28,8 @@ class TestController extends SecureController {
 		//load stage
 		$stage = Stage::findOrFail($request->input('stage_id'));
 
-		//paginate query result
-		$tests = $query->paginate(config('app.defaults.pageSize'));
+		//query result
+		$tests = $query->get();
 
 		$data = [
 			'route_title' => 'Tests',
@@ -98,7 +98,37 @@ class TestController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Request $request, $id) {
-		return redirect()->route('tests.index', $request->all());
+
+		//get test instance
+		$test = Test::query()->findOrFail($id);
+
+		//load related
+		$tests = Test::query()
+			->where([
+				'position_id' => $test->position_id,
+				'stage_id' => $test->stage_id,
+			])
+			->orderBy('created_at', 'asc')
+			->orderBy('category', 'desc')
+			->get();
+
+		//position
+		$position = $test->position;
+
+		//stage
+		$stage = $test->stage;
+
+		$data = [
+			'route_title' => $test->category . ' Test',
+			'route_description' => $test->category . ' Test',
+			'tests' => $tests,
+			'test' => $test,
+			'instance' => $test,
+			'position' => $position,
+			'stage' => $stage,
+		];
+
+		return view('tests.show', $data);
 	}
 
 	/**
