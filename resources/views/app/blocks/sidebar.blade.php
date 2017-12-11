@@ -310,7 +310,7 @@
 	        {{-- end sector management --}}
 
 					{{-- start positions management --}}
-            @permission([
+          {{--   @permission([
 	            'list:position',
             ])
 	        <li class="{{areActiveRoutes([
@@ -337,7 +337,7 @@
 
 	            </ul>
 	        </li>
-	        @endpermission
+	        @endpermission --}}
 	        {{-- end positions management --}}
 
 	        {{-- start user management --}}

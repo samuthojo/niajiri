@@ -14,7 +14,7 @@ class StagesTableSeeder extends Seeder {
 			$stages = [
 				'Screeening', 'Aptitude test',
 				'First interview', 'Second Interview',
-				'Employability Training Assessment',
+				'ETA',
 			];
 
 			foreach ($stages as $key => $value) {
