@@ -509,3 +509,28 @@ Breadcrumbs::register('stagetests.edit', function ($breadcrumbs, $instance) {
 	$breadcrumbs->parent('stagetests.show', $instance->stage);
 	$breadcrumbs->push($instance->stage->name, route('stagetests.edit', $instance->id));
 });
+
+// -------------------Tests Breadcrumbs--------------------------------------
+// Home > Tests
+Breadcrumbs::register('tests.index', function ($breadcrumbs, $instance) {
+	$breadcrumbs->parent('positions.show', $instance->position);
+	$breadcrumbs->push($instance->name, route('tests.index', ['position_id' => $instance->position_id, 'stage_id' => $instance->id]));
+});
+
+// Home > Tests > Create Test
+Breadcrumbs::register('tests.create', function ($breadcrumbs, $instance) {
+	$breadcrumbs->parent('tests.index', $instance);
+	$breadcrumbs->push('Create Test', route('tests.create'));
+});
+
+// Home > Tests > [Test Name]
+Breadcrumbs::register('tests.show', function ($breadcrumbs, $instance) {
+	$breadcrumbs->parent('tests.index', $instance->stage);
+	$breadcrumbs->push($instance->category, route('tests.show', $instance->id));
+});
+
+// Home > Tests > [Test Name] > Edit
+Breadcrumbs::register('tests.edit', function ($breadcrumbs, $instance) {
+	$breadcrumbs->parent('tests.show', $instance->stage);
+	$breadcrumbs->push($instance->category, route('tests.edit', $instance->id));
+});

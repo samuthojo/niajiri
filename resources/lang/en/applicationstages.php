@@ -119,7 +119,7 @@ return [
 		],
 		'export' => [
 			'name' => 'Export',
-			'title' => 'Export Applicants',
+			'title' => 'Click to Export Applicants',
 			'flash' => [
 				'success' => 'Applicants Exported Succeffully',
 			],

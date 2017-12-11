@@ -40,7 +40,7 @@
                                     role="button"
                                     title="{{ trans('applicationstages.actions.export.title') }}" target="_blank">
                                     <i class="fa fa-file-excel-o"></i>
-                                    {{ trans('applicationstages.actions.export.title') }}
+                                    {{ trans('applicationstages.actions.export.name') }}
                                 </a>
                                 @endif
                                 {{--end export--}}

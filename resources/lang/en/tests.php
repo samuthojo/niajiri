@@ -46,7 +46,11 @@ return [
 		],
 		'create' => [
 			'name' => 'New Test',
+			'label' => 'New Test',
 			'title' => 'Click To Add New Test',
+			'flash' => [
+				'success' => 'Test Created Successffully',
+			],
 		],
 		'delete' => [
 			'name' => 'Delete',
@@ -101,6 +105,12 @@ return [
 			'placeholder' => 'Test category',
 			'header' => 'Test category',
 			'description' => 'Test category of the test e.g 20 etc.',
+		],
+		'category' => [
+			'label' => 'Category',
+			'placeholder' => 'Category',
+			'header' => 'Category',
+			'description' => 'Category e.g Numerical etc.',
 		],
 		'startedAt' => [
 			'label' => 'Starts At',

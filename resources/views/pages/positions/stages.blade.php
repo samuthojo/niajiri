@@ -13,6 +13,11 @@
   <div class="row">
       <div class="col-md-12">
         <div class="m-b-md pull-right">
+          @permission('delete:stage')
+          @if($stage->hasTest)
+          <a href="{{route('tests.index', ['position_id' => $stage->position_id, 'stage_id' => $stage->id])}}" class="btn btn-white btn-xs" title="{{trans('positions.actions.test.title')}}">{{trans('positions.actions.test.name')}}</a>
+          @endif
+          @endpermission
           <a href="{{ route('stages.edit', ['id' => $stage->id]) }}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i> Edit </a>
           @permission('delete:stage')
           {!! Form::open([

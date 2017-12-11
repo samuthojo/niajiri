@@ -2,232 +2,208 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateTestRequest;
-use App\Http\Requests\UpdateTestRequest;
-use App\Repositories\TestRepository;
-use App\Repositories\QuestionRepository;
-use App\Http\Controllers\SecureController;
+use App\Models\Position;
+use App\Models\Stage;
+use App\Models\Test;
 use Illuminate\Http\Request;
-use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
 
-class TestController extends SecureController
-{
-    /** @var  TestRepository */
-    private $testRepository;
-    private $questionRepository;
+//TODO refactor to use repository as Makonda
 
-    public function __construct(TestRepository $testRepo, QuestionRepository $questionRepo)
-    {
-        $this->testRepository = $testRepo;
-        $this->questionRepository = $questionRepo;
-    }
+class TestController extends SecureController {
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index(Request $request) {
 
-    /**
-     * Display a listing of the Test.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function index(Request $request)
-    {
-        $this->testRepository->pushCriteria(new RequestCriteria($request));
-        $tests = $this->testRepository->paginate(config('app.defaults.pageSize'));
+		//initialize query
+		$query = Test::filter($request->all())
+			->orderBy('created_at', 'asc')
+			->orderBy('category', 'desc');
 
-        return view('pages.tests.index',[
-            'route_title' => 'Tests',
-            'route_description' => 'Tests',
-            'tests' => $tests
-        ]);
-    }
+		//load position
+		$position = Position::findOrFail($request->input('position_id'));
 
-    /**
-     * Show the form for creating a new Test.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-      return view('pages.tests.create',[
-          'route_title' => 'Tests',
-          'route_description' => 'Tests'
-      ]);
-    }
+		//load stage
+		$stage = Stage::findOrFail($request->input('stage_id'));
 
-    /**
-     * Store a newly created Test in storage.
-     *
-     * @param CreateTestRequest $request
-     *
-     * @return Response
-     */
-    public function store($id = null,CreateTestRequest $request)
-    {
-        $input = $request->all();
+		//paginate query result
+		$tests = $query->paginate(config('app.defaults.pageSize'));
 
-        $test = $this->testRepository->create($input);
+		$data = [
+			'route_title' => 'Tests',
+			'route_description' => 'Test List',
+			'tests' => $tests,
+			'instance' => $stage,
+			'position' => $position,
+			'stage' => $stage,
+		];
 
-        Flash::success('Test saved successfully.');
+		return view('tests.index', $data);
+	}
 
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create(Request $request) {
 
-        if (!empty($test->stage_id)) {
+		//load position
+		$position = Position::find($request->input('position_id'));
 
-          return redirect(route('stages.show',['id' => $test->stage_id]));
+		//load stage
+		$stage = Stage::find($request->input('stage_id'));
 
-        }
+		$data = [
+			'instance' => $stage,
+			'position' => $position,
+			'stage' => $stage,
+			'applicant_id' => $request->input('applicant_id'),
+		];
 
+		return view('tests.create', $data);
+	}
 
-        return redirect(route('tests.index'));
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request) {
+		//TODO check CV validity
 
-    /**
-     * Display the specified Test.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $test = $this->testRepository->findWithoutFail($id);
+		//ensure valid test
+		$this->validate($request, [
+			'application_id' => 'string|required|exists:applications,id',
+			'stage_id' => 'string|required|exists:stages,id',
+			'applicant_id' => 'string|required|exists:users,id',
+			'organization_id' => 'string|required|exists:users,id',
+			'position_id' => 'string|required|exists:positions,id',
+		]);
 
-        if (empty($test)) {
-            Flash::error('Test not found');
+		//obtain all test form inputs
+		$body = $request->all();
 
-            return redirect(route('tests.index'));
-        }
+		//create test
+		$test = Test::create($body);
 
-        return view('pages.tests.show',[
-            'route_title' => 'Tests',
-            'route_description' => 'Tests',
-            'test' => $test
-        ]);
-    }
+		//flash message
+		flash(trans('tests.actions.save.flash.success'))
+			->success()->important();
 
-    /**
-     * Show the form for editing the specified Test.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $test = $this->testRepository->findWithoutFail($id);
+		//redirect to show application stage listing
+		return redirect()->route('tests.index', [
+			'position_id' => $test->position_id,
+			'stage_id' => $test->stage_id,
+		]);
 
-        if (empty($test)) {
-            Flash::error('Test not found');
+	}
 
-            return redirect(route('tests.index'));
-        }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show(Request $request, $id) {
+		//TODO check CV validity
 
-        return view('pages.tests.edit',[
-            'route_title' => 'Tests',
-            'route_description' => 'Tests',
-            'test' => $test
-        ]);
-    }
+		//load test with permissions
+		$test = Test::query()->findOrFail($id);
 
-    /**
-     * Update the specified Test in storage.
-     *
-     * @param  int              $id
-     * @param UpdateTestRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateTestRequest $request)
-    {
-        $test = $this->testRepository->findWithoutFail($id);
+		$data = [
+			'route_title' => 'Show Test',
+			'route_description' => 'Show Test',
+			'position' => $test->position,
+			'application' => $test->application,
+			'instance' => $test,
+			'test' => $test,
+			'stage' => $test->stage,
+			'applicant_id' => $request->input('applicant_id'),
+		];
 
-        if (empty($test)) {
-            Flash::error('Test not found');
+		return view('tests.application', $data);
+	}
 
-            return redirect(route('tests.index'));
-        }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit(Request $request, $id) {
 
-        $test = $this->testRepository->update($request->all(), $id);
+		//TODO check CV validity
 
-        Flash::success('Test updated successfully.');
+		$test = Test::query()->findOrFail($id);
 
-        if (!empty($test->stage_id)) {
+		$data = [
+			'route_title' => 'Edit Test',
+			'route_description' => 'Edit Test',
+			'position' => $test->position,
+			'application' => $test->application,
+			'instance' => $test,
+			'test' => $test,
+			'stage' => $test->stage,
+			'applicant_id' => $request->input('applicant_id'),
+		];
 
-          return redirect(route('stages.show',['id' => $test->stage_id]));
+		return view('tests.application', $data);
+	}
 
-        }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $id) {
 
-        return redirect(route('tests.index'));
-    }
+		//obtain all test form inputs
+		$body = $request->all();
 
-    /**
-     * Remove the specified Test from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
+		//find existing test
+		$test = Test::findOrFail($id);
 
-    public function destroy($id)
-    {
-        $test = $this->testRepository->findWithoutFail($id);
+		//update test
+		$test->update($body);
 
-        if (empty($test)) {
-            Flash::error('Test not found');
+		//flash message
+		flash(trans('tests.actions.update.flash.success'))
+			->success()->important();
 
-            return redirect(route('tests.index'));
-        }
+		//redirect to application stage listing
+		return redirect()->route('tests.index', [
+			'position_id' => $test->position_id,
+			'stage_id' => $test->stage_id,
+		]);
 
-        $this->testRepository->delete($id);
+	}
 
-        Flash::success('Test deleted successfully.');
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy(Request $request, $id) {
 
-        if (!empty($test->stage_id)) {
+		//force delete application stage
+		$test = Test::findOrFail($id);
+		$test->forceDelete();
 
-          return redirect(route('stages.show',['id' => $test->stage_id]));
+		//flash message
+		flash(trans('tests.actions.delete.flash.success'))
+			->success()->important();
 
-        }
-
-        return redirect(route('tests.index'));
-    }
-
-
-
-    /**
-     * Show the form for creating a new Question and attach to test.
-     *
-     * @return Response
-     */
-    public function QuestionCreate($id)
-    {
-      $test = $this->testRepository->findWithoutFail($id);
-
-      return view('pages.tests.questions.create',[
-          'route_title' => 'Question Create',
-          'route_description' => 'Question',
-          'test'  => $test,
-      ]);
-    }
-
-
-
-    /**
-     * Store a newly created Test  and attach to Stage in storage.
-     *
-     * @param CreateTestRequest $request
-     *
-     * @return Response
-     */
-    public function QuestionStore($id, Request $request)
-    {
-        $input = $request->all();
-        $input['stage_id'] = $id;
-
-        $question = $this->questionRepository->create($input);
-
-        Flash::success('Stage Test saved successfully.');
-
-        return redirect(route('tests.show',['id' => $question->test_id]));
-
-    }
+		//redirect to application stage listing
+		return redirect()->route('tests.index', [
+			'position_id' => $test->position_id,
+			'stage_id' => $test->stage_id,
+		]);
+	}
 }
