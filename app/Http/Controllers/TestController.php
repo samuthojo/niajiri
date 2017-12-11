@@ -102,7 +102,6 @@ class TestController extends SecureController {
 		return redirect()->route('tests.index', [
 			'position_id' => $test->position_id,
 			'stage_id' => $test->stage_id,
-			// 'test_id' => $test->id,
 		]);
 
 	}
@@ -118,7 +117,7 @@ class TestController extends SecureController {
 		//get test instance
 		$test = Test::query()->findOrFail($id);
 
-		//load related
+		//load related tests
 		$tests = Test::query()
 			->where([
 				'position_id' => $test->position_id,
