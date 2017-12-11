@@ -83,10 +83,10 @@ return [
 	],
 	'inputs' => [
 		'duration' => [
-			'label' => 'Duration',
-			'placeholder' => 'Duration',
-			'header' => 'Duration',
-			'description' => 'Full Duration of the Test in minutes e.g 180 etc.',
+			'label' => 'Duration(mins)',
+			'placeholder' => 'Duration(mins)',
+			'header' => 'Duration(mins)',
+			'description' => 'Duration(mins) e.g 180 etc.',
 		],
 		'stage' => [
 			'label' => 'Stage',

@@ -60,12 +60,10 @@ class TestController extends SecureController {
 	 */
 	public function store(Request $request) {
 
-		//TODO ensure unique(stage,position,category) on test
-
 		//ensure valid test
 		$this->validate($request, [
 			'category' => 'string|required',
-			'duration' => 'is_numeric|required',
+			'duration' => 'numeric|required',
 			'stage_id' => 'string|required|exists:stages,id',
 			'position_id' => 'string|required|exists:positions,id',
 		]);
@@ -73,8 +71,12 @@ class TestController extends SecureController {
 		//obtain all test form inputs
 		$body = $request->all();
 
-		//create test
-		$test = Test::create($body);
+		//update or create
+		$test = Test::updateOrCreate([
+			'position_id' => $request->input('position_id'),
+			'stage_id' => $request->input('stage_id'),
+			'category' => $request->input('category'),
+		], $body);
 
 		//flash message
 		flash(trans('tests.actions.save.flash.success'))

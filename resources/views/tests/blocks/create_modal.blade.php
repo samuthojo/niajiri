@@ -13,7 +13,7 @@
       {{--start test creation form--}}
       {!!
             Form::open([
-                'route' => 'referees.store',
+                'route' => 'tests.store',
                 'class' => 'form-horizontal',
                 'files' => true,
                 'id' => 'test_creation_form'
