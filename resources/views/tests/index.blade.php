@@ -21,9 +21,6 @@
 @include('tests.blocks.create_modal')
 {{-- end include new test modal--}}
 
-{{--start include new question modal--}}
-{{--end include new question modal--}}
-
 @endsection
 
 @push('scripts')

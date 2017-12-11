@@ -39,6 +39,7 @@ return [
         ],
         'create' => [
             'name' => 'New Question',
+            'label' => 'New Question',
             'title' => 'Click To Add New Question',
         ],
         'delete' => [

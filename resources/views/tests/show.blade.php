@@ -18,7 +18,7 @@
                 <div class="row m-t-md">
                     <div class="col-sm-8 m-b-xs">
                         <div class="btn-group">
-                            <a href="" class="btn btn-sm btn-white" role="button" title="{{ trans('questions.actions.create.title') }}">
+                            <a class="btn btn-sm btn-white" role="button" title="{{ trans('questions.actions.create.title') }}" data-toggle="modal" data-target="#question-create-modal">
                             <i class="fa fa-plus"></i> {{ trans('questions.actions.create.name') }}</a>
                         </div>
                     </div>
@@ -72,6 +72,7 @@
 {{-- end include new test modal--}}
 
 {{--start include new question modal--}}
+@include('tests.blocks.create_question_modal')
 {{--end include new question modal--}}
 
 @endsection
