@@ -49,21 +49,7 @@ class TestController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create(Request $request) {
-
-		//load position
-		$position = Position::find($request->input('position_id'));
-
-		//load stage
-		$stage = Stage::find($request->input('stage_id'));
-
-		$data = [
-			'instance' => $stage,
-			'position' => $position,
-			'stage' => $stage,
-			'applicant_id' => $request->input('applicant_id'),
-		];
-
-		return view('tests.create', $data);
+		return redirect()->route('tests.index', $request->all());
 	}
 
 	/**
@@ -73,14 +59,14 @@ class TestController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//TODO check CV validity
+
+		//TODO ensure unique(stage,position,category) on test
 
 		//ensure valid test
 		$this->validate($request, [
-			'application_id' => 'string|required|exists:applications,id',
+			'category' => 'string|required',
+			'duration' => 'is_numeric|required',
 			'stage_id' => 'string|required|exists:stages,id',
-			'applicant_id' => 'string|required|exists:users,id',
-			'organization_id' => 'string|required|exists:users,id',
 			'position_id' => 'string|required|exists:positions,id',
 		]);
 
@@ -94,10 +80,11 @@ class TestController extends SecureController {
 		flash(trans('tests.actions.save.flash.success'))
 			->success()->important();
 
-		//redirect to show application stage listing
+		//redirect to show stage test listing
 		return redirect()->route('tests.index', [
 			'position_id' => $test->position_id,
 			'stage_id' => $test->stage_id,
+			// 'test_id' => $test->id,
 		]);
 
 	}
@@ -109,23 +96,7 @@ class TestController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Request $request, $id) {
-		//TODO check CV validity
-
-		//load test with permissions
-		$test = Test::query()->findOrFail($id);
-
-		$data = [
-			'route_title' => 'Show Test',
-			'route_description' => 'Show Test',
-			'position' => $test->position,
-			'application' => $test->application,
-			'instance' => $test,
-			'test' => $test,
-			'stage' => $test->stage,
-			'applicant_id' => $request->input('applicant_id'),
-		];
-
-		return view('tests.application', $data);
+		return redirect()->route('tests.index', $request->all());
 	}
 
 	/**
@@ -135,23 +106,7 @@ class TestController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Request $request, $id) {
-
-		//TODO check CV validity
-
-		$test = Test::query()->findOrFail($id);
-
-		$data = [
-			'route_title' => 'Edit Test',
-			'route_description' => 'Edit Test',
-			'position' => $test->position,
-			'application' => $test->application,
-			'instance' => $test,
-			'test' => $test,
-			'stage' => $test->stage,
-			'applicant_id' => $request->input('applicant_id'),
-		];
-
-		return view('tests.application', $data);
+		return redirect()->route('tests.index', $request->all());
 	}
 
 	/**
@@ -162,26 +117,7 @@ class TestController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-
-		//obtain all test form inputs
-		$body = $request->all();
-
-		//find existing test
-		$test = Test::findOrFail($id);
-
-		//update test
-		$test->update($body);
-
-		//flash message
-		flash(trans('tests.actions.update.flash.success'))
-			->success()->important();
-
-		//redirect to application stage listing
-		return redirect()->route('tests.index', [
-			'position_id' => $test->position_id,
-			'stage_id' => $test->stage_id,
-		]);
-
+		return redirect()->route('tests.index', $request->all());
 	}
 
 	/**
@@ -191,19 +127,6 @@ class TestController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Request $request, $id) {
-
-		//force delete application stage
-		$test = Test::findOrFail($id);
-		$test->forceDelete();
-
-		//flash message
-		flash(trans('tests.actions.delete.flash.success'))
-			->success()->important();
-
-		//redirect to application stage listing
-		return redirect()->route('tests.index', [
-			'position_id' => $test->position_id,
-			'stage_id' => $test->stage_id,
-		]);
+		return redirect()->route('tests.index', $request->all());
 	}
 }
