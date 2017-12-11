@@ -31,16 +31,32 @@ class TestController extends SecureController {
 		//query result
 		$tests = $query->get();
 
-		$data = [
-			'route_title' => 'Tests',
-			'route_description' => 'Test List',
-			'tests' => $tests,
-			'instance' => $stage,
-			'position' => $position,
-			'stage' => $stage,
-		];
+		//redirect to first test if exists
+		if ($tests->count() > 1) {
 
-		return view('tests.index', $data);
+			$test = $tests->first();
+
+			return redirect()->route('tests.show', [
+				'id' => $test->id,
+				'position_id' => $test->position_id,
+				'stage_id' => $test->stage_id,
+			]);
+
+		}
+
+		//continue listing
+		else {
+			$data = [
+				'route_title' => 'Tests',
+				'route_description' => 'Test List',
+				'tests' => $tests,
+				'instance' => $stage,
+				'position' => $position,
+				'stage' => $stage,
+			];
+
+			return view('tests.index', $data);
+		}
 	}
 
 	/**
