@@ -68,7 +68,11 @@ class QuestionController extends SecureController
 
         Flash::success('Question saved successfully.');
 
-        return redirect(route('questions.index'));
+        return redirect()->route('tests.show', [
+                'id' => $question->test_id,
+                'position_id' => $request->input('position_id'),
+                'stage_id' => $request->input('stage_id'),
+            ]);
     }
 
     /**
