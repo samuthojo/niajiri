@@ -21,6 +21,7 @@
       !!}
       <input type="hidden" name="position_id" value="{{$position->id}}">
       <input type="hidden" name="stage_id" value="{{$stage->id}}">
+      <input type="hidden" name="test_id" value="{{$test->id}}">
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
