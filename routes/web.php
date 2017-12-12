@@ -90,3 +90,8 @@ Route::get('/auth/social/callback/{name}', 'Auth\SocialAuthController@signInCall
 	->name('auth.social.callback');
 Route::get('/auth/social/existing-user', 'Auth\SocialAuthController@getCurrentUserSignIn')->name('auth.social.existing.user');
 Route::post('/auth/social/existing-user', 'Auth\SocialAuthController@postCurrentUserSignin');
+
+
+// Route::group(['domain' => '{domain}.niajiri.co.tz'], function () {
+//     //
+// });
