@@ -20,10 +20,11 @@ class SubdomainMiddleware
         $url_array = explode('.', parse_url($request->url(), PHP_URL_HOST));
         if(sizeof($url_array) > 3){
           $subdomain = $url_array[0];
-          $project = Project::where('name', $subdomain)->first();
-          return response('Unauthorized.'.$subdomain, 401);
+          $project = Project::where('slug', $subdomain)->first();
           if(!empty($project)){
-            return $project;
+            return response($project->id, 200);
+          }else {
+            return response('Unauthorized.'.$subdomain, 401);
           }
         }
 

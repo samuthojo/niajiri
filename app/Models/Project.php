@@ -36,6 +36,7 @@ class Project extends Model
 
     public $fillable = [
         'name',
+        'slug',
         'startedAt',
         'status',
         'endedAt',
