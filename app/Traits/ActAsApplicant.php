@@ -9,6 +9,22 @@ trait ActAsApplicant {
 	//------------------------------------------------------------
 	//instance properties & methods
 	//------------------------------------------------------------
+	
+	/**
+	 * check if applicant has a basic details
+	 * @return string route to redirect user
+	 */
+	public function hasBasicDetails()
+	{
+		$hasBasicDetails = is_set($this->first_name) && is_set($this->surname); 
+		$hasBasicDetails = $hasBasicDetails && is_set($this->email) && is_set($this->mobile);
+		$hasBasicDetails = $hasBasicDetails && is_set($this->gender) && is_set($this->dob); 
+		$hasBasicDetails = $hasBasicDetails && is_set($this->marital_status);
+		$hasBasicDetails = $hasBasicDetails && is_set($this->summary);
+		$hasBasicDetails = $hasBasicDetails && is_set($this->country) && is_set($this->state);
+
+		return $hasBasicDetails;
+	}
 
 	/**
 	 * Obtain local key used in applicant relations

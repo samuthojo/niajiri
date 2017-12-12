@@ -13,6 +13,15 @@ return [
 		'Married' => 'Married',
 	],
 
+	'messages' => [
+		'basic' => 'Please fill in your basic details, to continue',
+		'educations' => 'Please fill in educational details, to continue',
+		'certificates' => 'Please fill in certifications details, to continue',
+		'experiences' => 'Please fill in experiences details, to continue',
+		'languages' => 'Please fill in languages details, to continue',
+		'referees' => 'Please fill in referees details, to continue',
+	],
+
 	'headers' => [
 		'actions' => 'Actions',
 

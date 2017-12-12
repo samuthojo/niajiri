@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\Test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 //TODO refactor to use repository as Makonda
 
@@ -58,6 +59,10 @@ class ApplicationController extends SecureController {
 		//TODO notify applicant on stage
 		//TODO refactor
 		//TODO make use of transaction
+
+		//ensure applicant required details
+		$applicant = \Auth::user();
+		return $this->applyOrRedirect($applicant);
 
 		//ensure valid application
 		$this->validate($request, [
@@ -357,5 +362,61 @@ class ApplicationController extends SecureController {
 		];
 
 		return view('applications.my.application', $data);
+	}
+
+	/**
+	 * Verify needed applicant details
+	 */
+	private function applyOrRedirect($applicant) {
+
+		if (!$applicant->hasBasicDetails()) {
+			flash(trans('cvs.messages.basic'))->warning()->important();
+			return redirect()->route('users.basic');
+		}
+
+		//ensure education details
+		if ($applicant->educations->count() === 0) {
+			flash(trans('cvs.messages.educations'))->warning()->important();
+			return redirect()->route('educations.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
+
+		//ensure certificate details
+		if ($applicant->certificates->count() === 0) {
+			flash(trans('cvs.messages.certificates'))->warning()->important();
+			return redirect()->route('certificates.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
+
+		//ensure experience details
+		if ($applicant->experiences->count() === 0) {
+			flash(trans('cvs.messages.experiences'))->warning()->important();
+			return redirect()->route('experiences.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
+
+		//ensure language details
+		if ($applicant->languages->count() === 0) {
+			flash(trans('cvs.messages.languages'))->warning()->important();
+			return redirect()->route('languages.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
+
+		//ensure referee details
+		if ($applicant->referees->count() === 0) {
+			flash(trans('cvs.messages.referees'))->warning()->important();
+			return redirect()->route('referees.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
 	}
 }
