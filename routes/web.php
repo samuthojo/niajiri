@@ -32,7 +32,7 @@ Route::resource('organizations', 'OrganizationController');
 
 Route::resource('projects', 'ProjectController');
 Route::patch('/projects/{project}/close', 'ProjectController@closeProject')->name('projects.close_project');
-Route::get('/projects/{project}/positions/open', 'ProjectController@showOpenPosition')->name("projects.open_position");
+
 
 Route::get('/open', 'PositionController@open')->name("positions.open");
 Route::get('/positions/{position}/stages/create', 'PositionController@StageCreate')->name("positions.stages.create");
@@ -92,6 +92,6 @@ Route::get('/auth/social/existing-user', 'Auth\SocialAuthController@getCurrentUs
 Route::post('/auth/social/existing-user', 'Auth\SocialAuthController@postCurrentUserSignin');
 
 
-// Route::group(['domain' => '{domain}.niajiri.co.tz'], function () {
-//     //
-// });
+Route::group(['domain' => '{domain}.niajiri.co.tz'], function () {
+  Route::get('/positions/open', 'ProjectController@showOpenPosition')->name("projects.open_position");
+});

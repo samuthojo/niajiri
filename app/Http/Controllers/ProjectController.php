@@ -225,17 +225,17 @@ class ProjectController extends SecureController
      *
      * @return Response
      */
-    public function showOpenPosition($id, Request $request)
+    public function showOpenPosition(Request $request)
     {
-        $project = $this->projectRepository->findWithoutFail($id);
+        $project_id = $request->session()->get('project_id');
+
+        $project = $this->projectRepository->findWithoutFail($project_id);
 
         if (empty($project)) {
             Flash::error('Project not found');
 
             return redirect(route('projects.index'));
         }
-
-        $request->session()->put('project_id', $project->id);
 
         //initialize query
         $query = $project->positions()->open();

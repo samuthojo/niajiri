@@ -22,7 +22,7 @@ class SubdomainMiddleware
           $subdomain = $url_array[0];
           $project = Project::where('slug', $subdomain)->first();
           if(!empty($project)){
-            return response($project->id, 200);
+            $request->session()->put('project_id', $project->id);
           }else {
             return response('Unauthorized.'.$subdomain, 401);
           }
