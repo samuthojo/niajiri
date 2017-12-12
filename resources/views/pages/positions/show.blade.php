@@ -59,6 +59,19 @@
 
                                                  @endforeach
                                             </ul>
+                                            <ol class="breadcrumb dis-flex">
+                                              @foreach($position->stages as $index => $stage)
+
+                                                  <li class="flex-1">
+                                                    @if(count($stage->applicationStages) > 0)
+                                                    {{count($stage->applicationStages)}} candidates
+                                                    @else
+                                                    Starts at {{$stage->startedAt->format('d-m-y')}}
+                                                    @endif
+                                                  </li>
+
+                                               @endforeach
+                                            </ol>
                                         </div>
                                     </div>
 

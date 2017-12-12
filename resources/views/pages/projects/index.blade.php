@@ -59,7 +59,7 @@
 
                   <a href="{{ route('projects.show', ['id' => $item->id]) }}">
                     <div class="col-md-4">
-                      <div class="widget bg-warning p-xl text-center">
+                      <div class="widget navy-bg p-xl text-center">
                         <div class="m-md">
                           <h1>
                               {{$item->name}}

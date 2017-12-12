@@ -2,7 +2,7 @@
 <div role="tabpanel" class="tab-pane row m-b-lg m-t-lg"  id="tab-2">
 
 	{{--start educations--}}
-	<div class="col-md-6">
+	<div class="col-md-12">
 		<h2 title="{{trans('cvs.headers.educations.title')}}">
 			{{trans('cvs.headers.educations.name')}}
 		</h2>
@@ -42,7 +42,7 @@
 	{{--end educations--}}
 
 	{{--start languages--}}
-	<div class="col-md-6">
+	{{--<div class="col-md-6">
 		<h2 title="{{trans('cvs.headers.languages.title')}}">
 			{{trans('cvs.headers.languages.name')}}
 		</h2>
@@ -65,7 +65,7 @@
 			</div>
 			@endforeach
 		@endif
-	</div>
+	</div>--}}
 	{{--end languages--}}
 
 </div>

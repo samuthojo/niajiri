@@ -21882,3 +21882,15 @@ Triangle breadcrumb
   background: #19aa8d;
 }
 
+.dis-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-1 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+

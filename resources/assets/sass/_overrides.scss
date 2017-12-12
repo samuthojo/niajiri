@@ -9,7 +9,7 @@
 
 /*stage*/
 .testable-stage{
-  
+
   .project-status{
     border-bottom: none !important;
   }
@@ -266,4 +266,12 @@ Triangle breadcrumb
 
 .nav.nav-tabs.resume_ul li.active.resume_li a {
   background: #19aa8d;
+}
+
+.dis-flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
 }

@@ -13,7 +13,7 @@ class OrganizationRoleTableSeeder extends Seeder {
 	           'achievement', 'application', 'applicationstage',
 	           'assignment', 'certificate',
 	           'education', 'experience', 'language',
-	           'media', 'position', 'publication',
+	           'media', 'publication',
 	           'referee'
 	        ];
       $actions = [
@@ -27,14 +27,22 @@ class OrganizationRoleTableSeeder extends Seeder {
               array_push($permissions, $action . ':' . $unspaced_resource);
           }
       };
-      
+
+      $resources2 = [
+        'project', 'position'
+      ];
+
       $project_actions = [
         'list', 'view', 'export', 'import',
         'search',
       ];
-      foreach ($project_actions as $action) {
-          array_push($permissions, $action . ':' . 'project');
-      }
+
+      foreach ($resources2 as $resource) {
+          foreach ($project_actions as $action) {
+              $unspaced_resource = str_replace(' ', '', $resource);
+              array_push($permissions, $action . ':' . $unspaced_resource);
+          }
+      };
 
 			$permissions = Permission::whereIn('name', $permissions)->get();
 

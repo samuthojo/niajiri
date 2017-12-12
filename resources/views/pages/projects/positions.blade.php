@@ -24,7 +24,7 @@
               <h1 class="font-bold text-black">
                   {{$item->title}}
               </h1>
-              <h3>Position Status: <span class="text-navy">{{$item->firstStage()->name}}</span></h3>
+              <h3>Current Stage: <span class="text-navy">{{$item->firstStage()->name}}</span></h3>
               <hr>
               <div class="col-12">
                 <a href="{{ route('positions.show', ['id' => $item->id]) }}"  class="btn btn-block btn-primary m-t-n-xs"><strong>View</strong></a>

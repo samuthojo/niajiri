@@ -1,6 +1,7 @@
 @foreach($position->stages as $index => $stage)
 <div role="tabpanel" @if($index == 0) class="tab-pane active" @else class="tab-pane" @endif id="tab-{{ $stage->number }}">
   {{-- start positions create --}}
+  @permission('create:stage')
     <div class="row m-t-md">
         <div class="col-sm-8 m-b-xs">
             <div class="btn-group">
@@ -9,6 +10,7 @@
             </div>
         </div>
     </div>
+  @endpermission
   {{-- end positions create --}}
   <div class="row">
       <div class="col-md-12">
@@ -18,7 +20,9 @@
           <a href="{{route('tests.index', ['position_id' => $stage->position_id, 'stage_id' => $stage->id])}}" class="btn btn-white btn-xs" title="{{trans('positions.actions.test.title')}}">{{trans('positions.actions.test.name')}}</a>
           @endif
           @endpermission
+          @permission('edit:stage')
           <a href="{{ route('stages.edit', ['id' => $stage->id]) }}" class="btn btn-white btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+          @endpermission
           @permission('delete:stage')
           {!! Form::open([
               'method'=>'DELETE',
@@ -34,20 +38,6 @@
           {!! Form::close() !!}
           @endpermission
         </div>
-      </div>
-      <div class="col-lg-5">
-          <dl class="dl-horizontal">
-              <dt>{{trans('stages.headers.status')}}:</dt> <dd>@if(strtotime($stage->endedAt) > time())<span class="label label-primary">{{ trans('stages.status.active') }}</span> @else <span class="label label-default">{{ trans('stages.status.inactive') }}</span> @endif</dd>
-              <dt>{{trans('stages.inputs.name.label')}}:</dt> <dd><a href="{{ route('stages.show', ['id' => $stage->id]) }}" class="text-navy">{{$stage->name}}</a> </dd>
-              <dt>{{trans('stages.inputs.number.label')}}:</dt> <dd><span>{{ $stage->number }}</span></dd>
-              <dt>{{trans('stages.inputs.passMark.label')}}:</dt><dd><span>{{ $stage->passMark }}</span></dd>
-          </dl>
-      </div>
-      <div class="col-lg-7" id="cluster_info">
-          <dl class="dl-horizontal" >
-              <dt>{{trans('stages.inputs.startedAt.label')}}:</dt><dd>{{$stage->startedAt->format('d-m-y')}}</dd>
-              <dt>{{trans('stages.inputs.endedAt.label')}}:</dt> <dd>{{$stage->endedAt->format('d-m-Y')}}</dd>
-          </dl>
       </div>
   </div>
   @if(count($stage->applicationStages) > 0)

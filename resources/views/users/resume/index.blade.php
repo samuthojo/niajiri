@@ -65,9 +65,9 @@
                   @include('users.resume.educations_languages')
                   {{-- end educations_languages --}}
 
-                  {{-- start certificates_publications --}}
-                  @include('users.resume.certificates_publications')
-                  {{-- end certificates_publications --}}
+                  {{-- start honors_awards --}}
+                  @include('users.resume.honors_awards')
+                  {{-- end honors_awards --}}
                 </div>
               </div>
 

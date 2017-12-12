@@ -25,7 +25,7 @@ class PositionsTableSeeder extends Seeder {
 				'organization_id' => $organization->id,
 				'project_id' => $project->id,
 				'publishedAt' => '05-06-2017',
-				'dueAt' => '12-12-2017',
+				'dueAt' => $project->endedAt,
 			]);
 
 		});
