@@ -56,7 +56,7 @@ return [
      */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'challenge@mawazochallenge.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@niajiri.co.tz'),
         'name' => env('MAIL_FROM_NAME', 'Niajiri'),
     ],
 
@@ -90,7 +90,7 @@ return [
     |
      */
 
-    'username' => env('MAIL_USERNAME', 'challenge@mawazochallenge.com'),
+    'username' => env('MAIL_USERNAME', 'hello@niajiri.co.tz'),
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +103,7 @@ return [
     |
      */
 
-    'password' => env('MAIL_PASSWORD', '6[WvxwZ4xr[H'),
+    'password' => env('MAIL_PASSWORD', '7bcf36fcd17dc3cf2a881a49fe7fe480'),
 
     /*
     |--------------------------------------------------------------------------
