@@ -76,6 +76,12 @@ return [
             'header' => 'Name',
             'description' => 'Full Name of the Project e.g CocacolaHR2017 etc.',
         ],
+        'slug' => [
+            'label' => 'Project Subdmain',
+            'placeholder' => 'Project Subdomain',
+            'header' => 'Project Subdomain',
+            'description' => 'Subdomain name of the Project cocaCola, use camelCase no space. and can not be changed',
+        ],
         'organization' => [
             'label' => 'Organization',
             'placeholder' => 'Organization',

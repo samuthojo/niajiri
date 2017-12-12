@@ -76,6 +76,7 @@ class ProjectController extends SecureController
         $input = $request->all();
         $project = $this->projectRepository->create([
           'name' => Input::get('name'),
+          'slug' => Input::get('slug'),
           'organization_id' => Input::get('organization_id'),
           'startedAt' => Input::get('endedAt'),
           'endedAt' => Input::get('endedAt')

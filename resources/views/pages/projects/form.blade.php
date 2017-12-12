@@ -25,6 +25,28 @@
 </div>
 {{-- end name --}}
 
+{{-- start name --}}
+<div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
+    <div class="col-md-offset-3 col-md-6">
+        {!! Form::text('slug', null, [
+            'class' => 'form-control',
+            'required' => 'required',
+            'aria-describedby'=> 'projectNameHelpBlock',
+            'placeholder' => trans('projects.inputs.slug.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('slug'))
+        {!!
+            $errors->first('name', '<p class="help-block">:message</p>')
+        !!}
+        @else
+            <p id="projectNameHelpBlock" class="help-block">
+                {{ trans('projects.inputs.slug.description') }}
+            </p>
+        @endif
+    </div>
+</div>
+{{-- end name --}}
+
 {{-- start organization --}}
 <div class="form-group {{ $errors->has('organization') ? 'has-error' : ''}}">
     <div class="col-md-offset-3 col-md-6">
