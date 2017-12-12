@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Session;
 use App\Models\Project;
 
 class SubdomainMiddleware
@@ -22,7 +21,7 @@ class SubdomainMiddleware
           $subdomain = $url_array[0];
           $project = Project::where('slug', $subdomain)->first();
           if(!empty($project)){
-            $request->session()->put('project_id', $project->id);
+            session(['project_id' => $project->id]);
           }else {
             return response('Unauthorized.'.$subdomain, 401);
           }
