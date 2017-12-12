@@ -12,7 +12,7 @@ class SecureController extends Controller
         parent::__construct();
 
         //ensure user is authenticated
-        $this->middleware('auth', ['except' => ['showOpenPosition', 'preview']]);
+        $this->middleware('auth', ['except' => 'showOpenPosition']);
 
     }
 
