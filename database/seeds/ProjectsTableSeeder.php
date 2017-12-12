@@ -14,7 +14,7 @@ class ProjectsTableSeeder extends Seeder {
 					'name' => 'Vodacom - Red Hire',
 					'organization_id' => $organization->id,
 					'startedAt' => '05-05-2017',
-					'endedAt' => '12-12-2017',
+					'endedAt' => '12-8-2018',
 				]);
 
 		});
