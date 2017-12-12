@@ -254,8 +254,7 @@ class PositionController extends SecureController
             'route_title' => 'Open Position',
             'route_description' => 'Open Position',
             'position' => $position,
-            'instance' => $position,
-            'applicant_id' => $request->input('applicant_id'),
+            'instance' => $position
         ];
 
         return view('positions.open.preview', $data);
