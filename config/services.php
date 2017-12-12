@@ -58,15 +58,15 @@ return [
     ],
 
     'yahoo' => [
-        'client_id' => 'dj0yJmk9MjAzNWJNOWlNRU1hJmQ9WVdrOWQxSm9lV00zTlRJbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02Mg--',
-        'client_secret' => '357bb728ced477897c7b4495c11fbba738992948',
+        'client_id' => 'dj0yJmk9TlhNeWViSWk0MVZuJmQ9WVdrOVNXRlJhR0Z6Tm1zbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD03NQ--',
+        'client_secret' => 'bff796afe9055ef6b959686ec55d30c59312283e',
         'url' => '/auth/social/provider/yahoo',
         'redirect' => '/auth/social/callback/yahoo',
     ],
 
     'linkedin' => [
-        'client_id' => '78z3qqp5we2hbh',
-        'client_secret' => 'B06LFDl6Q40h7fow',
+        'client_id' => '86n6qfvbc7ht6u',
+        'client_secret' => 'hbTiZyaTGdNLF5dK',
         'url' => '/auth/social/provider/linkedin',
         'redirect' => '/auth/social/callback/linkedin',
     ],
