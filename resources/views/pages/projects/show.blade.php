@@ -42,7 +42,7 @@
                                           @endpermission
                                             <h1 class="font-bold">{{$project->name}}</h1>
                                             <h4 class="text-navy">Open until {{$project->endedAt->formatLocalized('%A %d %B %Y')}}</h4>
-                                            <h4 class="text-navy">Link for candidate: <a href="{{ route('projects.open_position', ['id' => $project->id]) }}">{{ route('projects.open_position', ['id' => $project->id]) }}</a></h4>
+                                            <h4 class="text-navy">Link for candidate: <a href="{{'http://'.$project->slug.'.niajiri.co.tz/open/positions' }}" target="_blank">{{'http://'.$project->slug.'.niajiri.co.tz/open/positions'}}</a></h4>
                                         </div>
                                     </div>
                                 </div>
