@@ -37,8 +37,8 @@ return [
 
     //social auth services
     'facebook' => [
-        'client_id' => '1282147305197748',
-        'client_secret' => 'd1c48ff66e668aec8e380a69842a9a53',
+        'client_id' => '2019552488324409',
+        'client_secret' => '7b6faba488064f0f7edc424b3e2a114b',
         'url' => '/auth/social/provider/facebook',
         'redirect' => '/auth/social/callback/facebook',
     ],
