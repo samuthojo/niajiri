@@ -22,7 +22,7 @@
                             </td>
                             <td class="desc">
                                 <h3>
-                                <a href="{{ route('positions.preview', ['id' => $position->id]) }}"  class="text-navy">
+                                <a href="{{route('positions.preview', ['id' => $position->id, 'applicant_id' => Auth::user()->id])}}"  class="text-navy">
                                     {{$position->title}} - {{$position->organization->name}}
                                 </a>
                                 </h3>
