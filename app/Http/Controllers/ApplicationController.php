@@ -383,15 +383,6 @@ class ApplicationController extends SecureController {
 			]);
 		}
 
-		//ensure certificate details
-		if ($applicant->certificates->count() === 0) {
-			flash(trans('cvs.messages.certificates'))->warning()->important();
-			return redirect()->route('certificates.index', [
-				'applicant_id' => $applicant->id,
-				'project_id' => Session::get('project_id'),
-			]);
-		}
-
 		//ensure experience details
 		if ($applicant->experiences->count() === 0) {
 			flash(trans('cvs.messages.experiences'))->warning()->important();
