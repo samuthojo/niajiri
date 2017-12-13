@@ -66,7 +66,7 @@ class ApplicationController extends SecureController {
 
 		//merge applicant details
 		$request->merge([
-			'applicant_id' => Auth::user()->id,
+			'applicant_id' => $applicant->id,
 		]);
 
 		//ensure valid application
