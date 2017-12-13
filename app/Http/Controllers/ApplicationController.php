@@ -101,14 +101,14 @@ class ApplicationController extends SecureController {
 		//redirect to applicant applied list
 		if ($application->isApplicant(\Auth::user())) {
 			return redirect()->route('applications.applied', [
-				'applicant_id' => $request->input('applicant_id'),
+				'applicant_id' => $applicant->id,
 			]);
 		}
 
 		//redirect to show applications
 		else {
 			return redirect()->route('applications.index', [
-				'applicant_id' => $request->input('applicant_id'),
+				'applicant_id' => $applicant->id,
 			]);
 		}
 
