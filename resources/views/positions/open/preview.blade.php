@@ -26,7 +26,7 @@
                         </small>
                         {{-- end position deadline --}}
                         <div class="m-t-md">
-                             <a class="btn btn-primary pull-right" href="{{route('applications.apply', ['applicant_id' => Auth::user()->id, 'position_id' => $position->id, 'organization_id' => $position->organization_id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
+                             <a class="btn btn-primary pull-right" href="{{route('applications.apply', ['position_id' => $position->id, 'organization_id' => $position->organization_id])}}" title="{{trans('positions.actions.apply.title')}}"></i>{{trans('positions.actions.apply.name')}}</a>
                             <h2 class="product-main-price">
                                 {{$position->organization->name}}
                                 <small class="text-muted">

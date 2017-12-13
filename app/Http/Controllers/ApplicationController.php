@@ -64,6 +64,11 @@ class ApplicationController extends SecureController {
 		$applicant = \Auth::user();
 		return $this->applyOrRedirect($applicant);
 
+		//merge applicant details
+		$request->merge([
+			'applicant_id' => Auth::user()->id,
+		]);
+
 		//ensure valid application
 		$this->validate($request, [
 			'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id',

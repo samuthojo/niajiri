@@ -44,15 +44,15 @@ return [
     ],
 
     'google' => [
-        'client_id' => '966221747885-usegtl82at23160ththnvs2tgmticif1.apps.googleusercontent.com',
-        'client_secret' => '_gHMmuaB6wvbphjUUAGebP0w',
+        'client_id' => '327590953052-ku41h57k8nus579gdj2t499e9sjc4k8f.apps.googleusercontent.com',
+        'client_secret' => '1rCTBXBr4n5_6ssdVXYn0OwR',
         'url' => '/auth/social/provider/google',
         'redirect' => '/auth/social/callback/google',
     ],
 
     'twitter' => [
-        'client_id' => 'G1eOPWxzTZfauIFNvFlqRoKat',
-        'client_secret' => 'ogei7189KNzggu1KGp8ocgCbGvTQGk5LGSOl8OrsxiMMX1NZfo',
+        'client_id' => 'oypfdHPUNfPPCSaQs5jTlU02x',
+        'client_secret' => 'GRNC0iPkhHPyvNN1CGLqLzZ5o1smAwR0CDwsNjP2r1tG5xpEN2',
         'url' => '/auth/social/provider/twitter',
         'redirect' => '/auth/social/callback/twitter',
     ],
