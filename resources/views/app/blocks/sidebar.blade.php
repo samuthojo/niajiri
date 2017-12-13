@@ -14,11 +14,13 @@
 	            <div class="dropdown profile-element">
 
 	            	{{-- start user avatar --}}
+	            	@unless(Auth::guest())
 	            	<span title="User Avatar">
 	                	<img alt="image" class="img-circle"
 	                	src="{{Auth::user()->avatar()}}"
 	                	width="48" height="48" title="User Avatar" />
 	                </span>
+
 	                {{-- end user avatar --}}
 
 	                {{-- start user profile toggle actions --}}
@@ -36,6 +38,7 @@
 
 			            </span>
 		            </a>
+		            @endunless
 		            {{-- end user profile toggle actions --}}
 
 		            {{-- start profile toggle menu --}}
