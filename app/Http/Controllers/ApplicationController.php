@@ -62,54 +62,96 @@ class ApplicationController extends SecureController {
 
 		//ensure applicant required details
 		$applicant = \Auth::user();
-		return $this->applyOrRedirect($applicant);
+
+		if (!$applicant->hasBasicDetails()) {
+			flash(trans('cvs.messages.basic'))->warning()->important();
+			return redirect()->route('users.basic');
+		}
+
+		//ensure education details
+		else if ($applicant->educations->count() === 0) {
+			flash(trans('cvs.messages.educations'))->warning()->important();
+			return redirect()->route('educations.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
+
+		//ensure experience details
+		else if ($applicant->experiences->count() === 0) {
+			flash(trans('cvs.messages.experiences'))->warning()->important();
+			return redirect()->route('experiences.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
+
+		//ensure language details
+		else if ($applicant->languages->count() === 0) {
+			flash(trans('cvs.messages.languages'))->warning()->important();
+			return redirect()->route('languages.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
+
+		//ensure referee details
+		else if ($applicant->referees->count() === 0) {
+			flash(trans('cvs.messages.referees'))->warning()->important();
+			return redirect()->route('referees.index', [
+				'applicant_id' => $applicant->id,
+				'project_id' => Session::get('project_id'),
+			]);
+		}
 
 		//merge applicant details
-		$request->merge([
-			'applicant_id' => $applicant->id,
-		]);
-
-		//ensure valid application
-		$this->validate($request, [
-			'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id',
-			'organization_id' => 'string|required|exists:users,id',
-			'position_id' => 'string|required|exists:positions,id',
-		]);
-
-		//obtain all application form inputs
-		$body = $request->all();
-
-		//create application
-		$application = Application::create($body);
-
-		//upload & store application cover letter
-		if ($application && $request->hasFile('cover_letter')) {
-			//clear existing cover_letter
-			$application->clearMediaCollection('cover_letters');
-			//attach new cover_letter
-			$application->addMediaFromRequest('cover_letter')
-				->toMediaCollection('cover_letters');
-		}
-
-		//advance application to next stage
-		$applicationStage = $application->advance();
-
-		//flash message
-		flash(trans('applications.actions.save.flash.success'))
-			->success()->important();
-
-		//redirect to applicant applied list
-		if ($application->isApplicant(\Auth::user())) {
-			return redirect()->route('applications.applied', [
-				'applicant_id' => $applicant->id,
-			]);
-		}
-
-		//redirect to show applications
 		else {
-			return redirect()->route('applications.index', [
+			$request->merge([
 				'applicant_id' => $applicant->id,
 			]);
+
+			//ensure valid application
+			$this->validate($request, [
+				'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id',
+				'organization_id' => 'string|required|exists:users,id',
+				'position_id' => 'string|required|exists:positions,id',
+			]);
+
+			//obtain all application form inputs
+			$body = $request->all();
+
+			//create application
+			$application = Application::create($body);
+
+			//upload & store application cover letter
+			if ($application && $request->hasFile('cover_letter')) {
+				//clear existing cover_letter
+				$application->clearMediaCollection('cover_letters');
+				//attach new cover_letter
+				$application->addMediaFromRequest('cover_letter')
+					->toMediaCollection('cover_letters');
+			}
+
+			//advance application to next stage
+			$applicationStage = $application->advance();
+
+			//flash message
+			flash(trans('applications.actions.save.flash.success'))
+				->success()->important();
+
+			//redirect to applicant applied list
+			if ($application->isApplicant(\Auth::user())) {
+				return redirect()->route('applications.applied', [
+					'applicant_id' => $applicant->id,
+				]);
+			}
+
+			//redirect to show applications
+			else {
+				return redirect()->route('applications.index', [
+					'applicant_id' => $applicant->id,
+				]);
+			}
 		}
 
 	}
@@ -414,5 +456,8 @@ class ApplicationController extends SecureController {
 				'project_id' => Session::get('project_id'),
 			]);
 		}
+
+		return $applicant;
+
 	}
 }
