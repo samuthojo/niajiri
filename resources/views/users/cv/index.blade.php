@@ -47,6 +47,7 @@
 {{-- end page content --}}
 
 {{-- start include modals--}}
+@include('users.cv.blocks.creates.certificate_modal')
 @include('users.cv.blocks.creates.publication_modal')
 @include('users.cv.blocks.creates.referee_modal')
 @include('users.cv.blocks.edits.skills_modal')
@@ -58,6 +59,9 @@
 @endforeach
 @foreach($user->publications as $publication)
 @include('users.cv.blocks.edits.publication_modal', ['publication' => $publication])
+@endforeach
+@foreach($user->certificates as $certificate)
+@include('users.cv.blocks.edits.certificate_modal', ['certificate' => $certificate])
 @endforeach
 {{-- end include modals--}}
 

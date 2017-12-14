@@ -52,6 +52,9 @@ class CertificateController extends SecureController {
 	 */
 	public function store(Request $request) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid certificate
 		$this->validate($request, [
 			'title' => 'required|string',
@@ -83,9 +86,7 @@ class CertificateController extends SecureController {
 			->success()->important();
 
 		//redirect to show certificate
-		return redirect()->route('certificates.index', [
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -140,6 +141,9 @@ class CertificateController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
 		
 		//ensure valid certificate
 		$this->validate($request, [
@@ -175,9 +179,7 @@ class CertificateController extends SecureController {
 			->success()->important();
 
 		//redirect to show certificate
-		return redirect()->route('certificates.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -188,6 +190,8 @@ class CertificateController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
 
 		Certificate::destroy($id);
 
@@ -195,8 +199,6 @@ class CertificateController extends SecureController {
 		flash(trans('certificates.actions.delete.flash.success'))
 			->success()->important();
 
-		return redirect()->route('certificates.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 }

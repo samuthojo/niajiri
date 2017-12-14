@@ -6,8 +6,9 @@
 @endif
 {{--end applicant id--}}
 
+<div class="row">
 {{-- start title --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
         <label for="title" title="{{ trans('certificates.inputs.title.description') }}">
             {{trans('certificates.inputs.title.label')}}
@@ -31,7 +32,7 @@
 
 
 {{-- start institution --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('institution') ? 'has-error' : ''}}">
         <label for="institution" title="{{ trans('certificates.inputs.institution.description') }}">
             {{trans('certificates.inputs.institution.label')}}
@@ -52,32 +53,11 @@
     </div>
 </div>
 {{-- end institution --}}
-
-{{-- start summary --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
-    <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
-        <label for="summary" title="{{ trans('certificates.inputs.summary.description') }}">
-            {{trans('certificates.inputs.summary.label')}}
-            <span class="text-danger">*</span>
-        </label>
-        {!! Form::text('summary', null, [
-            'id' => 'summary',
-            'class' => 'form-control',
-            //'required' => 'required',
-            'aria-describedby'=> 'certificate_summary_help_block',
-            'placeholder' => trans('certificates.inputs.summary.placeholder')
-        ]) !!}
-        @if($errors->any() && $errors->has('summary'))
-        {!!
-            $errors->first('summary', '<p id="certificate_summary_help_block" class="help-block">:message</p>')
-        !!}
-        @endif
-    </div>
 </div>
-{{-- end summary --}}
 
+<div class="row">
 {{-- start started_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('started_at') ? 'has-error' : ''}}">
         <label for="started_at" title="{{ trans('certificates.inputs.started_at.description') }}">
             {{trans('certificates.inputs.started_at.label')}}
@@ -104,7 +84,7 @@
 {{-- end started_at --}}
 
 {{-- start finished_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('finished_at') ? 'has-error' : ''}}">
         <label for="finished_at" title="{{ trans('certificates.inputs.finished_at.description') }}">
             {{trans('certificates.inputs.finished_at.label')}}
@@ -129,10 +109,36 @@
     </div>
 </div>
 {{-- end finished_at --}}
+</div>
 
+<div class="row">
+{{-- start summary --}}
+<div class="col-md-12 m-t-md">
+    <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
+        <label for="summary" title="{{ trans('certificates.inputs.summary.description') }}">
+            {{trans('certificates.inputs.summary.label')}}
+            <span class="text-danger">*</span>
+        </label>
+        {!! Form::text('summary', null, [
+            'id' => 'summary',
+            'class' => 'form-control',
+            //'required' => 'required',
+            'aria-describedby'=> 'certificate_summary_help_block',
+            'placeholder' => trans('certificates.inputs.summary.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('summary'))
+        {!!
+            $errors->first('summary', '<p id="certificate_summary_help_block" class="help-block">:message</p>')
+        !!}
+        @endif
+    </div>
+</div>
+{{-- end summary --}}
+</div>
 
+<div class="row">
 {{-- start attachment edit --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-12 m-t-md">
     <div class="form-group m-b-lg {{ $errors->has('attachment') ? 'has-error' : ''}}">
         <div class="edit-profile-photo edit-profile-photo-cv">
             <img src="{{url('/images/attachment.jpg') }}" alt="{{trans('certificates.inputs.attachment.placeholder')}}" class="img-thumbnail"
@@ -149,5 +155,6 @@
     </div>
 </div>
 {{-- end attachment edit --}}
+</div>
 
 {{-- end certificate form --}}
