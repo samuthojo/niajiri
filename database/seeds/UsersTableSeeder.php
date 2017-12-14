@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder {
 					'mobile' => '255714095061',
 					'email' => 'lallyelias87@gmail.com',
 					'password' => bcrypt('niajiri@qwerty'),
+					'verified' => true
 				],
 
 				[
@@ -27,6 +28,7 @@ class UsersTableSeeder extends Seeder {
 					'mobile' => '255688620135',
 					'email' => 'barnabasmakonda@gmail.com',
 					'password' => bcrypt('niajiri@qwerty'),
+					'verified' => true
 				],
 
 				[
@@ -36,6 +38,7 @@ class UsersTableSeeder extends Seeder {
 					'mobile' => '255717111111',
 					'email' => 'nellyocs90@gmail.com',
 					'password' => bcrypt('niajiri@qwerty'),
+					'verified' => true
 				],
 			];
 

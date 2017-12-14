@@ -80,6 +80,7 @@ class OrganizationController extends SecureController
     {
         //ensure default values
         $request->merge([
+            'verified' => true,
             'type' => User::TYPE_ORGANIZATION,
             'password' => $request->input('password', config('auth.defaults.password')),
             'password_confirmation' => $request->input('password_confirmation', config('auth.defaults.password')),

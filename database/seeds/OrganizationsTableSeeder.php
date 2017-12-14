@@ -30,6 +30,7 @@ class OrganizationsTableSeeder extends Seeder {
 				'summary' => 'A highly motivated and best place to work',
 				'country' => 'Tanzania',
 				'state' => 'Dar es Salaam',
+				'verified' => true
 			]);
 			$organization->detachRoles();
 			$organization->save();
