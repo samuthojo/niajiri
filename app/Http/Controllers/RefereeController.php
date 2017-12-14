@@ -52,6 +52,9 @@ class RefereeController extends SecureController {
 	 */
 	public function store(Request $request) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid referee
 		$this->validate($request, [
 			'name' => 'required|string',
@@ -59,12 +62,14 @@ class RefereeController extends SecureController {
 			'organization' => 'required|string',
 			'email' => 'required|email',
 			'mobile' => 'required|string',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all referee form inputs
 		$body = $request->all();
-    $body['project_id'] = $request->session()->get('project_id');
+
+		//TODO ensure project id etc?
+		$body['project_id'] = $request->session()->get('project_id');
 
 		//create referee
 		$referee = Referee::create($body);
@@ -73,10 +78,7 @@ class RefereeController extends SecureController {
 		flash(trans('referees.actions.save.flash.success'))
 			->success()->important();
 
-		//redirect to show referee
-		return redirect()->route('referees.index', [
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -132,6 +134,9 @@ class RefereeController extends SecureController {
 	 */
 	public function update(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid referee
 		$this->validate($request, [
 			'name' => 'required|string',
@@ -139,7 +144,7 @@ class RefereeController extends SecureController {
 			'organization' => 'required|string',
 			'email' => 'required|email',
 			'mobile' => 'required|string',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all referee form inputs
@@ -155,10 +160,7 @@ class RefereeController extends SecureController {
 		flash(trans('referees.actions.update.flash.success'))
 			->success()->important();
 
-		//redirect to show referee
-		return redirect()->route('referees.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -170,14 +172,15 @@ class RefereeController extends SecureController {
 	 */
 	public function destroy(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		Referee::destroy($id);
 
 		//flash message
 		flash(trans('referees.actions.delete.flash.success'))
 			->success()->important();
 
-		return redirect()->route('referees.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 }

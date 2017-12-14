@@ -7,7 +7,8 @@
 {{--end applicant id--}}
 
 {{-- start name --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="row">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
         <label for="name" title="{{ trans('referees.inputs.name.description') }}">
             {{trans('referees.inputs.name.label')}}
@@ -30,7 +31,7 @@
 {{-- end name --}}
 
 {{-- start title --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
         <label for="title" title="{{ trans('referees.inputs.title.description') }}">
             {{trans('referees.inputs.title.label')}}
@@ -51,10 +52,12 @@
     </div>
 </div>
 {{-- end title --}}
+</div>
 
 
+<div class="row">
 {{-- start organization --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('organization') ? 'has-error' : ''}}">
         <label for="organization" title="{{ trans('referees.inputs.organization.description') }}">
             {{trans('referees.inputs.organization.label')}}
@@ -78,7 +81,7 @@
 
 
 {{-- start email --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
         <label for="email" title="{{ trans('referees.inputs.email.description') }}">
             {{trans('referees.inputs.email.label')}}
@@ -99,9 +102,11 @@
     </div>
 </div>
 {{-- end email --}}
+</div>
 
+<div class="row">
 {{-- start mobile --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('mobile') ? 'has-error' : ''}}">
         <label for="mobile" title="{{ trans('referees.inputs.mobile.description') }}">
             {{trans('referees.inputs.mobile.label')}}
@@ -124,7 +129,7 @@
 {{-- end mobile --}}
 
 {{-- start alternative_mobile --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('alternative_mobile') ? 'has-error' : ''}}">
         <label for="alternative_mobile" title="{{ trans('referees.inputs.alternative_mobile.description') }}">
             {{trans('referees.inputs.alternative_mobile.label')}}
@@ -144,6 +149,6 @@
     </div>
 </div>
 {{-- end alternative_mobile --}}
-
+</div>
 
 {{-- end referee form --}}

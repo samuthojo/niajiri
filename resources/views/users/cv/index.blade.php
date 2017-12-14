@@ -47,10 +47,14 @@
 {{-- end page content --}}
 
 {{-- start include modals--}}
+@include('users.cv.blocks.creates.referee_modal')
 @include('users.cv.blocks.edits.skills_modal')
 @include('users.cv.blocks.edits.hobbies_modal')
 @include('users.cv.blocks.edits.interests_modal')
 @include('users.cv.blocks.edits.extra_curriculars_modal')
+@foreach($user->referees as $referee)
+@include('users.cv.blocks.edits.referee_modal', ['referee' => $referee])
+@endforeach
 {{-- end include modals--}}
 
 @endsection

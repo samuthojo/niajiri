@@ -76,6 +76,9 @@
 	<div class="col-md-6">
 		<h2 title="{{trans('cvs.headers.referees.title')}}">
 			{{trans('cvs.headers.referees.name')}}
+			<a class="btn btn-white btn-xs pull-right" title="" data-toggle="modal" data-target="#user-referees-modal">
+                	<span class="fa fa-plus" aria-hidden="true"/>
+                </a>
 		</h2>
 		<hr class="hr-line-solid" />
 		@if($user->referees && $user->referees->count() > 0)
@@ -102,6 +105,26 @@
                     </a>
 	            </span>
 	            @endif
+	            
+	            {{--start delete action--}}
+                {!! Form::open([
+                        'method'=>'DELETE',
+                        'url' => route('referees.destroy', ['id' => $referee->id, 'applicant_id'=> $referee->applicant_id]),
+                        'style' => 'display:inline'
+                    ]) !!}
+                        {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
+                                'type' => 'submit',
+                                'class' => 'btn btn-danger btn-xs pull-right',
+                                'title' => trans('referees.actions.delete.title'),
+                                'onclick'=>'return confirm("Confirm Delete?")'
+                        ]) !!}
+                    {!! Form::close() !!}
+                    {{--start delete action--}}
+                    {{--start edit action--}}
+	                <a class="btn btn-white btn-xs pull-right m-r-sm" title="" data-toggle="modal" data-target="#user-edit-referees-modal-{{$referee->id}}">
+	                	<span class="fa fa-pencil" aria-hidden="true"/>
+	                </a>
+	                {{--end edit action--}}
 	            </h5>
 				<hr class="hr-line-dashed" />
 			</div>

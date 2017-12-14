@@ -437,6 +437,7 @@ class UserController extends SecureController {
 			'route_description' => $user->fullName() . ' - CV',
 			'user' => $user,
 			'instance' => $user,
+			'applicant_id' => $user->id,
 		];
 
 		return view('users.cv.index', $data);
@@ -473,6 +474,6 @@ class UserController extends SecureController {
 		flash(trans('cvs.actions.save.flash.success'))
 			->success()->important();
 
-		return redirect()->route('users.cv');
+		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 }
