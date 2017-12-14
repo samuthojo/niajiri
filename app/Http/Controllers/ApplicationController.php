@@ -65,43 +65,31 @@ class ApplicationController extends SecureController {
 
 		if (!$applicant->hasBasicDetails()) {
 			flash(trans('cvs.messages.basic'))->warning()->important();
-			return redirect()->route('users.basic');
+			return redirect()->route('users.cv', ['id' => $applicant->id]);
 		}
 
 		//ensure education details
 		else if ($applicant->educations->count() === 0) {
 			flash(trans('cvs.messages.educations'))->warning()->important();
-			return redirect()->route('educations.index', [
-				'applicant_id' => $applicant->id,
-				'project_id' => Session::get('project_id'),
-			]);
+			return redirect()->route('users.cv', ['id' => $applicant->id]);
 		}
 
 		//ensure experience details
 		else if ($applicant->experiences->count() === 0) {
 			flash(trans('cvs.messages.experiences'))->warning()->important();
-			return redirect()->route('experiences.index', [
-				'applicant_id' => $applicant->id,
-				'project_id' => Session::get('project_id'),
-			]);
+			return redirect()->route('users.cv', ['id' => $applicant->id]);
 		}
 
 		//ensure language details
 		else if ($applicant->languages->count() === 0) {
 			flash(trans('cvs.messages.languages'))->warning()->important();
-			return redirect()->route('languages.index', [
-				'applicant_id' => $applicant->id,
-				'project_id' => Session::get('project_id'),
-			]);
+			return redirect()->route('users.cv', ['id' => $applicant->id]);
 		}
 
 		//ensure referee details
 		else if ($applicant->referees->count() === 0) {
 			flash(trans('cvs.messages.referees'))->warning()->important();
-			return redirect()->route('referees.index', [
-				'applicant_id' => $applicant->id,
-				'project_id' => Session::get('project_id'),
-			]);
+			return redirect()->route('users.cv', ['id' => $applicant->id]);
 		}
 
 		//merge applicant details
