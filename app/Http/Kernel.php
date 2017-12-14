@@ -66,5 +66,8 @@ class Kernel extends HttpKernel
 
         //route view bindings
         'routeViewBindings' => \App\Http\Middleware\RouteViewBindings::class,
+
+        //user verification
+        'isVerified' => \App\Http\Middleware\IsVerified::class,
     ];
 }

@@ -26,7 +26,15 @@
 
 			<button type="submit" class="btn btn-primary block full-width m-b">Signin</button>
 
-			<p class="text-muted text-center"><small>OR</small></p>
+			<a href="{{route('password.request')}}"><small>Forgot password?</small></a>
+
+			{{-- <p class="text-muted text-center"><small>OR</small></p> --}}
+
+			<p class="text-muted text-center"><small>Do not have an account?</small></p>
+
+			{{-- start register --}}
+			<a class="btn btn-white btn-block full-width m-b" href="{{route('register')}}" title="Click to create new account">Create an Account</a>
+			{{-- end register --}}
 
 			{{-- start social signin --}}
 

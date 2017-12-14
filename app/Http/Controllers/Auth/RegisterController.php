@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Jrean\UserVerification\Facades\UserVerification;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
 
 class RegisterController extends Controller
 {
@@ -22,12 +28,15 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    use RegistersUsers;
+    use VerifiesUsers;
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -36,7 +45,10 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        parent::__construct();
+        $this->redirectTo = config('auth.defaults.redirect');
+        $this->redirectAfterVerification = config('auth.defaults.login');
+        $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
     }
 
     /**
@@ -50,6 +62,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'mobile' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,9 +76,43 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'type' => User::TYPE_APPLICANT,
             'name' => $data['name'],
             'email' => $data['email'],
+            'mobile' => $data['mobile'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+         //assing applicant role by default if no role at all
+        if($user->roles->count() === 0){
+            $roles = Role::where('name', Role::APPLICANT)->get();
+            $user->detachRoles();
+            $user->save();
+            $user->attachRoles($roles);
+            $user->save();
+        }
+
+        event(new Registered($user));
+
+        //TODO use queue to send email
+        UserVerification::generate($user);
+        UserVerification::send($user, trans('auth.verify_account'));
+
+        //redirect to login page
+        return redirect(config('auth.defaults.login'));
+
     }
 }

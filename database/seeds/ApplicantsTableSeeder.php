@@ -43,6 +43,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'extracurricular_activities' => 'Bodybuilding, Cheerleading, Cycling, Fencing',
 				'country' => 'Tanzania',
 				'state' => 'Arusha',
+				'verified' => true
 			]);
 			$applicant->detachRoles();
 			$applicant->save();
@@ -267,6 +268,7 @@ class ApplicantsTableSeeder extends Seeder {
 				'extracurricular_activities' => 'Bodybuilding, Cheerleading, Cycling, Fencing',
 				'country' => 'Tanzania',
 				'state' => 'Arusha',
+				'verified' => true
 			]);
 			$applicant->detachRoles();
 			$applicant->save();

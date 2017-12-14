@@ -17,7 +17,8 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
         'redirect' => '/home',
-        'password' => 'guest'
+        'password' => 'guest',
+        'login' => 'login',
     ],
 
     /*

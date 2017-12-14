@@ -14,6 +14,7 @@
         "felixkiss/uniquewith-validator": "^3.1",
         "fideloper/proxy": "~3.3",
         "infyomlabs/laravel-generator": "5.5.x-dev",
+        "jrean/laravel-user-verification": "^5.0",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",

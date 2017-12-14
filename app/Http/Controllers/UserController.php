@@ -59,6 +59,7 @@ class UserController extends SecureController {
 
 		//merge defaults
 		$request->merge([
+			'verified' => true,
 			'roles' => $request->input('roles', []),
 			'password' => $request->input('password', config('auth.defaults.password')),
 			'password_confirmation' => $request->input('password_confirmation', config('auth.defaults.password')),
