@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Jrean\UserVerification\Facades\UserVerification;
+use Jrean\UserVerification\Traits\VerifiesUsers;
 
 class RegisterController extends Controller
 {
@@ -22,12 +24,15 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    use RegistersUsers;
+    use VerifiesUsers;
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -36,7 +41,10 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        parent::__construct();
+        $this->redirectTo = Config::get('auth.defaults.redirect');
+        $this->redirectAfterVerification = Config::get('auth.defaults.login');
+        $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
     }
 
     /**
@@ -67,5 +75,28 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        event(new Registered($user));
+
+        //TODO use queue to send email
+        UserVerification::generate($user);
+        UserVerification::send($user, trans('auth.verify_account'));
+
+        //redirect to login page
+        return redirect(Config::get('auth.defaults.login'));
+        
     }
 }
