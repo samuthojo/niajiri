@@ -419,4 +419,60 @@ class UserController extends SecureController {
 
 		return view('users.resume.index', $data);
 	}
+
+
+	/**
+	 * Display current user cv
+	 * @return \Illuminate\Http\Response
+	 */
+	public function get_cv(Request $request, $id = null) {
+		//load actual current user
+		$id = is_set($id) ? $id : \Auth::user()->id;
+		$user = User::query()->findOrFail($id);
+
+		$application = Application::find($request->input('application_id'));
+
+		$data = [
+			'route_title' => $user->fullName() . ' - CV',
+			'route_description' => $user->fullName() . ' - CV',
+			'user' => $user,
+			'instance' => $user,
+		];
+
+		return view('users.cv.index', $data);
+	}
+
+	/**
+	 * Quick edit current user basic details(or cv details)
+	 * @return \Illuminate\Http\Response
+	 */
+	public function post_edits(Request $request) {
+
+		//obtain current user id
+		$id = \Auth::user()->id;
+
+		//obtain user updates from form input
+		$body = $request->all();
+
+		//reload current user
+		$user = User::findOrFail($id);
+
+		//update user
+		$user->update($body);
+
+		//upload & store user avatar
+		if ($user && $request->hasFile('avatar')) {
+			//clear existing avatar
+			$user->clearMediaCollection('avatars');
+			//attach new avatar
+			$user->addMediaFromRequest('avatar')
+				->toMediaCollection('avatars');
+		}
+
+		//flash message
+		flash(trans('cvs.actions.save.flash.success'))
+			->success()->important();
+
+		return redirect()->route('users.cv');
+	}
 }

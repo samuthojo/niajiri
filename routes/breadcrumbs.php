@@ -89,9 +89,14 @@ Breadcrumbs::register('users.basic', function ($breadcrumbs) {
 	$breadcrumbs->push('Basic Details', route('users.basic'));
 });
 
-//User Resume/CV
+//User Resume
 Breadcrumbs::register('users.resume', function ($breadcrumbs, $instance) {
 	$breadcrumbs->push($instance->fullName() . ' - Resume', route('users.resume', $instance->id));
+});
+
+//User CV
+Breadcrumbs::register('users.cv', function ($breadcrumbs, $instance) {
+	$breadcrumbs->push($instance->fullName() . ' - CV', route('users.cv', $instance->id));
 });
 
 // -------------------Roles Breadcrumbs--------------------------------------

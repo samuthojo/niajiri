@@ -93,6 +93,16 @@
                 </a>
             </li>
 	        {{-- end open positions --}}
+	        {{-- start my cv --}}
+	        <li class="{{areActiveRoutes([
+		        	'users.cv'
+				])}}">
+                <a href="{{route('users.cv', ['id' => Auth::user()->id])}}">
+                	<i class="fa fa-address-card-o"></i>
+	            	<span class="nav-label">My CV</span>
+                </a>
+            </li>
+	        {{-- end my cv --}}
 	        {{-- end applicant menu --}}
 
 	        {{-- start cv management --}}

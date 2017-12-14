@@ -94,7 +94,7 @@ $actionUrl = route('email-verification.check', $user->verification_token) . '?em
 
                                         <!-- Intro -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            You are receiving this email because you have created account in {{config('app.name')}}.
+                                            You are receiving this email because you have created an account with {{config('app.name')}}. To proceed with your application, please verify your account below.
                                         </p>
 
                                         <!-- Action Button -->
@@ -116,7 +116,7 @@ $actionUrl = route('email-verification.check', $user->verification_token) . '?em
 
                                         <!-- Outro -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            If you did not create account with us, no further action is required.
+                                            If you did not create an account with us, no further action is required.
                                         </p>
 
                                         <!-- Salutation -->
