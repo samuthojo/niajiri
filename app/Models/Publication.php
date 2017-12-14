@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Carbon\Carbon;
+
 
 class Publication extends Model
 {
@@ -62,6 +64,21 @@ class Publication extends Model
             'applicant_publication.summary' => 5,
         ],
     ];
+
+    /**
+     * Get and format published_at for forms.
+     *
+     * @param  string  $value
+     * @return string
+     * @see https://laravelcollective.com/docs/5.4/html#form-model-binding
+     */
+    public function formPublishedAtAttribute($value) {
+        if (is_set($value)) {
+            $value = Carbon::parse($value);
+            $value = $value->format(config('app.datepicker_parse_format'));
+        }
+        return $value;
+    }
 
 
     /**

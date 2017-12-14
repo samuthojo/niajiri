@@ -41,6 +41,9 @@
 	<div class="col-md-6">
 		<h2 title="{{trans('cvs.headers.publications.title')}}">
 			{{trans('cvs.headers.publications.name')}}
+			<a class="btn btn-white btn-xs pull-right" title="" data-toggle="modal" data-target="#user-publications-modal">
+                	<span class="fa fa-plus" aria-hidden="true"/>
+                </a>
 		</h2>
 		<hr class="hr-line-solid" />
 		@if($user->publications && $user->publications->count() > 0)
@@ -59,11 +62,30 @@
                     </span> 
                 </h5>
                 <h5 title="{{trans('publications.inputs.summary.description')}}">
-                	Publication Summary
-                	<br/>
-                	<h6 title="{{trans('publications.inputs.summary.description')}}">
+                	
+                	<span title="{{trans('publications.inputs.summary.description')}}">
                 		{!! $publication->summary !!}
-                	</h6>
+                	</span>
+                	
+                	{{--start delete action--}}
+	                {!! Form::open([
+                        'method'=>'DELETE',
+                        'url' => route('publications.destroy', ['id' => $publication->id, 'applicant_id'=> $publication->applicant_id]),
+                        'style' => 'display:inline'
+                    ]) !!}
+                        {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
+                                'type' => 'submit',
+                                'class' => 'btn btn-danger btn-xs pull-right',
+                                'title' => trans('publications.actions.delete.title'),
+                                'onclick'=>'return confirm("Confirm Delete?")'
+                        ]) !!}
+                    {!! Form::close() !!}
+                    {{--start delete action--}}
+                    {{--start edit action--}}
+	                <a class="btn btn-white btn-xs pull-right m-r-sm" title="" data-toggle="modal" data-target="#user-edit-publications-modal-{{$publication->id}}">
+	                	<span class="fa fa-pencil" aria-hidden="true"/>
+	                </a>
+	                {{--end edit action--}}
                 </h5>
 				<hr class="hr-line-dashed" />
 			</div>

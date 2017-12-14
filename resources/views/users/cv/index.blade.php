@@ -47,6 +47,7 @@
 {{-- end page content --}}
 
 {{-- start include modals--}}
+@include('users.cv.blocks.creates.publication_modal')
 @include('users.cv.blocks.creates.referee_modal')
 @include('users.cv.blocks.edits.skills_modal')
 @include('users.cv.blocks.edits.hobbies_modal')
@@ -54,6 +55,9 @@
 @include('users.cv.blocks.edits.extra_curriculars_modal')
 @foreach($user->referees as $referee)
 @include('users.cv.blocks.edits.referee_modal', ['referee' => $referee])
+@endforeach
+@foreach($user->publications as $publication)
+@include('users.cv.blocks.edits.publication_modal', ['publication' => $publication])
 @endforeach
 {{-- end include modals--}}
 

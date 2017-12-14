@@ -6,8 +6,9 @@
 @endif
 {{--end applicant id--}}
 
+<div class="row">
 {{-- start title --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
         <label for="title" title="{{ trans('publications.inputs.title.description') }}">
             {{trans('publications.inputs.title.label')}}
@@ -31,7 +32,7 @@
 
 
 {{-- start publisher --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('publisher') ? 'has-error' : ''}}">
         <label for="publisher" title="{{ trans('publications.inputs.publisher.description') }}">
             {{trans('publications.inputs.publisher.label')}}
@@ -52,10 +53,11 @@
     </div>
 </div>
 {{-- end publisher --}}
+</div>
 
-
+<div class="row">
 {{-- start summary --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
         <label for="summary" title="{{ trans('publications.inputs.summary.description') }}">
             {{trans('publications.inputs.summary.label')}}
@@ -78,7 +80,7 @@
 {{-- end summary --}}
 
 {{-- start published_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('published_at') ? 'has-error' : ''}}">
         <label for="published_at" title="{{ trans('publications.inputs.published_at.description') }}">
             {{trans('publications.inputs.published_at.label')}}
@@ -101,6 +103,6 @@
     </div>
 </div>
 {{-- end published_at --}}
-
+</div>
 
 {{-- end publication form --}}
