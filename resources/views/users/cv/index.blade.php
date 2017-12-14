@@ -47,10 +47,10 @@
 {{-- end page content --}}
 
 {{-- start include modals--}}
-@include('users.cv.blocks.skills_modal')
-@include('users.cv.blocks.hobbies_modal')
-@include('users.cv.blocks.interests_modal')
-@include('users.cv.blocks.extra_curriculars_modal')
+@include('users.cv.blocks.edits.skills_modal')
+@include('users.cv.blocks.edits.hobbies_modal')
+@include('users.cv.blocks.edits.interests_modal')
+@include('users.cv.blocks.edits.extra_curriculars_modal')
 {{-- end include modals--}}
 
 @endsection
