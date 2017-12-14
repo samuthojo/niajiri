@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration {
 			$table->string('sector')->index()->nullable();
 			$table->string('secondary_email')->index()->nullable();
 			$table->string('website')->index()->nullable();
-			$table->string('mobile')->index()->unique();
+			$table->string('mobile')->index()->unique()->nullable();
 			$table->string('alternative_mobile')->index()->nullable();
 			$table->string('landline')->index()->nullable();
 			$table->string('fax')->index()->nullable();

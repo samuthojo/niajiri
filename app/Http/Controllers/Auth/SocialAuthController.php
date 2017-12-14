@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Session;
 use Socialite;
 
+
 class SocialAuthController extends Controller
 {
 
@@ -49,6 +50,10 @@ class SocialAuthController extends Controller
             return Socialite::driver('linkedin')->redirect();
         }
 
+         if ($providerName == 'yahoo') {
+            return Socialite::driver('yahoo')->redirect();
+        }
+
         Session::flash('error', 'Provider does not support.');
         return redirect($this->redirectUri);
     }
@@ -71,7 +76,8 @@ class SocialAuthController extends Controller
         }
 
         if ($providerName == 'facebook' || $providerName == 'google' ||
-            $providerName == 'twitter' || $providerName == 'linkedin') {
+            $providerName == 'twitter' || $providerName == 'linkedin' || 
+            $providerName == 'yahoo') {
             return $this->callback($providerName);
         }
 
