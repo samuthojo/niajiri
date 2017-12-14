@@ -88,17 +88,19 @@ class PositionController extends SecureController
     {
         $input = $request->all();
 
-        $project = $this->projectRepository->findWithoutFail($request['project_id']);
+        $project_id = $request['project_id'];
+
+        $project = $this->projectRepository->findWithoutFail($project_id);
 
         $input['organization_id'] = $project->organization_id;
         $input['dueAt'] = $project->endedAt;
         $input['publishedAt']  = $project->startedAt;
 
-        $position = $this->positionRepository->create($input);
+        $position = Position::create($input);
 
         Flash::success('Position saved successfully.');
 
-        return redirect(route('positions.index'));
+        return redirect(route('projects.show',['id' => $project->id]));
     }
 
     /**
@@ -166,7 +168,7 @@ class PositionController extends SecureController
      */
     public function update($id, UpdatePositionRequest $request)
     {
-        $position = $this->positionRepository->findWithoutFail($id);
+        $position = Position::find($id);
 
         if (empty($position)) {
             Flash::error('Position not found');
@@ -176,11 +178,11 @@ class PositionController extends SecureController
 
         $project = $this->projectRepository->findWithoutFail($request['project_id']);
         $request['organization_id'] = $project->organization_id;
-        $position = $this->positionRepository->update($request->all(), $id);
+        $position_new = $position->update($request->all());
 
         Flash::success('Positon was updated successfully');
 
-        return redirect(route('positions.index'));
+        return redirect(route('positions.show',['id' => $id]));
     }
 
     /**
@@ -204,7 +206,7 @@ class PositionController extends SecureController
 
         Flash::success('Position deleted successfully.');
 
-        return redirect(route('positions.index'));
+        return redirect()->back();
     }
 
 

@@ -82,6 +82,12 @@ return [
             'header' => 'Project identifier',
             'description' => 'identifier name of the Project cocaCola, use camelCase no space. and can not be changed',
         ],
+        'summary' => [
+    			'label' => 'Summary',
+    			'placeholder' => 'Summary',
+    			'header' => 'Summary',
+    			'description' => 'Full Summary of the Project.',
+    		],
         'organization' => [
             'label' => 'Organization',
             'placeholder' => 'Organization',

@@ -1,17 +1,5 @@
 @foreach($position->stages as $index => $stage)
 <div role="tabpanel" @if($index == 0) class="tab-pane active" @else class="tab-pane" @endif id="tab-{{ $stage->number }}">
-  {{-- start positions create --}}
-  @permission('create:stage')
-    <div class="row m-t-md">
-        <div class="col-sm-8 m-b-xs">
-            <div class="btn-group">
-                <a href="{{route('positions.stages.create',['id' => $position->id])}}" class="btn btn-sm btn-white" role="button" title="{{ trans('stages.actions.create.title') }}">
-                <i class="fa fa-plus"></i> {{ trans('stages.actions.create.name') }}</a>
-            </div>
-        </div>
-    </div>
-  @endpermission
-  {{-- end positions create --}}
   <div class="row">
       <div class="col-md-12">
         <div class="m-b-md pull-right">

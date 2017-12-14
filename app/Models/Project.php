@@ -37,6 +37,7 @@ class Project extends Model
     public $fillable = [
         'name',
         'slug',
+        'summary',
         'startedAt',
         'status',
         'endedAt',
@@ -51,6 +52,8 @@ class Project extends Model
     protected $casts = [
         'id' => 'string',
         'name' => 'string',
+        'slug' => 'string',
+        'summary' => 'string',
         'startedAt' => 'date',
         'endedAt' => 'date',
         'status' => 'string',

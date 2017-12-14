@@ -46,6 +46,27 @@
     </div>
 </div>
 {{-- end name --}}
+{{-- start summary --}}
+<div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
+    <div class="col-md-offset-3 col-md-6">
+        {!! Form::textarea('summary', null, [
+            'class' => 'form-control',
+            'rows' => 2,
+            'aria-describedby'=> 'positionSummaryHelpBlock',
+            'placeholder' => trans('projects.inputs.summary.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('summary'))
+        {!!
+            $errors->first('summary', '<p class="help-block">:message</p>')
+        !!}
+        @else
+            <p id="positionNameHelpBlock" class="help-block">
+                {{ trans('projects.inputs.summary.description') }}
+            </p>
+        @endif
+    </div>
+</div>
+{{-- end summary --}}
 
 {{-- start organization --}}
 <div class="form-group {{ $errors->has('organization') ? 'has-error' : ''}}">

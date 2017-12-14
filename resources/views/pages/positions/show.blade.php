@@ -41,10 +41,44 @@
                                         <h1 class="font-bold">{{$position->title}}</h1>
                                     </div>
                                     <div class="col-lg-9" id="cluster_info">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                      {{-- start position summary --}}
+                                      <div class="m-t-sm">
+                                          <h3>Description</h3>
+                                          <div class="small text-muted">
+                                              {!! $position->summary !!}
+                                          </div>
+                                      </div>
+                                      {{-- end position summary --}}
+
+                                      {{-- start position responsibilities --}}
+                                      <div class="m-t-sm">
+                                          <h3>Responsibilities</h3>
+                                          <div class="small text-muted">
+                                              {!! $position->responsibilities !!}
+                                          </div>
+                                      </div>
+                                      {{-- end position responsibilities --}}
+
+                                      {{-- start position requirements --}}
+                                      <div class="m-t-sm">
+                                          <h3>Requirements</h3>
+                                          <div class="small text-muted">
+                                              {!! $position->requirements !!}
+                                          </div>
+                                      </div>
+                                      {{-- end position requirements --}}
                                     </div>
                                 </div>
+                                {{-- start positions create --}}
+                                @permission('create:stage')
+                                  <div class="col-lg-12 m-b-xs m-t-xs">
+                                      <div class="btn-group">
+                                          <a href="{{route('positions.stages.create',['id' => $position->id])}}" class="btn btn-sm btn-white" role="button" title="{{ trans('stages.actions.create.title') }}">
+                                          <i class="fa fa-plus"></i> {{ trans('stages.actions.create.name') }}</a>
+                                      </div>
+                                  </div>
+                                @endpermission
+                                {{-- end positions create --}}
                                 <div class="row m-t-sm">
                                     <div class="col-lg-12">
                                     <div class="panel blank-panel">
