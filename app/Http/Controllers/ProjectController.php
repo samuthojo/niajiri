@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Position;
+use App\Models\Project;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\ProjectRepository;
@@ -77,6 +78,7 @@ class ProjectController extends SecureController
         $project = $this->projectRepository->create([
           'name' => Input::get('name'),
           'slug' => Input::get('slug'),
+          'summary' => Input::get('summary'),
           'organization_id' => Input::get('organization_id'),
           'startedAt' => Input::get('endedAt'),
           'endedAt' => Input::get('endedAt')

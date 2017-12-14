@@ -24,7 +24,11 @@
               <h1 class="font-bold text-black">
                   {{$item->title}}
               </h1>
+              @if(!empty($item->firstStage()))
               <h3>Current Stage: <span class="text-navy">{{$item->firstStage()->name}}</span></h3>
+              @else
+              <h3>Current Stage: <span class="text-navy">No Stages</span></h3>
+              @endif
               <hr>
               <div class="col-12">
                 <a href="{{ route('positions.show', ['id' => $item->id]) }}"  class="btn btn-block btn-primary m-t-n-xs"><strong>View</strong></a>

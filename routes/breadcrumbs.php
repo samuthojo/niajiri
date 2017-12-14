@@ -357,9 +357,9 @@ Breadcrumbs::register('positions.create', function ($breadcrumbs) {
 	$breadcrumbs->push('Create Position', route('positions.create'));
 });
 
-// Home > Positions > [Position Title]
+// Home > project > [Position Title]
 Breadcrumbs::register('positions.show', function ($breadcrumbs, $instance) {
-	$breadcrumbs->parent('positions.index');
+	$breadcrumbs->push($instance->project->name, route('projects.show', $instance->project_id));
 	$breadcrumbs->push($instance->title, route('positions.show', $instance->id));
 });
 
@@ -390,7 +390,7 @@ Breadcrumbs::register('projects.create', function ($breadcrumbs) {
 
 // Home > Projects > [Project Title]
 Breadcrumbs::register('projects.show', function ($breadcrumbs, $instance) {
-	$breadcrumbs->parent('projects.index');
+	$breadcrumbs->push($instance->organization->name, route('organizations.show', $instance->organization_id));
 	$breadcrumbs->push($instance->name, route('projects.show', $instance->id));
 });
 
