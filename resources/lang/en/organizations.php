@@ -79,6 +79,12 @@ return [
             'header' => 'Name',
             'description' => 'Full Name of the Client e.g Vodacom PLC etc.',
         ],
+        'slug' => [
+            'label' => 'Organisation Subdmain',
+            'placeholder' => 'Organisation Subdomain',
+            'header' => 'Organisation Subdomain',
+            'description' => 'Subdomain name of the Organisation cocaCola, use camelCase or small letter and no space.It can not be changed',
+        ],
         'contact_person' => [
             'label' => 'Contact Person',
             'placeholder' => 'Contact Person',

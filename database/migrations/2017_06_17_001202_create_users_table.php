@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration {
 			$table->string('postal_address')->index()->nullable();
 			$table->text('summary')->nullable();
 			$table->string('password')->nullable();
+      $table->string('slug')->nullable();
 			$table->string('avatar')->nullable(); //placeholder for direct avatar url
 			$table->boolean('verified')->default(false);
 			$table->rememberToken();

@@ -19,6 +19,7 @@ class OrganizationsTableSeeder extends Seeder {
 				'summary' => 'Telecommunication Company',
 				'mobile' => '255715789878',
 				'fax' => '255715789878',
+        'slug' => 'vodacom',
 				'landline' => '255715789878',
 				'landline' => '255715789878',
 				'website' => 'https://vodacom.co.tz',
