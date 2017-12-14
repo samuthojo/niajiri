@@ -6,8 +6,9 @@
 @endif
 {{--end applicant id--}}
 
+<div class="row">
 {{-- start title --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
         <label for="title" title="{{ trans('achievements.inputs.title.description') }}">
             {{trans('achievements.inputs.title.label')}}
@@ -31,7 +32,7 @@
 
 
 {{-- start organization --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('organization') ? 'has-error' : ''}}">
         <label for="organization" title="{{ trans('achievements.inputs.organization.description') }}">
             {{trans('achievements.inputs.organization.label')}}
@@ -52,10 +53,11 @@
     </div>
 </div>
 {{-- end organization --}}
+</div>
 
-
+<div class="row">
 {{-- start summary --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
         <label for="summary" title="{{ trans('achievements.inputs.summary.description') }}">
             {{trans('achievements.inputs.summary.label')}}
@@ -77,8 +79,9 @@
 </div>
 {{-- end summary --}}
 
+
 {{-- start issued_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('issued_at') ? 'has-error' : ''}}">
         <label for="issued_at" title="{{ trans('achievements.inputs.issued_at.description') }}">
             {{trans('achievements.inputs.issued_at.label')}}
@@ -103,9 +106,11 @@
     </div>
 </div>
 {{-- end issued_at --}}
+</div>
 
+<div class="row">
 {{-- start attachment edit --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-12 m-t-md">
     <div class="form-group m-b-lg {{ $errors->has('attachment') ? 'has-error' : ''}}">
         <div class="edit-profile-photo edit-profile-photo-cv">
             <img src="{{url('/images/attachment.jpg') }}" alt="{{trans('achievements.inputs.attachment.placeholder')}}" class="img-thumbnail"
@@ -122,6 +127,6 @@
     </div>
 </div>
 {{-- end attachment edit --}}
-
+</div>
 
 {{-- end achievement form --}}

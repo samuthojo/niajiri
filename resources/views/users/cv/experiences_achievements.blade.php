@@ -5,6 +5,9 @@
 	<div class="col-md-6">
 		<h2 title="{{trans('cvs.headers.experiences.title')}}">
 			{{trans('cvs.headers.experiences.name')}}
+			<a class="btn btn-white btn-xs pull-right" title="" data-toggle="modal" data-target="#user-experiences-modal">
+                	<span class="fa fa-plus" aria-hidden="true"/>
+                </a>
 		</h2>
 		<hr class="hr-line-solid" />
 		@if($user->experiences && $user->experiences->count() > 0)
@@ -35,11 +38,28 @@
                     </span>
                 </h5>
                 <h5 title="{{trans('experiences.inputs.summary.description')}}">
-                	Work Summary
-                	<br/>
-                	<h6 title="{{trans('experiences.inputs.summary.description')}}">
+                	<span title="{{trans('experiences.inputs.summary.description')}}">
                 		{!! $experience->summary !!}
-                	</h6>
+                	</span>
+                	 {{--start delete action--}}
+	                {!! Form::open([
+                        'method'=>'DELETE',
+                        'url' => route('experiences.destroy', ['id' => $experience->id, 'applicant_id'=> $experience->applicant_id]),
+                        'style' => 'display:inline'
+                    ]) !!}
+                        {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
+                                'type' => 'submit',
+                                'class' => 'btn btn-danger btn-xs pull-right',
+                                'title' => trans('experiences.actions.delete.title'),
+                                'onclick'=>'return confirm("Confirm Delete?")'
+                        ]) !!}
+                    {!! Form::close() !!}
+                    {{--start delete action--}}
+                    {{--start edit action--}}
+	                <a class="btn btn-white btn-xs pull-right m-r-sm" title="" data-toggle="modal" data-target="#user-edit-experiences-modal-{{$experience->id}}">
+	                	<span class="fa fa-pencil" aria-hidden="true"/>
+	                </a>
+	                {{--end edit action--}}
                 </h5>
 				<hr class="hr-line-dashed" />
 			</div>
@@ -52,6 +72,9 @@
 	<div class="col-md-6">
 		<h2 title="{{trans('cvs.headers.achievements.title')}}">
 			{{trans('cvs.headers.achievements.name')}}
+			<a class="btn btn-white btn-xs pull-right" title="" data-toggle="modal" data-target="#user-achievements-modal">
+                	<span class="fa fa-plus" aria-hidden="true"/>
+                </a>
 		</h2>
 		<hr class="hr-line-solid" />
 		@if($user->achievements && $user->achievements->count() > 0)
@@ -70,12 +93,41 @@
                     </span> 
                 </h5>
                 <h5 title="{{trans('achievements.inputs.summary.description')}}">
-                	Brief Summary
-                	<br/>
-                	<h6 title="{{trans('achievements.inputs.summary.description')}}">
+                	<span title="{{trans('achievements.inputs.summary.description')}}">
                 		{!! $achievement->summary !!}
-                	</h6>
+                	</span>
+
+                	{{--start delete action--}}
+	                {!! Form::open([
+                        'method'=>'DELETE',
+                        'url' => route('achievements.destroy', ['id' => $achievement->id, 'applicant_id'=> $achievement->applicant_id]),
+                        'style' => 'display:inline'
+                    ]) !!}
+                        {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
+                                'type' => 'submit',
+                                'class' => 'btn btn-danger btn-xs pull-right',
+                                'title' => trans('achievements.actions.delete.title'),
+                                'onclick'=>'return confirm("Confirm Delete?")'
+                        ]) !!}
+                    {!! Form::close() !!}
+                    {{--start delete action--}}
+                    {{--start edit action--}}
+	                <a class="btn btn-white btn-xs pull-right m-r-sm" title="" data-toggle="modal" data-target="#user-edit-achievements-modal-{{$achievement->id}}">
+	                	<span class="fa fa-pencil" aria-hidden="true"/>
+	                </a>
+	                {{--end edit action--}}
                 </h5>
+                {{--start display attachment--}}
+            	@if($achievement->attachment())
+                <h5>
+                	<i class="fa fa-paperclip"></i> 
+                    <span>
+                        <a href="{{$achievement->attachment()->public_url()}}" target="_blank">
+                            {{$achievement->attachment()->file_name}}
+                        </a>
+                    </span>
+                </h5>
+                @endif
 				<hr class="hr-line-dashed" />
 			</div>
 			@endforeach

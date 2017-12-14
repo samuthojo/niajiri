@@ -52,6 +52,9 @@ class ExperienceController extends SecureController {
 	 */
 	public function store(Request $request) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid experience
 		$this->validate($request, [
 			'position' => 'required|string',
@@ -61,12 +64,12 @@ class ExperienceController extends SecureController {
 			'started_at' => 'required',
 			'ended_at' => 'required',
 			'location' => 'required|string',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all experience form inputs
 		$body = $request->all();
-    $body['project_id'] = $request->session()->get('project_id');
+		$body['project_id'] = $request->session()->get('project_id');
 
 		//create experience
 		$experience = Experience::create($body);
@@ -76,9 +79,7 @@ class ExperienceController extends SecureController {
 			->success()->important();
 
 		//redirect to show experience
-		return redirect()->route('experiences.index', [
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -134,6 +135,9 @@ class ExperienceController extends SecureController {
 	 */
 	public function update(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid experience
 		$this->validate($request, [
 			'position' => 'required|string',
@@ -143,7 +147,7 @@ class ExperienceController extends SecureController {
 			'started_at' => 'required',
 			'ended_at' => 'required',
 			'location' => 'required|string',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all experience form inputs
@@ -160,9 +164,7 @@ class ExperienceController extends SecureController {
 			->success()->important();
 
 		//redirect to show experience
-		return redirect()->route('experiences.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -173,6 +175,8 @@ class ExperienceController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
 
 		Experience::destroy($id);
 
@@ -180,8 +184,6 @@ class ExperienceController extends SecureController {
 		flash(trans('experiences.actions.delete.flash.success'))
 			->success()->important();
 
-		return redirect()->route('experiences.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 }

@@ -47,6 +47,8 @@
 {{-- end page content --}}
 
 {{-- start include modals--}}
+@include('users.cv.blocks.creates.experience_modal')
+@include('users.cv.blocks.creates.achievement_modal')
 @include('users.cv.blocks.creates.education_modal')
 @include('users.cv.blocks.creates.language_modal')
 @include('users.cv.blocks.creates.certificate_modal')
@@ -70,6 +72,12 @@
 @endforeach
 @foreach($user->educations as $education)
 @include('users.cv.blocks.edits.education_modal', ['education' => $education])
+@endforeach
+@foreach($user->achievements as $achievement)
+@include('users.cv.blocks.edits.achievement_modal', ['achievement' => $achievement])
+@endforeach
+@foreach($user->experiences as $experience)
+@include('users.cv.blocks.edits.experience_modal', ['experience' => $experience])
 @endforeach
 {{-- end include modals--}}
 

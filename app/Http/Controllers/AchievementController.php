@@ -52,13 +52,16 @@ class AchievementController extends SecureController {
 	 */
 	public function store(Request $request) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid achievement
 		$this->validate($request, [
 			'title' => 'required|string',
 			'organization' => 'required|string',
 			'summary' => 'nullable|string',
 			'issued_at' => 'required',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all achievement form inputs
@@ -81,9 +84,7 @@ class AchievementController extends SecureController {
 			->success()->important();
 
 		//redirect to show achievement
-		return redirect()->route('achievements.index', [
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -139,18 +140,21 @@ class AchievementController extends SecureController {
 	 */
 	public function update(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid achievement
 		$this->validate($request, [
 			'title' => 'required|string',
 			'organization' => 'required|string',
 			'summary' => 'nullable|string',
 			'issued_at' => 'required',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all achievement form inputs
 		$body = $request->all();
-    $body['project_id'] = $request->session()->get('project_id');
+		$body['project_id'] = $request->session()->get('project_id');
 
 		//find existing achievement
 		$achievement = Achievement::findOrFail($id);
@@ -172,9 +176,7 @@ class AchievementController extends SecureController {
 			->success()->important();
 
 		//redirect to show achievement
-		return redirect()->route('achievements.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -185,6 +187,8 @@ class AchievementController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
 
 		Achievement::destroy($id);
 
@@ -192,8 +196,6 @@ class AchievementController extends SecureController {
 		flash(trans('achievements.actions.delete.flash.success'))
 			->success()->important();
 
-		return redirect()->route('achievements.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 }

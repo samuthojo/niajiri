@@ -6,8 +6,9 @@
 @endif
 {{--end applicant id--}}
 
+<div class="row">
 {{-- start position --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('position') ? 'has-error' : ''}}">
         <label for="position" title="{{ trans('experiences.inputs.position.description') }}">
             {{trans('experiences.inputs.position.label')}}
@@ -31,7 +32,7 @@
 
 
 {{-- start organization --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('organization') ? 'has-error' : ''}}">
         <label for="organization" title="{{ trans('experiences.inputs.organization.description') }}">
             {{trans('experiences.inputs.organization.label')}}
@@ -52,10 +53,11 @@
     </div>
 </div>
 {{-- end organization --}}
+</div>
 
-
+<div class="row">
 {{-- start sector --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('sector') ? 'has-error' : ''}}">
         <label for="sector" title="{{ trans('experiences.inputs.sector.description') }}">
             {{trans('experiences.inputs.sector.label')}}
@@ -78,31 +80,8 @@
 {{-- end sector --}}
 
 
-{{-- start summary --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
-    <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
-        <label for="summary" title="{{ trans('experiences.inputs.summary.description') }}">
-            {{trans('experiences.inputs.summary.label')}}
-            <span class="text-danger">*</span>
-        </label>
-        {!! Form::text('summary', null, [
-            'id' => 'summary',
-            'class' => 'form-control',
-            //'required' => 'required',
-            'aria-describedby'=> 'experience_summary_help_block',
-            'placeholder' => trans('experiences.inputs.summary.placeholder')
-        ]) !!}
-        @if($errors->any() && $errors->has('summary'))
-        {!!
-            $errors->first('summary', '<p id="experience_summary_help_block" class="help-block">:message</p>')
-        !!}
-        @endif
-    </div>
-</div>
-{{-- end summary --}}
-
 {{-- start location --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('location') ? 'has-error' : ''}}">
         <label for="location" title="{{ trans('experiences.inputs.location.description') }}">
             {{trans('experiences.inputs.location.label')}}
@@ -123,9 +102,36 @@
     </div>
 </div>
 {{-- end location --}}
+</div>
 
+<div class="row">
+{{-- start summary --}}
+<div class="col-md-12 m-t-md">
+    <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
+        <label for="summary" title="{{ trans('experiences.inputs.summary.description') }}">
+            {{trans('experiences.inputs.summary.label')}}
+            <span class="text-danger">*</span>
+        </label>
+        {!! Form::text('summary', null, [
+            'id' => 'summary',
+            'class' => 'form-control',
+            //'required' => 'required',
+            'aria-describedby'=> 'experience_summary_help_block',
+            'placeholder' => trans('experiences.inputs.summary.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('summary'))
+        {!!
+            $errors->first('summary', '<p id="experience_summary_help_block" class="help-block">:message</p>')
+        !!}
+        @endif
+    </div>
+</div>
+{{-- end summary --}}
+</div>
+
+<div class="row">
 {{-- start started_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('started_at') ? 'has-error' : ''}}">
         <label for="started_at" title="{{ trans('experiences.inputs.started_at.description') }}">
             {{trans('experiences.inputs.started_at.label')}}
@@ -152,7 +158,7 @@
 {{-- end started_at --}}
 
 {{-- start ended_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('ended_at') ? 'has-error' : ''}}">
         <label for="ended_at" title="{{ trans('experiences.inputs.ended_at.description') }}">
             {{trans('experiences.inputs.ended_at.label')}}
@@ -177,5 +183,6 @@
     </div>
 </div>
 {{-- end ended_at --}}
+</div>
 
 {{-- end experience form --}}

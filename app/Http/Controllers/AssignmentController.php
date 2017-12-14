@@ -52,6 +52,9 @@ class AssignmentController extends SecureController {
 	 */
 	public function store(Request $request) {
 
+		//obtain current user
+		$user = \Auth::user();
+
 		//ensure valid assignment
 		$this->validate($request, [
 			'title' => 'required|string',
@@ -60,12 +63,12 @@ class AssignmentController extends SecureController {
 			'summary' => 'nullable|string',
 			'started_at' => 'required',
 			'finished_at' => 'required',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all assignment form inputs
 		$body = $request->all();
-    $body['project_id'] = $request->session()->get('project_id');
+		$body['project_id'] = $request->session()->get('project_id');
 
 		//create assignment
 		$assignment = Assignment::create($body);
@@ -75,9 +78,7 @@ class AssignmentController extends SecureController {
 			->success()->important();
 
 		//redirect to show assignment
-		return redirect()->route('assignments.index', [
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -133,6 +134,9 @@ class AssignmentController extends SecureController {
 	 */
 	public function update(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid assignment
 		$this->validate($request, [
 			'title' => 'required|string',
@@ -141,7 +145,7 @@ class AssignmentController extends SecureController {
 			'summary' => 'nullable|string',
 			'started_at' => 'required',
 			'finished_at' => 'required',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all assignment form inputs
@@ -158,9 +162,7 @@ class AssignmentController extends SecureController {
 			->success()->important();
 
 		//redirect to show assignment
-		return redirect()->route('assignments.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -172,14 +174,15 @@ class AssignmentController extends SecureController {
 	 */
 	public function destroy(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		Assignment::destroy($id);
 
 		//flash message
 		flash(trans('assignments.actions.delete.flash.success'))
 			->success()->important();
 
-		return redirect()->route('assignments.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 }
