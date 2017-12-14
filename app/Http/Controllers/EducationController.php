@@ -53,6 +53,9 @@ class EducationController extends SecureController {
 	 */
 	public function store(Request $request) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid education
 		$this->validate($request, [
 			'level' => 'required|string',
@@ -61,12 +64,12 @@ class EducationController extends SecureController {
 			'started_at' => 'required',
 			'finished_at' => 'nullable',
 			'remark' => 'required|string',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all education form inputs
 		$body = $request->all();
-    $body['project_id'] = $request->session()->get('project_id');
+		$body['project_id'] = $request->session()->get('project_id');
 
 		//create education
 		$education = Education::create($body);
@@ -85,9 +88,7 @@ class EducationController extends SecureController {
 			->success()->important();
 
 		//redirect to show education
-		return redirect()->route('educations.index', [
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -143,6 +144,9 @@ class EducationController extends SecureController {
 	 */
 	public function update(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid education
 		$this->validate($request, [
 			'level' => 'required|string',
@@ -151,7 +155,7 @@ class EducationController extends SecureController {
 			'started_at' => 'required',
 			'finished_at' => 'nullable',
 			'remark' => 'required|string',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all education form inputs
@@ -177,9 +181,7 @@ class EducationController extends SecureController {
 			->success()->important();
 
 		//redirect to show education
-		return redirect()->route('educations.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -191,14 +193,15 @@ class EducationController extends SecureController {
 	 */
 	public function destroy(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		Education::destroy($id);
 
 		//flash message
 		flash(trans('educations.actions.delete.flash.success'))
 			->success()->important();
-
-		return redirect()->route('educations.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+			
+		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 }

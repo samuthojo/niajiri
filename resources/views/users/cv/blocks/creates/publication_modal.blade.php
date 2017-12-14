@@ -1,9 +1,9 @@
 {{--start user publications modal --}}
-<div class="modal fade" id="user-publications-modal" tabindex="-1" role="dialog" aria-labelledby="userRefereesModalLabel" aria-hidden="true">
+<div class="modal fade" id="user-publications-modal" tabindex="-1" role="dialog" aria-labelledby="userPublicationsModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="userRefereesModalLabel">
+        <h3 class="modal-title" id="userPublicationsModalLabel">
           <strong>
             {{trans('cvs.headers.publications.title')}}
           </strong>

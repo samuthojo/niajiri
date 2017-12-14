@@ -8,8 +8,9 @@
 
 {{-- {{dd($errors)}} --}}
 
+<div class="row">
 {{-- start level --}}
-<div class="col-md-offset-2 col-md-6">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('level') ? 'has-error' : ''}}">
         <label for="level" title="{{ trans('educations.inputs.level.description') }}">
             {{trans('educations.inputs.level.label')}}
@@ -34,7 +35,7 @@
 {{-- end level --}}
 
 {{-- start institution --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('institution') ? 'has-error' : ''}}">
         <label for="institution" title="{{ trans('educations.inputs.institution.description') }}">
             {{trans('educations.inputs.institution.label')}}
@@ -55,9 +56,11 @@
     </div>
 </div>
 {{-- end institution --}}
+</div>
 
+<div class="row">
 {{-- start summary --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
         <label for="summary" title="{{ trans('educations.inputs.summary.description') }}">
             {{trans('educations.inputs.summary.label')}}
@@ -80,7 +83,7 @@
 {{-- end summary --}}
 
 {{-- start started_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('started_at') ? 'has-error' : ''}}">
         <label for="started_at" title="{{ trans('educations.inputs.started_at.description') }}">
             {{trans('educations.inputs.started_at.label')}}
@@ -105,9 +108,11 @@
     </div>
 </div>
 {{-- end started_at --}}
+</div>
 
+<div class="row">
 {{-- start finished_at --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('finished_at') ? 'has-error' : ''}}">
         <label for="finished_at" title="{{ trans('educations.inputs.finished_at.description') }}">
             {{trans('educations.inputs.finished_at.label')}}
@@ -134,7 +139,7 @@
 {{-- end finished_at --}}
 
 {{-- start remark --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('remark') ? 'has-error' : ''}}">
         <label for="remark" title="{{ trans('educations.inputs.remark.description') }}">
             {{trans('educations.inputs.remark.label')}}
@@ -155,9 +160,11 @@
     </div>
 </div>
 {{-- end remark --}}
+</div>
 
+<div class="row">
 {{-- start attachment edit --}}
-<div class="col-md-offset-2 col-md-6 m-t-md">
+<div class="col-md-12 m-t-md">
     <div class="form-group m-b-lg {{ $errors->has('attachment') ? 'has-error' : ''}}">
         <div class="edit-profile-photo edit-profile-photo-cv">
             <img src="{{url('/images/attachment.jpg') }}" alt="{{trans('educations.inputs.attachment.placeholder')}}" class="img-thumbnail"
@@ -174,5 +181,6 @@
     </div>
 </div>
 {{-- end attachment edit --}}
+</div>
 
 {{-- end education form --}}

@@ -47,6 +47,7 @@
 {{-- end page content --}}
 
 {{-- start include modals--}}
+@include('users.cv.blocks.creates.education_modal')
 @include('users.cv.blocks.creates.language_modal')
 @include('users.cv.blocks.creates.certificate_modal')
 @include('users.cv.blocks.creates.publication_modal')
@@ -66,6 +67,9 @@
 @endforeach
 @foreach($user->languages as $language)
 @include('users.cv.blocks.edits.language_modal', ['language' => $language])
+@endforeach
+@foreach($user->educations as $education)
+@include('users.cv.blocks.edits.education_modal', ['education' => $education])
 @endforeach
 {{-- end include modals--}}
 
