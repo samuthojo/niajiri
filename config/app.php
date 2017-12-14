@@ -207,6 +207,7 @@ return [
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Jrean\UserVerification\UserVerificationServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -279,6 +280,7 @@ return [
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Carbon' => 'Carbon\Carbon',
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
 
     ],
 
