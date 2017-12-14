@@ -12,7 +12,7 @@ class ProjectsTableSeeder extends Seeder {
 
 			Project::updateOrCreate(['organization_id' => $organization->id], [
 					'name' => 'Vodacom - Red Hire',
-          'slug' => 'vodaRedHire',
+          'slug' => 'vodaredhire',
 					'organization_id' => $organization->id,
 					'startedAt' => '05-05-2017',
 					'endedAt' => '31-8-2018',
