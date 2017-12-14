@@ -52,17 +52,20 @@ class LanguageController extends SecureController {
 	 */
 	public function store(Request $request) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid language
 		$this->validate($request, [
 			'name' => 'required|string',
 			'write_fluency' => 'required|string',
 			'speak_fluency' => 'required|string',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all language form inputs
 		$body = $request->all();
-    $body['project_id'] = $request->session()->get('project_id');
+		$body['project_id'] = $request->session()->get('project_id');
 
 		//create language
 		$language = Language::create($body);
@@ -72,9 +75,7 @@ class LanguageController extends SecureController {
 			->success()->important();
 
 		//redirect to show language
-		return redirect()->route('languages.index', [
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -130,12 +131,15 @@ class LanguageController extends SecureController {
 	 */
 	public function update(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		//ensure valid language
 		$this->validate($request, [
 			'name' => 'required|string',
 			'write_fluency' => 'required|string',
 			'speak_fluency' => 'required|string',
-            'applicant_id' => 'string|required|exists:users,id'
+			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all language form inputs
@@ -152,9 +156,7 @@ class LanguageController extends SecureController {
 			->success()->important();
 
 		//redirect to show language
-		return redirect()->route('languages.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
 
 	}
 
@@ -166,14 +168,16 @@ class LanguageController extends SecureController {
 	 */
 	public function destroy(Request $request, $id) {
 
+		//obtain user
+		$user = \Auth::user();
+
 		Language::destroy($id);
 
 		//flash message
 		flash(trans('languages.actions.delete.flash.success'))
 			->success()->important();
 
-		return redirect()->route('languages.index',[
-				'applicant_id' => $request->input('applicant_id')
-			]);
+		return redirect()->route('users.cv', ['id' => $user->id]);
+
 	}
 }

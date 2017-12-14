@@ -45,6 +45,9 @@
 	<div class="col-md-6">
 		<h2 title="{{trans('cvs.headers.languages.title')}}">
 			{{trans('cvs.headers.languages.name')}}
+			<a class="btn btn-white btn-xs pull-right" title="" data-toggle="modal" data-target="#user-languages-modal">
+                	<span class="fa fa-plus" aria-hidden="true"/>
+                </a>
 		</h2>
 		<hr class="hr-line-solid" />
 		@if($user->languages && $user->languages->count() > 0)
@@ -54,12 +57,31 @@
 					{{$language->name}}
 		        </h3>
 		        <h5>
-			        <p title="{{trans('languages.inputs.write_fluency.description')}}">
+			        <span title="{{trans('languages.inputs.write_fluency.description')}}">
 			            {{trans('languages.inputs.write_fluency.label')}} - {{$language->write_fluency}}
-		            </p>
-		            <p title="{{trans('languages.inputs.speak_fluency.description')}}">
+		            </span> | 
+		            <span title="{{trans('languages.inputs.speak_fluency.description')}}">
 			            {{trans('languages.inputs.speak_fluency.label')}} - {{$language->speak_fluency}}
-		            </p>
+		            </span>
+		            {{--start delete action--}}
+	                {!! Form::open([
+                        'method'=>'DELETE',
+                        'url' => route('languages.destroy', ['id' => $language->id, 'applicant_id'=> $language->applicant_id]),
+                        'style' => 'display:inline'
+                    ]) !!}
+                        {!! Form::button('<span class="fa fa-trash" aria-hidden="true" title=""></span>', [
+                                'type' => 'submit',
+                                'class' => 'btn btn-danger btn-xs pull-right',
+                                'title' => trans('languages.actions.delete.title'),
+                                'onclick'=>'return confirm("Confirm Delete?")'
+                        ]) !!}
+                    {!! Form::close() !!}
+                    {{--start delete action--}}
+                    {{--start edit action--}}
+	                <a class="btn btn-white btn-xs pull-right m-r-sm" title="" data-toggle="modal" data-target="#user-edit-languages-modal-{{$language->id}}">
+	                	<span class="fa fa-pencil" aria-hidden="true"/>
+	                </a>
+	                {{--end edit action--}}
 	            </h5>
 				<hr class="hr-line-dashed" />
 			</div>

@@ -6,8 +6,9 @@
 @endif
 {{--end applicant id--}}
 
+<div class="row">
 {{-- start name --}}
-<div class="col-md-offset-2 col-md-6">
+<div class="col-md-12">
     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
         <label for="name" title="{{ trans('languages.inputs.name.description') }}">
             {{trans('languages.inputs.name.label')}}
@@ -30,10 +31,11 @@
     </div>
 </div>
 {{-- end name --}}
+</div>
 
-
+<div class="row">
 {{-- start write_fluency --}}
-<div class="col-md-offset-2 col-md-6">
+<div class="col-md-6">
     <div class="form-group {{ $errors->has('write_fluency') ? 'has-error' : ''}}">
         <label for="write_fluency" title="{{ trans('languages.inputs.write_fluency.description') }}">
             {{trans('languages.inputs.write_fluency.label')}}
@@ -58,7 +60,7 @@
 {{-- end write_fluency --}}
 
 {{-- start speak_fluency --}}
-<div class="col-md-offset-2 col-md-6">
+<div class="col-md-6">
     <div class="form-group {{ $errors->has('speak_fluency') ? 'has-error' : ''}}">
         <label for="speak_fluency" title="{{ trans('languages.inputs.speak_fluency.description') }}">
             {{trans('languages.inputs.speak_fluency.label')}}
@@ -81,5 +83,6 @@
     </div>
 </div>
 {{-- end speak_fluency --}}
+</div>
 
 {{-- end language form --}}

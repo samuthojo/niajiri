@@ -47,6 +47,7 @@
 {{-- end page content --}}
 
 {{-- start include modals--}}
+@include('users.cv.blocks.creates.language_modal')
 @include('users.cv.blocks.creates.certificate_modal')
 @include('users.cv.blocks.creates.publication_modal')
 @include('users.cv.blocks.creates.referee_modal')
@@ -62,6 +63,9 @@
 @endforeach
 @foreach($user->certificates as $certificate)
 @include('users.cv.blocks.edits.certificate_modal', ['certificate' => $certificate])
+@endforeach
+@foreach($user->languages as $language)
+@include('users.cv.blocks.edits.language_modal', ['language' => $language])
 @endforeach
 {{-- end include modals--}}
 
