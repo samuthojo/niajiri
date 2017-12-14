@@ -42,8 +42,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->redirectTo = Config::get('auth.defaults.redirect');
-        $this->redirectAfterVerification = Config::get('auth.defaults.login');
+        $this->redirectTo = config('auth.defaults.redirect');
+        $this->redirectAfterVerification = config('auth.defaults.login');
         $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
     }
 
@@ -96,7 +96,7 @@ class RegisterController extends Controller
         UserVerification::send($user, trans('auth.verify_account'));
 
         //redirect to login page
-        return redirect(Config::get('auth.defaults.login'));
-        
+        return redirect(config('auth.defaults.login'));
+
     }
 }

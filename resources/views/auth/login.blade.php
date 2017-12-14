@@ -29,7 +29,7 @@
 			<p class="text-muted text-center"><small>OR</small></p>
 
 			{{-- start register --}}
-			<a class="btn btn-white btn-block full-width m-b" href="">Create an Account</a>
+			<a class="btn btn-white btn-block full-width m-b" href="{{route('register')}}" title="Click to create new account">Create an Account</a>
 			{{-- end register --}}
 
 			{{-- start social signin --}}
