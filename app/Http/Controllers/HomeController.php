@@ -19,7 +19,7 @@ class HomeController extends SecureController
     {
       //redirect applicant
       if(\Auth::user()->hasRole(Role::APPLICANT)){
-        return redirect()->route('users.basic');
+        return redirect()->route('users.cv');
       }
 
       //redirect hr agency
