@@ -56,7 +56,7 @@ return [
      */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@niajiri.co.tz'),
+        'address' => env('MAIL_FROM_ADDRESS', 'postmaster@mg1.niajiri.co.tz'),
         'name' => env('MAIL_FROM_NAME', 'Niajiri'),
     ],
 
@@ -77,7 +77,7 @@ return [
     |
      */
 
-    'encryption' => env('MAIL_ENCRYPTION', ''),
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ return [
     |
      */
 
-    'username' => env('MAIL_USERNAME', 'hello@niajiri.co.tz'),
+    'username' => env('MAIL_USERNAME', 'postmaster@mg1.niajiri.co.tz'),
 
     /*
     |--------------------------------------------------------------------------
