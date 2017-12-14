@@ -36,7 +36,11 @@ class CreateUsersTable extends Migration {
 			$table->text('summary')->nullable();
 			$table->string('password')->nullable();
 			$table->string('avatar')->nullable(); //placeholder for direct avatar url
+			
+			//user verification logics
 			$table->boolean('verified')->default(false);
+            $table->string('verification_token')->nullable();
+
 			$table->rememberToken();
 
 			//applicant specific
