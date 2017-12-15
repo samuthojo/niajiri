@@ -369,8 +369,7 @@ class UserController extends SecureController {
 			'country' => 'string|required',
 			'state' => 'string|required',
 			'gender' => 'string|min:2|max:255|required',
-			'dob' => 'date|required',
-			'marital_status' => 'string|min:2|max:255|required',
+			'dob' => 'date|required'
 		]);
 
 		//obtain user updates from form input

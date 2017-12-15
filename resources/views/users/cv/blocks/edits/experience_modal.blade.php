@@ -1,6 +1,6 @@
 {{--start user experiences modal --}}
 <div class="modal fade" id="user-edit-experiences-modal-{{$experience->id}}" tabindex="-1" role="dialog" aria-labelledby="userExperiencesModalLabel-{{$experience->id}}" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="userExperiencesModalLabel-{{$experience->id}}">
@@ -18,7 +18,11 @@
     ]) !!}
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 m-t-lg m-b-lg">
+          <div class="col-md-12 m-t-sm m-b-lg">
+
+            <p class="text-muted m-b-lg">
+             Feature paid and unpaid experience you’ve gained through side projects and part/full-time employment in any business, educational, charitable, or governmental entities.
+            </p>
              @include ('experiences.form')
           </div>
         </div>

@@ -77,10 +77,10 @@ return [
             'description' => 'Organization/Company Location e.g Dar es salaam etc.',
         ],
         'summary' => [
-            'label' => 'Work Summary',
-            'placeholder' => 'Summary',
+            'label' => 'Responsibility (What did you achieve in this role)',
+            'placeholder' => 'Responsibility (What did you achieve in this role)',
             'header' => 'Summary',
-            'description' => 'Brief Summary',
+            'description' => 'Responsibility (What did you achieve in this role)',
         ],
         'started_at' => [
             'label' => 'Date Started',

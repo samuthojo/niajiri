@@ -1,6 +1,6 @@
 {{--start user educations modal --}}
 <div class="modal fade" id="user-educations-modal" tabindex="-1" role="dialog" aria-labelledby="userEducationsModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="userEducationsModalLabel">
@@ -19,7 +19,12 @@
         !!}
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 m-t-lg m-b-lg">
+          <div class="col-md-12 m-t-sm m-b-lg">
+
+            <p class="text-muted m-b-lg">
+             Include any majors, minors, or specializations that are relevant to your next desired role and is part of your degree(s) or field of study.
+            </p>
+
              @include ('educations.form')
           </div>
         </div>

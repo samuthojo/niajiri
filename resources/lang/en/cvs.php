@@ -36,8 +36,8 @@ return [
 		],
 
 		'educations' => [
-			'name' => 'Education Levels',
-			'title' => 'Education Level Details',
+			'name' => 'Education',
+			'title' => 'Education',
 		],
 
 		'certificates' => [
@@ -46,8 +46,8 @@ return [
 		],
 
 		'experiences' => [
-			'name' => 'Work Experiences',
-			'title' => 'Work Experiences Details',
+			'name' => 'Field Attachment/Intern/Working',
+			'title' => 'Field Attachment/Intern/Working',
 		],
 
 		'referees' => [

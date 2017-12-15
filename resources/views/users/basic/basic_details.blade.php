@@ -171,8 +171,7 @@
 {{-- end dob & gender --}}
 
 {{-- start marital status --}}
-<div class="row m-t-md">
-    {{-- start marital status --}}
+{{-- <div class="row m-t-md">
     <div class="col-md-12">
         <div class="form-group {{ $errors->has('marital_status') ? 'has-error' : ''}}">
             <label for="marital_status" title="{{ trans('cvs.inputs.marital_status.description') }}">
@@ -197,8 +196,7 @@
             @endif
         </div>
     </div>
-    {{-- end marital status --}}
-</div>
+</div> --}}
 {{-- end marital status --}}
 
 

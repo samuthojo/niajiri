@@ -17,7 +17,7 @@
         {!! Form::text('position', null, [
             'id' => 'position',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
             'aria-describedby'=> 'experience_position_help_block',
             'placeholder' => trans('experiences.inputs.position.placeholder')
         ]) !!}
@@ -41,7 +41,7 @@
         {!! Form::text('organization', null, [
             'id' => 'organization',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
             'aria-describedby'=> 'experience_organization_help_block',
             'placeholder' => trans('experiences.inputs.organization.placeholder')
         ]) !!}
@@ -66,7 +66,7 @@
         {!! Form::text('sector', null, [
             'id' => 'sector',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
             'aria-describedby'=> 'experience_sector_help_block',
             'placeholder' => trans('experiences.inputs.sector.placeholder')
         ]) !!}
@@ -90,7 +90,7 @@
         {!! Form::text('location', null, [
             'id' => 'location',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
             'aria-describedby'=> 'experience_location_help_block',
             'placeholder' => trans('experiences.inputs.location.placeholder')
         ]) !!}
@@ -105,31 +105,6 @@
 </div>
 
 <div class="row">
-{{-- start summary --}}
-<div class="col-md-12 m-t-md">
-    <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
-        <label for="summary" title="{{ trans('experiences.inputs.summary.description') }}">
-            {{trans('experiences.inputs.summary.label')}}
-            <span class="text-danger">*</span>
-        </label>
-        {!! Form::text('summary', null, [
-            'id' => 'summary',
-            'class' => 'form-control',
-            //'required' => 'required',
-            'aria-describedby'=> 'experience_summary_help_block',
-            'placeholder' => trans('experiences.inputs.summary.placeholder')
-        ]) !!}
-        @if($errors->any() && $errors->has('summary'))
-        {!!
-            $errors->first('summary', '<p id="experience_summary_help_block" class="help-block">:message</p>')
-        !!}
-        @endif
-    </div>
-</div>
-{{-- end summary --}}
-</div>
-
-<div class="row">
 {{-- start started_at --}}
 <div class="col-md-6 m-t-md">
     <div class="form-group {{ $errors->has('started_at') ? 'has-error' : ''}}">
@@ -140,7 +115,7 @@
         {!! Form::text('started_at', null, [
             'id' => 'started_at',
             'class' => 'form-control datepicker',
-            //'required' => 'required',
+            'required' => 'required',
             'placeholder' => trans('experiences.inputs.started_at.placeholder'),
             'aria-describedby'=> 'experience_started_at_help_block',
             'data-provide' => 'datepicker',
@@ -167,7 +142,7 @@
         {!! Form::text('ended_at', null, [
             'id' => 'ended_at',
             'class' => 'form-control datepicker',
-            //'required' => 'required',
+            'required' => 'required',
             'placeholder' => trans('experiences.inputs.ended_at.placeholder'),
             'aria-describedby'=> 'experience_ended_at_help_block',
             'data-provide' => 'datepicker',
@@ -184,5 +159,31 @@
 </div>
 {{-- end ended_at --}}
 </div>
+
+{{-- start summary --}}
+<div class="row">
+<div class="col-md-12 m-t-md">
+    <div class="form-group {{ $errors->has('summary') ? 'has-error' : ''}}">
+        <label for="summary" title="{{ trans('experiences.inputs.summary.description') }}">
+            {{trans('experiences.inputs.summary.label')}}
+            <span class="text-danger">*</span>
+        </label>
+        {!! Form::textarea('summary', null, [
+            'id' => 'summary',
+            'class' => 'form-control',
+            'rows' => 2,
+            'required' => 'required',
+            'aria-describedby'=> 'experience_summary_help_block',
+            'placeholder' => trans('experiences.inputs.summary.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('summary'))
+        {!!
+            $errors->first('summary', '<p id="experience_summary_help_block" class="help-block">:message</p>')
+        !!}
+        @endif
+    </div>
+</div>
+</div>
+{{-- end summary --}}
 
 {{-- end experience form --}}
