@@ -26,13 +26,13 @@
             @include('users.cv.educations_languages')
             {{-- end educations_languages --}}
 
-            {{-- start certificates_publications --}}
-            @include('users.cv.certificates_publications')
-            {{-- end certificates_publications --}}
+            {{-- start certificates_referees --}}
+            @include('users.cv.certificates_referees')
+            {{-- end certificates_referees --}}
 
-            {{-- start skills_hobbies_interests_referees --}}
-            @include('users.cv.skills_hobbies_interests_referees')
-            {{-- end skills_hobbies_interests_referees --}}
+            {{-- start skills_hobbies_interests --}}
+            @include('users.cv.skills_hobbies_interests')
+            {{-- end skills_hobbies_interests --}}
 
             </div>
             {{-- end page box content --}}
