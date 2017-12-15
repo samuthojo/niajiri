@@ -45,12 +45,6 @@
 			</a>
 			{{-- end google plus auth --}}
 
-			{{-- start facebook auth --}}
-			<a class="btn btn-success btn-facebook block full-width m-b"
-				href="{{url(config('services.facebook.url'))}}">
-		       <span class="fa fa-facebook"></span> Signin with Facebook
-		    </a>
-		    {{-- end facebook auth --}}
 
 		    {{-- start twitter auth --}}
 			<a class="btn btn-info btn-twitter block full-width m-b"
