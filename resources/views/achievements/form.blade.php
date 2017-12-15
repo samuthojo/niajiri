@@ -17,7 +17,7 @@
         {!! Form::text('title', null, [
             'id' => 'title',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
             'aria-describedby'=> 'achievement_title_help_block',
             'placeholder' => trans('achievements.inputs.title.placeholder')
         ]) !!}
@@ -41,7 +41,7 @@
         {!! Form::text('organization', null, [
             'id' => 'organization',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
             'aria-describedby'=> 'achievement_organization_help_block',
             'placeholder' => trans('achievements.inputs.organization.placeholder')
         ]) !!}
@@ -63,10 +63,11 @@
             {{trans('achievements.inputs.summary.label')}}
             <span class="text-danger">*</span>
         </label>
-        {!! Form::text('summary', null, [
+        {!! Form::textarea('summary', null, [
             'id' => 'summary',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
+            'rows' => 2,
             'aria-describedby'=> 'achievement_summary_help_block',
             'placeholder' => trans('achievements.inputs.summary.placeholder')
         ]) !!}
@@ -90,7 +91,7 @@
         {!! Form::text('issued_at', null, [
             'id' => 'issued_at',
             'class' => 'form-control datepicker',
-            //'required' => 'required',
+            'required' => 'required',
             'placeholder' => trans('achievements.inputs.issued_at.placeholder'),
             'aria-describedby'=> 'achievement_issued_at_help_block',
             'data-provide' => 'datepicker',
