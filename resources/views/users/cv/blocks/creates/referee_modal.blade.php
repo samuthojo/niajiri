@@ -19,7 +19,11 @@
         !!}
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 m-t-lg m-b-lg">
+          <div class="col-md-12 m-t-sm m-b-lg">
+
+            <p class="text-muted m-b-lg">
+            List professionals who you’ve worked with or Your University Supervisor/Lecture who would genuinely vouch for your skills and accomplishments. Make sure they are comfortable to be your reference. 
+            </p>
              @include ('referees.form')
           </div>
         </div>

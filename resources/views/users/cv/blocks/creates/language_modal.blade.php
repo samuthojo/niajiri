@@ -19,7 +19,11 @@
         !!}
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 m-t-lg m-b-lg">
+         <div class="col-md-12 m-t-sm m-b-lg">
+
+            <p class="text-muted m-b-lg">
+            List the languages you know and what your proficiency in each of them.
+            </p>
              @include ('languages.form')
           </div>
         </div>
