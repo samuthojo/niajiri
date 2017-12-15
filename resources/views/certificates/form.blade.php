@@ -17,7 +17,7 @@
         {!! Form::text('title', null, [
             'id' => 'title',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
             'aria-describedby'=> 'certificate_title_help_block',
             'placeholder' => trans('certificates.inputs.title.placeholder')
         ]) !!}
@@ -41,7 +41,7 @@
         {!! Form::text('institution', null, [
             'id' => 'institution',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
             'aria-describedby'=> 'certificate_institution_help_block',
             'placeholder' => trans('certificates.inputs.institution.placeholder')
         ]) !!}
@@ -66,7 +66,7 @@
         {!! Form::text('started_at', null, [
             'id' => 'started_at',
             'class' => 'form-control datepicker',
-            //'required' => 'required',
+            'required' => 'required',
             'placeholder' => trans('certificates.inputs.started_at.placeholder'),
             'aria-describedby'=> 'certificate_started_at_help_block',
             'data-provide' => 'datepicker',
@@ -93,7 +93,7 @@
         {!! Form::text('finished_at', null, [
             'id' => 'finished_at',
             'class' => 'form-control datepicker',
-            //'required' => 'required',
+            'required' => 'required',
             'placeholder' => trans('certificates.inputs.finished_at.placeholder'),
             'aria-describedby'=> 'certificate_finished_at_help_block',
             'data-provide' => 'datepicker',
@@ -119,10 +119,11 @@
             {{trans('certificates.inputs.summary.label')}}
             <span class="text-danger">*</span>
         </label>
-        {!! Form::text('summary', null, [
+        {!! Form::textarea('summary', null, [
             'id' => 'summary',
             'class' => 'form-control',
-            //'required' => 'required',
+            'required' => 'required',
+            'rows' => 2,
             'aria-describedby'=> 'certificate_summary_help_block',
             'placeholder' => trans('certificates.inputs.summary.placeholder')
         ]) !!}

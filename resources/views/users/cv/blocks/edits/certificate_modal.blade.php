@@ -1,6 +1,6 @@
 {{--start user certificates modal --}}
 <div class="modal fade" id="user-edit-certificates-modal-{{$certificate->id}}" tabindex="-1" role="dialog" aria-labelledby="userCertificatesModalLabel-{{$certificate->id}}" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="userCertificatesModalLabel-{{$certificate->id}}">
@@ -18,7 +18,11 @@
     ]) !!}
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 m-t-lg m-b-lg">
+          <div class="col-md-12 m-t-sm m-b-lg">
+
+            <p class="text-muted m-b-lg">
+             List all your certificates that are relevant to your next desired position. e.g. CPA etc.
+            </p>
              @include ('certificates.form')
           </div>
         </div>
