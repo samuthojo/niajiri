@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Position;
 use App\Models\Project;
+use App\Models\Role;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\ProjectRepository;
@@ -39,8 +40,16 @@ class ProjectController extends SecureController
      */
     public function index(Request $request)
     {
+
+
         $this->projectRepository->pushCriteria(new RequestCriteria($request));
-        $projects = $this->projectRepository->paginate(config('app.defaults.pageSize'));
+
+        if(\Auth::user()->hasRole([Role::ORGANIZATION])){
+          $projects = $this->projectRepository->findWhere(['organization_id'=> \Auth::user()->id]);
+        }else {
+          $projects = $this->projectRepository->paginate(config('app.defaults.pageSize'));
+        }
+
 
         return view('pages.projects.index',[
             'route_title' => 'Project',
