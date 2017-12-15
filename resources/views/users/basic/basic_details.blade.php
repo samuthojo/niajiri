@@ -112,7 +112,7 @@
 {{-- end firstname, middlename, surname --}}
 
 
-{{-- start dob, gender & marital status --}}
+{{-- start dob & gender--}}
 <div class="row m-t-md">
 
 	{{-- start dob --}}
@@ -141,7 +141,7 @@
 	{{-- end dob --}}
 
 	{{-- start gender --}}
-	<div class="col-md-3">
+	<div class="col-md-8">
         <div class="form-group {{ $errors->has('gender') ? 'has-error' : ''}}">
             <label for="gender" title="{{ trans('cvs.inputs.gender.description') }}">
                 {{trans('cvs.inputs.gender.label')}}
@@ -167,8 +167,13 @@
     </div>
 	{{-- end gender --}}
 
-	{{-- start marital status --}}
-	<div class="col-md-5">
+</div>
+{{-- end dob & gender --}}
+
+{{-- start marital status --}}
+<div class="row m-t-md">
+    {{-- start marital status --}}
+    <div class="col-md-12">
         <div class="form-group {{ $errors->has('marital_status') ? 'has-error' : ''}}">
             <label for="marital_status" title="{{ trans('cvs.inputs.marital_status.description') }}">
                 {{trans('cvs.inputs.marital_status.label')}}
@@ -192,10 +197,9 @@
             @endif
         </div>
     </div>
-	{{-- end marital status --}}
-
+    {{-- end marital status --}}
 </div>
-{{-- end dob, gender & marital status --}}
+{{-- end marital status --}}
 
 
 {{-- start email & mobile numbers --}}
