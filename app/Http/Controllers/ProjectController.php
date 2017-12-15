@@ -39,8 +39,16 @@ class ProjectController extends SecureController
      */
     public function index(Request $request)
     {
+
+
         $this->projectRepository->pushCriteria(new RequestCriteria($request));
-        $projects = $this->projectRepository->paginate(config('app.defaults.pageSize'));
+
+        if(\Auth::user()->hasRole([Role::ORGANIZATION])){
+          $projects = $this->projectRepository->findWhere(['organization_id'=> \Auth::user()->id])->paginate(config('app.defaults.pageSize'));
+        }else {
+          $projects = $this->projectRepository->paginate(config('app.defaults.pageSize'));
+        }
+
 
         return view('pages.projects.index',[
             'route_title' => 'Project',
