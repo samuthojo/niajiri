@@ -65,7 +65,7 @@
     </div>
     <div class="col-md-3">
         <div class="profile-image">
-            <img src="{{$user->avatar()}}" class="img-circle circle-border m-b-md" alt="profile">
+            <img src="{{$user->avatar()}}" class="img-circle circle-border m-b-md" alt="profile" data-toggle="modal" data-target="#user-edit-basic-modal">
         </div>
     </div>
 </div>
