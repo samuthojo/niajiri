@@ -23,22 +23,6 @@
 		</div>
 		{{--end skills--}}
 
-
-		{{--start hobbies--}}
-		<div>
-			<h3 title="{{trans('cvs.inputs.hobbies.description')}}">
-				{{trans('cvs.inputs.hobbies.label')}}
-	        </h3>
-	        <h5 title="{{trans('cvs.inputs.hobbies.description')}}">
-	            {{display_or_na($user->hobbies)}}
-	            <a class="btn btn-white btn-xs pull-right" title="" data-toggle="modal" data-target="#user-hobbies-modal">
-                	<span class="fa fa-pencil" aria-hidden="true"/>
-                </a>
-            </h5>
-			<hr class="hr-line-dashed" />
-		</div>
-		{{--end hobbies--}}
-
 		{{--start interests--}}
 		<div>
 			<h3 title="{{trans('cvs.inputs.interests.description')}}">
@@ -54,11 +38,17 @@
 		</div>
 		{{--end interests--}}
 
+	</div>
+	{{--end skills_hobbies_interests--}}
+
+	{{--start referees--}}
+	<div class="col-md-6">
+		<h2 title="{{trans('cvs.headers.extra_curriculum_activities.title')}}">
+			{{trans('cvs.headers.extra_curriculum_activities.name')}}
+		</h2>
+		<hr class="hr-line-solid" />
 		{{--start extra curriculars--}}
 		<div>
-			<h3 title="{{trans('cvs.inputs.extracurricular_activities.description')}}">
-				{{trans('cvs.inputs.extracurricular_activities.label')}}
-	        </h3>
 	        <h5 title="{{trans('cvs.inputs.extracurricular_activities.description')}}">
 	            {{display_or_na($user->extracurricular_activities)}}
 	             <a class="btn btn-white btn-xs pull-right" title="" data-toggle="modal" data-target="#user-extracurricular_activities-modal">
@@ -68,13 +58,6 @@
 			<hr class="hr-line-dashed" />
 		</div>
 		{{--end extra curriculars--}}
-
-	</div>
-	{{--end skills_hobbies_interests--}}
-
-	{{--start referees--}}
-	<div class="col-md-6">
-		&nbsp;
 	</div>
 	{{--end referees--}}
 	

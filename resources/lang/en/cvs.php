@@ -76,8 +76,13 @@ return [
 		],
 
 		'skills_hobbies_interests' => [
-			'name' => 'Skills, Hobbies & Interests',
-			'title' => 'Skills, Hobbies & Interests',
+			'name' => 'Skills/Personal Interests',
+			'title' => 'Skills/Personal Interests',
+		],
+
+		'extra_curriculum_activities' => [
+			'name' => 'Extra curriculum Activities',
+			'title' => 'Extra curriculum Activities',
 		],
 
 		'cover_letter' => [
