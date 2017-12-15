@@ -2,7 +2,7 @@
 
 
 {{-- start header --}}
-<div class="row m-t-lg">
+{{-- <div class="row m-t-lg">
   <div class="col-md-12">
     <blockquote>
       <h3 title="{{trans('cvs.headers.basic_details.title')}}">
@@ -10,7 +10,7 @@
       </h3>
     </blockquote>
   </div>
-</div>
+</div> --}}
 {{-- end header --}}
 
 {{-- start avatar --}}
@@ -51,7 +51,7 @@
             {!! Form::text('first_name', null, [
                 'id' => 'first_name',
                 'class' => 'form-control',
-                //'required' => 'required',
+                'required' => 'required',
                 'aria-describedby'=> 'cv_first_name_help_block',
                 'placeholder' => trans('cvs.inputs.first_name.placeholder')
             ]) !!}
@@ -95,7 +95,7 @@
             {!! Form::text('surname', null, [
                 'id' => 'surname',
                 'class' => 'form-control',
-                //'required' => 'required',
+                'required' => 'required',
                 'aria-describedby'=> 'cv_surname_help_block',
                 'placeholder' => trans('cvs.inputs.surname.placeholder')
             ]) !!}
@@ -125,7 +125,7 @@
             {!! Form::text('dob', null, [
                 'id' => 'dob',
 	            'class' => 'form-control datepicker',
-	            //'required' => 'required',
+	            'required' => 'required',
 	            'placeholder' => trans('cvs.inputs.dob.placeholder'),
 	            'aria-describedby'=> 'cv_dob_help_block',
 	            'data-provide' => 'datepicker',
@@ -211,7 +211,7 @@
             {!! Form::text('mobile', null, [
                 'id' => 'mobile',
                 'class' => 'form-control',
-                //'required' => 'required',
+                'required' => 'required',
                 'aria-describedby'=> 'cv_mobile_help_block',
                 'placeholder' => trans('cvs.inputs.mobile.placeholder')
             ]) !!}
@@ -262,7 +262,7 @@
             {!! Form::email('email', null, [
                 'id' => 'email',
                 'class' => 'form-control',
-                //'required' => 'required',
+                'required' => 'required',
                 'aria-describedby'=> 'cv_email_help_block',
                 'placeholder' => trans('cvs.inputs.email.placeholder')
             ]) !!}
@@ -284,7 +284,7 @@
             {!! Form::text('secondary_email', null, [
                 'id' => 'secondary_email',
                 'class' => 'form-control',
-                //'required' => 'required',
+                'required' => 'required',
                 'aria-describedby'=> 'cv_secondary_email_help_block',
                 'placeholder' => trans('cvs.inputs.secondary_email.placeholder')
             ]) !!}
@@ -335,7 +335,7 @@
             {!! Form::select('country', collect(config('countries'))->pluck('name', 'name'), null, [
                 'id' => 'country',
                 'class' => 'form-control',
-                //'required' => 'required',
+                'required' => 'required',
                 'aria-describedby'=> 'cv_country_help_block',
                 'placeholder' => trans('cvs.inputs.country.placeholder')
             ]) !!}
@@ -359,7 +359,7 @@
                 'id' => 'state',
                 'class' => 'form-control',
                 'data-country' => 'country',
-                //'required' => 'required',
+                'required' => 'required',
                 'aria-describedby'=> 'cv_state_help_block',
                 'placeholder' => trans('cvs.inputs.state.placeholder')
             ]) !!}
@@ -411,7 +411,7 @@
                 'id' => 'summary',
                 'class' => 'form-control',
                 'rows' => 2,
-                //'required' => 'required',
+                'required' => 'required',
                 'aria-describedby'=> 'cv_summary_help_block',
                 'placeholder' => trans('cvs.inputs.summary.placeholder')
             ]) !!}

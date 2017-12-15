@@ -158,7 +158,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		//organization specific
 		'sector',
 		'contact_person',
-    'slug',
+		'slug',
 
 		//location specific
 		'country',
@@ -296,10 +296,12 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 	 * @return sting
 	 */
 	public function fullName() {
-		if (is_set($this->name)) {
-			return $this->name;
+		//to honour cv edits
+		if (is_set($this->first_name)) {
+			return $this->first_name . ' ' . $this->middle_name . ' ' . $this->surname;
 		}
-		return $this->first_name . ' ' . $this->middle_name . ' ' . $this->surname;
+
+		return $this->name;
 	}
 
 	/**

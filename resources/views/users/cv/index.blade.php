@@ -54,6 +54,7 @@
 @include('users.cv.blocks.creates.certificate_modal')
 @include('users.cv.blocks.creates.publication_modal')
 @include('users.cv.blocks.creates.referee_modal')
+@include('users.cv.blocks.edits.basic_modal')
 @include('users.cv.blocks.edits.skills_modal')
 @include('users.cv.blocks.edits.hobbies_modal')
 @include('users.cv.blocks.edits.interests_modal')

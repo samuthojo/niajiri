@@ -395,7 +395,7 @@ class UserController extends SecureController {
 		flash(trans('users.actions.update.flash.success'))
 			->success()->important();
 
-		return redirect()->route('users.basic');
+		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 
 	/**
