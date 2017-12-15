@@ -18,7 +18,12 @@
         ]) !!}
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 m-t-lg m-b-lg">
+          <div class="col-md-12 m-t-sm m-b-lg">
+
+            <p class="text-muted m-b-lg">
+             You can also share Interests you have outside of schoolwork such as writing books, volunteering, fashion designing, web design, swimming, playing football etc.
+            </p>
+
 
             {{--start interests textarea--}}
             {!! Form::textarea('interests', null, [

@@ -18,7 +18,11 @@
         ]) !!}
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 m-t-lg m-b-lg">
+          <div class="col-md-12 m-t-sm m-b-lg">
+
+            <p class="text-muted m-b-lg">
+             Tell us about areas that you are competent in such as, problem solving, and creative thinking by showing us brief examples etc.
+            </p>
 
             {{--start skills textarea--}}
             {!! Form::textarea('skills', null, [

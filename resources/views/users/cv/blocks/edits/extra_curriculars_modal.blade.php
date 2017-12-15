@@ -18,7 +18,11 @@
         ]) !!}
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12 m-t-lg m-b-lg">
+          <div class="col-md-12 m-t-sm m-b-lg">
+
+            <p class="text-muted m-b-lg">
+              Volunteering shows initiative, good use of your time off (especially if you are a student), technical skills you acquired in the process. It is highly appreciated among employers. Do include it if you have it.  e.g being a member of YUNA, AIESEC, TYVA, Rotary, Student government board etc
+            </p>
 
             {{--start extracurricular_activities textarea--}}
             {!! Form::textarea('extracurricular_activities', null, [
