@@ -45,7 +45,7 @@ class ProjectController extends SecureController
         $this->projectRepository->pushCriteria(new RequestCriteria($request));
 
         if(\Auth::user()->hasRole([Role::ORGANIZATION])){
-          $projects = $this->projectRepository->findWhere(['organization_id'=> \Auth::user()->id])->paginate(config('app.defaults.pageSize'));
+          $projects = $this->projectRepository->findWhere(['organization_id'=> \Auth::user()->id]);
         }else {
           $projects = $this->projectRepository->paginate(config('app.defaults.pageSize'));
         }
