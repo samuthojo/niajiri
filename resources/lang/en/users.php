@@ -18,6 +18,14 @@ return [
             'title' => 'Change User Password',
         ],
     ],
+    'events' => [
+        'registered' => [
+            'flash' => [
+                'success' => 'Thank you for successfully creating an account with Niajiri platform. Please check your email to verify your account and to proceed with your application.', 
+                'error' => 'Whoops! Something went wrong. Your account with Niajiri could not be created.',
+            ],
+        ],
+    ],
     'actions' => [
         'cancel' => [
             'name' => 'Cancel',

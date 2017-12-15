@@ -28,6 +28,16 @@
 {{-- start body --}}
 <body class="niajiri gray-bg">
 
+    <div class="container">
+
+        <div class="loginscreen animated fadeInDown">
+
+            @include('flash::message')
+
+        </div>
+
+    </div>
+
     {{-- start yield content --}}
     @yield('content')
     {{-- end yield content --}}

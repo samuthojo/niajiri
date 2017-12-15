@@ -111,6 +111,8 @@ class RegisterController extends Controller
         UserVerification::generate($user);
         UserVerification::send($user, trans('auth.verify_account'));
 
+        flash(trans('users.events.registered.flash.success'))->success();
+
         //redirect to login page
         return redirect(config('auth.defaults.login'));
 
