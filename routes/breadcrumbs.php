@@ -36,7 +36,12 @@ Breadcrumbs::register('applications.applied', function ($breadcrumbs) {
 
 Breadcrumbs::register('applications.application', function ($breadcrumbs, $instance) {
 	$breadcrumbs->parent('applications.applied');
-	$breadcrumbs->push('Application', route('applications.applied', $instance->id));
+	$breadcrumbs->push($instance->position->title.' at '.$instance->organization->name, route('applications.applied', $instance->id));
+});
+
+Breadcrumbs::register('applications.create', function ($breadcrumbs, $instance) {
+	$breadcrumbs->parent('positions.open');
+	$breadcrumbs->push($instance->title, route('applications.create', $instance->id));
 });
 
 //-------------------------------------------------------------------------

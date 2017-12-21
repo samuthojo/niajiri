@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Position;
 use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -40,11 +41,23 @@ class ApplicationController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create(Request $request) {
+
 		//TODO check CV validity
+
+		//obtain position to apply
+		$position = Position::findOrFail($request->input('position_id'));
+
+		//present application form
 		$data = [
-			'applicant_id' => $request->input('applicant_id'),
+			'route_title' => 'Applying',
+			'route_description' => 'Applying',
+			'position' => $position,
+			'instance' => $position,
+			'organization_id' => $request->input('organization_id'),
 		];
+
 		return view('applications.create', $data);
+
 	}
 
 	/**
@@ -54,16 +67,22 @@ class ApplicationController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//TODO check CV validity
-		//TODO notify applicant on application
-		//TODO notify applicant on stage
-		//TODO refactor
-		//TODO make use of transaction
 
 		//ensure applicant required details
 		$applicant = \Auth::user();
 
-		if (!$applicant->hasBasicDetails()) {
+		//ensure not applied
+		$application = Application::where([
+			'applicant_id' => $applicant->id,
+			'position_id' => $request->input('position_id'),
+		]);
+
+		if($application){
+			flash(trans('cvs.messages.applied'))->warning()->important();
+			return back();
+		}
+
+		else if (!$applicant->hasBasicDetails()) {
 			flash(trans('cvs.messages.basic'))->warning()->important();
 			return redirect()->route('users.cv', ['id' => $applicant->id]);
 		}
@@ -103,42 +122,53 @@ class ApplicationController extends SecureController {
 				'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id',
 				'organization_id' => 'string|required|exists:users,id',
 				'position_id' => 'string|required|exists:positions,id',
+				'cover_letter' => 'required|file|mimes:pdf|max:2048',
 			]);
 
-			//obtain all application form inputs
-			$body = $request->all();
+			//ensure cover letter provided
+			if (!$request->hasFile('cover_letter')) {
+				flash(trans('cvs.messages.cover_letter'))->warning()->important();
+				return back();
+			} 
 
-			//create application
-			$application = Application::create($body);
-
-			//upload & store application cover letter
-			if ($application && $request->hasFile('cover_letter')) {
-				//clear existing cover_letter
-				$application->clearMediaCollection('cover_letters');
-				//attach new cover_letter
-				$application->addMediaFromRequest('cover_letter')
-					->toMediaCollection('cover_letters');
-			}
-
-			//advance application to next stage
-			$applicationStage = $application->advance();
-
-			//flash message
-			flash(trans('applications.actions.save.flash.success'))
-				->success()->important();
-
-			//redirect to applicant applied list
-			if ($application->isApplicant(\Auth::user())) {
-				return redirect()->route('applications.applied', [
-					'applicant_id' => $applicant->id,
-				]);
-			}
-
-			//redirect to show applications
+			//continue with application
 			else {
-				return redirect()->route('applications.index', [
-					'applicant_id' => $applicant->id,
-				]);
+				//obtain all application form inputs
+				$body = $request->all();
+
+				//create application
+				$application = Application::create($body);
+
+				//upload & store application cover letter
+				if ($application && $request->hasFile('cover_letter')) {
+					//clear existing cover_letter
+					$application->clearMediaCollection('cover_letters');
+					//attach new cover_letter
+					$application->addMediaFromRequest('cover_letter')
+						->toMediaCollection('cover_letters');
+				}
+
+				//advance application to next stage
+				$applicationStage = $application->advance();
+
+				//flash message
+				flash(trans('applications.actions.save.flash.success'))
+					->success()->important();
+
+				//redirect to applicant applied list
+				if ($application->isApplicant(\Auth::user())) {
+					return redirect()->route('applications.application', [
+						'id' => $application->id,
+						'applicant_id' => $applicant->id,
+					]);
+				}
+
+				//redirect to show applications
+				else {
+					return redirect()->route('applications.index', [
+						'applicant_id' => $applicant->id,
+					]);
+				}
 			}
 		}
 

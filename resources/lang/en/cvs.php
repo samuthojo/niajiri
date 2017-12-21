@@ -20,6 +20,8 @@ return [
 		'experiences' => 'Please fill in experiences details, to continue',
 		'languages' => 'Please fill in languages details, to continue',
 		'referees' => 'Please fill in referees details, to continue',
+		'cover_letter' => 'Please attach your cover letter to continue',
+		'applied' => 'You have alredy applied to this position',
 	],
 
 	'headers' => [
@@ -88,6 +90,7 @@ return [
 		'cover_letter' => [
 			'name' => 'Cover Letter',
 			'title' => 'Cover Letter',
+			'description' => 'Please attach your cover letter to continue',
 		],
 
 		'stages' => [
