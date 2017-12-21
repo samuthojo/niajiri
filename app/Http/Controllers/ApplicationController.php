@@ -75,7 +75,7 @@ class ApplicationController extends SecureController {
 		$application = Application::where([
 			'applicant_id' => $applicant->id,
 			'position_id' => $request->input('position_id'),
-		]);
+		])->first();
 
 		if($application){
 			flash(trans('cvs.messages.applied'))->warning()->important();
