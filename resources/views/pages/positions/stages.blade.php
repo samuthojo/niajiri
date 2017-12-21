@@ -66,6 +66,7 @@
       {{-- start table body --}}
       <tbody>
           @foreach($stage->applicationstages->sortBy('score') as $item)
+          @if($item && $item->applicant)
           <tr>
               <td>{{$item->created_at}}</td>
               <td>{{ $item->applicant->fullName()}}</td>
@@ -109,6 +110,7 @@
                   @endif
               </td>
           </tr>
+          @endif
       @endforeach
 
       </tbody>
