@@ -31,7 +31,7 @@
                                 ])
                             !!}
                             <h3 class="product-main-price">
-                                {{trans('cvs.headers.cover_letter.description')}}
+                                {!! trans('cvs.headers.cover_letter.description') !!}
                             </h3>
                         </div>
                         <hr>
