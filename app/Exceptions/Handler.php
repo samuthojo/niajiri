@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -48,6 +49,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //handle csrf expiry
+        if ($e instanceof TokenMismatchException) {
+            flash('Your form has expired. Please try again')->warning()->important();
+            return redirect()->back();
+        }
+
         return parent::render($request, $exception);
     }
 }
