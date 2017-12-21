@@ -52,11 +52,15 @@ class Handler extends ExceptionHandler
     {
         //handle csrf expiry
         if ($exception instanceof TokenMismatchException) {
+            
             flash('Your form has expired. Please try again')->warning()->important();
+            
             Auth::logout();
+            
             return redirect()->route('login');
-        }
 
-        return parent::render($request, $exception);
+        }else{
+            return parent::render($request, $exception);
+        }
     }
 }
