@@ -56,6 +56,11 @@ class EducationController extends SecureController {
 		//obtain user
 		$user = \Auth::user();
 
+		//merge inputs
+		$request->merge([
+			'institution' => !empty($request->input('other_institution')) ? $request->input('other_institution') : $request->input('institution')
+		]);
+
 		//ensure valid education
 		$this->validate($request, [
 			'level' => 'required|string',
@@ -146,6 +151,12 @@ class EducationController extends SecureController {
 
 		//obtain user
 		$user = \Auth::user();
+
+		//merge inputs
+		$request->merge([
+			'institution' => !empty($request->input('other_institution')) ? $request->input('other_institution') : $request->input('institution')
+		]);
+
 
 		//ensure valid education
 		$this->validate($request, [

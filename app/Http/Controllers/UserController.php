@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Education;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -431,12 +432,16 @@ class UserController extends SecureController {
 
 		$application = Application::find($request->input('application_id'));
 
+		//load existing institutions
+		$institutions = Education::distinct()->get(['institution'])->pluck('institution', 'institution');
+
 		$data = [
 			'route_title' => $user->fullName() . ' - CV',
 			'route_description' => $user->fullName() . ' - CV',
 			'user' => $user,
 			'instance' => $user,
 			'applicant_id' => $user->id,
+			'institutions' => $institutions
 		];
 
 		return view('users.cv.index', $data);

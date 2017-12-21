@@ -41,13 +41,14 @@
             {{trans('educations.inputs.institution.label')}}
             <span class="text-danger">*</span>
         </label>
-        {!! Form::select('institution', trans('educations.institutions'), null, [
-            'id' => 'institution',
+        {!! Form::select('institution', collect(trans('educations.institutions'))->merge($institutions)->merge([$education->institution => $education->institution])->filter(function ($value){ return !empty($value); })->unique()->sort(), null, [
+            'id' => 'institution_'.$education->id,
             'class' => 'form-control',
             //'required' => 'required',
             'aria-describedby'=> 'education_institution_help_block',
             'placeholder' => trans('educations.inputs.institution.placeholder')
         ]) !!}
+        <input type="text" id="other_institution_{{$education->id}}" name="other_institution" class="form-control" style="display: none;" placeholder="{{trans('educations.inputs.institution.placeholder')}}">
         @if($errors->any() && $errors->has('institution'))
         {!!
             $errors->first('institution', '<p id="education_institution_help_block" class="help-block">:message</p>')
@@ -184,3 +185,21 @@
 </div>
 
 {{-- end education form --}}
+
+{{-- start cv builder js --}}
+@push('scripts')
+<script type="text/javascript">
+
+inputInstitution['_{{$education->id}}'] = $('#institution_{{$education->id}}');
+inputOtherInstitution['_{{$education->id}}'] = $('#other_institution_{{$education->id}}');
+inputInstitution['_{{$education->id}}'].change(function(event) {
+    var institution = event.target.value;
+    if(institution === 'Other'){
+        inputInstitution['_{{$education->id}}'].hide();
+        inputOtherInstitution['_{{$education->id}}'].show();
+    }
+});
+
+</script>
+@endpush
+{{-- end cv builder js --}}

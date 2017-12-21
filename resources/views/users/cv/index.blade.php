@@ -46,10 +46,19 @@
 </div>
 {{-- end page content --}}
 
+{{-- start cv builder js --}}
+@push('scripts')
+<script type="text/javascript">
+var inputInstitution = {};
+var inputOtherInstitution = {};
+</script>
+@endpush
+{{-- end cv builder js --}}
+
 {{-- start include modals--}}
 @include('users.cv.blocks.creates.experience_modal')
 @include('users.cv.blocks.creates.achievement_modal')
-@include('users.cv.blocks.creates.education_modal')
+@include('users.cv.blocks.creates.education_modal', ['education' => new App\Models\Education()])
 @include('users.cv.blocks.creates.language_modal')
 @include('users.cv.blocks.creates.certificate_modal')
 @include('users.cv.blocks.creates.publication_modal')
@@ -83,10 +92,3 @@
 {{-- end include modals--}}
 
 @endsection
-
-{{-- start cv builder js --}}
-@push('scripts')
-<script type="text/javascript">
-</script>
-@endpush
-{{-- end cv builder js --}}
