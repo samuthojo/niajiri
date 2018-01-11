@@ -77,6 +77,14 @@ return [
 			'header' => 'Qualification',
 			'description' => 'Brief Qualification Details',
 		],
+		
+		'other' => [
+			'label' => 'Other School/College/University(If not available on above list)',
+			'placeholder' => 'e.g Mtakuja',
+			'header' => 'Institution',
+			'description' => 'Issuing Institution e.g Mtakuja etc.',
+		],
+
 		'started_at' => [
 			'label' => 'Date Started',
 			'placeholder' => 'e.g 11-2015',

@@ -90,7 +90,7 @@ return [
 		'cover_letter' => [
 			'name' => 'Cover Letter',
 			'title' => 'Cover Letter',
-			'description' => 'Please attach your cover letter to continue',
+			'description' => 'Please attach your cover letter <strong>(in PDF format)</strong> to continue',
 		],
 
 		'stages' => [

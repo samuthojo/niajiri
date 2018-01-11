@@ -31,7 +31,7 @@
                                 ])
                             !!}
                             <h3 class="product-main-price">
-                                {{trans('cvs.headers.cover_letter.description')}}
+                                {!! trans('cvs.headers.cover_letter.description') !!}
                             </h3>
                         </div>
                         <hr>
@@ -49,6 +49,10 @@
 
                                         <div class="icon">
                                             <i class="fa fa-file"></i>
+                                        </div>
+                                         <div class="file-name" id="file-name" style="display: none;">
+                                            <a href="#" id="file-actual-name">N/A</a>
+                                            <br>
                                         </div>
                                     </div>
                                     <input type="hidden" name="applicant_id" value="{{Auth::user()->id}}">
@@ -81,3 +85,24 @@
 </div>
 {{-- end position preview --}}
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+
+$('input[type=file]').change(function(e){
+    $in = $(this);
+    var files = $in.prop('files');
+    if(files){
+        files = files[0];
+
+        var fileName = $('#file-name');
+        var fileActualName = $('#file-actual-name');
+        fileActualName.html(files.name);
+
+        fileName.show();
+    }
+    
+});
+
+</script>
+@endpush
