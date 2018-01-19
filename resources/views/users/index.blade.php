@@ -97,6 +97,9 @@
                                     {{ trans('users.inputs.mobile.header') }}
                                 </th>
                                 <th>
+                                    {{ trans('users.inputs.applied.header') }}
+                                </th>
+                                <th>
                                     {{trans('users.headers.actions')}}
                                 </th>
                             </tr>
@@ -113,6 +116,9 @@
                                 <td>{{ $item->name}}</td>
                                 <td>{{ $item->email}}</td>
                                 <td>{{ $item->mobile}}</td>
+                                <td>
+                                    {{$item->type !== App\Models\User::TYPE_APPLICANT ? trans('users.inputs.applied.na') : display_boolean($item->applications->count() > 0, trans('users.inputs.applied.yes'), trans('users.inputs.applied.no'))}}
+                                </td>
                                 <td>
 
                                     @permission('view:user')
