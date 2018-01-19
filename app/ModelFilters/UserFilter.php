@@ -2,7 +2,7 @@
 
 namespace App\ModelFilters;
 
-use App\User;
+use App\Models\User;
 
 /**
  * Prepare user query filter from query parameters
@@ -11,7 +11,24 @@ class UserFilter extends BaseFilter {
 
 	public function type($value) {
 		if (!static::isAll($value)) {
-			$this->where('type', $value);
+
+			//check not applied applicant
+			if (strcmp($value, User::TYPE_APPLICANT_NOT_APPLIED) === 0) {
+				$this->where('type', User::TYPE_APPLICANT);
+				return $this->has('applications', '=', 0);
+			}
+
+			//check applied applicant
+			if (strcmp($value, User::TYPE_APPLICANT_APPLIED) === 0) {
+				$this->where('type', User::TYPE_APPLICANT);
+				return $this->has('applications', '>', 0);
+			}
+
+			//filter other user type
+			else {
+				$this->where('type', $value);
+			}
+
 		}
 	}
 

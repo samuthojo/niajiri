@@ -104,13 +104,17 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 	 */
 	const TYPE_ORGANIZATION = 'Organization';
 	const TYPE_APPLICANT = 'Applicant';
+	const TYPE_APPLICANT_NOT_APPLIED = 'Applicant Not Applied';
+	const TYPE_APPLICANT_APPLIED = 'Applicant Applied';
 	const TYPE_HR_AGENCY = 'Human Resource Agency';
 	const TYPE_NORMAL = 'Normal';
 	const TYPES = [
-		'Organization' => 'Organization',
-		'Applicant' => 'Applicant',
-		'Human Resource Agency' => 'Human Resource Agency',
-		'Normal' => 'Normal',
+		self::TYPE_APPLICANT => self::TYPE_APPLICANT,
+		self::TYPE_APPLICANT_APPLIED => self::TYPE_APPLICANT_APPLIED,
+		self::TYPE_APPLICANT_NOT_APPLIED => self::TYPE_APPLICANT_NOT_APPLIED,
+		self::TYPE_HR_AGENCY => self::TYPE_HR_AGENCY,
+		self::TYPE_ORGANIZATION => self::TYPE_ORGANIZATION,
+		self::TYPE_NORMAL => self::TYPE_NORMAL,
 	];
 
 	/**
