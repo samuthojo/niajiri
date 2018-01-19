@@ -54,6 +54,15 @@ $ mysql -u b0ec9ea8c94a4f -h us-cdbr-iron-east-05.cleardb.net -p heroku_9f5d769e
 ```
 pwd: bc049b54
 
+## Laravel Worker Supervisor
+```sh
+$ sudo supervisorctl reread
+$ sudo supervisorctl update
+$ sudo supervisorctl start niajiri-worker:*
+```
+- [See](http://supervisord.org/installing.html#creating-a-configuration-file)
+- [Simple Tutorial](https://pkrai.wordpress.com/2016/06/19/laravel-queues-with-supervisor/)
+
 
 ## Reviews
 - [https://app.enhancv.com/resume/new](https://app.enhancv.com/resume/new)
