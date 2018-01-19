@@ -14,6 +14,10 @@ class SecureController extends Controller {
 
 		//ensure user is verified
         $this->middleware('isVerified');
+        //TODO flash unverified is user not verified
+        //TODO once user register provide directions to look on the 
+        //email to verify account
+        //TODO allow user to resend verification email
 
 	}
 
