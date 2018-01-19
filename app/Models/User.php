@@ -106,6 +106,12 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 	const TYPE_APPLICANT = 'Applicant';
 	const TYPE_HR_AGENCY = 'Human Resource Agency';
 	const TYPE_NORMAL = 'Normal';
+	const TYPES = [
+		'Organization' => 'Organization',
+		'Applicant' => 'Applicant',
+		'Human Resource Agency' => 'Human Resource Agency',
+		'Normal' => 'Normal',
+	];
 
 	/**
 	 * The database table used by the model.
@@ -403,31 +409,6 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 				return $user;
 			}
 		});
-	}
-
-	//
-	//TODO duplicates
-	//Please makonda see ActAsApplicant and lets clean this
-	//
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function education() {
-		return $this->hasMany(\App\Models\Education::class, 'applicant_id');
-	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function experience() {
-		return $this->hasMany(\App\Models\Experience::class, 'applicant_id');
-	}
-
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function certificates() {
-		return $this->hasMany(\App\Models\Certificate::class, 'applicant_id');
 	}
 
 }

@@ -24,6 +24,7 @@ Route::get('/states', 'HomeController@get_states')->name("states");
 
 Route::resource('roles', 'RoleController');
 
+Route::get('users/export', 'UserController@export')->name('users.export');
 Route::resource('users', 'UserController');
 Route::get('/profile', 'UserController@profile')->name('profile');
 Route::get('/users/{user}/change', 'UserController@showChangePassword')->name('users.change_password');

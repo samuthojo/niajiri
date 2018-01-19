@@ -18,28 +18,55 @@
 
                 {{-- start users table in filter --}}
                 <div class="row m-t-md">
-                    <div class="col-sm-8 m-b-xs">
+                    <div class="col-sm-6 m-b-xs">
+                        @permission('edit:user')
                         <div class="btn-group">
                             <a href="{{route('users.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('users.actions.create.title') }}">
                             <i class="fa fa-plus"></i> {{ trans('users.actions.create.name') }}</a>
+                            {{--start export--}}
+                            @if($users->count() > 0)
+                            <a
+                                class="btn btn-sm btn-white"
+                                href="{{route('users.export', app('request')->request->all())}}"
+                                role="button"
+                                title="{{ trans('users.actions.export.title') }}" target="_blank">
+                                <i class="fa fa-file-excel-o"></i>
+                                {{ trans('users.actions.export.name') }}
+                            </a>
+                            @endif
+                            {{--end export--}}
                         </div>
+                        @endpermission
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         {{-- start users search form --}}
                         {!! Form::open([
                             'method'=>'GET',
                             'route' => 'users.index',
                             'style' => 'display:inline'
                         ]) !!}
-                        <div class="input-group" title="{{ trans('users.actions.search.title') }}">
-                            <input name="q" value="{{$q}}" type="text" placeholder="{{ trans('users.actions.search.placeholder') }}" class="input-sm form-control"/>
-                                <span class="input-group-btn">
-                                    {!! Form::button(trans('users.actions.search.name'),[
-                                            'type' => 'submit',
-                                            'class' => 'btn btn-primary btn-sm',
-                                            'title' => trans('users.actions.search.title')
-                                        ]) !!}
-                                </span>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    {!! Form::select('type', $types, null, [
+                                            'class' => 'form-control',
+                                            'id' =>'type'
+                                        ])
+                                    !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group" title="{{ trans('users.actions.search.title') }}">
+                                    <input name="q" value="{{$q}}" type="text" placeholder="{{ trans('users.actions.search.placeholder') }}" class="form-control"/>
+                                        <span class="input-group-btn">
+                                            {!! Form::button(trans('users.actions.search.name'),[
+                                                    'type' => 'submit',
+                                                    'class' => 'btn btn-primary',
+                                                    'title' => trans('users.actions.search.title')
+                                                ]) !!}
+                                        </span>
+                                </div>
+                            </div>
                         </div>
                         {!! Form::close() !!}
                         {{-- end users search form --}}

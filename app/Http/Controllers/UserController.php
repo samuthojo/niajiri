@@ -6,6 +6,7 @@ use App\Models\Application;
 use App\Models\Education;
 use App\Models\Role;
 use App\Models\User;
+use Excel;
 use Illuminate\Http\Request;
 
 class UserController extends SecureController {
@@ -26,6 +27,7 @@ class UserController extends SecureController {
 			'route_title' => 'Users',
 			'route_description' => 'User List',
 			'users' => $users,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 			'q' => $request->input('q'),
 		];
 
@@ -44,6 +46,7 @@ class UserController extends SecureController {
 		$data = [
 			'user' => new User(),
 			'roles' => $roles,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 		];
 
 		return view('users.create', $data);
@@ -132,6 +135,7 @@ class UserController extends SecureController {
 			'route_title' => 'Show User',
 			'route_description' => 'Show User',
 			'user' => $user,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 			'instance' => $user,
 			'roles' => $roles,
 		];
@@ -155,6 +159,7 @@ class UserController extends SecureController {
 			'route_title' => 'Change User Password',
 			'route_description' => 'Change User Password',
 			'user' => $user,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 			'instance' => $user,
 			'roles' => $roles,
 		];
@@ -178,6 +183,7 @@ class UserController extends SecureController {
 			'route_title' => 'Edit User',
 			'route_description' => 'Edit User',
 			'user' => $user,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 			'instance' => $user,
 			'roles' => $roles,
 		];
@@ -314,6 +320,7 @@ class UserController extends SecureController {
 			'route_title' => 'Profile',
 			'route_description' => 'Profile',
 			'user' => $user,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 			'instance' => $user,
 		]);
 	}
@@ -345,6 +352,7 @@ class UserController extends SecureController {
 			'route_title' => 'Basic Details',
 			'route_description' => 'Basic Details',
 			'user' => $user,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 			'instance' => $user,
 		];
 
@@ -370,7 +378,7 @@ class UserController extends SecureController {
 			'country' => 'string|required',
 			'state' => 'string|required',
 			'gender' => 'string|min:2|max:255|required',
-			'dob' => 'date|required'
+			'dob' => 'date|required',
 		]);
 
 		//obtain user updates from form input
@@ -413,13 +421,13 @@ class UserController extends SecureController {
 			'route_title' => $user->fullName() . ' - Resume',
 			'route_description' => $user->fullName() . ' - Resume',
 			'user' => $user,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 			'application' => $application,
 			'instance' => $user,
 		];
 
 		return view('users.resume.index', $data);
 	}
-
 
 	/**
 	 * Display current user cv
@@ -440,8 +448,9 @@ class UserController extends SecureController {
 			'route_description' => $user->fullName() . ' - CV',
 			'user' => $user,
 			'instance' => $user,
+			'types' => collect(['All' => 'All'])->merge(User::TYPES)->all(),
 			'applicant_id' => $user->id,
-			'institutions' => $institutions
+			'institutions' => $institutions,
 		];
 
 		return view('users.cv.index', $data);
@@ -479,5 +488,73 @@ class UserController extends SecureController {
 			->success()->important();
 
 		return redirect()->route('users.cv', ['id' => $user->id]);
+	}
+
+	/**
+	 * Export users(applicant, stage and score)
+	 *
+	 * @return void
+	 */
+	public function export(Request $request) {
+
+		//initialize query
+		$query = User::filter($request->all())
+			->with('applications')
+			->orderBy('created_at', 'asc')
+			->orderBy('name', 'asc');
+
+		//obtain user type
+		$type = $request->input('type');
+		$type = !is_set($type) ? 'All' : $type;
+
+		//prepare workbook name
+		$workbook = snake_case($type) . '_user_export_' . time();
+
+		//prepare sheet name
+		$sheet = snake_case($type);
+
+		//obtain application stages(applicant plus stage)
+		$users = $query->get();
+
+		//build workbook
+		Excel::create($workbook, function ($excel) use ($users, $sheet) {
+
+			//build sheet
+			$excel->sheet($sheet, function ($sheet) use ($users) {
+
+				//set headers
+				$sheet->row(1, [
+					trans('users.inputs.name.header'),
+					trans('users.inputs.age.header'),
+					trans('users.inputs.gender.header'),
+					trans('users.inputs.mobile.header'),
+					trans('users.inputs.email.header'),
+					trans('users.inputs.country.header'),
+					trans('users.inputs.state.header'),
+					trans('users.inputs.applied.header'),
+				]);
+
+				$rowCount = 2;
+
+				//set data to export
+				foreach ($users as $item) {
+
+					$sheet->row($rowCount, [
+						display_or_na($item->fullName()),
+						display_int($item->age()),
+						display_or_na($item->gender),
+						display_or_na($item->mobile),
+						display_or_na($item->email),
+						display_or_na($item->country),
+						display_or_na($item->state),
+						$item->type !== User::TYPE_APPLICANT ? trans('users.inputs.applied.na') : display_boolean($item->applications->count() > 0, trans('users.inputs.applied.yes'), trans('users.inputs.applied.no')),
+					]);
+
+					$rowCount++;
+				}
+
+			});
+
+		})->export('xls');
 	}
 }

@@ -38,6 +38,13 @@ trait ActAsApplicant {
 	//------------------------------------------------------------
 
 	/**
+	 * Get the applicant applications.
+	 */
+	public function applications() {
+		return $this->hasMany('App\Models\Application', 'applicant_id', $this->getApplicantLocalKey());
+	}
+
+	/**
 	 * Get the applicant languages.
 	 */
 	public function languages() {
