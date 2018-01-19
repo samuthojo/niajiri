@@ -10,10 +10,10 @@ class SecureController extends Controller {
 		parent::__construct();
 
 		//ensure user is authenticated
-		$this->middleware('auth', ['except' => ['preview', 'showOpenPosition']]);
+		$this->middleware('auth');
 
 		//ensure user is verified
-        $this->middleware('isVerified', ['except' => ['preview', 'showOpenPosition']]);
+        $this->middleware('isVerified');
 
 	}
 
