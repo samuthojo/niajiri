@@ -18,7 +18,9 @@ class UserController extends SecureController {
 	 */
 	public function index(Request $request) {
 		//initialize query
-		$query = User::filter($request->all())->orderBy('name', 'asc');
+		$query = User::filter($request->all())
+			->with('applications')
+			->orderBy('name', 'asc');
 
 		//paginate query result
 		$users = $query->paginate(config('app.defaults.pageSize'));
