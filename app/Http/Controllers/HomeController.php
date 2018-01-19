@@ -27,11 +27,12 @@ class HomeController extends SecureController
         return redirect()->route('organizations.index');
       }
 
-      //TODO redirect organization
+      //redirect organization
       else if(\Auth::user()->hasRole([Role::ORGANIZATION])){
         return redirect()->route('projects.index');
       }
 
+    //handle normal user
       else{
         return view('pages.dashboard.index', [
             'route_title' => 'Dashboard',

@@ -31,6 +31,6 @@ e   | these language lines according to your application's requirements.
     'password_confirmation' => 'Confirm Password',
     'password_confirm_description' => 'Re-type Password e.g qwerty@2016',
     'verify_account' => 'Account Verification',
-    'not_verified' => 'Account has not been verified. Check your email.',
+    'not_verified' => 'Your account has not been verified. Please check your email to verify.',
 
 ];

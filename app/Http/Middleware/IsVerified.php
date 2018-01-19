@@ -4,42 +4,47 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Jrean\UserVerification\Exceptions\UserNotVerifiedException;
 use Jrean\UserVerification\Facades\UserVerification;
 
-class IsVerified
-{
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     *
-     * @throws Jrean\UserVerification\Exceptions\UserNotVerifiedException
-     */
-    public function handle($request, Closure $next)
-    {
 
-        if (!$request->user()->verified) {
+class IsVerified {
+	/**
+	 * Handle an incoming request.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Closure  $next
+	 * @return mixed
+	 *
+	 * @throws Jrean\UserVerification\Exceptions\UserNotVerifiedException
+	 */
+	public function handle($request, Closure $next) {
 
-            //logout
-            Auth::guard()->logout();
+		//check if user not verified
+		if ($request->user() && !$request->user()->verified) {
 
-            //clear session
-            $request->session()->flush();
-            $request->session()->regenerate();
+			//resend confirmation email
+			//TODO use queue to send email
+			$user = $request->user();
+			UserVerification::generate($user);
+			UserVerification::send($user, trans('auth.verify_account'));
 
-            //TODO resend confirmation email
-            //TODO flash to check confirmation email
+			//logout current user if already logged in
+			Auth::guard()->logout();
 
-            //redirect to login
-            return redirect(Config::get('auth.login'));
+			//clear session(flush & regenerate)
+			$request->session()->invalidate();
 
-            // throw new UserNotVerifiedException;
-        }
+			//redirect to login
+			return redirect()->route('login')
+				->withErrors(['email' => [trans('auth.not_verified')]]);
 
-        return $next($request);
-    }
+			// throw new UserNotVerifiedException;
+		}
+
+		//user verified
+		else {
+			return $next($request);
+		}
+	}
 }
