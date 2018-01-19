@@ -21,7 +21,7 @@ return [
 	'events' => [
 		'registered' => [
 			'flash' => [
-				'success' => 'Thank you for successfully creating an account with Niajiri platform. Please check your email to verify your account and to proceed with your application.',
+				'success' => 'You have successfully create an account with Niajiri platform. Please check your email to verify your account and to proceed with your application.',
 				'error' => 'Whoops! Something went wrong. Your account with Niajiri could not be created.',
 			],
 		],
