@@ -141,7 +141,7 @@ class Position extends Model {
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 **/
 	public function organization() {
-		return $this->belongsTo(\App\Models\User::class, 'organization_id');
+		return $this->belongsTo(\App\Models\User::class, 'organization_id')->withTrashed();
 	}
 
 	/**

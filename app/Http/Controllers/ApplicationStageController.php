@@ -40,8 +40,6 @@ class ApplicationStageController extends SecureController {
 			'unreviewed' => ApplicationStage::totalUnreviewed($position, $stage),
 		];
 
-		dd($applicationstages);
-
 		$data = [
 			'route_title' => 'Application Stages',
 			'route_description' => 'Application Stage List',

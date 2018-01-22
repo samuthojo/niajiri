@@ -145,7 +145,7 @@ class Education extends Model implements HasMedia
      **/
     public function applicant()
     {
-        return $this->belongsTo('App\Models\User', 'applicant_id');
+        return $this->belongsTo('App\Models\User', 'applicant_id')->withTrashed();
     }
 
 }
