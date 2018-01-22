@@ -235,7 +235,7 @@ class ApplicationStage extends Model implements HasMedia {
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 **/
 	public function application() {
-		return $this->belongsTo('App\Models\Application', 'application_id');
+		return $this->belongsTo('App\Models\Application', 'application_id')->withTrashed();
 	}
 
 	/**
@@ -243,7 +243,7 @@ class ApplicationStage extends Model implements HasMedia {
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 **/
 	public function stage() {
-		return $this->belongsTo('App\Models\Stage', 'stage_id');
+		return $this->belongsTo('App\Models\Stage', 'stage_id')->withTrashed();
 	}
 
 	/**
