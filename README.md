@@ -54,6 +54,15 @@ $ mysql -u b0ec9ea8c94a4f -h us-cdbr-iron-east-05.cleardb.net -p heroku_9f5d769e
 ```
 pwd: bc049b54
 
+##  Digital Ocean
+```sh
+username:info@ipfsoftwares.com
+password: digital1234567
+104.236.31.200
+niajiri@123
+http://cocacola.niajiri.co.tz/open/git2018/positions permanent;
+```
+
 ## Laravel Worker Supervisor
 ```sh
 $ sudo supervisorctl reread
