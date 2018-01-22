@@ -154,7 +154,7 @@
 
                     {{-- start pagination --}}
                     <div class="pagination-wrapper">
-                        {!! $users->render() !!}
+                        {!! $users->appends(request()->query())->links() !!}
                     </div>
                     {{-- end pagination --}}
 

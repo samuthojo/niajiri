@@ -144,7 +144,7 @@
                                     &nbsp;
                                 </td>
                                 @endif
-                                <td>{{ $item->applicant->fullName()}}</td>
+                                <td>{{display_or_na($item->applicant->fullName())}}</td>
                                 <td>{{display_int($item->applicant->age())}}</td>
                                 <td>{{display_or_na($item->applicant->gender)}}</td>
                                 <td>
@@ -219,7 +219,7 @@
 
                     {{-- start pagination --}}
                     <div class="pagination-wrapper">
-                        {!! $applicationstages->render() !!}
+                        {{ $applicationstages->appends(request()->query())->links() }}
                     </div>
                     {{-- end pagination --}}
 
