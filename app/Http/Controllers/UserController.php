@@ -296,7 +296,10 @@ class UserController extends SecureController {
 	public function destroy($id) {
 
 		//soft delete user
-		User::findOrFail($id)->forceDelete();
+		$user = User::findOrFail($id);
+		if($user){
+			$user->delete();
+		}
 
 		//flash message
 		flash(trans('users.actions.delete.flash.success'))
