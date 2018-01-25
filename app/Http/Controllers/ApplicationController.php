@@ -122,7 +122,7 @@ class ApplicationController extends SecureController {
 				'applicant_id' => 'string|required|exists:users,id|unique_with:applications,position_id',
 				'organization_id' => 'string|required|exists:users,id',
 				'position_id' => 'string|required|exists:positions,id',
-				'cover_letter' => 'required|file|mimes:pdf|max:2048',
+				'cover_letter' => 'required|file|mimes:pdf|max:10240',
 			]);
 
 			//ensure cover letter provided
