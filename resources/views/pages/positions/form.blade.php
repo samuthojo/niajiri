@@ -170,6 +170,28 @@
 </div>
 {{-- end sector --}}
 
+{{-- start dueAt --}}
+<div class="form-group {{ $errors->has('dueAt') ? 'has-error' : ''}}">
+    <div class="col-md-offset-3 col-md-6">
+        {!! Form::text('dueAt', null, [
+            'class' => 'form-control date',
+            'required' => 'required',
+            'aria-describedby'=> 'userdueAtHelpBlock',
+            'placeholder' => trans('positions.inputs.dueAt.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('dueAt'))
+        {!!
+            $errors->first('dueAt', '<p class="help-block">:message</p>')
+        !!}
+        @else
+            <p id="userdueAtHelpBlock" class="help-block">
+                {{ trans('positions.inputs.dueAt.description') }}
+            </p>
+        @endif
+    </div>
+</div>
+{{-- end dueAt --}}
+
 {{-- end position form --}}
 
 

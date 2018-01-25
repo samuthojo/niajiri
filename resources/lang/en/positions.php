@@ -151,6 +151,6 @@ return [
 			'placeholder' => 'Endend At',
 			'header' => 'Ended At',
 			'description' => 'Full Date when the Position was published e.g 23/4/2019',
-		],
+		]
 	],
 ];
