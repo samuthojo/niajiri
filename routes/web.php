@@ -13,7 +13,9 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name("home");
+// Route::get('/', 'HomeController@index')->name("home");
+// Route::get('/home', 'HomeController@index')->name("home");
+Route::get('/', 'HomeController@landing')->name("home");
 Route::get('/home', 'HomeController@index')->name("home");
 Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
 Route::get('/minor', 'HomeController@minor')->name("minor");

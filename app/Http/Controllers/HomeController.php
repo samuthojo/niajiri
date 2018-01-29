@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Models\Role;
 
 
-class HomeController extends SecureController
+class HomeController extends Controller
 {
     public function __construct()
     {
@@ -17,6 +17,16 @@ class HomeController extends SecureController
 
     public function index(Request $request)
     {
+
+      //ensure user is authenticated
+         $this->middleware('auth');
+
+    //ensure user is verified
+        $this->middleware('isVerified');
+        //TODO flash unverified is user not verified
+        //TODO once user register provide directions to look on the 
+        //email to verify account
+        //TODO allow user to resend verification email
       //redirect applicant
       if(\Auth::user()->hasRole(Role::APPLICANT)){
         return redirect()->route('users.cv');
@@ -39,6 +49,10 @@ class HomeController extends SecureController
             'route_description' => 'Dashboard'
         ]);
       }
+    }
+
+    public function landing(Request $request){
+      return view('landing.index',['route_title' => 'landing']);
     }
 
     public function minor(Request $request)
