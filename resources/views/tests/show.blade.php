@@ -39,7 +39,7 @@
 					        </label>
 					        @if($question->attachment())
 					        <div class="m-t-sm">
-					        	<img class="question-manager-img" src="{{$question->attachment()->public_url()}}" 
+					        	<img class="question-img" src="{{$question->attachment()->public_url()}}" 
 					        		title="{{$question->label}}">
 					        </div>
 					        @endif
