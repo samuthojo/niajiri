@@ -37,6 +37,12 @@
 					        <label for="{{$question->id}}" title="{{$question->label}}">
 					            {{$key+1}}. {{$question->label}}
 					        </label>
+					        @if($question->attachment())
+					        <div class="m-t-sm">
+					        	<img class="question-manager-img" src="{{$question->attachment()->public_url()}}" 
+					        		title="{{$question->label}}">
+					        </div>
+					        @endif
 					        @foreach($question->choices() as $choice)
 					        <div class="radio">
 					          <label

@@ -45,6 +45,7 @@
             </div>
             {{--end label--}}
 
+            {{--start choices--}}
             <div class="col-md-12 m-t-md">
               <div class="row">  
                 {{-- start firstChoice --}}
@@ -151,7 +152,30 @@
               {{-- end correct --}}
              </div>
             </div>
+            {{--end choices--}}
 
+
+            {{--start attachement--}}
+            <div class="col-md-12 m-t-md">
+                <div class="form-group m-b-lg {{ $errors->has('attachment') ? 'has-error' : ''}}">
+                    <label for="fifthChoice" title="{{trans('questions.inputs.attachment.placeholder')}}">
+                          {{trans('questions.inputs.attachment.label')}}
+                      </label>
+                    <div class="edit-profile-photo edit-profile-photo-cv">
+                        <img src="{{url('/images/attachment.jpg') }}" alt="{{trans('questions.inputs.attachment.placeholder')}}" class="img-thumbnail"
+                        title="{{trans('questions.inputs.attachment.placeholder')}}">
+                        <div class="change-photo-btn">
+                            <div class="photoUpload">
+                                <span title="{{trans('questions.inputs.attachment.placeholder')}}">
+                                    <i class="fa fa-upload"></i> {{trans('questions.inputs.attachment.change')}}
+                                </span>
+                                <input id="attachment" name="attachment" type="file" class="upload" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- end attachment edit --}}
 
           </div>
         </div>

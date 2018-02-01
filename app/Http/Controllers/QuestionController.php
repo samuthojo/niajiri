@@ -66,6 +66,15 @@ class QuestionController extends SecureController
 
         $question = $this->questionRepository->create($input);
 
+        //upload & store question attachment
+        if ($question && $request->hasFile('attachment')) {
+            //clear existing attachment
+            $question->clearMediaCollection('attachments');
+            //attach new attachment
+            $question->addMediaFromRequest('attachment')
+                ->toMediaCollection('attachments');
+        }
+
         Flash::success('Question saved successfully.');
 
         return redirect()->route('tests.show', [
@@ -144,6 +153,15 @@ class QuestionController extends SecureController
         }
 
         $question = $this->questionRepository->update($request->all(), $id);
+
+        //upload & store question attachment
+        if ($question && $request->hasFile('attachment')) {
+            //clear existing attachment
+            $question->clearMediaCollection('attachments');
+            //attach new attachment
+            $question->addMediaFromRequest('attachment')
+                ->toMediaCollection('attachments');
+        }
 
         Flash::success('Question updated successfully.');
 

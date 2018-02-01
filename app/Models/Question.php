@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Base as Model;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
  * Class Question
@@ -26,7 +28,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property decimal weight
  * @property string test_id
  */
-class Question extends Model {
+class Question extends Model implements HasMedia {
+
+	/**
+	 * Allow question to have attached files(mostly image)
+	 */
+	use HasMediaTrait;
+
 	use SoftDeletes;
 
 	public $table = 'questions';
@@ -110,6 +118,22 @@ class Question extends Model {
 	public static $rules = [
 
 	];
+
+	/**
+	 * Build question attachment
+	 */
+	public function attachment() {
+		//default question attachment
+		$attachment = null;
+
+		//try obtain custom uploaded attachment
+		$media = $this->getMedia('attachments')->first();
+		if ($media) {
+			$attachment = $media;
+		}
+
+		return $attachment;
+	}
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
