@@ -6,7 +6,6 @@
 	<meta name="theme-color" content="#4fce8d">
 	<title>Niajiri</title>
 	<link rel="stylesheet" href="{{asset('css/landing/ext.css')}}">
-	<link rel="stylesheet" href="{{asset('css/landing/flex.css')}}">
 	<link  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="{{asset('css/landing/styles.css')}}">
 </head>
@@ -18,8 +17,9 @@
 					<img src="{{asset('images/landing//logo_white.png')}}" alt="Niajiri logo">
 				</a>
 				<div>
-					<a href="{{ route('login') }}" class="for-lg">SIGN IN</a>&nbsp;&nbsp;&nbsp;
-					<a href="{{ route('register') }}" class="round-btn">&nbsp;&nbsp;Get Started&nbsp;&nbsp;</a>
+					<a href="{{ route('login') }}" class="for-lg">Sign In</a>&nbsp;&nbsp;&nbsp;
+					<a href="{{ route('register') }}" class="for-lg">&nbsp;&nbsp;Get Started&nbsp;&nbsp;</a>
+					<a href="{{ route('register') }}" class="round-btn for-mob">&nbsp;&nbsp;Get Started&nbsp;&nbsp;</a>
 				</div>
 			</div>
 		</div>
@@ -29,16 +29,10 @@
 		<div class="scrim layout vertical center-center">
 			<div id="text" class="text-center" style="display: inline-block;">
 				<h2>
-					Jump start<span class="for-mob"><br></span>your career
+					Let us Jumpstart<span class="for-mob"><br></span> your Career
 				</h2>
 				<p>
-					<span class="for-lg">
-						Niajiri is a platform created specifically for job seekers.
-						We have made it in a way such that potential employers meet you.
-					</span>
-					<span class="for-mob">
-						With Niajiri you can now land your dream job by connecting with employers.
-					</span>
+					Niajiri is an online platform curated to serve the needs of entry level talent. We prepare you for career and open doors to endless opportunities.
 				</p>
 				<a href="{{ route('register') }}" class="round-btn">Get Started Now</a>
 			</div>
@@ -53,56 +47,72 @@
 			</div>
 				
 			<div>
-				<!-- <span>Cant wait to land your dream job?</span> -->
-				<span>What is this you ask?</span>
+				<!-- <span>What is this you ask?</span> -->
 				<h2>About Niajiri</h2>
 				<p style="max-width: 520px;">
-					Niajiri is the provider of a streamlined and transparent experience for employers looking for competent job ready entry level talent at the touch of their fingertips.
+					Niajiri is a provider of a streamlined and transparent experience for employers looking for competent job ready entry level talent at the touch of their fingertips.
 				</p>
 			</div>
 		</div>
 	</div>
 
-	<div class="value-proposition" style="background-color: #f5f5f5;background-image: url({{asset('images/landing/resume.jpg')}});">
+	<div class="value-proposition" style="background-color: #fafafa;background-image: url({{asset('images/landing/gn.png')}});">
 		<div class="container layout vertical center-justified">
 			<span>Not sure about your CV?</span>
 			<h2>Build yourself<br>an optimal CV</h2>
 			<p>
-				We help you create a compelling CV that will attract your career of choice.
+				We help you design a compelling CV that will attract your career of choice.
 			</p>
 		</div>
 	</div>
 
-	<div class="value-proposition">
+	<!-- <div class="value-proposition" style="background-color: #fafafa;">
 		<div class="container layout justified center">
-			<div class="for-lg" style="background-color: #f3f3f3;background-image: url({{asset('images/landing/employees.jpg')}});background-size: cover; border-radius: 50%; background-position: center; width: 450px; height: 450px; margin: 1.3em 0; max-width: 50%;"></div>
+			<div>
+				<span>Not sure about your CV?</span>
+				<h2>Build yourself<br>an optimal CV</h2>
+				<p>
+					We help you design a compelling CV that will attract your career of choice.
+				</p>
+			</div>
+
+			<div class="for-lg" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);background-image: url(images/cvimage.png);background-size: 98%; background-repeat: no-repeat; background-position: center; width: 330px; height: 450px; margi: 1.3em 0; max-width: 50%;"></div>
+		</div>
+	</div> -->
+
+	<div id="employersSection" class="value-proposition">
+		<div class="container layout justified center">
+			<div class="for-lg" style="background-colo: #f3f3f3;background-image: url({{asset('images/landing/employees2-min.png')}});background-size: 98%; background-repeat: no-repeat; border-radiu: 50%; background-position: center; width: 620px; height: 450px; margin: 1.3em 0; max-width: 50%;"></div>
 
 			<div>
 				<span>Cant wait to land your dream job?</span>
 				<h2>
 					<strong class="for-lg">Get connected<br></strong>
 					<strong class="for-mob">Connect</strong>
-					</strong> with top employers</h2>
+					</strong> with top employers
+				</h2>
 				<p>
-					Top employers have partnered with the Niajiri Platform to seek employees.
+					Top employers have partnered with Niajiri Platform to seek entry level talent.
 				</p>
 			</div>
 		</div>
 	</div>
 
-	<div class="value-proposition" style="background-color: #000;background-image: url({{asset('images/landing/crowd.jpg')}});
-	background-size: cover; background-position: bottom center; color: #fff">
-		<div class="container layout vertical center-justified">
-			<span>Want to be the first one in?</span>
-			<h2>Get ahead<br>of the crowd</h2>
+	<div class="value-proposition" style="background-color: #000;background-image: url({{asset('images/landing/crowds.jpg')}});background-size: cover; background-position: top right;">
+		<div class="scrim layout vertical center-center" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+		<div class="container layout vertical center-justified" style="color: #eee">
+			<span>Want to have an edge over others?</span>
+			<!-- <h2>Get ahead<br>of the crowd</h2> -->
+			<h2>Stand out<br>from the crowd</h2>
+			<!-- <p>Find out the latest available through our uniquely placed platform.</p> -->
 			<p>
-				Find out the latest available through our uniquely placed platform.
+				Be part of our community and get the latest interview tips and access to employability resources.
 			</p>
 		</div>
 	</div>
 
 	<div id="cta">
-		<h2 class="layout inline center">Ready to start?</h2>
+		<h2 class="layout inline center">Your career starts with us!</h2>
 		<a href="{{ route('register') }}" class="round-btn">Get Started Now</a>
 	</div>
 
@@ -113,7 +123,7 @@
 					<div>
 						<h5>About</h5>
 						<p>
-							Niajiri is the provider of a streamlined and transparent experience for employers looking for competent job ready entry level talent.
+							Niajiri is a provider of a streamlined and transparent experience for employers looking for competent job ready entry level talent at the touch of their fingertips.
 						</p>
 					</div>
 				</div>

@@ -35,7 +35,7 @@ body{
 }
 
 header{
-    height: 60px;
+    padding: 8px 0;
     position: relative;
     top: 0;
     left: 0;
@@ -68,12 +68,12 @@ header .round-btn{
 }
 
 #logo img{
-    height: 90px;
+    height: 100px;
 }
 
 #banner{
     position: relative;
-    margin-top: -90px;
+    margin-top: -110px;
     padding: 7em 0;
     height: 100vh;
     height: calc(100vh + 50px);
@@ -92,16 +92,17 @@ header .round-btn{
 #banner .scrim{
     overflow: hidden;
     background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.5);
 }
 
 #banner #text{
-    max-width: 700px;
+    max-width: 850px;
     color: #f8f8f8;
 }
 
 #banner h2{
     color: #fff;
-    font-size: 3.6em;
+    font-size: 3.1em;
     font-family: Bold, sans-serif;
     font-weight: bold;
     margin-bottom: 0.15em;
@@ -109,8 +110,9 @@ header .round-btn{
 
 #banner #text p{
     font-family: Light, sans-serif;
-    font-size: 1.5em;
+    font-size: 1.3em;
     line-height: 1.5em;
+    max-width: 750px;
 }
 
 #banner #text .round-btn{
@@ -209,6 +211,11 @@ header .round-btn{
 #cta .round-btn{
     padding: 1.1em 1.6em;
     font-size: 1em;
+    min-width: 200px;
+}
+
+#employersSection p{
+    font-size: 1.5em;
 }
 
 footer{
