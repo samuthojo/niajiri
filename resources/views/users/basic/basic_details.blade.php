@@ -286,7 +286,6 @@
             {!! Form::text('secondary_email', null, [
                 'id' => 'secondary_email',
                 'class' => 'form-control',
-                'required' => 'required',
                 'aria-describedby'=> 'cv_secondary_email_help_block',
                 'placeholder' => trans('cvs.inputs.secondary_email.placeholder')
             ]) !!}
