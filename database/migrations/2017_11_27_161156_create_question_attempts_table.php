@@ -15,7 +15,7 @@ class CreateQuestionAttemptsTable extends Migration {
 		Schema::create('question_attempts', function (Blueprint $table) {
 
 			$table->uuid('id');
-			$table->string('answer');
+			$table->string('answer'); //TODO make nullable
 			$table->timestamps();
 			$table->softDeletes();
 

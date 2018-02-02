@@ -11,7 +11,8 @@
             Form::open([
                 'route' => 'stagetests.store',
                 'class' => 'form-horizontal',
-                'files' => true
+                'files' => true,
+                'id' => 'stage-test-form'
             ])
         !!}
 
@@ -64,12 +65,23 @@
 </div>
 {{-- end page content --}}
 
+{{-- start include stage test timeout modal--}}
+@include('stagetests.blocks.timeout_modal')
+{{-- end include stage test timeout modal--}}
+
 @endsection
 
 {{-- start test taking js --}}
 @push('scripts')
 <script type="text/javascript">
     $(function(){
+
+        //modal form submission handler
+        $( "#stage-test-timeout-modal-submit" ).click(function() {
+          $( "#stage-test-form" ).submit();
+        });
+
+        //config timer
         $("#timer").countdowntimer({
           hours: 0,
           minutes: {{$test->duration ? $test->duration : 30}}, //TODO set test default duration
@@ -79,6 +91,9 @@
           fontColor: "#000000",
           backgroundColor: "#ffffff",
           timeUp: function () {
+            //show timeout modal
+            $('#stage-test-timeout-modal')
+                .modal({backdrop:'static', keyboard:false, show:true});
           }
         });
       });

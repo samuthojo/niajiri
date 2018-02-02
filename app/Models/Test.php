@@ -175,47 +175,60 @@ class Test extends Model {
 
 				//1.1..check for attempted questions
 				$has_attempts = array_has($attempt, 'attempts');
-				$attempts = $attempt['attempts'];
-				$has_attempts = $has_attempts && is_set($attempts);
+				$attempts = $has_attempts ? $attempt['attempts'] : [];
 
-				if ($has_attempts) {
+				//1.3..load existing test
+				$test = Test::query()
+					->where('position_id', $attempt['position_id'])
+					->where('stage_id', $attempt['stage_id'])
+					->where('id', $attempt['test_id'])
+					->firstOrFail();
 
-					//2..persist stage test
-					$stagetest = [
-						'applicant_id' => $attempt['applicant_id'],
-						'application_id' => $attempt['application_id'],
-						'position_id' => $attempt['position_id'],
-						'stage_id' => $attempt['stage_id'],
-						'test_id' => $attempt['test_id'],
-						'applicationstage_id' => $attempt['applicationstage_id'],
+				//2..persist stage test
+				$stagetest = [
+					'applicant_id' => $attempt['applicant_id'],
+					'application_id' => $attempt['application_id'],
+					'position_id' => $attempt['position_id'],
+					'stage_id' => $attempt['stage_id'],
+					'test_id' => $attempt['test_id'],
+					'applicationstage_id' => $attempt['applicationstage_id'],
+				];
+				$stagetest = StageTest::create($stagetest);
+
+				//2.1...persists question attempted
+				$attempted = [
+					'applicant_id' => $attempt['applicant_id'],
+					'position_id' => $attempt['position_id'],
+					'stage_id' => $attempt['stage_id'],
+					'test_id' => $attempt['test_id'],
+					'stagetest_id' => $stagetest->id,
+				];
+
+				//2.2...load all questions and merge attempts
+				$questions = $test->questions->map(function ($question) {
+					return [
+						'question_id' => $question->id,
+						'answer' => 'N/A',
 					];
-					$stagetest = StageTest::create($stagetest);
+				});
+				$attempts = $questions->merge($attempts)->all();
 
-					//2.1...persists question attempted
-					$attempted = [
-						'applicant_id' => $attempt['applicant_id'],
-						'position_id' => $attempt['position_id'],
-						'stage_id' => $attempt['stage_id'],
-						'test_id' => $attempt['test_id'],
-						'stagetest_id' => $stagetest->id,
+				foreach ($attempts as $taken) {
+
+					$question_attempt = [
+						'question_id' => $taken['question_id'],
+						'answer' => $taken['answer'],
 					];
 
-					foreach ($attempts as $question_id => $answer) {
-						$question_attempt = [
-							'question_id' => $question_id,
-							'answer' => $answer,
-						];
+					$question_attempt =
+						array_merge([], $attempted, $question_attempt);
 
-						$question_attempt =
-							array_merge([], $attempted, $question_attempt);
-
-						//3..persist question attempt
-						QuestionAttempt::create($question_attempt);
-					}
-
-					//4.. return stage test
-					return $stagetest;
+					//3..persist question attempt
+					QuestionAttempt::create($question_attempt);
 				}
+
+				//4.. return stage test
+				return $stagetest;
 
 			});
 		}

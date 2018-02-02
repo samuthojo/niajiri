@@ -92,8 +92,9 @@ class StageTestController extends SecureController {
 			'position_id' => 'string|required|exists:positions,id',
 			'stage_id' => 'string|required|exists:stages,id',
 			'test_id' => 'string|required|exists:tests,id',
-			'attempts' => 'required',
+			// 'attempts' => 'required',
 		]);
+
 
 		//find test
 		$stagetest = Test::attempt($request->all());
@@ -102,8 +103,8 @@ class StageTestController extends SecureController {
 		flash(trans('stagetests.actions.save.flash.success'))
 			->success()->important();
 
-		//redirect to test results
-		//TODO fix breadcrumbs to return to application
+		//TODO redirect to test results then to curent application
+		//TODO send email for next application
 		//TODO update cancel to return to application
 		return redirect()->route('applications.application', [
 			'id' => $request->input('application_id'),

@@ -19,11 +19,11 @@ return [
 			'title' => 'Click To View Stage Test',
 		],
 		'save' => [
-			'name' => 'Save Changes',
-			'title' => 'Click To Save New Stage Test',
+			'name' => 'Submit',
+			'title' => 'Click To Submit Test',
 			'header' => 'New Stage Test',
 			'flash' => [
-				'success' => 'Stage Test Saved Succeffully',
+				'success' => 'Test Submitted Succeffully',
 			],
 		],
 		'create' => [
@@ -50,6 +50,13 @@ return [
 			'name' => 'Search',
 			'title' => 'Search Stage Tests',
 			'placeholder' => 'Search Stage Tests',
+		],
+		'timeout' => [
+			'name' => 'View Results',
+			'header' => 'Timeout',
+			'title' => 'Timeout',
+			'description' => 'Time is up.',
+			'brief' => 'Please, submit your test to view results.',
 		],
 	],
 ];
