@@ -28,7 +28,7 @@ class StageTest extends Model {
 	protected $fillable = [
 		'applicant_id', 'application_id',
 		'position_id', 'stage_id',
-		'test_id', 'applicationstage_id',
+		'test_id', 'applicationstage_id', //TODO add time taken
 	];
 
 	/**

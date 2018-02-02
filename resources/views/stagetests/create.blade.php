@@ -1,4 +1,4 @@
-@extends('layouts.page')
+@extends('layouts.stage_test')
 
 @section('page')
 
@@ -41,7 +41,7 @@
                             ])
                         !!}
                         <a
-                            href="{{ route('stagetests.index', ['applicant_id'=> $applicant_id]) }}"
+                            href="{{ route('home', ['applicant_id'=> $applicant_id]) }}"
                             class="btn btn-white pull-right m-r-sm"
                             title="{{ trans('stagetests.actions.cancel.title') }}">
                             {{ trans('stagetests.actions.cancel.name') }}

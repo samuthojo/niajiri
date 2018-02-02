@@ -3,6 +3,7 @@
 return [
 	'headers' => [
 		'actions' => 'Actions',
+		'test' => 'Test',
 	],
 	'actions' => [
 		'cancel' => [

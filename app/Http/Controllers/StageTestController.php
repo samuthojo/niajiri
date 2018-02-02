@@ -67,6 +67,8 @@ class StageTestController extends SecureController {
 			'stage' => $test->stage,
 			'questions' => $test->questions,
 			'test' => $test,
+			'route_title' => $test->category . ' ' . trans('stagetests.headers.test'),
+			'route_description' => $test->category,
 		];
 
 		//merge query params and data
