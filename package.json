@@ -29,5 +29,7 @@
     "multiselect": "^0.9.12",
     "simple-line-icons": "^2.4.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "countdowntimer": "^2.0.1"
+  }
 }

@@ -65,3 +65,23 @@
 {{-- end page content --}}
 
 @endsection
+
+{{-- start test taking js --}}
+@push('scripts')
+<script type="text/javascript">
+    $(function(){
+        $("#timer").countdowntimer({
+          hours: 0,
+          minutes: {{$test->duration ? $test->duration : 30}}, //TODO set test default duration
+          seconds: 0,
+          size : "lg",
+          borderColor: "#ffffff",
+          fontColor: "#000000",
+          backgroundColor: "#ffffff",
+          timeUp: function () {
+          }
+        });
+      });
+</script>
+@endpush
+{{-- end test taking js --}}

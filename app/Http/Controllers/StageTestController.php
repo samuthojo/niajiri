@@ -102,7 +102,7 @@ class StageTestController extends SecureController {
 		flash(trans('stagetests.actions.save.flash.success'))
 			->success()->important();
 
-		//redirect to application
+		//redirect to test results
 		//TODO fix breadcrumbs to return to application
 		//TODO update cancel to return to application
 		return redirect()->route('applications.application', [

@@ -38,15 +38,21 @@
 
             {{-- start page header --}}
             <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-md-offset-1 col-md-10">
+                <div class="col-md-offset-1 col-md-5">
 
                     {{-- start page title --}}
                     <h2 title="{{$route_description}}">
                         {{$route_title}}
                     </h2>
                     {{-- end page title --}}
-
                 </div>
+                @if($test->duration)
+                <div class="col-md-5">
+                    <h2 class="pull-right">
+                        <div id="countdowntimer"><span id="timer"></span></div>
+                    </h2>
+                </div>
+                @endif
             </div>
             {{-- end page header --}}
 
