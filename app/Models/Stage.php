@@ -43,6 +43,8 @@ class Stage extends Model {
 		'passMark',
 		'hasTest',
 		'position_id',
+		'accepted', //a notification message to be sent on stage acceptance
+		'rejected' // a notification message to be sent on satge rejected
 	];
 
 	protected static function boot() {
@@ -68,6 +70,8 @@ class Stage extends Model {
 		'hasTest' => 'boolean',
 		'passMark' => 'double',
 		'position_id' => 'string',
+		'accepted' => 'string',
+		'rejected' => 'string',
 	];
 
 	/**

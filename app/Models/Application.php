@@ -229,6 +229,7 @@ class Application extends Model implements HasMedia {
 		$this->save();
 
 		//5. advance application to next stage
+		//TODO handle fail
 		if ($applicationStage === null) {
 			$applicationStage = ApplicationStage::create([
 				'application_id' => $this->id,
