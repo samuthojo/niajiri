@@ -135,7 +135,7 @@
                         <tbody>
                             @foreach($stage->applicationstages->sortBy('score') as $item)
                             <tr>
-                                @if($item->application->isCurrentStage($item->stage))
+                                @if($item->application->isCurrentStage($item->stage) && !$item->hasScoreAndFail())
                               <td>
                                 {{Form::checkbox('applications[]', $item->application_id, false , ['id' => $item->application_id])}}
                                 </td>

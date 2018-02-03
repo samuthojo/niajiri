@@ -211,6 +211,20 @@ class ApplicationStage extends Model implements HasMedia {
 	}
 
 	/**
+	 * Check if current application stage has score and fail
+	 * @param App\Model\Stage $stage
+	 * @return boolean
+	 */
+	public function hasScoreAndFail() {
+		
+		//compute score
+		$has_failed =
+			($this->score !== null && $this->score < $this->stage->passMark);
+
+		return $has_failed;
+	}
+
+	/**
 	 * Check if provided user is application applicant
 	 * @param  App\Models\User  $user
 	 * @return boolean
