@@ -77,3 +77,6 @@ $ sudo supervisorctl start niajiri-worker:*
 - [https://app.enhancv.com/resume/new](https://app.enhancv.com/resume/new)
 - [https://www.shortlist.net/job-seeker/](https://www.shortlist.net/job-seeker/)
 - [https://www.practiceaptitudetests.com/numerical-reasoning-tests/](https://www.practiceaptitudetests.com/numerical-reasoning-tests/)
+- [https://themsaid.com/laravel-mailables-notfiications-as-event-listeners-20170516](https://themsaid.com/laravel-mailables-notfiications-as-event-listeners-20170516)
+- [https://laracasts.com/discuss/channels/laravel/accessing-the-mailable-properties-from-the-messagesending-event-that-is-triggered-when-sending-mail-through-the-mail-facade](https://laracasts.com/discuss/channels/laravel/accessing-the-mailable-properties-from-the-messagesending-event-that-is-triggered-when-sending-mail-through-the-mail-facade)
+- [https://scotch.io/tutorials/easy-and-fast-emails-with-laravel-5-3-mailables](https://scotch.io/tutorials/easy-and-fast-emails-with-laravel-5-3-mailables)
