@@ -97,9 +97,16 @@ $actionUrl = route('applications.application', [
                                         </h1>
 
                                         <!-- Intro -->
+                                        @if(is_set($stage->stage->rejected))
                                         <p style="{{ $style['paragraph'] }}">
-                                            We would like to confirm receipt of your application. You can log in to your profile at all times and view the status of your application. An email will be sent to you if your application is selected for the next stage.
+                                            {!! $stage->stage->rejected !!}
                                         </p>
+                                        @else
+                                        <p style="{{ $style['paragraph'] }}">
+                                           Thank you for your application. <br/><br/>
+                                           We regret to inform you were not successful to move to the next stage. We appreciate your time and effort.
+                                        </p>
+                                        @endif
 
                                         <!-- Action Button -->
                                         @if (isset($actionText))

@@ -125,8 +125,8 @@ class HomeController extends Controller {
 	 */
 	public function accepted(Request $request) {
 		$user = \App\Models\User::query()->first();
-		$stage = \App\Models\Stage::query()->first();
-		return new \App\Mail\StageAccepted($user, $stage);
+		$stage = \App\Models\ApplicationStage::query()->first();
+		return new \App\Mail\StageAccepted($stage);
 	}
 
 	/**
@@ -135,7 +135,7 @@ class HomeController extends Controller {
 	 */
 	public function rejected(Request $request) {
 		$user = \App\Models\User::query()->first();
-		$stage = \App\Models\Stage::query()->first();
-		return new \App\Mail\StageRejected($user, $stage);
+		$stage = \App\Models\ApplicationStage::query()->first();
+		return new \App\Mail\StageRejected($stage);
 	}
 }
