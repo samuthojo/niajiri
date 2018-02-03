@@ -258,6 +258,7 @@
                                     'title' => trans('applicationstages.actions.reject_all.title'),
                                 ])
                             !!}
+                            {{--TODO add send email to all action--}}
                         </div>
                     </div>
                     @endpermission
