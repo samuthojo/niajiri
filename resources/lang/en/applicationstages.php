@@ -82,7 +82,16 @@ return [
 			'title' => 'Click To Advance Application',
 			'flash' => [
 				'success' => 'Application Advanced Succeffully',
-				'warning' => 'No Application Advanced',
+				'warning' => 'No Application Selected',
+			],
+		],
+
+		'reject' => [
+			'name' => 'Reject',
+			'title' => 'Click To Reject Application',
+			'flash' => [
+				'success' => 'Application Rejected Succeffully',
+				'warning' => 'No Application Selected',
 			],
 		],
 
@@ -91,6 +100,14 @@ return [
 			'title' => 'Click To Advance Selected Applications',
 			'flash' => [
 				'success' => 'Applications Advanced Succeffully',
+			],
+		],
+
+		'reject_all' => [
+			'name' => 'Reject',
+			'title' => 'Click To Reject Selected Applications',
+			'flash' => [
+				'success' => 'Applications Rejected Succeffully',
 			],
 		],
 

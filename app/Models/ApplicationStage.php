@@ -317,7 +317,7 @@ class ApplicationStage extends Model implements HasMedia {
 	public static function totalFailed($position = null, $stage = null) {
 		$failed = ApplicationStage::where('position_id', $position->id)
 			->where('stage_id', $stage->id)
-			->where('score', '>', 0)
+			->where('score', '>=', 0)
 			->where('score', '<', $stage->passMark)
 			->count();
 

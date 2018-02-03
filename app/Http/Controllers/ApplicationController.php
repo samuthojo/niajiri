@@ -371,6 +371,7 @@ class ApplicationController extends SecureController {
 
 		//obtain application to advance
 		$ids = collect($request->input('applications'));
+		$action = $request->input('submit');
 
 		//ensure $ids
 		if ($ids->count() == 0) {
@@ -381,12 +382,26 @@ class ApplicationController extends SecureController {
 
 		//try to advance applications
 		else {
-			//advance applications to next stage
-			Application::advances($ids);
 
-			//flash message
-			flash(trans('applicationstages.actions.advance.flash.success'))
-				->success()->important();
+			//reject applications
+			if (strcmp($action, 'reject') === 0) {
+
+				//advance applications to next stage
+				Application::advances($ids, true);
+
+				flash(trans('applicationstages.actions.reject.flash.success'))
+					->success()->important();
+			}
+
+			//advance applications
+			else {
+
+				//advance applications to next stage
+				Application::advances($ids);
+
+				flash(trans('applicationstages.actions.advance.flash.success'))
+					->success()->important();
+			}
 		}
 
 		//redirect to application stage listing

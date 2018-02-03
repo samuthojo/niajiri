@@ -225,6 +225,7 @@
 
                     {{-- start advance actions --}}
                     @if($applicationstages->count() >= 1)
+                    @permission('edit:applicationstage')
                     <div class="m-b-lg">
                         <div class="hr-line-dashed"></div>
                         <div>
@@ -233,12 +234,26 @@
                                     trans('applicationstages.actions.advance_all.name'),
                                     [
                                     'type' => 'submit',
+                                    'value' => 'advance',
+                                    'name' => 'submit',
                                     'class' => 'btn btn-sm btn-primary',
                                     'title' => trans('applicationstages.actions.advance_all.title'),
                                 ])
                             !!}
+                             {!!
+                                Form::button(
+                                    trans('applicationstages.actions.reject_all.name'),
+                                    [
+                                    'type' => 'submit',
+                                    'value' => 'reject',
+                                    'name' => 'submit',
+                                    'class' => 'btn btn-sm btn-danger',
+                                    'title' => trans('applicationstages.actions.reject_all.title'),
+                                ])
+                            !!}
                         </div>
                     </div>
+                    @endpermission
                     @endif
                     {{-- end advance actions --}}
 

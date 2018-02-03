@@ -279,8 +279,8 @@ class Application extends Model implements HasMedia {
 		$this->save();
 
 		//queue(send) mail to applicant to notify next stage
-		Mail::to($applicationStage->applicant)
-			->queue(new StageRejected($applicationStage));
+		Mail::to($currentApplicationStage->applicant)
+			->queue(new StageRejected($currentApplicationStage));
 
 		return $this;
 
@@ -304,10 +304,10 @@ class Application extends Model implements HasMedia {
 		//TODO throw if no application ids
 
 		// advance applications
-		return \DB::transaction(function () use ($ids) {
+		return \DB::transaction(function () use ($ids, $reject) {
 
 			// 0. map ids to advance applications
-			return $ids->map(function ($id) {
+			return $ids->map(function ($id) use ($reject) {
 
 				//1. find existing application
 				$application = Application::findOrFail($id);
