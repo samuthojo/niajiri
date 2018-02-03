@@ -30,8 +30,7 @@ class IsVerified {
 				UserVerification::generate($user);
 			}
 			//resend confirmation email
-			//TODO use queue to send email
-			UserVerification::send($user, trans('auth.verify_account'));
+			UserVerification::sendQueue($user, trans('auth.verify_account'));
 
 			//logout current user if already logged in
 			Auth::guard()->logout();

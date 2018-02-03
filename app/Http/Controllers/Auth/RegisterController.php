@@ -103,7 +103,7 @@ class RegisterController extends Controller {
 
 		//TODO use queue to send email
 		UserVerification::generate($user);
-		UserVerification::send($user, trans('auth.verify_account'));
+		UserVerification::sendQueue($user, trans('auth.verify_account'));
 
 		//flash success account creation
 		flash(trans('users.events.registered.flash.success'))

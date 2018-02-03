@@ -30,6 +30,14 @@ class Registered extends Mailable {
 	 * @return $this
 	 */
 	public function build() {
+
+		//pass user to message and make it available on event listeners
+		$user = $this->user;
+		$this->withSwiftMessage(function ($message) use ($user) {
+			$message->user = $user;
+			$message->type = 'REGISTERED';
+		});
+
 		//TODO bcc support team or send new email
 		$this->from(config('mail.from.address'), config('mail.from.name'));
 		$this->subject(config('mail.titles.register'));
