@@ -108,8 +108,27 @@ $actionUrl = route('applications.application', [
                                         </p>
                                         @endif
 
+                                        <!-- Tests Links -->
+                                        @if($stage->stage->hasTest)
+                                        @foreach($stage->stage->tests as $test)
+                                        <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td align="center">
+                                                        <?php $actionColor = 'button--green';?>
+                                                        <a href="{{route('stagetests.create',['applicant_id' => $stage->applicant_id, 'position_id' => $stage->position_id, 'stage_id' => $stage->stage_id, 'application_id' => $stage->application_id, 'applicationstage_id'=> $stage->id, 'test_id' => $test->id])}}"
+                                                            style="{{ $fontFamily }} {{ $style['button'] }} {{ $style[$actionColor] }}"
+                                                            class="button"
+                                                            target="_blank">
+                                                            {{'Take '.$test->category.' Test'}}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endforeach
+                                        @endif
+
                                         <!-- Action Button -->
-                                        @if (isset($actionText))
+                                        @if (!$stage->stage->hasTest && isset($actionText))
                                             <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
                                                 <tr>
                                                     <td align="center">
