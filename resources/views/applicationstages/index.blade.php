@@ -189,6 +189,13 @@
                                     </a>
                                     @endpermission
                                     @endif
+                                    @if($item->hasScoreAndFail())
+                                    @permission('edit:applicationstage')
+                                    <a href="{{route('applications.advance', ['applications[]' => $item->application_id, 'stage_id' => $item->stage_id, 'position_id' => $item->position_id , 'submit' => 'reject'])}}" class="btn btn-danger btn-xs" title="{{trans('applicationstages.actions.reject.title')}}">
+                                        {{trans('applicationstages.actions.reject.name')}}
+                                    </a>
+                                    @endpermission
+                                    @endif
                                     @endif
                                 </td>
                             </tr>
