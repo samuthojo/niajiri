@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Mail\StageAccepted;
+use App\Mail\StageRejected;
 use App\Models\ApplicationStage;
 use App\Models\Base as Model;
 use Carbon\Carbon;
@@ -256,11 +257,41 @@ class Application extends Model implements HasMedia {
 	}
 
 	/**
+	 * Reject application to next stage
+	 * @return App\Model\ApplicationStage
+	 */
+	public function reject() {
+
+		//score existing application stage(if not yet)
+		$currentApplicationStage = ApplicationStage::query()->where([
+			'application_id' => $this->id,
+			'position_id' => $this->position_id,
+			'stage_id' => $this->stage_id,
+		])->first();
+
+		//set score to zero to fail current application
+		if ($currentApplicationStage && !$currentApplicationStage->score) {
+			$currentApplicationStage->score = 0;
+			$currentApplicationStage->save();
+		}
+
+		//persist application changes
+		$this->save();
+
+		//queue(send) mail to applicant to notify next stage
+		Mail::to($applicationStage->applicant)
+			->queue(new StageRejected($applicationStage));
+
+		return $this;
+
+	}
+
+	/**
 	 * Advances application(s) to next stage
 	 * @param  collection  $ids application ids
 	 * @return collection of App\Model\ApplicationStage
 	 */
-	public static function advances($ids = null) {
+	public static function advances($ids = null, $reject = false) {
 
 		//remove application empty ids
 		$ids = $ids->reject(function ($id) {
@@ -283,9 +314,17 @@ class Application extends Model implements HasMedia {
 
 				//TODO ensure applicant pass a stage
 
+				//2. auto fail current stage and stope
+				//application to advance to next stage
+				if ($reject) {
+					$application = $application->reject();
+				}
+
 				//2. auto score current stage and advance application
 				// 	 to next stage
-				$application = $application->advance(true);
+				else {
+					$application = $application->advance(true);
+				}
 
 				//3. return advanced application
 				return $application;
