@@ -22,7 +22,9 @@ Route::get('/minor', 'HomeController@minor')->name("minor");
 Route::get('/states', 'HomeController@get_states')->name("states");
 
 //development only routes, should be commented on production
-//Route::get('/artisan', 'SiteController@artisan')->name('artisan');
+//Route::get('/artisan', 'HomeController@artisan')->name('artisan');
+Route::get('/mail_registered', 'HomeController@registered')->name('mail_registered');
+Route::get('/mail_applied', 'HomeController@applied')->name('mail_applied');
 
 Route::resource('roles', 'RoleController');
 

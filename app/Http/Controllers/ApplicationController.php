@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Applied;
 use App\Models\Application;
 use App\Models\Position;
 use App\Models\Test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-
-//TODO refactor to use repository as Makonda
 
 class ApplicationController extends SecureController {
 	/**
@@ -68,6 +68,9 @@ class ApplicationController extends SecureController {
 	 */
 	public function store(Request $request) {
 
+		//TODO refactor
+		//TODO dry & KISS
+
 		//ensure applicant required details
 		$applicant = \Auth::user();
 
@@ -77,12 +80,10 @@ class ApplicationController extends SecureController {
 			'position_id' => $request->input('position_id'),
 		])->first();
 
-		if($application){
+		if ($application) {
 			flash(trans('cvs.messages.applied'))->warning()->important();
 			return back();
-		}
-
-		else if (!$applicant->hasBasicDetails()) {
+		} else if (!$applicant->hasBasicDetails()) {
 			flash(trans('cvs.messages.basic'))->warning()->important();
 			return redirect()->route('users.cv', ['id' => $applicant->id]);
 		}
@@ -129,7 +130,7 @@ class ApplicationController extends SecureController {
 			if (!$request->hasFile('cover_letter')) {
 				flash(trans('cvs.messages.cover_letter'))->warning()->important();
 				return back();
-			} 
+			}
 
 			//continue with application
 			else {
@@ -154,6 +155,10 @@ class ApplicationController extends SecureController {
 				//flash message
 				flash(trans('applications.actions.save.flash.success'))
 					->success()->important();
+
+				//queue new application email
+				Mail::to($applicant)
+					->queue(new Applied($applicant, $application));
 
 				//redirect to applicant applied list
 				if ($application->isApplicant(\Auth::user())) {

@@ -64,8 +64,11 @@ $style = [
 <?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;';?>
 
 <?php
-$actionText = 'Open ' . config('app.name');
-$actionUrl = url('/');
+$actionText = 'View Application';
+$actionUrl = route('applications.application', [ 
+    'id' => $application->id, 
+    'applicant_id'=> $user->id
+]);
 ?>
 
 <body style="{{ $style['body'] }}">
@@ -95,7 +98,7 @@ $actionUrl = url('/');
 
                                         <!-- Intro -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            You are receiving this email because you have created account in {{config('app.name')}}.
+                                            You are receiving this email because you have applied to a job position in {{config('app.name')}}.
                                         </p>
 
                                         <!-- Action Button -->
@@ -117,7 +120,7 @@ $actionUrl = url('/');
 
                                         <!-- Outro -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            If you did not create account with us, no further action is required.
+                                            If you did apply for a position in {{config('app.name')}}, no further action is required.
                                         </p>
 
                                         <!-- Salutation -->

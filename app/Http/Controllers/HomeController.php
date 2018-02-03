@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller {
-  
+
 	public function __construct() {
 		parent::__construct();
 	}
@@ -96,5 +96,26 @@ class HomeController extends Controller {
 		Artisan::call('storage:link');
 
 		return redirect('/');
+	}
+
+	//mails rendering test
+
+	/**
+	 * Render register email
+	 * @param  Request $request [description]
+	 */
+	public function registered(Request $request) {
+		$user = \App\Models\User::query()->first();
+		return new \App\Mail\Registered($user);
+	}
+
+	/**
+	 * Render apply email
+	 * @param  Request $request [description]
+	 */
+	public function applied(Request $request) {
+		$user = \App\Models\User::query()->first();
+		$application = \App\Models\Application::query()->first();
+		return new \App\Mail\Applied($user, $application);
 	}
 }
