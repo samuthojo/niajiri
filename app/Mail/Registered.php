@@ -30,6 +30,7 @@ class Registered extends Mailable {
 	 * @return $this
 	 */
 	public function build() {
+		//TODO bcc support team or send new email
 		$this->from(config('mail.from.address'), config('mail.from.name'));
 		$this->subject(config('mail.titles.register'));
 		return $this->view('mails.register');
