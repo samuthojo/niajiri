@@ -8,8 +8,6 @@ use App\Models\Stage;
 use Excel;
 use Illuminate\Http\Request;
 
-//TODO refactor to use repository as Makonda
-
 class ApplicationStageController extends SecureController {
 	/**
 	 * Display a listing of the resource.
