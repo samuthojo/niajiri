@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Mail\StageAccepted;
 use App\Models\ApplicationStage;
 use App\Models\Base as Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
@@ -240,8 +242,12 @@ class Application extends Model implements HasMedia {
 				'organization_id' => $this->organization_id,
 				'position_id' => $this->position_id,
 			]);
-			//TODO send mail to applicant to notify next stage
-			//TODO send in background
+
+			//queue(send) mail to applicant to notify next stage
+			if (!$this->position->isFirstStage($nextStage)) {
+				Mail::to($applicationStage->applicant)
+					->queue(new StageAccepted($applicationStage));
+			}
 		}
 
 		//6. return current application

@@ -149,16 +149,16 @@ class ApplicationController extends SecureController {
 						->toMediaCollection('cover_letters');
 				}
 
+				//queue new application email
+				Mail::to($applicant)
+					->queue(new Applied($applicant, $application));
+
 				//advance application to next stage
 				$applicationStage = $application->advance();
 
 				//flash message
 				flash(trans('applications.actions.save.flash.success'))
 					->success()->important();
-
-				//queue new application email
-				Mail::to($applicant)
-					->queue(new Applied($applicant, $application));
 
 				//redirect to applicant applied list
 				if ($application->isApplicant(\Auth::user())) {
