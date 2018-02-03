@@ -98,7 +98,7 @@ $actionUrl = route('applications.application', [
 
                                         <!-- Intro -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            You are receiving this email because you have applied to a job position in {{config('app.name')}}.
+                                            We would like to confirm receipt of your application. You can log in to your profile at all times and view the status of your application. An email will be sent to you if your application is selected for the next stage.
                                         </p>
 
                                         <!-- Action Button -->
@@ -120,7 +120,7 @@ $actionUrl = route('applications.application', [
 
                                         <!-- Outro -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            If you did apply for a position in {{config('app.name')}}, no further action is required.
+                                            If you did not apply for a position in {{config('app.name')}}, no further action is required.
                                         </p>
 
                                         <!-- Salutation -->
