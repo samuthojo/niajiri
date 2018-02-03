@@ -118,4 +118,24 @@ class HomeController extends Controller {
 		$application = \App\Models\Application::query()->first();
 		return new \App\Mail\Applied($user, $application);
 	}
+
+	/**
+	 * Render stage accepted email
+	 * @param  Request $request [description]
+	 */
+	public function accepted(Request $request) {
+		$user = \App\Models\User::query()->first();
+		$stage = \App\Models\Stage::query()->first();
+		return new \App\Mail\StageAccepted($user, $stage);
+	}
+
+	/**
+	 * Render stage rejected email
+	 * @param  Request $request [description]
+	 */
+	public function rejected(Request $request) {
+		$user = \App\Models\User::query()->first();
+		$stage = \App\Models\Stage::query()->first();
+		return new \App\Mail\StageRejected($user, $stage);
+	}
 }

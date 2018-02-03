@@ -25,6 +25,8 @@ Route::get('/states', 'HomeController@get_states')->name("states");
 //Route::get('/artisan', 'HomeController@artisan')->name('artisan');
 Route::get('/mail_registered', 'HomeController@registered')->name('mail_registered');
 Route::get('/mail_applied', 'HomeController@applied')->name('mail_applied');
+Route::get('/mail_accepted', 'HomeController@accepted')->name('mail_accepted');
+Route::get('/mail_rejected', 'HomeController@rejected')->name('mail_rejected');
 
 Route::resource('roles', 'RoleController');
 

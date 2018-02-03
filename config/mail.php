@@ -63,7 +63,8 @@ return [
     'titles' => [
         'register' => 'Welcome to Niajiri',
         'apply' => 'New Position Application to Niajiri',
-        'stage' => 'Next Stage Selection - Apply Position to Niajiri'
+        'accepted' => 'Next Stage Selection - Apply Position to Niajiri',
+        'rejected' => 'Next Stage Rejection - Apply Position to Niajiri',
     ],
 
     /*

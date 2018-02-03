@@ -230,6 +230,8 @@ class Application extends Model implements HasMedia {
 
 		//5. advance application to next stage
 		//TODO handle fail
+		//TODO prevent advance to same stage
+		//TODO handle last stage advancing
 		if ($applicationStage === null) {
 			$applicationStage = ApplicationStage::create([
 				'application_id' => $this->id,
