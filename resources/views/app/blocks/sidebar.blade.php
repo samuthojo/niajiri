@@ -152,11 +152,26 @@
 	        @endpermission
 	        {{-- end dashboard menu --}}
 
+	        {{-- start test management --}}
+            @permission([
+	            'list:test',
+            ])
+	        <li class="{{areActiveRoutes([
+	        	'tests.*'
+	        	])}}">
+	            <a href="{{route('tests.index')}}">
+	            	<i class="fa fa-balance-scale"></i>
+	            	<span class="nav-label">Aptitude Tests</span>
+	            </a>
+	        </li>
+	        @endpermission
+			{{-- end test management --}}
+
 	        {{-- start project management --}}
             @permission([
 	            'list:project',
             ])
-          @role(['Organization'])
+          	@role(['Organization'])
 	        <li class="{{areActiveRoutes([
 	        	'projects.*'
 	        	])}}">
@@ -165,9 +180,10 @@
 	            	<span class="nav-label">Projects</span>
 	            </a>
 	        </li>
-          @endrole
+          	@endrole
 	        @endpermission
-					{{-- start organization management --}}
+			{{-- end project management --}}
+			{{-- start organization management --}}
             @permission([
 	            'list:organization',
             ])

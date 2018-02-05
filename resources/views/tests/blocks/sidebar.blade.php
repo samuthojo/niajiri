@@ -78,8 +78,9 @@
 	        {{-- start tests menu --}}
 	        @if($tests && $tests->count() > 0)
 	        @foreach($tests as $test)
-	        <li class="{{isActivePath('/tests/'.$test->id.'?position_id='.$position->id.'&stage_id='.$stage->id)}}">
-                <a href="{{route('tests.show', ['id' => $test->id, 'position_id' => $position->id, 'stage_id' => $stage->id])}}" title="{{$test->category}}">
+	        {{--TODO controll state activeness--}}
+	        <li class="{{isActivePath('/tests/'.$test->id.'?position_id='.$test->position_id.'&stage_id='.$test->stage_id)}}">
+                <a href="{{route('tests.show', ['id' => $test->id, 'position_id' => $test->position_id, 'stage_id' => $test->stage_id])}}" title="{{$test->category}}">
                 <span class="nav-label">
                 	{{$test->category}}
                 </span>

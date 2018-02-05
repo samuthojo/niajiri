@@ -7,8 +7,6 @@ use App\Models\Stage;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
-//TODO refactor to use repository as Makonda
-
 class TestController extends SecureController {
 	/**
 	 * Display a listing of the resource.
@@ -18,15 +16,32 @@ class TestController extends SecureController {
 	public function index(Request $request) {
 
 		//initialize query
-		$query = Test::filter($request->all())
-			->orderBy('created_at', 'asc')
-			->orderBy('category', 'desc');
+		$query;
+
+		//obtain position and sgtage id
+		$position_id = $request->input('position_id');
+		$stage_id = $request->input('stage_id');
+
+		//load specific position & stage questions
+		if (is_set($position_id)) {
+			$query = Test::filter($request->all())
+				->orderBy('created_at', 'asc')
+				->orderBy('category', 'desc');
+		}
+
+		//load all tests that are not of specific position
+		else {
+			$query = Test::filter($request->except(['position_id', 'stage_id']))
+				->whereNull('position_id')
+				->orderBy('created_at', 'asc')
+				->orderBy('category', 'desc');
+		}
 
 		//load position
-		$position = Position::findOrFail($request->input('position_id'));
+		$position = Position::find($position_id);
 
 		//load stage
-		$stage = Stage::findOrFail($request->input('stage_id'));
+		$stage = Stage::find($stage_id);
 
 		//query result
 		$tests = $query->get();
@@ -50,7 +65,6 @@ class TestController extends SecureController {
 				'route_title' => 'Tests',
 				'route_description' => 'Test List',
 				'tests' => $tests,
-				'instance' => $stage,
 				'position' => $position,
 				'stage' => $stage,
 			];
@@ -80,8 +94,6 @@ class TestController extends SecureController {
 		$this->validate($request, [
 			'category' => 'string|required',
 			'duration' => 'numeric|required',
-			'stage_id' => 'string|required|exists:stages,id',
-			'position_id' => 'string|required|exists:positions,id',
 		]);
 
 		//obtain all test form inputs

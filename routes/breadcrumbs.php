@@ -522,9 +522,14 @@ Breadcrumbs::register('stagetests.edit', function ($breadcrumbs, $instance) {
 
 // -------------------Tests Breadcrumbs--------------------------------------
 // Home > Tests
-Breadcrumbs::register('tests.index', function ($breadcrumbs, $instance) {
-	$breadcrumbs->parent('positions.show', $instance->position);
-	$breadcrumbs->push($instance->name, route('tests.index', ['position_id' => $instance->position_id, 'stage_id' => $instance->id]));
+Breadcrumbs::register('tests.index', function ($breadcrumbs) {
+	// if($instance->position){
+	// 	$breadcrumbs->parent('positions.show', $instance->position);
+	// 	$breadcrumbs->push($instance->name, route('tests.index', ['position_id' => $instance->position_id, 'stage_id' => $instance->id]));
+	// }else{
+	 	$breadcrumbs->parent('home');
+	 	$breadcrumbs->push('Test', route('tests.index'));	
+	// }
 });
 
 // Home > Tests > Create Test

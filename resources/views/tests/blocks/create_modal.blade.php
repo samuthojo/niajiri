@@ -19,8 +19,12 @@
                 'id' => 'test_creation_form'
             ])
       !!}
+      @if($position)
       <input type="hidden" name="position_id" value="{{$position->id}}">
+      @endif
+      @if($stage)
       <input type="hidden" name="stage_id" value="{{$stage->id}}">
+      @endif
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
