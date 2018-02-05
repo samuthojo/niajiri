@@ -61,12 +61,14 @@ class TestController extends SecureController {
 
 		//continue listing
 		else {
+
 			$data = [
 				'route_title' => 'Tests',
 				'route_description' => 'Test List',
 				'tests' => $tests,
 				'position' => $position,
 				'stage' => $stage,
+				'instance' => $stage,
 			];
 
 			return view('tests.index', $data);

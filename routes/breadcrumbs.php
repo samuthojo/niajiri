@@ -36,7 +36,7 @@ Breadcrumbs::register('applications.applied', function ($breadcrumbs) {
 
 Breadcrumbs::register('applications.application', function ($breadcrumbs, $instance) {
 	$breadcrumbs->parent('applications.applied');
-	$breadcrumbs->push($instance->position->title.' at '.$instance->organization->name, route('applications.applied', $instance->id));
+	$breadcrumbs->push($instance->position->title . ' at ' . $instance->organization->name, route('applications.applied', $instance->id));
 });
 
 Breadcrumbs::register('applications.create', function ($breadcrumbs, $instance) {
@@ -522,14 +522,14 @@ Breadcrumbs::register('stagetests.edit', function ($breadcrumbs, $instance) {
 
 // -------------------Tests Breadcrumbs--------------------------------------
 // Home > Tests
-Breadcrumbs::register('tests.index', function ($breadcrumbs) {
-	// if($instance->position){
-	// 	$breadcrumbs->parent('positions.show', $instance->position);
-	// 	$breadcrumbs->push($instance->name, route('tests.index', ['position_id' => $instance->position_id, 'stage_id' => $instance->id]));
-	// }else{
-	 	$breadcrumbs->parent('home');
-	 	$breadcrumbs->push('Test', route('tests.index'));	
-	// }
+Breadcrumbs::register('tests.index', function ($breadcrumbs, $instance) {
+	if ($instance && $instance->position) {
+		$breadcrumbs->parent('positions.show', $instance->position);
+		$breadcrumbs->push($instance->name, route('tests.index', ['position_id' => $instance->position_id, 'stage_id' => $instance->id]));
+	} else {
+		$breadcrumbs->parent('home');
+		$breadcrumbs->push('Test', route('tests.index'));
+	}
 });
 
 // Home > Tests > Create Test
