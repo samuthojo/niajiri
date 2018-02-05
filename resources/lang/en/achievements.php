@@ -90,4 +90,7 @@ return [
             'change' => 'Attachment',
         ],
     ],
+    'empty_state' => [
+        'resume' => 'This candidate has not added Honors'
+    ]
 ];

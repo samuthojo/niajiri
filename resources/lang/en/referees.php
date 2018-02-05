@@ -51,6 +51,9 @@ return [
             'placeholder' => 'Search Referees',
         ],
     ],
+    'empty_state' => [
+        'resume' => 'This candidate has not added any referee'
+    ],
     'inputs' => [
         'name' => [
             'label' => 'Name',

@@ -58,6 +58,9 @@ return [
 			'placeholder' => 'Search Education Levels',
 		],
 	],
+	'empty_state' => [
+        'resume' => 'This candidate has not added Education background'
+    ],
 	'inputs' => [
 		'level' => [
 			'label' => 'Level',

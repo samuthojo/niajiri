@@ -33,7 +33,7 @@
                     <span class="font-bold">Living in:</span> {{display_or_na($user->state)}} - {{display_or_na($user->country)}}
                 </h3>
               </div>
-              {{-- <div class="col-md-6">
+              <div class="col-md-6">
                 @if(!empty($application->coverLetter()))
                 <div class="m-t-lg">
                       <h3 title="{{trans('cvs.headers.cover_letter.title')}}">
@@ -49,7 +49,7 @@
                                         <i class="fa fa-file"></i>
                                     </div>
                                     <div class="file-name">
-                                        <a href="{{$application->coverLetter()->public_url()}}" target="_blank">
+                                        <a href="{{ $application->coverLetter()->public_url()}}" target="_blank">
                                         {{$application->coverLetter()->file_name}}
                                         </a>
                                         <br>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 @endif
-              </div> --}}
+              </div> 
             </div>
         </div>
     </div>

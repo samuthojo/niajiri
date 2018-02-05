@@ -74,6 +74,9 @@ return [
             'placeholder' => 'Search Stages',
         ],
     ],
+    'empty_state' => [
+        'stage_summary' => 'This candidate has not advanced to any stage, yet'
+    ],
     'inputs' => [
         'name' => [
             'label' => 'Name',
