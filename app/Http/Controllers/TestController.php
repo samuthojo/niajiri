@@ -68,7 +68,7 @@ class TestController extends SecureController {
 				'tests' => $tests,
 				'position' => $position,
 				'stage' => $stage,
-				'instance' => $stage,
+				'instance' => $stage ? $stage : new Stage(),
 			];
 
 			return view('tests.index', $data);
