@@ -22,17 +22,17 @@ class CreateTestsTable extends Migration {
 			$table->primary('id');
 
 			//foreigns
-			$table->uuid('position_id');
+			$table->uuid('position_id')->nullable();
 			$table->foreign('position_id')->references('id')
 				->on('positions')
 				->onUpdate('cascade')
-				->onDelete('cascade');
+				->onDelete('SET NULL');
 
-			$table->uuid('stage_id');
+			$table->uuid('stage_id')->nullable();
 			$table->foreign('stage_id')->references('id')
 				->on('stages')
 				->onUpdate('cascade')
-				->onDelete('cascade');
+				->onDelete('SET NULL');
 
 		});
 	}
