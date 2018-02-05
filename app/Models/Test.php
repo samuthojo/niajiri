@@ -153,11 +153,54 @@ class Test extends Model {
 	}
 
 	/**
-	 * Obtain stage test based on specief criteria
-	 * @return App\Models\TestStage
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function attempts() {
+		return $this->hasMany('App\Models\StageTest', 'test_id');
+	}
+
+	/**
+	 * Clone current test details(properties + questions)
+	 * @return App\Models\Test
 	 */
-	public function stageTest() {
-		# code...
+	public function copyInto($copier = []) {
+
+		//reference $this context
+		$me = $this;
+
+		return \DB::transaction(function () use ($copier, $me) {
+
+			//dont copy
+			if (empty($copier) && !array_has('position_id')
+				&& !array_has('stage_id')) {
+				return null;
+			}
+
+			//continue with copying
+			else {
+				$finder = array_merge(['category' => $me->category], $copier);
+				$creator = array_merge([
+					'category' => $me->category,
+					'duration' => $me->duration,
+				], $copier);
+				$test = Test::updateOrCreate($finder, $creator);
+
+				//copy questions if there is not attempt
+				if ($me->questions->count() > 0) {
+
+					$copier = ['test_id' => $me->id];
+
+					$me->questions->each(function ($question) use ($copier) {
+						$question->copyInto($copier);
+					});
+
+				}
+
+				return $test;
+			}
+
+		});
+
 	}
 
 	/**

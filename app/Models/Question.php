@@ -120,6 +120,45 @@ class Question extends Model implements HasMedia {
 	];
 
 	/**
+	 * Clone current question as new question
+	 * @return App\Models\Question
+	 */
+	public function copyInto($copier = []) {
+
+		//reference $this context
+		$me = $this;
+
+		return \DB::transaction(function () use ($copier, $me) {
+
+			//dont copy
+			if (empty($copier) && !array_has('test_id')) {
+				return null;
+			}
+
+			//continue with copying
+			else {
+				$finder = array_merge(['label' => $me->label], $copier);
+				$creator = array_merge([
+					'label' => $me->label,
+					'firstChoice' => $me->firstChoice,
+					'secondChoice' => $me->secondChoice,
+					'thirdChoice' => $me->thirdChoice,
+					'fourthChoice' => $me->fourthChoice,
+					'fifthChoice' => $me->fifth,
+					'correct' => $me->correct,
+				], $copier);
+
+				//TODO ensure target question has not attempt??
+				$question = Question::updateOrCreate($finder, $creator);
+
+				return $question;
+			}
+
+		});
+
+	}
+
+	/**
 	 * Build question attachment
 	 */
 	public function attachment() {
@@ -145,8 +184,8 @@ class Question extends Model implements HasMedia {
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 **/
-	public function questionAttempts() {
-		return $this->hasMany(\App\Models\QuestionAttempt::class);
+	public function attempts() {
+		return $this->hasMany('App\Models\QuestionAttempt', 'question_id');
 	}
 
 	/**

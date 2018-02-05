@@ -47,7 +47,7 @@ class TestController extends SecureController {
 		$tests = $query->get();
 
 		//redirect to first test if exists
-		if ($tests->count() > 1) {
+		if ($tests->count() >= 1) {
 
 			$test = $tests->first();
 
@@ -112,10 +112,9 @@ class TestController extends SecureController {
 		flash(trans('tests.actions.save.flash.success'))
 			->success()->important();
 
-		//redirect to show stage test listing
-		return redirect()->route('tests.index', [
-			'position_id' => $test->position_id,
-			'stage_id' => $test->stage_id,
+		//redirect to show test
+		return redirect()->route('tests.show', [
+			'id' => $test->id,
 		]);
 
 	}

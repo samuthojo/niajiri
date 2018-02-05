@@ -44,7 +44,7 @@ class Stage extends Model {
 		'hasTest',
 		'position_id',
 		'accepted', //a notification message to be sent on stage acceptance
-		'rejected' // a notification message to be sent on satge rejected
+		'rejected', // a notification message to be sent on satge rejected
 	];
 
 	protected static function boot() {
@@ -132,5 +132,67 @@ class Stage extends Model {
 	 **/
 	public function applicationStages() {
 		return $this->hasMany(\App\Models\ApplicationStage::class);
+	}
+
+	/**
+	 * Check if stage has a given test
+	 * @param  [type]  $test [description]
+	 * @return boolean       [description]
+	 */
+	public function hasTest($test = null) {
+		$has_test = false;
+
+		if ($test !== null) {
+			$exist = $this->tests->first(function ($_test) use ($test) {
+				return strcmp($_test->category, $test->category) === 0;
+			});
+
+			$has_test = $exist !== null ? true : false;
+		}
+
+		return $has_test;
+	}
+
+	public function addTests($tests = []) {
+		//no test to attach
+		if (empty($tests)) {
+			return;
+		}
+
+		//continue with stage tests attach
+		else {
+
+			//map to collection
+			$tests = collect($tests);
+
+			//remove empty tests
+			$tests = $tests->reject(function ($id) {
+				return empty($id);
+			});
+
+			//ensure unique test
+			$tests = $tests->unique();
+
+			//prepare stage details
+			$copier = [
+				'position_id' => $this->position_id,
+				'stage_id' => $this->id,
+			];
+
+			// add stage test
+			return \DB::transaction(function () use ($tests, $copier) {
+
+				//load tests
+				$tests = $tests->map(function ($id) {
+					return Test::findOrFail($id);
+				});
+
+				//copy test into stage tests
+				return $tests->map(function ($test) use ($copier) {
+					return $test->copyInto($copier);
+				});
+
+			});
+		}
 	}
 }
