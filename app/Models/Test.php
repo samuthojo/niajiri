@@ -158,24 +158,29 @@ class Test extends Model {
 	 */
 	public function copyInto($copier = []) {
 
-		//dont copy
-		if (empty($copier)) {
-			return null;
-		}
+		return \DB::transaction(function () use ($copier) {
 
-		//continue with copying
-		else {
-			$finder = array_merge(['category' => $this->category], $copier);
-			$creator = array_merge([
-				'category' => $this->category,
-				'duration' => $this->duration,
-			], $copier);
-			$test = Test::updateOrCreate($finder, $creator);
+			//dont copy
+			if (empty($copier) && !array_has('position_id')
+				&& !array_has('stage_id')) {
+				return null;
+			}
 
-			//TODO upsert questions;
+			//continue with copying
+			else {
+				$finder = array_merge(['category' => $this->category], $copier);
+				$creator = array_merge([
+					'category' => $this->category,
+					'duration' => $this->duration,
+				], $copier);
+				$test = Test::updateOrCreate($finder, $creator);
 
-			return $test;
-		}
+				//copy questions;
+
+				return $test;
+			}
+
+		});
 
 	}
 

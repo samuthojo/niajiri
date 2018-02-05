@@ -120,6 +120,42 @@ class Question extends Model implements HasMedia {
 	];
 
 	/**
+	 * Clone current question as new question
+	 * @return App\Models\Question
+	 */
+	public function copyInto($copier = []) {
+
+		return \DB::transaction(function () use ($copier) {
+
+			//dont copy
+			if (empty($copier) && !array_has('test_id')) {
+				return null;
+			}
+
+			//continue with copying
+			else {
+				$finder = array_merge(['label' => $this->label], $copier);
+				$creator = array_merge([
+					'label' => $this->label,
+					'firstChoice' => $this->firstChoice,
+					'secondChoice' => $this->secondChoice,
+					'thirdChoice' => $this->thirdChoice,
+					'fourthChoice' => $this->fourthChoice,
+					'fifthChoice' => $this->fifth,
+					'correct' => $this->correct,
+				], $copier);
+
+				//TODO ensure question has not attempt??
+				$question = Question::updateOrCreate($finder, $creator);
+
+				return $question;
+			}
+
+		});
+
+	}
+
+	/**
 	 * Build question attachment
 	 */
 	public function attachment() {
