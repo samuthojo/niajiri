@@ -121,11 +121,11 @@ return [
 			'description' => 'Question Weight in Test marks',
 		],
 		'attachment' => [
-			'label' => 'Attachment',
-			'placeholder' => 'Question Attachment',
-			'header' => 'Attachment',
-			'description' => 'Question Attachment',
-			'change' => 'Attachment',
+			'label' => 'Image',
+			'placeholder' => 'Question Image',
+			'header' => 'Image',
+			'description' => 'Question Image',
+			'change' => 'Image',
 		],
 	],
 ];
