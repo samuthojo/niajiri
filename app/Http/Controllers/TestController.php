@@ -47,7 +47,7 @@ class TestController extends SecureController {
 		$tests = $query->get();
 
 		//redirect to first test if exists
-		if ($tests->count() > 1) {
+		if ($tests->count() >= 1) {
 
 			$test = $tests->first();
 
