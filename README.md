@@ -29,6 +29,7 @@ $ php artisan migrate:refresh --seed
 - If migrations fails to refresh, run
 ```sh
 $ php artisan migrate:fresh --seed
+$ heroku run:detached php artisan migrate:fresh --seed
 ```
 
 - Ensure file storage is enables
