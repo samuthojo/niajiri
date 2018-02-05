@@ -164,6 +164,50 @@
 </div>
 {{-- end endedAt --}}
 
+{{-- start accepted --}}
+<div class="form-group {{ $errors->has('accepted') ? 'has-error' : ''}}">
+    <div class="col-md-offset-3 col-md-6">
+        {!! Form::textarea('accepted', null, [
+            'class' => 'form-control',
+            'rows' => 2,
+            'aria-describedby'=> 'acceptedHelpBlock',
+            'placeholder' => trans('stages.inputs.accepted.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('accepted'))
+        {!!
+            $errors->first('accepted', '<p class="help-block">:message</p>')
+        !!}
+        @else
+            <p id="acceptedHelpBlock" class="help-block">
+                {{ trans('stages.inputs.accepted.description') }}
+            </p>
+        @endif
+    </div>
+</div>
+{{-- end accepted --}}
+
+{{-- start rejected --}}
+<div class="form-group {{ $errors->has('rejected') ? 'has-error' : ''}}">
+    <div class="col-md-offset-3 col-md-6">
+        {!! Form::textarea('rejected', null, [
+            'class' => 'form-control',
+            'rows' => 2,
+            'aria-describedby'=> 'rejectedHelpBlock',
+            'placeholder' => trans('stages.inputs.rejected.placeholder')
+        ]) !!}
+        @if($errors->any() && $errors->has('rejected'))
+        {!!
+            $errors->first('rejected', '<p class="help-block">:message</p>')
+        !!}
+        @else
+            <p id="rejectedHelpBlock" class="help-block">
+                {{ trans('stages.inputs.rejected.description') }}
+            </p>
+        @endif
+    </div>
+</div>
+{{-- end rejected --}}
+
 {{-- end stage form --}}
 
 @push('scripts')

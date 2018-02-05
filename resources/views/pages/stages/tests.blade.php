@@ -4,7 +4,7 @@
   <div class="row m-t-md">
       <div class="col-sm-8 m-b-xs">
           <div class="btn-group">
-              <a href="{{route('stages.tests.create',$stage->id)}}" class="btn btn-sm btn-white" role="button" title="{{ trans('tests.actions.create.title') }}">
+              <a href="{{route('tests.index', ['position_id' => $stage->position_id, 'stage_id' => $stage->id])}}" class="btn btn-sm btn-white" role="button" title="{{ trans('tests.actions.create.title') }}">
               <i class="fa fa-plus"></i> {{ trans('tests.actions.create.name') }}</a>
           </div>
       </div>
@@ -30,7 +30,7 @@
                  {{$item->duration}}
               </td>
               <td>
-                 {{trans('tests.testCategories.'.$item->test_category)}}
+                 {{$item->category}}
               </td>
               <td class="project-actions">
                   <a href="{{ route('tests.show', ['id' => $item->id]) }}" class="btn btn-white btn-xs"><i class="fa fa-folder"></i> View </a>
