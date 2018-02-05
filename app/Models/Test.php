@@ -153,11 +153,30 @@ class Test extends Model {
 	}
 
 	/**
-	 * Obtain stage test based on specief criteria
-	 * @return App\Models\TestStage
+	 * Clone current test details(properties + questions)
+	 * @return App\Models\Test
 	 */
-	public function stageTest() {
-		# code...
+	public function copyInto($copier = []) {
+
+		//dont copy
+		if (empty($copier)) {
+			return null;
+		}
+
+		//continue with copying
+		else {
+			$finder = array_merge(['category' => $this->category], $copier);
+			$creator = array_merge([
+				'category' => $this->category,
+				'duration' => $this->duration,
+			], $copier);
+			$test = Test::updateOrCreate($finder, $creator);
+
+			//TODO upsert questions;
+
+			return $test;
+		}
+
 	}
 
 	/**

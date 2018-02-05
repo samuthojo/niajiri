@@ -68,9 +68,13 @@ class StageController extends SecureController {
 	 * @return Response
 	 */
 	public function store(CreateStageRequest $request) {
-		$input = $request->all();
+
+		$input = $request->except(['tests']);
 
 		$stage = $this->stageRepository->create($input);
+
+		//copy tests
+		$stage->addTests($request->input('tests'));
 
 		Flash::success('Stage saved successfully.');
 
@@ -158,7 +162,10 @@ class StageController extends SecureController {
 			return redirect(route('stages.index'));
 		}
 
-		$stage = $this->stageRepository->update($request->all(), $id);
+		$stage = $this->stageRepository->update($request->except(['tests']), $id);
+
+		//copy tests
+		$stage->addTests($request->input('tests'));
 
 		Flash::success('Stage updated successfully.');
 

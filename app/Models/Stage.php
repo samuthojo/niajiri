@@ -144,12 +144,55 @@ class Stage extends Model {
 
 		if ($test !== null) {
 			$exist = $this->tests->first(function ($_test) use ($test) {
-				return $_test->id == $test->id;
+				return strcmp($_test->category, $test->category) === 0;
 			});
 
 			$has_test = $exist !== null ? true : false;
 		}
 
 		return $has_test;
+	}
+
+	public function addTests($tests = []) {
+		//no test to attach
+		if (empty($tests)) {
+			return;
+		}
+
+		//continue with stage tests attach
+		else {
+
+			//map to collection
+			$tests = collect($tests);
+
+			//remove empty tests
+			$tests = $tests->reject(function ($id) {
+				return empty($id);
+			});
+
+			//ensure unique test
+			$tests = $tests->unique();
+
+			//prepare stage details
+			$copier = [
+				'position_id' => $this->position_id,
+				'stage_id' => $this->id,
+			];
+
+			// add stage test
+			return \DB::transaction(function () use ($tests, $copier) {
+
+				//load tests
+				$tests = $tests->map(function ($id) {
+					return Test::findOrFail($id);
+				});
+
+				//copy test into stage tests
+				return $tests->map(function ($test) use ($copier) {
+					return $test->copyInto($copier);
+				});
+
+			});
+		}
 	}
 }
