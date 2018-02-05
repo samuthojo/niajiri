@@ -8,6 +8,8 @@ use App\Models\Role;
 use App\Models\User;
 use Excel;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 class UserController extends SecureController {
 	/**
@@ -16,6 +18,7 @@ class UserController extends SecureController {
 	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
+	
 	public function index(Request $request) {
 		//initialize query
 		$query = User::filter($request->all())

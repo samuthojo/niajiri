@@ -1,5 +1,5 @@
 {{-- start educations & languages --}}
-<div role="tabpanel" class="tab-pane row m-b-lg m-t-lg"  id="tab-2">
+<div role="tabpanel" class="tab-pane row m-b-lg m-t-lg"  id="tab-5">
 
 	{{--start educations--}}
 	<div class="col-md-12">
@@ -44,37 +44,3 @@
 		@endif
 	</div>
 	{{--end educations--}}
-
-	{{--start languages--}}
-	{{--<div class="col-md-6">
-		<h2 title="{{trans('cvs.headers.languages.title')}}">
-			{{trans('cvs.headers.languages.name')}}
-		</h2>
-		<hr class="hr-line-solid" />
-		@if($user->languages && $user->languages->count() > 0)
-			@foreach($user->languages as $language)
-			<div>
-				<h3 title="{{trans('languages.inputs.name.description')}}">
-					{{$language->name}}
-		        </h3>
-		        <h5>
-			        <p title="{{trans('languages.inputs.write_fluency.description')}}">
-			            {{trans('languages.inputs.write_fluency.label')}} - {{$language->write_fluency}}
-		            </p>
-		            <p title="{{trans('languages.inputs.speak_fluency.description')}}">
-			            {{trans('languages.inputs.speak_fluency.label')}} - {{$language->speak_fluency}}
-		            </p>
-	            </h5>
-				<hr class="hr-line-dashed" />
-			</div>
-			@endforeach
-			@else
-			<div>
-				<h3>{{ trans('languages.empty_state.resume') }}</h3>
-			</div>
-		@endif
-	</div>--}}
-	{{--end languages--}}
-
-</div>
-{{-- start educations & languages --}}

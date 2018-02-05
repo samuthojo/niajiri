@@ -43,9 +43,9 @@
                            <li role="presentation" class="resume_li">
                                <a href="#tab-4" aria-controls="#tab-4" role="tab" data-toggle="tab">Honors</a>
                            </li>
-                           <li role="presentation" class="resume_li">
+                           <!-- <li role="presentation" class="resume_li">
                                <a href="#tab-5" aria-controls="#tab-5" role="tab" data-toggle="tab">Stage Summary</a>
-                           </li>
+                           </li> -->
                         </ul>
                     </div>
                 </div>
@@ -68,6 +68,10 @@
                   {{-- start honors_awards --}}
                   @include('users.resume.honors_awards')
                   {{-- end honors_awards --}}
+
+                  <!-- {{-- start honors_awards --}}
+                  @include('users.resume.stage_summary')
+                  {{-- end honors_awards --}} -->
                 </div>
               </div>
 

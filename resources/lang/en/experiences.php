@@ -51,6 +51,9 @@ return [
             'placeholder' => 'Search Experiences',
         ],
     ],
+    'empty_state' => [
+        'resume' => 'This candidate has not added past experiences'
+    ],
     'inputs' => [
         'position' => [
             'label' => 'Position',
