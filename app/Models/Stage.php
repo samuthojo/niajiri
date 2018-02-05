@@ -44,7 +44,7 @@ class Stage extends Model {
 		'hasTest',
 		'position_id',
 		'accepted', //a notification message to be sent on stage acceptance
-		'rejected' // a notification message to be sent on satge rejected
+		'rejected', // a notification message to be sent on satge rejected
 	];
 
 	protected static function boot() {
@@ -132,5 +132,24 @@ class Stage extends Model {
 	 **/
 	public function applicationStages() {
 		return $this->hasMany(\App\Models\ApplicationStage::class);
+	}
+
+	/**
+	 * Check if stage has a given test
+	 * @param  [type]  $test [description]
+	 * @return boolean       [description]
+	 */
+	public function hasTest($test = null) {
+		$has_test = false;
+
+		if ($test !== null) {
+			$exist = $this->tests->first(function ($_test) use ($test) {
+				return $_test->id == $test->id;
+			});
+
+			$has_test = $exist !== null ? true : false;
+		}
+
+		return $has_test;
 	}
 }

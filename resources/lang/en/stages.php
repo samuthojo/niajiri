@@ -135,5 +135,11 @@ return [
 			'header' => 'Rejected',
 			'description' => 'Stage Rejected Message',
 		],
+		'test' => [
+			'label' => 'Tests',
+			'placeholder' => 'Tests',
+			'header' => 'Tests',
+			'description' => 'Stage Tests e.g Numerical etc',
+		],
 	],
 ];

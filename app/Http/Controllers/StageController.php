@@ -2,222 +2,232 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\SecureController;
 use App\Http\Requests\CreateStageRequest;
 use App\Http\Requests\UpdateStageRequest;
+use App\Models\Test;
 use App\Repositories\StageRepository;
 use App\Repositories\TestRepository;
-use App\Http\Controllers\SecureController;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class StageController extends SecureController
-{
-    /** @var  StageRepository */
-    private $stageRepository;
+class StageController extends SecureController {
+	/** @var  StageRepository */
+	private $stageRepository;
 
-    public function __construct(StageRepository $stageRepo, TestRepository $testRepo)
-    {
-        parent::__construct();
-        $this->stageRepository = $stageRepo;
-        $this->testRepository = $testRepo;
-    }
+	public function __construct(StageRepository $stageRepo, TestRepository $testRepo) {
+		parent::__construct();
+		$this->stageRepository = $stageRepo;
+		$this->testRepository = $testRepo;
+	}
 
-    /**
-     * Display a listing of the Stage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function index(Request $request)
-    {
-        $this->stageRepository->pushCriteria(new RequestCriteria($request));
-        $stages = $this->stageRepository->paginate(config('app.defaults.pageSize'));
+	/**
+	 * Display a listing of the Stage.
+	 *
+	 * @param Request $request
+	 * @return Response
+	 */
+	public function index(Request $request) {
+		$this->stageRepository->pushCriteria(new RequestCriteria($request));
+		$stages = $this->stageRepository->paginate(config('app.defaults.pageSize'));
 
-        return view('pages.stages.index',[
-            'route_title' => 'Stages',
-            'route_description' => 'Stages',
-            'sectors' => $stages
-        ]);
-    }
+		return view('pages.stages.index', [
+			'route_title' => 'Stages',
+			'route_description' => 'Stages',
+			'sectors' => $stages,
+		]);
+	}
 
-    /**
-     * Show the form for creating a new Stage.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-      return view('pages.stages.create',[
-          'route_title' => 'Stages',
-          'route_description' => 'Stages',
-      ]);
-    }
+	/**
+	 * Show the form for creating a new Stage.
+	 *
+	 * @return Response
+	 */
+	public function create() {
 
-    /**
-     * Store a newly created Stage in storage.
-     *
-     * @param CreateStageRequest $request
-     *
-     * @return Response
-     */
-    public function store(CreateStageRequest $request)
-    {
-        $input = $request->all();
+		//load allwable tests
+		$tests = Test::query()->whereNull('position_id')
+			->orderBy('created_at', 'asc')
+			->orderBy('category', 'desc')
+			->get();
 
-        $stage = $this->stageRepository->create($input);
+		return view('pages.stages.create', [
+			'route_title' => 'Stages',
+			'route_description' => 'Stages',
+			'tests' => $tests,
+		]);
+	}
 
-        Flash::success('Stage saved successfully.');
+	/**
+	 * Store a newly created Stage in storage.
+	 *
+	 * @param CreateStageRequest $request
+	 *
+	 * @return Response
+	 */
+	public function store(CreateStageRequest $request) {
+		$input = $request->all();
 
-        return redirect(route('stages.index'));
+		$stage = $this->stageRepository->create($input);
 
-    }
+		Flash::success('Stage saved successfully.');
 
-    /**
-     * Display the specified Stage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $stage = $this->stageRepository->findWithoutFail($id);
+		return redirect(route('stages.index'));
 
-        if (empty($stage)) {
-            Flash::error('Stage not found');
+	}
 
-            return redirect(route('stages.index'));
-        }
+	/**
+	 * Display the specified Stage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return Response
+	 */
+	public function show($id) {
 
-        return view('pages.stages.show',[
-            'route_title' => 'Stages',
-            'route_description' => 'Stages',
-            'stage' => $stage,
-            'instance' => $stage
-        ]);
-    }
+		//load allwable tests
+		$tests = Test::query()->whereNull('position_id')
+			->orderBy('created_at', 'asc')
+			->orderBy('category', 'desc')
+			->get();
 
-    /**
-     * Show the form for editing the specified Stage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-        $stage = $this->stageRepository->findWithoutFail($id);
+		$stage = $this->stageRepository->findWithoutFail($id);
 
-        if (empty($stage)) {
-            Flash::error('Stage not found');
+		if (empty($stage)) {
+			Flash::error('Stage not found');
 
-            return redirect(route('stages.index'));
-        }
+			return redirect(route('stages.index'));
+		}
 
-        return view('pages.stages.edit',[
-            'route_title' => 'Stages',
-            'route_description' => 'Stages',
-            'stage' => $stage,
-            'instance' => $stage
-        ]);
-    }
+		return view('pages.stages.show', [
+			'route_title' => 'Stages',
+			'route_description' => 'Stages',
+			'stage' => $stage,
+			'instance' => $stage,
+			'tests' => $tests,
+		]);
+	}
 
-    /**
-     * Update the specified Stage in storage.
-     *
-     * @param  int              $id
-     * @param UpdateStageRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateStageRequest $request)
-    {
-        $stage = $this->stageRepository->findWithoutFail($id);
+	/**
+	 * Show the form for editing the specified Stage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return Response
+	 */
+	public function edit($id) {
+		//load allwable tests
+		$tests = Test::query()->whereNull('position_id')
+			->orderBy('created_at', 'asc')
+			->orderBy('category', 'desc')
+			->get();
 
-        if (empty($stage)) {
-            Flash::error('Stage not found');
+		$stage = $this->stageRepository->findWithoutFail($id);
 
-            return redirect(route('stages.index'));
-        }
+		if (empty($stage)) {
+			Flash::error('Stage not found');
 
-        $stage = $this->stageRepository->update($request->all(), $id);
+			return redirect(route('stages.index'));
+		}
 
-        Flash::success('Stage updated successfully.');
+		return view('pages.stages.edit', [
+			'route_title' => 'Stages',
+			'route_description' => 'Stages',
+			'stage' => $stage,
+			'instance' => $stage,
+			'tests' => $tests,
+		]);
+	}
 
-        return redirect(route('stages.show', ['id' => $id]));
-    }
+	/**
+	 * Update the specified Stage in storage.
+	 *
+	 * @param  int              $id
+	 * @param UpdateStageRequest $request
+	 *
+	 * @return Response
+	 */
+	public function update($id, UpdateStageRequest $request) {
+		$stage = $this->stageRepository->findWithoutFail($id);
 
-    /**
-     * Remove the specified Stage from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $stage = $this->stageRepository->findWithoutFail($id);
+		if (empty($stage)) {
+			Flash::error('Stage not found');
 
-        if (empty($stage)) {
-            Flash::error('Stage not found');
+			return redirect(route('stages.index'));
+		}
 
-            return redirect(route('stages.index'));
-        }
+		$stage = $this->stageRepository->update($request->all(), $id);
 
-        $this->stageRepository->delete($id);
+		Flash::success('Stage updated successfully.');
 
-        Flash::success('Stage deleted successfully.');
+		return redirect(route('stages.show', ['id' => $id]));
+	}
 
-        return redirect(route('positions.show',['id' => $stage->position_id]));
-    }
+	/**
+	 * Remove the specified Stage from storage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return Response
+	 */
+	public function destroy($id) {
+		$stage = $this->stageRepository->findWithoutFail($id);
 
+		if (empty($stage)) {
+			Flash::error('Stage not found');
 
-    /**
-     * Show the form for creating a new Test.
-     *
-     * @return Response
-     */
-    public function TestCreate($stage_id)
-    {
-      $stage = $this->stageRepository->findWithoutFail($stage_id);
+			return redirect(route('stages.index'));
+		}
 
-      if (empty($stage)) {
-          Flash::error('Stage not found');
+		$this->stageRepository->delete($id);
 
-          return redirect(route('stages.index'));
-      }
+		Flash::success('Stage deleted successfully.');
 
-      return view('pages.stages.tests.create',[
-          'route_title' => 'Stage Test',
-          'route_description' => 'Stage Test',
-          'stage' => $stage,
-          'instance' => $stage,
-      ]);
+		return redirect(route('positions.show', ['id' => $stage->position_id]));
+	}
 
-    }
+	/**
+	 * Show the form for creating a new Test.
+	 *
+	 * @return Response
+	 */
+	public function TestCreate($stage_id) {
+		$stage = $this->stageRepository->findWithoutFail($stage_id);
 
+		if (empty($stage)) {
+			Flash::error('Stage not found');
 
+			return redirect(route('stages.index'));
+		}
 
-    /**
-     * Store a newly created Test  and attach to Stage in storage.
-     *
-     * @param CreateTestRequest $request
-     *
-     * @return Response
-     */
-    public function TestStore($id, Request $request)
-    {
-        $input = $request->all();
-        $input['stage_id'] = $id;
+		return view('pages.stages.tests.create', [
+			'route_title' => 'Stage Test',
+			'route_description' => 'Stage Test',
+			'stage' => $stage,
+			'instance' => $stage,
+		]);
 
-        $test = $this->testRepository->create($input);
+	}
 
-        Flash::success('Stage Test saved successfully.');
+	/**
+	 * Store a newly created Test  and attach to Stage in storage.
+	 *
+	 * @param CreateTestRequest $request
+	 *
+	 * @return Response
+	 */
+	public function TestStore($id, Request $request) {
+		$input = $request->all();
+		$input['stage_id'] = $id;
 
-        return redirect(route('stages.show',['id' => $test->stage_id]));
+		$test = $this->testRepository->create($input);
 
-    }
+		Flash::success('Stage Test saved successfully.');
+
+		return redirect(route('stages.show', ['id' => $test->stage_id]));
+
+	}
 
 }

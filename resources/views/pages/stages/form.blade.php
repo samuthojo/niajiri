@@ -208,6 +208,41 @@
 </div>
 {{-- end rejected --}}
 
+{{--start stage test selection--}}
+{{-- start roles --}}
+<div class="form-group">
+    <div class="col-md-offset-3 col-md-6">
+        <p class="list-group-header" title="{{trans('stages.inputs.test.description')}}">
+            {{ trans('stages.inputs.test.header') }}
+        </p>
+        <hr/>
+        <ul class="list-group">
+            @foreach($tests as $test)
+                <li class="list-group-item list-checkbox-item">
+                    <div
+                        class="checkbox"
+                        title="{{$test->category}}">
+                      <label
+                        for="{{$test->id}}"
+                        title="{{$test->category}}">
+                      {{
+                        Form::checkbox(
+                            'tests[]',
+                            $test->id,
+                            isset($test) ? $stage->hasTest($test) : false
+                        )
+                        }}
+                      {{$test->category}}
+                      </label>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</div>
+{{-- end roles --}}
+{{--end stage test selection--}}
+
 {{-- end stage form --}}
 
 @push('scripts')
