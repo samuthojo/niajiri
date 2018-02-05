@@ -125,7 +125,10 @@ class Question extends Model implements HasMedia {
 	 */
 	public function copyInto($copier = []) {
 
-		return \DB::transaction(function () use ($copier) {
+		//reference $this context
+		$me = $this;
+
+		return \DB::transaction(function () use ($copier, $me) {
 
 			//dont copy
 			if (empty($copier) && !array_has('test_id')) {
@@ -134,18 +137,18 @@ class Question extends Model implements HasMedia {
 
 			//continue with copying
 			else {
-				$finder = array_merge(['label' => $this->label], $copier);
+				$finder = array_merge(['label' => $me->label], $copier);
 				$creator = array_merge([
-					'label' => $this->label,
-					'firstChoice' => $this->firstChoice,
-					'secondChoice' => $this->secondChoice,
-					'thirdChoice' => $this->thirdChoice,
-					'fourthChoice' => $this->fourthChoice,
-					'fifthChoice' => $this->fifth,
-					'correct' => $this->correct,
+					'label' => $me->label,
+					'firstChoice' => $me->firstChoice,
+					'secondChoice' => $me->secondChoice,
+					'thirdChoice' => $me->thirdChoice,
+					'fourthChoice' => $me->fourthChoice,
+					'fifthChoice' => $me->fifth,
+					'correct' => $me->correct,
 				], $copier);
 
-				//TODO ensure question has not attempt??
+				//TODO ensure target question has not attempt??
 				$question = Question::updateOrCreate($finder, $creator);
 
 				return $question;
@@ -181,8 +184,8 @@ class Question extends Model implements HasMedia {
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 **/
-	public function questionAttempts() {
-		return $this->hasMany(\App\Models\QuestionAttempt::class);
+	public function attempts() {
+		return $this->hasMany('App\Models\QuestionAttempt', 'question_id');
 	}
 
 	/**

@@ -153,12 +153,22 @@ class Test extends Model {
 	}
 
 	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 **/
+	public function attempts() {
+		return $this->hasMany('App\Models\StageTest', 'test_id');
+	}
+
+	/**
 	 * Clone current test details(properties + questions)
 	 * @return App\Models\Test
 	 */
 	public function copyInto($copier = []) {
 
-		return \DB::transaction(function () use ($copier) {
+		//reference $this context
+		$me = $this;
+
+		return \DB::transaction(function () use ($copier, $me) {
 
 			//dont copy
 			if (empty($copier) && !array_has('position_id')
@@ -168,14 +178,23 @@ class Test extends Model {
 
 			//continue with copying
 			else {
-				$finder = array_merge(['category' => $this->category], $copier);
+				$finder = array_merge(['category' => $me->category], $copier);
 				$creator = array_merge([
-					'category' => $this->category,
-					'duration' => $this->duration,
+					'category' => $me->category,
+					'duration' => $me->duration,
 				], $copier);
 				$test = Test::updateOrCreate($finder, $creator);
 
-				//copy questions;
+				//copy questions if there is not attempt
+				if ($me->questions->count() > 0) {
+
+					$copier = ['test_id' => $me->id];
+
+					$me->questions->each(function ($question) use ($copier) {
+						$question->copyInto($copier);
+					});
+
+				}
 
 				return $test;
 			}
