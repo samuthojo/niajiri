@@ -49,6 +49,12 @@ $ composer dump-autoload
 $ php artisan db:seed --class=UsersTableSeeder
 ```
 
+## Run Queue Locally
+```sh
+$ php artisan queue:work --tries=3 --daemon
+```
+
+
 ## Heroku MySQL Console
 ```sh
 $ mysql -u b0ec9ea8c94a4f -h us-cdbr-iron-east-05.cleardb.net -p heroku_9f5d769e926b625

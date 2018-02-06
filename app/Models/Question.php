@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use App\Models\Test;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -151,6 +152,28 @@ class Question extends Model implements HasMedia {
 				//TODO ensure target question has not attempt??
 				$question = Question::updateOrCreate($finder, $creator);
 
+				//reference media if any
+
+				//update attachment references attachment
+				if ($question && $me->getMedia('attachments')->count() > 0) {
+
+					//get first media
+					$media = $me->getMedia('attachments')->first();
+
+					//try to attach
+					if ($media) {
+
+						//clear existing attachment
+						$question->clearMediaCollection('attachments');
+
+						$attachment = $question->copyMedia($media->getPath())
+							->toMediaCollection();
+
+						// dd($attachment->id);
+
+					}
+				}
+
 				return $question;
 			}
 
@@ -167,6 +190,7 @@ class Question extends Model implements HasMedia {
 
 		//try obtain custom uploaded attachment
 		$media = $this->getMedia('attachments')->first();
+		$media = $media != null ? $media : $this->getMedia()->first();
 		if ($media) {
 			$attachment = $media;
 		}
@@ -239,5 +263,37 @@ class Question extends Model implements HasMedia {
 		$choices = $choices->shuffle()->values();
 
 		return $choices;
+	}
+
+	/**
+	 * Find question
+	 * @param  [type] $category [description]
+	 * @return [type]           [description]
+	 */
+	public static function findByTestCategory($category = null) {
+
+		//ensure category
+		if (!is_set($category)) {
+			return collect([]);
+		} else {
+
+			//1...find test of specified category
+			$tests = Test::query()
+				->where('category', $category)
+				->whereNull('position_id');
+
+			//collect quest
+			if ($tests->count() > 0) {
+
+				$questions = $tests->get()->map(function ($test) {
+					return $test->questions;
+				});
+
+				$questions = $questions->flatten();
+
+				return $questions;
+
+			}
+		}
 	}
 }
