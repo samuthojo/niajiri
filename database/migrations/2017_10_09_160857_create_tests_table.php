@@ -26,13 +26,13 @@ class CreateTestsTable extends Migration {
 			$table->foreign('position_id')->references('id')
 				->on('positions')
 				->onUpdate('cascade')
-				->onDelete('SET NULL');
+				->onDelete('cascade');
 
 			$table->uuid('stage_id')->nullable();
 			$table->foreign('stage_id')->references('id')
 				->on('stages')
 				->onUpdate('cascade')
-				->onDelete('SET NULL');
+				->onDelete('cascade');
 
 		});
 	}
