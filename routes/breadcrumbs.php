@@ -74,7 +74,7 @@ Breadcrumbs::register('users.create', function ($breadcrumbs) {
 // Home > Users > [User Name]
 Breadcrumbs::register('users.show', function ($breadcrumbs, $instance) {
 	$breadcrumbs->parent('users.index');
-	$breadcrumbs->push($instance->name, route('users.show', $instance->id));
+	$breadcrumbs->push($instance->name !== null ? $instance->name : $instance->email , route('users.show', $instance->id));
 });
 
 // Home > Users > [User Name] > Edit
