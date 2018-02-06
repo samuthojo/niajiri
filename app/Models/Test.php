@@ -191,7 +191,7 @@ class Test extends Model {
 				//find questions belong to test category
 				$questions = Question::findByTestCategory($test->category);
 				$questions = $questions->merge($test->questions);
-				
+
 				if ($test->attempts->count() == 0 && $questions->count() > 0) {
 
 					$copier = ['test_id' => $test->id];
@@ -254,15 +254,14 @@ class Test extends Model {
 				];
 
 				//2.2...load all questions and merge attempts
-				$questions = $test->questions->map(function ($question) {
+				$questions = $test->questions->map(function ($question) use ($attempts) {
 					return [
 						'question_id' => $question->id,
-						'answer' => 'N/A',
+						'answer' => array_has($attempts, $question->id) ? $attempts[$question->id] : 'N/A',
 					];
 				});
-				$attempts = $questions->merge($attempts)->all();
 
-				foreach ($attempts as $taken) {
+				foreach ($questions as $taken) {
 
 					$question_attempt = [
 						'question_id' => $taken['question_id'],
