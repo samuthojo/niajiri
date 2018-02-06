@@ -41,12 +41,6 @@
                                 'title' => trans('stagetests.actions.save.title'),
                             ])
                         !!}
-                        <a
-                            href="{{ route('home', ['applicant_id'=> $applicant_id]) }}"
-                            class="btn btn-white pull-right m-r-sm"
-                            title="{{ trans('stagetests.actions.cancel.title') }}">
-                            {{ trans('stagetests.actions.cancel.name') }}
-                        </a>
                     </div>
                 </div>
                 {{-- end bottom actions --}}
@@ -74,7 +68,30 @@
 {{-- start test taking js --}}
 @push('scripts')
 <script type="text/javascript">
-    $(function(){
+    $(document).ready(function(){
+
+        window.oncontextmenu = function () {
+            return false;
+        }
+
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            else if ((event.ctrlKey && event.shiftKey && event.keyCode == 73) || (event.ctrlKey && event.shiftKey && event.keyCode == 74)) {
+                return false;
+            }
+        });
+
+        $(document).bind('keydown keypress', 'ctrl+s', function () {
+            $('#stage-test-timeout-modal')
+                .modal({backdrop:'static', keyboard:false, show:true});
+            return false;
+        });
+
+        $(window).bind('beforeunload', function(e) {
+          return 'Are you sure you want to leave?';
+        });
 
         //modal form submission handler
         $( "#stage-test-timeout-modal-submit" ).click(function() {

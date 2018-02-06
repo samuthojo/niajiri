@@ -58,7 +58,7 @@
                         @unless($applicationStage->testIsAlreadyTaken($test))
                         @if($applicationStage->canTakeTest(Auth::user()))
                         @if($applicationStage->application->isCurrentStage($applicationStage->stage))
-                        <a href="{{route('stagetests.create',['applicant_id' => $applicationStage->applicant_id, 'position_id' => $applicationStage->position_id, 'stage_id' => $applicationStage->stage_id, 'application_id' => $applicationStage->application_id, 'applicationstage_id'=> $applicationStage->id, 'test_id' => $test->id])}}" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.take_test.title')}}">
+                        <a href="{{route('stagetests.create',['applicant_id' => $applicationStage->applicant_id, 'position_id' => $applicationStage->position_id, 'stage_id' => $applicationStage->stage_id, 'application_id' => $applicationStage->application_id, 'applicationstage_id'=> $applicationStage->id, 'test_id' => $test->id])}}" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.take_test.title')}}" target="_blank">
                             {{trans('applicationstages.actions.take_test.name')}}
                         </a> {{--TODO just pass application stage id?--}}
                         @endif
