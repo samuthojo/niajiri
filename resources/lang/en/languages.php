@@ -68,6 +68,9 @@ return [
 			'placeholder' => 'Search Languages',
 		],
 	],
+	'empty_state' => [
+        'resume' => 'This candidate has not added any language'
+    ],
 	'inputs' => [
 		'name' => [
 			'label' => 'Name',

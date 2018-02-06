@@ -31,6 +31,10 @@
         <hr class="hr-line-dashed" />
       </div>
       @endforeach
+      @else
+      <div>
+        <h3>{{ trans('achievements.empty_state.resume') }}</h3>
+      </div>
     @endif
   </div>
   {{--end achievements--}}
