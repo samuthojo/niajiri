@@ -83,6 +83,12 @@
             }
         });
 
+        $(document).bind('keydown keypress', 'ctrl+s', function () {
+            $('#stage-test-timeout-modal')
+                .modal({backdrop:'static', keyboard:false, show:true});
+            return false;
+        });
+
         $(window).bind('beforeunload', function(e) {
           return 'Are you sure you want to leave?';
         });
