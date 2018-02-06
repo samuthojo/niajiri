@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use App\Models\Question;
 use App\Models\QuestionAttempt;
 use App\Models\StageTest;
 use Carbon\Carbon;
@@ -178,6 +179,7 @@ class Test extends Model {
 
 			//continue with copying
 			else {
+
 				$finder = array_merge(['category' => $me->category], $copier);
 				$creator = array_merge([
 					'category' => $me->category,
@@ -186,11 +188,15 @@ class Test extends Model {
 				$test = Test::updateOrCreate($finder, $creator);
 
 				//copy questions if there is not attempt
-				if ($me->questions->count() > 0) {
+				//find questions belong to test category
+				$questions = Question::findByTestCategory($test->category);
+				$questions = $questions->merge($test->questions);
+				
+				if ($test->attempts->count() == 0 && $questions->count() > 0) {
 
-					$copier = ['test_id' => $me->id];
+					$copier = ['test_id' => $test->id];
 
-					$me->questions->each(function ($question) use ($copier) {
+					$questions->each(function ($question) use ($copier) {
 						$question->copyInto($copier);
 					});
 

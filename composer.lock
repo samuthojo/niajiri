@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c60c76c90ef3274622948cd7b60a175",
+    "content-hash": "2046d2e9ad3eee5a92da3bbe4daa8549",
     "packages": [
         {
             "name": "alsofronie/eloquent-uuid",
@@ -2520,6 +2520,7 @@
                 "xls",
                 "xlsx"
             ],
+            "abandoned": "phpoffice/phpspreadsheet",
             "time": "2015-05-01T07:00:55+00:00"
         },
         {
@@ -3005,16 +3006,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "6.6.2",
+            "version": "6.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "36f25439883d2f15b0afe81e31e788f87bca481b"
+                "reference": "ac8b8df1d2266260a20dc181b528050e09b1c9b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/36f25439883d2f15b0afe81e31e788f87bca481b",
-                "reference": "36f25439883d2f15b0afe81e31e788f87bca481b",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/ac8b8df1d2266260a20dc181b528050e09b1c9b4",
+                "reference": "ac8b8df1d2266260a20dc181b528050e09b1c9b4",
                 "shasum": ""
             },
             "require": {
@@ -3081,7 +3082,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2017-11-07T07:58:40+00:00"
+            "time": "2017-11-28T10:07:52+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
