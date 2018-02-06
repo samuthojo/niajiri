@@ -15,7 +15,7 @@ return [
     |
 	*/
 
-	'default' => env('QUEUE_DRIVER', 'sync'),
+	'default' => $isDev ? 'sync' : env('QUEUE_DRIVER', 'sync'),
 
 	/*
     |--------------------------------------------------------------------------
