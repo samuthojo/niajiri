@@ -157,7 +157,7 @@
                                     {{ display_decimal($item->score)}}%
                                 </td>
                                 <td>
-                                    @if($item->score)
+                                    @if($item->score !== null)
                                     <span class="label {{display_boolean($item->hasPass(), 'label-primary', 'label-danger')}}">
                                         {{display_boolean($item->hasPass(), trans('applicationstages.scores.pass'), trans('applicationstages.scores.failed'))}}
                                     </span>
@@ -182,7 +182,7 @@
                                     </button>
                                     {{-- include score model --}}
                                     @endpermission
-                                    @if($item->hasPass())
+                                    @if($item->hasPass() && !$item->hasScoreAndFail())
                                     @permission('edit:applicationstage')
                                     <a href="{{route('applications.advance', ['applications[]' => $item->application_id, 'stage_id' => $item->stage_id, 'position_id' => $item->position_id])}}" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.advance.title')}}">
                                         {{trans('applicationstages.actions.advance.name')}}
