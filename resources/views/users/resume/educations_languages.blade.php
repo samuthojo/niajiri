@@ -13,6 +13,9 @@
 				<h3 title="{{trans('educations.inputs.summary.description')}}">
 					{{$education->summary}}
 		        </h3>
+				<h4 title="{{trans('educations.inputs.level.description')}}">
+		            {{$education->level}}
+	            </h4>
 		        <h4 title="{{trans('educations.inputs.institution.description')}}">
 		            {{$education->institution}}
 		            <span class="pull-right">Remark</span>
