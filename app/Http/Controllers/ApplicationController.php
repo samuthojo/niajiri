@@ -371,7 +371,7 @@ class ApplicationController extends SecureController {
 
 		//obtain application to advance
 		$ids = collect($request->input('applications'));
-		$action = $request->input('submit');
+		$action = $request->input('action');
 
 		//ensure $ids
 		if ($ids->count() == 0) {

@@ -85,7 +85,7 @@
                     {!! Form::open([
                             'method'=>'PATCH',
                             'route' => 'applications.advance',
-                            'id'=>'applicationstage_advance'
+                            'id' => 'applicationstage_advance'
                         ]) !!}
                     @if(is_set($position))
                         <input type="hidden" name="position_id" value="{{$position->id}}">
@@ -249,18 +249,21 @@
                                     [
                                     'type' => 'submit',
                                     'value' => 'advance',
-                                    'name' => 'submit',
+                                    'name' => 'action',
                                     'class' => 'btn btn-sm btn-primary',
                                     'title' => trans('applicationstages.actions.advance_all.title'),
                                 ])
                             !!}
-                             {!!
+                             <button type="button" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.notify.title')}}" data-toggle="modal" data-target="#application-notifications-modal">
+                                        {{trans('applicationstages.actions.notify.name')}}
+                                    </button>
+                            {!!
                                 Form::button(
                                     trans('applicationstages.actions.reject_all.name'),
                                     [
                                     'type' => 'submit',
                                     'value' => 'reject',
-                                    'name' => 'submit',
+                                    'name' => 'action',
                                     'class' => 'btn btn-sm btn-danger',
                                     'title' => trans('applicationstages.actions.reject_all.title'),
                                 ])
@@ -298,19 +301,35 @@
 {{-- start include notifying model
     //These were added here to avoid nested forms --}}
 @foreach($applicationstages->sortBy('score') as $item)
-@include('applicationstages.blocks.notify_modal', ['applicationstage' => $item])
+@include('applicationstages.blocks.notification_modal', ['applicationstage' => $item])
 @endforeach
 {{-- end include notifying model --}}
+
+{{--start include notifications modal--}}
+@include('applicationstages.blocks.notifications_modal')
+{{--end include notifications modal--}}
 
 @endsection
 
 @push('scripts')
 <script type="text/javascript">
-    $('#selectAll').click(function (/*event*/) {
-        $(this)
-            .closest('table')
-            .find('td input:checkbox')
-            .prop('checked', this.checked);
+    $(document).ready(function(){
+
+        $('#selectAll').click(function (/*event*/) {
+            $(this)
+                .closest('table')
+                .find('td input:checkbox')
+                .prop('checked', this.checked);
+        });
+
+        //modal form submission handler
+        $('#application-notifications-modal-submit').click(function() {
+            var message = $('#application-notifications-message').val();
+            $("#applicationstage_advance").hidden('message', message);
+            $("#applicationstage_advance").hidden('action', 'notify');
+            $("#applicationstage_advance").submit();
+        });
+
     });
 </script>
 @endpush
