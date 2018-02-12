@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Mail\StageAccepted;
+use App\Mail\StageNotify;
 use App\Mail\StageRejected;
 use App\Models\ApplicationStage;
 use App\Models\Base as Model;
@@ -189,7 +190,7 @@ class Application extends Model implements HasMedia {
 
 	/**
 	 * Advance application to next stage
-	 * @return App\Model\ApplicationStage
+	 * @return App\Model\Application
 	 */
 	public function advance($score = false) {
 		//TODO wrap in transaction
@@ -287,6 +288,31 @@ class Application extends Model implements HasMedia {
 	}
 
 	/**
+	 * Send notification to an application
+	 * @return App\Model\Application
+	 */
+	public function notify($message = null) {
+		//1.0 obtain current application stage
+		$applicationStage = ApplicationStage::query()->where([
+			'application_id' => $this->id,
+			'position_id' => $this->position_id,
+			'stage_id' => $this->stage_id,
+		])->first();
+
+		//2.0 queue(send) mail to applicant to notify
+		if ($applicationStage !== null) {
+			if (is_set($message)) {
+				Mail::to($applicationStage->applicant)
+					->queue(new StageNotify($applicationStage, $message));
+			}
+		}
+
+		//3.0 return current application
+		return $this;
+
+	}
+
+	/**
 	 * Advances application(s) to next stage
 	 * @param  collection  $ids application ids
 	 * @return collection of App\Model\ApplicationStage
@@ -327,6 +353,44 @@ class Application extends Model implements HasMedia {
 				}
 
 				//3. return advanced application
+				return $application;
+
+			});
+
+		});
+
+	}
+
+	/**
+	 * Send notification to applications with specified ids
+	 * @param  collection  $ids application ids
+	 * @return collection of App\Model\Application
+	 */
+	public static function notifies($ids = null, $message = null) {
+
+		//remove application empty ids
+		$ids = $ids->reject(function ($id) {
+			return empty($id);
+		});
+
+		//ensure unique
+		$ids = $ids->unique();
+
+		//TODO throw if no application ids
+
+		// notify applications
+		return \DB::transaction(function () use ($ids, $message) {
+
+			// 0. map ids to notify applications
+			return $ids->map(function ($id) use ($message) {
+
+				//1. find existing application
+				$application = Application::findOrFail($id);
+
+				//2. notify application
+				$application = $application->notify($message);
+
+				//3. return notified application
 				return $application;
 
 			});

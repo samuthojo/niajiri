@@ -95,6 +95,16 @@ return [
 			],
 		],
 
+		'notify' => [
+			'name' => 'Notify',
+			'label' => 'Notifying Applicants',
+			'title' => 'Click To Notify Applicants',
+			'flash' => [
+				'success' => 'Applicants Notified Succeffully',
+				'warning' => 'No Applicants Selected',
+			],
+		],
+
 		'advance_all' => [
 			'name' => 'Advance',
 			'title' => 'Click To Advance Selected Applications',
@@ -184,6 +194,12 @@ return [
 			'placeholder' => 'Status',
 			'header' => 'Status',
 			'description' => 'Status',
+		],
+		'message' => [
+			'label' => 'Message',
+			'placeholder' => 'Notification Message...',
+			'header' => 'Message',
+			'description' => 'Message',
 		],
 	],
 	'filters' => [

@@ -383,8 +383,22 @@ class ApplicationController extends SecureController {
 		//try to advance applications
 		else {
 
+			//notify applicants
+			if (strcmp($action, 'notify') === 0) {
+
+				//obtain notification message
+				$message = $request->input('message');
+
+				//advance applications to next stage
+				Application::notifies($ids, $message);
+
+				flash(trans('applicationstages.actions.notify.flash.success'))
+					->success()->important();
+
+			}
+
 			//reject applications
-			if (strcmp($action, 'reject') === 0) {
+			else if (strcmp($action, 'reject') === 0) {
 
 				//advance applications to next stage
 				Application::advances($ids, true);

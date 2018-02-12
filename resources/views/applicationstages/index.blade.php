@@ -26,6 +26,7 @@
                          @permission('edit:applicationstage')
                              <div class="btn-group">
                                 @if($position->isFirstStage($stage))
+                                @if($stage->applicationstages->count() > 0)
                                 {{--start filter--}}
                                 <button class="btn btn-sm btn-white" role="button" title="{{ trans('applicationstages.actions.screen.title') }}" data-toggle="modal" data-target="#application-screening-modal">
                                 <i class="fa fa-filter"></i> {{ trans('applicationstages.actions.screen.name') }}
@@ -33,7 +34,6 @@
                                 @endif
                                 {{--end filter--}}
                                 {{--start export--}}
-                                @if($stage->applicationstages->count() > 0)
                                 <a
                                     class="btn btn-sm btn-white"
                                     href="{{route('applicationstages.export', ['position_id' => $position->id, 'stage_id' => $stage->id])}}"
@@ -42,8 +42,8 @@
                                     <i class="fa fa-file-excel-o"></i>
                                     {{ trans('applicationstages.actions.export.name') }}
                                 </a>
-                                @endif
                                 {{--end export--}}
+                                @endif
                             </div>
                             @include('applicationstages.blocks.screening_modal')
                         @endpermission
@@ -197,6 +197,13 @@
                                     @endpermission
                                     @endif
                                     @endif
+                                    @permission('edit:applicationstage')
+                                    {{-- start include notify modal --}}
+                                    <button type="button" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.notify.title')}}" data-toggle="modal" data-target="#application-notify-modal-{{$item->id}}">
+                                        {{trans('applicationstages.actions.notify.name')}}
+                                    </button>
+                                    {{-- end include notify modal --}}
+                                    @endpermission
                                 </td>
                             </tr>
                             @if($item->hasTest())
@@ -287,6 +294,13 @@
 @include('applicationstages.blocks.score_modal', ['applicationstage' => $item])
 @endforeach
 {{-- end include scoring model --}}
+
+{{-- start include notifying model
+    //These were added here to avoid nested forms --}}
+@foreach($applicationstages->sortBy('score') as $item)
+@include('applicationstages.blocks.notify_modal', ['applicationstage' => $item])
+@endforeach
+{{-- end include notifying model --}}
 
 @endsection
 

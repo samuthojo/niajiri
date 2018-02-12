@@ -65,6 +65,7 @@ return [
         'apply' => 'New Position Application to Niajiri',
         'accepted' => 'Next Stage Selection - Apply Position to Niajiri',
         'rejected' => 'Next Stage Rejection - Apply Position to Niajiri',
+        'notification' => 'Stage Notification - Apply Position to Niajiri',
     ],
 
     /*
