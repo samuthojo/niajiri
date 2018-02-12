@@ -109,6 +109,7 @@ $actionUrl = route('applications.application', [
                                         @endif
 
                                         <!-- Tests Links -->
+                                        <!--Check if stage has started-->
                                         @if($stage->stage->hasTest)
                                         @foreach($stage->stage->tests as $test)
                                         <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
