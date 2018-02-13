@@ -133,7 +133,6 @@
 
                         {{-- start table body --}}
                         <tbody>
-                            {{dd($applicationstages)}}
                             @foreach($applicationstages->sortBy('score') as $item)
                             <tr>
                                 @if($item->application->isCurrentStage($item->stage) && !$item->hasScoreAndFail())
