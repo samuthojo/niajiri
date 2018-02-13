@@ -55,7 +55,7 @@
                [
                'type' => 'submit',
                'value' => 'notify',
-               'name' => 'submit',
+               'name' => 'action',
                'class' => 'btn btn-primary',
                'title' => trans('applicationstages.actions.notify.title'),
            ])

@@ -49,7 +49,7 @@ return [
 			'title' => 'Click To Save Changes',
 			'header' => 'New Application',
 			'flash' => [
-				'success' => 'Application Saved Succeffully',
+				'success' => 'Application Saved Successfully',
 			],
 		],
 		'create' => [
@@ -60,7 +60,7 @@ return [
 			'name' => 'Delete',
 			'title' => 'Click To Delete Application',
 			'flash' => [
-				'success' => 'Application Deleted Succeffully',
+				'success' => 'Application Deleted Successfully',
 			],
 		],
 		'update' => [
@@ -69,7 +69,7 @@ return [
 			'header' => 'Update Application',
 			'permissions' => 'Update Application Permissions',
 			'flash' => [
-				'success' => 'Application Updated Succeffully',
+				'success' => 'Application Updated Successfully',
 			],
 		],
 		'search' => [
@@ -81,7 +81,7 @@ return [
 			'name' => 'Advance',
 			'title' => 'Click To Advance Application',
 			'flash' => [
-				'success' => 'Application Advanced Succeffully',
+				'success' => 'Application Advanced Successfully',
 				'warning' => 'No Application Selected',
 			],
 		],
@@ -90,7 +90,7 @@ return [
 			'name' => 'Reject',
 			'title' => 'Click To Reject Application',
 			'flash' => [
-				'success' => 'Application Rejected Succeffully',
+				'success' => 'Application Rejected Successfully',
 				'warning' => 'No Application Selected',
 			],
 		],
@@ -100,7 +100,7 @@ return [
 			'label' => 'Notifying Applicants',
 			'title' => 'Click To Notify Applicants',
 			'flash' => [
-				'success' => 'Applicants Notified Succeffully',
+				'success' => 'Applicants Notified Successfully',
 				'warning' => 'No Applicants Selected',
 			],
 		],
@@ -109,7 +109,7 @@ return [
 			'name' => 'Advance',
 			'title' => 'Click To Advance Selected Applications',
 			'flash' => [
-				'success' => 'Applications Advanced Succeffully',
+				'success' => 'Applications Advanced Successfully',
 			],
 		],
 
@@ -117,7 +117,7 @@ return [
 			'name' => 'Reject',
 			'title' => 'Click To Reject Selected Applications',
 			'flash' => [
-				'success' => 'Applications Rejected Succeffully',
+				'success' => 'Applications Rejected Successfully',
 			],
 		],
 
@@ -126,14 +126,14 @@ return [
 			'label' => 'Score Application',
 			'title' => 'Click To Score Application',
 			'flash' => [
-				'success' => 'Application Score Added Succeffully',
+				'success' => 'Application Score Added Successfully',
 			],
 		],
 		'take_test' => [
 			'name' => 'Take Test',
 			'title' => 'Click To Take Test',
 			'flash' => [
-				'success' => 'Test Taken Added Succeffully',
+				'success' => 'Test Taken Added Successfully',
 			],
 		],
 		'screen' => [
@@ -141,14 +141,14 @@ return [
 			'label' => 'Screening Applicants',
 			'title' => 'Click To Screen Applicants',
 			'flash' => [
-				'success' => 'Applicants Screened Succeffully',
+				'success' => 'Applicants Screened Successfully',
 			],
 		],
 		'export' => [
 			'name' => 'Export',
 			'title' => 'Click to Export Applicants',
 			'flash' => [
-				'success' => 'Applicants Exported Succeffully',
+				'success' => 'Applicants Exported Successfully',
 			],
 		],
 	],
