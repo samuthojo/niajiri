@@ -134,7 +134,7 @@
                         {{-- start table body --}}
                         <tbody>
                             @foreach($applicationstages->sortBy('score')->sortBy(function($item) { 
-                              return $item->applicant->name;
+                              return $item->applicant->fullName();
                             }); as $item)
                             <tr>
                                 @if($item->application->isCurrentStage($item->stage) && !$item->hasScoreAndFail())
