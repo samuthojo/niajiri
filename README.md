@@ -54,6 +54,13 @@ $ php artisan db:seed --class=UsersTableSeeder
 $ php artisan queue:work --tries=3 --daemon
 ```
 
+## Dumping Queries
+```php
+\DB::listen(function ($sql) {
+	var_dump($sql->sql);
+});
+```
+
 
 ## Heroku MySQL Console
 ```sh

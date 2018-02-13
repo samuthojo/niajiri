@@ -216,7 +216,7 @@ class ApplicationStage extends Model implements HasMedia {
 	 * @return boolean
 	 */
 	public function hasScoreAndFail() {
-		
+
 		//compute score
 		$has_failed =
 			($this->score !== null && $this->score < $this->stage->passMark);
@@ -265,7 +265,11 @@ class ApplicationStage extends Model implements HasMedia {
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 **/
 	public function applicant() {
-		return $this->belongsTo('App\Models\User', 'applicant_id')->withTrashed();
+		return $this->belongsTo('App\Models\User', 'applicant_id')->withTrashed()
+			->orderBy('name', 'asc')
+			->orderBy('first_name', 'asc')
+			->orderBy('middle_name', 'asc')
+			->orderBy('surname', 'asc');
 	}
 
 	/**

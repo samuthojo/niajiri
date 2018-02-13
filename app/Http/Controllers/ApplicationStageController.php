@@ -27,6 +27,7 @@ class ApplicationStageController extends SecureController {
 		//load stage
 		$stage = Stage::find($request->input('stage_id'));
 
+		
 		//paginate query result
 		$applicationstages = $query->paginate(config('app.defaults.pageSize'));
 
