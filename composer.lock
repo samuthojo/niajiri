@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf85cc8f26ce0e2869af4c38d07c1ae6",
+    "content-hash": "2046d2e9ad3eee5a92da3bbe4daa8549",
     "packages": [
         {
             "name": "alsofronie/eloquent-uuid",
@@ -781,56 +781,6 @@
                 "laravel"
             ],
             "time": "2017-08-06T23:28:53+00:00"
-        },
-        {
-            "name": "fico7489/laravel-eloquent-join",
-            "version": "2.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fico7489/laravel-eloquent-join.git",
-                "reference": "6611aaefc633c472781bc76c02179aed09176fc3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fico7489/laravel-eloquent-join/zipball/6611aaefc633c472781bc76c02179aed09176fc3",
-                "reference": "6611aaefc633c472781bc76c02179aed09176fc3",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "5.5.*"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Fico7489\\Laravel\\EloquentJoin\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Filip Horvat",
-                    "email": "filip.horvat@am2studio.hr",
-                    "homepage": "http://am2studio.hr",
-                    "role": "Developer"
-                }
-            ],
-            "description": "This package introduces the join capability for sorting and filtering on eloquent relations.",
-            "homepage": "https://github.com/fico7489/laravel-eloquent-join",
-            "keywords": [
-                "laravel",
-                "laravel eloquent join",
-                "laravel join relation",
-                "laravel join relations",
-                "laravel sort join",
-                "laravel where join"
-            ],
-            "time": "2018-01-19T15:59:30+00:00"
         },
         {
             "name": "fideloper/proxy",
