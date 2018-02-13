@@ -22,6 +22,8 @@
           <div class="col-md-12">
             {{--start application--}}
             <input type="hidden" name="applications[]" value="{{$applicationstage->application_id}}">
+            <input type="hidden" name="position_id" value="{{$applicationstage->position_id}}">
+            <input type="hidden" name="stage_id" value="{{$applicationstage->stage_id}}">
             {{--start application--}}
 
             {{--start message--}}

@@ -325,6 +325,8 @@
         //modal form submission handler
         $('#application-notifications-modal-submit').click(function() {
             var message = $('#application-notifications-message').val();
+            $("#applicationstage_advance").hidden('position_id', '{{$position->id}}');
+            $("#applicationstage_advance").hidden('stage_id', '{{$stage->id}}');
             $("#applicationstage_advance").hidden('message', message);
             $("#applicationstage_advance").hidden('action', 'notify');
             $("#applicationstage_advance").submit();

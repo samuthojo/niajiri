@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\Applied;
 use App\Models\Application;
+use App\Models\ApplicationStage;
 use App\Models\Position;
 use App\Models\Test;
 use Illuminate\Http\Request;
@@ -374,7 +375,7 @@ class ApplicationController extends SecureController {
 		$action = $request->input('action');
 
 		//ensure $ids
-		if ($ids->count() == 0) {
+		if ($ids->count() == 0 && strcmp($action, 'notify') !== 0) {
 			//flash message
 			flash(trans('applicationstages.actions.advance.flash.warning'))
 				->warning()->important();
@@ -385,6 +386,18 @@ class ApplicationController extends SecureController {
 
 			//notify applicants
 			if (strcmp($action, 'notify') === 0) {
+
+				//ensure ids
+				if ($ids->count() == 0) {
+
+					//load applications stages and obtain application ids
+					$ids = ApplicationStage::query()
+						->where($request->only(['position_id', 'stage_id']))
+						->get()->map(function ($applicationStage) {
+						return $applicationStage->application_id;
+					});
+
+				}
 
 				//obtain notification message
 				$message = $request->input('message');
