@@ -133,7 +133,9 @@
 
                         {{-- start table body --}}
                         <tbody>
-                            @foreach($applicationstages->sortBy('score') as $item)
+                            @foreach($applicationstages->sortBy('score')->sortBy(function($item) { 
+                              return $item->applicant->name;
+                            }); as $item)
                             <tr>
                                 @if($item->application->isCurrentStage($item->stage) && !$item->hasScoreAndFail())
                               <td>

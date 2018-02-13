@@ -18,6 +18,7 @@ class ApplicationStageController extends SecureController {
 
 		//initialize query
 		$query = ApplicationStage::filter($request->all())
+			->with('applicant')
 			->orderBy('created_at', 'asc')
 			->orderBy('score', 'desc');
 
@@ -27,7 +28,6 @@ class ApplicationStageController extends SecureController {
 		//load stage
 		$stage = Stage::find($request->input('stage_id'));
 
-		
 		//paginate query result
 		$applicationstages = $query->paginate(config('app.defaults.pageSize'));
 

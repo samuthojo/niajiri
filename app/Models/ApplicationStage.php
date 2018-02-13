@@ -265,11 +265,7 @@ class ApplicationStage extends Model implements HasMedia {
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 **/
 	public function applicant() {
-		return $this->belongsTo('App\Models\User', 'applicant_id')->withTrashed()
-			->orderBy('name', 'asc')
-			->orderBy('first_name', 'asc')
-			->orderBy('middle_name', 'asc')
-			->orderBy('surname', 'asc');
+		return $this->belongsTo('App\Models\User', 'applicant_id')->withTrashed();
 	}
 
 	/**

@@ -5,6 +5,7 @@ namespace App\Models;
 use Alsofronie\Uuid\UuidModelTrait;
 use App\Traits\Sugarize;
 use App\Traits\Withable;
+use Carbon\Carbon;
 use Collective\Html\Eloquent\FormAccessible;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,6 @@ use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Watson\Rememberable\Rememberable;
 use Webpatser\Uuid\Uuid;
-use Carbon\Carbon;
 
 /**
  * Application base model
@@ -68,7 +68,6 @@ class Base extends Model implements AuditableContract {
 	 */
 	use Filterable;
 
-
 	/**
 	 * The attributes that should be mutated to dates.
 	 *
@@ -82,35 +81,30 @@ class Base extends Model implements AuditableContract {
 	 */
 	protected $parseFormat = null;
 
-
 	/**
 	 * Get form dates parse format
 	 * @return string
 	 */
-	public function getParseFormat()
-	{
+	public function getParseFormat() {
 		return $this->parseFormat;
 	}
 
 	/**
 	 * Set form dates parse format
 	 */
-	public function setParseFormat($value)
-	{
+	public function setParseFormat($value) {
 		$this->parseFormat = $value;
 	}
 
 	/**
-     * Create a new Eloquent model instance.
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
-
+	 * Create a new Eloquent model instance.
+	 *
+	 * @param  array  $attributes
+	 * @return void
+	 */
+	public function __construct(array $attributes = []) {
+		parent::__construct($attributes);
+	}
 
 	/**
 	 * Auditable Model audits.
@@ -132,25 +126,25 @@ class Base extends Model implements AuditableContract {
 
 			//match m-Y
 			if (is_string($value)) {
-				
+
 				//match Y-m-d
 				$isMysqlDate = preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $value);
 
 				//parse mysql date
-				if($isMysqlDate){
+				if ($isMysqlDate) {
 					$value = Carbon::createFromFormat(config('app.mysql_date_formart'), $value);
 				}
 
 				//continue parse use provided model format
-				else{
-					$parseFormat = 
-						is_set($this->parseFormat) ? $this->parseFormat : config('app.datepicker_parse_format');
+				else {
+					$parseFormat =
+					is_set($this->parseFormat) ? $this->parseFormat : config('app.datepicker_parse_format');
 					$value = Carbon::createFromFormat($parseFormat, $value);
 				}
 			}
 
 			return $value;
-			
+
 		} catch (\Exception $e) {
 			return parent::fromDateTime($value);
 		}
