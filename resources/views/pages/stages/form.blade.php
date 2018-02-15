@@ -209,7 +209,9 @@
 {{-- end rejected --}}
 
 {{--start stage test selection--}}
-{{-- start roles --}}
+{{-- start tests --}}
+@if($stage && $stage->hasTest)
+@if($tests && $tests->count() > 0)
 <div class="form-group">
     <div class="col-md-offset-3 col-md-6">
         <p class="list-group-header" title="{{trans('stages.inputs.test.description')}}">
@@ -229,7 +231,7 @@
                         Form::checkbox(
                             'tests[]',
                             $test->id,
-                            isset($test) ? $stage->hasTest($test) : false
+                            isset($test) ? $stage->hasTests($test) : false
                         )
                         }}
                       {{$test->category}}
@@ -240,7 +242,9 @@
         </ul>
     </div>
 </div>
-{{-- end roles --}}
+@endif
+@endif
+{{-- end tests --}}
 {{--end stage test selection--}}
 
 {{-- end stage form --}}

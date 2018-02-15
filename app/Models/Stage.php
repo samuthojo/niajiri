@@ -139,7 +139,7 @@ class Stage extends Model {
 	 * @param  [type]  $test [description]
 	 * @return boolean       [description]
 	 */
-	public function hasTest($test = null) {
+	public function hasTests($test = null) {
 		$has_test = false;
 
 		if ($test !== null) {
