@@ -295,14 +295,18 @@
 
 {{-- start include scoring model
     //These were added here to avoid nested forms --}}
-@foreach($applicationstages->sortBy('score') as $item)
+@foreach($applicationstages->sortBy('score')->sortBy(function($item) { 
+                              return $item->applicant->fullName();
+                            }); as $item)
 @include('applicationstages.blocks.score_modal', ['applicationstage' => $item])
 @endforeach
 {{-- end include scoring model --}}
 
 {{-- start include notifying model
     //These were added here to avoid nested forms --}}
-@foreach($applicationstages->sortBy('score') as $item)
+@foreach($applicationstages->sortBy('score')->sortBy(function($item) { 
+                              return $item->applicant->fullName();
+                            }); as $item)
 @include('applicationstages.blocks.notification_modal', ['applicationstage' => $item])
 @endforeach
 {{-- end include notifying model --}}
