@@ -7,10 +7,11 @@ return [
 	],
 	'categories' => [
 		'Quantitative Aptitude' => 'Quantitative Aptitude',
-		'Verbal (English)' => 'Verbal (English)',
-		'Reasoning' => 'Reasoning',
+		'Verbal' => 'Verbal',
+		'Reasoning' => 'Abstract Reasoning',
 		'Programming' => 'Programming',
 		'Interview' => 'Interview',
+		'Numerical' => 'Numerical'
 	],
 	'headers' => [
 		'actions' => 'Actions',
