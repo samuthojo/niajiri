@@ -11,7 +11,7 @@ return [
 		'Reasoning' => 'Abstract Reasoning',
 		'Programming' => 'Programming',
 		'Interview' => 'Interview',
-		'Numerical' => 'Numerical'
+		'Numerical' => 'Numerical',
 	],
 	'headers' => [
 		'actions' => 'Actions',
