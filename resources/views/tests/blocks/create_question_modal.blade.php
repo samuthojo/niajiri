@@ -59,10 +59,11 @@
                             {{trans('questions.inputs.firstChoice.label')}}
                             <span class="text-danger">*</span>
                         </label>
-                        {!! Form::text('firstChoice', null, [
+                        {!! Form::textarea('firstChoice', null, [
                             'class' => 'form-control',
                             'required' => 'required',
-                            'placeholder' => trans('questions.inputs.firstChoice.placeholder')
+                            'placeholder' => trans('questions.inputs.firstChoice.placeholder'),
+                            'rows' => 1
                         ]) !!}
                     </div>
                 </div>
@@ -75,10 +76,11 @@
                             {{trans('questions.inputs.secondChoice.label')}}
                             <span class="text-danger">*</span>
                         </label>
-                        {!! Form::text('secondChoice', null, [
+                        {!! Form::textarea('secondChoice', null, [
                             'class' => 'form-control',
                             'required' => 'required',
-                            'placeholder' => trans('questions.inputs.secondChoice.placeholder')
+                            'placeholder' => trans('questions.inputs.secondChoice.placeholder'),
+                            'rows' => 1
                         ]) !!}
                     </div>
                 </div>
@@ -94,10 +96,11 @@
                         <label for="thirdChoice" title="{{ trans('questions.inputs.thirdChoice.description') }}">
                             {{trans('questions.inputs.thirdChoice.label')}}
                         </label>
-                        {!! Form::text('thirdChoice', null, [
+                        {!! Form::textarea('thirdChoice', null, [
                             'class' => 'form-control',
                             //'required' => 'required',
-                            'placeholder' => trans('questions.inputs.thirdChoice.placeholder')
+                            'placeholder' => trans('questions.inputs.thirdChoice.placeholder'),
+                            'rows' => 1
                         ]) !!}
                     </div>
                 </div>
@@ -109,10 +112,11 @@
                         <label for="fourthChoice" title="{{ trans('questions.inputs.fourthChoice.description') }}">
                             {{trans('questions.inputs.fourthChoice.label')}}
                         </label>
-                        {!! Form::text('fourthChoice', null, [
+                        {!! Form::textarea('fourthChoice', null, [
                             'class' => 'form-control',
                             //'required' => 'required',
-                            'placeholder' => trans('questions.inputs.fourthChoice.placeholder')
+                            'placeholder' => trans('questions.inputs.fourthChoice.placeholder'),
+                            'rows' => 1
                         ]) !!}
                     </div>
                 </div>
@@ -128,10 +132,11 @@
                       <label for="fifthChoice" title="{{ trans('questions.inputs.fifthChoice.description') }}">
                           {{trans('questions.inputs.fifthChoice.label')}}
                       </label>
-                      {!! Form::text('fifthChoice', null, [
+                      {!! Form::textarea('fifthChoice', null, [
                           'class' => 'form-control',
                           //'required' => 'required',
-                          'placeholder' => trans('questions.inputs.fifthChoice.placeholder')
+                          'placeholder' => trans('questions.inputs.fifthChoice.placeholder'),
+                          'rows' => 1
                       ]) !!}
                   </div>
               </div>
@@ -145,10 +150,11 @@
                           {{trans('questions.inputs.correct.label')}}
                           <span class="text-danger">*</span>
                       </label>
-                      {!! Form::text('correct', null, [
+                      {!! Form::textarea('correct', null, [
                           'class' => 'form-control',
                           'required' => 'required',
-                          'placeholder' => trans('questions.inputs.correct.placeholder')
+                          'placeholder' => trans('questions.inputs.correct.placeholder'),
+                          'rows' => 1
                       ]) !!}
                   </div>
               </div>
