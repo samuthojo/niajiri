@@ -17,10 +17,12 @@
 	        	{{-- start question actions --}}
                 <div class="row m-t-md">
                     <div class="col-sm-8 m-b-xs">
+                    	@permission("create:question")
                         <div class="btn-group">
                             <a class="btn btn-sm btn-white" role="button" title="{{ trans('questions.actions.create.title') }}" data-toggle="modal" data-target="#question-create-modal">
                             <i class="fa fa-plus"></i> {{ trans('questions.actions.create.name') }}</a>
                         </div>
+                        @endpermission
                     </div>
                     <div class="col-sm-4">
                     	&nbsp;
@@ -29,10 +31,9 @@
                 {{-- end question actions --}}
 
 		        {{--start test questions--}}
-		        <div class="m-t-lg">
 				@foreach($test->questions as $key => $question)
 				<div class="row">
-					<div class="col-md-offset-1 col-md-10 m-b-md">
+					<div class="col-md-offset-1 col-md-10 m-b-md m-t-md">
 					    <div class="form-group">
 					        <label for="{{$question->id}}" title="{{$question->label}}">
 					            {{$key+1}}. {{$question->label}}
@@ -54,14 +55,27 @@
 					          </label>
 					        </div>
 					        @endforeach
-					        <label for="{{$question->id}}_correct" title="{{$question->correct}}">
-					            {{trans('questions.inputs.correct.label')}}: {{$question->correct}}
-					        </label>
+					        <div class="row">
+						        <div class="col-md-4">
+							        <label for="{{$question->id}}_correct" title="{{$question->correct}}">
+							            {{trans('questions.inputs.correct.label')}}: {{$question->correct}}
+							        </label>
+							    </div>
+							    <div class="col-sm-4 pull-right">
+			                        <div class="btn-group">
+								    	@permission("delete:question")
+			                            <a href="{{route('questions.destroy', ['id' => $question->id])}}" class="btn btn-xs btn-danger" role="button" title="{{ trans('questions.actions.delete.title') }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="{{ trans('questions.actions.delete.prompt') }}">
+			                            <i class="fa fa-trash"></i> {{ trans('questions.actions.delete.name') }}</a>
+				                        @endpermission
+			                        </div>
+						        </label>
+							    </div>
+							</div>
 					    </div>
 					</div>
 				</div>
+				<hr class="hr-line-dashed">
 				@endforeach
-				</div>
 		        {{--end test questions--}}
 	        </div>
            {{-- end page box content --}}

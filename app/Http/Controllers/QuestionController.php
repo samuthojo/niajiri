@@ -176,24 +176,33 @@ class QuestionController extends SecureController {
 	 *
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy(Request $request, $id) {
+
 		$question = $this->questionRepository->findWithoutFail($id);
 
 		if (empty($question)) {
-			Flash::error('Question not found');
-
-			return redirect(route('questions.index'));
+			flash(trans('questions.actions.delete.flash.404'))
+				->error()->important();
+			return redirect(route('tests.show'));
 		}
 
-		$this->questionRepository->delete($id);
+		//soft delete if questions not taken
+		if ($question->attempts->count() > 0) {
+			$this->questionRepository->delete($id);
+		}
 
-		Flash::success('Question deleted successfully.');
+		//hard delete question
+		else {
+			$question->forceDelete();
+		}
 
 		if (!empty($question->test_id)) {
-
+			flash(trans('questions.actions.delete.flash.success'))
+				->success()->important();
 			return redirect(route('tests.show', ['id' => $question->test_id]));
-
 		}
-		return redirect(route('questions.index'));
+
+		return redirect(route('tests.show'));
+
 	}
 }

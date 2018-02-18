@@ -45,8 +45,12 @@ return [
 		'delete' => [
 			'name' => 'Delete',
 			'title' => 'Click To Delete Question',
+			'prompt' => 'Are you sure you want to delete this question?',
 			'flash' => [
 				'success' => 'Question Deleted Successffully',
+				'error' => 'Failed to delete question',
+				'404' => 'Question not found',
+				'taken' => 'Failed to delete. This question has already been taken in one or more tests',
 			],
 		],
 		'update' => [
@@ -55,6 +59,7 @@ return [
 			'header' => 'Update Question',
 			'flash' => [
 				'success' => 'Question Updated Successffully',
+				'taken' => 'Fail to update. This question has already been taken in one or more tests',
 			],
 		],
 		'change_password' => [

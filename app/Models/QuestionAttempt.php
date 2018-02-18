@@ -101,7 +101,7 @@ class QuestionAttempt extends Model {
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 **/
 	public function question() {
-		return $this->belongsTo('App\Models\Question', 'question_id');
+		return $this->belongsTo('App\Models\Question', 'question_id')->withTrashed();
 	}
 
 	/**

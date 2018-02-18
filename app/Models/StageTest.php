@@ -122,7 +122,7 @@ class StageTest extends Model {
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
 	public function questionAttempts() {
-		return $this->hasMany('App\Models\QuestionAttempt', 'stagetest_id');
+		return $this->hasMany('App\Models\QuestionAttempt', 'stagetest_id')->withTrashed();
 	}
 
 	/**
@@ -130,7 +130,7 @@ class StageTest extends Model {
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
 	public function questions() {
-		return $this->hasMany('App\Models\Question', 'test_id', 'test_id');
+		return $this->hasMany('App\Models\Question', 'test_id', 'test_id')->withTrashed();
 	}
 
 	/**
