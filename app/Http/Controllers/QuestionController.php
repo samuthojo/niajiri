@@ -136,37 +136,45 @@ class QuestionController extends SecureController {
 	 * @return Response
 	 */
 	public function update($id, UpdateQuestionRequest $request) {
+
 		$question = $this->questionRepository->findWithoutFail($id);
 
 		if (empty($question)) {
 			Flash::error('Question not found');
-
-			return redirect(route('questions.index'));
+			return redirect(route('tests.index'));
 		}
 
 		//update if not attempts
 		if ($question->attempts->count() === 0) {
+
+			//TODO try to update stage tests with the same question too
+
 			$question = $this->questionRepository->update($request->all(), $id);
+
+			//upload & store question attachment
+			if ($question && $request->hasFile('attachment')) {
+				//clear existing attachment
+				$question->clearMediaCollection('attachments');
+				//attach new attachment
+				$question->addMediaFromRequest('attachment')
+					->toMediaCollection('attachments');
+			}
+
+			flash(trans('questions.actions.update.flash.success'))
+				->success()->important();
 		}
 
-		//upload & store question attachment
-		if ($question && $request->hasFile('attachment')) {
-			//clear existing attachment
-			$question->clearMediaCollection('attachments');
-			//attach new attachment
-			$question->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+		//flash questin has attempts already
+		else {
+			flash(trans('questions.actions.update.flash.warning'))
+				->success()->important();
 		}
-
-		Flash::success('Question updated successfully.');
 
 		if (!empty($question->test_id)) {
-
 			return redirect(route('tests.show', ['id' => $question->test_id]));
-
 		}
 
-		return redirect(route('questions.index'));
+		return redirect(route('tests.index'));
 	}
 
 	/**
@@ -183,7 +191,7 @@ class QuestionController extends SecureController {
 		if (empty($question)) {
 			flash(trans('questions.actions.delete.flash.404'))
 				->error()->important();
-			return redirect(route('tests.show'));
+			return redirect(route('tests.index'));
 		}
 
 		//soft delete if questions not taken
@@ -202,7 +210,7 @@ class QuestionController extends SecureController {
 			return redirect(route('tests.show', ['id' => $question->test_id]));
 		}
 
-		return redirect(route('tests.show'));
+		return redirect(route('tests.index'));
 
 	}
 }

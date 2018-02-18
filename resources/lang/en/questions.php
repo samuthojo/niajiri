@@ -55,11 +55,12 @@ return [
 		],
 		'update' => [
 			'name' => 'Update',
+			'label' => 'Edit Question',
 			'title' => 'Click To Update Question',
 			'header' => 'Update Question',
 			'flash' => [
 				'success' => 'Question Updated Successffully',
-				'taken' => 'Fail to update. This question has already been taken in one or more tests',
+				'warning' => 'Fail to update. This question has already been taken in one or more tests',
 			],
 		],
 		'change_password' => [

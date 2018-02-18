@@ -65,6 +65,11 @@
 							    </div>
 							    <div class="col-sm-4 pull-right">
 			                        <div class="btn-group">
+			                        	@permission('edit:question')
+						                 <a class="btn btn-xs btn-primary" role="button" title="{{ trans('questions.actions.update.title') }}" data-toggle="modal" data-target="#question-update-modal-{{$question->id}}">
+			                            <i class="fa fa-pencil"></i> {{ trans('questions.actions.update.name') }}
+			                        	</a>
+			                            @endpermission
 								    	@permission("delete:question")
 			                            <a href="{{route('questions.destroy', ['id' => $question->id])}}" class="btn btn-xs btn-danger" role="button" title="{{ trans('questions.actions.delete.title') }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="{{ trans('questions.actions.delete.prompt') }}">
 			                            <i class="fa fa-trash"></i> {{ trans('questions.actions.delete.name') }}</a>
@@ -96,6 +101,17 @@
 {{--start include new question modal--}}
 @include('tests.blocks.create_question_modal')
 {{--end include new question modal--}}
+
+{{--start include question update modal--}}
+@foreach($test->questions as $question)
+@include('tests.blocks.update_question_modal', [
+		'question' => $question,
+		'position' => $position,
+		'stage' => $stage,
+		'test' => $test
+	])
+@endforeach
+{{--end include question update modal--}}
 
 @endsection
 
