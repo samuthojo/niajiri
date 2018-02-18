@@ -121,10 +121,17 @@ class ApplicationStage extends Model implements HasMedia {
 	public function getScoreAttribute($value) {
 
 		//compute score from test
-		if ($this->tests->count() > 0) {
-			$this->score = $this->tests->avg(function ($test) {
-				return $test->computeScore();
-			});
+		if ($this->hasTest()) {
+			if ($this->tests->count() > 0) {
+				$numberOfTests = $this->stage->tests->count();
+				$ApplicationStage = $this;
+				$totalScore = $this->stage->tests->sum(function ($test) use ($ApplicationStage) {
+					return $ApplicationStage->getTestScore($test);
+				});
+				$value = $totalScore / $numberOfTests;
+			} else {
+				$value = null;
+			}
 		}
 
 		return $value;
