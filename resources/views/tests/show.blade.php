@@ -35,26 +35,28 @@
 				<div class="row">
 					<div class="col-md-offset-1 col-md-10 m-b-md m-t-md">
 					    <div class="form-group">
-					        <label for="{{$question->id}}" title="{{$question->label}}">
-					            {{$key+1}}. {{$question->label}}
+					        <label class="question-label" for="{{$question->id}}" title="{!! $question->label !!}">
+					            {{$key+1}}. {!! $question->label !!}
 					        </label>
 					        @if($question->attachment())
 					        <div class="m-t-sm">
 					        	<img class="question-img" src="{{$question->attachment()->public_url()}}" 
-					        		title="{{$question->label}}">
+					        		title="{!! $question->label !!}">
 					        </div>
 					        @endif
-					        @foreach($question->choices() as $choice)
-					        <div class="radio">
-					          <label
-					            for="{{$choice['id']}}"
-					            title="{{$choice['value']}}">
-					          {!!
-					            Form::radio($choice['name'], $choice['value'], null, ['id' => $choice['id'] ])!!}
-					          {{$choice['value']}}
-					          </label>
-					        </div>
-					        @endforeach
+					        <div class="m-t-md">
+						        @foreach($question->choices() as $choice)
+						        <div class="radio">
+						          <label
+						            for="{{$choice['id']}}"
+						            title="{!! $choice['value'] !!}">
+						          {!!
+						            Form::radio($choice['name'], $choice['value'], null, ['id' => $choice['id'] ])!!}
+						          {!! $choice['value'] !!}
+						          </label>
+						        </div>
+						        @endforeach
+						    </div>
 					        <div class="row">
 						        <div class="col-md-4">
 							        <label for="{{$question->id}}_correct" title="{{$question->correct}}">

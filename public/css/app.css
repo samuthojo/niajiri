@@ -22021,6 +22021,10 @@ Triangle breadcrumb
   max-height: 500px;
 }
 
+.question-label {
+  font-weight: normal !important;
+}
+
 /*countdowntimer*/
 
 .style {
