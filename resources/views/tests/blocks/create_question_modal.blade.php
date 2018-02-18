@@ -93,11 +93,10 @@
                     <div class="form-group {{ $errors->has('thirdChoice') ? 'has-error' : ''}}">
                         <label for="thirdChoice" title="{{ trans('questions.inputs.thirdChoice.description') }}">
                             {{trans('questions.inputs.thirdChoice.label')}}
-                            <span class="text-danger">*</span>
                         </label>
                         {!! Form::text('thirdChoice', null, [
                             'class' => 'form-control',
-                            'required' => 'required',
+                            //'required' => 'required',
                             'placeholder' => trans('questions.inputs.thirdChoice.placeholder')
                         ]) !!}
                     </div>

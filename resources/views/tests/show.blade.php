@@ -59,8 +59,8 @@
 						    </div>
 					        <div class="row">
 						        <div class="col-md-4">
-							        <label for="{{$question->id}}_correct" title="{{$question->correct}}">
-							            {{trans('questions.inputs.correct.label')}}: {{$question->correct}}
+							        <label for="{{$question->id}}_correct" title="{!! $question->correct !!}">
+							            {{trans('questions.inputs.correct.label')}}: {!! $question->correct !!}
 							        </label>
 							    </div>
 							    <div class="col-sm-4 pull-right">
