@@ -65,20 +65,50 @@ header .round-btn{
 }
 
 #logo{
+    position: relative;
+    /*background: #fff;*/
+    margin-top: -160px;
+    padding-top: 140px;
+    width: 100px;
+    height: 220px;
+}
+
+/*#logo:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -120px;
+    border: 50px solid transparent;
+    border-top: 50px solid #fff;
+    border-bottom: 70px solid transparent;
+}*/
+
+#logo:after{
+    content: '';
+    position: absolute;
+    left: -99.8px;
+    top: -9%;
+    width: 300px;
+    height: 160%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 120px;
+    /*transform: rotate(135deg);*/
+    background-image: url(../images/tags.png);
 }
 
 #logo img{
     height: 100px;
+    z-index: 1
 }
 
 #banner{
     position: relative;
-    margin-top: -110px;
+    /*margin-top: -110px;*/
     padding: 7em 0;
     height: 100vh;
     height: calc(100vh + 50px);
     background-color: #777;
-    background-image: url(../../images/landing/banner.jpg);
     -webkit-background-size: cover;
     background-size: cover;
 }
@@ -189,7 +219,8 @@ header .round-btn{
     margin: auto;
     min-height: 250px;
     /*margin-top: 3em;*/
-    background: #f0f0f0;
+    /*background: #f0f0f0;*/
+    background-color: #fff;
     padding-top: 5.5em;
     padding-bottom: 5em;
 }
@@ -216,6 +247,22 @@ header .round-btn{
 
 #employersSection p{
     font-size: 1.5em;
+}
+
+#edgeSection{
+    overflow: hidden;
+    color: #000 !important;
+}
+
+#edgeSection .containers{
+    margin-top: -120px;
+    padding-top: 160px;
+    margin-bottom: 60px;
+}
+
+#edgeSection .scrim{
+    background-color: rgba(0,0,0,.1);
+    /*lg(left, rgba(0,0,0,0.5) 50%, rgba(0,0,0,.4), rgba(0,0,0,.2))*/
 }
 
 footer{
@@ -315,6 +362,23 @@ footer .ipf a{
         display: none;
     }
 
+    #logo:after{
+        left: 0.8px;
+        top: -21%;
+        width: 100px;
+        height: 160%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 120px;
+        /*transform: rotate(135deg);*/
+        background-image: url(../images/tags.png);
+    }
+
+    #logo img{
+        height: 50px;
+        z-index: 1
+    }
+
     header{
         padding: 0 1em;
     }
@@ -397,6 +461,10 @@ footer .ipf a{
         font-size: 1.2em;
         line-height: 1.4em;
         max-width: 450px;
+    }
+
+    #edgeSection{
+        background-position: top center !important;
     }
 
     #cta, footer{

@@ -5,17 +5,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name="theme-color" content="#4fce8d">
 	<title>Niajiri</title>
-	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> -->
-	<link rel="stylesheet" href="{{ asset('css/landing/ext.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/landing/style.css') }}">
-	<link rel="icon" href="{{ asset('images/landing/favicon.png') }}">
+	<link rel="stylesheet" href="{{asset('css/landing/ext.css')}}">
+	<link  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="{{asset('css/landing/styles.css')}}">
 </head>
 <body>
 	<header id="header">
 		<div class="container">
 			<div class="layout center justified">
-				<a href="#" id="logo" class="layout center-center">
-					<img src="{{ asset('images/landing/logo.png') }}" alt="Niajiri logo" style="height: 50px">
+				<a href="#" id="logo">
+					<img src="{{asset('images/landing//logo_white.png')}}" alt="Niajiri logo">
 				</a>
 				<div>
 					<a href="{{ route('login') }}" class="for-lg">Sign In</a>&nbsp;&nbsp;&nbsp;
@@ -42,12 +41,9 @@
 
 	<div class="value-proposition">
 		<div class="container layout justified center" style="padding-top: 8em; padding-bottom: 8em; max-width: 1300px">
-			<div class="for-lg layout center-center" style="background-color: #000; color: #fff; box-shadow: 2px 2px 20px rgba(0,0,0,0.1); height: 350px; width: 50%; position: relative;">
+			<div class="for-lg" style="background-color: #000; box-shadow: 2px 2px 20px rgba(0,0,0,0.1); height: 350px; width: 50%; position: relative;">
 
-				<span style="width: 100%;position: absolute;text-align: center; font-size: 1.4em">LOADING VIDEO...</span>
-
-				<iframe id="introVideo" width="100%" height="100%" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-				</iframe>
+				<iframe width="100%" height="100%" src="https://www.youtube.com/embed/2MpUj-Aua48" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 			</div>
 				
 			<div>
@@ -60,7 +56,7 @@
 		</div>
 	</div>
 
-	<div class="value-proposition" style="background-color: #eee; background-image:url({{asset('images/landing/cvpc.png')}}); background-position: 0 35%">
+	<div class="value-proposition" style="background-color: #fafafa;background-image: url({{asset('images/landing/gn.png')}});">
 		<div class="container layout vertical center-justified">
 			<span>Not sure about your CV?</span>
 			<h2>Build yourself<br>an optimal CV</h2>
@@ -70,7 +66,7 @@
 		</div>
 	</div>
 
-	<!-- <div class="value-proposition" style="background-color: #d2d2d2; background-image: url(images/ptn.jpg); background-size: cover">
+	<!-- <div class="value-proposition" style="background-color: #fafafa;">
 		<div class="container layout justified center">
 			<div>
 				<span>Not sure about your CV?</span>
@@ -80,13 +76,13 @@
 				</p>
 			</div>
 
-			<div class="for-lg" style="background-image: url(images/cvpc2.png);background-size: 80%; background-repeat: no-repeat; background-position: center right; height: 450px; margi: 1.3em 0; width: 60%;"></div>
+			<div class="for-lg" style="box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);background-image: url(images/cvimage.png);background-size: 98%; background-repeat: no-repeat; background-position: center; width: 330px; height: 450px; margi: 1.3em 0; max-width: 50%;"></div>
 		</div>
 	</div> -->
 
 	<div id="employersSection" class="value-proposition">
 		<div class="container layout justified center">
-			<div class="for-lg" style="background-colo: #f3f3f3;background-image: url({{asset('images/landing/polygon.png')}});background-size: 80%; background-repeat: no-repeat; border-radiu: 50%; background-position: left center; width: 580px; height: 410px; margin: 1.3em 0; max-width: 50%;"></div>
+			<div class="for-lg" style="background-color: #f3f3f3;background-image: url({{asset('images/landing/employees2-min.png')}});background-size: 98%; background-repeat: no-repeat; border-radiu: 50%; background-position: center; width: 620px; height: 450px; margin: 1.3em 0; max-width: 50%;"></div>
 
 			<div>
 				<span>Cant wait to land your dream job?</span>
@@ -102,11 +98,13 @@
 		</div>
 	</div>
 
-	<div id="edgeSection" class="value-proposition" style="background-color: transparent;background-image: url({{asset('images/landing/crowds.jpg')}});background-size: cover; background-position: top right; to: 20%;">
-		<div class="scrim"></div>
-		<div class="container layout vertical center-justified" style="color: #fff">
+	<div class="value-proposition" style="background-color: #000;background-image: url({{asset('images/landing/crowds.jpg')}});background-size: cover; background-position: top right;">
+		<div class="scrim layout vertical center-center" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+		<div class="container layout vertical center-justified" style="color: #eee">
 			<span>Want to have an edge over others?</span>
+			<!-- <h2>Get ahead<br>of the crowd</h2> -->
 			<h2>Stand out<br>from the crowd</h2>
+			<!-- <p>Find out the latest available through our uniquely placed platform.</p> -->
 			<p>
 				Be part of our community and get the latest interview tips and access to employability resources.
 			</p>
@@ -115,7 +113,7 @@
 
 	<div id="cta">
 		<h2 class="layout inline center">Your career starts with us!</h2>
-		<a href="#" class="round-btn">Get Started Now</a>
+		<a href="{{ route('register') }}" class="round-btn">Get Started Now</a>
 	</div>
 
 	<footer>
@@ -133,15 +131,15 @@
 					<div id="socialIcons">
 						<h5>Social Media</h5>
 						<p>
-							<a title="Facebook" target="_blank" href="https://www.facebook.com/niajiriplatform/" class="social-icon facebook layout inline center-center">
+							<a target="_blank" href="https://www.facebook.com/niajiriplatform/" class="social-icon facebook layout inline center-center">
 								<span class="icon fa fa-facebook"></span>
 			                </a>
 
-			                <a title="Twitter" target="_blank" href="https://twitter.com/niajiriplatform" class="social-icon twitter layout inline center-center">
+			                <a target="_blank" href="https://twitter.com/niajiriplatform" class="social-icon twitter layout inline center-center">
 								<span class="icon fa fa-twitter"></span>
 			                </a>
 
-			                <a title="Instagram" target="_blank" href="https://www.instagram.com/niajiriplatform/" class="social-icon instagram layout inline center-center">
+			                <a target="_blank" href="https://www.instagram.com/niajiriplatform/" class="social-icon instagram layout inline center-center">
 								<span class="icon fa fa-instagram"></span>
 			                </a>
 						</p>
@@ -170,19 +168,5 @@
 			</div>
 		</div>
 	</footer>
-
-	<script>
-		window.onload = function(){
-			console.log("window loaded, creating fawesome link tag.");
-			var headHTML = document.getElementsByTagName('head')[0].innerHTML;
-			headHTML    += '<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
-			document.getElementsByTagName('head')[0].innerHTML = headHTML;
-
-			if(window.innerWidth > 568){
-				document.getElementById("introVideo").src = "https://www.youtube.com/embed/SD0_glF9t88";
-				console.log("Loading video for lg screens!");
-			}
-		}
-	</script>
 </body>
 </html>
