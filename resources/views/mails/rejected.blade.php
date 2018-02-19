@@ -93,7 +93,7 @@ $actionUrl = route('applications.application', [
                                     <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
                                         <!-- Greeting -->
                                         <h1 style="{{ $style['header-1'] }}">
-                                            Hello {{$stage->applicant->name}}!
+                                            Dear {{$stage->applicant->name}}!
                                         </h1>
 
                                         <!-- Intro -->
@@ -104,7 +104,8 @@ $actionUrl = route('applications.application', [
                                         @else
                                         <p style="{{ $style['paragraph'] }}">
                                            Thank you for your application. <br/><br/>
-                                           We regret to inform you were not successful to move to the next stage. We appreciate your time and effort.
+                                           After careful screening of your application against the set requirements for the position, we regret to inform you that on this occasion, your application has not been successful
+                                           <br/>We appreciate the time and effort you placed into your application and wish you all the best with your career endeavors.
                                         </p>
                                         @endif
 
