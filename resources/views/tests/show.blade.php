@@ -31,7 +31,7 @@
                 {{-- end question actions --}}
 
 		        {{--start test questions--}}
-				@foreach($test->questions as $key => $question)
+				@foreach($test->questions->sortBy('created_at') as $key => $question)
 				<div class="row">
 					<div class="col-md-offset-1 col-md-10 m-b-md m-t-md">
 					    <div class="form-group">
