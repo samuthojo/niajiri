@@ -15,12 +15,12 @@ class CreateQuestionsTable extends Migration {
 
 			$table->uuid('id');
 			$table->text('label');
-			$table->string('firstChoice')->nullable();
-			$table->string('secondChoice')->nullable();
-			$table->string('thirdChoice')->nullable();
-			$table->string('fourthChoice')->nullable();
-			$table->string('fifthChoice')->nullable();
-			$table->string('correct')->nullable();
+			$table->text('firstChoice')->nullable();
+			$table->text('secondChoice')->nullable();
+			$table->text('thirdChoice')->nullable();
+			$table->text('fourthChoice')->nullable();
+			$table->text('fifthChoice')->nullable();
+			$table->text('correct')->nullable();
 			$table->decimal('weight', 15, 2)->default(1);
 			$table->timestamps();
 			$table->softDeletes();
