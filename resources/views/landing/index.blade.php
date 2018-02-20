@@ -7,7 +7,7 @@
 	<title>Niajiri</title>
 	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 	<link rel="stylesheet" href="{{ asset('css/landing/ext.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/landing/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/landing/styles.css') }}">
 	<link rel="icon" href="{{ asset('images/landing/favicon.png') }}">
 </head>
 <body>
@@ -33,7 +33,7 @@
 					Let us Jumpstart<span class="for-mob"><br></span> your Career
 				</h2>
 				<p>
-					Niajiri is an online platform curated to serve the needs of entry level talent. We prepare you for career and open doors to endless opportunities.
+					Niajiri is an online platform curated to serve the needs of entry level talent. We prepare you for your career and open doors to endless opportunities.
 				</p>
 				<a href="{{ route('register') }}" class="round-btn">Get Started Now</a>
 			</div>

@@ -10,7 +10,7 @@ class SiteController extends Controller {
 		parent::__construct();
 	}
 
-	public function landing(Request $request) {
+	public function index(Request $request) {
 		return view('landing.index', ['route_title' => 'landing']);
 	}
 }

@@ -94,7 +94,7 @@ header .round-btn{
     background-repeat: no-repeat;
     background-size: 120px;
     /*transform: rotate(135deg);*/
-    background-image: url(../images/tags.png);
+    background-image: url(../../images/landing/tags.png);
 }
 
 #logo img{
@@ -371,7 +371,7 @@ footer .ipf a{
         background-repeat: no-repeat;
         background-size: 120px;
         /*transform: rotate(135deg);*/
-        background-image: url(../images/tags.png);
+        background-image: url(../../images/landing/tags.png);
     }
 
     #logo img{
