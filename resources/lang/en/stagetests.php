@@ -24,7 +24,7 @@ return [
 			'header' => 'New Stage Test',
 			'flash' => [
 				'success' => 'Test Submitted Succeffully',
-				'warning' => 'You have already made an attempt on the selected test.',
+				'warning' => 'You have already attempted the selected test.',
 			],
 		],
 		'create' => [

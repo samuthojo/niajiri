@@ -37,6 +37,7 @@
                                 trans('stagetests.actions.save.name'),
                                 [
                                 'type' => 'submit',
+                                'id' => 'test-submit',
                                 'class' => 'btn btn-primary pull-right',
                                 'title' => trans('stagetests.actions.save.title'),
                             ])
@@ -92,8 +93,15 @@
             }
         });
 
-        $(window).bind('beforeunload', function(e) {
+        //warn on page refresh
+        $(window).bind('beforeunload', function(event) {
           return 'Are you sure you want to leave?';
+        });
+
+        //allow form submission without warn
+        //page refresh
+        $(document).on("submit", "form", function(event){
+            $(window).off('beforeunload');
         });
 
         //modal form submission handler

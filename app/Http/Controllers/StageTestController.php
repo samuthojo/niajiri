@@ -63,7 +63,7 @@ class StageTestController extends SecureController {
 		if ($stageTest != null) {
 
 			flash(trans('stagetests.actions.save.flash.warning'))
-				->success()->important();
+				->warning()->important();
 
 			return redirect()->route('applications.application', [
 				'id' => $request->input('application_id'),
