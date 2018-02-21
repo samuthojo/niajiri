@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTestWelcomeColumn extends Migration {
+class AddTestInstructionsColumn extends Migration {
 	/**
 	 * Run the migrations.
 	 *
@@ -12,7 +12,7 @@ class AddTestWelcomeColumn extends Migration {
 	 */
 	public function up() {
 		Schema::table('tests', function (Blueprint $table) {
-			$table->text('welcome')->nullable();
+			$table->text('instructions')->nullable();
 		});
 	}
 
@@ -23,7 +23,7 @@ class AddTestWelcomeColumn extends Migration {
 	 */
 	public function down() {
 		Schema::table('tests', function (Blueprint $table) {
-			$table->dropColumn('welcome');
+			$table->dropColumn('instructions');
 		});
 	}
 }

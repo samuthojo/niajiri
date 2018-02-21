@@ -110,6 +110,7 @@
         });
 
         //config timer
+        @if($take_test)
         $("#timer").countdowntimer({
           hours: 0,
           minutes: {{$test->duration ? $test->duration : 30}}, //TODO set test default duration
@@ -124,6 +125,8 @@
                 .modal({backdrop:'static', keyboard:false, show:true});
           }
         });
+        @endif
+
       });
 </script>
 @endpush

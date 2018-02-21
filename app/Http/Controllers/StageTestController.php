@@ -97,7 +97,12 @@ class StageTestController extends SecureController {
 		//merge query params and data
 		$data = collect($request->all())->merge($data)->all();
 
-		return view('stagetests.create', $data);
+		$takeTest = $request->input('take_test');
+		if ($takeTest) {
+			return view('stagetests.create', $data);
+		} else {
+			return view('stagetests.instruct', $data);
+		}
 
 	}
 

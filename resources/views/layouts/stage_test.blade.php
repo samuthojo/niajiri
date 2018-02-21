@@ -46,12 +46,14 @@
                     </h2>
                     {{-- end page title --}}
                 </div>
+                @if($take_test)
                 @if($test->duration)
                 <div class="col-md-5">
                     <h2 class="pull-right">
                         <div id="countdowntimer"><span id="timer"></span></div>
                     </h2>
                 </div>
+                @endif
                 @endif
             </div>
             {{-- end page header --}}

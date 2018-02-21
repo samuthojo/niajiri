@@ -4,11 +4,16 @@ return [
 	'headers' => [
 		'actions' => 'Actions',
 		'test' => 'Test',
+		'instructions' => 'Instructions',
 	],
 	'actions' => [
 		'cancel' => [
 			'name' => 'Cancel',
 			'title' => 'Click To Cancel',
+		],
+		'take' => [
+			'name' => 'Take Test',
+			'title' => 'Click To Start Test',
 		],
 		'edit' => [
 			'name' => 'Edit',

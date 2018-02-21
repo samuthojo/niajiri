@@ -31,6 +31,7 @@ class RouteViewBindings
         View::share('route_description', 'Home');
         View::share('instance', null);
         View::share('applicant_id', null);
+        View::share('take_test', false);
 
         return $next($request);
     }
