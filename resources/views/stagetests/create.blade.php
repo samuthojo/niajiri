@@ -83,10 +83,13 @@
             }
         });
 
-        $(document).bind('keydown keypress', 'ctrl+s', function () {
-            $('#stage-test-timeout-modal')
-                .modal({backdrop:'static', keyboard:false, show:true});
-            return false;
+        $(document).bind('keydown keypress', 'ctrl+s', function (event) {
+            if(event.keyCode !== 37 && event.keyCode !== 38 && 
+                event.keyCode !== 39 && event.keyCode !== 40){
+                $('#stage-test-timeout-modal')
+                    .modal({backdrop:'static', keyboard:false, show:true});
+                return false;
+            }
         });
 
         $(window).bind('beforeunload', function(e) {

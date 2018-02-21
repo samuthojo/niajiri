@@ -49,6 +49,29 @@ class StageTestController extends SecureController {
 		//and find a way to merge changes or redirect to edit
 		//so that applicant can continue to take test
 
+		//check if there is existing stage test
+		//to prevent multiple taking
+		$stageTest = StageTest::where([
+			'applicant_id' => $request->input('applicant_id'),
+			'position_id' => $request->input('position_id'),
+			'stage_id' => $request->input('stage_id'),
+			'application_id' => $request->input('application_id'),
+			'applicationstage_id' => $request->input('applicationstage_id'),
+			'test_id' => $request->input('test_id'),
+		])->first();
+
+		if ($stageTest != null) {
+
+			flash(trans('stagetests.actions.save.flash.warning'))
+				->success()->important();
+
+			return redirect()->route('applications.application', [
+				'id' => $request->input('application_id'),
+				'applicant_id' => $request->input('applicant_id'),
+			]);
+
+		}
+
 		//obtain test and all its question
 		$test = Test::query()
 			->where('position_id', $request->input('position_id'))
@@ -75,6 +98,7 @@ class StageTestController extends SecureController {
 		$data = collect($request->all())->merge($data)->all();
 
 		return view('stagetests.create', $data);
+
 	}
 
 	/**
@@ -94,7 +118,6 @@ class StageTestController extends SecureController {
 			'test_id' => 'string|required|exists:tests,id',
 			// 'attempts' => 'required',
 		]);
-
 
 		//find test
 		$stagetest = Test::attempt($request->all());
