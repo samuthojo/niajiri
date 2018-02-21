@@ -49,6 +49,7 @@ class Test extends Model {
 		'stage_id',
 		'position_id',
 		'category',
+		'welcome',
 	];
 
 	/**
@@ -90,6 +91,7 @@ class Test extends Model {
 		'position_id' => 'string',
 		'stage_id' => 'string',
 		'category' => 'string',
+		'welcome' => 'string',
 	];
 
 	/**
