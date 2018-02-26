@@ -151,10 +151,13 @@
 					<div>
 						<h5>Contact Us:</h5>
 						<p>
-							support@niajiri.co.tz
+							niajiritz@gmail.com
 						</p>
 						<p>
-							+255 718 321 452
+							+255 689 403 300
+						</p>
+						<p>
+							+255 768 353 551
 						</p>
 					</div>
 				</div>
@@ -163,6 +166,7 @@
 			<div class="ipf layout justified">
 				<div class="flex-2"></div>
 				<div class="flex"></div>
+				<p></p><br/>
 				<p class="flex layout center-justified">
 					Web strategies by:&nbsp; 
 					<a target="_blank" href="http://www.ipfsoftwares.com">iPF Softwares</a>
