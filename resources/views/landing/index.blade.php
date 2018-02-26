@@ -70,20 +70,6 @@
 		</div>
 	</div>
 
-	<!-- <div class="value-proposition" style="background-color: #d2d2d2; background-image: url(images/ptn.jpg); background-size: cover">
-		<div class="container layout justified center">
-			<div>
-				<span>Not sure about your CV?</span>
-				<h2>Build yourself<br>an optimal CV</h2>
-				<p>
-					We help you design a compelling CV that will attract your career of choice.
-				</p>
-			</div>
-
-			<div class="for-lg" style="background-image: url(images/cvpc2.png);background-size: 80%; background-repeat: no-repeat; background-position: center right; height: 450px; margi: 1.3em 0; width: 60%;"></div>
-		</div>
-	</div> -->
-
 	<div id="employersSection" class="value-proposition">
 		<div class="container layout justified center">
 			<div class="for-lg" style="background-colo: #f3f3f3;background-image: url({{asset('images/landing/polygon.png')}});background-size: 80%; background-repeat: no-repeat; border-radiu: 50%; background-position: left center; width: 580px; height: 410px; margin: 1.3em 0; max-width: 50%;"></div>

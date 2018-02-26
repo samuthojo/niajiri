@@ -219,6 +219,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
+        Themsaid\Langman\LangmanServiceProvider::class
 
     ],
 

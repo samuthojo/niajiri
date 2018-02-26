@@ -60,6 +60,12 @@ return [
 	],
 	'empty_state' => [
         'resume' => 'This candidate has not added Education background'
+	],
+	'attachments' => [
+        'missing' => [
+			'title' => 'No attachment',
+			'description' => 'No attachment uploaded',
+		],
     ],
 	'inputs' => [
 		'level' => [
