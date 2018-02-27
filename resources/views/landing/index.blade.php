@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="{{ asset('css/landing/ext.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/landing/styles.css') }}">
 	<link rel="icon" href="{{ asset('images/landing/favicon.png') }}">
+	@include('layouts._google_analytics')
 </head>
 <body>
 	<header id="header">
