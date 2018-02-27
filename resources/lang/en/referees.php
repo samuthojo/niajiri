@@ -52,7 +52,7 @@ return [
         ],
     ],
     'empty_state' => [
-        'resume' => 'This candidate has not added any referee'
+        'resume' => 'This candidate has not added any referee',
     ],
     'inputs' => [
         'name' => [
