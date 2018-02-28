@@ -36,7 +36,17 @@
                     <span class="pull-right" title="{{trans('educations.inputs.remark.description')}}">
                     	{{display_or_na($education->remark)}}
                     </span>
-                </h5>
+                </h5><p></p>
+				<div class="file-name">
+					<h4>Attachment:</h4>
+					@if($education->attachment() != null)
+						<a href="{{ $education->attachment()->public_url()}}" target="_blank">
+						{{$education->attachment()->file_name}}
+						</a>
+					@else
+						<span title="{{trans('educations.attachments.missing.title')}}">{{trans('educations.attachments.missing.description')}}</span>
+					@endif
+				</div>
 				<hr class="hr-line-dashed" />
 			</div>
 			@endforeach

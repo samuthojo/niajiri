@@ -22,6 +22,7 @@
     {{-- start styles --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{-- end styles --}}
+    @include('layouts._google_analytics')
 
 </head>
 

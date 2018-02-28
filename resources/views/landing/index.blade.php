@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="{{ asset('css/landing/ext.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/landing/styles.css') }}">
 	<link rel="icon" href="{{ asset('images/landing/favicon.png') }}">
+	@include('layouts._google_analytics')
 </head>
 <body>
 	<header id="header">
@@ -69,20 +70,6 @@
 			</p>
 		</div>
 	</div>
-
-	<!-- <div class="value-proposition" style="background-color: #d2d2d2; background-image: url(images/ptn.jpg); background-size: cover">
-		<div class="container layout justified center">
-			<div>
-				<span>Not sure about your CV?</span>
-				<h2>Build yourself<br>an optimal CV</h2>
-				<p>
-					We help you design a compelling CV that will attract your career of choice.
-				</p>
-			</div>
-
-			<div class="for-lg" style="background-image: url(images/cvpc2.png);background-size: 80%; background-repeat: no-repeat; background-position: center right; height: 450px; margi: 1.3em 0; width: 60%;"></div>
-		</div>
-	</div> -->
 
 	<div id="employersSection" class="value-proposition">
 		<div class="container layout justified center">
@@ -151,10 +138,13 @@
 					<div>
 						<h5>Contact Us:</h5>
 						<p>
-							support@niajiri.co.tz
+							niajiritz@gmail.com
 						</p>
 						<p>
-							+255 718 321 452
+							+255 689 403 300
+						</p>
+						<p>
+							+255 768 353 551
 						</p>
 					</div>
 				</div>
@@ -163,6 +153,7 @@
 			<div class="ipf layout justified">
 				<div class="flex-2"></div>
 				<div class="flex"></div>
+				<p></p><br/>
 				<p class="flex layout center-justified">
 					Web strategies by:&nbsp; 
 					<a target="_blank" href="http://www.ipfsoftwares.com">iPF Softwares</a>
