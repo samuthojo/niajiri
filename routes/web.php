@@ -20,7 +20,6 @@ Route::get('/home', 'HomeController@index')->name("home");
 Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
 Route::get('/minor', 'HomeController@minor')->name("minor");
 Route::get('/states', 'HomeController@get_states')->name("states");
-Route::get('/fixes', 'HomeController@fix')->name("fixes");
 
 //development only routes, should be commented on production
 //Route::get('/artisan', 'HomeController@artisan')->name('artisan');

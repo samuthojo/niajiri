@@ -99,23 +99,6 @@ class HomeController extends SecureController
         return redirect('/');
     }
 
-    //data fixers
-    /**
-     * Ensure all application has single stage test
-     */
-    public function fix()
-    {
-        //TODO wrap in transaction
-        //1. find stage which has test
-        $stages = Stage::where('hasTest', true)->get();
-
-        //2. find application stage with stage which has test
-        $applicationStages = ApplicationStage::whereHas('tests', null, '>', 1)->first();
-
-        return $applicationStages->id . ' ' . $applicationStages->tests->count();
-
-    }
-
     //mails rendering test
 
     /**
