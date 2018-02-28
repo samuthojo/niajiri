@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index')->name("home");
 Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
 Route::get('/minor', 'HomeController@minor')->name("minor");
 Route::get('/states', 'HomeController@get_states')->name("states");
+Route::get('/fixes', 'HomeController@fix')->name("fixes");
 
 //development only routes, should be commented on production
 //Route::get('/artisan', 'HomeController@artisan')->name('artisan');
@@ -94,8 +95,8 @@ Route::get('/cv/{applicant?}', 'UserController@get_cv')->name("users.cv");
 
 //social auth routes
 Route::get('/auth/social/provider/{name}', 'Auth\SocialAuthController@signIn')
-	->name('auth.social.provider');
+    ->name('auth.social.provider');
 Route::get('/auth/social/callback/{name}', 'Auth\SocialAuthController@signInCallback')
-	->name('auth.social.callback');
+    ->name('auth.social.callback');
 Route::get('/auth/social/existing-user', 'Auth\SocialAuthController@getCurrentUserSignIn')->name('auth.social.existing.user');
 Route::post('/auth/social/existing-user', 'Auth\SocialAuthController@postCurrentUserSignin');

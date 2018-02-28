@@ -135,7 +135,7 @@
                         <tbody>
                             @foreach($applicationstages->sortBy('score')->sortBy(function($item) { 
                               return $item->applicant->fullName();
-                            }); as $item)
+                            }) as $item)
                             <tr>
                                 @if($item->application->isCurrentStage($item->stage) && !$item->hasScoreAndFail())
                               <td>
@@ -209,7 +209,7 @@
                                 </td>
                             </tr>
                             @if($item->hasTest())
-                            @foreach($item->tests as $index => $stageTest)
+                            @foreach($item->uniqueTests()->sortBy('test.category') as $index => $stageTest)
                             <tr>
                                 <td class="no-border-top">&nbsp;</td>
                                 <td class="no-border-top">&nbsp;</td>

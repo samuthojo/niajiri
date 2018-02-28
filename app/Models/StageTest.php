@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use App\Models\QuestionAttempt;
 
 class StageTest extends Model {
 
@@ -66,7 +67,8 @@ class StageTest extends Model {
 	];
 
 	public function getScoreAttribute($value) {
-		return $this->computeScore();
+		// return $this->computeScore();
+		return $this->uniqueScore();
 	}
 
 	/**
@@ -177,6 +179,67 @@ class StageTest extends Model {
 
 			//4.0.. compute total score weight
 			$totalScore = $this->questions->sum('weight');
+
+			//4.1 compute average weight score
+			$score = ($score / $totalScore) * 100;
+
+		}
+
+		return $score;
+	}
+
+
+	/**
+	 * Compute unique store of a stage test
+	 * @return float
+	 */
+	public function uniqueScore()
+	{
+		//1..initialize stage test score
+		$score = 0;
+
+		//2. collect all attempted questions in all repeated tests
+		$attempts = QuestionAttempt::with('question')->where([
+			'applicant_id' => $this->applicant_id, 
+			'position_id' => $this->position_id, 
+			'stage_id' => $this->stage_id,
+			'test_id' => $this->test_id
+		])->get();
+
+		//3..accumulate score if attempt answer is correct
+		if ($attempts->count() > 0) {
+
+			$score = $attempts->sum(function ($attempt) {
+
+				//..initialize question score
+				$questionScore = 0;
+
+				//3.1...obtain question attempt question
+				$question = $attempt->question;
+
+				if ($question !== null) {
+
+					//3.2...check for correctness
+					$isCorrect =
+						($attempt->answer === $question->correct);
+
+					//3.3...prepare question score
+					$questionScore =
+						($isCorrect ? $question->weight : 0);
+
+				}
+
+				//return questionScore
+				return $questionScore;
+
+			});
+
+			//4.. compute percentage score
+
+			//4.0.. compute total score weight
+			$totalScore = $attempts->sum(function($attempt){
+				return $attempt->question->weight;
+			});
 
 			//4.1 compute average weight score
 			$score = ($score / $totalScore) * 100;

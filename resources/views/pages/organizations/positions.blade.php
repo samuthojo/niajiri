@@ -34,6 +34,7 @@
               </td>
               <td class="project-actions">
                   <a href="{{ route('positions.show', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
+                  <a href="{{ route('applicationstages.index', ['position_id' => $item->id, 'stage_id' => $item->stages->first()->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-users"></i> Applicants </a>
                   <a href="{{ route('positions.edit', ['id' => $item->id]) }}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
               </td>
 

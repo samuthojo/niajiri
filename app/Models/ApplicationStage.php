@@ -193,7 +193,8 @@ class ApplicationStage extends Model implements HasMedia {
 			});
 
 			if ($stageTest) {
-				$score = $stageTest->computeScore();
+				// $score = $stageTest->computeScore();
+				$score = $stageTest->uniqueScore();
 			}
 		}
 
@@ -297,6 +298,19 @@ class ApplicationStage extends Model implements HasMedia {
 	 **/
 	public function tests() {
 		return $this->hasMany('App\Models\StageTest', 'applicationstage_id');
+	}
+
+	/**
+	 * Obtain application stage unique tests
+	 * @return [App\Models\StageTest]
+	 */
+	public function uniqueTests()
+	{
+		$uniqueTests = $this->tests->unique(function($stageTest){
+			return $stageTest->test->category;
+		});
+
+		return $uniqueTests;
 	}
 
 	/**
