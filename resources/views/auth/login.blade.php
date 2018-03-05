@@ -1,11 +1,21 @@
 @extends('layouts.auth')
 
 @section('content')
-    <div class="middle-box text-center loginscreen animated fadeInDown">
-		<img src="{{ asset('images/logo.png') }}" width="160" height="120">
-		<form role="form" method="POST" action="{{ route('login') }}">
-			{{ csrf_field() }}
+<div class="register-wrapper">
+    <div class="middle-box text-center loginscreen animated fadeInDown ">
+		<!-- <img src="{{ asset('images/logo.png') }}" width="160" height="120"> -->
+		<div class="col-lg-4 signup-container">
+			<a href="#" id="logo" class="layout center-center">
+					<img src="{{asset('images/landing/logo.png')}}" alt="Niajiri logo" style="height: 50px">
+			</a>
 
+			<h1>New here?</h1>
+			<h2>Let us jumpstart your career.<br/>We prepare you for your career and open doors to endless opportunities. </h2>
+			<a class="btn btn-block full-width m-b" href="{{route('register')}}" title="Click to create new account">Sign Up Now</a>
+		</div>
+		<form class="col-lg-8" role="form" method="POST" action="{{ route('login') }}">
+			{{ csrf_field() }}
+			<h1>Welcome back!</h1>
 			<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 				<input class="form-control" type="email" name="email" placeholder="Email" required="">
 				@if ($errors->has('email'))
@@ -15,7 +25,7 @@
 				@endif
 			</div>
 
-			<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+			<div class="m-b-lg form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 				<input class="form-control" type="password" name="password" placeholder="Password" required="">
 				@if ($errors->has('password'))
 					<span class="help-block">
@@ -24,16 +34,17 @@
 				@endif
 			</div>
 
-			<button type="submit" class="btn btn-primary block full-width m-b">Signin</button>
+			<button type="submit" class="btn btn-primary block full-width">Signin</button>
 
 			<a href="{{route('password.request')}}"><small>Forgot password?</small></a>
 
 			{{-- <p class="text-muted text-center"><small>OR</small></p> --}}
 
-			<p class="text-muted text-center"><small>Do not have an account?</small></p>
+			
 
 			{{-- start register --}}
-			<a class="btn btn-white btn-block full-width m-b" href="{{route('register')}}" title="Click to create new account">Create an Account</a>
+			{{-- <p class="text-muted text-center"><small>Do not have an account?</small></p> --}}
+			{{--<a class="btn btn-white btn-block full-width m-b" href="{{route('register')}}" title="Click to create new account">Create an Account</a>--}}
 			{{-- end register --}}
 
 			{{-- start social signin --}}
@@ -63,4 +74,5 @@
             {{-- end social signin --}}
 		</form>
 	</div>
+</div>
 @endsection

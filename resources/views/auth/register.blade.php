@@ -1,15 +1,26 @@
 @extends('layouts.auth')
 
 @section('content')
+<div class="register-wrapper">
     <div class="middle-box text-center loginscreen animated fadeInDown">
-        <img src="{{ asset('images/logo.png') }}" width="160" height="120">
+        <!-- <img src="{{ asset('images/logo.png') }}" width="160" height="120"> -->
+        	<div class="col-lg-4 signup-container">
+                <a href="#" id="logo" class="layout center-center">
+                        <img src="{{asset('images/landing/logo.png')}}" alt="Niajiri logo" style="height: 50px">
+                </a>
+
+                <h1 style="font-size:2.5em">Have you been here?</h1>
+                <h2>If you have registered before just sign in,<br/>new oportunities are waiting! </h2>
+                <a class="btn btn-block full-width m-b" href="{{route('login')}}" title="Click to create new account">Sign In</a>
+		    </div>
            {!!
                 Form::open([
                     'route' => 'register',
-                    'files' => true
+                    'files' => true,
+                    'class' => 'col-lg-8'
                 ])
             !!}
-
+             <h1>Lets do this!</h1>       
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 {!! Form::text('name', null, [
                     'id' => 'name',
@@ -66,7 +77,7 @@
                 @endif
             </div>
 
-            <div class="form-group">
+            <div class="form-group m-b-lg">
                 {!! Form::password('password_confirmation', [
                     'id' => 'password_confirmation',
                     'class' => 'form-control',
@@ -80,7 +91,7 @@
                     'Register',
                     [
                     'type' => 'submit',
-                    'class' => 'btn btn-primary block full-width m-b',
+                    'class' => 'btn btn-primary block full-width',
                     'title' => 'Click to Register',
                 ])
             !!}
@@ -88,4 +99,5 @@
         {!! Form::close() !!}
 
     </div>
+</div>
 @endsection
