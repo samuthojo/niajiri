@@ -469,3 +469,97 @@ Triangle breadcrumb
     background-color: rgb(75, 152, 134);
     border-color: rgb(75, 152, 134);
 }
+
+
+/*Panel Poslishing */
+
+.skin-3 .metismenu>li>a {
+    color: #000;
+    font-size: 1.2em;
+}
+
+.skin-3 .nav>li.active {
+    border-left: 4px solid #449384;
+    background: #f5f5f5;
+    color: #000;
+}
+
+.skin-3 .nav>li.active>a {
+    color: #449384;
+}
+
+.skin-3 .nav>li:hover {
+    background: #f5f5f5;
+}
+
+.skin-3 .navbar-default .nav>li>a:hover {
+    background: #f5f5f5;
+    color: #449384;
+}
+
+.fixed-nav.skin-3 .navbar-fixed-top {
+    background: #449384;
+    color: black;
+}
+
+.navbar-fixed-top li span {
+    color: #000;
+}
+
+body.skin-3 {
+    background: #fff;
+    border-right: solid 1px gray;
+}
+
+.navbar-default {
+    border-right: 1px solid #e7eaec;
+    background: #fff;
+}
+
+.navbar-header a {
+    width: 220px;
+    background-color: #fff;
+    height: 63px;
+    display: block;
+    margin-left: 0;
+    padding-left: 66px;
+    border-right: 1px solid #e7eaec;
+}
+
+.skin-3 .nav-header {
+    background-color: #fff;
+    background-image: none;
+}
+
+.skin-3 .nav-header a.dropdown-toggle {
+    color: #000000;
+}
+
+.navbar-top-links {
+    color: #000;
+}
+
+.skin-3 .navbar-top-links>li>a {
+    color: #fff;
+}
+
+.nav>li>a {
+    font-weight: 400;
+}
+
+
+/*End Panel Polishing */
+
+
+/*Middle content Polishing */
+
+.page_title {
+    font-weight: 900;
+    color: #f2af44;
+    font-size: 3em;
+    text-transform: uppercase;
+}
+
+.ibox-content:first-child {
+    border-top: solid 4px #f2af44!important;
+}

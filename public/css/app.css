@@ -1,148 +1,4 @@
-@charset "UTF-8";
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-black/lato-black.eot?bbf38f2c06ec7358272419edb1a549e2);
-  src: local("Lato Black"), local("Lato-Black"), url(/fonts/vendor/lato/lato-black/lato-black.eot?bbf38f2c06ec7358272419edb1a549e2) format("embedded-opentype"), url(/fonts/vendor/lato/lato-black/lato-black.woff2?7b6417320dc70b598496fa9b52c25354) format("woff2"), url(/fonts/vendor/lato/lato-black/lato-black.woff?59446d89eb50590fb169be4b986ed05c) format("woff"), url(/fonts/vendor/lato/lato-black/lato-black.ttf?872156031ae4f07f1cab2d81a132d008) format("truetype"), url(/fonts/vendor/lato/lato-black/lato-black.svg?9f44e6515cef77dfc4ce372841c4b89f) format("svg");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-blackitalic/lato-blackitalic.eot?6ec881278b82058535cd301332a22c9a);
-  src: local("Lato Black Italic"), local("Lato-BlackItalic"), url(/fonts/vendor/lato/lato-blackitalic/lato-blackitalic.eot?6ec881278b82058535cd301332a22c9a) format("embedded-opentype"), url(/fonts/vendor/lato/lato-blackitalic/lato-blackitalic.woff2?97637eef316ff24b7a928cd2aa310642) format("woff2"), url(/fonts/vendor/lato/lato-blackitalic/lato-blackitalic.woff?fb0ea3c8b4bd02e48be33bf4e8baa06c) format("woff"), url(/fonts/vendor/lato/lato-blackitalic/lato-blackitalic.ttf?87e432e9fb663f0a9cd70ee955db6150) format("truetype"), url(/fonts/vendor/lato/lato-blackitalic/lato-blackitalic.svg?b871091ac8c37525c5b7aa3a93c9cc7a) format("svg");
-  font-weight: 900;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-heavy/lato-heavy.eot?1e1777b4535e021cfa4dfe8e051d0e1d);
-  src: local("Lato Heavy"), local("Lato-Heavy"), url(/fonts/vendor/lato/lato-heavy/lato-heavy.eot?1e1777b4535e021cfa4dfe8e051d0e1d) format("embedded-opentype"), url(/fonts/vendor/lato/lato-heavy/lato-heavy.woff2?c6935bfc6b8e2c90520ceca7bfb8960c) format("woff2"), url(/fonts/vendor/lato/lato-heavy/lato-heavy.woff?85778182b455c2586943d20f919dec47) format("woff"), url(/fonts/vendor/lato/lato-heavy/lato-heavy.ttf?498f28ff913dac4709b78cf9cdbf3195) format("truetype"), url(/fonts/vendor/lato/lato-heavy/lato-heavy.svg?3a27435099615ea1296463f79a54df7f) format("svg");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-heavyitalic/lato-heavyitalic.eot?91d23c6620e2effe37bb24471cd31538);
-  src: local("Lato Heavy Italic"), local("Lato-HeavyItalic"), url(/fonts/vendor/lato/lato-heavyitalic/lato-heavyitalic.eot?91d23c6620e2effe37bb24471cd31538) format("embedded-opentype"), url(/fonts/vendor/lato/lato-heavyitalic/lato-heavyitalic.woff2?269b62376b25ebdc848ccc17e0b85716) format("woff2"), url(/fonts/vendor/lato/lato-heavyitalic/lato-heavyitalic.woff?8e9f37d7c74440861237be99465b788a) format("woff"), url(/fonts/vendor/lato/lato-heavyitalic/lato-heavyitalic.ttf?596a7492a908b7653449a9124a111b10) format("truetype"), url(/fonts/vendor/lato/lato-heavyitalic/lato-heavyitalic.svg?b56ce1a3e7aa031fac368e273e848e93) format("svg");
-  font-weight: 800;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-bold/lato-bold.eot?768b1a5b97532a20c0dc9ffa9fe52808);
-  src: local("Lato Bold"), local("Lato-Bold"), url(/fonts/vendor/lato/lato-bold/lato-bold.eot?768b1a5b97532a20c0dc9ffa9fe52808) format("embedded-opentype"), url(/fonts/vendor/lato/lato-bold/lato-bold.woff2?2eab56321edccd85d93bf5552342bf20) format("woff2"), url(/fonts/vendor/lato/lato-bold/lato-bold.woff?75c165bbdb5ac12c3c8d7ca09547d400) format("woff"), url(/fonts/vendor/lato/lato-bold/lato-bold.ttf?ef764437ed9cc94d01b0510b20dac00a) format("truetype"), url(/fonts/vendor/lato/lato-bold/lato-bold.svg?8ff2f359d1286c170d1f1fc356e998e9) format("svg");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-bolditalic/lato-bolditalic.eot?f2a9aef851cf1c19917c0f0a727c0170);
-  src: local("Lato Bold Italic"), local("Lato-BoldItalic"), url(/fonts/vendor/lato/lato-bolditalic/lato-bolditalic.eot?f2a9aef851cf1c19917c0f0a727c0170) format("embedded-opentype"), url(/fonts/vendor/lato/lato-bolditalic/lato-bolditalic.woff2?f3f3a1a0f6b7af4fdda1a0e60c72b0b3) format("woff2"), url(/fonts/vendor/lato/lato-bolditalic/lato-bolditalic.woff?1ae8e50aae5dcea23c69b5c1a50636ba) format("woff"), url(/fonts/vendor/lato/lato-bolditalic/lato-bolditalic.ttf?17b56efea5ad76f5ff9c6a0d7bee8c78) format("truetype"), url(/fonts/vendor/lato/lato-bolditalic/lato-bolditalic.svg?4e1a7566247ca3353c08175058bd83ca) format("svg");
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-semibold/lato-semibold.eot?08092fcc01b7351e0da8eff2aa0cf6f4);
-  src: local("Lato Semi Bold"), local("Lato-SemiBold"), url(/fonts/vendor/lato/lato-semibold/lato-semibold.eot?08092fcc01b7351e0da8eff2aa0cf6f4) format("embedded-opentype"), url(/fonts/vendor/lato/lato-semibold/lato-semibold.woff2?1680d71bee28032841c94fc87b3a605a) format("woff2"), url(/fonts/vendor/lato/lato-semibold/lato-semibold.woff?c3104059bd79a9410db2f79745c94655) format("woff"), url(/fonts/vendor/lato/lato-semibold/lato-semibold.ttf?0723496cd0ae772dcebbc2d32523589e) format("truetype"), url(/fonts/vendor/lato/lato-semibold/lato-semibold.svg?f2f0aa301af9f596e0093b02c2a66c83) format("svg");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-semibolditalic/lato-semibolditalic.eot?83e05530775c86541792b41a64da5289);
-  src: local("Lato Semi Bold Italic"), local("Lato-SemiBold Italic"), url(/fonts/vendor/lato/lato-semibolditalic/lato-semibolditalic.eot?83e05530775c86541792b41a64da5289) format("embedded-opentype"), url(/fonts/vendor/lato/lato-semibolditalic/lato-semibolditalic.woff2?38bcf17881ae22d24b65a8e33481a819) format("woff2"), url(/fonts/vendor/lato/lato-semibolditalic/lato-semibolditalic.woff?0e34d902c764464b373f5b021817f9c9) format("woff"), url(/fonts/vendor/lato/lato-semibolditalic/lato-semibolditalic.ttf?d2b9bbc1314ff08f908e118d2e123692) format("truetype"), url(/fonts/vendor/lato/lato-semibolditalic/lato-semibolditalic.svg?fb103a955df8bdd2d68011504ae0edf9) format("svg");
-  font-weight: 600;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-medium/lato-medium.eot?76deb57dd01f98023eaafea5b2658101);
-  src: local("Lato Medium"), local("Lato-Medium"), url(/fonts/vendor/lato/lato-medium/lato-medium.eot?76deb57dd01f98023eaafea5b2658101) format("embedded-opentype"), url(/fonts/vendor/lato/lato-medium/lato-medium.woff2?2b6712c919b11343a6da9c23fb3ec956) format("woff2"), url(/fonts/vendor/lato/lato-medium/lato-medium.woff?484af8f861001cc4d2b368a394e185f0) format("woff"), url(/fonts/vendor/lato/lato-medium/lato-medium.ttf?a51bc61359e45e0e65871e1333198290) format("truetype"), url(/fonts/vendor/lato/lato-medium/lato-medium.svg?7e9ed362d3c4c46bcd4dfeadc078a4ac) format("svg");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-mediumitalic/lato-mediumitalic.eot?d5869a792f68fe868ad7d20ca5e41fb4);
-  src: local("Lato Medium Italic"), local("Lato-MediumItalic"), url(/fonts/vendor/lato/lato-mediumitalic/lato-mediumitalic.eot?d5869a792f68fe868ad7d20ca5e41fb4) format("embedded-opentype"), url(/fonts/vendor/lato/lato-mediumitalic/lato-mediumitalic.woff2?1630511d243348ffd19d5be6ad6985bd) format("woff2"), url(/fonts/vendor/lato/lato-mediumitalic/lato-mediumitalic.woff?2dbf9503a7f9a7a6e43897a87c2f0637) format("woff"), url(/fonts/vendor/lato/lato-mediumitalic/lato-mediumitalic.ttf?9e30f3144f66b0550c14f8ed49ab6f05) format("truetype"), url(/fonts/vendor/lato/lato-mediumitalic/lato-mediumitalic.svg?42de2df4a0e15041e368578032aaa47e) format("svg");
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-regular/lato-regular.eot?3cd8a069a9eb60b7e38bf33e940fa570);
-  src: local("Lato Regular"), local("Lato-Regular"), url(/fonts/vendor/lato/lato-regular/lato-regular.eot?3cd8a069a9eb60b7e38bf33e940fa570) format("embedded-opentype"), url(/fonts/vendor/lato/lato-regular/lato-regular.woff2?2a668851e5db50e32d94bdc1f1569b2b) format("woff2"), url(/fonts/vendor/lato/lato-regular/lato-regular.woff?744f60bc5e8ff1efc874f7de06576fb6) format("woff"), url(/fonts/vendor/lato/lato-regular/lato-regular.ttf?2b3c7bc9836a941c085b0d5ce774d634) format("truetype"), url(/fonts/vendor/lato/lato-regular/lato-regular.svg?69c898bcb60d75bfd2518780428ee8eb) format("svg");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-italic/lato-italic.eot?66af2e7db23c97d17c5455e075c4c108);
-  src: local("Lato Italic"), local("Lato-Italic"), url(/fonts/vendor/lato/lato-italic/lato-italic.eot?66af2e7db23c97d17c5455e075c4c108) format("embedded-opentype"), url(/fonts/vendor/lato/lato-italic/lato-italic.woff2?9bb93ba484b0100868e78965eb176cac) format("woff2"), url(/fonts/vendor/lato/lato-italic/lato-italic.woff?13aeb7cc4974480456d400216d2f7506) format("woff"), url(/fonts/vendor/lato/lato-italic/lato-italic.ttf?d218af005b8b1d9db21a7e39431997ba) format("truetype"), url(/fonts/vendor/lato/lato-italic/lato-italic.svg?226f0cfee2031c8dd863a648379aacd9) format("svg");
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-light/lato-light.eot?49edd942ddc76cb4a4641d81689b1a51);
-  src: local("Lato Light"), local("Lato-Light"), url(/fonts/vendor/lato/lato-light/lato-light.eot?49edd942ddc76cb4a4641d81689b1a51) format("embedded-opentype"), url(/fonts/vendor/lato/lato-light/lato-light.woff2?aeada8b219612e554bc2112b68030263) format("woff2"), url(/fonts/vendor/lato/lato-light/lato-light.woff?905e6e0f4bf437066330a4edd65e2ce3) format("woff"), url(/fonts/vendor/lato/lato-light/lato-light.ttf?f8ae7d189000aece2b1cb12a3e114b35) format("truetype"), url(/fonts/vendor/lato/lato-light/lato-light.svg?54883bafb0788826246d1d2795923dac) format("svg");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-lightitalic/lato-lightitalic.eot?86e12af7fbdaf97e23141e982bee77b4);
-  src: local("Lato Light Italic"), local("Lato-LightItalic"), url(/fonts/vendor/lato/lato-lightitalic/lato-lightitalic.eot?86e12af7fbdaf97e23141e982bee77b4) format("embedded-opentype"), url(/fonts/vendor/lato/lato-lightitalic/lato-lightitalic.woff2?13b91073eae552883de0003f0d5ada6a) format("woff2"), url(/fonts/vendor/lato/lato-lightitalic/lato-lightitalic.woff?c3d3872a0ed59f50e8ca686cbf7c78bd) format("woff"), url(/fonts/vendor/lato/lato-lightitalic/lato-lightitalic.ttf?41246120e97fe9feb03ff7a7cf37ea5f) format("truetype"), url(/fonts/vendor/lato/lato-lightitalic/lato-lightitalic.svg?6311584b9f24d2ee804fbf5e452f14fa) format("svg");
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-thin/lato-thin.eot?b55b99c5ff86f28c4aca771c99e475e6);
-  src: local("Lato Thin"), local("Lato-Thin"), url(/fonts/vendor/lato/lato-thin/lato-thin.eot?b55b99c5ff86f28c4aca771c99e475e6) format("embedded-opentype"), url(/fonts/vendor/lato/lato-thin/lato-thin.woff2?83a168654962b2825ef8d47401436ae2) format("woff2"), url(/fonts/vendor/lato/lato-thin/lato-thin.woff?0758fffcd1b947ce240b98ad5b9cfc9d) format("woff"), url(/fonts/vendor/lato/lato-thin/lato-thin.ttf?f0782306f947c5ce6f33838abb6add7b) format("truetype"), url(/fonts/vendor/lato/lato-thin/lato-thin.svg?c3a458f17fe893c9aa89c71328f5613a) format("svg");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-thinitalic/lato-thinitalic.eot?e78dfc69a1d4f916e27f4d3a6847734b);
-  src: local("Lato Thin Italic"), local("Lato-ThinItalic"), url(/fonts/vendor/lato/lato-thinitalic/lato-thinitalic.eot?e78dfc69a1d4f916e27f4d3a6847734b) format("embedded-opentype"), url(/fonts/vendor/lato/lato-thinitalic/lato-thinitalic.woff2?b21d779d5d337c21a458b584b95f2fc4) format("woff2"), url(/fonts/vendor/lato/lato-thinitalic/lato-thinitalic.woff?6c57940aa45aa75329a0191cf0964457) format("woff"), url(/fonts/vendor/lato/lato-thinitalic/lato-thinitalic.ttf?c4ce3993b9b46707618c5351f039d4ff) format("truetype"), url(/fonts/vendor/lato/lato-thinitalic/lato-thinitalic.svg?85d775986860a463cd90b85e02e1e883) format("svg");
-  font-weight: 200;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-hairline/lato-hairline.eot?045f6d402ac24b383e584a9c65f000b4);
-  src: local("Lato Hairline"), local("Lato-Hairline"), url(/fonts/vendor/lato/lato-hairline/lato-hairline.eot?045f6d402ac24b383e584a9c65f000b4) format("embedded-opentype"), url(/fonts/vendor/lato/lato-hairline/lato-hairline.woff2?7f6f7fad90df17e9539b3f017cb27605) format("woff2"), url(/fonts/vendor/lato/lato-hairline/lato-hairline.woff?3790e970e8f2dea9e93c20fac44dacff) format("woff"), url(/fonts/vendor/lato/lato-hairline/lato-hairline.ttf?56ce2d877e9d81fdf8e1f11692226343) format("truetype"), url(/fonts/vendor/lato/lato-hairline/lato-hairline.svg?56dcbde00e47c82692e3b4fb39686a33) format("svg");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url(/fonts/vendor/lato/lato-hairlineitalic/lato-hairlineitalic.eot?15be275f0b86b60ed5a51792e29af27d);
-  src: local("Lato Hairline Italic"), local("Lato-HairlineItalic"), url(/fonts/vendor/lato/lato-hairlineitalic/lato-hairlineitalic.eot?15be275f0b86b60ed5a51792e29af27d) format("embedded-opentype"), url(/fonts/vendor/lato/lato-hairlineitalic/lato-hairlineitalic.woff2?37c20597d2ca3665d50b27ffef4bc1fd) format("woff2"), url(/fonts/vendor/lato/lato-hairlineitalic/lato-hairlineitalic.woff?ec7f671f06478518452cf11e3e31495c) format("woff"), url(/fonts/vendor/lato/lato-hairlineitalic/lato-hairlineitalic.ttf?accfc32d9a2ea4dd06859fa679de3211) format("truetype"), url(/fonts/vendor/lato/lato-hairlineitalic/lato-hairlineitalic.svg?062680cc93e60a8d4cf1936399eea0dd) format("svg");
-  font-weight: 100;
-  font-style: italic;
-}
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900);@charset "UTF-8";
 
 @font-face {
   font-family: "simple-line-icons";
@@ -5564,7 +5420,7 @@ html {
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Maven Pro", sans-serif;
   font-size: 14px;
   line-height: 1.6;
   color: #636b6f;
@@ -11661,7 +11517,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Lato", sans-serif;
+  font-family: "Maven Pro", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -11795,7 +11651,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Lato", sans-serif;
+  font-family: "Maven Pro", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -14718,7 +14574,7 @@ button.dim:active:before {
 .label {
   background-color: #D1DADE;
   color: #5E5E5E;
-  font-family: "Lato", sans-serif;
+  font-family: "Maven Pro", sans-serif;
   font-size: 10px;
   font-weight: 600;
   padding: 3px 8px;
@@ -14728,7 +14584,7 @@ button.dim:active:before {
 .badge {
   background-color: #D1DADE;
   color: #5E5E5E;
-  font-family: "Lato", sans-serif;
+  font-family: "Maven Pro", sans-serif;
   font-size: 11px;
   font-weight: 600;
   padding-bottom: 4px;
@@ -17642,11 +17498,12 @@ body.tour-open .animated {
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Maven Pro", sans-serif;
   background-color: #2f4050;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
+  font-weight: 400;
 }
 
 html,
@@ -21562,6 +21419,472 @@ body.body-small .vote-icon {
   z-index: 2000;
 }
 
+/*
+ *
+ *   SKIN 1 - INSPINIA - Responsive Admin Theme
+ *   NAME - Blue light
+ *
+*/
+
+.skin-1 .minimalize-styl-2 {
+  margin: 14px 5px 5px 30px;
+}
+
+.skin-1 .navbar-top-links li:last-child {
+  margin-right: 30px;
+}
+
+.skin-1.fixed-nav .minimalize-styl-2 {
+  margin: 14px 5px 5px 15px;
+}
+
+.skin-1 .spin-icon {
+  background: #0e9aef !important;
+}
+
+.skin-1 .nav-header {
+  background-color: #0e9aef;
+  background-image: url(/images/header-profile-skin-1.png?8b9bd1f85d3212c6fe40fc08872b02e7);
+}
+
+.skin-1.mini-navbar .nav-second-level {
+  background: #3e495f;
+}
+
+.skin-1 .breadcrumb {
+  background: transparent;
+}
+
+.skin-1 .page-heading {
+  border: none;
+}
+
+.skin-1 .nav > li.active {
+  background: #3a4459;
+}
+
+.skin-1 .nav > li > a {
+  color: #9ea6b9;
+}
+
+.skin-1 ul.nav-second-level {
+  background-color: inherit;
+}
+
+.skin-1 .nav > li.active > a {
+  color: #fff;
+}
+
+.skin-1 .navbar-minimalize {
+  background: #0e9aef;
+  border-color: #0e9aef;
+}
+
+body.skin-1 {
+  background: #3e495f;
+}
+
+.skin-1 .navbar-static-top {
+  background: #ffffff;
+}
+
+.skin-1 .dashboard-header {
+  background: transparent;
+  border-bottom: none !important;
+  border-top: none;
+  padding: 20px 30px 10px 30px;
+}
+
+.fixed-nav.skin-1 .navbar-fixed-top {
+  background: #fff;
+}
+
+.skin-1 .wrapper-content {
+  padding: 30px 15px;
+}
+
+.skin-1 #page-wrapper {
+  background: #f4f6fa;
+}
+
+.skin-1 .ibox-title,
+.skin-1 .ibox-content {
+  border-width: 1px;
+}
+
+.skin-1 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+
+.skin-1 .nav > li.active {
+  border: none;
+}
+
+.skin-1 .nav-header {
+  padding: 35px 25px 25px 25px;
+}
+
+.skin-1 .nav-header a.dropdown-toggle {
+  color: #fff;
+  margin-top: 10px;
+}
+
+.skin-1 .nav-header a.dropdown-toggle .text-muted {
+  color: #fff;
+  opacity: 0.8;
+}
+
+.skin-1 .profile-element {
+  text-align: center;
+}
+
+.skin-1 .img-circle {
+  border-radius: 5px;
+}
+
+.skin-1 .navbar-default .nav > li > a:hover,
+.skin-1 .navbar-default .nav > li > a:focus {
+  background: #3a4459;
+  color: #fff;
+}
+
+.skin-1 .nav.nav-tabs > li.active > a {
+  color: #555;
+}
+
+.skin-1 .nav.nav-tabs > li.active {
+  background: transparent;
+}
+
+/*
+ *
+ *   SKIN 2 - INSPINIA - Responsive Admin Theme
+ *   NAME - Inspinia Ultra
+ *
+*/
+
+body.skin-2 {
+  color: #565758 !important;
+}
+
+.skin-2 .minimalize-styl-2 {
+  margin: 14px 5px 5px 25px;
+}
+
+.skin-2 .navbar-top-links li:last-child {
+  margin-right: 25px;
+}
+
+.skin-2 .spin-icon {
+  background: #23c6c8 !important;
+}
+
+.skin-2 .nav-header {
+  background-color: #23c6c8;
+  background-image: url(/images/header-profile-skin-2.png?49aae5f39e5cfa2f24bea4cb72e348a6);
+}
+
+.skin-2.mini-navbar .nav-second-level {
+  background: #ededed;
+}
+
+.skin-2 .breadcrumb {
+  background: transparent;
+}
+
+.skin-2.fixed-nav .minimalize-styl-2 {
+  margin: 14px 5px 5px 15px;
+}
+
+.skin-2 .page-heading {
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.skin-2 ul.nav-second-level {
+  background-color: inherit;
+}
+
+.skin-2 .nav > li.active {
+  background: #e0e0e0;
+}
+
+.skin-2 .logo-element {
+  padding: 17px 0;
+}
+
+.skin-2 .nav > li > a,
+.skin-2 .welcome-message {
+  color: #edf6ff;
+}
+
+.skin-2 #top-search::-moz-placeholder {
+  color: #edf6ff;
+  opacity: 0.5;
+}
+
+.skin-2 #side-menu > li > a,
+.skin-2 .nav.nav-second-level > li > a {
+  color: #586b7d;
+}
+
+.skin-2 .nav > li.active > a {
+  color: #213a53;
+}
+
+.skin-2.mini-navbar .nav-header {
+  background: #213a53;
+}
+
+.skin-2 .navbar-minimalize {
+  background: #23c6c8;
+  border-color: #23c6c8;
+}
+
+.skin-2 .border-bottom {
+  border-bottom: none !important;
+}
+
+.skin-2 #top-search {
+  color: #fff;
+}
+
+body.skin-2 #wrapper {
+  background-color: #ededed;
+}
+
+.skin-2 .navbar-static-top {
+  background: #213a53;
+}
+
+.fixed-nav.skin-2 .navbar-fixed-top {
+  background: #213a53;
+  border-bottom: none !important;
+}
+
+.skin-2 .nav-header {
+  padding: 30px 25px 30px 25px;
+}
+
+.skin-2 .dashboard-header {
+  background: rgba(255, 255, 255, 0.4);
+  border-bottom: none !important;
+  border-top: none;
+  padding: 20px 30px 20px 30px;
+}
+
+.skin-2 .wrapper-content {
+  padding: 30px 15px;
+}
+
+.skin-2 .dashoard-1 .wrapper-content {
+  padding: 0 30px 25px 30px;
+}
+
+.skin-2 .ibox-title {
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  margin-bottom: 1px;
+}
+
+.skin-2 .ibox-content {
+  background: rgba(255, 255, 255, 0.4);
+  border: none !important;
+}
+
+.skin-2 #page-wrapper {
+  background: #f6f6f6;
+  background: radial-gradient(ellipse at center, #f6f6f6 20%, #d5d5d5 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#f6f6f6, endColorstr=#d5d5d5)";
+}
+
+.skin-2 .ibox-title,
+.skin-2 .ibox-content {
+  border-width: 1px;
+}
+
+.skin-2 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+
+.skin-2 .nav > li.active {
+  border: none;
+}
+
+.skin-2 .nav-header a.dropdown-toggle {
+  color: #edf6ff;
+  margin-top: 10px;
+}
+
+.skin-2 .nav-header a.dropdown-toggle .text-muted {
+  color: #edf6ff;
+  opacity: 0.8;
+}
+
+.skin-2 .img-circle {
+  border-radius: 10px;
+}
+
+.skin-2 .nav.navbar-top-links > li > a:hover,
+.skin-2 .nav.navbar-top-links > li > a:focus {
+  background: #1a2d41;
+}
+
+.skin-2 .navbar-default .nav > li > a:hover,
+.skin-2 .navbar-default .nav > li > a:focus {
+  background: #e0e0e0;
+  color: #213a53;
+}
+
+.skin-2 .nav.nav-tabs > li.active > a {
+  color: #555;
+}
+
+.skin-2 .nav.nav-tabs > li.active {
+  background: transparent;
+}
+
+/*
+ *
+ *   SKIN 3 - INSPINIA - Responsive Admin Theme
+ *   NAME - Yellow/purple
+ *
+*/
+
+.skin-3 .minimalize-styl-2 {
+  margin: 14px 5px 5px 30px;
+}
+
+.skin-3 .navbar-top-links li:last-child {
+  margin-right: 30px;
+}
+
+.skin-3.fixed-nav .minimalize-styl-2 {
+  margin: 14px 5px 5px 15px;
+}
+
+.skin-3 .spin-icon {
+  background: #ecba52 !important;
+}
+
+body.boxed-layout.skin-3 #wrapper {
+  background: #3e2c42;
+}
+
+.skin-3 .nav-header {
+  background-color: #ecba52;
+  background-image: url(/images/header-profile-skin-3.png?d1e73552813b105605953adaaa32dfbd);
+}
+
+.skin-3.mini-navbar .nav-second-level {
+  background: #3e2c42;
+}
+
+.skin-3 .breadcrumb {
+  background: transparent;
+}
+
+.skin-3 .page-heading {
+  border: none;
+}
+
+.skin-3 ul.nav-second-level {
+  background-color: inherit;
+}
+
+.skin-3 .nav > li.active {
+  background: #38283c;
+}
+
+.fixed-nav.skin-3 .navbar-fixed-top {
+  background: #fff;
+}
+
+.skin-3 .nav > li > a {
+  color: #948b96;
+}
+
+.skin-3 .nav > li.active > a {
+  color: #fff;
+}
+
+.skin-3 .navbar-minimalize {
+  background: #ecba52;
+  border-color: #ecba52;
+}
+
+body.skin-3 {
+  background: #3e2c42;
+}
+
+.skin-3 .navbar-static-top {
+  background: #ffffff;
+}
+
+.skin-3 .dashboard-header {
+  background: transparent;
+  border-bottom: none !important;
+  border-top: none;
+  padding: 20px 30px 10px 30px;
+}
+
+.skin-3 .wrapper-content {
+  padding: 30px 15px;
+}
+
+.skin-3 #page-wrapper {
+  background: #f4f6fa;
+}
+
+.skin-3 .ibox-title,
+.skin-3 .ibox-content {
+  border-width: 1px;
+}
+
+.skin-3 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+
+.skin-3 .nav > li.active {
+  border: none;
+}
+
+.skin-3 .nav-header {
+  padding: 35px 25px 25px 25px;
+}
+
+.skin-3 .nav-header a.dropdown-toggle {
+  color: #fff;
+  margin-top: 10px;
+}
+
+.skin-3 .nav-header a.dropdown-toggle .text-muted {
+  color: #fff;
+  opacity: 0.8;
+}
+
+.skin-3 .profile-element {
+  text-align: center;
+}
+
+.skin-3 .img-circle {
+  border-radius: 5px;
+}
+
+.skin-3 .navbar-default .nav > li > a:hover,
+.skin-3 .navbar-default .nav > li > a:focus {
+  background: #38283c;
+  color: #fff;
+}
+
+.skin-3 .nav.nav-tabs > li.active > a {
+  color: #555;
+}
+
+.skin-3 .nav.nav-tabs > li.active {
+  background: transparent;
+}
+
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;
@@ -22209,5 +22532,96 @@ Triangle breadcrumb
 .btn-primary {
   background-color: #4b9886;
   border-color: #4b9886;
+}
+
+/*Panel Poslishing */
+
+.skin-3 .metismenu > li > a {
+  color: #000;
+  font-size: 1.2em;
+}
+
+.skin-3 .nav > li.active {
+  border-left: 4px solid #449384;
+  background: #f5f5f5;
+  color: #000;
+}
+
+.skin-3 .nav > li.active > a {
+  color: #449384;
+}
+
+.skin-3 .nav > li:hover {
+  background: #f5f5f5;
+}
+
+.skin-3 .navbar-default .nav > li > a:hover {
+  background: #f5f5f5;
+  color: #449384;
+}
+
+.fixed-nav.skin-3 .navbar-fixed-top {
+  background: #449384;
+  color: black;
+}
+
+.navbar-fixed-top li span {
+  color: #000;
+}
+
+body.skin-3 {
+  background: #fff;
+  border-right: solid 1px gray;
+}
+
+.navbar-default {
+  border-right: 1px solid #e7eaec;
+  background: #fff;
+}
+
+.navbar-header a {
+  width: 220px;
+  background-color: #fff;
+  height: 63px;
+  display: block;
+  margin-left: 0;
+  padding-left: 66px;
+  border-right: 1px solid #e7eaec;
+}
+
+.skin-3 .nav-header {
+  background-color: #fff;
+  background-image: none;
+}
+
+.skin-3 .nav-header a.dropdown-toggle {
+  color: #000000;
+}
+
+.navbar-top-links {
+  color: #000;
+}
+
+.skin-3 .navbar-top-links > li > a {
+  color: #fff;
+}
+
+.nav > li > a {
+  font-weight: 400;
+}
+
+/*End Panel Polishing */
+
+/*Middle content Polishing */
+
+.page_title {
+  font-weight: 900;
+  color: #f2af44;
+  font-size: 3em;
+  text-transform: uppercase;
+}
+
+.ibox-content:first-child {
+  border-top: solid 4px #f2af44 !important;
 }
 

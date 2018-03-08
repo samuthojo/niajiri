@@ -8,7 +8,6 @@
 // Variables, Mixins
 @import "variables";
 @import "mixins";
-
 //Theme Elements
 @import "typography";
 @import "navigation";
@@ -21,22 +20,21 @@
 @import "pages";
 @import "metismenu";
 @import "spinners";
-
+@import "skins";
 // Media query style
 @import "media";
-
 // Custom style
 // Your custom style to override base style
 @import "custom";
-
 // Clear layout on print mode
 @media print {
-  nav.navbar-static-side {
-    display: none;
-  }
-  body { overflow: visible !important; }
-
-  #page-wrapper {
-    margin: 0;
-  }
+    nav.navbar-static-side {
+        display: none;
+    }
+    body {
+        overflow: visible !important;
+    }
+    #page-wrapper {
+        margin: 0;
+    }
 }

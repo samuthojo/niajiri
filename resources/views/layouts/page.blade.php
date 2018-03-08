@@ -7,11 +7,11 @@
 @section('content')
 
 {{-- start page header --}}
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper  page-heading">
     <div class="col-md-12">
 
     	{{-- start page title --}}
-        <h2 title="{{$route_description}}">
+        <h2 title="{{$route_description}}" class="page_title">
 	        {{$route_title}}
         </h2>
         {{-- end page title --}}
@@ -19,9 +19,9 @@
         {{-- start render breadcrumbs --}}
         @if(!empty($route_name))
             @if($instance)
-	           {!! Breadcrumbs::render($route_name, $instance) !!}
+	            {!! Breadcrumbs::render($route_name, $instance) !!}
             @else
-                {!! Breadcrumbs::render($route_name) !!}
+              {{--   {!! Breadcrumbs::render($route_name) !!}--}}
             @endif
         @endif
         {{-- end render breadcrumbs --}}
