@@ -26,44 +26,14 @@
 </head>
 
 {{-- start body --}}
-<body class="niajiri">
+<body class="niajiri pace-done fixed-sidebar fixed-nav fixed-nav-top skin-3">
 
     {{-- start page wrapper --}}
     <div id="wrapper">
+    @include('layouts._fixed_top_nav')
 
         {{-- start include sidebar --}}
         @include('positions.blocks.sidebar')
-        {{-- end include sidebar --}}
-
-        {{-- start page content --}}
-        <div id="page-wrapper" class="gray-bg">
-
-            {{-- start yield content --}}
-            @yield('content')
-            {{-- end yield content --}}
-
-        </div>
-        {{-- end page content --}}
-
-        {{-- start footer --}}
-        <div class="container-fluid m-t-lg">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="footer">
-                        {{-- TODO add owner information i.e TTU --}}
-                        <div>
-                            <strong class="m-r-xs">Copyright</strong>&copy; {{date('Y')}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        {{-- end footer --}}
-
-    </div>
-    {{-- end page wrapper --}}
 
     {{-- start scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
