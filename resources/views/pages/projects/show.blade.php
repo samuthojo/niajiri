@@ -19,7 +19,7 @@
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content animated fadeInUp">
                         <div class="ibox">
-                            <div class="ibox-content">
+                            <div class="">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="m-b-md">
@@ -32,13 +32,13 @@
                                             ]) !!}
                                                 {!! Form::button('<span aria-hidden="true" title="">Close Project</span>', [
                                                         'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-xs pull-right',
+                                                        'class' => 'btn btn-danger btn-sm pull-right',
                                                         'title' => trans('positions.actions.delete.title'),
                                                         'onclick'=>'return confirm("Confirm Close project?")'
                                                 ]) !!}
                                             {!! Form::close() !!}
                                             @endif
-                                            <a href="{{ route('projects.edit', ['id' => $project->id]) }}" class="btn btn-primary btn-xs pull-right">Edit project</a>
+                                            <a href="{{ route('projects.edit', ['id' => $project->id]) }}" class="btn btn-primary btn-sm pull-right m-r-sm">Edit project</a>
                                           @endpermission
                                             <h1 class="font-bold">{{$project->name}}</h1>
                                             <h4 class="text-navy">Open until {{$project->endedAt->formatLocalized('%A %d %B %Y')}}</h4>

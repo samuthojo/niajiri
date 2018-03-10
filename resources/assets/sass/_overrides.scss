@@ -492,7 +492,8 @@ Triangle breadcrumb
     background: #f5f5f5;
 }
 
-.skin-3 .navbar-default .nav>li>a:hover {
+.skin-3 .navbar-default .nav>li>a:hover,
+.skin-3 .navbar-default .nav>li>a:focus {
     background: #f5f5f5;
     color: #449384;
 }
@@ -562,4 +563,60 @@ body.skin-3 {
 
 .ibox-content:first-child {
     border-top: solid 4px #f2af44!important;
+}
+
+
+/* Niajiri UI Elements */
+
+.niajiri-label {
+    background-color: #f2af44;
+    color: black;
+    text-shadow: none;
+    letter-spacing: 0;
+    font-size: 1em;
+    font-weight: 100;
+}
+
+.niajiri-orange-color-text {
+    color: #f2af44;
+}
+
+.niajiri-black-text {
+    color: #000;
+}
+
+.niajiri-white-card {
+    border: 0 solid rgba(0, 0, 0, 0)!important;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05) !important;
+    background: #f5f5f5;
+    color: #000;
+}
+
+.niajiri-green-card {
+    border: 0 solid rgba(0, 0, 0, 0)!important;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05) !important;
+    background-color: #449384;
+    color: #fff;
+}
+
+.niajiri-green-bg {
+    background-color: #449384;
+}
+
+.niajiri-white-card a {
+    color: #000;
+}
+
+.niajiri-green-card a {
+    color: #FFF;
+}
+
+.skin-3 .nav-tabs>li.active {
+    border-left: 0 solid #449384;
+}
+
+.triangl>li.active {
+    background-color: #449384;
 }

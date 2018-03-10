@@ -19,11 +19,11 @@
                 <div class="col-lg-9">
                     <div class="wrapper wrapper-content animated fadeInUp">
                         <div class="ibox">
-                            <div class="ibox-content">
+                            <div >
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="m-b-md">
-                                            <a href="{{ route('organizations.edit', ['id' => $organization->id]) }}" class="btn btn-primary btn-xs pull-right">Edit Organization</a>
+                                            <a href="{{ route('organizations.edit', ['id' => $organization->id]) }}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-pencil"></i> &nbsp  Edit Organization</a>
                                             <h2>{{$organization->name}}</h2>
                                         </div>
                                     </div>

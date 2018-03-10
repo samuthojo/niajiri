@@ -19,7 +19,7 @@
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content animated fadeInUp">
                         <div class="ibox">
-                            <div class="ibox-content">
+                            <div class="">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         @permission('edit:position')
@@ -84,7 +84,7 @@
                                     <div class="panel blank-panel">
                                     <div class="panel-heading">
                                         <div class="tabpanel panel-options">
-                                            <ul class="nav nav-tabs cd-breadcrumb triangle" role="tablist" >
+                                            <ul class="nav nav-tabs cd-breadcrumb triangle " role="tablist" >
                                                 @foreach($position->stages as $index => $stage)
 
                                                      <li role="presentation" @if($index == 0) class="active" @endif>
