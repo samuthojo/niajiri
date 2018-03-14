@@ -35,6 +35,16 @@
         {{-- start include sidebar --}}
         @include('positions.blocks.sidebar')
 
+        {{-- start page content --}}
+        <div id="page-wrapper" class="gray-bg">
+
+            {{-- start yield content --}}
+            @yield('content')
+            {{-- end yield content --}}
+
+        </div>
+        {{-- end page content --}}
+
     {{-- start scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
     {{-- end scripts --}}
