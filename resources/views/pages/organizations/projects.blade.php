@@ -11,20 +11,23 @@
 
   <a href="{{ route('projects.show', ['id' => $item->id]) }}">
     <div class="col-md-4 ">
-      <div class="payment-card niajiri-green-card m-l-n-md ">
-          <h2 class="white-text">
+      <div class="payment-card gray-bg  m-l-n-md text-center">
+          <h1 class="font-bold text-black">
               {{$item->name}}
-          </h2>
+          </h1>
           <div class="row">
-              <div class="col-sm-12">
+            
+                <div class="col-sm-12 text-black">
                   <small>
                       <strong>Start At:</strong> {{$item->startedAt->format('d-m-y')}}
                       <br/>
                       <strong>End At:</strong> {{$item->endedAt->format('d-m-y')}}
                   </small>
               </div>
-              <div class="col-sm-12">
-                  <a href="{{ route('projects.show', ['id' => $item->id]) }}" class="btn btn-xs pull-right niajiri-label">More Info <i class="fa fa-long-arrow-right"></i> </a>
+               <hr>
+              
+              <div class="col-sm-12 m-t-md">
+                  <a href="{{ route('projects.show', ['id' => $item->id]) }}" class="btn btn-sm niajiri-label">More Info </a>
               </div>
           </div>
       </div>

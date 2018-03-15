@@ -19,7 +19,7 @@
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content animated fadeInUp">
                         <div class="ibox">
-                            <div class="">
+                            <div class="">`
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="m-b-md">

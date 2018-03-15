@@ -264,6 +264,8 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 	/**
 	 * Build user avatar url
 	 */
+
+	
 	public function avatar() {
 		//generate user avatar
 		$avatar = '';
@@ -284,6 +286,29 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		}
 
 		return $avatar;
+	}
+
+	 // TODO detach organization logo from the user model
+	public function organizationLogo(){
+		//generate organization logo
+		$logo = '';
+
+		//try obtain custom uploaded logo
+		$media = $this->getMedia('avatars')->first();
+		if ($media) {
+			$logo = asset('storage/' . $media->id . '/' . $media->file_name);
+		}
+
+		//use social media or default avatar
+		if (!is_set($logo)) {
+			if (property_exists($this, 'avatar')) {
+				$logo = is_set($this->logo) ? $this->logo : url('/images/companylogo.png');
+			} else {
+				$logo = url('/images/companylogo.png');;
+			}
+		}
+
+		return $logo;
 	}
 
 	/**
