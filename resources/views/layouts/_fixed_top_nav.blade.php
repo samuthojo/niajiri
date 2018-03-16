@@ -18,8 +18,8 @@
             </ul>
 
         </nav>
-        </div>
-        {{-- start include sidebar --}}
+</div>
+        <!-- {{-- start include sidebar --}}
         @include('app.blocks.sidebar')
         {{-- end include sidebar --}}
 
@@ -50,4 +50,4 @@
         </div>
         {{-- end footer --}}
 
-    </div>
+    </div> -->

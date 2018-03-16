@@ -22029,6 +22029,11 @@ body.skin-3 {
   }
 }
 
+.client-profile h2 {
+  font-weight: 200 !important;
+  font-size: 1.2em;
+}
+
 /*borders*/
 
 .no-border-top {
@@ -22655,12 +22660,11 @@ body.skin-3 {
 }
 
 .niajiri-green-card {
-  border: 0 solid transparent !important;
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05) !important;
           box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05) !important;
-  background-color: #449384;
-  color: #fff;
+  border: solid 1px #449384;
+  color: #449384;
 }
 
 .niajiri-green-bg {
@@ -22672,7 +22676,7 @@ body.skin-3 {
 }
 
 .niajiri-green-card a {
-  color: #FFF;
+  color: #449384;
 }
 
 .skin-3 .nav-tabs > li.active {

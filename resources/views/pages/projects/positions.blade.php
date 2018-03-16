@@ -19,15 +19,15 @@
 
       <a href="{{ route('positions.show', ['id' => $item->id]) }}">
         <div class="col-md-4">
-          <div class="widget niajiri-green-card text-center m-l-n-md">
+          <div class="widget gray-bg text-black text-center m-l-n-md">
             <div class="m-b-md">
-              <h1 class="font-bold text-white">
+              <h1 class="font-bold text-black">
                   {{$item->title}}
               </h1>
               @if(!empty($item->firstStage()))
-              <small class="text-white">Current Stage: <span class="text-white">{{$item->firstStage()->name}}</span></small>
+              <small class="text-black">Current Stage: <span class="text-black">{{$item->firstStage()->name}}</span></small>
               @else
-              <h3>Current Stage: <span class="text-white">No Stages</span></h3>
+              <h3>Current Stage: <span class="text-black">No Stages</span></h3>
               @endif
               <hr>
               <div class="col-12">

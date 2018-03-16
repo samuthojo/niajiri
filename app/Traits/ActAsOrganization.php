@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 /**
- * Extends a user model with applicant abilities
+ * Extends a user model with organization abilities
  */
 trait ActAsOrganization
 {
@@ -16,7 +16,7 @@ trait ActAsOrganization
      */
     public function logo()
     {
-        return $this->avatar();
+        return $this->organizationLogo();
     }
 
     //------------------------------------------------------------
