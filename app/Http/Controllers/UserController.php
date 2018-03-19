@@ -565,4 +565,8 @@ class UserController extends SecureController {
 
 		})->export('xls');
 	}
+
+	public function send_newsletter(){
+		
+	}
 }

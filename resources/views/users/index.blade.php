@@ -143,6 +143,13 @@
                                         ]) !!}
                                     {!! Form::close() !!}
                                     @endpermission
+                                    @permission('edit:user')
+                                    {{-- start include notify modal --}}
+                                    <button type="button" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.notify.title')}}" data-toggle="modal" data-target="#user-newsletter-modal">
+                                        news-letter
+                                    </button>
+                                    {{-- end include notify modal --}}
+                                    @endpermission
                                 </td>
                             </tr>
                         @endforeach
@@ -171,4 +178,5 @@
 </div>
 {{-- end page content --}}
 
+@include('users.newsletter.modal')
 @endsection
