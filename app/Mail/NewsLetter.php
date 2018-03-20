@@ -3,28 +3,28 @@
 namespace App\Mail;
 
 use App\Models\User;
-use App\Models\Application;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 /**
- * A mail to be send to a candidate when applying to a position
+ * A newsletter to users
  */
-class Applied extends Mailable {
+class NewsLetter extends Mailable {
 	use Queueable, SerializesModels;
 
-    public $user;
-	public $application;
-
+	public $user;
+	public $subject;
+	public $message;
 	/**
 	 * Create a new message instance.
 	 *
 	 * @return void
 	 */
-	public function __construct(User $user, Application $application) {
-		$this->user = $user;
-        $this->application = $application;
+	public function __construct(User $user) {
+        $this->user = $user;
+        $this->subject = "Niajiri weekly newsletter";
+        $this->message = "Noma sana";
 	}
 
 	/**
@@ -34,9 +34,8 @@ class Applied extends Mailable {
 	 */
 	public function build() {
 		//TODO bcc support team or send new email
-		// TODO Add from address in mail config 
 		$this->from(config('mail.from.address'), config('mail.from.name'));
-		$this->subject(config('mail.titles.apply'));
-		return $this->view('mails.apply');
+		$this->subject($this->subject);
+		return $this->view('mails.newsletter');
 	}
 }

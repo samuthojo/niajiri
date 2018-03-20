@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewsLetter;
 use App\Models\Application;
 use App\Models\Education;
 use App\Models\Role;
 use App\Models\User;
 use Excel;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -566,7 +568,10 @@ class UserController extends SecureController {
 		})->export('xls');
 	}
 
-	public function send_newsletter(){
-		
+	public function send_newsletter(Request $request){
+		$request_params = $request->all();
+		$user = User::findOrFail($request_params['id']);
+		$message = $request_params['message'];
+		Mail::to('malekelanelson@gmail.com')->queue(new NewsLetter($user));				
 	}
 }

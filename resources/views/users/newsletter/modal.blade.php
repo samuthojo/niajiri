@@ -1,5 +1,5 @@
 {{-- start news letter modal --}}
-<div class="modal fade" id="user-newsletter-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal fade" id="user-newsletter-modal-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             {{-- start modal header--}}
@@ -24,7 +24,9 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
+                    <input type="hidden" name="id" value="{{ $user->id }}"/>
                         <div class="row">
+                            {{ $user->email }}
                             @include('users.newsletter.mailcontents')
                         </div>
                         <div class="row">
