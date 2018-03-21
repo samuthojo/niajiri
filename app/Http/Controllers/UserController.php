@@ -570,7 +570,7 @@ class UserController extends SecureController {
 
 	public function send_newsletter(Request $request){
 		$request_params = $request->all();
-		//dd($file = $request_params['file'][0]->getRealPath());
+		// dd($file = $request_params['file']);
 		$user = User::findOrFail($request_params['id']);
 		$message = $request_params['message'];
 		Mail::to($user)->send(new NewsLetter($user,$request));	

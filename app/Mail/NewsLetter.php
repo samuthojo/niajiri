@@ -19,7 +19,6 @@ class NewsLetter extends Mailable {
 	public $notification;
 	public $attachedFiles;
 	public $mailContents;
-	public $filePath,$filename,$fileMime;
 	/**
 	 * Create a new message instance.
 	 *
@@ -30,10 +29,7 @@ class NewsLetter extends Mailable {
 		$this->subject = "Niajiri weekly newsletter";
 		$this->mailContents = $request->all();
         $this->notification = $this->mailContents['message'];
-		$this->attachedFiles = $this->mailContents['file'][0];
-		$this->filePath = $this->attachedFiles->getRealPath();
-		$this->filename = $this->attachedFiles->getClientOriginalName();
-		$this->fileMime = $this->attachedFiles->getMimeType();
+		$this->attachedFiles = $this->mailContents['file'];
 	}
 
 	/**
@@ -45,9 +41,21 @@ class NewsLetter extends Mailable {
 		//TODO bcc support team or send new email
 		$this->from(config('mail.from.address'), config('mail.from.name'));
 		$this->subject($this->subject);
-		return $this->view('mails.newsletter')
-					->attach($this->filePath,
-					['mime' => $this->fileMime,
-					'as' => $this->filename]);
+		// Attach file(s)
+		$mailTemplate = $this->view('mails.newsletter');
+		for ($i = 0; $i < count($this->attachedFiles); $i++){
+				//Get properties for current file
+				$fileProperties = $this->attachedFiles[$i];
+				$filePath = $fileProperties->getRealPath();
+				$filename = $fileProperties->getClientOriginalName();
+				$fileMime = $fileProperties->getMimeType();
+
+				//Attach current file to the mail
+				$mailTemplate = $mailTemplate->attach($filePath,[
+												'mime' => $fileMime,
+												'as' => $filename
+				]);
+		}
+		return $mailTemplate;
 	}
 }
