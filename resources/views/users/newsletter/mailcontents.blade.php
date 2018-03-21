@@ -3,7 +3,7 @@
                       'id' => 'message',
                       'class' => 'form-control',
                       'required' => true,
-                      'rows' => 4,
+                      'rows' => 16,
                       'placeholder' => 'Newsletter message'
     ]); !!}
 {{-- Newsletter text contents ends --}}

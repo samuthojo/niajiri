@@ -398,7 +398,7 @@ class ApplicationController extends SecureController {
 					});
 
 				}
-
+				
 				//obtain notification message
 				$message = $request->input('message');
 

@@ -33,6 +33,12 @@
                                 <i class="fa fa-file-excel-o"></i>
                                 {{ trans('users.actions.export.name') }}
                             </a>
+        
+                            <button type="button" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.notify.title')}}" data-toggle="modal" data-target="#user-newsletter-modal">
+                                        {{ trans('users.actions.newsletter.name') }}
+                            </button>
+                            @include('users.newsletter.modal')
+                            {{-- end include notify modal --}}
                             @endif
                             {{--end export--}}
                         </div>
@@ -143,16 +149,8 @@
                                         ]) !!}
                                     {!! Form::close() !!}
                                     @endpermission
-                                    @permission('edit:user')
-                                    {{-- start include notify modal --}}
-                                    <button type="button" class="btn btn-primary btn-xs" title="{{trans('applicationstages.actions.notify.title')}}" data-toggle="modal" data-target="#user-newsletter-modal-{{$item->id}}">
-                                        news-letter
-                                    </button>
-                                    {{-- end include notify modal --}}
-                                    @endpermission
                                 </td>
                             </tr>
-                            @include('users.newsletter.modal',['user'=>$item])
                         @endforeach
                         </tbody>
                         {{-- end table body --}}

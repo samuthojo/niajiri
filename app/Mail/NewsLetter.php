@@ -19,6 +19,7 @@ class NewsLetter extends Mailable {
 	public $notification;
 	public $attachedFiles;
 	public $mailContents;
+	public $hasFile = 0;
 	/**
 	 * Create a new message instance.
 	 *
@@ -28,8 +29,11 @@ class NewsLetter extends Mailable {
         $this->user = $user;
 		$this->subject = "Niajiri weekly newsletter";
 		$this->mailContents = $request->all();
-        $this->notification = $this->mailContents['message'];
-		$this->attachedFiles = $this->mailContents['file'];
+		$this->notification = $this->mailContents['message'];
+		if($request->hasFile('file')){
+			$this->hasFile = 1;
+			$this->attachedFiles = $this->mailContents['file'];
+		}
 	}
 
 	/**
@@ -43,7 +47,8 @@ class NewsLetter extends Mailable {
 		$this->subject($this->subject);
 		// Attach file(s)
 		$mailTemplate = $this->view('mails.newsletter');
-		for ($i = 0; $i < count($this->attachedFiles); $i++){
+		if($this->hasFile){
+			for ($i = 0; $i < count($this->attachedFiles); $i++){
 				//Get properties for current file
 				$fileProperties = $this->attachedFiles[$i];
 				$filePath = $fileProperties->getRealPath();
@@ -55,6 +60,7 @@ class NewsLetter extends Mailable {
 												'mime' => $fileMime,
 												'as' => $filename
 				]);
+		}
 		}
 		return $mailTemplate;
 	}
