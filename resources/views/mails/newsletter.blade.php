@@ -90,7 +90,7 @@ $style = [
 
                                         <!-- Message body -->
                                         <p style="{{ $style['paragraph'] }}">
-                                           Noma sana with user again
+                                           {!! $notification !!}
                                         </p>
 
                                         <!-- Salutation -->

@@ -570,8 +570,15 @@ class UserController extends SecureController {
 
 	public function send_newsletter(Request $request){
 		$request_params = $request->all();
+		//dd($file = $request_params['file'][0]->getRealPath());
 		$user = User::findOrFail($request_params['id']);
 		$message = $request_params['message'];
-		Mail::to($user)->send(new NewsLetter($user));				
+		Mail::to($user)->send(new NewsLetter($user,$request));	
+		//flash message
+		// TODO make sure all flash and text comes from langman
+		flash(trans('Newsletter successfully sent'))
+			->success()->important();
+
+		return redirect()->route('users.index');			
 	}
 }

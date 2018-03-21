@@ -2,7 +2,7 @@
 {{-- File uploader starts here--}}
     <div class="dropzone">
         {!!
-            Form::file('file',[
+            Form::file('file[]',[
                 'class' => 'fallback',
                 'multiple' => 'multiple'
 
