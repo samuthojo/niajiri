@@ -90,7 +90,7 @@ $style = [
 
                                         <!-- Message body -->
                                         <p style="{{ $style['paragraph'] }}">
-                                           {{ $message }}
+                                           Noma sana with user again
                                         </p>
 
                                         <!-- Salutation -->

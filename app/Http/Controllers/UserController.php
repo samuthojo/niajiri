@@ -572,6 +572,6 @@ class UserController extends SecureController {
 		$request_params = $request->all();
 		$user = User::findOrFail($request_params['id']);
 		$message = $request_params['message'];
-		Mail::to('malekelanelson@gmail.com')->queue(new NewsLetter($user));				
+		Mail::to($user)->send(new NewsLetter($user));				
 	}
 }
