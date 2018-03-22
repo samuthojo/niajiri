@@ -67,7 +67,6 @@ class UserController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-
 		//merge defaults
 		$request->merge([
 			'verified' => true,
@@ -569,8 +568,10 @@ class UserController extends SecureController {
 	}
 
 	public function send_newsletter(Request $request){
-		$applicants = User::query()->where(['type'=>'applicant'])->first();
-		Mail::to($applicants)->send(new NewsLetter($applicants,$request));	
+		$applicants = User::query()->where(['type'=>'applicant'])->get();
+		foreach($applicants as $applicant){	
+				Mail::to($applicant)->queue(new NewsLetter($applicant,$request));
+		}		
 		flash(trans('Newsletter successfully sent'))
 			->success()->important();
 

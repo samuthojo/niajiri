@@ -267,7 +267,7 @@ class ApplicationStage extends Model implements HasMedia {
 	public function stage() {
 		return $this->belongsTo('App\Models\Stage', 'stage_id')->withTrashed();
 	}
-
+	
 	/**
 	 * Get applicant associate with application stage
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
