@@ -60,6 +60,14 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Niajiri'),
     ],
 
+    'cc' => [
+        'address' => env('MAIL_CC_ADDRESS', 'niajiritz@gmail.com')
+    ],
+    
+    'endnote' => [
+        'title' => 'Niajiri Platform Team'
+    ],
+
     'titles' => [
         'register' => 'Welcome to Niajiri',
         'apply' => 'New Position Application to Niajiri',

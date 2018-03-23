@@ -374,7 +374,7 @@ class ApplicationController extends SecureController {
 		$ids = collect($request->input('applications'));
 		$action = $request->input('action');
 
-		//ensure $ids
+		//ensure there are applicants selected
 		if ($ids->count() == 0 && strcmp($action, 'notify') !== 0) {
 			//flash message
 			flash(trans('applicationstages.actions.advance.flash.warning'))
@@ -398,7 +398,7 @@ class ApplicationController extends SecureController {
 					});
 
 				}
-
+				
 				//obtain notification message
 				$message = $request->input('message');
 

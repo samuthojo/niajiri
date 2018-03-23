@@ -71,7 +71,7 @@ class EducationController extends SecureController {
 			'remark' => 'required|string',
 			'applicant_id' => 'string|required|exists:users,id',
 		]);
-
+		
 		//obtain all education form inputs
 		$body = $request->all();
 		$body['project_id'] = $request->session()->get('project_id');

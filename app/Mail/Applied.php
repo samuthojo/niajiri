@@ -34,6 +34,7 @@ class Applied extends Mailable {
 	 */
 	public function build() {
 		//TODO bcc support team or send new email
+		// TODO Add from address in mail config 
 		$this->from(config('mail.from.address'), config('mail.from.name'));
 		$this->subject(config('mail.titles.apply'));
 		return $this->view('mails.apply');

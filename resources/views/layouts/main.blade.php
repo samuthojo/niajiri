@@ -20,6 +20,7 @@
     <title>{{ config('app.name') }}</title>
 
     {{-- start styles --}}
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{-- end styles --}}
     @include('layouts._google_analytics')

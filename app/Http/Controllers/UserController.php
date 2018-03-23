@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewsLetter;
 use App\Models\Application;
 use App\Models\Education;
 use App\Models\Role;
 use App\Models\User;
 use Excel;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -65,7 +67,6 @@ class UserController extends SecureController {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-
 		//merge defaults
 		$request->merge([
 			'verified' => true,
@@ -564,5 +565,17 @@ class UserController extends SecureController {
 			});
 
 		})->export('xls');
+	}
+
+	public function send_newsletter(Request $request){
+		$applicants = User::query()->where('type','applicant')->orWhere('type','Human Resource Agency')->get();
+		foreach($applicants as $applicant){	
+				Mail::to($applicant)->send(new NewsLetter($applicant,$request));
+		}	
+		Mail::to($applicant)->queue(new NewsLetter($applicant,$request));	
+		flash(trans('Newsletter successfully sent'))
+			->success()->important();
+
+		return redirect()->route('users.index');			
 	}
 }

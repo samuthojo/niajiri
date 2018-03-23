@@ -34,7 +34,7 @@
 				@endif
 			</div>
 
-			<button type="submit" class="btn btn-primary block full-width">Signin</button>
+			<button type="submit" class="btn btn-primary block full-width">Sign In</button>
 
 			<a href="{{route('password.request')}}"><small>Forgot password?</small></a>
 
