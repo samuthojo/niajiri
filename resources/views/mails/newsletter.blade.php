@@ -33,7 +33,7 @@ $style = [
     'email-body_cell' => 'padding: 35px;',
 
     'email-footer' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0; text-align: center;',
-    'email-footer_cell' => 'color: #AEAEAE; padding: 35px; text-align: center;',
+    'email-footer_cell' => 'color: #74787E; padding: 35px; text-align: center;',
 
     /* Body ------------------------------ */
 
@@ -85,7 +85,7 @@ $style = [
                                     <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
                                         <!-- Greeting -->
                                         <h1 style="{{ $style['header-1'] }}">
-                                            Hello {{$user->name}}!
+                                            Dear {{$user->name}}!
                                         </h1>
 
                                         <!-- Message body -->

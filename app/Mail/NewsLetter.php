@@ -27,7 +27,7 @@ class NewsLetter extends Mailable {
 	 */
 	public function __construct(User $user,Request $request) {
         $this->user = $user;
-		$this->subject = "Niajiri weekly newsletter";
+		$this->subject = "Niajiri monthly newsletter";
 		$this->mailContents = $request->all();
 		$this->notification = $this->mailContents['message'];
 		if($request->hasFile('file')){
