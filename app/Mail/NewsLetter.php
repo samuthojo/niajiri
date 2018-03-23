@@ -30,9 +30,9 @@ class NewsLetter extends Mailable {
 		$this->subject = "Niajiri monthly newsletter";
 		$this->mailContents = $request->all();
 		$this->notification = $this->mailContents['message'];
-		if($request->hasFile('file')){
+		if($request->hasFile('newsAttach')){
 			$this->hasFile = 1;
-			$this->attachedFiles = $this->mailContents['file'];
+			$this->attachedFiles = $this->mailContents['newsAttach'];
 		}
 	}
 

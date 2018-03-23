@@ -3,7 +3,7 @@
     <div>Attach files below</div>
     <div class="dropzone">
         {!!
-            Form::file('file[]',[
+            Form::file('newsAttach[]',[
                 'class' => 'fallback',
                 'multiple' => 'multiple'
 
