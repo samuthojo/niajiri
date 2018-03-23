@@ -95,7 +95,7 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            Regards,<br>{{ config('app.name') }}
+                                            Sincerely,<br>{{ config('mail.endnote.title') }}
                                         </p>
                             
                                     </td>

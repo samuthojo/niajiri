@@ -570,7 +570,7 @@ class UserController extends SecureController {
 	public function send_newsletter(Request $request){
 		$applicants = User::query()->where(['type'=>'applicant'])->get();
 		foreach($applicants as $applicant){	
-				Mail::to($applicant)->queue(new NewsLetter($applicant,$request));
+				Mail::to($applicant)->send(new NewsLetter($applicant,$request));
 		}		
 		flash(trans('Newsletter successfully sent'))
 			->success()->important();

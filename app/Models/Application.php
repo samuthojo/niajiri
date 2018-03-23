@@ -246,10 +246,10 @@ class Application extends Model implements HasMedia {
 			]);
 
 			//queue(send) mail to applicant to notify next stage
-			if (!$this->position->isFirstStage($nextStage)) {
-				Mail::to($applicationStage->applicant)
-					->queue(new StageAccepted($applicationStage));
-			}
+			// if (!$this->position->isFirstStage($nextStage)) {
+			// 	Mail::to($applicationStage->applicant)
+			// 		->queue(new StageAccepted($applicationStage));
+			// }
 		}
 
 		//6. return current application
@@ -280,8 +280,8 @@ class Application extends Model implements HasMedia {
 		$this->save();
 
 		//queue(send) mail to applicant to notify next stage
-		Mail::to($currentApplicationStage->applicant)
-			->queue(new StageRejected($currentApplicationStage));
+		// Mail::to($currentApplicationStage->applicant)
+		// 	->queue(new StageRejected($currentApplicationStage));
 
 		return $this;
 
@@ -300,12 +300,12 @@ class Application extends Model implements HasMedia {
 		])->first();
 
 		//2.0 queue(send) mail to applicant to notify
-		if ($applicationStage !== null) {
-			if (is_set($message)) {
-				Mail::to($applicationStage->applicant)
-					->queue(new StageNotify($applicationStage, $message));
-			}
-		}
+		// if ($applicationStage !== null) {
+		// 	if (is_set($message)) {
+		// 		Mail::to($applicationStage->applicant)
+		// 			->queue(new StageNotify($applicationStage, $message));
+		// 	}
+		// }
 
 		//3.0 return current application
 		return $this;

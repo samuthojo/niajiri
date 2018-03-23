@@ -80,7 +80,7 @@
 
                 {{-- start applicationstages table --}}
                 <div class="table-responsive m-t-lg">
-
+                
                     {{-- start advance all form --}}
                     {!! Form::open([
                             'method'=>'PATCH',
