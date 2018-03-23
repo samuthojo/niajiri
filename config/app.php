@@ -209,7 +209,6 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
