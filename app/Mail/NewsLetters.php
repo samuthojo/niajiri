@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\User;
+use Spatie\MediaLibrary\Media;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -24,7 +25,7 @@ class NewsLetters extends Mailable {
 	 *
 	 * @return void
 	 */
-	public function __construct(User $user,$attachedFile,$notification) {
+	public function __construct(User $user,Media $attachedFile,$notification) {
         $this->user = $user;
 		$this->subject = "Niajiri monthly newsletter";
 		$this->attachedFile = $attachedFile;
@@ -40,7 +41,7 @@ class NewsLetters extends Mailable {
 		//TODO bcc support team or send new email
 		$this->from(config('mail.from.address'), config('mail.from.name'));
 		$this->subject($this->subject);
-		return $this->view('mails.newsletter')->attach($this->attachedFile->getPath(),[
+		return $this->view('mails.newsletter')->attach(realpath($this->attachedFile->getPath()),[
 												'mime' => $this->attachedFile->mime_type,
 												'as' => $this->attachedFile->file_name
 												]);

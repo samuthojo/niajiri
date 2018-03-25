@@ -594,7 +594,7 @@ class UserController extends SecureController {
 		$newsletter = NewsLetter::query()->where('id',$id)->first();
 		$attachment = $newsletter->attachment();
 		$message = $newsletter->message;
-		//  dd($attachment);
+		// dd(realpath($attachment->getPath()));
 		foreach($applicants as $applicant){	
 				Mail::to($applicant)->queue(new NewsLetters($applicant,$attachment,$message));
 		}	
