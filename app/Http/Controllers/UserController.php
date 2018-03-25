@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\NewsLetter;
+use App\Mail\NewsLetters;
+use App\Models\NewsLetter;
 use App\Models\Application;
 use App\Models\Education;
 use App\Models\Role;
@@ -567,14 +568,36 @@ class UserController extends SecureController {
 		})->export('xls');
 	}
 
-	public function send_newsletter(Request $request){
-		$applicants = User::query()->where('type','applicant')->orWhere('type','Human Resource Agency')->get();
-		foreach($applicants as $applicant){	
-				Mail::to($applicant)->queue(new NewsLetter($applicant,$request));
-		}	
+	public function prepare_newsletter(Request $request){
+		$request_params = $request->all();
+		$message = $request_params['message'];
+		$newsletter = Newsletter::create(['message'=>$message]);
+
+		if ($request->hasFile('file')) {
+			//clear existing attachment
+			$newsletter->clearMediaCollection('newsletters');
+			//attach new attachment
+			$newsletter->addMediaFromRequest('file')
+				->toMediaCollection('newsletters');
+		}
+
+		$this->send_newsletter($newsletter->id);
+
 		flash(trans('Newsletter successfully sent'))
 			->success()->important();
 
-		return redirect()->route('users.index');			
+		return redirect()->route('users.index');		
 	}
+
+	public function send_newsletter($id){
+		$applicants = User::query()->where('type','applicant')->orWhere('type','Human Resource Agency')->get();
+		$newsletter = NewsLetter::query()->where('id',$id)->first();
+		$attachment = $newsletter->attachment();
+		$message = $newsletter->message;
+		//  dd($attachment);
+		foreach($applicants as $applicant){	
+				Mail::to($applicant)->queue(new NewsLetters($applicant,$attachment,$message));
+		}	
+	}
+
 }

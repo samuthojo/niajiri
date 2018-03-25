@@ -78,7 +78,7 @@ class EducationController extends SecureController {
 
 		//create education
 		$education = Education::create($body);
-
+		
 		//upload & store education attachment
 		if ($education && $request->hasFile('attachment')) {
 			//clear existing attachment

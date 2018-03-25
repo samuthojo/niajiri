@@ -35,7 +35,7 @@ Route::resource('users', 'UserController');
 Route::get('/profile', 'UserController@profile')->name('profile');
 Route::get('/users/{user}/change', 'UserController@showChangePassword')->name('users.change_password');
 Route::patch('/users/{user}/change', 'UserController@changePassword')->name('users.change_password');
-Route::post('/users/newsletter/send', 'UserController@send_newsletter')->name('users.post.newsletter');
+Route::post('/users/newsletter/send', 'UserController@prepare_newsletter')->name('users.post.newsletter');
 
 Route::resource('organizations', 'OrganizationController');
 
