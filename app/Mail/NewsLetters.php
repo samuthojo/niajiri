@@ -41,7 +41,11 @@ class NewsLetters extends Mailable {
 		//TODO bcc support team or send new email
 		$this->from(config('mail.from.address'), config('mail.from.name'));
 		$this->subject($this->subject);
-		return $this->view('mails.newsletter')->attach(realpath($this->attachedFile->getPath()),[
+		// return $this->view('mails.newsletter')->attach(realpath($this->attachedFile->getPath()),[
+		// 										'mime' => $this->attachedFile->mime_type,
+		// 										'as' => $this->attachedFile->file_name
+		// 										]);
+		return $this->view('mails.newsletter')->attach($this->attachedFile->getFullUrl(),[
 												'mime' => $this->attachedFile->mime_type,
 												'as' => $this->attachedFile->file_name
 												]);
