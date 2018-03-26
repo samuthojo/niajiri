@@ -569,10 +569,11 @@ class UserController extends SecureController {
 	}
 
 	public function prepare_newsletter(Request $request){
+		$applicants = User::query()->where('type','applicant')->orWhere('type','Human Resource Agency')->get();
 		$request_params = $request->all();
 		$message = $request_params['message'];
 		$newsletter = Newsletter::create(['message'=>$message]);
-
+	
 		if ($request->hasFile('file')) {
 			//clear existing attachment
 			$newsletter->clearMediaCollection('newsletters');
@@ -594,7 +595,7 @@ class UserController extends SecureController {
 		$newsletter = NewsLetter::query()->where('id',$id)->first();
 		$attachment = $newsletter->attachment();
 		$message = $newsletter->message;
-		// dd(realpath($attachment->getPath()));
+	    // dd($attachment->getPath());
 		foreach($applicants as $applicant){	
 				Mail::to($applicant)->queue(new NewsLetters($applicant,$attachment,$message));
 		}	

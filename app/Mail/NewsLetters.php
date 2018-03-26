@@ -18,17 +18,20 @@ class NewsLetters extends Mailable {
 	public $user;
 	public $subject;
 	public $notification;
-	public $attachedFiles;
+	public $attachedFile;
 	public $mailContents;
 	/**
 	 * Create a new message instance.
 	 *
 	 * @return void
 	 */
-	public function __construct(User $user,Media $attachedFile,$notification) {
+	public function __construct(User $user,$attachedFile,$notification) {
         $this->user = $user;
 		$this->subject = "Niajiri monthly newsletter";
-		$this->attachedFile = $attachedFile;
+		if($attachedFile){
+			$this->attachedFile = $attachedFile;
+		}
+		
 		$this->notification = $notification;
 	}
 
@@ -40,14 +43,7 @@ class NewsLetters extends Mailable {
 	public function build() {
 		//TODO bcc support team or send new email
 		$this->from(config('mail.from.address'), config('mail.from.name'));
-		$this->subject($this->subject);
-		// return $this->view('mails.newsletter')->attach(realpath($this->attachedFile->getPath()),[
-		// 										'mime' => $this->attachedFile->mime_type,
-		// 										'as' => $this->attachedFile->file_name
-		// 										]);
-		return $this->view('mails.newsletter')->attach($this->attachedFile->getFullUrl(),[
-												'mime' => $this->attachedFile->mime_type,
-												'as' => $this->attachedFile->file_name
-												]);
+		$this->subject("Niajiri monthly newsletter");
+		return $this->view('mails.newsletter')->attach($this->attachedFile->getPath());
 	}
 }

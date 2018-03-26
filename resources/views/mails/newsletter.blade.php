@@ -14,7 +14,6 @@
         }
     </style>
 </head>
-
 <?php
 
 $style = [
@@ -95,7 +94,7 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            Sincerely,<br>{{ config('mail.endnote.title') }}
+                                            Sincerely,<br>Niajiri Platform Team
                                         </p>
                             
                                     </td>
