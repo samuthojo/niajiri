@@ -1,23 +1,27 @@
-body{
-  font-family: Regular, sans-serif;
-  --main-color: #6bafa2;
-  --accent-color: #fbb843;
+body {
+    font-family: Regular, sans-serif;
+    --main-color: #6bafa2;
+    --accent-color: #fbb843;
 }
 
-*{
+* {
     outline: none;
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
 
-
-.scrim{
-    position: absolute; left: 0; top: 0; width: 100%; height: 100%;;
+.scrim {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    ;
 }
 
-.round-btn{
+.round-btn {
     text-align: center;
     border-radius: 30px;
     border: none;
@@ -29,12 +33,12 @@ body{
     display: inline-block;
 }
 
-.container{
+.container {
     max-width: 1180px;
     margin: auto;
 }
 
-header{
+header {
     padding: 8px 0;
     position: relative;
     top: 0;
@@ -44,17 +48,17 @@ header{
     color: #fff;
 }
 
-header.hosted{
+header.hosted {
     background: #fff;
     color: #000;
     border-bottom: 1px solid #eaeaea;
 }
 
-header .layout{
+header .layout {
     height: 90px;
 }
 
-header .round-btn{
+header .round-btn {
     padding: 0.7em 1.6em;
     font-size: 0.9em;
     margin-left: 12px;
@@ -64,7 +68,7 @@ header .round-btn{
     border: 2px solid #eee;
 }
 
-#logo{
+#logo {
     position: relative;
     /*background: #fff;*/
     margin-top: -160px;
@@ -72,6 +76,7 @@ header .round-btn{
     width: 100px;
     height: 220px;
 }
+
 
 /*#logo:before{
     content: '';
@@ -83,7 +88,7 @@ header .round-btn{
     border-bottom: 70px solid transparent;
 }*/
 
-#logo:after{
+#logo:after {
     content: '';
     position: absolute;
     left: -99.8px;
@@ -97,12 +102,12 @@ header .round-btn{
     background-image: url(../../images/landing/tags.png);
 }
 
-#logo img{
+#logo img {
     height: 100px;
     z-index: 1
 }
 
-#banner{
+#banner {
     position: relative;
     /*margin-top: -110px;*/
     padding: 7em 0;
@@ -113,24 +118,24 @@ header .round-btn{
     background-size: cover;
 }
 
-#banner #phone, #banner #text{
+#banner #phone,
+#banner #text {
     position: relative;
     z-index: 1;
 }
 
-
-#banner .scrim{
+#banner .scrim {
     overflow: hidden;
-    background: rgba(0,0,0,0.5);
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
 }
 
-#banner #text{
+#banner #text {
     max-width: 850px;
     color: #f8f8f8;
 }
 
-#banner h2{
+#banner h2 {
     color: #fff;
     font-size: 3.1em;
     font-family: Bold, sans-serif;
@@ -138,34 +143,35 @@ header .round-btn{
     margin-bottom: 0.15em;
 }
 
-#banner #text p{
+#banner #text p {
     font-family: Light, sans-serif;
     font-size: 1.3em;
     line-height: 1.5em;
     max-width: 750px;
 }
 
-#banner #text .round-btn{
+#banner #text .round-btn {
     min-width: 200px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     margin-top: 0.5em;
     font-size: 1em;
     margin-top: 1.1em;
 }
 
-#about{
+#about {
     background: #fff;
     height: 550px;
     padding: 6em 0;
 }
 
-#about h2{
-    font-family: Bold, sans-serif; font-weight: bold;
+#about h2 {
+    font-family: Bold, sans-serif;
+    font-weight: bold;
     font-size: 3.3em;
     padding: 0.1em 0;
 }
 
-#about p{
+#about p {
     max-width: 800px;
     font-family: Regular, sans-serif;
     font-size: 1.6em;
@@ -173,48 +179,49 @@ header .round-btn{
     margin: auto;
 }
 
-.value-proposition{
+.value-proposition {
     position: relative;
     -webkit-background-size: cover;
     background-size: cover;
     background-position: top center;
 }
 
-.value-proposition:nth-child(odd){
+.value-proposition:nth-child(odd) {
     text-align: right;
 }
 
-.value-proposition .container{
+.value-proposition .container {
     padding: 3em 1em;
     min-height: 550px;
     z-index: 1;
     position: relative;
 }
 
-.value-proposition .scrim + .container{
+.value-proposition .scrim+.container {
     color: #fff;
 }
 
-.value-proposition h2{
-    font-family: Bold, sans-serif; font-weight: bold;
+.value-proposition h2 {
+    font-family: Bold, sans-serif;
+    font-weight: bold;
     font-size: 3em;
     padding: 0.1em 0;
 }
 
-.value-proposition span{
+.value-proposition span {
     font-family: Light, sans-serif;
     font-size: 1em;
     /*display: none;*/
 }
 
-.value-proposition p{
+.value-proposition p {
     font-family: Regular, sans-serif;
     font-size: 1.6em;
     line-height: 1.4em;
     max-width: 450px;
 }
 
-#cta{
+#cta {
     text-align: center;
     margin: auto;
     min-height: 250px;
@@ -225,7 +232,7 @@ header .round-btn{
     padding-bottom: 5em;
 }
 
-#cta h2{
+#cta h2 {
     display: block;
     font-family: Bold, sans-serif;
     font-weight: bold;
@@ -233,39 +240,39 @@ header .round-btn{
     margin-bottom: 0.45em;
 }
 
-#cta p{
+#cta p {
     font-family: Regular;
     font-size: 1.5em;
     margin-bottom: 1.1em;
 }
 
-#cta .round-btn{
+#cta .round-btn {
     padding: 1.1em 1.6em;
     font-size: 1em;
     min-width: 200px;
 }
 
-#employersSection p{
+#employersSection p {
     font-size: 1.5em;
 }
 
-#edgeSection{
+#edgeSection {
     overflow: hidden;
     color: #000 !important;
 }
 
-#edgeSection .containers{
+#edgeSection .containers {
     margin-top: -120px;
     padding-top: 160px;
     margin-bottom: 60px;
 }
 
-#edgeSection .scrim{
-    background-color: rgba(0,0,0,.1);
+#edgeSection .scrim {
+    background-color: rgba(0, 0, 0, .1);
     /*lg(left, rgba(0,0,0,0.5) 50%, rgba(0,0,0,.4), rgba(0,0,0,.2))*/
 }
 
-footer{
+footer {
     min-height: 4em;
     padding: 4em 0;
     padding-bottom: 3em;
@@ -274,13 +281,14 @@ footer{
     color: #fff;
 }
 
-footer .flex div{
+footer .flex div {
     display: inline-block;
 }
 
-footer .flex div h5{
+footer .flex div h5 {
     display: block;
-    font-family: serif;
+    font-family: Bold, sans-serif;
+    font-weight: bold;
     font-size: 1.2em;
     margin-bottom: 0.5em;
     height: 1em;
@@ -289,27 +297,27 @@ footer .flex div h5{
 }
 
 footer .flex div p,
-footer .flex div ul{
+footer .flex div ul {
     font-family: Light, sans-serif;
     font-size: 1.4em;
     line-height: 1.7em;
     color: #999
 }
 
-footer .flex div a{
+footer .flex div a {
     display: block;
     font-size: 1em;
 }
 
-#socialIcons{
+#socialIcons {
     margin-top: 0;
 }
 
-#socialIcons p{
+#socialIcons p {
     margin-top: 18px;
 }
 
-#socialIcons .social-icon{
+#socialIcons .social-icon {
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -318,18 +326,22 @@ footer .flex div a{
     background-color: #555;
 }
 
-footer .ipf{
-    color: #999
+footer .ipf {
+    color: #999;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    margin-top: 50px;
 }
 
-footer .ipf p{
+footer .ipf p {
     display: inline-block;
-    margin-top: -40px;
-    margin-left: 30px;
+    /* margin-top: -40px; */
+    /* margin-left: 30px; */
 }
 
-footer .ipf a{
-     color: #ccc
+footer .ipf a {
+    /* color: #ccc */
 }
 
 #socialIcons .social-icon .icon {
@@ -337,32 +349,30 @@ footer .ipf a{
     color: #fff;
 }
 
-#socialIcons .social-icon.facebook{
+#socialIcons .social-icon.facebook {
     background-color: #3b5998;
 }
 
-#socialIcons .social-icon.twitter{
+#socialIcons .social-icon.twitter {
     background-color: #55acee;
 }
 
-#socialIcons .social-icon.instagram{
+#socialIcons .social-icon.instagram {
     background: -webkit-radial-gradient(circle farthest-corner at 35% 90%, #fec564, rgba(0, 0, 0, 0) 50%), -webkit-radial-gradient(circle farthest-corner at 0 140%, #fec564, rgba(0, 0, 0, 0) 50%), -webkit-radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, rgba(0, 0, 0, 0) 50%), -webkit-radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, rgba(0, 0, 0, 0) 50%), -webkit-radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, rgba(0, 0, 0, 0) 50%), -webkit-radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, rgba(0, 0, 0, 0) 50%), -webkit-radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, rgba(0, 0, 0, 0)), -webkit-linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
     background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, rgba(0, 0, 0, 0) 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, rgba(0, 0, 0, 0) 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, rgba(0, 0, 0, 0)), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
 }
 
-
 @media screen and (min-width: 569px) {
-    .for-mob{
+    .for-mob {
         display: none !important;
     }
 }
 
 @media screen and (max-width: 568px) {
-    .for-lg{
+    .for-lg {
         display: none;
     }
-
-    #logo:after{
+    #logo:after {
         left: 0.8px;
         top: -21%;
         width: 100px;
@@ -373,151 +383,127 @@ footer .ipf a{
         /*transform: rotate(135deg);*/
         background-image: url(../../images/landing/tags.png);
     }
-
-    #logo img{
+    #logo img {
         height: 50px;
         z-index: 1
     }
-
-    header{
+    header {
         padding: 0 1em;
     }
-
-    header ~ div{
+    header~div {
         background: #fff;
     }
-    #banner{
+    #banner {
         max-height: 460px;
         padding-top: 4.5em;
         padding-bottom: 2em;
         text-align: center;
         position: relative;
     }
-
-    #banner #text{
+    #banner #text {
         padding: 0.4em 2em;
         padding-top: 4em;
     }
-
-    #banner h2{
+    #banner h2 {
         color: #fff;
         font-size: 2em;
         font-family: Bold, sans-serif;
         font-weight: bold;
         margin-bottom: 0.15em;
     }
-
-    #banner #text p{
+    #banner #text p {
         font-family: Light, sans-serif;
         font-size: 1.2em;
         line-height: 1.5em;
     }
-
-    #banner #text .round-btn{
+    #banner #text .round-btn {
         min-width: 160px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         margin-top: 0.5em;
         font-size: 1em;
         padding: 0.7em;
         margin-top: 1.1em;
     }
-    
-    #banner .container .layout{
+    #banner .container .layout {
         -webkit-flex-direction: column;
         -moz-flex-direction: column;
         -ms-flex-direction: column;
         -o-flex-direction: column;
         flex-direction: column;
-
         -ms-align-items: center;
         align-items: center;
     }
-
-    .value-proposition{
+    .value-proposition {
         position: relative;
         -webkit-background-size: cover;
         background-size: cover;
         background-position: top center;
     }
-
-    .value-proposition .container{
+    .value-proposition .container {
         padding: 3em !important;
         min-height: 350px;
     }
-
-    .value-proposition h2{
+    .value-proposition h2 {
         font-size: 2.2em;
         padding: 0.1em 0;
     }
-
-    .value-proposition span{
+    .value-proposition span {
         font-family: Light, sans-serif;
         font-size: 1em;
         /*display: none;*/
     }
-
-    .value-proposition p{
+    .value-proposition p {
         font-family: Regular, sans-serif;
         font-size: 1.2em;
         line-height: 1.4em;
         max-width: 450px;
     }
-
-    #edgeSection{
+    #edgeSection {
         background-position: top center !important;
     }
-
-    #cta, footer{
+    #cta,
+    footer {
         margin-top: 0 !important;
     }
-
-    #cta img{
+    #cta img {
         width: 200px !important;
         margin-right: 0 !important;
     }
-
-    #cta h2{
+    #cta h2 {
         font-size: 2.2em;
         max-width: 80%;
         margin: auto;
         margin-bottom: 0.2em;
     }
-
-    #cta .round-btn{
+    #cta .round-btn {
         min-width: 160px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         margin-top: 0.65em;
         font-size: 1em;
         padding: 0.7em;
     }
-
-    footer .layout{
+    footer .layout {
         -webkit-flex-direction: column;
         -moz-flex-direction: column;
         -ms-flex-direction: column;
         -o-flex-direction: column;
         flex-direction: column;
     }
-
-    footer .layout{
+    footer .layout {
         padding: 0 19px;
     }
-
-    footer .flex div h5{
+    footer .flex div h5 {
         height: 12px;
         margin-top: 24px;
     }
-
-    footer .flex:first-child div h5{
+    footer .flex:first-child div h5 {
         margin-top: 0;
     }
-
-    footer .ipf p{
+    footer .ipf p {
         margin-top: 12px;
         margin-left: 0;
     }
-
-    #socialIcons p{
+    #socialIcons p {
         margin-top: 24px;
         margin-bottom: 8px;
     }
