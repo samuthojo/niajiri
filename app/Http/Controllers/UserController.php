@@ -582,6 +582,12 @@ class UserController extends SecureController {
 				->toMediaCollection('newsletters');
 		}
 
+		$id = $newsletter->id;
+		$applicants = User::query()->where('type','applicant')->orWhere('type','Human Resource Agency')->get();
+		$newsletter = NewsLetter::query()->where('id',$id)->first();
+		$attachment = $newsletter->attachment();
+		$message = $newsletter->message;
+
 		$this->send_newsletter($newsletter->id);
 
 		flash(trans('Newsletter successfully sent'))

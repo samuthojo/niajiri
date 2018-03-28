@@ -5,6 +5,7 @@
         {!!
             Form::file('file[]',[
                 'class' => 'fallback',
+                'required' => 'required'
             ]);
         !!}
     </div>

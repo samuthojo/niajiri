@@ -19,8 +19,8 @@
 $style = [
     /* Layout ------------------------------ */
 
-    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;',
-    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #F2F4F6;',
+    'body' => 'margin: 0; padding: 40px 0 0; width: 100%; background-color: #f4f6fa;',
+    'email-wrapper' => 'width: 100%; margin: 0 auto; padding: 0; background-color: #FFF;border-top: solid 4px #f2af44 !important;',
 
     /* Masthead ----------------------- */
 
@@ -28,11 +28,11 @@ $style = [
     'email-masthead_name' => 'font-size: 16px; font-weight: bold; color: #2F3133; text-decoration: none; text-shadow: 0 1px 0 white;',
 
     'email-body' => 'width: 100%; margin: 0; padding: 0; border-top: 1px solid #EDEFF2; border-bottom: 1px solid #EDEFF2; background-color: #FFF;',
-    'email-body_inner' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0;',
+    'email-body_inner' => 'width: 100%; max-width: 600px; margin: 0 auto; padding: 0;',
     'email-body_cell' => 'padding: 35px;',
 
-    'email-footer' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0; text-align: center;',
-    'email-footer_cell' => 'color: #74787E; padding: 35px; text-align: center;',
+    'email-footer' => 'width: 100%; margin: 0 auto; padding: 0; text-align: center;background-color:#449384;color:#fff',
+    'email-footer_cell' => 'color: #FFF; padding: 35px; text-align: center;',
 
     /* Body ------------------------------ */
 
@@ -46,6 +46,7 @@ $style = [
     'paragraph' => 'margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;',
     'paragraph-sub' => 'margin-top: 0; color: #74787E; font-size: 12px; line-height: 1.5em;',
     'paragraph-center' => 'text-align: center;',
+    'paragraph-italic' => 'font-style: italic;',
 
     /* Buttons ------------------------------ */
 
@@ -63,7 +64,7 @@ $style = [
 <?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;';?>
 
 <body style="{{ $style['body'] }}">
-    <table width="100%" cellpadding="0" cellspacing="0">
+    <table width="80%" cellpadding="0" cellspacing="0" style="margin:0 auto;max-width:800px">
         <tr>
             <td style="{{ $style['email-wrapper'] }}" align="center">
                 <table width="100%" cellpadding="0" cellspacing="0">
@@ -71,7 +72,7 @@ $style = [
                     <tr>
                         <td style="{{ $style['email-masthead'] }}">
                             <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                                {{ config('app.name') }}
+                               <img src="{{ asset('images/landing/logo.png') }}" alt="Niajiri" width="120">
                             </a>
                         </td>
                     </tr>
@@ -79,7 +80,7 @@ $style = [
                     <!-- Email Body -->
                     <tr>
                         <td style="{{ $style['email-body'] }}" width="100%">
-                            <table style="{{ $style['email-body_inner'] }}" align="center" width="570" cellpadding="0" cellspacing="0">
+                            <table style="{{ $style['email-body_inner'] }}" align="center"  cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
                                         <!-- Greeting -->
@@ -106,12 +107,12 @@ $style = [
                     <!-- Footer -->
                     <tr>
                         <td>
-                            <table style="{{ $style['email-footer'] }}" align="center" width="570" cellpadding="0" cellspacing="0">
+                            <table style="{{ $style['email-footer'] }}" align="center"  cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td style="{{ $fontFamily }} {{ $style['email-footer_cell'] }}">
-                                        <p style="{{ $style['paragraph-sub'] }}">
+                                        <p style="{{ $style['paragraph-italic'] }}" >
                                             &copy; {{ date('Y') }}
-                                            <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
+                                            <a  href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>&nbsp 
                                             All rights reserved.
                                         </p>
                                     </td>
