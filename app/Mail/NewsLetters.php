@@ -44,7 +44,6 @@ class NewsLetters extends Mailable {
 		//TODO bcc support team or send new email
 		$this->from(config('mail.from.address'), config('mail.from.name'));
 		$this->subject("Niajiri monthly newsletter");
-		// return $this->view('mails.newsletter')->attach($this->attachedFile->getPath());
-		return $this->view('mails.newsletter');
+		return $this->view('mails.newsletter')->attach($this->attachedFile->getPath());
 	}
 }
