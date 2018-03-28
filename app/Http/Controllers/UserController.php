@@ -582,23 +582,34 @@ class UserController extends SecureController {
 				->toMediaCollection('newsletters');
 		}
 
-		$this->send_newsletter($newsletter->id);
-
-		flash(trans('Newsletter successfully sent'))
-			->success()->important();
-
-		return redirect()->route('users.index');		
-	}
-
-	public function send_newsletter($id){
+		$id = $newsletter->id;
 		$applicants = User::query()->where('type','applicant')->orWhere('type','Human Resource Agency')->get();
 		$newsletter = NewsLetter::query()->where('id',$id)->first();
 		$attachment = $newsletter->attachment();
 		$message = $newsletter->message;
-	    // dd($attachment->getPath());
 		foreach($applicants as $applicant){	
-				Mail::to($applicant)->queue(new NewsLetters($applicant,$attachment,$message));
-		}	
+			$applicant = $applicant;
+		}
+
+		return new NewsLetters($applicant,$attachment,$message);
+
+		// $this->send_newsletter($newsletter->id);
+
+		// flash(trans('Newsletter successfully sent'))
+		// 	->success()->important();
+
+		// return redirect()->route('users.index');		
 	}
+
+	// public function send_newsletter($id){
+	// 	$applicants = User::query()->where('type','applicant')->orWhere('type','Human Resource Agency')->get();
+	// 	$newsletter = NewsLetter::query()->where('id',$id)->first();
+	// 	$attachment = $newsletter->attachment();
+	// 	$message = $newsletter->message;
+	//     // dd($attachment->getPath());
+	// 	foreach($applicants as $applicant){	
+	// 			Mail::to($applicant)->queue(new NewsLetters($applicant,$attachment,$message));
+	// 	}	
+	// }
 
 }
