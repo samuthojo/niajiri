@@ -118,7 +118,7 @@
 				</div>
 				<div class="flex layout center-justified">
 					<div id="socialIcons">
-						<h5>Social Media</h5>
+						<h5 class="text-center">Follow Us</h5>
 						<p>
 							<a title="Facebook" target="_blank" href="https://www.facebook.com/niajiriplatform/" class="social-icon facebook layout inline center-center">
 								<span class="icon fa fa-facebook"></span>
@@ -136,28 +136,31 @@
 				</div>
 				<div class="flex layout center-justified">
 					<div>
-						<h5>Contact Us:</h5>
+						<h5>Contact Us</h5>
 						<p>
-							niajiritz@gmail.com
+					     <a href="mailto:niajiritz@gmail.com"> <i class="fa fa-envelope"></i> &nbsp niajiritz@gmail.com </a>
 						</p>
 						<p>
-							+255 689 403 300
+						<a href="tel:+255689403300"><i class="fa fa-phone"></i> &nbsp+255 689 403 300</a>
 						</p>
 						<p>
-							+255 768 353 551
+						<a href="tel:+255768353551"><i class="fa fa-phone"></i> &nbsp+255 768 353 551</a>
 						</p>
 					</div>
 				</div>
 			</div>
 
 			<div class="ipf layout justified">
-				<div class="flex-2"></div>
-				<div class="flex"></div>
-				<p></p><br/>
+				
+				<div class="flex">
 				<p class="flex layout center-justified">
-					Web strategies by:&nbsp; 
+				&copy {{date('Y')}} Niajiri All rights reserved |
+					Web strategies by &nbsp; 
 					<a target="_blank" href="http://www.ipfsoftwares.com">iPF Softwares</a>
 				</p>
+				</div>
+				
+				
 			</div>
 		</div>
 	</footer>
