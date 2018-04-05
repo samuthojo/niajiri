@@ -23,7 +23,7 @@
                         <div class="btn-group">
                             <a href="{{route('users.create')}}" class="btn btn-sm btn-white" role="button" title="{{ trans('users.actions.create.title') }}">
                             <i class="fa fa-plus"></i> {{ trans('users.actions.create.name') }}</a>
-                            {{--start export--}}
+                            {{--start export and newsletter--}}
                             @if($users->count() > 0)
                             <a
                                 class="btn btn-sm btn-white"
@@ -33,14 +33,7 @@
                                 <i class="fa fa-file-excel-o"></i>
                                 {{ trans('users.actions.export.name') }}
                             </a>
-        
-                            <button type="button" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.notify.title')}}" data-toggle="modal" data-target="#user-newsletter-modal">
-                                        {{ trans('users.actions.newsletter.name') }}
-                            </button>
-                            @include('users.newsletter.modal')
-                            {{-- end include notify modal --}}
                             @endif
-                            {{--end export--}}
                         </div>
                         @endpermission
                     </div>
