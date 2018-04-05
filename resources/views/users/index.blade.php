@@ -33,7 +33,14 @@
                                 <i class="fa fa-file-excel-o"></i>
                                 {{ trans('users.actions.export.name') }}
                             </a>
+        
+                            <button type="button" class="btn btn-primary btn-sm" title="{{trans('applicationstages.actions.notify.title')}}" data-toggle="modal" data-target="#user-newsletter-modal">
+                                        {{ trans('users.actions.newsletter.name') }}
+                            </button>
+                            @include('users.newsletter.modal')
+                            {{-- end include notify modal --}}
                             @endif
+                            {{--end export and newsletter--}}
                         </div>
                         @endpermission
                     </div>
