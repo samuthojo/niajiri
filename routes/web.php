@@ -20,6 +20,8 @@ Route::get('/home', 'HomeController@index')->name("home");
 Route::get('/dashboard', 'HomeController@index')->name("reports.dashboard");
 Route::get('/minor', 'HomeController@minor')->name("minor");
 Route::get('/states', 'HomeController@get_states')->name("states");
+Route::get('/location/countries', 'LocationController@get_countries')->name("location.countries");
+Route::get('/location/states', 'LocationController@get_states')->name("location.states");
 
 //development only routes, should be commented on production
 //Route::get('/artisan', 'HomeController@artisan')->name('artisan');
@@ -91,7 +93,8 @@ Route::get('/basic', 'UserController@get_basic')->name("users.basic");
 Route::patch('/basic', 'UserController@post_basic')->name("users.basic");
 Route::patch('/edits/{applicant?}', 'UserController@post_edits')->name("users.edits");
 Route::get('/resume/{applicant?}', 'UserController@get_resume')->name("users.resume");
-Route::get('/cv/{applicant?}', 'UserController@get_cv')->name("users.cv");
+//Route::get('/cv/{applicant?}', 'UserController@get_cv')->name("users.cv");
+Route::get('/cv/{applicant?}', 'UserController@get_ineractive_cv')->name("users.cv");
 
 //social auth routes
 Route::get('/auth/social/provider/{name}', 'Auth\SocialAuthController@signIn')

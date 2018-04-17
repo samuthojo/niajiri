@@ -29,7 +29,7 @@
             {{-- start certificates_referees --}}
             @include('users.cv.certificates_referees')
             {{-- end certificates_referees --}}
-
+            
             {{-- start skills_hobbies_interests --}}
             @include('users.cv.skills_hobbies_interests')
             {{-- end skills_hobbies_interests --}}

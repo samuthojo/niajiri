@@ -50,6 +50,9 @@
 
     {{-- start scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
+        
+        @stack('vue_scripts')
+
     {{-- end scripts --}}
 
     {{-- start custom page scripts --}}

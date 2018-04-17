@@ -466,6 +466,10 @@ class UserController extends SecureController {
 		return view('users.cv.index', $data);
 	}
 
+	public function get_ineractive_cv(){
+		return view('users.cv.vuecv');
+	}
+
 	/**
 	 * Quick edit current user basic details(or cv details)
 	 * @return \Illuminate\Http\Response

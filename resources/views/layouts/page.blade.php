@@ -39,7 +39,10 @@
         </div>
     </div>
     {{-- end flash messages --}}
-    @yield('page')
+
+    
+        @yield('page')
+    
 </div>
 {{-- end content wrapper --}}
 
