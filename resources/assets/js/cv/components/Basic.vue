@@ -32,10 +32,14 @@
               <input type="text" name="physical_address" placeholder="Physical Address">
           </div>
           <div class="form-group">
-              <textarea name="" id="" cols="30" rows="8" placeholder="About Me"></textarea>
+              <textarea name="" id="" class="form-control" placeholder="About Me"></textarea>
           </div>
       </div>
-      <img src="http://localhost:8000/images/avatar.jpg" alt="profile">
+
+      <div class="cv-image-container">
+        <div class="cv-image"></div>
+      </div>
+      
   </div>
 </template>
 
@@ -89,5 +93,19 @@ export default {
     justify-content: space-between;
     border: 1px solid;
     padding: 0 16px 16px 16px;
+}
+
+.cv-image-container {
+    display: flex;
+    align-items: center;
+}
+
+.cv-image{
+    background-image: url('http://localhost:8000/images/cv_avatar.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
 }
 </style>

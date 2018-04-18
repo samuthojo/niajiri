@@ -22686,3 +22686,26 @@ body.skin-3 {
   background-color: #449384;
 }
 
+.cv-block {
+  margin-bottom: 15px;
+}
+
+.cv-composite-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.inner-left-block {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 15px;
+}
+
+.inner-right-block {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+

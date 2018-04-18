@@ -19,6 +19,7 @@ Vue.component('referee', require('./cv/components/Referee.vue'));
 Vue.component('intern', require('./cv/components/Intern.vue'));
 Vue.component('language', require('./cv/components/Language.vue'));
 Vue.component('skills', require('./cv/components/Skills.vue'));
+Vue.component('extra-curriculum', require('./cv/components/ExtraCurriculum.vue'));
 
 $(document).ready(function($) {
 
