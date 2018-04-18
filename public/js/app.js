@@ -57887,7 +57887,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.basic-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n.cv-image-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.cv-image{\n    background-image: url('http://localhost:8000/images/cv_avatar.svg');\n    background-size: cover;\n    background-repeat: no-repeat;\n    height: 300px;\n    width: 300px;\n    border-radius: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.basic-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    padding: 16px 16px 16px 16px;\n}\n.cv-image-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.cv-image{\n    background-image: url('http://localhost:8000/images/cv_avatar.svg');\n    background-size: cover;\n    background-repeat: no-repeat;\n    height: 220px;\n    width: 220px;\n    border-radius: 50%;\n}\n.flex-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -57931,6 +57931,47 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58036,8 +58077,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "basic-container" }, [
     _c("div", [
-      _c("h1", [_vm._v("BASIC DETAILS")]),
-      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _vm._m(1),
@@ -58046,48 +58085,56 @@ var render = function() {
       _vm._v(" "),
       _vm._m(3),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "select",
-          {
-            ref: "country",
-            attrs: { name: "country", placeholder: "Country" },
-            on: { change: _vm.get_states }
-          },
-          _vm._l(_vm.countries, function(country) {
-            return _c(
-              "option",
-              { key: country.name, domProps: { value: country.name } },
-              [_vm._v(_vm._s(country.name))]
-            )
-          })
-        ),
+      _vm._m(4),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group flex-container" }, [
+        _c("div", { staticClass: "col-sm-6" }, [
+          _c("label", { attrs: { for: "country" } }, [_vm._v("Country:")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              ref: "country",
+              staticClass: "form-control",
+              attrs: { name: "country", id: "country" },
+              on: { change: _vm.get_states }
+            },
+            _vm._l(_vm.countries, function(country) {
+              return _c(
+                "option",
+                { key: country.name, domProps: { value: country.name } },
+                [_vm._v(_vm._s(country.name))]
+              )
+            })
+          )
+        ]),
         _vm._v(" "),
-        _c(
-          "select",
-          { attrs: { name: "region", placeholder: "State/Region/City" } },
-          _vm._l(_vm.states, function(state) {
-            return _c(
-              "option",
-              { key: state.name, domProps: { value: state.name } },
-              [_vm._v(_vm._s(state.name))]
-            )
-          })
-        ),
-        _vm._v(" "),
-        _c("input", {
-          attrs: {
-            type: "text",
-            name: "physical_address",
-            placeholder: "Physical Address"
-          }
-        })
+        _c("div", { staticClass: "col-sm-6" }, [
+          _c("label", { attrs: { for: "region" } }, [
+            _vm._v("State/Region/City:")
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { name: "region", id: "region" }
+            },
+            _vm._l(_vm.states, function(state) {
+              return _c(
+                "option",
+                { key: state.name, domProps: { value: state.name } },
+                [_vm._v(_vm._s(state.name))]
+              )
+            })
+          )
+        ])
       ]),
       _vm._v(" "),
-      _vm._m(4)
+      _vm._m(5)
     ]),
     _vm._v(" "),
-    _vm._m(5)
+    _vm._m(6)
   ])
 }
 var staticRenderFns = [
@@ -58095,18 +58142,156 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        attrs: { type: "text", name: "first_name", placeholder: "FirstName" }
-      }),
+    return _c("div", { staticClass: "form-group flex-container" }, [
+      _c("i", { staticClass: "fa fa-user cv-icon" }),
       _vm._v(" "),
-      _c("input", {
-        attrs: { type: "text", name: "middle_name", placeholder: "MiddleName" }
-      }),
+      _c("div", { staticClass: "col-sm-4" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: { type: "text", name: "first_name", placeholder: "FirstName" }
+        })
+      ]),
       _vm._v(" "),
-      _c("input", {
-        attrs: { type: "text", name: "last_name", placeholder: "LastName" }
-      })
+      _c("div", { staticClass: "col-sm-4" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: {
+            type: "text",
+            name: "middle_name",
+            placeholder: "MiddleName"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-4" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: { type: "text", name: "last_name", placeholder: "LastName" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group flex-container" }, [
+      _c("i", { staticClass: "fa fa-calendar cv-icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: {
+            type: "text",
+            name: "date_of_birth",
+            placeholder: "Date Of Birth"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-male cv-icon" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-female cv-icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 radio" }, [
+        _c("label", [
+          _c("input", { attrs: { type: "radio", name: "gender" } }),
+          _vm._v("Male")
+        ]),
+        _vm._v(" "),
+        _c("label", [
+          _c("input", { attrs: { type: "radio", name: "gender" } }),
+          _vm._v("Female")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group flex-container" }, [
+      _c("i", { staticClass: "fa fa-phone cv-icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: { type: "text", name: "mobile", placeholder: "Mobile" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-phone cv-icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: {
+            type: "text",
+            name: "mobile",
+            placeholder: "Alternative Mobile"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group flex-container" }, [
+      _c("i", { staticClass: "fa fa-at cv-icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: { type: "text", name: "email", placeholder: "Email" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-at cv-icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: {
+            type: "text",
+            name: "secondary_email",
+            placeholder: "Secondary Email"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group flex-container" }, [
+      _c("i", { staticClass: "fa fa-envelope cv-icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: {
+            type: "text",
+            name: "postal_address",
+            placeholder: "Postal Address"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("i", { staticClass: "fa fa-map-marker cv-icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("input", {
+          staticClass: "cv-text-input",
+          attrs: {
+            type: "text",
+            name: "physical_address",
+            placeholder: "Physical Address"
+          }
+        })
+      ])
     ])
   },
   function() {
@@ -58114,73 +58299,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        attrs: {
-          type: "text",
-          name: "date_of_birth",
-          placeholder: "Date Of Birth"
-        }
-      }),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "radio", name: "gender" } }),
-      _vm._v("Male\n            "),
-      _c("input", { attrs: { type: "radio", name: "gender" } }),
-      _vm._v("Female\n        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        attrs: { type: "text", name: "mobile", placeholder: "Mobile" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: {
-          type: "text",
-          name: "mobile",
-          placeholder: "Alternative Mobile"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        attrs: { type: "text", name: "email", placeholder: "Email" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: {
-          type: "text",
-          name: "secondary_email",
-          placeholder: "Secondary Email"
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: {
-          type: "text",
-          name: "postal_address",
-          placeholder: "Postal Address"
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: { name: "", id: "", placeholder: "About Me" }
-      })
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("textarea", {
+          staticClass: "cv-textarea-input",
+          attrs: { name: "", id: "", placeholder: "About Me" }
+        })
+      ])
     ])
   },
   function() {
@@ -58287,7 +58411,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.certificate-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.certificate-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
 
 // exports
 
@@ -58298,8 +58422,6 @@ exports.push([module.i, "\n.certificate-container {\n    display: -webkit-box;\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -58369,8 +58491,6 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("i", { staticClass: "fa fa-calendar" }),
-          _vm._v(" "),
           _c("input", {
             attrs: {
               type: "text",
@@ -58381,8 +58501,6 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("i", { staticClass: "fa fa-calendar" }),
-          _vm._v(" "),
           _c("input", {
             attrs: {
               type: "text",
@@ -58501,7 +58619,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.education-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.education-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
 
 // exports
 
@@ -58556,8 +58674,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        institutions: Array,
+        qualifications: Array
+    }
+});
 
 /***/ }),
 /* 63 */
@@ -58572,7 +58698,9 @@ var render = function() {
       _c("h1", [_vm._v("EDUCATION")]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("select", { ref: "level", attrs: { name: "level" } }, [
+        _c("label", { attrs: { for: "level" } }, [_vm._v("Level")]),
+        _vm._v(" "),
+        _c("select", { ref: "level", attrs: { name: "level", id: "level" } }, [
           _c("option", { attrs: { value: "Certificate", selected: "" } }, [
             _vm._v("Certificate")
           ]),
@@ -58586,22 +58714,66 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _c("select", { ref: "institution", attrs: { name: "institution" } }, [
-          _c("option", { attrs: { selected: "", disabled: "" } }, [
-            _vm._v("e.g Mtakuja")
-          ])
-        ])
+        _c("label", { attrs: { for: "institution" } }, [_vm._v("Institution")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            ref: "institution",
+            attrs: { name: "institution", id: "institution" }
+          },
+          [
+            _c(
+              "option",
+              { key: "institution", attrs: { selected: "", disabled: "" } },
+              [_vm._v("e.g Mtakuja")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.institutions, function(institution) {
+              return _c(
+                "option",
+                {
+                  key: institution.name,
+                  domProps: { value: institution.name }
+                },
+                [_vm._v(_vm._s(institution.name))]
+              )
+            })
+          ],
+          2
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "qualification" } }, [
+          _vm._v("Qualification")
+        ]),
+        _vm._v(" "),
         _c(
           "select",
-          { ref: "qualification", attrs: { name: "qualification" } },
+          {
+            ref: "qualification",
+            attrs: { name: "qualification", id: "qualification" }
+          },
           [
-            _c("option", { attrs: { selected: "", disabled: "" } }, [
-              _vm._v("e.g Primary, Bsc. In Computer Science")
-            ])
-          ]
+            _c(
+              "option",
+              { key: "qualification", attrs: { selected: "", disabled: "" } },
+              [_vm._v("e.g Primary, Bsc. In Computer Science")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.qualifications, function(qualification) {
+              return _c(
+                "option",
+                {
+                  key: qualification.name,
+                  domProps: { value: qualification.name }
+                },
+                [_vm._v(_vm._s(qualification.name))]
+              )
+            })
+          ],
+          2
         )
       ]),
       _vm._v(" "),
@@ -58621,8 +58793,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("i", { staticClass: "fa fa-calendar" }),
-      _vm._v(" "),
       _c("input", {
         attrs: { type: "text", name: "start_date", placeholder: "Date Started" }
       })
@@ -58633,8 +58803,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("i", { staticClass: "fa fa-calendar" }),
-      _vm._v(" "),
       _c("input", {
         attrs: { type: "text", name: "end_date", placeholder: "Date Finished" }
       })
@@ -58754,7 +58922,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.honor-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.honor-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
 
 // exports
 
@@ -58765,7 +58933,6 @@ exports.push([module.i, "\n.honor-container {\n    display: -webkit-box;\n    di
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -58832,8 +58999,6 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("i", { staticClass: "fa fa-calendar" }),
-          _vm._v(" "),
           _c("input", {
             attrs: {
               type: "text",
@@ -58952,7 +59117,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.referees-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.referees-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
 
 // exports
 
@@ -59157,7 +59322,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.intern-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.intern-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
 
 // exports
 
@@ -59168,8 +59333,6 @@ exports.push([module.i, "\n.intern-container {\n    display: -webkit-box;\n    d
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -59254,8 +59417,6 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("i", { staticClass: "fa fa-calendar" }),
-          _vm._v(" "),
           _c("input", {
             attrs: {
               type: "text",
@@ -59266,8 +59427,6 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
-          _c("i", { staticClass: "fa fa-calendar" }),
-          _vm._v(" "),
           _c("input", {
             attrs: { type: "text", name: "end_date", placeholder: "End Date" }
           })
@@ -59382,7 +59541,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.language-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.language-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
 
 // exports
 
@@ -59769,7 +59928,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.skills-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.skills-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
 
 // exports
 
@@ -59871,7 +60030,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.extra-curriculum-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border: 1px solid;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
+exports.push([module.i, "\n.extra-curriculum-container {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    padding: 0 16px 16px 16px;\n}\n", ""]);
 
 // exports
 

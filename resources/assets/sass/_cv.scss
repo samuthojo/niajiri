@@ -1,5 +1,11 @@
 .cv-block {
     margin-bottom: 15px;
+    padding: 24px 16px !important;
+}
+
+.cv-block:hover {
+    border: 1px solid #449384;
+    border-radius: 5px;
 }
 
 .cv-composite-block {
@@ -13,4 +19,71 @@
 
 .inner-right-block {
     flex: 1;
+}
+
+.cv-text-input {
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  display: block;
+  min-height: 10px;
+  background: transparent;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  position: relative;
+  z-index: 1;
+}
+
+.cv-textarea-input {
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    display: block;
+    resize: none;
+    height: 16px;
+    background: transparent;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.cv-icon {
+    color: #008cff;
+}
+
+.cv-text-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(179, 179,179);
+    font-weight: bold;
+    opacity: 1; /* Firefox */
+}
+
+.cv-text-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(179, 179,179);
+    font-weight: bold;
+}
+
+.cv-text-input::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(179, 179,179);
+    font-weight: bold;
+}
+
+.cv-textarea-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(179, 179,179);
+    opacity: 1; /* Firefox */
+}
+
+.cv-textarea-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(179, 179,179);
+}
+
+.cv-textarea-input::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(179, 179,179);
+}
+
+#vue-candidate-cv {
+    background-image: url('../../../public/images/landing/grey.png');
 }

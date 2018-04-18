@@ -48,7 +48,6 @@ export default {
 .language-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid;
     padding: 0 16px 16px 16px;
 }
 </style>

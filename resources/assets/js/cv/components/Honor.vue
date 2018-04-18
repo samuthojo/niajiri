@@ -12,7 +12,6 @@
               <input type="text" name="institution" placeholder="Institution">
           </div>
           <div class="form-group">
-              <i class="fa fa-calendar"></i>
               <input type="text" name="date_issued" placeholder="Date Issued">
           </div>
           <div class="form-group">
@@ -36,7 +35,6 @@ export default {
 .honor-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid;
     padding: 0 16px 16px 16px;
 }
 </style>

@@ -22688,6 +22688,12 @@ body.skin-3 {
 
 .cv-block {
   margin-bottom: 15px;
+  padding: 24px 16px !important;
+}
+
+.cv-block:hover {
+  border: 1px solid #449384;
+  border-radius: 5px;
 }
 
 .cv-composite-block {
@@ -22707,5 +22713,127 @@ body.skin-3 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+.cv-text-input {
+  padding: 0;
+  border: 0;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  display: block;
+  min-height: 10px;
+  background: transparent;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  position: relative;
+  z-index: 1;
+}
+
+.cv-textarea-input {
+  padding: 0;
+  border: 0;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  display: block;
+  resize: none;
+  height: 16px;
+  background: transparent;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.cv-icon {
+  color: #008cff;
+}
+
+.cv-text-input::-webkit-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  font-weight: bold;
+  opacity: 1;
+  /* Firefox */
+}
+
+.cv-text-input:-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  font-weight: bold;
+  opacity: 1;
+  /* Firefox */
+}
+
+.cv-text-input::-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  font-weight: bold;
+  opacity: 1;
+  /* Firefox */
+}
+
+.cv-text-input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  font-weight: bold;
+  opacity: 1;
+  /* Firefox */
+}
+
+.cv-text-input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #b3b3b3;
+  font-weight: bold;
+}
+
+.cv-text-input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #b3b3b3;
+  font-weight: bold;
+}
+
+.cv-textarea-input::-webkit-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  opacity: 1;
+  /* Firefox */
+}
+
+.cv-textarea-input:-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  opacity: 1;
+  /* Firefox */
+}
+
+.cv-textarea-input::-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  opacity: 1;
+  /* Firefox */
+}
+
+.cv-textarea-input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b3b3b3;
+  opacity: 1;
+  /* Firefox */
+}
+
+.cv-textarea-input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #b3b3b3;
+}
+
+.cv-textarea-input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #b3b3b3;
+}
+
+#vue-candidate-cv {
+  background-image: url(/images/grey.png?74f7cdffc9b2c3f62771c7acac3f512d);
 }
 
