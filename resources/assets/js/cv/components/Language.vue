@@ -1,12 +1,12 @@
 <template>
 
-  <div class="language-container">
+  <form class="language-container" @submit.prevent="">
 
       <div>
           <!-- TODO: To put translations -->
-          <h1>LANGUAGES</h1>
+          <h3 class="component-title panel-title">LANGUAGES</h3>
           <div class="form-group">
-              <select name="name" ref="name">
+              <select name="name" ref="name" class="form-control">
                   <option selected value="Swahili">Swahili</option>
                   <option value="English">English</option>
                   <option value="French">French</option>
@@ -20,27 +20,28 @@
               </select>
           </div>
           <div class="form-group">
-              <select name="written" ref="written">
+              <select name="written" ref="written" class="form-control">
                   <option value="Excellent">Excellent</option>
                   <option value="Very Good">Very Good</option>
                   <option value="Fair">Fair</option>
               </select>
           </div>
           <div class="form-group">
-              <select name="oral" ref="oral">
+              <select name="oral" ref="oral" class="form-control">
                   <option value="Excellent">Excellent</option>
                   <option value="Very Good">Very Good</option>
                   <option value="Fair">Fair</option>
               </select>
           </div>
+          <button type="submit" class="btn btn-primary pull-right">Save</button>
       </div>
-      
-  </div>
+
+  </form>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 

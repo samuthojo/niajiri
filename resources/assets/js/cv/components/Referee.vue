@@ -1,36 +1,44 @@
 <template>
 
-  <div class="referees-container">
+  <form class="referees-container" @submit.prevent="">
 
       <div>
           <!-- TODO: To put translations -->
-          <h1>REFEREES DETAILS</h1>
+          <h3 class="component-title panel-title">REFEREES DETAILS</h3>
           <div class="form-group">
-              <input type="text" name="name" placeholder="Name">
+              <input type="text" name="name" placeholder="Name"
+                class="cv-text-input">
           </div>
           <div class="form-group">
-              <input type="text" name="title" placeholder="Position">
+              <input type="text" name="title" placeholder="Position"
+                class="cv-text-input">
           </div>
           <div class="form-group">
-              <input type="text" name="organization" placeholder="Organization">
+              <input type="text" name="organization" placeholder="Organization"
+                class="cv-text-input">
           </div>
           <div class="form-group">
-              <input type="text" name="email" placeholder="Email">
+              <input type="text" name="email" placeholder="Email"
+                class="cv-text-input">
           </div>
           <div class="form-group">
-              <input type="text" name="mobile" placeholder="Mobile">
+              <input type="text" name="mobile" placeholder="Mobile"
+                class="cv-text-input">
           </div>
           <div class="form-group">
-              <input type="text" name="alternative_mobile" placeholder="Alternative Mobile">
+              <input type="text" name="alternative_mobile"
+                placeholder="Alternative Mobile"
+                class="cv-text-input">
           </div>
+          <button type="submit" class="btn btn-primary pull-right">Save</button>
       </div>
-      
-  </div>
+
+  </form>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 

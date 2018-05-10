@@ -1,21 +1,23 @@
 <template>
 
-  <div class="extra-curriculum-container">
+  <form class="extra-curriculum-container" @submit.prevent="">
 
       <div>
           <!-- TODO: To put translations -->
-          <h1>EXTRACURRICULAR ACTIVITIES</h1>
+          <h3 class="component-title panel-title">EXTRACURRICULAR ACTIVITIES</h3>
           <div class="form-group">
-              <textarea name="extracurriculum" class="form-control" placeholder="Extracurricular activities"></textarea>
+              <textarea name="extracurriculum" class="form-control cv-textarea-input"
+                placeholder="Extracurricular activities"></textarea>
           </div>
+          <button type="submit" class="btn btn-primary pull-right">Save</button>
       </div>
-      
-  </div>
+
+  </form>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 

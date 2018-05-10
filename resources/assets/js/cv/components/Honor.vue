@@ -1,33 +1,38 @@
 <template>
 
-  <div class="honor-container">
+  <form class="honor-container" @submit.prevent="">
 
       <div>
           <!-- TODO: To put translations -->
-          <h1>HONOR/AWARDS DETAILS</h1>
+          <h3 class="component-title panel-title">HONOR/AWARDS DETAILS</h3>
           <div class="form-group">
-              <input type="text" name="title" placeholder="Title">
+              <input type="text" name="title" placeholder="Title"
+                class="cv-text-input">
           </div>
           <div class="form-group">
-              <input type="text" name="institution" placeholder="Institution">
+              <input type="text" name="institution" placeholder="Institution"
+                class="cv-text-input">
           </div>
           <div class="form-group">
-              <input type="text" name="date_issued" placeholder="Date Issued">
+              <input type="text" name="date_issued" placeholder="Date Issued"
+                class="cv-text-input">
           </div>
           <div class="form-group">
-              <textarea class="form-control" name="summary" placeholder="Summary"></textarea>
+              <textarea class="form-control cv-textarea-input"
+                name="" placeholder="Summary"></textarea>
           </div>
           <div class="form-group">
               <input type="file" name="attachment">
           </div>
+          <button type="submit" class="btn btn-primary pull-right">Save</button>
       </div>
-      
-  </div>
+
+  </form>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 

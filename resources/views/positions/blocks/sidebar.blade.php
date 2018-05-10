@@ -16,7 +16,7 @@
 	            	{{-- start user avatar --}}
 	            	<span title="User Avatar">
 	                	<img alt="image" class="img-circle"
-	                	src="{{Auth::user()->avatar()}}"
+	                	src="{{Auth::user()->avatar()}}" id="user-avatar"
 	                	width="48" height="48" title="User Avatar" />
 	                </span>
 	                {{-- end user avatar --}}

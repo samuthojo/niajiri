@@ -1,21 +1,23 @@
 <template>
 
-  <div class="skills-container">
+  <form class="skills-container" @submit.prevent="">
 
       <div>
           <!-- TODO: To put translations -->
-          <h1>SKILLS</h1>
+          <h3 class="component-title panel-title">SKILLS</h3>
           <div class="form-group">
-              <textarea name="skills" class="form-control" placeholder="Skills"></textarea>
+              <textarea name="skills" class="form-control cv-textarea-input"
+                placeholder="Skills"></textarea>
           </div>
+          <button type="submit" class="btn btn-primary pull-right">Save</button>
       </div>
-      
-  </div>
+
+  </form>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 

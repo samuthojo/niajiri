@@ -21,7 +21,7 @@ class UserController extends SecureController {
 	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
-	
+
 	public function index(Request $request) {
 		//initialize query
 		$query = User::filter($request->all())
@@ -416,6 +416,82 @@ class UserController extends SecureController {
 		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 
+	public function post_interactive_basic(Request $request) {
+		//obtain current user id
+		$id = \Auth::user()->id;
+
+		//validate user
+		$this->validate($request, [
+			'first_name' => 'required|string|min:2|max:255',
+			'middle_name' => 'nullable|string|min:2|max:255',
+			'surname' => 'required|string|min:2|max:255',
+			'email' => 'required|email|min:2|max:255|unique:users,email,' . $id,
+			'secondary_email' => 'nullable|email|min:2|max:255|unique:users,secondary_email,' . $id,
+			'mobile' => 'required|string|min:2|max:255|unique:users,mobile,' . $id,
+			'alternative_mobile' => 'nullable|string|min:2|max:255|unique:users,alternative_mobile,' . $id,
+			'physical_address' => 'required|string|min:2|max:255',
+			'postal_address' => 'nullable|string|min:2|max:255',
+			'summary' => 'required|string',
+			'country' => 'required|string',
+			'state' => 'required|string',
+			'gender' => 'required|string|min:2|max:255',
+			'dob' => 'required|date',
+		]);
+
+		//obtain user updates from form input
+		$body = $request->all();
+
+		//reload current user
+		$user = User::findOrFail($id);
+
+		//update user
+		$user->update($body);
+
+		//upload & store user avatar
+		if ($user && $request->hasFile('avatar')) {
+			//clear existing avatar
+			$user->clearMediaCollection('avatars');
+			//attach new avatar
+			$user->addMediaFromRequest('avatar')
+				->toMediaCollection('avatars');
+		}
+
+		return [
+			'message' => 'Your Basic Information has been saved',
+			'user' => $user,
+		];
+
+	}
+
+	//Update cv avatar
+	public function post_cv_avatar(Request $request) {
+		//obtain current user id
+		$id = \Auth::user()->id;
+
+		$this->validate($request, [
+			'avatar' => 'bail|file|image|max:2048',
+		]);
+
+		//reload current user
+		$user = User::findOrFail($id);
+
+		//upload & store user avatar
+		if ($user && $request->hasFile('avatar')) {
+			//clear existing avatar
+			$user->clearMediaCollection('avatars');
+			//attach new avatar
+			$user->addMediaFromRequest('avatar')
+					 ->usingFileName(uniqid())
+					 ->toMediaCollection('avatars');
+		}
+
+		return [
+			'message' => 'Your Picture has been updated',
+			'user' => $user,
+		];
+
+	}
+
 	/**
 	 * Display current user resume
 	 * @return \Illuminate\Http\Response
@@ -466,8 +542,19 @@ class UserController extends SecureController {
 		return view('users.cv.index', $data);
 	}
 
-	public function get_ineractive_cv(){
-		return view('users.cv.vuecv');
+	public function get_interactive_cv(Request $request, $id = null){
+		//load actual current user
+		$id = is_set($id) ? $id : \Auth::user()->id;
+		$user = User::query()->findOrFail($id);
+
+		$data = [
+			'route_title' => $user->fullName() . ' - CV',
+			'route_description' => $user->fullName() . ' - CV',
+			'user' => $user,
+			'instance' => $user,
+		];
+
+		return view('users.cv.vuecv', $data);
 	}
 
 	/**
@@ -577,7 +664,7 @@ class UserController extends SecureController {
 		$request_params = $request->all();
 		$message = $request_params['message'];
 		$newsletter = Newsletter::create(['message'=>$message]);
-	
+
 		if ($request->hasFile('file')) {
 			//clear existing attachment
 			$newsletter->clearMediaCollection('newsletters');
@@ -597,7 +684,7 @@ class UserController extends SecureController {
 		flash(trans('Newsletter successfully sent'))
 			->success()->important();
 
-		return redirect()->route('users.index');		
+		return redirect()->route('users.index');
 	}
 
 	public function send_newsletter($id){
@@ -606,9 +693,9 @@ class UserController extends SecureController {
 		$attachment = $newsletter->attachment();
 		$message = $newsletter->message;
 	    // dd($attachment->getPath());
-		foreach($applicants as $applicant){	
+		foreach($applicants as $applicant){
 				Mail::to($applicant)->queue(new NewsLetters($applicant,$attachment,$message));
-		}	
+		}
 	}
 
 }

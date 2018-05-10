@@ -4,13 +4,41 @@
 require('./bootstrap');
 
 /**
+ * VueSnotify notification plugin
+ */
+import Snotify, { SnotifyPosition } from 'vue-snotify';
+
+const options = {
+  toast: {
+    position: SnotifyPosition.rightTop
+  }
+}
+
+Vue.use(Snotify, options);
+
+/**
  * Require theme
  */
 require('./theme');
 
+/**
+ * Filters
+ */
+ Vue.filter('isoDate', function(date) {
 
-//Next initialize jQuery and its plugins
+   if(!date) return '';
 
+   date = _.split(date.toString(), ' ')[0];
+
+   return date;
+
+ });
+
+ /**
+  * Components
+  */
+Vue.component('cv-placeholder', require('./cv/components/CvPlaceholder.vue'));
+Vue.component('cv-avatar', require('./cv/components/CvAvatar.vue'));
 Vue.component('basic', require('./cv/components/Basic.vue'));
 Vue.component('certificate', require('./cv/components/Certificate.vue'));
 Vue.component('education', require('./cv/components/Education.vue'));
@@ -45,6 +73,3 @@ $(document).ready(function($) {
     autosize($('textarea'));
 
 });
-
-
-

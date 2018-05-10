@@ -1,15 +1,26 @@
-.cv-block {
+@import "~vue-snotify/styles/material";
+
+.cv-major-block {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 15px;
     padding: 24px 16px !important;
 }
 
-.cv-block:hover {
-    border: 1px solid #449384;
-    border-radius: 5px;
+.cv-composite-block {
+    display: flex;
+    margin-bottom: 15px;
 }
 
-.cv-composite-block {
-    display: flex; 
+.cv-normal-block {
+  margin-bottom: 15px;
+}
+
+.cv-major-block:hover,
+.cv-normal-block:hover,
+.cv-composite-block:hover {
+    border: 1px solid #449384;
+    border-radius: 5px;
 }
 
 .inner-left-block {
@@ -51,39 +62,158 @@
     width: 100%;
 }
 
-.cv-icon {
-    color: #008cff;
-}
-
 .cv-text-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(179, 179,179);
-    font-weight: bold;
-    opacity: 1; /* Firefox */
+      color: rgb(179, 179,179);
+      font-weight: bold;
+      opacity: 1; /* Firefox */
 }
 
-.cv-text-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: rgb(179, 179,179);
-    font-weight: bold;
+.has-cv-error {
+  -webkit-transition: color 0.15s ease-in-out 0s; //Safari
+  transition: color 0.15s ease-in-out 0s;
 }
 
-.cv-text-input::-ms-input-placeholder { /* Microsoft Edge */
+/* Chrome, Firefox, Opera, Safari 10.1+ */
+.has-cv-error::placeholder {
+  color: #a94442;
+}
+
+// Internet Explorer 10-11
+.has-cv-error:-ms-input-placeholder {
+  color: #a94442;
+}
+
+// Microsoft Edge
+.has-cv-error::-ms-input-placeholder {
+  color: #a94442;
+}
+
+label.has-cv-error {
+  color: #a94442;
+  -webkit-transition: color 0.15s ease-in-out 0s; //Safari
+  transition: color 0.15s ease-in-out 0s;
+}
+/* Internet Explorer 10-11 */
+.cv-text-input:-ms-input-placeholder {
+  color: rgb(179, 179,179);
+  font-weight: bold;
+}
+
+// Microsoft Edge
+.cv-text-input::-ms-input-placeholder {
     color: rgb(179, 179,179);
     font-weight: bold;
 }
 
 .cv-textarea-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(179, 179,179);
-    opacity: 1; /* Firefox */
+      color: rgb(179, 179,179);
+      font-weight: bold;
+      opacity: 1; /* Firefox */
+  }
+
+/* Internet Explorer 10-11 */
+.cv-textarea-input:-ms-input-placeholder {
+  color: rgb(179, 179,179);
+  font-weight: bold;
 }
 
-.cv-textarea-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: rgb(179, 179,179);
+// Microsoft Edge
+.cv-textarea-input::-ms-input-placeholder {
+  color: rgb(179, 179,179);
+  font-weight: bold;
 }
 
-.cv-textarea-input::-ms-input-placeholder { /* Microsoft Edge */
-    color: rgb(179, 179,179);
+.cv-placeholder {
+  position: absolute;
+  color: #b1b1b1;
+}
+
+.asterik {
+  color: #a94442;
+}
+
+.has-cv-error {
+  .cv-placeholder {
+    color: #a94442;
+    -webkit-transition: color 0.15s ease-in-out 0s; //Safari
+    transition: color 0.15s ease-in-out 0s;
+  }
+  .cv-text-input {
+    color: #a94442;
+    -webkit-transition: color 0.15s ease-in-out 0s; //Safari
+    transition: color 0.15s ease-in-out 0s;
+  }
+  .cv-textarea-input {
+    color: #a94442;
+    -webkit-transition: color 0.15s ease-in-out 0s; //Safari
+    transition: color 0.15s ease-in-out 0s;
+  }
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.cv-icon {
+    color: #008cff;
+}
+
+.cv-icon.has-cv-error {
+    color: #a94442;
 }
 
 #vue-candidate-cv {
-    background-image: url('../../../public/images/landing/grey.png');
+  font-family: "Lato", Arial, Helvetica, "Noto Sans Devanagari", "Noto Sans CJK SC Thin", "Noto Sans SC", "Noto Sans Hebrew", sans-serif !important;
+}
+
+.ibox-cv-background {
+  background-image: url('../../../public/images/landing/grey.png');
+}
+
+.ibox-cv-content {
+  background: transparent;
+}
+
+.component-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 11px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-vertical-center {
+    align-items: center;
+}
+
+.flex-horizontal-center {
+    justify-content: center;
+}
+
+.cv-top-margin {
+  margin-top: 30px;
+}
+
+.avatar-container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+}
+
+.no-display {
+  display: none !important;
+}
+
+.avatar-upload-btn {
+  transition: .5s ease;
+  opacity: 0;
+}
+
+.avatar-container:hover .avatar-upload-btn {
+  opacity: 1;
 }

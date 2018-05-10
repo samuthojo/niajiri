@@ -16,7 +16,7 @@
 	            	{{-- start user avatar --}}
 	            	@unless(Auth::guest())
 	            	<span title="User Avatar">
-	                	<img alt="image" class="img-circle"
+	                	<img alt="image" class="img-circle" id="user-avatar"
 	                	src="{{Auth::user()->avatar()}}"
 	                	width="48" height="48" title="User Avatar" />
 	                </span>
