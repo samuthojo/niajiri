@@ -1,54 +1,58 @@
 <template>
 
-  <form class="language-container" @submit.prevent="">
+<div> <!--To serve as root element-->
 
-      <div>
-          <!-- TODO: To put translations -->
-          <h3 class="component-title panel-title">LANGUAGES</h3>
-          <div class="form-group">
-              <select name="name" ref="name" class="form-control">
-                  <option selected value="Swahili">Swahili</option>
-                  <option value="English">English</option>
-                  <option value="French">French</option>
-                  <option value="Chinese">Chinese</option>
-                  <option value="Italian">Italian</option>
-                  <option value="Spanish">Spanish</option>
-                  <option value="Hindi">Hindi</option>
-                  <option value="Portuguese">Portuguese</option>
-                  <option value="Bengali">Bengali</option>
-                  <option value="Russian">Russian</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <select name="written" ref="written" class="form-control">
-                  <option value="Excellent">Excellent</option>
-                  <option value="Very Good">Very Good</option>
-                  <option value="Fair">Fair</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <select name="oral" ref="oral" class="form-control">
-                  <option value="Excellent">Excellent</option>
-                  <option value="Very Good">Very Good</option>
-                  <option value="Fair">Fair</option>
-              </select>
-          </div>
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+    <div class="row m-b-lg"><!--start of title-->
+
+      <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
+
+        <div class="col-md-10">
+
+          <h5>LANGUAGES</h5>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="button" class="btn btn-warning pull-right">Add</button>
+
+        </div>
+
       </div>
 
-  </form>
+    </div><!--end -f title-->
+
+      <template v-if="languages.length == 0">
+        <language-item :applicant-id="user.id"></language-item>
+      </template>
+
+      <!--start of experience list-->
+        <template v-else>
+          <language-item v-for="language in languages"
+            :key="language.id"
+            :language="language"
+            :applicant-id="user.id"
+            @language-added="onLanguageAdded">
+          </language-item>
+       </template>
+      <!--end of experiences list-->
+
+</div><!-- root element ends here -->
+
 </template>
 
 <script>
 export default {
-
+  props: {
+    user: Object,
+    languages: Array
+  },
+  methods: {
+    onLanguageAdded(languages) {
+      this.languages = languages;
+    }
+  }
 }
 </script>
 
-<style>
-.language-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 16px 16px 16px;
-}
-</style>
+<style></style>

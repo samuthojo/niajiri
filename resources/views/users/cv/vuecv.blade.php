@@ -16,31 +16,80 @@
 
                   <vue-snotify></vue-snotify>
 
-                  <basic class="cv-major-block" :user="{{ $user }}" ref="basic"></basic>
+                  <div class="row m-t-md m-b-md">
 
-                  <!-- <div class="cv-composite-block">
-                      <intern class="inner-left-block"></intern>
-                      <honor class="inner-right-block"></honor>
+                    <div class="col-md-12">
+                      <basic class="cv-major-block" :user="{{ $user }}" ref="basic"></basic>
+                    </div>
+
                   </div>
 
-                  <div class="cv-composite-block">
+                <div class="row m-t-md m-b-md">
+
+                    <div class="col-md-6">
+                      <intern
+                        :user="{{ $user }}"
+                        :experiences=" {{ $user->experiences }}"></intern>
+                    </div>
+
+                    <div class="col-md-6">
+                      <honor
+                        :user="{{ $user }}"
+                        :honors="{{ $user->achievements }}"></honor>
+                    </div>
+
+                </div>
+
+                <div class="row m-t-md m-b-md">
+
+                    <div class="col-md-6">
                       <education
-                          :institutions= "{{ config('education.institutions') }}"
-                          :qualifications="{{ config('education.qualifications') }}"
-                          class="inner-left-block">
-                      </education>
-                      <language class="inner-right-block"></language>
-                  </div>
+                        :user="{{ $user }}"
+                        :educations="{{ $user->educations }}"
+                        :institutions= "{{ config('education.institutions') }}"
+                        :qualifications="{{ config('education.qualifications') }}"></education>
+                    </div>
 
-                  <div class="cv-composite-block">
-                      <certificate class="inner-left-block"></certificate>
-                      <referee class="inner-right-block"></referee>
-                  </div>
+                    <div class="col-md-6">
+                      <language
+                        :user="{{ $user }}"
+                        :languages="{{ $user->languages }}"></language>
+                    </div>
 
-                  <div class="cv-composite-block">
-                      <skills class="inner-left-block"></skills>
-                      <extra-curriculum class="inner-right-block"></extra-curriculum>
-                  </div> -->
+                </div>
+
+                <div class="row m-t-md m-b-md">
+
+                    <div class="col-md-6">
+                      <certificate
+                        :user="{{ $user }}"
+                        :certifications="{{ $user->certificates }}">
+                      </certificate>
+                    </div>
+
+                    <div class="col-md-6">
+                      <referee
+                        :user="{{ $user }}"
+                        :referees="{{ $user->referees }}"></referee>
+                    </div>
+
+                </div>
+
+                <div class="row m-t-md m-b-md">
+
+                    <div class="col-md-6">
+                      <skills
+                        :user="{{ $user }}">
+                      </skills>
+                    </div>
+
+                    <div class="col-md-6">
+                      <extra-curriculum
+                        :user="{{ $user }}">
+                      </extra-curriculum>
+                    </div>
+
+                </div>
 
       </div>
 

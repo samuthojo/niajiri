@@ -1,69 +1,65 @@
 <template>
 
-  <form class="education-container" @submit.prevent="">
+<div> <!--To serve as root element-->
 
-      <div>
-          <!-- TODO: To put translations -->
-          <h3 class="component-title panel-title">EDUCATION</h3>
-          <div class="form-group">
-              <label for="level">Level</label>
-              <select name="level" ref="level" id="level" class="form-control">
-                  <option value="Certificate" selected>Certificate</option>
-                  <option value="Diploma">Diploma</option>
-                  <option value="Degree">Degree</option>
-                  <option value="Masters">Masters</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <label for="institution">Institution</label>
-              <select name="institution" ref="institution" id="institution"
-                class="form-control">
-                  <option selected disabled key="institution">e.g Mtakuja</option>
-                  <option v-for="institution in institutions" :key="institution.name" :value="institution.name">{{ institution.name }}</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <label for="qualification">Qualification</label>
-              <select name="qualification" ref="qualification"
-                id="qualification" class="form-control">
-                  <option selected disabled key="qualification">e.g Primary, Bsc. In Computer Science</option>
-                  <option v-for="qualification in qualifications" :key="qualification.name" :value="qualification.name">{{ qualification.name }}</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <input type="text" name="start_date" placeholder="Date Started"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="end_date" placeholder="Date Finished"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="gpa" placeholder="GPA/Score"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="file" name="attachment">
-          </div>
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+    <div class="row m-b-lg"><!--start of title-->
+
+      <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
+
+        <div class="col-md-10">
+
+          <h5>EDUCATION</h5>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="button" class="btn btn-warning pull-right">Add</button>
+
+        </div>
+
       </div>
 
-  </form>
+    </div><!--end -f title-->
+
+      <template v-if="educations.length == 0">
+        <education-item
+          :applicant-id="user.id"
+          :institutions="institutions"
+          :qualifications="qualifications"></education-item>
+      </template>
+
+      <!--start of education list-->
+        <template v-else>
+          <education-item v-for="education in educations"
+            :key="education.id"
+            :education="education"
+            :institutions="institutions"
+            :qualifications="qualifications"
+            :applicant-id="user.id"
+            @education-added="onEducationAdded">
+          </education-item>
+       </template>
+      <!--end of honor list-->
+
+</div>
 </template>
 
 <script>
 export default {
-    props: {
-        institutions: Array,
-        qualifications: Array
+  props: {
+    user: Object,
+    educations: Array,
+    institutions: Array,
+    qualifications: Array
+  },
+  methods: {
+    onEducationAdded(educations) {
+      this.educations = educations;
     }
+  }
 }
 </script>
 
 <style>
-.education-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 16px 16px 16px;
-}
 </style>

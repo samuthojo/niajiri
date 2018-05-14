@@ -9,21 +9,20 @@
                 <cv-placeholder
                   :name="'FirstName'"
                   :length="getLength('first_name')"></cv-placeholder>
-                <input type="text" name="first_name" class="cv-text-input"
-                  v-model="form.first_name" id="first_name">
+                <textarea rows="1" name="first_name" class="cv-textarea-input"
+                  v-model="form.first_name" id="first_name"></textarea>
               </div>
               <div :class="['col-md-4', {'has-cv-error': form.errors.has('middle_name')}]">
-                <input type="text" name="middle_name"
-                  placeholder="MiddleName" class="cv-text-input"
-                  v-model="form.middle_name">
+                <textarea rows="1" name="middle_name"
+                  placeholder="MiddleName" class="cv-textarea-input"
+                  v-model="form.middle_name"></textarea>
               </div>
               <div :class="['col-md-4', 'position-relative', {'has-cv-error': form.errors.has('surname')}]">
                 <cv-placeholder
                   :name="'LastName'"
                   :length="getLength('surname')"></cv-placeholder>
-                <input type="text" name="surname"
-                  class="cv-text-input"
-                  v-model="form.surname">
+                <textarea rows="1" name="surname" class="cv-textarea-input"
+                  v-model="form.surname"></textarea>
               </div>
           </div>
           <div class="form-group flex flex-vertical-center">
@@ -39,13 +38,11 @@
               <i :class="['fa fa-male cv-icon', {'has-cv-error': form.errors.has('gender')}]"></i>
               <i :class="['fa fa-female cv-icon', {'has-cv-error': form.errors.has('gender')}]"></i>
               <div :class="['col-md-6', 'radio', {'has-cv-error': form.errors.has('gender')}]">
-                <label
-                  :class="{'has-cv-error': form.errors.has('gender')}">
+                <label>
                   <input type="radio" name="gender" value="Male"
                   v-model="form.gender"
                   @change="form.errors.clear('gender')">Male</label>
-                <label
-                  :class="{'has-cv-error': form.errors.has('gender')}">
+                <label>
                   <input type="radio" name="gender" value="Female"
                   v-model="form.gender"
                   @change="form.errors.clear('gender')">Female</label>
@@ -58,14 +55,14 @@
                 <cv-placeholder
                   :name="'Mobile'"
                   :length="getLength('mobile')"></cv-placeholder>
-                <input type="text" name="mobile" class="cv-text-input"
-                  v-model="form.mobile">
+                <textarea rows="1" name="mobile" class="cv-textarea-input"
+                  v-model="form.mobile"></textarea>
               </div>
               <i :class="['fa fa-phone cv-icon', {'has-cv-error': form.errors.has('alternative_mobile')}]"></i>
               <div :class="['col-md-6', {'has-cv-error': form.errors.has('alternative_mobile')}]">
-                <input type="text" name="alternative_mobile"
-                  placeholder="Alternative Mobile" class="cv-text-input"
-                  v-model="form.alternative_mobile">
+                <textarea rows="1" name="alternative_mobile"
+                  placeholder="Alternative Mobile" class="cv-textarea-input"
+                  v-model="form.alternative_mobile"></textarea>
               </div>
           </div>
           <div class="form-group flex flex-vertical-center">
@@ -74,41 +71,38 @@
                 <cv-placeholder
                   :name="'Email'"
                   :length="getLength('email')"></cv-placeholder>
-                <input type="text" name="email" class="cv-text-input"
-                  v-model="form.email">
+                <textarea rows="1" name="email" class="cv-textarea-input"
+                  v-model="form.email"></textarea>
               </div>
               <i :class="['fa fa-at cv-icon', {'has-cv-error': form.errors.has('secondary_email')}]"></i>
               <div :class="['col-md-6', {'has-cv-error': form.errors.has('secondary_email')}]">
-                <input type="text" name="secondary_email"
-                  placeholder="Secondary Email" class="cv-text-input"
-                  v-model="form.secondary_email">
+                <textarea rows="1" name="secondary_email"
+                  placeholder="Secondary Email" class="cv-textarea-input"
+                  v-model="form.secondary_email"></textarea>
               </div>
           </div>
           <div class="form-group flex flex-vertical-center">
               <i :class="['fa fa-envelope cv-icon', {'has-cv-error': form.errors.has('postal_address')}]"></i>
               <div :class="['col-md-6', {'has-cv-error': form.errors.has('postal_address')}]">
-                <input type="text" name="postal_address"
-                  placeholder="Postal Address" class="cv-text-input"
-                  v-model="form.postal_address">
+                <textarea rows="1" name="postal_address"
+                  placeholder="Postal Address" class="cv-textarea-input"
+                  v-model="form.postal_address"></textarea>
               </div>
               <i :class="['fa fa-map-marker cv-icon', {'has-cv-error': form.errors.has('physical_address')}]"></i>
               <div :class="['col-md-6', 'position-relative', {'has-cv-error': form.errors.has('physical_address')}]">
                 <cv-placeholder
                   :name="'Physical Address'"
                   :length="getLength('physical_address')"></cv-placeholder>
-                <input type="text" name="physical_address" class="cv-text-input"
-                  v-model="form.physical_address">
+                <textarea rows="1" name="physical_address" class="cv-textarea-input"
+                  v-model="form.physical_address"></textarea>
               </div>
           </div>
           <div class="form-group flex flex-vertical-center">
-              <div class="col-md-6">
-                <label for="country"
-                  :class="{'has-cv-error': form.errors.has('country')}">Country:</label>
+              <div :class="['col-md-6', {'has-cv-error': form.errors.has('country')}]">
+                <label for="country">Country:</label>
                 <span class="asterik">*</span>
-                <select name="country" @change="set_states"
-                  :class="['form-control', {'has-cv-error': form.errors.has('country')}]"
-                  id="country"
-                  v-model="form.country">
+                <select name="country" @change="set_states" class="form-control"
+                  id="country" v-model="form.country">
                     <option v-for="country in countries"
                       :key="country.name"
                       :selected="user.country ? user.country == country.name : country.name == 'Tanzania'">
@@ -116,12 +110,10 @@
                     </option>
                 </select>
               </div>
-              <div class="col-md-6">
-                <label for="state"
-                  :class="{'has-cv-error': form.errors.has('state')}">State/Region/City:</label>
+              <div :class="['col-md-6', {'has-cv-error': form.errors.has('state')}]">
+                <label for="state">State/Region/City:</label>
                 <span class="asterik">*</span>
-                <select name="state" id="state"
-                  :class="['form-control', {'has-cv-error': form.errors.has('state')}]"
+                <select name="state" id="state" class="form-control"
                   v-model="form.state" @change="form.errors.clear('state')">
                     <option v-for="state in states" :key="state.name">{{ state.name }}</option>
                 </select>
@@ -136,8 +128,8 @@
                   v-model="form.summary"></textarea>
               </div>
           </div>
-          <button type="submit" class="btn btn-primary pull-right"
-            :disabled="form.errors.any()">Save</button>
+          <button type="submit" class="btn btn-success pull-right"
+            title="Save" :disabled="form.errors.any()">Save</button>
       </div>
 
       <div class="flex flex-vertical-center">
@@ -151,9 +143,10 @@
 
 <script>
 import { Form } from '../../ValidationFramework/Form.js';
+
 export default {
     props: {
-      'user': Object
+      user: Object
     },
     data() {
         return {
@@ -205,17 +198,18 @@ export default {
           }
         },
         onSubmit() {
-            this.$snotify.async('Saving ...', 'Please Wait', () => new Promise((resolve, reject) => {
+            this.$snotify.async('Saving ...', '', () => new Promise((resolve, reject) => {
               this.form.submit('PATCH', '/basic')
                         .then(response => {
+                          console.log(response.data.user);
                           this.form.onSuccess();
+                          this.form = new Form(response.data.user);
                           resolve({
-                            title: 'Success',
                             body: response.data.message,
                             config: {
                               timeout: 2000,
                               closeOnClick: true,
-                              showProgressBar: true
+                              showProgressBar: false
                             }
                           });
                         })
@@ -226,12 +220,11 @@ export default {
                             message = error.response.data.message;
                           }
                           reject({
-                            title: 'Error',
                             body: message,
                             config: {
-                              timeout: 3000,
+                              timeout: 2000,
                               closeOnClick: true,
-                              showProgressBar: true
+                              showProgressBar: false
                             }
                           });
                         });

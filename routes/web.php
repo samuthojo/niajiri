@@ -69,6 +69,9 @@ Route::resource('tests', 'TestController');
 
 // Route::post('/tests/{test}/questions', 'TestController@QuestionStore')->name("tests.questions.store");
 
+Route::post('/user_experiences', 'ExperienceController@storeExperience')->name('user_experiences');
+Route::patch('/user_experiences/{experience}', 'ExperienceController@updateExperience');
+
 Route::resource('questions', 'QuestionController');
 
 Route::resource('educations', 'EducationController');

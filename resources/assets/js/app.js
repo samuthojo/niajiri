@@ -3,6 +3,14 @@
  */
 require('./bootstrap');
 
+// $.fn.scrollView = function () {
+//   return this.each(function () {
+//     $('html, body').animate({
+//       scrollTop: $(this).offset().top
+//     }, 1000);
+//   });
+// }
+
 /**
  * VueSnotify notification plugin
  */
@@ -40,13 +48,21 @@ require('./theme');
 Vue.component('cv-placeholder', require('./cv/components/CvPlaceholder.vue'));
 Vue.component('cv-avatar', require('./cv/components/CvAvatar.vue'));
 Vue.component('basic', require('./cv/components/Basic.vue'));
-Vue.component('certificate', require('./cv/components/Certificate.vue'));
-Vue.component('education', require('./cv/components/Education.vue'));
-Vue.component('honor', require('./cv/components/Honor.vue'));
-Vue.component('referee', require('./cv/components/Referee.vue'));
+Vue.component('experience-item', require('./cv/components/ExperienceItem.vue'));
 Vue.component('intern', require('./cv/components/Intern.vue'));
+Vue.component('honor-item', require('./cv/components/HonorItem.vue'));
+Vue.component('honor', require('./cv/components/Honor.vue'));
+Vue.component('education-item', require('./cv/components/EducationItem.vue'));
+Vue.component('education', require('./cv/components/Education.vue'));
+Vue.component('language-item', require('./cv/components/LanguageItem.vue'));
 Vue.component('language', require('./cv/components/Language.vue'));
+Vue.component('certificate-item', require('./cv/components/CertificateItem.vue'));
+Vue.component('certificate', require('./cv/components/Certificate.vue'));
+Vue.component('referee-item', require('./cv/components/RefereeItem.vue'));
+Vue.component('referee', require('./cv/components/Referee.vue'));
+Vue.component('skill-form', require('./cv/components/SkillForm.vue'));
 Vue.component('skills', require('./cv/components/Skills.vue'));
+Vue.component('extra-curriculum-form', require('./cv/components/ExtraCurriculumForm.vue'));
 Vue.component('extra-curriculum', require('./cv/components/ExtraCurriculum.vue'));
 
 $(document).ready(function($) {

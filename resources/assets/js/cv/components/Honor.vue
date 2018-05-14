@@ -1,45 +1,58 @@
 <template>
 
-  <form class="honor-container" @submit.prevent="">
+<div> <!--To serve as root element-->
 
-      <div>
-          <!-- TODO: To put translations -->
-          <h3 class="component-title panel-title">HONOR/AWARDS DETAILS</h3>
-          <div class="form-group">
-              <input type="text" name="title" placeholder="Title"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="institution" placeholder="Institution"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="date_issued" placeholder="Date Issued"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <textarea class="form-control cv-textarea-input"
-                name="" placeholder="Summary"></textarea>
-          </div>
-          <div class="form-group">
-              <input type="file" name="attachment">
-          </div>
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+    <div class="row m-b-lg"><!--start of title-->
+
+      <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
+
+        <div class="col-md-10">
+
+          <h5>HONOR/AWARDS RECEIVED</h5>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="button" class="btn btn-warning pull-right">Add</button>
+
+        </div>
+
       </div>
 
-  </form>
+    </div><!--end -f title-->
+
+      <template v-if="honors.length == 0">
+        <honor-item :applicant-id="user.id"></honor-item>
+      </template>
+
+      <!--start of honor list-->
+        <template v-else>
+          <honor-item v-for="honor in honors"
+            :key="honor.id"
+            :honor="honor"
+            :applicant-id="user.id"
+            @honor-added="onHonorAdded">
+          </honor-item>
+       </template>
+      <!--end of honor list-->
+
+</div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    user: Object,
+    honors: Array
+  },
+  methods: {
+    onHonorAdded(honors) {
+      this.honors = honors;
+    }
+  }
 }
 </script>
 
 <style>
-.honor-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 16px 16px 16px;
-}
 </style>

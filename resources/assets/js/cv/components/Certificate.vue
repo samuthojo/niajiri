@@ -1,49 +1,58 @@
 <template>
 
-  <form class="certificate-container" @submit.prevent="">
+<div> <!--To serve as root element-->
 
-      <div>
-          <!-- TODO: To put translations -->
-          <h3 class="component-title panel-title">CERTIFICATION DETAILS</h3>
-          <div class="form-group">
-              <input type="text" name="name" placeholder="Title/Name"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="institution" placeholder="Institution"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="start_date" placeholder="Date Started"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="end_date" placeholder="Date Finished"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <textarea name="summary" class="form-control cv-textarea-input"
-                placeholder="Summary"></textarea>
-          </div>
-          <div class="form-group">
-              <input type="file" name="attachment">
-          </div>
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+    <div class="row m-b-lg"><!--start of title-->
+
+      <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
+
+        <div class="col-md-10">
+
+          <h5>CERTIFICATIONS</h5>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="button" class="btn btn-warning pull-right">Add</button>
+
+        </div>
+
       </div>
 
-  </form>
+    </div><!--end -of title-->
+
+      <template v-if="certifications.length == 0">
+        <certificate-item :applicant-id="user.id"></certificate-item>
+      </template>
+
+      <!--start of Certification list-->
+        <template v-else>
+          <certificate-item v-for="certification in certifications"
+            :key="Certification.id"
+            :certification="certification"
+            :applicant-id="user.id"
+            @certification-added="onCertificationAdded">
+          </certificate-item>
+       </template>
+      <!--end of Certification list-->
+
+</div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    user: Object,
+    certifications: Array
+  },
+  methods: {
+    onCertificationAdded(certifications) {
+      this.certifications = certifications;
+    }
+  }
 }
 </script>
 
 <style>
-.certificate-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 16px 16px 16px;
-}
 </style>

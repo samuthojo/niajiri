@@ -1,30 +1,57 @@
 <template>
 
-  <form class="extra-curriculum-container" @submit.prevent="">
+<div> <!--To serve as root element-->
 
-      <div>
-          <!-- TODO: To put translations -->
-          <h3 class="component-title panel-title">EXTRACURRICULAR ACTIVITIES</h3>
-          <div class="form-group">
-              <textarea name="extracurriculum" class="form-control cv-textarea-input"
-                placeholder="Extracurricular activities"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+    <div class="row m-b-lg"><!--start of title-->
+
+      <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
+
+        <div class="col-md-10">
+
+          <h5>EXTRACURRICULUM ACTIVITIES</h5>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="button" class="btn btn-warning pull-right">Add</button>
+
+        </div>
+
       </div>
 
-  </form>
+    </div><!--end -f title-->
+
+    <!--start of skill form-->
+    <extra-curriculum-form
+      :extracurriculum="user.extracurricular_activities"
+      :applicant-id="user.id"
+      @extracurriculum-added="onExtraCurriculumAdded">
+    </extra-curriculum-form>
+    <!--end of skill form-->
+
+</div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    user: Object
+  },
+  data() {
+    return {
+      applicant: {}
+    }
+  },
+  created() {
+    this.applicant = this.user;
+  },
+  methods: {
+    onExtraCurriculumAdded(user) {
+      this.applicant = user;
+    }
+  }
 }
 </script>
 
-<style>
-.extra-curriculum-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 16px 16px 16px;
-}
-</style>
+<style></style>

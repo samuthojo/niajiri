@@ -1,51 +1,58 @@
 <template>
 
-  <form class="referees-container" @submit.prevent="">
+<div> <!--To serve as root element-->
 
-      <div>
-          <!-- TODO: To put translations -->
-          <h3 class="component-title panel-title">REFEREES DETAILS</h3>
-          <div class="form-group">
-              <input type="text" name="name" placeholder="Name"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="title" placeholder="Position"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="organization" placeholder="Organization"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="email" placeholder="Email"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="mobile" placeholder="Mobile"
-                class="cv-text-input">
-          </div>
-          <div class="form-group">
-              <input type="text" name="alternative_mobile"
-                placeholder="Alternative Mobile"
-                class="cv-text-input">
-          </div>
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+    <div class="row m-b-lg"><!--start of title-->
+
+      <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
+
+        <div class="col-md-10">
+
+          <h5>REFEREES</h5>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="button" class="btn btn-warning pull-right">Add</button>
+
+        </div>
+
       </div>
 
-  </form>
+    </div><!--end -f title-->
+
+      <template v-if="referees.length == 0">
+        <referee-item :applicant-id="user.id"></referee-item>
+      </template>
+
+      <!--start of referee list-->
+        <template v-else>
+          <referee-item v-for="referee in referees"
+            :key="referee.id"
+            :referee="referee"
+            :applicant-id="user.id"
+            @referee-added="onRefereeAdded">
+          </referee-item>
+       </template>
+      <!--end of referee list-->
+
+</div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    user: Object,
+    referees: Array
+  },
+  methods: {
+    onRefereeAdded(referees) {
+      this.referees = referees;
+    }
+  }
 }
 </script>
 
 <style>
-.referees-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 16px 16px 16px;
-}
 </style>
