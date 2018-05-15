@@ -71,14 +71,14 @@ class EducationController extends SecureController {
 			'remark' => 'required|string',
 			'applicant_id' => 'string|required|exists:users,id',
 		]);
-		
+
 		//obtain all education form inputs
 		$body = $request->all();
 		$body['project_id'] = $request->session()->get('project_id');
 
 		//create education
 		$education = Education::create($body);
-		
+
 		//upload & store education attachment
 		if ($education && $request->hasFile('attachment')) {
 			//clear existing attachment
@@ -94,6 +94,50 @@ class EducationController extends SecureController {
 
 		//redirect to show education
 		return redirect()->route('users.cv', ['id' => $user->id]);
+
+	}
+
+	public function storeEducation(Request $request) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//merge inputs
+		$request->merge([
+			'institution' => !empty($request->input('other_institution')) ? $request->input('other_institution') : $request->input('institution')
+		]);
+
+		//ensure valid education
+		$this->validate($request, [
+			'level' => 'required|string',
+			'institution' => 'required|string',
+			'summary' => 'nullable|string',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
+			'remark' => 'required|string',
+			'applicant_id' => 'string|required|exists:users,id',
+		]);
+
+		//obtain all education form inputs
+		$body = $request->all();
+		$body['project_id'] = $request->session()->get('project_id');
+
+		//create education
+		$education = Education::create($body);
+
+		//upload & store education attachment
+		if ($education && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$education->clearMediaCollection('attachments');
+			//attach new attachment
+			$education->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Saved successfully',
+			'educations' => $user->educations,
+		];
 
 	}
 
@@ -196,6 +240,53 @@ class EducationController extends SecureController {
 
 	}
 
+	public function updateEducation(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//merge inputs
+		$request->merge([
+			'institution' => !empty($request->input('other_institution')) ? $request->input('other_institution') : $request->input('institution')
+		]);
+
+
+		//ensure valid education
+		$this->validate($request, [
+			'level' => 'required|string',
+			'institution' => 'required|string',
+			'summary' => 'nullable|string',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
+			'remark' => 'required|string',
+			'applicant_id' => 'string|required|exists:users,id',
+		]);
+
+		//obtain all education form inputs
+		$body = $request->all();
+
+		//find existing education
+		$education = Education::findOrFail($id);
+
+		//update education
+		$education->update($body);
+
+		//upload & store education attachment
+		if ($education && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$education->clearMediaCollection('attachments');
+			//attach new attachment
+			$education->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Updated successfully',
+			'educations' => $user->educations,
+		];
+
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -212,7 +303,20 @@ class EducationController extends SecureController {
 		//flash message
 		flash(trans('educations.actions.delete.flash.success'))
 			->success()->important();
-			
+
 		return redirect()->route('users.cv', ['id' => $user->id]);
+	}
+
+	public function destroyEducation(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		Education::destroy($id);
+
+		return [
+			'message' => 'Deleted successfully',
+			'educations' => $user->educations,
+		];
 	}
 }

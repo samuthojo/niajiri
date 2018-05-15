@@ -9,21 +9,52 @@
 
          <div class="cv-element position-relative">
 
-            <div class="actions"> <!--start of actions-->
+            <div class="actions" v-show="showAdd"> <!--start of actions-->
 
-              <div class="btn-group">
-
-                <button type="button" class="btn btn-default">
-                  <i class="fa fa-trash-o"></i>
-                </button>
-
-              </div>
+              <button type="button" class="cv-btn cv-add"
+                title="Add"
+                @click="$emit('add-empty-template')">
+                <i class="fa fa-plus"></i>
+              </button>
+              <button type="button" class="cv-btn cv-cancel"
+                v-show="isEmptyTemplate" title="Cancel"
+                @click="$emit('cancel-empty-template')">
+                <i class="fa fa-times"></i>
+              </button>
 
             </div> <!--end of actions-->
+
+            <!--confirmation modal-->
+            <cv-confirm
+              :message="'You are about to delete this entry'"
+              v-show="showConfirm"
+              @cancel="onCancel"
+              @okay="onOkay"></cv-confirm>
+            <!--end confirmation modal-->
+
+            <!--progress modal-->
+            <cv-notification
+              :success-message="successMessage"
+              :error-message="errorMessage"
+              :isLoading="showProgress"
+              :show-success="showSuccess"
+              :show-error="showError"
+              v-show="showAsync"></cv-notification>
+            <!--end progress modal-->
 
 <div class="cv-block clearfix">
 
     <div class="row">
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+            <textarea name="name" placeholder="Name"
+             class="cv-textarea-input" rows="1"
+             v-model="form.name"></textarea>
+        </div>
+
+      </div>
 
       <div class="col-md-6">
 
@@ -35,16 +66,6 @@
 
       </div>
 
-      <div class="col-md-6">
-
-        <div class="form-group">
-            <textarea name="organization" placeholder="Organization e.g KPMG"
-             class="cv-textarea-input" rows="1"
-             v-model="form.organization"></textarea>
-        </div>
-
-      </div>
-
     </div>
 
     <div class="row">
@@ -52,8 +73,9 @@
         <div class="col-md-6">
 
           <div class="form-group">
-              <textarea name="organization" class="cv-textarea-input" rows="1"
-                placeholder="Organization" v-model="form.organization"></textarea>
+              <textarea name="organization" placeholder="Organization e.g KPMG"
+               class="cv-textarea-input" rows="1"
+               v-model="form.organization"></textarea>
           </div>
 
         </div>
@@ -99,7 +121,17 @@
 
         <div class="form-group">
 
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+          <div class="btn-group pull-right">
+
+            <button type="submit" class="btn btn-success" title="Save">
+              <i class="fa fa-save"></i>
+            </button>
+            <button type="button" class="btn btn-danger" title="Delete"
+              v-show="showDeleteAction" @click="onDelete">
+              <i class="fa fa-trash-o"></i>
+            </button>
+
+          </div>
 
         </div>
 
@@ -125,7 +157,10 @@ import { Form } from '../../ValidationFramework/Form.js';
 export default {
   props: {
     referee: Object,
-    applicantId: String
+    applicantId: String,
+    showAddAction: Boolean,
+    isEmptyTemplate: Boolean,
+    showDeleteAction: Boolean
   },
   data() {
     return {
@@ -137,7 +172,14 @@ export default {
         mobile: '',
         alternative_mobile: ''
       },
-      form: new Form({})
+      form: new Form({}),
+      showConfirm: false,
+      showAsync: false,
+      showSuccess: false,
+      showError: false,
+      successMessage: '',
+      errorMessage: '',
+      showAdd: ''
     }
   },
   created() {
@@ -149,32 +191,134 @@ export default {
       formModel = _.assign({}, this.model,  { 'applicant_id': this.applicantId });
       this.form = new Form(formModel);
     }
+    this.showAdd = this.showAddAction;
+  },
+  computed: {
+    showProgress: function () {
+      return (this.showSuccess  == false) && (this.showError == false);
+    }
+  },
+  watch: {
+    showAddAction: function (val) {
+      this.showAdd = val;
+    }
   },
   methods: {
+
     onSubmit() {
-     this.$snotify.async('Saving ...', '', () => new Promise((resolve, reject) => {
-      this.form.submit('POST', '/user_referees')
+      if(this.certification) {
+        this.updateReferee();
+      }
+      else {
+        this.createReferee();
+      }
+      this.showAdd = false;
+    },
+
+    createReferee() {
+           this.showAsync = true;
+           this.form.submit('POST', '/user_referees')
                .then(response => {
-                 this.$emit("referee-added", response.data.referees);
-                 resolve({
-                   body: response.data.message,
-                   timeout: 2000,
-                   closeOnClick: true,
-                   showProgressBar: false
-                 });
+                 this.successMessage = "Saved successfully";
+                 this.showSuccess = true;
+                 var _this = this;
+                 setTimeout(function () {
+                   _this.showSuccess = false;
+                   _this.showAsync = false;
+                   _this.showAdd = _this.showAddAction;
+                   _this.$emit("referee-added", response.data.referees);
+                 }, 2000);
                })
                .catch(error => {
-                 console.log(error.response);
-                 reject({
-                   body: error.response.data.message,
-                   timeout: 2000,
-                   closeOnClick: true,
-                   showProgressBar: false
-                 });
+                   this.errorMessage = error.response.data.message;
+                   this.showError = true;
+                   var _this = this;
+                   setTimeout(function () {
+                       _this.showError = false;
+                       _this.showAsync = false;
+                       _this.showAdd = _this.showAddAction;
+                     }, 2000);
                });
-             }));
+    //End of createReferee
+  },
+
+    updateReferee() {
+      this.showAsync = true;
+      let url = '/user_referees/' + this.referee.id
+      this.form.submit('PATCH', url)
+          .then(response => {
+            this.successMessage = "Updated successfully";
+            this.showSuccess = true;
+            var _this = this;
+            setTimeout(function () {
+              _this.showSuccess = false;
+              _this.showAsync = false;
+              _this.showAdd = _this.showAddAction;
+              _this.$emit("referee-updated", response.data.referees);
+            }, 2000);
+          })
+          .catch(error => {
+              this.errorMessage = error.response.data.message;
+              this.showError = true;
+              var _this = this;
+              setTimeout(function () {
+                  _this.showError = false;
+                  _this.showAsync = false;
+                  _this.showAdd = _this.showAddAction;
+                }, 2000);
+          });
+
+    //End of updateReferee
+    },
+
+    onDelete() {
+      this.showConfirm = true;
+      this.showAdd = false;
+    },
+
+    onOkay() {
+      this.showConfirm = false;
+      this.showAsync = true;
+      this.deleteReferee();
+    },
+
+    onCancel() {
+      this.showConfirm = false;
+      this.showAdd = this.showAddAction;
+    },
+
+    deleteReferee() {
+        this.showAsync = true;
+        let url = '/user_referees/' + this.referee.id;
+        this.form.submit('DELETE', url)
+            .then(response => {
+              this.successMessage = "Deleted successfully";
+              this.showSuccess = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showSuccess = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+                _this.$emit('referee-deleted', response.data.referees);
+              }, 2000);
+            })
+            .catch(error => {
+              this.errorMessage = error.response.data.message;
+              this.showError = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showError = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+              }, 2000);
+            });
+
+      //End of deleteReferee method
     }
+
+    //End of methods
   }
+
 }
 </script>
 

@@ -9,10 +9,10 @@
 
          <div class="cv-element position-relative">
 
-            <div class="actions"> <!--start of actions-->
+            <div class="actions" v-show="showAdd"> <!--start of actions-->
 
                 <button type="button" class="cv-btn cv-add"
-                  v-show="showAddAction" title="Add"
+                  title="Add"
                   @click="$emit('add-empty-template')">
                   <i class="fa fa-plus"></i>
                 </button>
@@ -23,6 +23,24 @@
                 </button>
 
             </div> <!--end of actions-->
+
+            <!--confirmation modal-->
+            <cv-confirm
+              :message="'You are about to delete this entry'"
+              v-show="showConfirm"
+              @cancel="onCancel"
+              @okay="onOkay"></cv-confirm>
+            <!--end confirmation modal-->
+
+            <!--progress modal-->
+            <cv-notification
+              :success-message="successMessage"
+              :error-message="errorMessage"
+              :isLoading="showProgress"
+              :show-success="showSuccess"
+              :show-error="showError"
+              v-show="showAsync"></cv-notification>
+            <!--end progress modal-->
 
 <div class="cv-block clearfix">
 
@@ -79,7 +97,8 @@
 
           <div class="form-group">
               <input type="text" name="started_at" placeholder="Start Date e.g 11-2015"
-                class="cv-text-input" v-model="form.started_at">
+                class="cv-text-input" :value="form.started_at"
+                @input="form.started_at = $event.target.value">
           </div>
 
         </div>
@@ -88,7 +107,8 @@
 
           <div class="form-group">
               <input type="text" name="ended_at" placeholder="End Date e.g 12-2016"
-                class="cv-text-input" v-model="form.ended_at">
+                class="cv-text-input" :value="form.ended_at"
+                @input="form.ended_at = $event.target.value">
           </div>
 
         </div>
@@ -120,8 +140,8 @@
             <button type="submit" class="btn btn-success" title="Save">
               <i class="fa fa-save"></i>
             </button>
-            <button type="submit" class="btn btn-danger" title="Delete"
-              :disabled="disableDelete" @click="delete-experience">
+            <button type="button" class="btn btn-danger" title="Delete"
+              v-show="showDeleteAction" @click="onDelete">
               <i class="fa fa-trash-o"></i>
             </button>
 
@@ -154,7 +174,7 @@ export default {
     applicantId: String,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    disableDelete: Boolean
+    showDeleteAction: Boolean
   },
   data() {
     return {
@@ -167,7 +187,14 @@ export default {
         ended_at: '',
         summary: ''
       },
-      form: new Form({})
+      form: new Form({}),
+      showConfirm: false,
+      showAsync: false,
+      showSuccess: false,
+      showError: false,
+      successMessage: '',
+      errorMessage: '',
+      showAdd: ''
     }
   },
   created() {
@@ -179,8 +206,20 @@ export default {
       formModel = _.assign({}, this.model,  { 'applicant_id': this.applicantId });
       this.form = new Form(formModel);
     }
+    this.showAdd = this.showAddAction;
+  },
+  computed: {
+    showProgress: function () {
+      return (this.showSuccess  == false) && (this.showError == false);
+    }
+  },
+  watch: {
+    showAddAction: function (val) {
+      this.showAdd = val;
+    }
   },
   methods: {
+
     onSubmit() {
       if(this.experience) {
         this.updateExperience();
@@ -189,58 +228,111 @@ export default {
         this.createExperience();
       }
     },
-    createExperience() {
 
-      this.$snotify.async('Saving ...', '', () => new Promise((resolve, reject) => {
-       this.form.submit('POST', '/user_experiences')
-                .then(response => {
-                  this.$emit("experience-added", response.data.experiences);
-                  resolve({
-                    body: response.data.message,
-                    timeout: 2000,
-                    closeOnClick: true,
-                    showProgressBar: false
-                  });
-                })
-                .catch(error => {
-                  console.log(error.response);
-                  reject({
-                    body: error.response.data.message,
-                    timeout: 2000,
-                    closeOnClick: true,
-                    showProgressBar: false
-                  });
-                });
-              }));
+    createExperience() {
+        this.showAdd = false;
+        this.showAsync = true;
+        this.form.submit('POST', '/user_experiences')
+            .then(response => {
+              this.successMessage = "Saved successfully";
+              this.showSuccess = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showSuccess = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+                _this.$emit('experience-added', response.data.experiences);
+              }, 2000);
+            })
+            .catch(error => {
+              this.errorMessage = error.response.data.message;
+              this.showError = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showError = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+              }, 2000);
+            });
+
           // End of createExperience method
     },
-    updateExperience() {
 
-      this.$snotify.async('Updating ...', '', () => new Promise((resolve, reject) => {
-        let url = '/user_experiences' + this.experience.id;
-       this.form.submit('PATCH', url)
-                .then(response => {
-                  resolve({
-                    body: response.data.message,
-                    timeout: 2000,
-                    closeOnClick: true,
-                    showProgressBar: false
-                  });
-                })
-                .catch(error => {
-                  console.log(error.response);
-                  reject({
-                    body: error.response.data.message,
-                    timeout: 2000,
-                    closeOnClick: true,
-                    showProgressBar: false
-                  });
-                });
-              }));
+    updateExperience() {
+        this.showAdd = false;
+        this.showAsync = true;
+        let url = '/user_experiences/' + this.experience.id;
+        this.form.submit('PATCH', url)
+            .then(response => {
+              this.successMessage = "Updated successfully";
+              this.showSuccess = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showSuccess = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+                _this.$emit('experience-updated', response.data.experiences);
+              }, 2000);
+            })
+            .catch(error => {
+              this.errorMessage = error.response.data.message;
+              this.showError = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showError = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+              }, 2000);
+            });
       //End of updateExperience method
+    },
+
+    onDelete() {
+      this.showConfirm = true;
+      this.showAdd = false;
+    },
+
+    onOkay() {
+      this.showConfirm = false;
+      this.showAsync = true;
+      this.deleteExperience();
+    },
+
+    onCancel() {
+      this.showConfirm = false;
+      this.showAdd = this.showAddAction;
+    },
+
+    deleteExperience() {
+        this.showAsync = true;
+        let url = '/user_experiences/' + this.experience.id;
+        this.form.submit('DELETE', url)
+            .then(response => {
+              this.successMessage = "Deleted successfully";
+              this.showSuccess = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showSuccess = false;
+                _this.showAsync = false;
+                _this.$emit('experience-deleted', response.data.experiences);
+              }, 2000);
+            })
+            .catch(error => {
+              this.errorMessage = error.response.data.message;
+              this.showError = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showError = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+              }, 2000);
+            });
+
+      //End of deleteExperience method
     }
 
-  }
+  } //End of methods
+
 }
 </script>
 

@@ -71,6 +71,27 @@ Route::resource('tests', 'TestController');
 
 Route::post('/user_experiences', 'ExperienceController@storeExperience')->name('user_experiences');
 Route::patch('/user_experiences/{experience}', 'ExperienceController@updateExperience');
+Route::delete('/user_experiences/{experience}', 'ExperienceController@destroyExperience');
+
+Route::post('/user_honors', 'AchievementController@storeHonors');
+Route::patch('/user_honors/{honor}', 'AchievementController@updateHonors');
+Route::delete('/user_honors/{honor}', 'AchievementController@destroyHonors');
+
+Route::post('/user_educations', 'EducationController@storeEducation');
+Route::patch('/user_educations/{education}', 'EducationController@updateEducation');
+Route::delete('/user_educations/{education}', 'EducationController@destroyEducation');
+
+Route::post('/user_languages', 'LanguageController@storeLanguage');
+Route::patch('/user_languages/{language}', 'LanguageController@updateLanguage');
+Route::delete('/user_languages/{language}', 'LanguageController@destroyLanguage');
+
+Route::post('/user_certifications', 'CertificateController@storeCertificate');
+Route::patch('/user_certifications/{certificate}', 'CertificateController@updateCertificate');
+Route::delete('/user_certifications/{certificate}', 'CertificateController@destroyCertificate');
+
+Route::post('/user_referees', 'RefereeController@storeReferee');
+Route::patch('/user_referees/{referee}', 'RefereeController@updateReferee');
+Route::delete('/user_referees/{referee}', 'RefereeController@destroyReferee');
 
 Route::resource('questions', 'QuestionController');
 
@@ -96,7 +117,8 @@ Route::get('/basic', 'UserController@get_basic')->name("users.basic");
 // Route::patch('/basic', 'UserController@post_basic')->name("users.basic");
 Route::patch('/avatar', 'UserController@post_cv_avatar')->name("users.cv_avatar");
 Route::patch('/basic', 'UserController@post_interactive_basic')->name("users.basic");
-Route::patch('/edits/{applicant?}', 'UserController@post_edits')->name("users.edits");
+// Route::patch('/edits/{applicant?}', 'UserController@post_edits')->name("users.edits");
+Route::patch('/edits/{applicant?}', 'UserController@post_interactive_edits');
 Route::get('/resume/{applicant?}', 'UserController@get_resume')->name("users.resume");
 //Route::get('/cv/{applicant?}', 'UserController@get_cv')->name("users.cv");
 Route::get('/cv/{applicant?}', 'UserController@get_interactive_cv')->name("users.cv");

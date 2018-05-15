@@ -222,10 +222,10 @@ class ExperienceController extends SecureController {
 		$experience = Experience::findOrFail($id);
 
 		//update experience
-		$experience = $experience->updateOrCreate(compact('id'), $body);
+		$experience->update($body);
 
 		return [
-			'experience' => $experience,
+			'experiences' => $user->experiences,
 			'message' => 'The Experience has been Updated'
 		];
 
@@ -249,4 +249,18 @@ class ExperienceController extends SecureController {
 
 		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
+
+	public function destroyExperience(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
+
+		Experience::destroy($id);
+
+		return [
+			'message' => 'Experience successfully deleted',
+			'experiences' => $user->experiences,
+		];
+
+	}
+
 }

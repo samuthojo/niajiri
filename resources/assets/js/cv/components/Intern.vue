@@ -20,9 +20,10 @@
         <experience-item
           :applicant-id="user.id"
           :is-empty-template="false"
-          :disable-delete="true"
+          :show-delete-action="false"
           :show-add-action="emptyTemplates.length == 0"
-          @add-empty-template="addEmptyTemplate"></experience-item>
+          @add-empty-template="addEmptyTemplate"
+          @experience-added="onExperienceAdded"></experience-item>
       </template>
 
       <!--start of experience list-->
@@ -32,9 +33,11 @@
             :experience="experience"
             :applicant-id="user.id"
             :is-empty-template="false"
-            :disable-delete="false"
+            :show-delete-action="true"
             :show-add-action="n == workExperiences.length - 1 && emptyTemplates.length == 0"
             @experience-added="onExperienceAdded"
+            @experience-updated="onExperienceUpdated"
+            @experience-deleted="onExperienceDeleted"
             @add-empty-template="addEmptyTemplate">
           </experience-item>
        </template>
@@ -47,10 +50,11 @@
           :id="'empty' + emptyTemplate"
           :applicant-id="user.id"
           :is-empty-template="true"
-          :disable-delete="true"
+          :show-delete-action="false"
           :show-add-action="n == emptyTemplates.length - 1"
           @add-empty-template="addEmptyTemplate"
-          @cancel-empty-template="cancelEmptyTemplate"></experience-item>
+          @cancel-empty-template="cancelEmptyTemplate"
+          @experience-added="onExperienceAdded"></experience-item>
       </template>
 
 </div>
@@ -73,7 +77,19 @@ export default {
     this.workExperiences = this.experiences;
   },
   methods: {
+
     onExperienceAdded(experiences) {
+      this.workExperiences = experiences;
+      if(this.emptyTemplates.length >= 1) {
+          this.emptyTemplates.pop();
+      }
+    },
+
+    onExperienceUpdated(experiences) {
+      this.workExperiences = experiences;
+    },
+
+    onExperienceDeleted(experiences) {
       this.workExperiences = experiences;
     },
 
@@ -95,9 +111,20 @@ export default {
     cancelEmptyTemplate() {
       this.emptyTemplates.pop();
       this.counter = this.emptyTemplates.length;
+      $('html, body').css({
+          WebkitTransition : 'all 2s ease-in-out',
+          MozTransition    : 'all 2s ease-in-out',
+          MsTransition     : 'all 2s ease-in-out',
+          OTransition      : 'all 2s ease-in-out',
+          transition       : 'all 2s ease-in-out'
+      });
+      $('html, body').animate({
+        scrollTop: window.scrollTo(0, window.pageYOffset - 240)
+      }, 2000);
     }
 
-  }
+  }//End of methods
+
 }
 </script>
 

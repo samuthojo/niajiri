@@ -591,6 +591,35 @@ class UserController extends SecureController {
 		return redirect()->route('users.cv', ['id' => $user->id]);
 	}
 
+	public function post_interactive_edits(Request $request) {
+
+		//obtain current user id
+		$id = \Auth::user()->id;
+
+		//obtain user updates from form input
+		$body = $request->all();
+
+		//reload current user
+		$user = User::findOrFail($id);
+
+		//update user
+		$user->update($body);
+
+		//upload & store user avatar
+		if ($user && $request->hasFile('avatar')) {
+			//clear existing avatar
+			$user->clearMediaCollection('avatars');
+			//attach new avatar
+			$user->addMediaFromRequest('avatar')
+				->toMediaCollection('avatars');
+		}
+
+		return [
+			'message' => 'Updated successfully',
+			'user' => $user,
+		];
+	}
+
 	/**
 	 * Export users(applicant, stage and score)
 	 *

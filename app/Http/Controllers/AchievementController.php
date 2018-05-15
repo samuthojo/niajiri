@@ -88,6 +88,42 @@ class AchievementController extends SecureController {
 
 	}
 
+	public function storeHonors(Request $request) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//ensure valid achievement
+		$this->validate($request, [
+			'title' => 'required|string',
+			'organization' => 'required|string',
+			'summary' => 'nullable|string',
+			'issued_at' => 'required',
+			'applicant_id' => 'string|required|exists:users,id',
+		]);
+
+		//obtain all achievement form inputs
+		$body = $request->all();
+
+		//create achievement
+		$achievement = Achievement::create($body);
+
+		//upload & store achievement attachment
+		if ($achievement && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$achievement->clearMediaCollection('attachments');
+			//attach new attachment
+			$achievement->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Saved successfully',
+			'honors' => $user->achievements,
+		];
+
+	}
+
 	/**
 	 * Display the specified resource.
 	 *
@@ -180,6 +216,46 @@ class AchievementController extends SecureController {
 
 	}
 
+	public function updateHonors(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//ensure valid achievement
+		$this->validate($request, [
+			'title' => 'required|string',
+			'organization' => 'required|string',
+			'summary' => 'nullable|string',
+			'issued_at' => 'required',
+			'applicant_id' => 'string|required|exists:users,id',
+		]);
+
+		//obtain all achievement form inputs
+		$body = $request->all();
+		$body['project_id'] = $request->session()->get('project_id');
+
+		//find existing achievement
+		$achievement = Achievement::findOrFail($id);
+
+		//update achievement
+		$achievement->update($body);
+
+		//upload & store achievement attachment
+		if ($achievement && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$achievement->clearMediaCollection('attachments');
+			//attach new attachment
+			$achievement->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Updated successfully',
+			'honors' => $user->achievements,
+		];
+
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -197,5 +273,17 @@ class AchievementController extends SecureController {
 			->success()->important();
 
 		return redirect()->route('users.cv', ['id' => $user->id]);
+	}
+
+	public function destroyHonors(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
+
+		Achievement::destroy($id);
+
+		return [
+			'message' => 'Deleted successfully',
+			'honors' => $user->achievements,
+		];
 	}
 }

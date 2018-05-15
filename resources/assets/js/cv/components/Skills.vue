@@ -6,15 +6,9 @@
 
       <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
 
-        <div class="col-md-10">
+        <div class="col-md-12">
 
           <h5>SKILLS/PERSONAL INTERESTS</h5>
-
-        </div>
-
-        <div class="col-md-2">
-
-            <button type="button" class="btn btn-warning pull-right">Add</button>
 
         </div>
 
@@ -27,7 +21,8 @@
       :skills="applicant.skills"
       :interests="applicant.interests"
       :applicant-id="applicant.id"
-      @skill-added="onSkillAdded">
+      :disable-delete="isEmptyApplicant"
+      @skills-updated="onSkillUpdated">
     </skill-form>
     <!--end of skill form-->
 
@@ -47,8 +42,13 @@ export default {
   created() {
     this.applicant = this.user;
   },
+  computed: {
+    isEmptyApplicant: function() {
+      return _.isEmpty(this.applicant);
+    }
+  },
   methods: {
-    onSkillAdded(user) {
+    onSkillUpdated(user) {
       this.applicant = user;
     }
   }

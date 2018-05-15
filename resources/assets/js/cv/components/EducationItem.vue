@@ -9,17 +9,38 @@
 
          <div class="cv-element position-relative">
 
-            <div class="actions"> <!--start of actions-->
+            <div class="actions" v-show="showAdd"> <!--start of actions-->
 
-              <div class="btn-group">
-
-                <button type="button" class="btn btn-default">
-                  <i class="fa fa-trash-o"></i>
-                </button>
-
-              </div>
+              <button type="button" class="cv-btn cv-add"
+                title="Add"
+                @click="$emit('add-empty-template')">
+                <i class="fa fa-plus"></i>
+              </button>
+              <button type="button" class="cv-btn cv-cancel"
+                v-show="isEmptyTemplate" title="Cancel"
+                @click="$emit('cancel-empty-template')">
+                <i class="fa fa-times"></i>
+              </button>
 
             </div> <!--end of actions-->
+
+            <!--confirmation modal-->
+            <cv-confirm
+              :message="'You are about to delete this entry'"
+              v-show="showConfirm"
+              @cancel="onCancel"
+              @okay="onOkay"></cv-confirm>
+            <!--end confirmation modal-->
+
+            <!--progress modal-->
+            <cv-notification
+              :success-message="successMessage"
+              :error-message="errorMessage"
+              :isLoading="showProgress"
+              :show-success="showSuccess"
+              :show-error="showError"
+              v-show="showAsync"></cv-notification>
+            <!--end progress modal-->
 
 <div class="cv-block flex flex-space-btn"> <!--start of cv-block -->
 
@@ -121,7 +142,17 @@
 
         <div class="form-group">
 
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+          <div class="btn-group pull-right">
+
+            <button type="submit" class="btn btn-success" title="Save">
+              <i class="fa fa-save"></i>
+            </button>
+            <button type="button" class="btn btn-danger" title="Delete"
+              v-show="showDeleteAction" @click="onDelete">
+              <i class="fa fa-trash-o"></i>
+            </button>
+
+          </div>
 
         </div>
 
@@ -163,7 +194,10 @@ export default {
     education: Object,
     applicantId: String,
     institutions: Array,
-    qualifications: Array
+    qualifications: Array,
+    showAddAction: Boolean,
+    isEmptyTemplate: Boolean,
+    showDeleteAction: Boolean
   },
   data() {
     return {
@@ -175,7 +209,14 @@ export default {
         remark: '',
         summary: ''
       },
-      form: new Form({})
+      form: new Form({}),
+      showConfirm: false,
+      showAsync: false,
+      showSuccess: false,
+      showError: false,
+      successMessage: '',
+      errorMessage: '',
+      showAdd: ''
     }
   },
   created() {
@@ -187,32 +228,133 @@ export default {
       formModel = _.assign({}, this.model,  { 'applicant_id': this.applicantId });
       this.form = new Form(formModel);
     }
+    this.showAdd = this.showAddAction;
+  },
+  computed: {
+    showProgress: function () {
+      return (this.showSuccess  == false) && (this.showError == false);
+    }
+  },
+  watch: {
+    showAddAction: function (val) {
+      this.showAdd = val;
+    }
   },
   methods: {
+
     onSubmit() {
-     this.$snotify.async('Saving ...', '', () => new Promise((resolve, reject) => {
-      this.form.submit('POST', '/user_educations')
-               .then(response => {
-                 this.$emit("education-added", response.data.educations);
-                 resolve({
-                   body: response.data.message,
-                   timeout: 2000,
-                   closeOnClick: true,
-                   showProgressBar: false
-                 });
-               })
-               .catch(error => {
-                 console.log(error.response);
-                 reject({
-                   body: error.response.data.message,
-                   timeout: 2000,
-                   closeOnClick: true,
-                   showProgressBar: false
-                 });
-               });
-             }));
+      if(this.education) {
+        this.updateEducation();
+      }
+      else {
+        this.createEducation();
+      }
+      this.showAdd = false;
+    },
+
+    createEducation() {
+        this.showAsync = true;
+        this.form.submit('POST', '/user_educations')
+            .then(response => {
+              this.successMessage = "Saved successfully";
+              this.showSuccess = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showSuccess = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+                _this.$emit('education-added', response.data.educations);
+              }, 2000);
+            })
+            .catch(error => {
+              this.errorMessage = error.response.data.message;
+              this.showError = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showError = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+              }, 2000);
+            });
+
+          // End of createEducation method
+    },
+
+    updateEducation() {
+        this.showAsync = true;
+        let url = '/user_educations/' + this.education.id;
+        this.form.submit('PATCH', url)
+            .then(response => {
+              this.successMessage = "Updated successfully";
+              this.showSuccess = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showSuccess = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+                _this.$emit('education-updated', response.data.educations);
+              }, 2000);
+            })
+            .catch(error => {
+              this.errorMessage = error.response.data.message;
+              this.showError = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showError = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+              }, 2000);
+            });
+      //End of updateEducation method
+    },
+
+    onDelete() {
+      this.showConfirm = true;
+      this.showAdd = false;
+    },
+
+    onOkay() {
+      this.showConfirm = false;
+      this.showAsync = true;
+      this.deleteEducation();
+    },
+
+    onCancel() {
+      this.showConfirm = false;
+      this.showAdd = this.showAddAction;
+    },
+
+    deleteEducation() {
+        this.showAsync = true;
+        let url = '/user_educations/' + this.education.id;
+        this.form.submit('DELETE', url)
+            .then(response => {
+              this.successMessage = "Deleted successfully";
+              this.showSuccess = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showSuccess = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+                _this.$emit('education-deleted', response.data.educations);
+              }, 2000);
+            })
+            .catch(error => {
+              this.errorMessage = error.response.data.message;
+              this.showError = true;
+              var _this = this;
+              setTimeout(function () {
+                _this.showError = false;
+                _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
+              }, 2000);
+            });
+
+      //End of deleteEducation method
     }
-  }
+
+  }, //End of methods
+
 }
 </script>
 

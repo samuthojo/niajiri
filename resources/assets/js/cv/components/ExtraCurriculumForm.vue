@@ -9,17 +9,15 @@
 
          <div class="cv-element position-relative">
 
-            <div class="actions"> <!--start of actions-->
-
-              <div class="btn-group">
-
-                <button type="button" class="btn btn-default">
-                  <i class="fa fa-trash-o"></i>
-                </button>
-
-              </div>
-
-            </div> <!--end of actions-->
+           <!--progress modal-->
+           <cv-notification
+             :success-message="successMessage"
+             :error-message="errorMessage"
+             :isLoading="showProgress"
+             :show-success="showSuccess"
+             :show-error="showError"
+             v-show="showAsync"></cv-notification>
+           <!--end progress modal-->
 
 <div class="cv-block clearfix">
 
@@ -43,7 +41,9 @@
 
         <div class="form-group">
 
-          <button type="submit" class="btn btn-primary pull-right">Save</button>
+          <button type="submit" class="btn btn-success pull-right" title="Save">
+            <i class="fa fa-save"></i>
+          </button>
 
         </div>
 
@@ -76,7 +76,12 @@ export default {
       model: {
         extracurricular_activities: ''
       },
-      form: new Form({})
+      form: new Form({}),
+      showAsync: false,
+      showSuccess: false,
+      showError: false,
+      successMessage: '',
+      errorMessage: ''
     }
   },
   created() {
@@ -92,31 +97,45 @@ export default {
       this.form = new Form(formModel);
     }
   },
+  computed: {
+    showProgress: function () {
+      return (this.showSuccess  == false) && (this.showError == false);
+    }
+  },
   methods: {
+
     onSubmit() {
-     this.$snotify.async('Saving ...', '', () => new Promise((resolve, reject) => {
-      this.form.submit('POST', '/user_extracurricular')
+      this.updateSkills();
+    },
+
+    updateSkills() {
+      this.showAsync = true;
+      let url = '/edits/' + this.applicantId;
+      this.form.submit('PATCH', url)
                .then(response => {
-                 this.$emit("extracurriculum-added", response.data.user);
-                 resolve({
-                   body: response.data.message,
-                   timeout: 2000,
-                   closeOnClick: true,
-                   showProgressBar: false
-                 });
+                 this.successMessage = "Updated successfully";
+                 this.showSuccess = true;
+                 var _this = this;
+                 setTimeout(function () {
+                   _this.showSuccess = false;
+                   _this.showAsync = false;
+                   _this.$emit('extracurriculum-updated', response.data.user);
+                 }, 2000);
                })
                .catch(error => {
-                 console.log(error.response);
-                 reject({
-                   body: error.response.data.message,
-                   timeout: 2000,
-                   closeOnClick: true,
-                   showProgressBar: false
-                 });
+                 this.errorMessage = error.response.data.message;
+                 this.showError = true;
+                 var _this = this;
+                 setTimeout(function () {
+                   _this.showError = false;
+                   _this.showAsync = false;
+                 }, 2000);
                });
-             }));
     }
+
+  //End of methods
   }
+
 }
 </script>
 

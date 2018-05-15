@@ -82,6 +82,38 @@ class RefereeController extends SecureController {
 
 	}
 
+	public function storeReferee(Request $request) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//ensure valid referee
+		$this->validate($request, [
+			'name' => 'required|string',
+			'title' => 'required|string',
+			'organization' => 'required|string',
+			'email' => 'required|email',
+			'mobile' => 'required|string',
+			'applicant_id' => 'string|required|exists:users,id',
+		]);
+
+		//obtain all referee form inputs
+		$body = $request->all();
+
+		//TODO ensure project id etc?
+		$body['project_id'] = $request->session()->get('project_id');
+
+		//create referee
+		$referee = Referee::create($body);
+
+		return [
+			'message' => 'Saved successfully',
+			'referees' => $user->referees,
+		];
+
+	}
+
+
 	/**
 	 * Display the specified resource.
 	 *
@@ -164,6 +196,37 @@ class RefereeController extends SecureController {
 
 	}
 
+	public function updateReferee(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//ensure valid referee
+		$this->validate($request, [
+			'name' => 'required|string',
+			'title' => 'required|string',
+			'organization' => 'required|string',
+			'email' => 'required|email',
+			'mobile' => 'required|string',
+			'applicant_id' => 'string|required|exists:users,id',
+		]);
+
+		//obtain all referee form inputs
+		$body = $request->all();
+
+		//find existing referee
+		$referee = Referee::findOrFail($id);
+
+		//update referee
+		$referee->update($body);
+
+		return [
+			'message' => 'Updated successfully',
+			'referees' => $user->referees,
+		];
+
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -182,5 +245,18 @@ class RefereeController extends SecureController {
 			->success()->important();
 
 		return redirect()->route('users.cv', ['id' => $user->id]);
+	}
+
+	public function destroyReferee(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		Referee::destroy($id);
+
+		return [
+			'message' => 'Deleted successfully',
+			'referees' => $user->referees,
+		];
 	}
 }

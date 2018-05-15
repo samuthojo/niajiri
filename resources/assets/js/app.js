@@ -3,14 +3,6 @@
  */
 require('./bootstrap');
 
-// $.fn.scrollView = function () {
-//   return this.each(function () {
-//     $('html, body').animate({
-//       scrollTop: $(this).offset().top
-//     }, 1000);
-//   });
-// }
-
 /**
  * VueSnotify notification plugin
  */
@@ -42,12 +34,28 @@ require('./theme');
 
  });
 
+ Vue.filter('shortDate', function(date) {
+
+   if(!date) return '';
+
+   date = new Date(date);
+
+   let month = date.getMonth() + 1;
+
+   let year = date.getFullYear();
+
+   return month + "-" + year;
+
+ });
+
  /**
   * Components
   */
 Vue.component('cv-placeholder', require('./cv/components/CvPlaceholder.vue'));
 Vue.component('cv-avatar', require('./cv/components/CvAvatar.vue'));
 Vue.component('basic', require('./cv/components/Basic.vue'));
+Vue.component('cv-confirm', require('./cv/components/CvConfirm.vue'));
+Vue.component('cv-notification', require('./cv/components/CvNotification.vue'));
 Vue.component('experience-item', require('./cv/components/ExperienceItem.vue'));
 Vue.component('intern', require('./cv/components/Intern.vue'));
 Vue.component('honor-item', require('./cv/components/HonorItem.vue'));

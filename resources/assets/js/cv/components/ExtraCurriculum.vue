@@ -6,15 +6,9 @@
 
       <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
 
-        <div class="col-md-10">
+        <div class="col-md-12">
 
           <h5>EXTRACURRICULUM ACTIVITIES</h5>
-
-        </div>
-
-        <div class="col-md-2">
-
-            <button type="button" class="btn btn-warning pull-right">Add</button>
 
         </div>
 
@@ -26,7 +20,8 @@
     <extra-curriculum-form
       :extracurriculum="user.extracurricular_activities"
       :applicant-id="user.id"
-      @extracurriculum-added="onExtraCurriculumAdded">
+      :disable-delete="isEmptyApplicant"
+      @extracurriculum-updated="onExtraCurriculumUpdated">
     </extra-curriculum-form>
     <!--end of skill form-->
 
@@ -43,11 +38,16 @@ export default {
       applicant: {}
     }
   },
+  computed: {
+    isEmptyApplicant: function() {
+      return _.isEmpty(this.applicant);
+    }
+  },
   created() {
     this.applicant = this.user;
   },
   methods: {
-    onExtraCurriculumAdded(user) {
+    onExtraCurriculumUpdated(user) {
       this.applicant = user;
     }
   }

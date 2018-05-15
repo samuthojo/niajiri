@@ -90,6 +90,44 @@ class CertificateController extends SecureController {
 
 	}
 
+	public function storeCertificate(Request $request) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//ensure valid certificate
+		$this->validate($request, [
+			'title' => 'required|string',
+			'institution' => 'required|string',
+			'summary' => 'nullable|string',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
+			'expired_at' => 'nullable',
+            'applicant_id' => 'string|required|exists:users,id'
+		]);
+
+		//obtain all certificate form inputs
+		$body = $request->all();
+
+		//create certificate
+		$certificate = Certificate::create($body);
+
+		//upload & store certificate attachment
+		if ($certificate && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$certificate->clearMediaCollection('attachments');
+			//attach new attachment
+			$certificate->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Saved successfully',
+			'certifications' => $user->certificates,
+		];
+
+	}
+
 	/**
 	 * Display the specified resource.
 	 *
@@ -144,7 +182,7 @@ class CertificateController extends SecureController {
 
 		//obtain user
 		$user = \Auth::user();
-		
+
 		//ensure valid certificate
 		$this->validate($request, [
 			'title' => 'required|string',
@@ -153,7 +191,7 @@ class CertificateController extends SecureController {
 			'started_at' => 'required',
 			'finished_at' => 'nullable',
 			'expired_at' => 'nullable',
-            'applicant_id' => 'string|required|exists:users,id'
+      'applicant_id' => 'string|required|exists:users,id'
 		]);
 
 		//obtain all certificate form inputs
@@ -183,6 +221,48 @@ class CertificateController extends SecureController {
 
 	}
 
+	public function updateCertificate(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//ensure valid certificate
+		$this->validate($request, [
+			'title' => 'required|string',
+			'institution' => 'required|string',
+			'summary' => 'nullable|string',
+			'started_at' => 'required',
+			'finished_at' => 'nullable',
+			'expired_at' => 'nullable',
+      'applicant_id' => 'string|required|exists:users,id'
+		]);
+
+		//obtain all certificate form inputs
+		$body = $request->all();
+
+		//find existing certificate
+		$certificate = Certificate::findOrFail($id);
+
+		//update certificate
+		$certificate->update($body);
+
+		//upload & store certificate attachment
+		if ($certificate && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$certificate->clearMediaCollection('attachments');
+			//attach new attachment
+			$certificate->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Updated successfully',
+			'certifications' => $user->certificates,
+		];
+
+	}
+
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -200,5 +280,17 @@ class CertificateController extends SecureController {
 			->success()->important();
 
 		return redirect()->route('users.cv', ['id' => $user->id]);
+	}
+
+	public function destroyCertificate(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
+
+		Certificate::destroy($id);
+
+		return [
+			'message' => 'Deleted successfully',
+			'certifications' => $user->certificates,
+		];
 	}
 }

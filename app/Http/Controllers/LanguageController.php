@@ -79,6 +79,33 @@ class LanguageController extends SecureController {
 
 	}
 
+	public function storeLanguage(Request $request) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//ensure valid language
+		$this->validate($request, [
+			'name' => 'required|string',
+			'write_fluency' => 'required|string',
+			'speak_fluency' => 'required|string',
+			'applicant_id' => 'string|required|exists:users,id',
+		]);
+
+		//obtain all language form inputs
+		$body = $request->all();
+		$body['project_id'] = $request->session()->get('project_id');
+
+		//create language
+		$language = Language::create($body);
+
+		return [
+			'message' => 'Saved successfully',
+			'languages' => $user->languages,
+		];
+
+	}
+
 	/**
 	 * Display the specified resource.
 	 *
@@ -160,6 +187,36 @@ class LanguageController extends SecureController {
 
 	}
 
+	public function updateLanguage(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		//ensure valid language
+		$this->validate($request, [
+			'name' => 'required|string',
+			'write_fluency' => 'required|string',
+			'speak_fluency' => 'required|string',
+			'applicant_id' => 'string|required|exists:users,id',
+		]);
+
+		//obtain all language form inputs
+		$body = $request->all();
+
+		//find existing language
+		$language = Language::findOrFail($id);
+
+		//update language
+		$language->update($body);
+
+		return [
+			'message' => 'Updated successfully',
+			'languages' => $user->languages,
+		];
+
+	}
+
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -178,6 +235,20 @@ class LanguageController extends SecureController {
 			->success()->important();
 
 		return redirect()->route('users.cv', ['id' => $user->id]);
+
+	}
+
+	public function destroyLanguage(Request $request, $id) {
+
+		//obtain user
+		$user = \Auth::user();
+
+		Language::destroy($id);
+
+		return [
+			'message' => 'Deleted successfully',
+			'languages' => $user->languages,
+		];
 
 	}
 }
