@@ -35,7 +35,7 @@
                     <div class="col-md-6">
                       <honor
                         :user="{{ $user }}"
-                        :honors="{{ $user->achievements }}"></honor>
+                        :honors="{{ $honors }}"></honor>
                     </div>
 
                 </div>

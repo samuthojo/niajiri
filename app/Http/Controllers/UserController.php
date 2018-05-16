@@ -551,11 +551,26 @@ class UserController extends SecureController {
 			'route_title' => $user->fullName() . ' - CV',
 			'route_description' => $user->fullName() . ' - CV',
 			'user' => $user,
+			'honors' => $this->achievements($user),
 			'instance' => $user,
 		];
 
 		return view('users.cv.vuecv', $data);
 	}
+
+	private function achievements($user) {
+		return $user->achievements()
+								->get()->map(function ($achievement) {
+										if($achievement->attachment()) {
+											$file = $achievement->attachment();
+											$achievement->attachment = $file->getUrl('thumb');
+											$achievement->attachmentName = $file->name;
+									  }
+
+									  return $achievement;
+								});
+	}
+
 
 	/**
 	 * Quick edit current user basic details(or cv details)

@@ -190,6 +190,7 @@ export default {
       this.form = new Form(formModel);
     }
     this.showAdd = this.showAddAction;
+    console.log(this.honor);
   },
   computed: {
     showProgress: function () {
