@@ -4,13 +4,13 @@ return [
 
     /*
      * The filesystems on which to store added files and derived images by default. Choose
-     * one or more of the filesystems you configured in app/config/filesystems.php
+     * one or more of the filesystems you've configured in config/filesystems.php.
      */
-    'defaultFilesystem' => 'public',
+    'default_filesystem' => 'public',
 
     /*
-     * The maximum file size of an item in bytes. Adding a file
-     * that is larger will result in an exception.
+     * The maximum file size of an item in bytes.
+     * Adding a larger file will result in an exception.
      */
     'max_file_size' => 1024 * 1024 * 10,
 
@@ -21,18 +21,18 @@ return [
     'queue_name' => '',
 
     /*
-     * The class name of the media model to be used.
+     * The class name of the media model that should be used.
      */
     'media_model' => App\Models\Media::class,
 
     /*
-     * The engine that will perform the image conversions.
-     * Should be either `gd` or `imagick`
+     * The engine that should perform the image conversions.
+     * Should be either `gd` or `imagick`.
      */
     'image_driver' => 'imagick',
 
     /*
-     * When urls to files get generated this class will be called. Leave empty
+     * When urls to files get generated, this class will be called. Leave empty
      * if your files are stored locally above the site root or on s3.
      */
     'custom_url_generator_class' => null,
@@ -46,7 +46,7 @@ return [
         /*
          * The domain that should be prepended when generating urls.
          */
-        'domain' => 'https://xxxxxxx.s3.amazonaws.com',
+        'domain' => 'https://' . env('AWS_BUCKET') . '.s3.amazonaws.com',
     ],
 
     'remote' => [
@@ -64,7 +64,7 @@ return [
     ],
 
     /*
-     * These generators will be used to created conversion of media files.
+     * These generators will be used to create an image of media files.
      */
     'image_generators' => [
         Spatie\MediaLibrary\ImageGenerators\FileTypes\Image::class,

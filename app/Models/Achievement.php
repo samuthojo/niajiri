@@ -118,7 +118,11 @@ class Achievement extends Model implements HasMediaConversions
 
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('thumb')->width(368)->height(232);
+        $this->addMediaConversion('thumb')
+             ->width(368)
+             ->height(232)
+             ->performOnCollections('attachments')
+             ->nonQueued();
     }
 
 }
