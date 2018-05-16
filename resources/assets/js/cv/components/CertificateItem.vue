@@ -9,10 +9,10 @@
 
          <div class="cv-element position-relative">
 
-            <div class="actions"> <!--start of actions-->
+            <div class="actions" v-show="showAdd"> <!--start of actions-->
 
               <button type="button" class="cv-btn cv-add"
-                v-show="showAdd" title="Add"
+                title="Add"
                 @click="$emit('add-empty-template')">
                 <i class="fa fa-plus"></i>
               </button>
@@ -218,6 +218,7 @@ export default {
       else {
         this.createCertification();
       }
+      this.showAdd = false;
     },
 
     createCertification() {
@@ -230,6 +231,7 @@ export default {
                  setTimeout(function () {
                    _this.showSuccess = false;
                    _this.showAsync = false;
+                   _this.showAdd = _this.showAddAction;
                    _this.$emit('certification-added', response.data.certifications);
                  }, 2000);
                })
@@ -240,6 +242,7 @@ export default {
                  setTimeout(function () {
                      _this.showError = false;
                      _this.showAsync = false;
+                     _this.showAdd = _this.showAddAction;
                    }, 2000);
                });
 
@@ -257,6 +260,7 @@ export default {
               setTimeout(function () {
                 _this.showSuccess = false;
                 _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
                 _this.$emit('certification-updated', response.data.certifications);
               }, 2000);
             })
@@ -267,6 +271,7 @@ export default {
               setTimeout(function () {
                 _this.showError = false;
                 _this.showAsync = false;
+                _this.showAdd = _this.showAddAction;
               }, 2000);
             });
 
@@ -286,7 +291,7 @@ export default {
 
     onCancel() {
       this.showConfirm = false;
-      this.showAdd = true;
+      this.showAdd = this.showAddAction;
     },
 
     deleteCertification() {

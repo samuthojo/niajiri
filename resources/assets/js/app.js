@@ -44,7 +44,7 @@ require('./theme');
 
    let year = date.getFullYear();
 
-   return month + "-" + year;
+   return (month + "-" + year).toString();
 
  });
 
@@ -58,6 +58,7 @@ Vue.component('cv-confirm', require('./cv/components/CvConfirm.vue'));
 Vue.component('cv-notification', require('./cv/components/CvNotification.vue'));
 Vue.component('experience-item', require('./cv/components/ExperienceItem.vue'));
 Vue.component('intern', require('./cv/components/Intern.vue'));
+Vue.component('cv-attachment', require('./cv/components/CvAttachment.vue'));
 Vue.component('honor-item', require('./cv/components/HonorItem.vue'));
 Vue.component('honor', require('./cv/components/Honor.vue'));
 Vue.component('education-item', require('./cv/components/EducationItem.vue'));

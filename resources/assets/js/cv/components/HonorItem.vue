@@ -120,17 +120,12 @@
 
    </div><!--block contents end here-->
 
-   <!--the file image -->
-   <div class="flex flex-vertical-center flex-horizontal-center">
-
-     <div class="attachment-container">
-
-        <img src="http://niajiri.co.tz/images/attachment.jpg"
-          alt="Award Certificate" class="img-thumbnail cv-attachment">
-
-     </div>
-
-   </div><!--end of file image -->
+   <!--start of the file-->
+   <cv-attachment
+     :attachment-url="attachmentUrl"
+     :attachment-name="attachmentName"
+     @file-uploaded="onFileUploaded"></cv-attachment>
+   <!--end the file-->
 
  </div><!--end of cv-block -->
 
@@ -174,12 +169,24 @@ export default {
     }
   },
   created() {
-    let formModel = _.assign({}, this.honor,  { 'applicant_id': this.applicantId });
-    if(this.honor) {
-      this.form = new Form(formModel);
+    let formModel1 = _.assign({}, this.honor,  {
+      'applicant_id': this.applicantId
+    });
+    let formModel2 = _.assign({}, this.honor,  {
+      'applicant_id': this.applicantId,
+      'attachment': null
+    });
+    if(this.honor && this.honor.attachment) {
+      this.form = new Form(formModel1);
+    }
+    else if (this.honor) {
+      this.form = new Form(formModel2);
     }
     else {
-      formModel = _.assign({}, this.model,  { 'applicant_id': this.applicantId });
+      let formModel = _.assign({}, this.model,  {
+        'applicant_id': this.applicantId,
+        'attachment': null
+      });
       this.form = new Form(formModel);
     }
     this.showAdd = this.showAddAction;
@@ -187,6 +194,16 @@ export default {
   computed: {
     showProgress: function () {
       return (this.showSuccess  == false) && (this.showError == false);
+    },
+    attachmentUrl: function () {
+      if(!this.honor || !this.honor.attachment)
+        return null;
+      return this.honor.attachment;
+    },
+    attachmentName: function () {
+      if(!this.honor || !this.honor.attachmentName)
+        return null;
+      return this.honor.attachmentName;
     }
   },
   watch: {
@@ -202,13 +219,14 @@ export default {
       else {
         this.createHonor();
       }
+      this.showAdd = false;
     },
 
     createHonor() {
-        this.showAdd = false;
         this.showAsync = true;
         this.form.submit('POST', '/user_honors')
             .then(response => {
+              console.log(response.data.honors);
               this.successMessage = "Saved successfully";
               this.showSuccess = true;
               var _this = this;
@@ -220,6 +238,7 @@ export default {
               }, 2000);
             })
             .catch(error => {
+              console.log(error);
               this.errorMessage = error.response.data.message;
               this.showError = true;
               var _this = this;
@@ -234,11 +253,11 @@ export default {
     },
 
     updateHonor() {
-        this.showAdd = false;
         this.showAsync = true;
         let url = '/user_honors/' + this.honor.id;
         this.form.submit('PATCH', url)
             .then(response => {
+              console.log(response.data.honors);
               this.successMessage = "Updated successfully";
               this.showSuccess = true;
               var _this = this;
@@ -305,6 +324,10 @@ export default {
             });
 
       //End of deleteHonor method
+    },
+
+    onFileUploaded(file) {
+      this.form.attachment = file;
     }
 
   } //End of methods

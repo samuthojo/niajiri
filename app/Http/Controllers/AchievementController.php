@@ -119,7 +119,7 @@ class AchievementController extends SecureController {
 
 		return [
 			'message' => 'Saved successfully',
-			'honors' => $user->achievements,
+			'honors' => $this->achievements($user),
 		];
 
 	}
@@ -251,7 +251,7 @@ class AchievementController extends SecureController {
 
 		return [
 			'message' => 'Updated successfully',
-			'honors' => $user->achievements,
+			'honors' => $this->achievements($user),
 		];
 
 	}
@@ -283,7 +283,21 @@ class AchievementController extends SecureController {
 
 		return [
 			'message' => 'Deleted successfully',
-			'honors' => $user->achievements,
+			'honors' => $this->achievements($user),
 		];
 	}
+
+	private function achievements($user) {
+		return $user->achievements()
+								->get()->map(function ($achievement) {
+										if($achievement->attachment()) {
+											$file = $achievement->attachment();
+											$achievement->attachment = $file->getUrl('thumb');
+											$achievement->attachmentName = $file->name;
+									  }
+
+									  return $achievement;
+								});
+	}
+
 }

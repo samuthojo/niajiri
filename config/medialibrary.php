@@ -29,7 +29,7 @@ return [
      * The engine that will perform the image conversions.
      * Should be either `gd` or `imagick`
      */
-    'image_driver' => 'gd',
+    'image_driver' => 'imagick',
 
     /*
      * When urls to files get generated this class will be called. Leave empty
@@ -71,6 +71,33 @@ return [
         Spatie\MediaLibrary\ImageGenerators\FileTypes\Pdf::class,
         Spatie\MediaLibrary\ImageGenerators\FileTypes\Svg::class,
         Spatie\MediaLibrary\ImageGenerators\FileTypes\Video::class,
+    ],
+
+    /*
+     * Medialibrary will try to optimize all converted images by removing
+     * metadata and applying a little bit of compression. These are
+     * the optimizers that will be used by default.
+     */
+    'image_optimizers' => [
+        Spatie\ImageOptimizer\Optimizers\Jpegoptim::class => [
+            '--strip-all', // this strips out all text information such as comments and EXIF data
+            '--all-progressive', // this will make sure the resulting image is a progressive one
+        ],
+        Spatie\ImageOptimizer\Optimizers\Pngquant::class => [
+            '--force', // required parameter for this package
+        ],
+        Spatie\ImageOptimizer\Optimizers\Optipng::class => [
+            '-i0', // this will result in a non-interlaced, progressive scanned image
+            '-o2', // this set the optimization level to two (multiple IDAT compression trials)
+            '-quiet', // required parameter for this package
+        ],
+        Spatie\ImageOptimizer\Optimizers\Svgo::class => [
+            '--disable=cleanupIDs', // disabling because it is known to cause troubles
+        ],
+        Spatie\ImageOptimizer\Optimizers\Gifsicle::class => [
+            '-b', // required parameter for this package
+            '-O3', // this produces the slowest but best results
+        ],
     ],
 
     /*

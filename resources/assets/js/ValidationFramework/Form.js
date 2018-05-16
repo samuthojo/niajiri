@@ -17,7 +17,11 @@ export class Form {
   submit(requestType, url) {
     requestType = _.toLower(requestType);
     return new Promise((resolve, reject) => {
-      axios[requestType](url, this.data())
+      axios[requestType](url, this.data(), {
+          'headers': {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
         .then(response => resolve(response))
         .catch(error => reject(error));
     })
@@ -30,7 +34,12 @@ export class Form {
 
     delete data.errors;
 
-    return data;
+    let formData = new FormData();
+    for(let field in data) {
+      formData.append(field, data[field]);
+    }
+
+    return formData;
   }
 
   onSuccess() {

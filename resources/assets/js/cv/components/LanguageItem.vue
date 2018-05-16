@@ -9,10 +9,10 @@
 
          <div class="cv-element position-relative">
 
-            <div class="actions"> <!--start of actions-->
+            <div class="actions" v-show="showAdd"> <!--start of actions-->
 
               <button type="button" class="cv-btn cv-add"
-                v-show="showAdd" title="Add"
+                title="Add"
                 @click="$emit('add-empty-template')">
                 <i class="fa fa-plus"></i>
               </button>
@@ -194,7 +194,7 @@ export default {
   },
   methods: {
 
-      onSubmit() {
+    onSubmit() {
       if(this.language) {
         this.updateLanguage();
       }
