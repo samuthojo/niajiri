@@ -48,20 +48,32 @@
 
       <div class="col-md-6">
 
-        <div class="form-group">
-            <textarea name="name" placeholder="Name"
-             class="cv-textarea-input" rows="1"
-             v-model="form.name"></textarea>
+        <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('name')}]">
+
+            <cv-placeholder
+              :name="'Name'"
+              :length="getLength('name')"></cv-placeholder>
+
+            <textarea name="name"
+               class="cv-textarea-input" rows="1"
+               v-model="form.name"></textarea>
+
         </div>
 
       </div>
 
       <div class="col-md-6">
 
-        <div class="form-group">
-            <textarea name="title" placeholder="Title e.g General Manager"
+        <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('title')}]">
+
+            <cv-placeholder
+              :name="'Title e.g General Manager'"
+              :length="getLength('title')"></cv-placeholder>
+
+            <textarea name="title"
               class="cv-textarea-input" rows="1"
               v-model="form.title"></textarea>
+
         </div>
 
       </div>
@@ -72,20 +84,32 @@
 
         <div class="col-md-6">
 
-          <div class="form-group">
-              <textarea name="organization" placeholder="Organization e.g KPMG"
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('organization')}]">
+
+              <cv-placeholder
+                :name="'Organization e.g KPMG'"
+                :length="getLength('organization')"></cv-placeholder>
+
+              <textarea name="organization"
                class="cv-textarea-input" rows="1"
                v-model="form.organization"></textarea>
+
           </div>
 
         </div>
 
         <div class="col-md-6">
 
-          <div class="form-group">
-              <textarea name="email" placeholder="Email"
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('email')}]">
+
+              <cv-placeholder
+                :name="'Email'"
+                :length="getLength('email')"></cv-placeholder>
+
+              <textarea name="email"
                 class="cv-textarea-input" rows="1"
                 v-model="form.email"></textarea>
+
           </div>
 
         </div>
@@ -96,19 +120,27 @@
 
         <div class="col-md-6">
 
-          <div class="form-group">
-              <textarea name="mobile" placeholder="Mobile" rows="1"
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('mobile')}]">
+
+              <cv-placeholder
+                :name="'Mobile'"
+                :length="getLength('mobile')"></cv-placeholder>
+
+              <textarea name="mobile" rows="1"
                 class="cv-textarea-input" v-model="form.mobile"></textarea>
+
           </div>
 
         </div>
 
         <div class="col-md-6">
 
-          <div class="form-group">
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('alternative_mobile')}]">
+
             <textarea name="alternative_mobile" placeholder="Alternative Mobile"
               rows="1" class="cv-textarea-input"
               v-model="form.alternative_mobile"></textarea>
+
           </div>
 
         </div>
@@ -121,13 +153,19 @@
 
         <div class="form-group">
 
-          <div class="btn-group pull-right">
+          <button type="submit" class="btn btn-success pull-right" title="Save"
+            v-show="!showDeleteAction">
+            <i class="fa fa-save"></i>
+          </button>
+
+          <div class="btn-group pull-right" v-show="showDeleteAction">
 
             <button type="submit" class="btn btn-success" title="Save">
               <i class="fa fa-save"></i>
             </button>
+
             <button type="button" class="btn btn-danger" title="Delete"
-              v-show="showDeleteAction" @click="onDelete">
+              @click="onDelete">
               <i class="fa fa-trash-o"></i>
             </button>
 
@@ -160,7 +198,8 @@ export default {
     applicantId: String,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data() {
     return {
@@ -183,15 +222,25 @@ export default {
     }
   },
   created() {
-    let formModel = _.assign({}, this.referee,  { 'applicant_id': this.applicantId });
+    this.showAdd = this.showAddAction;
+
     if(this.referee) {
+
+      console.log(this.referee);
+
+      let formModel = _.assign({}, this.referee,  {
+        'applicant_id': this.applicantId
+      });
+
       this.form = new Form(formModel);
     }
     else {
-      formModel = _.assign({}, this.model,  { 'applicant_id': this.applicantId });
+      let formModel = _.assign({}, this.model,  {
+        'applicant_id': this.applicantId
+      });
       this.form = new Form(formModel);
     }
-    this.showAdd = this.showAddAction;
+
   },
   computed: {
     showProgress: function () {
@@ -226,7 +275,7 @@ export default {
                    _this.showSuccess = false;
                    _this.showAsync = false;
                    _this.showAdd = _this.showAddAction;
-                   _this.$emit("referee-added", response.data.referees);
+                   _this.$emit("referee-added", response.data.referee);
                  }, 2000);
                })
                .catch(error => {
@@ -254,7 +303,10 @@ export default {
               _this.showSuccess = false;
               _this.showAsync = false;
               _this.showAdd = _this.showAddAction;
-              _this.$emit("referee-updated", response.data.referees);
+              _this.$emit("referee-updated", {
+                'index': _this.index,
+                'referee': response.data.referee
+              });
             }, 2000);
           })
           .catch(error => {
@@ -299,10 +351,11 @@ export default {
                 _this.showSuccess = false;
                 _this.showAsync = false;
                 _this.showAdd = _this.showAddAction;
-                _this.$emit('referee-deleted', response.data.referees);
+                _this.$emit('referee-deleted', _this.index);
               }, 2000);
             })
             .catch(error => {
+              this.form.onFail(error);
               this.errorMessage = error.response.data.message;
               this.showError = true;
               var _this = this;
@@ -314,6 +367,12 @@ export default {
             });
 
       //End of deleteReferee method
+    },
+
+    getLength(field) {
+      if(this.form[field])
+        return this.form[field].toString().length;
+      return 0;
     }
 
     //End of methods

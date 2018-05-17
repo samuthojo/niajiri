@@ -119,7 +119,7 @@ class AchievementController extends SecureController {
 
 		return [
 			'message' => 'Saved successfully',
-			'honors' => $this->achievements($user),
+			'honor' => $this->getAchievementWithAttachment($achievement),
 		];
 
 	}
@@ -231,14 +231,15 @@ class AchievementController extends SecureController {
 		]);
 
 		//obtain all achievement form inputs
-		$body = $request->all();
+	  $body = $request->all();
+
 		$body['project_id'] = $request->session()->get('project_id');
 
 		//find existing achievement
 		$achievement = Achievement::findOrFail($id);
 
 		//update achievement
-		$achievement->update($body);
+		$achievement = $achievement->updateOrCreate(compact('id'), $body);
 
 		//upload & store achievement attachment
 		if ($achievement && $request->hasFile('attachment')) {
@@ -249,9 +250,29 @@ class AchievementController extends SecureController {
 				->toMediaCollection('attachments');
 		}
 
+
 		return [
 			'message' => 'Updated successfully',
-			'honors' => $this->achievements($user),
+			'honor' => $this->getAchievementWithAttachment($achievement),
+		];
+
+	}
+
+	public function updateAttachment(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
+		$achievement = Achievement::findOrFail($id);
+		if ($achievement && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$achievement->clearMediaCollection('attachments');
+			//attach new attachment
+			$achievement->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Attachment updated',
+			'honor'=> $this->getAchievementWithAttachment($achievement),
 		];
 
 	}
@@ -298,6 +319,15 @@ class AchievementController extends SecureController {
 
 									  return $achievement;
 								});
+	}
+
+	private function getAchievementWithAttachment($achievement) {
+		if($achievement->attachment()) {
+			$file = $achievement->attachment();
+			$achievement->attachment = $file->getUrl('thumb');
+			$achievement->attachmentName = $file->name;
+		}
+		return $achievement;
 	}
 
 }

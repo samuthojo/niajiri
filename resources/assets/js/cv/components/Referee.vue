@@ -30,6 +30,7 @@
         <template v-else>
           <referee-item v-for="(referee, n) in userReferees"
             :key="referee.id"
+            :index="n"
             :referee="referee"
             :applicant-id="user.id"
             :is-empty-template="false"
@@ -74,18 +75,23 @@ export default {
     }
   },
   created() {
-    this.userReferees = this.referees;
+    if(this.referees)
+      this.userReferees = this.referees;
   },
   methods: {
-    onRefereeAdded(referees) {
-      this.userReferees = referees;
+    onRefereeAdded(referee) {
+      this.userReferees.push(referee);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
       }
     },
 
-    onRefereeDeleted(referees) {
-      this.userReferees = referees;
+    onRefereeUpdated(result) {
+      this.userReferees.splice(result.index, 1, result.referee);
+    },
+
+    onRefereeDeleted(index) {
+      this.userReferees.splice(index, 1);
     },
 
     addEmptyTemplate() {

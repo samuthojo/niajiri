@@ -101,7 +101,7 @@ class LanguageController extends SecureController {
 
 		return [
 			'message' => 'Saved successfully',
-			'languages' => $user->languages,
+			'language' => $language,
 		];
 
 	}
@@ -211,7 +211,7 @@ class LanguageController extends SecureController {
 
 		return [
 			'message' => 'Updated successfully',
-			'languages' => $user->languages,
+			'language' => $language,
 		];
 
 	}

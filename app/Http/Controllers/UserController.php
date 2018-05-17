@@ -552,6 +552,8 @@ class UserController extends SecureController {
 			'route_description' => $user->fullName() . ' - CV',
 			'user' => $user,
 			'honors' => $this->achievements($user),
+			'certificates' => $this->certificates($user),
+			'educations' => $this->educations($user),
 			'instance' => $user,
 		];
 
@@ -568,6 +570,32 @@ class UserController extends SecureController {
 									  }
 
 									  return $achievement;
+								});
+	}
+
+	private function certificates($user) {
+		return $user->certificates()
+								->get()->map(function ($certificate) {
+										if($certificate->attachment()) {
+											$file = $certificate->attachment();
+											$certificate->attachment = $file->getUrl('thumb');
+											$certificate->attachmentName = $file->name;
+									  }
+
+									  return $certificate;
+								});
+	}
+
+	private function educations($user) {
+		return $user->educations()
+								->get()->map(function ($education) {
+										if($education->attachment()) {
+											$file = $education->attachment();
+											$education->attachment = $file->getUrl('thumb');
+											$education->attachmentName = $file->name;
+									  }
+
+									  return $education;
 								});
 	}
 

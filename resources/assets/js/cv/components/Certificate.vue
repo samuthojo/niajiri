@@ -30,6 +30,7 @@
         <template v-else>
           <certificate-item v-for="(certification, n) in userCertifications"
             :key="certification.id"
+            :index="n"
             :certification="certification"
             :applicant-id="user.id"
             :is-empty-template="false"
@@ -75,22 +76,23 @@ export default {
     }
   },
   created() {
-    this.userCertifications = this.certifications;
+    if(this.certifications)
+      this.userCertifications = this.certifications;
   },
   methods: {
-    onCertificationAdded(certifications) {
-      this.userCertifications = certifications;
+    onCertificationAdded(certification) {
+      this.userCertifications.push(certification);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
       }
     },
 
-    onCertificationUpdated(certifications) {
-      this.userCertifications = certifications;
+    onCertificationUpdated(result) {
+      this.userCertifications.splice(result.index, 1, result.certification);
     },
 
-    onCertificationDeleted(certifications) {
-      this.userCertifications = certifications;
+    onCertificationDeleted(index) {
+      this.userCertifications.splice(index, 1);
     },
 
     addEmptyTemplate() {

@@ -812,17 +812,13 @@ var Form = function () {
   }
 
   _createClass(Form, [{
-    key: 'submit',
+    key: "submit",
     value: function submit(requestType, url) {
       var _this = this;
 
       requestType = _.toLower(requestType);
       return new Promise(function (resolve, reject) {
-        axios[requestType](url, _this.data(), {
-          'headers': {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(function (response) {
+        axios[requestType](url, _this.data()).then(function (response) {
           return resolve(response);
         }).catch(function (error) {
           return reject(error);
@@ -830,7 +826,7 @@ var Form = function () {
       });
     }
   }, {
-    key: 'data',
+    key: "data",
     value: function data() {
       var data = _.clone(this);
 
@@ -838,27 +834,22 @@ var Form = function () {
 
       delete data.errors;
 
-      var formData = new FormData();
-      for (var field in data) {
-        formData.append(field, data[field]);
-      }
-
-      return formData;
+      return data;
     }
   }, {
-    key: 'onSuccess',
+    key: "onSuccess",
     value: function onSuccess() {
       this.errors.clear();
     }
   }, {
-    key: 'reset',
+    key: "reset",
     value: function reset() {
       for (var field in this.originalData) {
         this[field] = "";
       }
     }
   }, {
-    key: 'onFail',
+    key: "onFail",
     value: function onFail(error) {
       this.errors.record(error.response.data.errors);
     }
@@ -22819,9 +22810,9 @@ __webpack_require__(17);
 
 
 var options = {
-    toast: {
-        position: __WEBPACK_IMPORTED_MODULE_0_vue_snotify__["a" /* SnotifyPosition */].rightTop
-    }
+  toast: {
+    position: __WEBPACK_IMPORTED_MODULE_0_vue_snotify__["a" /* SnotifyPosition */].rightTop
+  }
 };
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_snotify__["b" /* default */], options);
@@ -22836,24 +22827,26 @@ __webpack_require__(48);
  */
 Vue.filter('isoDate', function (date) {
 
-    if (!date) return '';
+  if (!date) return '';
 
-    date = _.split(date.toString(), ' ')[0];
+  date = _.split(date.toString(), ' ')[0];
 
-    return date;
+  return date;
 });
 
 Vue.filter('shortDate', function (date) {
 
-    if (!date) return '';
+  if (!date) return '';
 
-    date = new Date(date);
-
-    var month = date.getMonth() + 1;
-
-    var year = date.getFullYear();
-
-    return (month + "-" + year).toString();
+  if (date.indexOf(' ') == -1) {
+    return date;
+  } else {
+    date = _.split(date.toString(), ' ')[0];
+    date = _.split(date, '-');
+    var month = date[1];
+    var year = date[0];
+    return month + "-" + year;
+  }
 });
 
 /**
@@ -22884,26 +22877,26 @@ Vue.component('extra-curriculum', __webpack_require__(156));
 
 $(document).ready(function ($) {
 
-    //allow form to add hidden fields
-    jQuery.fn.hidden = function (name, value) {
-        return this.each(function () {
-            var input = $('<input>').attr('type', 'hidden').attr('name', name).val(value);
-            $(this).append($(input));
-        });
-    };
-
-    //setup jquery ajax to use csrf token
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+  //allow form to add hidden fields
+  jQuery.fn.hidden = function (name, value) {
+    return this.each(function () {
+      var input = $('<input>').attr('type', 'hidden').attr('name', name).val(value);
+      $(this).append($(input));
     });
+  };
 
-    //kick-in resource delete
-    __webpack_require__(161);
+  //setup jquery ajax to use csrf token
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
-    //autosize textarea based on content
-    autosize($('textarea'));
+  //kick-in resource delete
+  __webpack_require__(161);
+
+  //autosize textarea based on content
+  autosize($('textarea'));
 });
 
 /***/ }),
@@ -52345,7 +52338,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52524,6 +52517,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -52533,7 +52576,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     applicantId: String,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data: function data() {
     return {
@@ -52553,18 +52597,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       showError: false,
       successMessage: '',
       errorMessage: '',
-      showAdd: ''
+      showAdd: '',
+      id: ''
     };
   },
   created: function created() {
-    var formModel = _.assign({}, this.experience, { 'applicant_id': this.applicantId });
+    var formModel = {};
+
     if (this.experience) {
+      formModel = _.assign({}, this.experience, { 'applicant_id': this.applicantId });
       this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
     } else {
       formModel = _.assign({}, this.model, { 'applicant_id': this.applicantId });
       this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
     }
     this.showAdd = this.showAddAction;
+
+    this.id = this._uid;
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    var start_id = "#started_at" + this.id;
+
+    $(start_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", function () {
+      _this2.form.started_at = $(start_id).val();
+      _this2.form.errors.clear('started_at');
+    });
+
+    var end_id = "#ended_at" + this.id;
+
+    $(end_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", function () {
+      _this2.form.ended_at = $(end_id).val();
+      _this2.form.errors.clear('ended_at');
+    });
   },
 
   computed: {
@@ -52584,26 +52658,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         this.createExperience();
       }
+      this.showAdd = false;
     },
     createExperience: function createExperience() {
-      var _this2 = this;
+      var _this3 = this;
 
-      this.showAdd = false;
       this.showAsync = true;
       this.form.submit('POST', '/user_experiences').then(function (response) {
-        _this2.successMessage = "Saved successfully";
-        _this2.showSuccess = true;
-        var _this = _this2;
+        _this3.successMessage = "Saved successfully";
+        _this3.showSuccess = true;
+        var _this = _this3;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('experience-added', response.data.experiences);
+          _this.$emit('experience-added', response.data.experience);
         }, 2000);
       }).catch(function (error) {
-        _this2.errorMessage = error.response.data.message;
-        _this2.showError = true;
-        var _this = _this2;
+        _this3.form.onFail(error);
+        _this3.errorMessage = error.response.data.message;
+        _this3.showError = true;
+        var _this = _this3;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -52614,25 +52689,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // End of createExperience method
     },
     updateExperience: function updateExperience() {
-      var _this3 = this;
+      var _this4 = this;
 
-      this.showAdd = false;
       this.showAsync = true;
       var url = '/user_experiences/' + this.experience.id;
       this.form.submit('PATCH', url).then(function (response) {
-        _this3.successMessage = "Updated successfully";
-        _this3.showSuccess = true;
-        var _this = _this3;
+        _this4.successMessage = "Updated successfully";
+        _this4.showSuccess = true;
+        var _this = _this4;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('experience-updated', response.data.experiences);
+          _this.$emit('experience-updated', {
+            'index': _this.index,
+            'experience': response.data.experience
+          });
         }, 2000);
       }).catch(function (error) {
-        _this3.errorMessage = error.response.data.message;
-        _this3.showError = true;
-        var _this = _this3;
+        _this4.form.onFail(error);
+        _this4.errorMessage = error.response.data.message;
+        _this4.showError = true;
+        var _this = _this4;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -52655,23 +52733,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.showAdd = this.showAddAction;
     },
     deleteExperience: function deleteExperience() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.showAsync = true;
       var url = '/user_experiences/' + this.experience.id;
       this.form.submit('DELETE', url).then(function (response) {
-        _this4.successMessage = "Deleted successfully";
-        _this4.showSuccess = true;
-        var _this = _this4;
+        _this5.successMessage = "Deleted successfully";
+        _this5.showSuccess = true;
+        var _this = _this5;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
-          _this.$emit('experience-deleted', response.data.experiences);
+          _this.$emit('experience-deleted', _this.index);
         }, 2000);
       }).catch(function (error) {
-        _this4.errorMessage = error.response.data.message;
-        _this4.showError = true;
-        var _this = _this4;
+        _this5.errorMessage = error.response.data.message;
+        _this5.showError = true;
+        var _this = _this5;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -52680,6 +52758,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       //End of deleteExperience method
+    },
+    getLength: function getLength(field) {
+      if (this.form[field]) return this.form[field].toString().length;
+      return 0;
     }
   } //End of methods
 
@@ -52799,228 +52881,371 @@ var render = function() {
               _c("div", { staticClass: "cv-block clearfix" }, [
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.position,
-                            expression: "form.position"
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("position") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Position e.g Accountant",
+                            length: _vm.getLength("position")
                           }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "position",
-                          placeholder: "Position e.g Accountant",
-                          rows: "1"
-                        },
-                        domProps: { value: _vm.form.position },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "position", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.organization,
-                            expression: "form.organization"
-                          }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "organization",
-                          placeholder: "Organization e.g KPMG",
-                          rows: "1"
-                        },
-                        domProps: { value: _vm.form.organization },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.form,
-                              "organization",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.sector,
-                            expression: "form.sector"
-                          }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "sector",
-                          rows: "1",
-                          placeholder: "Sector e.g Auditing"
-                        },
-                        domProps: { value: _vm.form.sector },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "sector", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.location,
-                            expression: "form.location"
-                          }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "location",
-                          placeholder: "Location e.g Dar es Salaam",
-                          rows: "1"
-                        },
-                        domProps: { value: _vm.form.location },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "location", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("input", {
-                        staticClass: "cv-text-input",
-                        attrs: {
-                          type: "text",
-                          name: "started_at",
-                          placeholder: "Start Date e.g 11-2015"
-                        },
-                        domProps: { value: _vm.form.started_at },
-                        on: {
-                          input: function($event) {
-                            _vm.form.started_at = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("input", {
-                        staticClass: "cv-text-input",
-                        attrs: {
-                          type: "text",
-                          name: "ended_at",
-                          placeholder: "End Date e.g 12-2016"
-                        },
-                        domProps: { value: _vm.form.ended_at },
-                        on: {
-                          input: function($event) {
-                            _vm.form.ended_at = $event.target.value
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.summary,
-                            expression: "form.summary"
-                          }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          rows: "1",
-                          name: "summary",
-                          placeholder: "What did you achieve in this role"
-                        },
-                        domProps: { value: _vm.form.summary },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "summary", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "btn-group pull-right" }, [
-                        _vm._m(0),
+                        }),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.showDeleteAction,
-                                expression: "showDeleteAction"
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.position,
+                              expression: "form.position"
+                            }
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "position", rows: "1" },
+                          domProps: { value: _vm.form.position },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            ],
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button", title: "Delete" },
-                            on: { click: _vm.onDelete }
+                              _vm.$set(
+                                _vm.form,
+                                "position",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          {
+                            "has-cv-error": _vm.form.errors.has("organization")
+                          }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Organization e.g KPMG",
+                            length: _vm.getLength("organization")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.organization,
+                              expression: "form.organization"
+                            }
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "organization", rows: "1" },
+                          domProps: { value: _vm.form.organization },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "organization",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("sector") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Sector e.g Auditing",
+                            length: _vm.getLength("sector")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.sector,
+                              expression: "form.sector"
+                            }
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "sector", rows: "1" },
+                          domProps: { value: _vm.form.sector },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "sector", $event.target.value)
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("location") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Location e.g Dar es Salaam",
+                            length: _vm.getLength("location")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.location,
+                              expression: "form.location"
+                            }
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "location", rows: "1" },
+                          domProps: { value: _vm.form.location },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "location",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("started_at") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Started e.g 11-2015",
+                            length: _vm.getLength("started_at")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "cv-text-input",
+                          attrs: {
+                            type: "text",
+                            name: "started_at",
+                            id: "started_at" + _vm.id
                           },
-                          [_c("i", { staticClass: "fa fa-trash-o" })]
-                        )
-                      ])
+                          domProps: {
+                            value: _vm._f("shortDate")(_vm.form.started_at)
+                          },
+                          on: {
+                            input: function($event) {
+                              _vm.form.started_at = $event.target.value
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("ended_at") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Ended e.g 12-2016",
+                            length: _vm.getLength("ended_at")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "cv-text-input",
+                          attrs: {
+                            type: "text",
+                            name: "ended_at",
+                            id: "ended_at" + _vm.id
+                          },
+                          domProps: {
+                            value: _vm._f("shortDate")(_vm.form.ended_at)
+                          },
+                          on: {
+                            input: function($event) {
+                              _vm.form.ended_at = $event.target.value
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("summary") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "What did you achieve in this role",
+                            length: _vm.getLength("summary")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.summary,
+                              expression: "form.summary"
+                            }
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { rows: "1", name: "summary" },
+                          domProps: { value: _vm.form.summary },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "summary", $event.target.value)
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "button",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !_vm.showDeleteAction,
+                              expression: "!showDeleteAction"
+                            }
+                          ],
+                          staticClass: "btn btn-success pull-right",
+                          attrs: { type: "submit", title: "Save" }
+                        },
+                        [_c("i", { staticClass: "fa fa-save" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.showDeleteAction,
+                              expression: "showDeleteAction"
+                            }
+                          ],
+                          staticClass: "btn-group pull-right"
+                        },
+                        [
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button", title: "Delete" },
+                              on: { click: _vm.onDelete }
+                            },
+                            [_c("i", { staticClass: "fa fa-trash-o" })]
+                          )
+                        ]
+                      )
                     ])
                   ])
                 ])
@@ -53143,7 +53368,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53154,6 +53379,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -53230,21 +53456,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    this.workExperiences = this.experiences;
+    if (this.experiences) this.workExperiences = this.experiences;
   },
 
   methods: {
-    onExperienceAdded: function onExperienceAdded(experiences) {
-      this.workExperiences = experiences;
+    onExperienceAdded: function onExperienceAdded(experience) {
+      this.workExperiences.push(experience);
       if (this.emptyTemplates.length >= 1) {
         this.emptyTemplates.pop();
       }
     },
-    onExperienceUpdated: function onExperienceUpdated(experiences) {
-      this.workExperiences = experiences;
+    onExperienceUpdated: function onExperienceUpdated(result) {
+      this.workExperiences.splice(result.index, 1, result.experience);
     },
-    onExperienceDeleted: function onExperienceDeleted(experiences) {
-      this.workExperiences = experiences;
+    onExperienceDeleted: function onExperienceDeleted(index) {
+      this.workExperiences.splice(index, 1);
     },
     addEmptyTemplate: function addEmptyTemplate() {
       this.counter = this.counter + 1;
@@ -53311,6 +53537,7 @@ var render = function() {
               key: experience.id,
               attrs: {
                 experience: experience,
+                index: n,
                 "applicant-id": _vm.user.id,
                 "is-empty-template": false,
                 "show-delete-action": true,
@@ -53466,7 +53693,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53515,9 +53742,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    isEntity: Boolean,
     attachmentUrl: String,
     attachmentName: String
   },
@@ -53539,7 +53769,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.fileName.length > 0;
     },
     showAttachment: function showAttachment() {
-      return this.attachmentUrl != null;
+      return this.attachmentUrl != null && this.fileName.length == 0;
     }
   },
   methods: {
@@ -53550,8 +53780,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     captureAttachment: function captureAttachment(event) {
       var file = event.target.files[0];
       this.fileName = file.name;
-      this.$emit('file-uploaded', file);
+      if (this.isEntity) {
+        this.updateAttachment(file);
+      } else {
+        this.$emit('file-uploaded', file);
+      }
+    },
+    updateAttachment: function updateAttachment(file) {
+      this.$emit('update-attachment', file);
+      this.fileName = '';
     }
+
+    //End of methods
+
   }
 });
 
@@ -53563,8 +53804,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex flex-column flex-space-btn" }, [
-    _c("div", { staticClass: "attachment-container" }, [
+  return _c("div", { staticClass: "flex flex-column flex-horizontal-center" }, [
+    _c("div", { staticClass: "attachment-container m-b-sm" }, [
       _c("i", {
         directives: [
           {
@@ -53630,7 +53871,39 @@ var render = function() {
         attrs: { type: "button", title: "Attach" },
         on: { click: _vm.onUpload }
       },
-      [_c("i", { staticClass: "fa fa-upload" }), _vm._v("Upload\n  ")]
+      [
+        _c("i", { staticClass: "fa fa-upload" }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.attachmentUrl != null,
+                expression: "attachmentUrl != null"
+              }
+            ]
+          },
+          [_vm._v("Replace")]
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.attachmentUrl == null,
+                expression: "attachmentUrl == null"
+              }
+            ]
+          },
+          [_vm._v("Upload")]
+        )
+      ]
     ),
     _vm._v(" "),
     _c("input", {
@@ -53736,7 +54009,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53889,6 +54162,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -53898,7 +54199,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     applicantId: String,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data: function data() {
     return {
@@ -53909,36 +54211,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         summary: ''
       },
       form: new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */]({}),
+      file: null,
       showConfirm: false,
       showAsync: false,
       showSuccess: false,
       showError: false,
       successMessage: '',
       errorMessage: '',
-      showAdd: ''
+      showAdd: '',
+      id: ''
     };
   },
   created: function created() {
-    var formModel1 = _.assign({}, this.honor, {
-      'applicant_id': this.applicantId
-    });
-    var formModel2 = _.assign({}, this.honor, {
-      'applicant_id': this.applicantId,
-      'attachment': null
-    });
-    if (this.honor && this.honor.attachment) {
-      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel1);
-    } else if (this.honor) {
-      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel2);
-    } else {
-      var formModel = _.assign({}, this.model, {
-        'applicant_id': this.applicantId,
-        'attachment': null
-      });
-      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
-    }
     this.showAdd = this.showAddAction;
-    console.log(this.honor);
+
+    if (this.honor) {
+
+      console.log(this.honor);
+
+      var formModel = _.assign({}, this.honor, {
+        'applicant_id': this.applicantId
+      });
+
+      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
+    } else {
+      var _formModel = _.assign({}, this.model, {
+        'applicant_id': this.applicantId
+      });
+      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](_formModel);
+    }
+
+    this.id = this._uid;
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    var issued_id = "#issued_at" + this.id;
+
+    $(issued_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", function () {
+      _this2.form.issued_at = $(issued_id).val();
+      _this2.form.errors.clear('issued_at');
+    });
   },
 
   computed: {
@@ -53952,6 +54269,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     attachmentName: function attachmentName() {
       if (!this.honor || !this.honor.attachmentName) return null;
       return this.honor.attachmentName;
+    },
+    isHonor: function isHonor() {
+      if (this.honor) return true;
+      return false;
     }
   },
   watch: {
@@ -53969,25 +54290,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.showAdd = false;
     },
     createHonor: function createHonor() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.showAsync = true;
-      this.form.submit('POST', '/user_honors').then(function (response) {
-        console.log(response.data.honors);
-        _this2.successMessage = "Saved successfully";
-        _this2.showSuccess = true;
-        var _this = _this2;
+      var formData = new FormData();
+      for (var field in this.form) {
+        formData.append(field, this.form[field]);
+      }
+      if (this.file) {
+        formData.append('attachment', this.file);
+      }
+      axios.post('/user_honors', formData).then(function (response) {
+        console.log(response.data.honor);
+        _this3.successMessage = "Saved successfully";
+        _this3.showSuccess = true;
+        var _this = _this3;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('honor-added', response.data.honors);
+          _this.$emit('honor-added', response.data.honor);
         }, 2000);
       }).catch(function (error) {
         console.log(error);
-        _this2.errorMessage = error.response.data.message;
-        _this2.showError = true;
-        var _this = _this2;
+        _this3.form.onFail(error);
+        _this3.errorMessage = error.response.data.message;
+        _this3.showError = true;
+        var _this = _this3;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -53998,25 +54327,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // End of createHonor method
     },
     updateHonor: function updateHonor() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.showAsync = true;
       var url = '/user_honors/' + this.honor.id;
-      this.form.submit('PATCH', url).then(function (response) {
-        console.log(response.data.honors);
-        _this3.successMessage = "Updated successfully";
-        _this3.showSuccess = true;
-        var _this = _this3;
+      var formData = new FormData();
+      for (var field in this.form) {
+        formData.append(field, this.form[field]);
+      }
+      formData.append('_method', 'PATCH');
+      axios.post(url, formData).then(function (response) {
+        console.log(response.data.honor);
+        _this4.successMessage = "Updated successfully";
+        _this4.showSuccess = true;
+        var _this = _this4;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('honor-updated', response.data.honors);
+          _this.$emit('honor-updated', {
+            'index': _this.index,
+            'honor': response.data.honor
+          });
         }, 2000);
       }).catch(function (error) {
-        _this3.errorMessage = error.response.data.message;
-        _this3.showError = true;
-        var _this = _this3;
+        _this4.errorMessage = error.response.data.message;
+        _this4.showError = true;
+        _this4.form.onFail(error);
+        var _this = _this4;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -54039,24 +54377,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.showAdd = this.showAddAction;
     },
     deleteHonor: function deleteHonor() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.showAsync = true;
       var url = '/user_honors/' + this.honor.id;
       this.form.submit('DELETE', url).then(function (response) {
-        _this4.successMessage = "Deleted successfully";
-        _this4.showSuccess = true;
-        var _this = _this4;
+        _this5.successMessage = "Deleted successfully";
+        _this5.showSuccess = true;
+        var _this = _this5;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('honor-deleted', response.data.honors);
+          _this.$emit('honor-deleted', _this.index);
         }, 2000);
       }).catch(function (error) {
-        _this4.errorMessage = error.response.data.message;
-        _this4.showError = true;
-        var _this = _this4;
+        _this5.errorMessage = error.response.data.message;
+        _this5.showError = true;
+        var _this = _this5;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -54067,7 +54405,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //End of deleteHonor method
     },
     onFileUploaded: function onFileUploaded(file) {
-      this.form.attachment = file;
+      // this.form.attachment = file;
+      this.file = file;
+    },
+    onUpdateAttachment: function onUpdateAttachment(file) {
+      var _this6 = this;
+
+      this.showAdd = false;
+      this.showAsync = true;
+      var formData = new FormData();
+      formData.append('attachment', file);
+      formData.append('_method', 'PATCH');
+      var url = '/update_honor_attachment/' + this.honor.id;
+      axios.post(url, formData, {
+        'headers': {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        _this6.successMessage = response.data.message;
+        _this6.showSuccess = true;
+        var _this = _this6;
+        setTimeout(function () {
+          _this.showSuccess = false;
+          _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
+          _this.$emit('honor-updated', {
+            'index': _this.index,
+            'honor': response.data.honor
+          });
+        }, 2000);
+      }).catch(function (error) {
+        console.log(error);
+        _this6.errorMessage = "Error, Attachment couldn\'t be updated";
+        _this6.showError = true;
+        var _this = _this6;
+        setTimeout(function () {
+          _this.showError = false;
+          _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
+        }, 2000);
+      });
+    },
+    getLength: function getLength(field) {
+      if (this.form[field]) return this.form[field].toString().length;
+      return 0;
     }
   } //End of methods
 });
@@ -54190,164 +54571,240 @@ var render = function() {
                   _c("div", { staticClass: "clearfix" }, [
                     _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.title,
-                                expression: "form.title"
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              { "has-cv-error": _vm.form.errors.has("title") }
+                            ]
+                          },
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Title",
+                                length: _vm.getLength("title")
                               }
-                            ],
-                            staticClass: "cv-textarea-input",
-                            attrs: {
-                              name: "title",
-                              placeholder: "Title e.g Best Employee",
-                              rows: "1"
-                            },
-                            domProps: { value: _vm.form.title },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                            }),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.title,
+                                  expression: "form.title"
                                 }
-                                _vm.$set(_vm.form, "title", $event.target.value)
+                              ],
+                              staticClass: "cv-textarea-input",
+                              attrs: { name: "title", rows: "1" },
+                              domProps: { value: _vm.form.title },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "title",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            }
-                          })
-                        ])
+                            })
+                          ],
+                          1
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("textarea", {
-                            directives: [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.organization,
-                                expression: "form.organization"
-                              }
-                            ],
-                            staticClass: "cv-textarea-input",
-                            attrs: {
-                              name: "organization",
-                              placeholder: "Institution e.g Niajiri",
-                              rows: "1"
-                            },
-                            domProps: { value: _vm.form.organization },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "organization",
-                                  $event.target.value
+                                "has-cv-error": _vm.form.errors.has(
+                                  "organization"
                                 )
                               }
-                            }
-                          })
-                        ])
+                            ]
+                          },
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Institution e.g Niajiri",
+                                length: _vm.getLength("organization")
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.organization,
+                                  expression: "form.organization"
+                                }
+                              ],
+                              staticClass: "cv-textarea-input",
+                              attrs: { name: "organization", rows: "1" },
+                              domProps: { value: _vm.form.organization },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "organization",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
                       ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.issued_at,
-                                expression: "form.issued_at"
+                                "has-cv-error": _vm.form.errors.has("issued_at")
                               }
-                            ],
-                            staticClass: "cv-text-input",
-                            attrs: {
-                              type: "text",
-                              name: "issued_at",
-                              placeholder: "Date Issued e.g 11-2015"
-                            },
-                            domProps: { value: _vm.form.issued_at },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                            ]
+                          },
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Issued e.g 11-2015",
+                                length: _vm.getLength("issued_at")
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "cv-text-input",
+                              attrs: {
+                                type: "text",
+                                name: "issued_at",
+                                id: "issued_at" + _vm.id
+                              },
+                              domProps: {
+                                value: _vm._f("shortDate")(_vm.form.issued_at)
+                              },
+                              on: {
+                                input: function($event) {
+                                  _vm.form.issued_at = $event.target.value
                                 }
-                                _vm.$set(
-                                  _vm.form,
-                                  "issued_at",
-                                  $event.target.value
-                                )
                               }
-                            }
-                          })
-                        ])
+                            })
+                          ],
+                          1
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.summary,
-                                expression: "form.summary"
-                              }
-                            ],
-                            staticClass: "cv-textarea-input",
-                            attrs: {
-                              rows: "1",
-                              name: "summary",
-                              placeholder: "e.g I worked hard"
-                            },
-                            domProps: { value: _vm.form.summary },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              { "has-cv-error": _vm.form.errors.has("summary") }
+                            ]
+                          },
+                          [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.summary,
+                                  expression: "form.summary"
                                 }
-                                _vm.$set(
-                                  _vm.form,
-                                  "summary",
-                                  $event.target.value
-                                )
+                              ],
+                              staticClass: "cv-textarea-input",
+                              attrs: {
+                                rows: "1",
+                                name: "summary",
+                                placeholder: "Summary e.g I worked hard"
+                              },
+                              domProps: { value: _vm.form.summary },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "summary",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            }
-                          })
-                        ])
+                            })
+                          ]
+                        )
                       ])
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "col-md-12" }, [
                         _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "btn-group pull-right" }, [
-                            _vm._m(0),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.showDeleteAction,
-                                    expression: "showDeleteAction"
-                                  }
-                                ],
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button", title: "Delete" },
-                                on: { click: _vm.onDelete }
-                              },
-                              [_c("i", { staticClass: "fa fa-trash-o" })]
-                            )
-                          ])
+                          _c(
+                            "button",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.showDeleteAction,
+                                  expression: "!showDeleteAction"
+                                }
+                              ],
+                              staticClass: "btn btn-success pull-right",
+                              attrs: { type: "submit", title: "Save" }
+                            },
+                            [_c("i", { staticClass: "fa fa-save" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.showDeleteAction,
+                                  expression: "showDeleteAction"
+                                }
+                              ],
+                              staticClass: "btn-group pull-right"
+                            },
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  attrs: { type: "button", title: "Delete" },
+                                  on: { click: _vm.onDelete }
+                                },
+                                [_c("i", { staticClass: "fa fa-trash-o" })]
+                              )
+                            ]
+                          )
                         ])
                       ])
                     ])
@@ -54355,10 +54812,14 @@ var render = function() {
                   _vm._v(" "),
                   _c("cv-attachment", {
                     attrs: {
+                      "is-entity": _vm.isHonor,
                       "attachment-url": _vm.attachmentUrl,
                       "attachment-name": _vm.attachmentName
                     },
-                    on: { "file-uploaded": _vm.onFileUploaded }
+                    on: {
+                      "file-uploaded": _vm.onFileUploaded,
+                      "update-attachment": _vm.onUpdateAttachment
+                    }
                   })
                 ],
                 1
@@ -54481,7 +54942,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54492,6 +54953,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -54568,18 +55031,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    this.userHonors = this.honors;
+    if (this.honors) this.userHonors = this.honors;
   },
 
   methods: {
-    onHonorAdded: function onHonorAdded(honors) {
-      this.userHonors = honors;
+    onHonorAdded: function onHonorAdded(honor) {
+      this.userHonors.push(honor);
       if (this.emptyTemplates.length >= 1) {
         this.emptyTemplates.pop();
       }
     },
-    onHonorDeleted: function onHonorDeleted(honors) {
-      this.userHonors = honors;
+    onHonorUpdated: function onHonorUpdated(result) {
+      this.userHonors.splice(result.index, 1, result.honor);
+    },
+    onHonorDeleted: function onHonorDeleted(index) {
+      this.userHonors.splice(index, 1);
     },
     addEmptyTemplate: function addEmptyTemplate() {
       this.counter = this.counter + 1;
@@ -54648,6 +55114,7 @@ var render = function() {
               key: honor.id,
               attrs: {
                 honor: honor,
+                index: n,
                 "applicant-id": _vm.user.id,
                 "is-empty-template": false,
                 "show-delete-action": true,
@@ -54657,6 +55124,7 @@ var render = function() {
               },
               on: {
                 "honor-added": _vm.onHonorAdded,
+                "honor-updated": _vm.onHonorUpdated,
                 "honor-deleted": _vm.onHonorDeleted,
                 "add-empty-template": _vm.addEmptyTemplate
               }
@@ -54802,7 +55270,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55002,6 +55470,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -55013,7 +55506,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     qualifications: Array,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data: function data() {
     return {
@@ -55026,29 +55520,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         summary: ''
       },
       form: new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */]({}),
+      file: null,
       showConfirm: false,
       showAsync: false,
       showSuccess: false,
       showError: false,
       successMessage: '',
       errorMessage: '',
-      showAdd: ''
+      showAdd: '',
+      id: ''
     };
   },
   created: function created() {
-    var formModel = _.assign({}, this.education, { 'applicant_id': this.applicantId });
+    this.showAdd = this.showAddAction;
+
     if (this.education) {
+
+      console.log(this.education);
+
+      var formModel = _.assign({}, this.education, {
+        'applicant_id': this.applicantId
+      });
+
       this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
     } else {
-      formModel = _.assign({}, this.model, { 'applicant_id': this.applicantId });
-      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
+      var _formModel = _.assign({}, this.model, {
+        'applicant_id': this.applicantId
+      });
+      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](_formModel);
     }
-    this.showAdd = this.showAddAction;
+
+    this.id = this._uid;
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    var start_id = "#started_at" + this.id;
+
+    $(start_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", function () {
+      _this2.form.started_at = $(start_id).val();
+      _this2.form.errors.clear('started_at');
+    });
+
+    var finished_id = "#finished_at" + this.id;
+
+    $(finished_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", function () {
+      _this2.form.finished_at = $(finished_id).val();
+      _this2.form.errors.clear('finished_at');
+    });
   },
 
   computed: {
     showProgress: function showProgress() {
       return this.showSuccess == false && this.showError == false;
+    },
+    attachmentUrl: function attachmentUrl() {
+      if (!this.education || !this.education.attachment) return null;
+      return this.education.attachment;
+    },
+    attachmentName: function attachmentName() {
+      if (!this.education || !this.education.attachmentName) return null;
+      return this.education.attachmentName;
+    },
+    isEducation: function isEducation() {
+      if (this.education) return true;
+      return false;
     }
   },
   watch: {
@@ -55066,23 +55610,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.showAdd = false;
     },
     createEducation: function createEducation() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.showAsync = true;
-      this.form.submit('POST', '/user_educations').then(function (response) {
-        _this2.successMessage = "Saved successfully";
-        _this2.showSuccess = true;
-        var _this = _this2;
+      var formData = new FormData();
+      for (var field in this.form) {
+        formData.append(field, this.form[field]);
+      }
+      if (this.file) {
+        formData.append('attachment', this.file);
+      }
+      axios.post('/user_educations', formData).then(function (response) {
+        console.log(response.data.education);
+        _this3.successMessage = "Saved successfully";
+        _this3.showSuccess = true;
+        var _this = _this3;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('education-added', response.data.educations);
+          _this.$emit('education-added', response.data.education);
         }, 2000);
       }).catch(function (error) {
-        _this2.errorMessage = error.response.data.message;
-        _this2.showError = true;
-        var _this = _this2;
+        console.log(error);
+        _this3.form.onFail(error);
+        _this3.errorMessage = error.response.data.message;
+        _this3.showError = true;
+        var _this = _this3;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -55093,24 +55647,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // End of createEducation method
     },
     updateEducation: function updateEducation() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.showAsync = true;
       var url = '/user_educations/' + this.education.id;
-      this.form.submit('PATCH', url).then(function (response) {
-        _this3.successMessage = "Updated successfully";
-        _this3.showSuccess = true;
-        var _this = _this3;
+      var formData = new FormData();
+      for (var field in this.form) {
+        formData.append(field, this.form[field]);
+      }
+      formData.append('_method', 'PATCH');
+      axios.post(url, formData).then(function (response) {
+        console.log(response.data.education);
+        _this4.successMessage = "Updated successfully";
+        _this4.showSuccess = true;
+        var _this = _this4;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('education-updated', response.data.educations);
+          _this.$emit('education-updated', {
+            'index': _this.index,
+            'education': response.data.education
+          });
         }, 2000);
       }).catch(function (error) {
-        _this3.errorMessage = error.response.data.message;
-        _this3.showError = true;
-        var _this = _this3;
+        _this4.errorMessage = error.response.data.message;
+        _this4.showError = true;
+        _this4.form.onFail(error);
+        var _this = _this4;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -55133,24 +55697,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.showAdd = this.showAddAction;
     },
     deleteEducation: function deleteEducation() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.showAsync = true;
       var url = '/user_educations/' + this.education.id;
       this.form.submit('DELETE', url).then(function (response) {
-        _this4.successMessage = "Deleted successfully";
-        _this4.showSuccess = true;
-        var _this = _this4;
+        _this5.successMessage = "Deleted successfully";
+        _this5.showSuccess = true;
+        var _this = _this5;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('education-deleted', response.data.educations);
+          _this.$emit('education-deleted', _this.index);
         }, 2000);
       }).catch(function (error) {
-        _this4.errorMessage = error.response.data.message;
-        _this4.showError = true;
-        var _this = _this4;
+        _this5.errorMessage = error.response.data.message;
+        _this5.showError = true;
+        var _this = _this5;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
@@ -55159,6 +55723,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       //End of deleteEducation method
+    },
+    onFileUploaded: function onFileUploaded(file) {
+      // this.form.attachment = file;
+      this.file = file;
+    },
+    onUpdateAttachment: function onUpdateAttachment(file) {
+      var _this6 = this;
+
+      this.showAdd = false;
+      this.showAsync = true;
+      var formData = new FormData();
+      formData.append('attachment', file);
+      formData.append('_method', 'PATCH');
+      var url = '/update_education_attachment/' + this.education.id;
+      axios.post(url, formData, {
+        'headers': {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        _this6.successMessage = response.data.message;
+        _this6.showSuccess = true;
+        var _this = _this6;
+        setTimeout(function () {
+          _this.showSuccess = false;
+          _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
+          _this.$emit('education-updated', {
+            'index': _this.index,
+            'education': response.data.education
+          });
+        }, 2000);
+      }).catch(function (error) {
+        console.log(error);
+        _this6.errorMessage = "Error, Attachment couldn\'t be updated";
+        _this6.showError = true;
+        var _this = _this6;
+        setTimeout(function () {
+          _this.showError = false;
+          _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
+        }, 2000);
+      });
+    },
+    getLength: function getLength(field) {
+      if (this.form[field]) return this.form[field].toString().length;
+      return 0;
     }
   } //End of methods
 
@@ -55275,286 +55885,391 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "cv-block flex flex-space-btn" }, [
-                _c("div", { staticClass: "clearfix" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("Level:")]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
-                        _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "cv-block flex flex-space-btn" },
+                [
+                  _c("div", { staticClass: "clearfix" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
                         _c(
-                          "select",
+                          "div",
                           {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.level,
-                                expression: "form.level"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { name: "level" },
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.form,
-                                    "level",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                },
-                                function($event) {
-                                  _vm.form.errors.clear("level")
-                                }
-                              ]
-                            }
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              { "has-cv-error": _vm.form.errors.has("level") }
+                            ]
                           },
                           [
-                            _c("option", [_vm._v("Certificate")]),
+                            _c("label", [_vm._v("Level:")]),
                             _vm._v(" "),
-                            _c("option", [_vm._v("Diploma")]),
+                            _c("span", { staticClass: "asterik" }, [
+                              _vm._v("*")
+                            ]),
                             _vm._v(" "),
-                            _c("option", [_vm._v("Degree")]),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.level,
+                                    expression: "form.level"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "level" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "level",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      _vm.form.errors.clear("level")
+                                    }
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", [_vm._v("Certificate")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Diploma")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Degree")]),
+                                _vm._v(" "),
+                                _c("option", [_vm._v("Masters")])
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              {
+                                "has-cv-error": _vm.form.errors.has(
+                                  "institution"
+                                )
+                              }
+                            ]
+                          },
+                          [
+                            _c("label", [_vm._v("Institution:")]),
                             _vm._v(" "),
-                            _c("option", [_vm._v("Masters")])
+                            _c("span", { staticClass: "asterik" }, [
+                              _vm._v("*")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.institution,
+                                    expression: "form.institution"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "institution" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "institution",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      _vm.form.errors.clear("institution")
+                                    }
+                                  ]
+                                }
+                              },
+                              _vm._l(_vm.institutions, function(institution) {
+                                return _c("option", { key: institution.name }, [
+                                  _vm._v(_vm._s(institution.name))
+                                ])
+                              })
+                            )
                           ]
                         )
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("Institution:")]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
-                        _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
                         _c(
-                          "select",
+                          "div",
                           {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.institution,
-                                expression: "form.institution"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { name: "institution" },
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    _vm.form,
-                                    "institution",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                },
-                                function($event) {
-                                  _vm.form.errors.clear("institution")
-                                }
-                              ]
-                            }
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              { "has-cv-error": _vm.form.errors.has("summary") }
+                            ]
                           },
-                          _vm._l(_vm.institutions, function(institution) {
-                            return _c("option", { key: institution.name }, [
-                              _vm._v(_vm._s(institution.name))
-                            ])
-                          })
+                          [
+                            _c("label", [
+                              _vm._v("Certificate/Diploma/Degree:")
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "asterik" }, [
+                              _vm._v("*")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.summary,
+                                    expression: "form.summary"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "summary" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "summary",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      _vm.form.errors.clear("summary")
+                                    }
+                                  ]
+                                }
+                              },
+                              _vm._l(_vm.qualifications, function(
+                                qualification
+                              ) {
+                                return _c(
+                                  "option",
+                                  { key: qualification.name },
+                                  [_vm._v(_vm._s(qualification.name))]
+                                )
+                              })
+                            )
+                          ]
                         )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("Certificate/Diploma/Degree:")]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
-                        _vm._v(" "),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
                         _c(
-                          "select",
+                          "div",
                           {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.summary,
-                                expression: "form.summary"
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              { "has-cv-error": _vm.form.errors.has("remark") }
+                            ]
+                          },
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "GPA/Score e.g 3.8",
+                                length: _vm.getLength("remark")
                               }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { name: "summary" },
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
+                            }),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.remark,
+                                  expression: "form.remark"
+                                }
+                              ],
+                              staticClass: "cv-textarea-input",
+                              attrs: { rows: "1", name: "remark" },
+                              domProps: { value: _vm.form.remark },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
                                   _vm.$set(
                                     _vm.form,
-                                    "summary",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                                    "remark",
+                                    $event.target.value
                                   )
-                                },
-                                function($event) {
-                                  _vm.form.errors.clear("summary")
                                 }
-                              ]
-                            }
-                          },
-                          _vm._l(_vm.qualifications, function(qualification) {
-                            return _c("option", { key: qualification.name }, [
-                              _vm._v(_vm._s(qualification.name))
-                            ])
-                          })
+                              }
+                            })
+                          ],
+                          1
                         )
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.remark,
-                              expression: "form.remark"
-                            }
-                          ],
-                          staticClass: "cv-textarea-input",
-                          attrs: {
-                            rows: "1",
-                            name: "remark",
-                            placeholder: "GPA/Score e.g 3.8"
-                          },
-                          domProps: { value: _vm.form.remark },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              {
+                                "has-cv-error": _vm.form.errors.has(
+                                  "started_at"
+                                )
                               }
-                              _vm.$set(_vm.form, "remark", $event.target.value)
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.started_at,
-                              expression: "form.started_at"
-                            }
-                          ],
-                          staticClass: "cv-text-input",
-                          attrs: {
-                            type: "text",
-                            name: "started_at",
-                            placeholder: "Date Started e.g 10-2014"
+                            ]
                           },
-                          domProps: { value: _vm.form.started_at },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Started e.g 10-2014",
+                                length: _vm.getLength("started_at")
                               }
-                              _vm.$set(
-                                _vm.form,
-                                "started_at",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "cv-text-input",
+                              attrs: {
+                                type: "text",
+                                name: "started_at",
+                                id: "started_at" + _vm.id
+                              },
+                              domProps: {
+                                value: _vm._f("shortDate")(_vm.form.started_at)
+                              },
+                              on: {
+                                input: function($event) {
+                                  _vm.form.started_at = $event.target.value
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              {
+                                "has-cv-error": _vm.form.errors.has(
+                                  "finished_at"
+                                )
+                              }
+                            ]
+                          },
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Ended e.g 11-2016",
+                                length: _vm.getLength("finished_at")
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "cv-text-input",
+                              attrs: {
+                                type: "text",
+                                name: "finished_at",
+                                id: "finished_at" + _vm.id
+                              },
+                              domProps: {
+                                value: _vm._f("shortDate")(_vm.form.finished_at)
+                              },
+                              on: {
+                                input: function($event) {
+                                  _vm.form.finished_at = $event.target.value
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.finished_at,
-                              expression: "form.finished_at"
-                            }
-                          ],
-                          staticClass: "cv-text-input",
-                          attrs: {
-                            type: "text",
-                            name: "finished_at",
-                            placeholder: "Date ended e.g 11-2016"
-                          },
-                          domProps: { value: _vm.form.finished_at },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form,
-                                "finished_at",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "btn-group pull-right" }, [
-                          _vm._m(0),
-                          _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
                           _c(
                             "button",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.showDeleteAction,
+                                  expression: "!showDeleteAction"
+                                }
+                              ],
+                              staticClass: "btn btn-success pull-right",
+                              attrs: { type: "submit", title: "Save" }
+                            },
+                            [_c("i", { staticClass: "fa fa-save" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
                             {
                               directives: [
                                 {
@@ -55564,20 +56279,41 @@ var render = function() {
                                   expression: "showDeleteAction"
                                 }
                               ],
-                              staticClass: "btn btn-danger",
-                              attrs: { type: "button", title: "Delete" },
-                              on: { click: _vm.onDelete }
+                              staticClass: "btn-group pull-right"
                             },
-                            [_c("i", { staticClass: "fa fa-trash-o" })]
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  attrs: { type: "button", title: "Delete" },
+                                  on: { click: _vm.onDelete }
+                                },
+                                [_c("i", { staticClass: "fa fa-trash-o" })]
+                              )
+                            ]
                           )
                         ])
                       ])
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(1)
-              ])
+                  ]),
+                  _vm._v(" "),
+                  _c("cv-attachment", {
+                    attrs: {
+                      "is-entity": _vm.isEducation,
+                      "attachment-url": _vm.attachmentUrl,
+                      "attachment-name": _vm.attachmentName
+                    },
+                    on: {
+                      "file-uploaded": _vm.onFileUploaded,
+                      "update-attachment": _vm.onUpdateAttachment
+                    }
+                  })
+                ],
+                1
+              )
             ],
             1
           )
@@ -55598,26 +56334,6 @@ var staticRenderFns = [
         attrs: { type: "submit", title: "Save" }
       },
       [_c("i", { staticClass: "fa fa-save" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex flex-vertical-center flex-horizontal-center" },
-      [
-        _c("div", { staticClass: "attachment-container" }, [
-          _c("img", {
-            staticClass: "img-thumbnail cv-attachment",
-            attrs: {
-              src: "http://niajiri.co.tz/images/attachment.jpg",
-              alt: "Award Certificate"
-            }
-          })
-        ])
-      ]
     )
   }
 ]
@@ -55716,7 +56432,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55727,6 +56443,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -55808,18 +56526,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    this.userEducations = this.educations;
+    if (this.educations) this.userEducations = this.educations;
   },
 
   methods: {
-    onEducationAdded: function onEducationAdded(educations) {
-      this.userEducations = educations;
+    onEducationAdded: function onEducationAdded(education) {
+      this.userEducations.push(education);
       if (this.emptyTemplates.length >= 1) {
         this.emptyTemplates.pop();
       }
     },
-    onEducationDeleted: function onEducationDeleted(educations) {
-      this.userEducations = educations;
+    onEducationUpdated: function onEducationUpdated(result) {
+      this.userEducations.splice(result.index, 1, result.education);
+    },
+    onEducationDeleted: function onEducationDeleted(index) {
+      this.userEducations.splice(index, 1);
     },
     addEmptyTemplate: function addEmptyTemplate() {
       this.counter = this.counter + 1;
@@ -55889,6 +56610,7 @@ var render = function() {
             return _c("education-item", {
               key: education.id,
               attrs: {
+                index: n,
                 education: education,
                 institutions: _vm.institutions,
                 qualifications: _vm.qualifications,
@@ -55901,6 +56623,7 @@ var render = function() {
               },
               on: {
                 "education-added": _vm.onEducationAdded,
+                "education-updated": _vm.onEducationUpdated,
                 "education-deleted": _vm.onEducationDeleted,
                 "add-empty-template": _vm.addEmptyTemplate
               }
@@ -56046,7 +56769,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56203,6 +56926,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -56212,7 +56941,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     applicantId: String,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data: function data() {
     return {
@@ -56232,14 +56962,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    var formModel = _.assign({}, this.language, { 'applicant_id': this.applicantId });
+    this.showAdd = this.showAddAction;
+
     if (this.language) {
+
+      console.log(this.language);
+
+      var formModel = _.assign({}, this.language, {
+        'applicant_id': this.applicantId
+      });
+
       this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
     } else {
-      formModel = _.assign({}, this.model, { 'applicant_id': this.applicantId });
-      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
+      var _formModel = _.assign({}, this.model, {
+        'applicant_id': this.applicantId
+      });
+      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](_formModel);
     }
-    this.showAdd = this.showAddAction;
   },
 
   computed: {
@@ -56273,7 +57012,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('language-added', response.data.languages);
+          _this.$emit('language-added', response.data.language);
         }, 2000);
       }).catch(function (error) {
         _this2.errorMessage = error.response.data.message;
@@ -56301,7 +57040,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('language-updated', response.data.languages);
+          _this.$emit('language-updated', {
+            'index': _this.index,
+            'language': response.data.language
+          });
         }, 2000);
       }).catch(function (error) {
         _this3.errorMessage = error.response.data.message;
@@ -56341,9 +57083,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('language-deleted', response.data.languages);
+          _this.$emit('language-deleted', _this.index);
         }, 2000);
       }).catch(function (error) {
+        _this4.form.onFail(error);
         _this4.errorMessage = error.response.data.message;
         _this4.showError = true;
         var _this = _this4;
@@ -56474,209 +57217,269 @@ var render = function() {
               _c("div", { staticClass: "cv-block clearfix" }, [
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-4" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Name:")]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.name,
-                              expression: "form.name"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { name: "name" },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "name",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              },
-                              function($event) {
-                                _vm.form.errors.clear("name")
-                              }
-                            ]
-                          }
-                        },
-                        [
-                          _c("option", [_vm._v("Swahili")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("English")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("French")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Chinese")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Italian")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Spanish")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Hindi")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Portuguese")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Bengali")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Russian")])
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("name") }
                         ]
-                      )
-                    ])
+                      },
+                      [
+                        _c("label", [_vm._v("Name:")]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.name,
+                                expression: "form.name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { name: "name" },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form,
+                                    "name",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                function($event) {
+                                  _vm.form.errors.clear("name")
+                                }
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", [_vm._v("Swahili")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("English")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("French")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Chinese")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Italian")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Spanish")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Hindi")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Portuguese")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Bengali")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Russian")])
+                          ]
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Written:")]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.write_fluency,
-                              expression: "form.write_fluency"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { name: "write_fluency" },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "write_fluency",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              },
-                              function($event) {
-                                _vm.form.errors.clear("write_fluency")
-                              }
-                            ]
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          {
+                            "has-cv-error": _vm.form.errors.has("write_fluency")
                           }
-                        },
-                        [
-                          _c("option", [_vm._v("Excellent")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Very Good")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Fair")])
                         ]
-                      )
-                    ])
+                      },
+                      [
+                        _c("label", [_vm._v("Written:")]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.write_fluency,
+                                expression: "form.write_fluency"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { name: "write_fluency" },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form,
+                                    "write_fluency",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                function($event) {
+                                  _vm.form.errors.clear("write_fluency")
+                                }
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", [_vm._v("Excellent")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Very Good")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Fair")])
+                          ]
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Oral:")]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.speak_fluency,
-                              expression: "form.speak_fluency"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { name: "speak_fluency" },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "speak_fluency",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              },
-                              function($event) {
-                                _vm.form.errors.clear("speak_fluency")
-                              }
-                            ]
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          {
+                            "has-cv-error": _vm.form.errors.has("speak_fluency")
                           }
-                        },
-                        [
-                          _c("option", [_vm._v("Excellent")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Very Good")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Fair")])
                         ]
-                      )
-                    ])
+                      },
+                      [
+                        _c("label", [_vm._v("Oral:")]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "asterik" }, [_vm._v("*")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.speak_fluency,
+                                expression: "form.speak_fluency"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { name: "speak_fluency" },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form,
+                                    "speak_fluency",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                function($event) {
+                                  _vm.form.errors.clear("speak_fluency")
+                                }
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", [_vm._v("Excellent")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Very Good")]),
+                            _vm._v(" "),
+                            _c("option", [_vm._v("Fair")])
+                          ]
+                        )
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "btn-group pull-right" }, [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.showDeleteAction,
-                                expression: "showDeleteAction"
-                              }
-                            ],
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button", title: "Delete" },
-                            on: { click: _vm.onDelete }
-                          },
-                          [_c("i", { staticClass: "fa fa-trash-o" })]
-                        )
-                      ])
+                      _c(
+                        "button",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !_vm.showDeleteAction,
+                              expression: "!showDeleteAction"
+                            }
+                          ],
+                          staticClass: "btn btn-success pull-right",
+                          attrs: { type: "submit", title: "Save" }
+                        },
+                        [_c("i", { staticClass: "fa fa-save" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.showDeleteAction,
+                              expression: "showDeleteAction"
+                            }
+                          ],
+                          staticClass: "btn-group pull-right"
+                        },
+                        [
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button", title: "Delete" },
+                              on: { click: _vm.onDelete }
+                            },
+                            [_c("i", { staticClass: "fa fa-trash-o" })]
+                          )
+                        ]
+                      )
                     ])
                   ])
                 ])
@@ -56799,7 +57602,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56810,6 +57613,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -56884,18 +57689,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    this.userLanguages = this.languages;
+    if (this.languages) this.userLanguages = this.languages;
   },
 
   methods: {
-    onLanguageAdded: function onLanguageAdded(languages) {
-      this.userLanguages = languages;
+    onLanguageAdded: function onLanguageAdded(language) {
+      this.userLanguages.push(language);
       if (this.emptyTemplates.length >= 1) {
         this.emptyTemplates.pop();
       }
     },
-    onLanguageDeleted: function onLanguageDeleted(languages) {
-      this.userLanguages = languages;
+    onLanguageUpdated: function onLanguageUpdated(result) {
+      this.userLanguages.splice(result.index, 1, result.language);
+    },
+    onLanguageDeleted: function onLanguageDeleted(index) {
+      this.userLanguages.splice(index, 1);
     },
     addEmptyTemplate: function addEmptyTemplate() {
       this.counter = this.counter + 1;
@@ -56962,6 +57770,7 @@ var render = function() {
             return _c("language-item", {
               key: language.id,
               attrs: {
+                index: n,
                 language: language,
                 "applicant-id": _vm.user.id,
                 "is-empty-template": false,
@@ -56972,6 +57781,7 @@ var render = function() {
               },
               on: {
                 "language-added": _vm.onLanguageAdded,
+                "language-updated": _vm.onLanguageUpdated,
                 "language-deleted": _vm.onLanguageDeleted,
                 "add-empty-template": _vm.addEmptyTemplate
               }
@@ -57117,7 +57927,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57289,6 +58099,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -57298,7 +58138,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     applicantId: String,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data: function data() {
     return {
@@ -57310,29 +58151,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         summary: ''
       },
       form: new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */]({}),
+      file: null,
       showConfirm: false,
       showAsync: false,
       showSuccess: false,
       showError: false,
       successMessage: '',
       errorMessage: '',
-      showAdd: ''
+      showAdd: '',
+      id: ''
     };
   },
   created: function created() {
-    var formModel = _.assign({}, this.certification, { 'applicant_id': this.applicantId });
+    this.showAdd = this.showAddAction;
+
     if (this.certification) {
+
+      console.log(this.certification);
+
+      var formModel = _.assign({}, this.certification, {
+        'applicant_id': this.applicantId
+      });
+
       this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
     } else {
-      formModel = _.assign({}, this.model, { 'applicant_id': this.applicantId });
-      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
+      var _formModel = _.assign({}, this.model, {
+        'applicant_id': this.applicantId
+      });
+      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](_formModel);
     }
-    this.showAdd = this.showAddAction;
+
+    this.id = this._uid;
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    var start_id = "#started_at" + this.id;
+
+    $(start_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", function () {
+      _this2.form.started_at = $(start_id).val();
+      _this2.form.errors.clear('started_at');
+    });
+
+    var finished_id = "#finished_at" + this.id;
+
+    $(finished_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", function () {
+      _this2.form.finished_at = $(finished_id).val();
+      _this2.form.errors.clear('finished_at');
+    });
   },
 
   computed: {
     showProgress: function showProgress() {
       return this.showSuccess == false && this.showError == false;
+    },
+    attachmentUrl: function attachmentUrl() {
+      if (!this.certification || !this.certification.attachment) return null;
+      return this.certification.attachment;
+    },
+    attachmentName: function attachmentName() {
+      if (!this.certification || !this.certification.attachmentName) return null;
+      return this.certification.attachmentName;
+    },
+    isCertification: function isCertification() {
+      if (this.certification) return true;
+      return false;
     }
   },
   watch: {
@@ -57350,48 +58241,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.showAdd = false;
     },
     createCertification: function createCertification() {
-      var _this2 = this;
-
-      this.showAsync = true;
-      this.form.submit('POST', '/user_certifications').then(function (response) {
-        _this2.successMessage = "Saved successfully";
-        _this2.showSuccess = true;
-        var _this = _this2;
-        setTimeout(function () {
-          _this.showSuccess = false;
-          _this.showAsync = false;
-          _this.showAdd = _this.showAddAction;
-          _this.$emit('certification-added', response.data.certifications);
-        }, 2000);
-      }).catch(function (error) {
-        _this2.errorMessage = error.response.data.message;
-        _this2.showError = true;
-        var _this = _this2;
-        setTimeout(function () {
-          _this.showError = false;
-          _this.showAsync = false;
-          _this.showAdd = _this.showAddAction;
-        }, 2000);
-      });
-
-      //End of createCertification method
-    },
-    updateCertification: function updateCertification() {
       var _this3 = this;
 
       this.showAsync = true;
-      var url = '/user_certifications/' + this.certification.id;
-      this.form.submit('PATCH', url).then(function (response) {
-        _this3.successMessage = "Updated successfully";
+      var formData = new FormData();
+      for (var field in this.form) {
+        formData.append(field, this.form[field]);
+      }
+      if (this.file) {
+        formData.append('attachment', this.file);
+      }
+      axios.post('/user_certifications', formData).then(function (response) {
+        console.log(response.data.certification);
+        _this3.successMessage = "Saved successfully";
         _this3.showSuccess = true;
         var _this = _this3;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('certification-updated', response.data.certifications);
+          _this.$emit('certification-added', response.data.certification);
         }, 2000);
       }).catch(function (error) {
+        console.log(error);
+        _this3.form.onFail(error);
         _this3.errorMessage = error.response.data.message;
         _this3.showError = true;
         var _this = _this3;
@@ -57402,6 +58275,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }, 2000);
       });
 
+      // End of createCertification method
+    },
+    updateCertification: function updateCertification() {
+      var _this4 = this;
+
+      this.showAsync = true;
+      var url = '/user_certifications/' + this.certification.id;
+      var formData = new FormData();
+      for (var field in this.form) {
+        formData.append(field, this.form[field]);
+      }
+      formData.append('_method', 'PATCH');
+      axios.post(url, formData).then(function (response) {
+        console.log(response.data.certification);
+        _this4.successMessage = "Updated successfully";
+        _this4.showSuccess = true;
+        var _this = _this4;
+        setTimeout(function () {
+          _this.showSuccess = false;
+          _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
+          _this.$emit('certification-updated', {
+            'index': _this.index,
+            'certification': response.data.certification
+          });
+        }, 2000);
+      }).catch(function (error) {
+        _this4.errorMessage = error.response.data.message;
+        _this4.showError = true;
+        _this4.form.onFail(error);
+        var _this = _this4;
+        setTimeout(function () {
+          _this.showError = false;
+          _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
+        }, 2000);
+      });
       //End of updateCertification method
     },
     onDelete: function onDelete() {
@@ -57418,28 +58328,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.showAdd = this.showAddAction;
     },
     deleteCertification: function deleteCertification() {
-      var _this4 = this;
+      var _this5 = this;
 
+      this.showAsync = true;
       var url = '/user_certifications/' + this.certification.id;
       this.form.submit('DELETE', url).then(function (response) {
-        _this4.successMessage = "Deleted successfully";
-        _this4.showSuccess = true;
-        var _this = _this4;
+        _this5.successMessage = "Deleted successfully";
+        _this5.showSuccess = true;
+        var _this = _this5;
         setTimeout(function () {
           _this.showSuccess = false;
           _this.showAsync = false;
-          _this.$emit('certification-deleted', response.data.certifications);
+          _this.showAdd = _this.showAddAction;
+          _this.$emit('certification-deleted', _this.index);
         }, 2000);
       }).catch(function (error) {
-        _this4.errorMessage = error.response.data.message;
-        _this4.showError = true;
-        var _this = _this4;
+        _this5.errorMessage = error.response.data.message;
+        _this5.showError = true;
+        var _this = _this5;
         setTimeout(function () {
           _this.showError = false;
           _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
         }, 2000);
       });
+
       //End of deleteCertification method
+    },
+    onFileUploaded: function onFileUploaded(file) {
+      // this.form.attachment = file;
+      this.file = file;
+    },
+    onUpdateAttachment: function onUpdateAttachment(file) {
+      var _this6 = this;
+
+      this.showAdd = false;
+      this.showAsync = true;
+      var formData = new FormData();
+      formData.append('attachment', file);
+      formData.append('_method', 'PATCH');
+      var url = '/update_certification_attachment/' + this.certification.id;
+      axios.post(url, formData, {
+        'headers': {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        _this6.successMessage = response.data.message;
+        _this6.showSuccess = true;
+        var _this = _this6;
+        setTimeout(function () {
+          _this.showSuccess = false;
+          _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
+          _this.$emit('certification-updated', {
+            'index': _this.index,
+            'certification': response.data.certification
+          });
+        }, 2000);
+      }).catch(function (error) {
+        console.log(error);
+        _this6.errorMessage = "Error, Attachment couldn\'t be updated";
+        _this6.showError = true;
+        var _this = _this6;
+        setTimeout(function () {
+          _this.showError = false;
+          _this.showAsync = false;
+          _this.showAdd = _this.showAddAction;
+        }, 2000);
+      });
+    },
+    getLength: function getLength(field) {
+      if (this.form[field]) return this.form[field].toString().length;
+      return 0;
     }
 
     //End of methods
@@ -57559,184 +58519,269 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "cv-block flex flex-space-btn" }, [
-                _c("div", { staticClass: "clearfix" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.title,
-                              expression: "form.title"
-                            }
-                          ],
-                          staticClass: "cv-textarea-input",
-                          attrs: {
-                            name: "title",
-                            placeholder: "Title e.g CCNA",
-                            rows: "1"
+              _c(
+                "div",
+                { staticClass: "cv-block flex flex-space-btn" },
+                [
+                  _c("div", { staticClass: "clearfix" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              { "has-cv-error": _vm.form.errors.has("title") }
+                            ]
                           },
-                          domProps: { value: _vm.form.title },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Title e.g CCNA",
+                                length: _vm.getLength("title")
                               }
-                              _vm.$set(_vm.form, "title", $event.target.value)
-                            }
-                          }
-                        })
+                            }),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.title,
+                                  expression: "form.title"
+                                }
+                              ],
+                              staticClass: "cv-textarea-input",
+                              attrs: { name: "title", rows: "1" },
+                              domProps: { value: _vm.form.title },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "title",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              {
+                                "has-cv-error": _vm.form.errors.has(
+                                  "institution"
+                                )
+                              }
+                            ]
+                          },
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Institution e.g Cisco",
+                                length: _vm.getLength("institution")
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.institution,
+                                  expression: "form.institution"
+                                }
+                              ],
+                              staticClass: "cv-textarea-input",
+                              attrs: { name: "institution", rows: "1" },
+                              domProps: { value: _vm.form.institution },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "institution",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.institution,
-                              expression: "form.institution"
-                            }
-                          ],
-                          staticClass: "cv-textarea-input",
-                          attrs: {
-                            name: "organization",
-                            placeholder: "Institution e.g Cisco",
-                            rows: "1"
-                          },
-                          domProps: { value: _vm.form.institution },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              {
+                                "has-cv-error": _vm.form.errors.has(
+                                  "started_at"
+                                )
                               }
-                              _vm.$set(
-                                _vm.form,
-                                "institution",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.started_at,
-                              expression: "form.started_at"
-                            }
-                          ],
-                          staticClass: "cv-text-input",
-                          attrs: {
-                            type: "text",
-                            name: "started_at",
-                            placeholder: "Date Started e.g 07-2014"
+                            ]
                           },
-                          domProps: { value: _vm.form.started_at },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Started e.g 07-2014",
+                                length: _vm.getLength("started_at")
                               }
-                              _vm.$set(
-                                _vm.form,
-                                "started_at",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "cv-text-input",
+                              attrs: {
+                                type: "text",
+                                name: "started_at",
+                                id: "started_at" + _vm.id
+                              },
+                              domProps: {
+                                value: _vm._f("shortDate")(_vm.form.started_at)
+                              },
+                              on: {
+                                input: function($event) {
+                                  _vm.form.started_at = $event.target.value
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6" }, [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              {
+                                "has-cv-error": _vm.form.errors.has(
+                                  "finished_at"
+                                )
+                              }
+                            ]
+                          },
+                          [
+                            _c("cv-placeholder", {
+                              attrs: {
+                                name: "Finished e.g 11-2015",
+                                length: _vm.getLength("finished_at")
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "cv-text-input",
+                              attrs: {
+                                type: "text",
+                                name: "finished_at",
+                                id: "finished_at" + _vm.id
+                              },
+                              domProps: {
+                                value: _vm._f("shortDate")(_vm.form.finished_at)
+                              },
+                              on: {
+                                input: function($event) {
+                                  _vm.form.finished_at = $event.target.value
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.finished_at,
-                              expression: "form.finished_at"
-                            }
-                          ],
-                          staticClass: "cv-text-input",
-                          attrs: {
-                            type: "text",
-                            name: "finished_at",
-                            placeholder: "Date Finished e.g 11-2015"
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "div",
+                          {
+                            class: [
+                              "form-group",
+                              "position-relative",
+                              { "has-cv-error": _vm.form.errors.has("summary") }
+                            ]
                           },
-                          domProps: { value: _vm.form.finished_at },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                          [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.summary,
+                                  expression: "form.summary"
+                                }
+                              ],
+                              staticClass: "cv-textarea-input",
+                              attrs: {
+                                rows: "1",
+                                name: "summary",
+                                placeholder: "Summary e.g Pass"
+                              },
+                              domProps: { value: _vm.form.summary },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "summary",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                              _vm.$set(
-                                _vm.form,
-                                "finished_at",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
+                            })
+                          ]
+                        )
                       ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.summary,
-                              expression: "form.summary"
-                            }
-                          ],
-                          staticClass: "cv-textarea-input",
-                          attrs: {
-                            rows: "1",
-                            name: "summary",
-                            placeholder: "summary e.g Pass"
-                          },
-                          domProps: { value: _vm.form.summary },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "summary", $event.target.value)
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "btn-group pull-right" }, [
-                          _vm._m(0),
-                          _vm._v(" "),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
                           _c(
                             "button",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.showDeleteAction,
+                                  expression: "!showDeleteAction"
+                                }
+                              ],
+                              staticClass: "btn btn-success pull-right",
+                              attrs: { type: "submit", title: "Save" }
+                            },
+                            [_c("i", { staticClass: "fa fa-save" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
                             {
                               directives: [
                                 {
@@ -57746,20 +58791,41 @@ var render = function() {
                                   expression: "showDeleteAction"
                                 }
                               ],
-                              staticClass: "btn btn-danger",
-                              attrs: { type: "button", title: "Delete" },
-                              on: { click: _vm.onDelete }
+                              staticClass: "btn-group pull-right"
                             },
-                            [_c("i", { staticClass: "fa fa-trash-o" })]
+                            [
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  attrs: { type: "button", title: "Delete" },
+                                  on: { click: _vm.onDelete }
+                                },
+                                [_c("i", { staticClass: "fa fa-trash-o" })]
+                              )
+                            ]
                           )
                         ])
                       ])
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(1)
-              ])
+                  ]),
+                  _vm._v(" "),
+                  _c("cv-attachment", {
+                    attrs: {
+                      "is-entity": _vm.isCertification,
+                      "attachment-url": _vm.attachmentUrl,
+                      "attachment-name": _vm.attachmentName
+                    },
+                    on: {
+                      "file-uploaded": _vm.onFileUploaded,
+                      "update-attachment": _vm.onUpdateAttachment
+                    }
+                  })
+                ],
+                1
+              )
             ],
             1
           )
@@ -57780,26 +58846,6 @@ var staticRenderFns = [
         attrs: { type: "submit", title: "Save" }
       },
       [_c("i", { staticClass: "fa fa-save" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex flex-vertical-center flex-horizontal-center" },
-      [
-        _c("div", { staticClass: "attachment-container" }, [
-          _c("img", {
-            staticClass: "img-thumbnail cv-attachment",
-            attrs: {
-              src: "http://niajiri.co.tz/images/attachment.jpg",
-              alt: "Award Certificate"
-            }
-          })
-        ])
-      ]
     )
   }
 ]
@@ -57898,7 +58944,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57909,6 +58955,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -57986,21 +59033,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    this.userCertifications = this.certifications;
+    if (this.certifications) this.userCertifications = this.certifications;
   },
 
   methods: {
-    onCertificationAdded: function onCertificationAdded(certifications) {
-      this.userCertifications = certifications;
+    onCertificationAdded: function onCertificationAdded(certification) {
+      this.userCertifications.push(certification);
       if (this.emptyTemplates.length >= 1) {
         this.emptyTemplates.pop();
       }
     },
-    onCertificationUpdated: function onCertificationUpdated(certifications) {
-      this.userCertifications = certifications;
+    onCertificationUpdated: function onCertificationUpdated(result) {
+      this.userCertifications.splice(result.index, 1, result.certification);
     },
-    onCertificationDeleted: function onCertificationDeleted(certifications) {
-      this.userCertifications = certifications;
+    onCertificationDeleted: function onCertificationDeleted(index) {
+      this.userCertifications.splice(index, 1);
     },
     addEmptyTemplate: function addEmptyTemplate() {
       this.counter = this.counter + 1;
@@ -58068,6 +59115,7 @@ var render = function() {
             return _c("certificate-item", {
               key: certification.id,
               attrs: {
+                index: n,
                 certification: certification,
                 "applicant-id": _vm.user.id,
                 "is-empty-template": false,
@@ -58224,7 +59272,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58389,6 +59437,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -58398,7 +59484,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     applicantId: String,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data: function data() {
     return {
@@ -58421,14 +59508,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    var formModel = _.assign({}, this.referee, { 'applicant_id': this.applicantId });
+    this.showAdd = this.showAddAction;
+
     if (this.referee) {
+
+      console.log(this.referee);
+
+      var formModel = _.assign({}, this.referee, {
+        'applicant_id': this.applicantId
+      });
+
       this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
     } else {
-      formModel = _.assign({}, this.model, { 'applicant_id': this.applicantId });
-      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](formModel);
+      var _formModel = _.assign({}, this.model, {
+        'applicant_id': this.applicantId
+      });
+      this.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](_formModel);
     }
-    this.showAdd = this.showAddAction;
   },
 
   computed: {
@@ -58462,7 +59558,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit("referee-added", response.data.referees);
+          _this.$emit("referee-added", response.data.referee);
         }, 2000);
       }).catch(function (error) {
         _this2.errorMessage = error.response.data.message;
@@ -58489,7 +59585,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit("referee-updated", response.data.referees);
+          _this.$emit("referee-updated", {
+            'index': _this.index,
+            'referee': response.data.referee
+          });
         }, 2000);
       }).catch(function (error) {
         _this3.errorMessage = error.response.data.message;
@@ -58530,9 +59629,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.showSuccess = false;
           _this.showAsync = false;
           _this.showAdd = _this.showAddAction;
-          _this.$emit('referee-deleted', response.data.referees);
+          _this.$emit('referee-deleted', _this.index);
         }, 2000);
       }).catch(function (error) {
+        _this4.form.onFail(error);
         _this4.errorMessage = error.response.data.message;
         _this4.showError = true;
         var _this = _this4;
@@ -58544,6 +59644,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       //End of deleteReferee method
+    },
+    getLength: function getLength(field) {
+      if (this.form[field]) return this.form[field].toString().length;
+      return 0;
     }
 
     //End of methods
@@ -58666,218 +59770,328 @@ var render = function() {
               _c("div", { staticClass: "cv-block clearfix" }, [
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.name,
-                            expression: "form.name"
-                          }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: { name: "name", placeholder: "Name", rows: "1" },
-                        domProps: { value: _vm.form.name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("name") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: { name: "Name", length: _vm.getLength("name") }
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.name,
+                              expression: "form.name"
                             }
-                            _vm.$set(_vm.form, "name", $event.target.value)
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "name", rows: "1" },
+                          domProps: { value: _vm.form.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "name", $event.target.value)
+                            }
                           }
-                        }
-                      })
-                    ])
+                        })
+                      ],
+                      1
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.title,
-                            expression: "form.title"
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("title") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Title e.g General Manager",
+                            length: _vm.getLength("title")
                           }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "title",
-                          placeholder: "Title e.g General Manager",
-                          rows: "1"
-                        },
-                        domProps: { value: _vm.form.title },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.title,
+                              expression: "form.title"
                             }
-                            _vm.$set(_vm.form, "title", $event.target.value)
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "title", rows: "1" },
+                          domProps: { value: _vm.form.title },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "title", $event.target.value)
+                            }
                           }
-                        }
-                      })
-                    ])
+                        })
+                      ],
+                      1
+                    )
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.organization,
-                            expression: "form.organization"
+                            "has-cv-error": _vm.form.errors.has("organization")
                           }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "organization",
-                          placeholder: "Organization e.g KPMG",
-                          rows: "1"
-                        },
-                        domProps: { value: _vm.form.organization },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Organization e.g KPMG",
+                            length: _vm.getLength("organization")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.organization,
+                              expression: "form.organization"
                             }
-                            _vm.$set(
-                              _vm.form,
-                              "organization",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "organization", rows: "1" },
+                          domProps: { value: _vm.form.organization },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "organization",
+                                $event.target.value
+                              )
+                            }
                           }
-                        }
-                      })
-                    ])
+                        })
+                      ],
+                      1
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.email,
-                            expression: "form.email"
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("email") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Email",
+                            length: _vm.getLength("email")
                           }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "email",
-                          placeholder: "Email",
-                          rows: "1"
-                        },
-                        domProps: { value: _vm.form.email },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.email,
+                              expression: "form.email"
                             }
-                            _vm.$set(_vm.form, "email", $event.target.value)
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "email", rows: "1" },
+                          domProps: { value: _vm.form.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "email", $event.target.value)
+                            }
                           }
-                        }
-                      })
-                    ])
+                        })
+                      ],
+                      1
+                    )
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.mobile,
-                            expression: "form.mobile"
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
+                          { "has-cv-error": _vm.form.errors.has("mobile") }
+                        ]
+                      },
+                      [
+                        _c("cv-placeholder", {
+                          attrs: {
+                            name: "Mobile",
+                            length: _vm.getLength("mobile")
                           }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "mobile",
-                          placeholder: "Mobile",
-                          rows: "1"
-                        },
-                        domProps: { value: _vm.form.mobile },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        }),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.mobile,
+                              expression: "form.mobile"
                             }
-                            _vm.$set(_vm.form, "mobile", $event.target.value)
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: { name: "mobile", rows: "1" },
+                          domProps: { value: _vm.form.mobile },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "mobile", $event.target.value)
+                            }
                           }
-                        }
-                      })
-                    ])
+                        })
+                      ],
+                      1
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("textarea", {
-                        directives: [
+                    _c(
+                      "div",
+                      {
+                        class: [
+                          "form-group",
+                          "position-relative",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.alternative_mobile,
-                            expression: "form.alternative_mobile"
-                          }
-                        ],
-                        staticClass: "cv-textarea-input",
-                        attrs: {
-                          name: "alternative_mobile",
-                          placeholder: "Alternative Mobile",
-                          rows: "1"
-                        },
-                        domProps: { value: _vm.form.alternative_mobile },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.form,
-                              "alternative_mobile",
-                              $event.target.value
+                            "has-cv-error": _vm.form.errors.has(
+                              "alternative_mobile"
                             )
                           }
-                        }
-                      })
-                    ])
+                        ]
+                      },
+                      [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.alternative_mobile,
+                              expression: "form.alternative_mobile"
+                            }
+                          ],
+                          staticClass: "cv-textarea-input",
+                          attrs: {
+                            name: "alternative_mobile",
+                            placeholder: "Alternative Mobile",
+                            rows: "1"
+                          },
+                          domProps: { value: _vm.form.alternative_mobile },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "alternative_mobile",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-12" }, [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "btn-group pull-right" }, [
-                        _vm._m(0),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.showDeleteAction,
-                                expression: "showDeleteAction"
-                              }
-                            ],
-                            staticClass: "btn btn-danger",
-                            attrs: { type: "button", title: "Delete" },
-                            on: { click: _vm.onDelete }
-                          },
-                          [_c("i", { staticClass: "fa fa-trash-o" })]
-                        )
-                      ])
+                      _c(
+                        "button",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !_vm.showDeleteAction,
+                              expression: "!showDeleteAction"
+                            }
+                          ],
+                          staticClass: "btn btn-success pull-right",
+                          attrs: { type: "submit", title: "Save" }
+                        },
+                        [_c("i", { staticClass: "fa fa-save" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.showDeleteAction,
+                              expression: "showDeleteAction"
+                            }
+                          ],
+                          staticClass: "btn-group pull-right"
+                        },
+                        [
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button", title: "Delete" },
+                              on: { click: _vm.onDelete }
+                            },
+                            [_c("i", { staticClass: "fa fa-trash-o" })]
+                          )
+                        ]
+                      )
                     ])
                   ])
                 ])
@@ -59000,7 +60214,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59011,6 +60225,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -59087,18 +60302,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    this.userReferees = this.referees;
+    if (this.referees) this.userReferees = this.referees;
   },
 
   methods: {
-    onRefereeAdded: function onRefereeAdded(referees) {
-      this.userReferees = referees;
+    onRefereeAdded: function onRefereeAdded(referee) {
+      this.userReferees.push(referee);
       if (this.emptyTemplates.length >= 1) {
         this.emptyTemplates.pop();
       }
     },
-    onRefereeDeleted: function onRefereeDeleted(referees) {
-      this.userReferees = referees;
+    onRefereeUpdated: function onRefereeUpdated(result) {
+      this.userReferees.splice(result.index, 1, result.referee);
+    },
+    onRefereeDeleted: function onRefereeDeleted(index) {
+      this.userReferees.splice(index, 1);
     },
     addEmptyTemplate: function addEmptyTemplate() {
       this.counter = this.counter + 1;
@@ -59166,6 +60384,7 @@ var render = function() {
             return _c("referee-item", {
               key: referee.id,
               attrs: {
+                index: n,
                 referee: referee,
                 "applicant-id": _vm.user.id,
                 "is-empty-template": false,

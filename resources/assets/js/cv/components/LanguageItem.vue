@@ -49,7 +49,7 @@
 
         <div class="col-md-4">
 
-          <div class="form-group">
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('name')}]">
 
             <label>Name:</label>
             <span class="asterik">*</span>
@@ -73,7 +73,7 @@
 
         <div class="col-md-4">
 
-          <div class="form-group">
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('write_fluency')}]">
 
             <label>Written:</label>
             <span class="asterik">*</span>
@@ -90,7 +90,7 @@
 
        <div class="col-md-4">
 
-          <div class="form-group">
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('speak_fluency')}]">
 
             <label>Oral:</label>
             <span class="asterik">*</span>
@@ -113,13 +113,19 @@
 
         <div class="form-group">
 
-          <div class="btn-group pull-right">
+          <button type="submit" class="btn btn-success pull-right" title="Save"
+            v-show="!showDeleteAction">
+            <i class="fa fa-save"></i>
+          </button>
+
+          <div class="btn-group pull-right" v-show="showDeleteAction">
 
             <button type="submit" class="btn btn-success" title="Save">
               <i class="fa fa-save"></i>
             </button>
+
             <button type="button" class="btn btn-danger" title="Delete"
-              v-show="showDeleteAction" @click="onDelete">
+              @click="onDelete">
               <i class="fa fa-trash-o"></i>
             </button>
 
@@ -152,7 +158,8 @@ export default {
     applicantId: String,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data() {
     return {
@@ -172,15 +179,25 @@ export default {
     }
   },
   created() {
-    let formModel = _.assign({}, this.language,  { 'applicant_id': this.applicantId });
+    this.showAdd = this.showAddAction;
+
     if(this.language) {
+
+      console.log(this.language);
+
+      let formModel = _.assign({}, this.language,  {
+        'applicant_id': this.applicantId
+      });
+
       this.form = new Form(formModel);
     }
     else {
-      formModel = _.assign({}, this.model,  { 'applicant_id': this.applicantId });
+      let formModel = _.assign({}, this.model,  {
+        'applicant_id': this.applicantId
+      });
       this.form = new Form(formModel);
     }
-    this.showAdd = this.showAddAction;
+
   },
   computed: {
     showProgress: function () {
@@ -215,7 +232,7 @@ export default {
                 _this.showSuccess = false;
                 _this.showAsync = false;
                 _this.showAdd = _this.showAddAction;
-                _this.$emit('language-added', response.data.languages);
+                _this.$emit('language-added', response.data.language);
               }, 2000);
             })
             .catch(error => {
@@ -244,7 +261,10 @@ export default {
                 _this.showSuccess = false;
                 _this.showAsync = false;
                 _this.showAdd = _this.showAddAction;
-                _this.$emit('language-updated', response.data.languages);
+                _this.$emit('language-updated', {
+                  'index': _this.index,
+                  'language': response.data.language
+                });
               }, 2000);
             })
             .catch(error => {
@@ -288,10 +308,11 @@ export default {
                 _this.showSuccess = false;
                 _this.showAsync = false;
                 _this.showAdd = _this.showAddAction;
-                _this.$emit('language-deleted', response.data.languages);
+                _this.$emit('language-deleted', _this.index);
               }, 2000);
             })
             .catch(error => {
+              this.form.onFail(error);
               this.errorMessage = error.response.data.message;
               this.showError = true;
               var _this = this;

@@ -108,7 +108,7 @@ class RefereeController extends SecureController {
 
 		return [
 			'message' => 'Saved successfully',
-			'referees' => $user->referees,
+			'referee' => $referee,
 		];
 
 	}
@@ -222,7 +222,7 @@ class RefereeController extends SecureController {
 
 		return [
 			'message' => 'Updated successfully',
-			'referees' => $user->referees,
+			'referee' => $referee,
 		];
 
 	}

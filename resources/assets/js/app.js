@@ -38,13 +38,16 @@ require('./theme');
 
    if(!date) return '';
 
-   date = new Date(date);
-
-   let month = date.getMonth() + 1;
-
-   let year = date.getFullYear();
-
-   return (month + "-" + year).toString();
+   if(date.indexOf(' ') == -1) {
+     return date;
+   }
+   else {
+     date = _.split(date.toString(), ' ')[0];
+     date = _.split(date, '-');
+     let month = date[1];
+     let year = date[0];
+     return month + "-"  + year;
+   }
 
  });
 

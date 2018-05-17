@@ -31,6 +31,7 @@
           <experience-item v-for="(experience, n) in workExperiences"
             :key="experience.id"
             :experience="experience"
+            :index="n"
             :applicant-id="user.id"
             :is-empty-template="false"
             :show-delete-action="true"
@@ -74,23 +75,24 @@ export default {
     }
   },
   created() {
-    this.workExperiences = this.experiences;
+    if(this.experiences)
+      this.workExperiences = this.experiences;
   },
   methods: {
 
-    onExperienceAdded(experiences) {
-      this.workExperiences = experiences;
+    onExperienceAdded(experience) {
+      this.workExperiences.push(experience);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
       }
     },
 
-    onExperienceUpdated(experiences) {
-      this.workExperiences = experiences;
+    onExperienceUpdated(result) {
+      this.workExperiences.splice(result.index, 1, result.experience);
     },
 
-    onExperienceDeleted(experiences) {
-      this.workExperiences = experiences;
+    onExperienceDeleted(index) {
+      this.workExperiences.splice(index, 1);
     },
 
     addEmptyTemplate() {

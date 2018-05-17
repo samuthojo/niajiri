@@ -28,12 +28,14 @@
         <template v-else>
           <language-item v-for="(language, n) in userLanguages"
             :key="language.id"
+            :index="n"
             :language="language"
             :applicant-id="user.id"
             :is-empty-template="false"
             :show-delete-action="true"
             :show-add-action="n == userLanguages.length - 1 && emptyTemplates.length == 0"
             @language-added="onLanguageAdded"
+            @language-updated="onLanguageUpdated"
             @language-deleted="onLanguageDeleted"
             @add-empty-template="addEmptyTemplate">
           </language-item>
@@ -72,18 +74,23 @@ export default {
     }
   },
   created() {
-    this.userLanguages = this.languages;
+    if(this.languages)
+      this.userLanguages = this.languages;
   },
   methods: {
-    onLanguageAdded(languages) {
-      this.userLanguages = languages;
+    onLanguageAdded(language) {
+      this.userLanguages.push(language);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
       }
     },
 
-    onLanguageDeleted(languages) {
-      this.userLanguages = languages;
+    onLanguageUpdated(result) {
+      this.userLanguages.splice(result.index, 1, result.language);
+    },
+
+    onLanguageDeleted(index) {
+      this.userLanguages.splice(index, 1);
     },
 
     addEmptyTemplate() {
