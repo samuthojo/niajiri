@@ -279,6 +279,7 @@ export default {
                  }, 2000);
                })
                .catch(error => {
+                   this.form.onFail(error);
                    this.errorMessage = error.response.data.message;
                    this.showError = true;
                    var _this = this;
@@ -310,6 +311,7 @@ export default {
             }, 2000);
           })
           .catch(error => {
+              this.form.onFail(error);
               this.errorMessage = error.response.data.message;
               this.showError = true;
               var _this = this;
