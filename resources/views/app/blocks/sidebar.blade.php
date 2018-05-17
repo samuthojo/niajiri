@@ -31,7 +31,7 @@
 		                	{{-- start user full name --}}
 		                	<span class="block m-t-xs" title="User Name">
 		                		<strong class="font-bold">
-		                			{{Auth::user()->fullName()}} <b class="caret"></b>
+		                			<span id="user-full-name">{{Auth::user()->fullName()}}</span> <b class="caret"></b>
 		                		</strong>
 		                	</span>
 		                	{{-- end user full name --}}

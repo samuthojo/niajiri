@@ -24,7 +24,7 @@
                         <span class="fa fa-pencil" aria-hidden="true"/></a>
                 </div>
                 <div class="col-md-6" title="{{trans('cvs.inputs.email.description')}}">
-                    <i class="fa fa-envelope"></i> 
+                    <i class="fa fa-envelope"></i>
                     <a href="mailto:{{$user->email}}" target="_top">
                     {{display_or_na($user->email)}}
                     </a>
@@ -41,7 +41,7 @@
                     </a>
                 </div>
                 <div class="col-md-6" title="{{trans('cvs.inputs.secondary_email.description')}}">
-                    <i class="fa fa-envelope-o"></i> 
+                    <i class="fa fa-envelope-o"></i>
                     <a href="mailto:{{$user->secondary_email}}" target="_top">
                     {{display_or_na($user->secondary_email)}}
                     </a>

@@ -12,7 +12,7 @@
 
     	{{-- start page title --}}
         <h2 title="{{$route_description}}" class="page_title">
-	        {{$route_title}}
+	        <span id="route-title">{{$route_title}}</span>
         </h2>
         {{-- end page title --}}
 
@@ -40,9 +40,9 @@
     </div>
     {{-- end flash messages --}}
 
-    
+
         @yield('page')
-    
+
 </div>
 {{-- end content wrapper --}}
 

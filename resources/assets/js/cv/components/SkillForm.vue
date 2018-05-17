@@ -102,8 +102,8 @@ export default {
   },
   created() {
     let formModel = {};
-    
-    if(this.skills && this.interests) {
+
+    if(this.skills || this.interests) {
 
       formModel = _.assign({}, {
         'applicant_id': this.applicantId,

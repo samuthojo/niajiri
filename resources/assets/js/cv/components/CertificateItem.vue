@@ -347,6 +347,7 @@ export default {
         this.showAsync = true;
         var url = '/user_certifications/' + this.certification.id;
         var formData = new FormData();
+        alert(this.form.started_at + " " + this.form.finished_at);
         for(let field in this.form) {
           formData.append(field, this.form[field]);
         }

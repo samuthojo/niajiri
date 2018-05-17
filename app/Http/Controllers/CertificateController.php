@@ -233,7 +233,7 @@ class CertificateController extends SecureController {
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
 			'started_at' => 'required',
-			'finished_at' => 'required',
+			'finished_at' => 'nullable',
 			'expired_at' => 'nullable',
       'applicant_id' => 'string|required|exists:users,id'
 		]);
