@@ -101,12 +101,16 @@ export default {
     }
   },
   created() {
-    let formModel = _.assign({}, {
-      'applicant_id': this.applicantId,
-      'skills': this.skills,
-      'interests': this.interests
-    });
+    let formModel = {};
+    
     if(this.skills && this.interests) {
+
+      formModel = _.assign({}, {
+        'applicant_id': this.applicantId,
+        'skills': this.skills,
+        'interests': this.interests
+      });
+
       this.form = new Form(formModel);
     }
     else {

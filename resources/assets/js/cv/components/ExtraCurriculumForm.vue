@@ -85,11 +85,15 @@ export default {
     }
   },
   created() {
-    let formModel = _.assign({},  {
-      'applicant_id': this.applicantId,
-      'extracurricular_activities': this.extracurriculum
-    });
+    let formModel = {};
+
     if(this.extracurriculum) {
+
+      formModel = _.assign({},  {
+        'applicant_id': this.applicantId,
+        'extracurricular_activities': this.extracurriculum
+      });
+
       this.form = new Form(formModel);
     }
     else {
