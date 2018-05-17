@@ -50,7 +50,7 @@
 
       <div class="col-md-6">
 
-        <div class="form-group">
+        <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('level')}]">
 
           <label>Level:</label>
           <span class="asterik">*</span>
@@ -68,7 +68,7 @@
 
       <div class="col-md-6">
 
-        <div class="form-group">
+        <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('institution')}]">
 
           <label>Institution:</label>
           <span class="asterik">*</span>
@@ -88,7 +88,7 @@
 
         <div class="col-md-6">
 
-          <div class="form-group">
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('summary')}]">
 
             <label>Certificate/Diploma/Degree:</label>
             <span class="asterik">*</span>
@@ -104,10 +104,15 @@
 
         <div class="col-md-6">
 
-          <div class="form-group">
+          <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('remark')}]">
+
+              <cv-placeholder
+                :name="'GPA/Score e.g 3.8'"
+                :length="getLength('remark')"></cv-placeholder>
+
               <textarea rows="1" name="remark" class="cv-textarea-input"
-                placeholder="GPA/Score e.g 3.8"
                 v-model="form.remark"></textarea>
+
           </div>
 
        </div>
@@ -118,18 +123,36 @@
 
       <div class="col-md-6">
 
-        <div class="form-group">
-          <input type="text" name="started_at" v-model="form.started_at"
-            placeholder="Date Started e.g 10-2014" class="cv-text-input">
+        <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('started_at')}]">
+
+          <cv-placeholder
+            :name="'Started e.g 10-2014'"
+            :length="getLength('started_at')"></cv-placeholder>
+
+          <input type="text" name="started_at"
+            class="cv-text-input"
+            :id="'started_at' + id"
+            :value="form.started_at | shortDate"
+            @input="form.started_at = $event.target.value">
+
         </div>
 
       </div>
 
       <div class="col-md-6">
 
-        <div class="form-group">
-          <input type="text" name="finished_at" v-model="form.finished_at"
-            placeholder="Date ended e.g 11-2016" class="cv-text-input">
+        <div :class="['form-group', 'position-relative', {'has-cv-error': form.errors.has('finished_at')}]">
+
+          <cv-placeholder
+            :name="'Ended e.g 11-2016'"
+            :length="getLength('finished_at')"></cv-placeholder>
+
+          <input type="text" name="finished_at"
+            class="cv-text-input"
+            :id="'finished_at' + id"
+            :value="form.finished_at | shortDate"
+            @input="form.finished_at = $event.target.value">
+
         </div>
 
       </div>
@@ -142,13 +165,18 @@
 
         <div class="form-group">
 
-          <div class="btn-group pull-right">
+          <button type="submit" class="btn btn-success pull-right" title="Save"
+            v-show="!showDeleteAction">
+            <i class="fa fa-save"></i>
+          </button>
+
+          <div class="btn-group pull-right" v-show="showDeleteAction">
 
             <button type="submit" class="btn btn-success" title="Save">
               <i class="fa fa-save"></i>
             </button>
             <button type="button" class="btn btn-danger" title="Delete"
-              v-show="showDeleteAction" @click="onDelete">
+              @click="onDelete">
               <i class="fa fa-trash-o"></i>
             </button>
 
@@ -162,17 +190,14 @@
 
    </div><!--block contents end here-->
 
-   <!--the file image -->
-   <div class="flex flex-vertical-center flex-horizontal-center">
-
-     <div class="attachment-container">
-
-        <img src="http://niajiri.co.tz/images/attachment.jpg"
-          alt="Award Certificate" class="img-thumbnail cv-attachment">
-
-     </div>
-
-   </div><!--end of file image -->
+   <!--start of the file-->
+   <cv-attachment
+     :is-entity="isEducation"
+     :attachment-url="attachmentUrl"
+     :attachment-name="attachmentName"
+     @file-uploaded="onFileUploaded"
+     @update-attachment="onUpdateAttachment"></cv-attachment>
+   <!--end of the file-->
 
  </div><!--end of cv-block -->
 
@@ -197,7 +222,8 @@ export default {
     qualifications: Array,
     showAddAction: Boolean,
     isEmptyTemplate: Boolean,
-    showDeleteAction: Boolean
+    showDeleteAction: Boolean,
+    index: Number
   },
   data() {
     return {
@@ -210,29 +236,81 @@ export default {
         summary: ''
       },
       form: new Form({}),
+      file: null,
       showConfirm: false,
       showAsync: false,
       showSuccess: false,
       showError: false,
       successMessage: '',
       errorMessage: '',
-      showAdd: ''
+      showAdd: '',
+      id: ''
     }
   },
   created() {
-    let formModel = _.assign({}, this.education,  { 'applicant_id': this.applicantId });
+    this.showAdd = this.showAddAction;
+
     if(this.education) {
+
+      console.log(this.education);
+
+      let formModel = _.assign({}, this.education,  {
+        'applicant_id': this.applicantId
+      });
+
       this.form = new Form(formModel);
     }
     else {
-      formModel = _.assign({}, this.model,  { 'applicant_id': this.applicantId });
+      let formModel = _.assign({}, this.model,  {
+        'applicant_id': this.applicantId
+      });
       this.form = new Form(formModel);
     }
-    this.showAdd = this.showAddAction;
+
+    this.id = this._uid;
+  },
+  mounted() {
+
+    let start_id = "#started_at" + this.id;
+
+    $(start_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", () => {
+      this.form.started_at = $(start_id).val();
+      this.form.errors.clear('started_at');
+    });
+
+    let finished_id = "#finished_at" + this.id;
+
+    $(finished_id).datepicker({
+      format: "mm-yyyy",
+      startView: 1,
+      minViewMode: 1
+    }).on("changeDate", () => {
+      this.form.finished_at = $(finished_id).val();
+      this.form.errors.clear('finished_at');
+    });
   },
   computed: {
     showProgress: function () {
       return (this.showSuccess  == false) && (this.showError == false);
+    },
+    attachmentUrl: function () {
+      if(!this.education || !this.education.attachment)
+        return null;
+      return this.education.attachment;
+    },
+    attachmentName: function () {
+      if(!this.education || !this.education.attachmentName)
+        return null;
+      return this.education.attachmentName;
+    },
+    isEducation: function () {
+      if(this.education)
+        return true;
+      return false;
     }
   },
   watch: {
@@ -242,115 +320,185 @@ export default {
   },
   methods: {
 
-    onSubmit() {
-      if(this.education) {
-        this.updateEducation();
-      }
-      else {
-        this.createEducation();
-      }
-      this.showAdd = false;
-    },
+      onSubmit() {
+        if(this.education) {
+          this.updateEducation();
+        }
+        else {
+          this.createEducation();
+        }
+        this.showAdd = false;
+      },
 
-    createEducation() {
+      createEducation() {
+          this.showAsync = true;
+          var formData = new FormData();
+          for(let field in this.form) {
+            formData.append(field, this.form[field]);
+          }
+          if(this.file) {
+            formData.append('attachment', this.file);
+          }
+          axios.post('/user_educations', formData)
+              .then(response => {
+                console.log(response.data.education);
+                this.successMessage = "Saved successfully";
+                this.showSuccess = true;
+                var _this = this;
+                setTimeout(function () {
+                  _this.showSuccess = false;
+                  _this.showAsync = false;
+                  _this.showAdd = _this.showAddAction;
+                  _this.$emit('education-added', response.data.education);
+                }, 2000);
+              })
+              .catch(error => {
+                console.log(error);
+                this.form.onFail(error);
+                this.errorMessage = error.response.data.message;
+                this.showError = true;
+                var _this = this;
+                setTimeout(function () {
+                  _this.showError = false;
+                  _this.showAsync = false;
+                  _this.showAdd = _this.showAddAction;
+                }, 2000);
+              });
+
+            // End of createEducation method
+      },
+
+      updateEducation() {
+          this.showAsync = true;
+          var url = '/user_educations/' + this.education.id;
+          var formData = new FormData();
+          for(let field in this.form) {
+            formData.append(field, this.form[field]);
+          }
+          formData.append('_method', 'PATCH');
+            axios.post(url, formData)
+              .then(response => {
+                console.log(response.data.education);
+                this.successMessage = "Updated successfully";
+                this.showSuccess = true;
+                var _this = this;
+                setTimeout(function () {
+                  _this.showSuccess = false;
+                  _this.showAsync = false;
+                  _this.showAdd = _this.showAddAction;
+                  _this.$emit('education-updated', {
+                                                'index': _this.index,
+                                                'education': response.data.education
+                                              });
+                }, 2000);
+              })
+              .catch(error => {
+                this.errorMessage = error.response.data.message;
+                this.showError = true;
+                this.form.onFail(error);
+                var _this = this;
+                setTimeout(function () {
+                  _this.showError = false;
+                  _this.showAsync = false;
+                  _this.showAdd = _this.showAddAction;
+                }, 2000);
+              });
+        //End of updateEducation method
+      },
+
+      onDelete() {
+        this.showConfirm = true;
+        this.showAdd = false;
+      },
+
+      onOkay() {
+        this.showConfirm = false;
         this.showAsync = true;
-        this.form.submit('POST', '/user_educations')
-            .then(response => {
-              this.successMessage = "Saved successfully";
-              this.showSuccess = true;
-              var _this = this;
-              setTimeout(function () {
-                _this.showSuccess = false;
-                _this.showAsync = false;
-                _this.showAdd = _this.showAddAction;
-                _this.$emit('education-added', response.data.educations);
-              }, 2000);
-            })
-            .catch(error => {
-              this.errorMessage = error.response.data.message;
-              this.showError = true;
-              var _this = this;
-              setTimeout(function () {
-                _this.showError = false;
-                _this.showAsync = false;
-                _this.showAdd = _this.showAddAction;
-              }, 2000);
-            });
+        this.deleteEducation();
+      },
 
-          // End of createEducation method
-    },
+      onCancel() {
+        this.showConfirm = false;
+        this.showAdd = this.showAddAction;
+      },
 
-    updateEducation() {
+      deleteEducation() {
+          this.showAsync = true;
+          let url = '/user_educations/' + this.education.id;
+          this.form.submit('DELETE', url)
+              .then(response => {
+                this.successMessage = "Deleted successfully";
+                this.showSuccess = true;
+                var _this = this;
+                setTimeout(function () {
+                  _this.showSuccess = false;
+                  _this.showAsync = false;
+                  _this.showAdd = _this.showAddAction;
+                  _this.$emit('education-deleted', _this.index);
+                }, 2000);
+              })
+              .catch(error => {
+                this.errorMessage = error.response.data.message;
+                this.showError = true;
+                var _this = this;
+                setTimeout(function () {
+                  _this.showError = false;
+                  _this.showAsync = false;
+                  _this.showAdd = _this.showAddAction;
+                }, 2000);
+              });
+
+        //End of deleteEducation method
+      },
+
+      onFileUploaded(file) {
+        // this.form.attachment = file;
+        this.file = file;
+      },
+
+      onUpdateAttachment(file) {
+        this.showAdd = false;
         this.showAsync = true;
-        let url = '/user_educations/' + this.education.id;
-        this.form.submit('PATCH', url)
-            .then(response => {
-              this.successMessage = "Updated successfully";
-              this.showSuccess = true;
-              var _this = this;
-              setTimeout(function () {
-                _this.showSuccess = false;
-                _this.showAsync = false;
-                _this.showAdd = _this.showAddAction;
-                _this.$emit('education-updated', response.data.educations);
-              }, 2000);
-            })
-            .catch(error => {
-              this.errorMessage = error.response.data.message;
-              this.showError = true;
-              var _this = this;
-              setTimeout(function () {
-                _this.showError = false;
-                _this.showAsync = false;
-                _this.showAdd = _this.showAddAction;
-              }, 2000);
-            });
-      //End of updateEducation method
-    },
+        let formData = new FormData();
+        formData.append('attachment', file);
+        formData.append('_method', 'PATCH');
+        let url = '/update_education_attachment/' + this.education.id;
+        axios.post(url, formData, {
+          'headers': {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then(response => {
+          this.successMessage = response.data.message;
+          this.showSuccess = true;
+          var _this = this;
+          setTimeout(function () {
+            _this.showSuccess = false;
+            _this.showAsync = false;
+            _this.showAdd = _this.showAddAction;
+            _this.$emit('education-updated', {
+                                          'index': _this.index,
+                                          'education': response.data.education
+                                        });
+          }, 2000);
+        })
+        .catch(error => {
+          console.log(error);
+          this.errorMessage = "Error, Attachment couldn\'t be updated";
+          this.showError = true;
+          var _this = this;
+          setTimeout(function () {
+            _this.showError = false;
+            _this.showAsync = false;
+            _this.showAdd = _this.showAddAction;
+          }, 2000);
+        });
+      },
 
-    onDelete() {
-      this.showConfirm = true;
-      this.showAdd = false;
-    },
-
-    onOkay() {
-      this.showConfirm = false;
-      this.showAsync = true;
-      this.deleteEducation();
-    },
-
-    onCancel() {
-      this.showConfirm = false;
-      this.showAdd = this.showAddAction;
-    },
-
-    deleteEducation() {
-        this.showAsync = true;
-        let url = '/user_educations/' + this.education.id;
-        this.form.submit('DELETE', url)
-            .then(response => {
-              this.successMessage = "Deleted successfully";
-              this.showSuccess = true;
-              var _this = this;
-              setTimeout(function () {
-                _this.showSuccess = false;
-                _this.showAsync = false;
-                _this.showAdd = _this.showAddAction;
-                _this.$emit('education-deleted', response.data.educations);
-              }, 2000);
-            })
-            .catch(error => {
-              this.errorMessage = error.response.data.message;
-              this.showError = true;
-              var _this = this;
-              setTimeout(function () {
-                _this.showError = false;
-                _this.showAsync = false;
-                _this.showAdd = _this.showAddAction;
-              }, 2000);
-            });
-
-      //End of deleteEducation method
+    getLength(field) {
+      if(this.form[field])
+        return this.form[field].toString().length;
+      return 0;
     }
 
   }, //End of methods

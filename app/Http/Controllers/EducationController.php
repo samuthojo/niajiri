@@ -111,9 +111,9 @@ class EducationController extends SecureController {
 		$this->validate($request, [
 			'level' => 'required|string',
 			'institution' => 'required|string',
-			'summary' => 'nullable|string',
+			'summary' => 'required|string',
 			'started_at' => 'required',
-			'finished_at' => 'nullable',
+			'finished_at' => 'required',
 			'remark' => 'required|string',
 			'applicant_id' => 'string|required|exists:users,id',
 		]);
@@ -136,7 +136,7 @@ class EducationController extends SecureController {
 
 		return [
 			'message' => 'Saved successfully',
-			'educations' => $user->educations,
+			'education' => $this->getEducationWithAttachment($education),
 		];
 
 	}
@@ -215,7 +215,8 @@ class EducationController extends SecureController {
 
 		//obtain all education form inputs
 		$body = $request->all();
-
+		$body['project_id'] = $request->session()->get('project_id');
+		
 		//find existing education
 		$education = Education::findOrFail($id);
 
@@ -255,15 +256,17 @@ class EducationController extends SecureController {
 		$this->validate($request, [
 			'level' => 'required|string',
 			'institution' => 'required|string',
-			'summary' => 'nullable|string',
+			'summary' => 'required|string',
 			'started_at' => 'required',
-			'finished_at' => 'nullable',
+			'finished_at' => 'required',
 			'remark' => 'required|string',
 			'applicant_id' => 'string|required|exists:users,id',
 		]);
 
 		//obtain all education form inputs
 		$body = $request->all();
+		$body['project_id'] = $request->session()->get('project_id');
+
 
 		//find existing education
 		$education = Education::findOrFail($id);
@@ -282,10 +285,30 @@ class EducationController extends SecureController {
 
 		return [
 			'message' => 'Updated successfully',
-			'educations' => $user->educations,
+			'education' => $this->getEducationWithAttachment($education),
 		];
 
 	}
+
+	public function updateAttachment(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
+		$education = Education::findOrFail($id);
+		if ($education && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$education->clearMediaCollection('attachments');
+			//attach new attachment
+			$education->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Attachment updated',
+			'education'=> $this->getEducationWithAttachment($education),
+		];
+
+	}
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -319,4 +342,14 @@ class EducationController extends SecureController {
 			'educations' => $user->educations,
 		];
 	}
+
+	private function getEducationWithAttachment($education) {
+		if($education->attachment()) {
+			$file = $education->attachment();
+			$education->attachment = $file->getUrl('thumb');
+			$education->attachmentName = $file->name;
+		}
+		return $education;
+	}
+
 }

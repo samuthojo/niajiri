@@ -63,7 +63,7 @@ class CertificateController extends SecureController {
 			'started_at' => 'required',
 			'finished_at' => 'nullable',
 			'expired_at' => 'nullable',
-            'applicant_id' => 'string|required|exists:users,id'
+      'applicant_id' => 'string|required|exists:users,id'
 		]);
 
 		//obtain all certificate form inputs
@@ -101,9 +101,9 @@ class CertificateController extends SecureController {
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
 			'started_at' => 'required',
-			'finished_at' => 'nullable',
+			'finished_at' => 'required',
 			'expired_at' => 'nullable',
-            'applicant_id' => 'string|required|exists:users,id'
+      'applicant_id' => 'string|required|exists:users,id'
 		]);
 
 		//obtain all certificate form inputs
@@ -123,7 +123,7 @@ class CertificateController extends SecureController {
 
 		return [
 			'message' => 'Saved successfully',
-			'certifications' => $user->certificates,
+			'certification' => $this->getCertificateWithAttachment($certificate),
 		];
 
 	}
@@ -189,13 +189,14 @@ class CertificateController extends SecureController {
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
 			'started_at' => 'required',
-			'finished_at' => 'nullable',
+			'finished_at' => 'required',
 			'expired_at' => 'nullable',
       'applicant_id' => 'string|required|exists:users,id'
 		]);
 
 		//obtain all certificate form inputs
 		$body = $request->all();
+		$body['project_id'] = $request->session()->get('project_id');
 
 		//find existing certificate
 		$certificate = Certificate::findOrFail($id);
@@ -232,13 +233,14 @@ class CertificateController extends SecureController {
 			'institution' => 'required|string',
 			'summary' => 'nullable|string',
 			'started_at' => 'required',
-			'finished_at' => 'nullable',
+			'finished_at' => 'required',
 			'expired_at' => 'nullable',
       'applicant_id' => 'string|required|exists:users,id'
 		]);
 
 		//obtain all certificate form inputs
 		$body = $request->all();
+		$body['project_id'] = $request->session()->get('project_id');
 
 		//find existing certificate
 		$certificate = Certificate::findOrFail($id);
@@ -257,10 +259,30 @@ class CertificateController extends SecureController {
 
 		return [
 			'message' => 'Updated successfully',
-			'certifications' => $user->certificates,
+			'certification' => $this->getCertificateWithAttachment($certificate),
 		];
 
 	}
+
+	public function updateAttachment(Request $request, $id) {
+		//obtain user
+		$user = \Auth::user();
+		$certificate = Certificate::findOrFail($id);
+		if ($certificate && $request->hasFile('attachment')) {
+			//clear existing attachment
+			$certificate->clearMediaCollection('attachments');
+			//attach new attachment
+			$certificate->addMediaFromRequest('attachment')
+				->toMediaCollection('attachments');
+		}
+
+		return [
+			'message' => 'Attachment updated',
+			'certification'=> $this->getCertificateWithAttachment($certificate),
+		];
+
+	}
+
 
 
 	/**
@@ -293,4 +315,14 @@ class CertificateController extends SecureController {
 			'certifications' => $user->certificates,
 		];
 	}
+
+	private function getCertificateWithAttachment($certificate) {
+		if($certificate->attachment()) {
+			$file = $certificate->attachment();
+			$certificate->attachment = $file->getUrl('thumb');
+			$certificate->attachmentName = $file->name;
+		}
+		return $certificate;
+	}
+
 }

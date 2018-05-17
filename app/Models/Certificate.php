@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Models\Base as Model;
+use Spatie\MediaLibrary\Media;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Carbon\Carbon;
 
 
-class Certificate extends Model implements HasMedia
+class Certificate extends Model implements HasMediaConversions
 {
 
     /**
@@ -149,6 +151,15 @@ class Certificate extends Model implements HasMedia
     public function applicant()
     {
         return $this->belongsTo('App\Models\User', 'applicant_id')->withTrashed();
+    }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+             ->width(368)
+             ->height(232)
+             ->performOnCollections('attachments')
+             ->nonQueued();
     }
 
 }

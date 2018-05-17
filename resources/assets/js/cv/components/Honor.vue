@@ -31,11 +31,13 @@
           <honor-item v-for="(honor, n) in userHonors"
             :key="honor.id"
             :honor="honor"
+            :index=n
             :applicant-id="user.id"
             :is-empty-template="false"
             :show-delete-action="true"
             :show-add-action="n == userHonors.length - 1 && emptyTemplates.length == 0"
             @honor-added="onHonorAdded"
+            @honor-updated="onHonorUpdated"
             @honor-deleted="onHonorDeleted"
             @add-empty-template="addEmptyTemplate">
           </honor-item>
@@ -74,18 +76,23 @@ export default {
     }
   },
   created() {
-    this.userHonors = this.honors;
+    if(this.honors)
+      this.userHonors = this.honors;
   },
   methods: {
-    onHonorAdded(honors) {
-      this.userHonors = honors;
+    onHonorAdded(honor) {
+      this.userHonors.push(honor);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
       }
     },
 
-    onHonorDeleted(honors) {
-      this.userHonors = honors;
+    onHonorUpdated(result) {
+      this.userHonors.splice(result.index, 1, result.honor);
+    },
+
+    onHonorDeleted(index) {
+      this.userHonors.splice(index, 1);
     },
 
     addEmptyTemplate() {

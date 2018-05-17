@@ -1,9 +1,9 @@
 <template lang="html">
 
   <!--the file image -->
-  <div class="flex flex-column flex-space-btn">
+  <div class="flex flex-column flex-horizontal-center">
 
-    <div class="attachment-container"><!--start container-->
+    <div class="attachment-container m-b-sm"><!--start container-->
 
       <!--the placeholder to show incase no attachment-->
       <i class="fa fa-file fa-5x" v-show="showPlaceHolder"></i>
@@ -25,7 +25,9 @@
 
     <button type="button" class="btn btn-primary"
        @click="onUpload" title="Attach">
-      <i class="fa fa-upload"></i>Upload
+      <i class="fa fa-upload"></i>
+      <span v-show="attachmentUrl != null">Replace</span>
+      <span v-show="attachmentUrl == null">Upload</span>
     </button>
 
     <input type="file" name="attachment" class="no-display"
@@ -39,6 +41,7 @@
 <script>
 export default {
   props: {
+    isEntity: Boolean,
     attachmentUrl: String,
     attachmentName: String
   },
@@ -59,19 +62,32 @@ export default {
       return this.fileName.length > 0;
     },
     showAttachment: function () {
-      return this.attachmentUrl != null;
+      return this.attachmentUrl != null && this.fileName.length == 0;
     }
   },
   methods: {
+
     onUpload() {
       let id = this.id;
       $("#attachment" + id).click();
     },
+
     captureAttachment(event) {
       let file = event.target.files[0];
       this.fileName = file.name;
-      this.$emit('file-uploaded', file);
+      if(this.isEntity){
+        this.updateAttachment(file);
+      } else {
+        this.$emit('file-uploaded', file);
+      }
+    },
+
+    updateAttachment(file) {
+      this.$emit('update-attachment', file);
+      this.fileName = '';
     }
+
+    //End of methods
   }
 }
 </script>

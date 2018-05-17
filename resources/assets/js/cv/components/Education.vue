@@ -32,6 +32,7 @@
         <template v-else>
           <education-item v-for="(education, n) in userEducations"
             :key="education.id"
+            :index="n"
             :education="education"
             :institutions="institutions"
             :qualifications="qualifications"
@@ -40,6 +41,7 @@
             :show-delete-action="true"
             :show-add-action="n == userEducations.length - 1 && emptyTemplates.length == 0"
             @education-added="onEducationAdded"
+            @education-updated="onEducationUpdated"
             @education-deleted="onEducationDeleted"
             @add-empty-template="addEmptyTemplate">
           </education-item>
@@ -79,18 +81,23 @@ export default {
     }
   },
   created() {
-    this.userEducations = this.educations;
+    if(this.educations)
+      this.userEducations = this.educations;
   },
   methods: {
-    onEducationAdded(educations) {
-      this.userEducations = educations;
+    onEducationAdded(education) {
+      this.userEducations.push(education);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
       }
     },
 
-    onEducationDeleted(educations) {
-      this.userEducations = educations;
+    onEducationUpdated(result) {
+      this.userEducations.splice(result.index, 1, result.education);
+    },
+
+    onEducationDeleted(index) {
+      this.userEducations.splice(index, 1);
     },
 
     addEmptyTemplate() {

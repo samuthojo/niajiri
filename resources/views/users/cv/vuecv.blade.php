@@ -45,7 +45,7 @@
                     <div class="col-md-6">
                       <education
                         :user="{{ $user }}"
-                        :educations="{{ $user->educations }}"
+                        :educations="{{ $educations }}"
                         :institutions= "{{ config('education.institutions') }}"
                         :qualifications="{{ config('education.qualifications') }}"></education>
                     </div>
@@ -63,7 +63,7 @@
                     <div class="col-md-6">
                       <certificate
                         :user="{{ $user }}"
-                        :certifications="{{ $user->certificates }}">
+                        :certifications="{{ $certificates }}">
                       </certificate>
                     </div>
 

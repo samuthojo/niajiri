@@ -93,7 +93,7 @@ class ExperienceController extends SecureController {
 			'position' => 'required|string',
 			'organization' => 'required|string',
 			'sector' => 'required|string',
-			'summary' => 'nullable|string',
+			'summary' => 'required|string',
 			'started_at' => 'required|string',
 			'ended_at' => 'required|string',
 			'location' => 'required|string',
@@ -108,7 +108,7 @@ class ExperienceController extends SecureController {
 		$experience = Experience::create($body);
 
 		return [
-			'experiences' => $user->experiences,
+			'experience' => $experience,
 			'message' => 'Experience saved successfully',
 		];
 	}
@@ -208,7 +208,7 @@ class ExperienceController extends SecureController {
 			'position' => 'required|string',
 			'organization' => 'required|string',
 			'sector' => 'required|string',
-			'summary' => 'nullable|string',
+			'summary' => 'required|string',
 			'started_at' => 'required|string',
 			'ended_at' => 'required|string',
 			'location' => 'required|string',
@@ -222,10 +222,10 @@ class ExperienceController extends SecureController {
 		$experience = Experience::findOrFail($id);
 
 		//update experience
-		$experience->update($body);
+		$experience = $experience->updateOrCreate(compact('id'), $body);
 
 		return [
-			'experiences' => $user->experiences,
+			'experience' => $experience,
 			'message' => 'The Experience has been Updated'
 		];
 

@@ -75,10 +75,12 @@ Route::delete('/user_experiences/{experience}', 'ExperienceController@destroyExp
 
 Route::post('/user_honors', 'AchievementController@storeHonors');
 Route::patch('/user_honors/{honor}', 'AchievementController@updateHonors');
+Route::patch('/update_honor_attachment/{honor}', 'AchievementController@updateAttachment');
 Route::delete('/user_honors/{honor}', 'AchievementController@destroyHonors');
 
 Route::post('/user_educations', 'EducationController@storeEducation');
 Route::patch('/user_educations/{education}', 'EducationController@updateEducation');
+Route::patch('/update_education_attachment/{education}', 'EducationController@updateAttachment');
 Route::delete('/user_educations/{education}', 'EducationController@destroyEducation');
 
 Route::post('/user_languages', 'LanguageController@storeLanguage');
@@ -86,8 +88,9 @@ Route::patch('/user_languages/{language}', 'LanguageController@updateLanguage');
 Route::delete('/user_languages/{language}', 'LanguageController@destroyLanguage');
 
 Route::post('/user_certifications', 'CertificateController@storeCertificate');
-Route::patch('/user_certifications/{certificate}', 'CertificateController@updateCertificate');
-Route::delete('/user_certifications/{certificate}', 'CertificateController@destroyCertificate');
+Route::patch('/user_certifications/{certification}', 'CertificateController@updateCertificate');
+Route::patch('/update_certification_attachment/{certification}', 'CertificateController@updateAttachment');
+Route::delete('/user_certifications/{certification}', 'CertificateController@destroyCertificate');
 
 Route::post('/user_referees', 'RefereeController@storeReferee');
 Route::patch('/user_referees/{referee}', 'RefereeController@updateReferee');
