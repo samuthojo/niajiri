@@ -24253,6 +24253,9 @@ body.skin-3 {
   height: 220px;
   width: 220px;
   border-radius: 50%;
+  position: absolute;
+  top: 40px;
+  right: 100px;
 }
 
 .no-display {
