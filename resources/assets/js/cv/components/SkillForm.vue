@@ -55,7 +55,7 @@
 
         <div class="form-group">
 
-          <button type="submit" class="btn btn-success pull-right" title="Save">
+          <button type="submit" class="btn btn-primary pull-right" title="Save">
             <i class="fa fa-save"></i>
           </button>
 

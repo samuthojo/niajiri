@@ -6,7 +6,7 @@
 
       <div class="col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center">
 
-        <div class="col-md-10">
+        <div class="col-md-12">
 
           <h5>FIELD ATTACHMENT/WORK EXPERIENCE</h5>
 

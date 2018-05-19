@@ -51669,7 +51669,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-group flex flex-vertical-center" }, [
           _c(
             "div",
             {
@@ -51694,7 +51694,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "cv-textarea-input",
-                attrs: { name: "summary", id: "about_me" },
+                attrs: { rows: "1", name: "summary", id: "about_me" },
                 domProps: { value: _vm.form.summary },
                 on: {
                   input: function($event) {
@@ -51713,7 +51713,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "btn btn-success pull-right",
+            staticClass: "btn btn-primary pull-right",
             attrs: {
               type: "submit",
               title: "Save",
@@ -53214,7 +53214,7 @@ var render = function() {
                               expression: "!showDeleteAction"
                             }
                           ],
-                          staticClass: "btn btn-success pull-right",
+                          staticClass: "btn btn-primary pull-right",
                           attrs: { type: "submit", title: "Save" }
                         },
                         [_c("i", { staticClass: "fa fa-save" })]
@@ -53267,7 +53267,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-success",
+        staticClass: "btn btn-primary",
         attrs: { type: "submit", title: "Save" }
       },
       [_c("i", { staticClass: "fa fa-save" })]
@@ -53592,7 +53592,7 @@ var staticRenderFns = [
             "col-md-12 cv-sub-title clearfix flex flex-vertical-center flex-horizontal-center"
         },
         [
-          _c("div", { staticClass: "col-md-10" }, [
+          _c("div", { staticClass: "col-md-12" }, [
             _c("h5", [_vm._v("FIELD ATTACHMENT/WORK EXPERIENCE")])
           ])
         ]
@@ -54777,7 +54777,7 @@ var render = function() {
                                   expression: "!showDeleteAction"
                                 }
                               ],
-                              staticClass: "btn btn-success pull-right",
+                              staticClass: "btn btn-primary pull-right",
                               attrs: { type: "submit", title: "Save" }
                             },
                             [_c("i", { staticClass: "fa fa-save" })]
@@ -54845,7 +54845,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-success",
+        staticClass: "btn btn-primary",
         attrs: { type: "submit", title: "Save" }
       },
       [_c("i", { staticClass: "fa fa-save" })]
@@ -56271,7 +56271,7 @@ var render = function() {
                                   expression: "!showDeleteAction"
                                 }
                               ],
-                              staticClass: "btn btn-success pull-right",
+                              staticClass: "btn btn-primary pull-right",
                               attrs: { type: "submit", title: "Save" }
                             },
                             [_c("i", { staticClass: "fa fa-save" })]
@@ -56339,7 +56339,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-success",
+        staticClass: "btn btn-primary",
         attrs: { type: "submit", title: "Save" }
       },
       [_c("i", { staticClass: "fa fa-save" })]
@@ -57462,7 +57462,7 @@ var render = function() {
                               expression: "!showDeleteAction"
                             }
                           ],
-                          staticClass: "btn btn-success pull-right",
+                          staticClass: "btn btn-primary pull-right",
                           attrs: { type: "submit", title: "Save" }
                         },
                         [_c("i", { staticClass: "fa fa-save" })]
@@ -57515,7 +57515,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-success",
+        staticClass: "btn btn-primary",
         attrs: { type: "submit", title: "Save" }
       },
       [_c("i", { staticClass: "fa fa-save" })]
@@ -58794,7 +58794,7 @@ var render = function() {
                                   expression: "!showDeleteAction"
                                 }
                               ],
-                              staticClass: "btn btn-success pull-right",
+                              staticClass: "btn btn-primary pull-right",
                               attrs: { type: "submit", title: "Save" }
                             },
                             [_c("i", { staticClass: "fa fa-save" })]
@@ -58862,7 +58862,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-success",
+        staticClass: "btn btn-primary",
         attrs: { type: "submit", title: "Save" }
       },
       [_c("i", { staticClass: "fa fa-save" })]
@@ -60087,7 +60087,7 @@ var render = function() {
                               expression: "!showDeleteAction"
                             }
                           ],
-                          staticClass: "btn btn-success pull-right",
+                          staticClass: "btn btn-primary pull-right",
                           attrs: { type: "submit", title: "Save" }
                         },
                         [_c("i", { staticClass: "fa fa-save" })]
@@ -60140,7 +60140,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-success",
+        staticClass: "btn btn-primary",
         attrs: { type: "submit", title: "Save" }
       },
       [_c("i", { staticClass: "fa fa-save" })]
@@ -60874,7 +60874,7 @@ var staticRenderFns = [
           _c(
             "button",
             {
-              staticClass: "btn btn-success pull-right",
+              staticClass: "btn btn-primary pull-right",
               attrs: { type: "submit", title: "Save" }
             },
             [_c("i", { staticClass: "fa fa-save" })]
@@ -61451,7 +61451,7 @@ var staticRenderFns = [
           _c(
             "button",
             {
-              staticClass: "btn btn-success pull-right",
+              staticClass: "btn btn-primary pull-right",
               attrs: { type: "submit", title: "Save" }
             },
             [_c("i", { staticClass: "fa fa-save" })]

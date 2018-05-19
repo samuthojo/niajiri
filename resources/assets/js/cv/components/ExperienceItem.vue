@@ -178,14 +178,14 @@
 
         <div class="form-group">
 
-          <button type="submit" class="btn btn-success pull-right"
+          <button type="submit" class="btn btn-primary pull-right"
             title="Save" v-show="!showDeleteAction">
             <i class="fa fa-save"></i>
           </button>
 
           <div class="btn-group pull-right" v-show="showDeleteAction">
 
-            <button type="submit" class="btn btn-success"
+            <button type="submit" class="btn btn-primary"
               title="Save">
               <i class="fa fa-save"></i>
             </button>

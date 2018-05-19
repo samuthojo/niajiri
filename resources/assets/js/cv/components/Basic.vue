@@ -119,16 +119,16 @@
                 </select>
               </div>
           </div>
-          <div class="form-group">
+          <div class="form-group flex flex-vertical-center">
               <div :class="['col-md-12', 'position-relative', {'has-cv-error': form.errors.has('summary')}]">
                 <cv-placeholder
                   :name="'About Me'"
                   :length="getLength('summary')"></cv-placeholder>
-                <textarea name="summary" id="about_me" class="cv-textarea-input"
+                <textarea rows="1" name="summary" id="about_me" class="cv-textarea-input"
                   v-model="form.summary"></textarea>
               </div>
           </div>
-          <button type="submit" class="btn btn-success pull-right"
+          <button type="submit" class="btn btn-primary pull-right"
             title="Save" :disabled="form.errors.any()">Save</button>
       </div>
 
