@@ -267,6 +267,9 @@ export default {
       this.form.finished_at = $(finished_id).val();
       this.form.errors.clear('finished_at');
     });
+
+    //autosize textarea based on content
+    autosize($('textarea'));
   },
   computed: {
     showProgress: function () {

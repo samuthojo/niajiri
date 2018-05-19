@@ -84,6 +84,7 @@ export default {
       this.userCertifications.push(certification);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
+          this.counter = this.emptyTemplates.length;
       }
     },
 

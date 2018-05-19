@@ -83,6 +83,7 @@ export default {
       this.userReferees.push(referee);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
+          this.counter = this.emptyTemplates.length;
       }
     },
 

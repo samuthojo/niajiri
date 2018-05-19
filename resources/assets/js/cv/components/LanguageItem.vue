@@ -199,6 +199,12 @@ export default {
     }
 
   },
+
+  mounted() {
+    //autosize textarea based on content
+    autosize($('textarea'));
+  },
+
   computed: {
     showProgress: function () {
       return (this.showSuccess  == false) && (this.showError == false);

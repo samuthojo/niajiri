@@ -235,6 +235,9 @@ export default {
       this.form.errors.clear('issued_at');
     });
 
+    //autosize textarea based on content
+    autosize($('textarea'));
+
   },
   computed: {
     showProgress: function () {
@@ -441,7 +444,7 @@ export default {
       if(this.form[field])
         return this.form[field].toString().length;
       return 0;
-    }
+    },
 
   } //End of methods
 }

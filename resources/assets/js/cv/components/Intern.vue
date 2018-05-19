@@ -84,6 +84,7 @@ export default {
       this.workExperiences.push(experience);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
+          this.counter = this.emptyTemplates.length;
       }
     },
 

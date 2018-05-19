@@ -89,6 +89,7 @@ export default {
       this.userEducations.push(education);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
+          this.counter = this.emptyTemplates.length;
       }
     },
 

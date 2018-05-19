@@ -82,6 +82,7 @@ export default {
       this.userLanguages.push(language);
       if(this.emptyTemplates.length >= 1) {
           this.emptyTemplates.pop();
+          this.counter = this.emptyTemplates.length;
       }
     },
 

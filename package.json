@@ -17,7 +17,7 @@
     "vue-template-compiler": "^2.5.16"
   },
   "dependencies": {
-    "autosize": "^3.0.20",
+    "autosize": "^4.0.2",
     "awesome-bootstrap-checkbox": "^1.0.0-alpha.4",
     "axios": "^0.18.0",
     "bootstrap-datepicker": "^1.8.0",
