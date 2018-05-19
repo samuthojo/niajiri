@@ -17,13 +17,15 @@
         {{-- end page title --}}
 
         {{-- start render breadcrumbs --}}
-        @if(!empty($route_name))
-            @if($instance)
-	            {!! Breadcrumbs::render($route_name, $instance) !!}
-            @else
-              {{--   {!! Breadcrumbs::render($route_name) !!}--}}
-            @endif
-        @endif
+        <span id="breadcrumb-text">
+          @if(!empty($route_name))
+              @if($instance)
+  	            {!! Breadcrumbs::render($route_name, $instance) !!}
+              @else
+                {{--   {!! Breadcrumbs::render($route_name) !!}--}}
+              @endif
+          @endif
+        </span>
         {{-- end render breadcrumbs --}}
 
     </div>

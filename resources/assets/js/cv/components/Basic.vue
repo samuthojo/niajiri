@@ -206,6 +206,7 @@ export default {
                           this.form = new Form(response.data.user);
                           $("#user-full-name").text(this.form.first_name + " " + this.form.surname);
                           $("#route-title").text(this.form.first_name + " " + this.form.surname + " - CV");
+                          $("#breadcrumb-text").text(this.form.first_name + " " + this.form.surname + " - CV");
                           resolve({
                             body: response.data.message,
                             config: {
