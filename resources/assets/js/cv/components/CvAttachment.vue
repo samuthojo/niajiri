@@ -6,7 +6,8 @@
     <div class="attachment-container m-b-sm"><!--start container-->
 
       <!--the placeholder to show incase no attachment-->
-      <i class="fa fa-file fa-5x" v-show="showPlaceHolder"></i>
+      <i class="fa fa-file fa-5x" v-show="showPlaceHolder"
+        title="No File Attached"></i>
 
       <!--show the uploaded fileName inside this div-->
       <div class="file-name" v-show="showFileName" style="height: 5em;">
