@@ -188,43 +188,47 @@
 
 .cv-text-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: rgb(179, 179,179);
-      font-weight: bold;
+      font-weight: lighter;
       opacity: 1; /* Firefox */
 }
 
 /* Internet Explorer 10-11 */
 .cv-text-input:-ms-input-placeholder {
   color: rgb(179, 179,179);
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 // Microsoft Edge
 .cv-text-input::-ms-input-placeholder {
     color: rgb(179, 179,179);
-    font-weight: bold;
+    font-weight: lighter;
 }
 
 .cv-textarea-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: rgb(179, 179,179);
-      font-weight: bold;
+      font-weight: lighter;
       opacity: 1; /* Firefox */
   }
 
 /* Internet Explorer 10-11 */
 .cv-textarea-input:-ms-input-placeholder {
   color: rgb(179, 179,179);
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 // Microsoft Edge
 .cv-textarea-input::-ms-input-placeholder {
   color: rgb(179, 179,179);
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 .cv-placeholder {
   position: absolute;
   color: #b1b1b1;
+
+  label {
+    font-weight: lighter;
+  }
 }
 
 .asterik {

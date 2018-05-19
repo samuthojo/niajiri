@@ -23876,7 +23876,7 @@ body.skin-3 {
 .cv-text-input::-webkit-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
   opacity: 1;
   /* Firefox */
 }
@@ -23884,7 +23884,7 @@ body.skin-3 {
 .cv-text-input:-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
   opacity: 1;
   /* Firefox */
 }
@@ -23892,7 +23892,7 @@ body.skin-3 {
 .cv-text-input::-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
   opacity: 1;
   /* Firefox */
 }
@@ -23900,7 +23900,7 @@ body.skin-3 {
 .cv-text-input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
   opacity: 1;
   /* Firefox */
 }
@@ -23909,18 +23909,18 @@ body.skin-3 {
 
 .cv-text-input:-ms-input-placeholder {
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 .cv-text-input::-ms-input-placeholder {
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 .cv-textarea-input::-webkit-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
   opacity: 1;
   /* Firefox */
 }
@@ -23928,7 +23928,7 @@ body.skin-3 {
 .cv-textarea-input:-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
   opacity: 1;
   /* Firefox */
 }
@@ -23936,7 +23936,7 @@ body.skin-3 {
 .cv-textarea-input::-ms-input-placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
   opacity: 1;
   /* Firefox */
 }
@@ -23944,7 +23944,7 @@ body.skin-3 {
 .cv-textarea-input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
   opacity: 1;
   /* Firefox */
 }
@@ -23953,17 +23953,21 @@ body.skin-3 {
 
 .cv-textarea-input:-ms-input-placeholder {
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 .cv-textarea-input::-ms-input-placeholder {
   color: #b3b3b3;
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 .cv-placeholder {
   position: absolute;
   color: #b1b1b1;
+}
+
+.cv-placeholder label {
+  font-weight: lighter;
 }
 
 .asterik {
