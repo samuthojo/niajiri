@@ -51669,7 +51669,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group flex flex-vertical-center" }, [
+        _c("div", { staticClass: "form-group" }, [
           _c(
             "div",
             {
@@ -51694,7 +51694,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "cv-textarea-input",
-                attrs: { rows: "1", name: "summary", id: "about_me" },
+                attrs: { rows: "4", name: "summary", id: "about_me" },
                 domProps: { value: _vm.form.summary },
                 on: {
                   input: function($event) {
@@ -51713,7 +51713,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "btn btn-primary pull-right",
+            staticClass: "btn btn-primary pull-right m-t-md",
             attrs: {
               type: "submit",
               title: "Save",
