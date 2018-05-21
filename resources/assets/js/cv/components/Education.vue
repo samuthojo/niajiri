@@ -54,6 +54,8 @@
           :key="emptyTemplate"
           :id="'empty' + emptyTemplate"
           :applicant-id="user.id"
+          :institutions="institutions"
+          :qualifications="qualifications"
           :is-empty-template="true"
           :show-delete-action="false"
           :show-add-action="n == emptyTemplates.length - 1"

@@ -50619,7 +50619,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50844,17 +50844,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(response.data.user);
             _this3.form.onSuccess();
             _this3.form = new __WEBPACK_IMPORTED_MODULE_0__ValidationFramework_Form_js__["a" /* Form */](response.data.user);
-            $("#user-full-name").text(_this3.form.first_name + " " + _this3.form.surname);
-            $("#route-title").text(_this3.form.first_name + " " + _this3.form.surname + " - CV");
-            $("#breadcrumb-text").text(_this3.form.first_name + " " + _this3.form.surname + " - CV");
+            if (_this3.form.middle_name) {
+              _this3.setFullName();
+            } else {
+              _this3.setNameWithoutMiddleName();
+            }
             resolve({
               body: response.data.message,
               config: {
-                timeout: 2000,
                 closeOnClick: true,
                 showProgressBar: false
               }
             });
+
+            setTimeout(function () {
+              $(".snotify-rightTop").find(".snotifyToast").each(function () {
+                $(this).fadeOut(2000, "swing");
+              });
+            }, 2000);
           }).catch(function (error) {
             _this3.form.onFail(error);
             var message = "Sorry, An Error Occured, please try later!";
@@ -50864,14 +50871,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             reject({
               body: message,
               config: {
-                timeout: 2000,
                 closeOnClick: true,
                 showProgressBar: false
               }
             });
+
+            setTimeout(function () {
+              $(".snotify-rightTop").find(".snotifyToast").each(function () {
+                $(this).fadeOut(2000, "swing");
+              });
+            }, 2000);
           });
         });
       });
+    },
+    setFullName: function setFullName() {
+      $("#user-full-name").text(this.form.first_name + " " + this.form.middle_name + " " + this.form.surname);
+      $("#route-title").text(this.form.first_name + " " + this.form.middle_name + " " + this.form.surname + " - CV");
+      $("#breadcrumb-text").text(this.form.first_name + " " + this.form.middle_name + " " + this.form.surname + " - CV");
+    },
+    setNameWithoutMiddleName: function setNameWithoutMiddleName() {
+      $("#user-full-name").text(this.form.first_name + " " + this.form.surname);
+      $("#route-title").text(this.form.first_name + " " + this.form.surname + " - CV");
+      $("#breadcrumb-text").text(this.form.first_name + " " + this.form.surname + " - CV");
     },
     onAvatarChanged: function onAvatarChanged(file) {
       var _this4 = this;
@@ -50891,22 +50913,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               title: 'Updated',
               body: response.data.message,
               config: {
-                timeout: 2000,
-                closeOnClick: true,
-                showProgressBar: true
-              }
-            });
-          }).catch(function (error) {
-            console.log(error);
-            reject({
-              title: 'Oops',
-              body: 'Sorry, an error occured, picture couldn\'t be updated',
-              config: {
-                timeout: 2000,
                 closeOnClick: true,
                 showProgressBar: false
               }
             });
+
+            setTimeout(function () {
+              $(".snotify-rightTop").find(".snotifyToast").each(function () {
+                $(this).fadeOut(2000, "swing");
+              });
+            }, 2000);
+          }).catch(function (error) {
+            console.log(error);
+            reject({
+              title: 'Oops',
+              body: "Sorry, an error occured, picture couldn\'t be updated",
+              config: {
+                closeOnClick: true,
+                showProgressBar: false
+              }
+            });
+
+            setTimeout(function () {
+              $(".snotify-rightTop").find(".snotifyToast").each(function () {
+                $(this).fadeOut(2000, "swing");
+              });
+            }, 2000);
           });
         });
       });
@@ -53805,20 +53837,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex flex-column flex-horizontal-center" }, [
-    _c("div", { staticClass: "attachment-container m-b-sm" }, [
-      _c("i", {
-        directives: [
+  return _c(
+    "div",
+    { staticClass: "flex flex-column flex-horizontal-center m-l-sm" },
+    [
+      _c("div", { staticClass: "attachment-container m-b-sm" }, [
+        _c("i", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showPlaceHolder,
+              expression: "showPlaceHolder"
+            }
+          ],
+          staticClass: "fa fa-file fa-5x",
+          attrs: { title: "No File Attached" }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
           {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showPlaceHolder,
-            expression: "showPlaceHolder"
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.showFileName,
+                expression: "showFileName"
+              }
+            ],
+            staticClass: "file-name"
+          },
+          [
+            _c("span", { attrs: { title: _vm.fileName } }, [
+              _vm._v(_vm._s(_vm.fileName))
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("img", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showAttachment,
+              expression: "showAttachment"
+            }
+          ],
+          staticClass: "img-thumbnail cv-attachment",
+          attrs: {
+            src: _vm.attachmentUrl,
+            alt: "Award Certificate",
+            title: _vm.attachmentName
           }
-        ],
-        staticClass: "fa fa-file fa-5x",
-        attrs: { title: "No File Attached" }
-      }),
+        })
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -53827,105 +53900,68 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.showFileName,
-              expression: "showFileName"
+              value: _vm.showAttachment,
+              expression: "showAttachment"
             }
           ],
-          staticClass: "file-name"
+          staticClass: "attachment-name m-b-sm"
         },
         [
-          _c("span", { attrs: { title: _vm.fileName } }, [
-            _vm._v(_vm._s(_vm.fileName))
+          _c("span", { attrs: { title: _vm.attachmentName } }, [
+            _vm._v(_vm._s(_vm.attachmentName))
           ])
         ]
       ),
       _vm._v(" "),
-      _c("img", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showAttachment,
-            expression: "showAttachment"
-          }
-        ],
-        staticClass: "img-thumbnail cv-attachment",
-        attrs: {
-          src: _vm.attachmentUrl,
-          alt: "Award Certificate",
-          title: _vm.attachmentName
-        }
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "button", title: _vm.buttonText },
+          on: { click: _vm.onUpload }
+        },
+        [
+          _c("i", { staticClass: "fa fa-upload" }),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.attachmentUrl != null,
+                  expression: "attachmentUrl != null"
+                }
+              ]
+            },
+            [_vm._v("Replace")]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.attachmentUrl == null,
+                  expression: "attachmentUrl == null"
+                }
+              ]
+            },
+            [_vm._v("Upload")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "no-display",
+        attrs: { type: "file", name: "attachment", id: "attachment" + _vm.id },
+        on: { change: _vm.captureAttachment }
       })
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showAttachment,
-            expression: "showAttachment"
-          }
-        ],
-        staticClass: "attachment-name m-b-sm"
-      },
-      [
-        _c("span", { attrs: { title: _vm.attachmentName } }, [
-          _vm._v(_vm._s(_vm.attachmentName))
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-primary",
-        attrs: { type: "button", title: _vm.buttonText },
-        on: { click: _vm.onUpload }
-      },
-      [
-        _c("i", { staticClass: "fa fa-upload" }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.attachmentUrl != null,
-                expression: "attachmentUrl != null"
-              }
-            ]
-          },
-          [_vm._v("Replace")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.attachmentUrl == null,
-                expression: "attachmentUrl == null"
-              }
-            ]
-          },
-          [_vm._v("Upload")]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c("input", {
-      staticClass: "no-display",
-      attrs: { type: "file", name: "attachment", id: "attachment" + _vm.id },
-      on: { change: _vm.captureAttachment }
-    })
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56453,7 +56489,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56464,6 +56500,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -56659,6 +56697,8 @@ var render = function() {
               attrs: {
                 id: "empty" + emptyTemplate,
                 "applicant-id": _vm.user.id,
+                institutions: _vm.institutions,
+                qualifications: _vm.qualifications,
                 "is-empty-template": true,
                 "show-delete-action": false,
                 "show-add-action": n == _vm.emptyTemplates.length - 1
@@ -56791,7 +56831,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57042,6 +57082,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.$emit('language-added', response.data.language);
         }, 2000);
       }).catch(function (error) {
+        _this2.form.onFail(error);
         _this2.errorMessage = error.response.data.message;
         _this2.showError = true;
         var _this = _this2;
@@ -57073,6 +57114,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           });
         }, 2000);
       }).catch(function (error) {
+        _this3.form.onFail(error);
         _this3.errorMessage = error.response.data.message;
         _this3.showError = true;
         var _this = _this3;

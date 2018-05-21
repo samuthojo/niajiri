@@ -204,17 +204,26 @@ export default {
                           console.log(response.data.user);
                           this.form.onSuccess();
                           this.form = new Form(response.data.user);
-                          $("#user-full-name").text(this.form.first_name + " " + this.form.surname);
-                          $("#route-title").text(this.form.first_name + " " + this.form.surname + " - CV");
-                          $("#breadcrumb-text").text(this.form.first_name + " " + this.form.surname + " - CV");
+                          if(this.form.middle_name) {
+                            this.setFullName();
+                          }
+                          else {
+                            this.setNameWithoutMiddleName();
+                          }
                           resolve({
                             body: response.data.message,
                             config: {
-                              timeout: 2000,
                               closeOnClick: true,
                               showProgressBar: false
                             }
                           });
+
+                          setTimeout(function () {
+                            $(".snotify-rightTop").find(".snotifyToast").each(function() {
+                              $(this).fadeOut(2000, "swing");
+                            });
+                          }, 2000);
+
                         })
                         .catch(error =>  {
                           this.form.onFail(error);
@@ -225,14 +234,39 @@ export default {
                           reject({
                             body: message,
                             config: {
-                              timeout: 2000,
                               closeOnClick: true,
                               showProgressBar: false
                             }
                           });
+
+                          setTimeout(function () {
+                            $(".snotify-rightTop").find(".snotifyToast").each(function() {
+                              $(this).fadeOut(2000, "swing");
+                            });
+                          }, 2000);
+
                         });
                   }));
         },
+
+        setFullName() {
+          $("#user-full-name").text(this.form.first_name + " " +
+            this.form.middle_name + " " + this.form.surname);
+          $("#route-title").text(this.form.first_name + " " +
+            this.form.middle_name + " " + this.form.surname + " - CV");
+          $("#breadcrumb-text").text(this.form.first_name + " " +
+            this.form.middle_name + " " + this.form.surname + " - CV");
+        },
+
+        setNameWithoutMiddleName() {
+          $("#user-full-name").text(this.form.first_name + " " +
+            this.form.surname);
+          $("#route-title").text(this.form.first_name + " " +
+            this.form.surname + " - CV");
+          $("#breadcrumb-text").text(this.form.first_name + " " +
+            this.form.surname + " - CV");
+        },
+
         onAvatarChanged(file) {
           this.$snotify.async('Updating ...', '', () => new Promise((resolve, reject) => {
             axios.post('/avatar', file, {
@@ -249,23 +283,35 @@ export default {
                           title: 'Updated',
                           body: response.data.message,
                           config: {
-                            timeout: 2000,
                             closeOnClick: true,
-                            showProgressBar: true
+                            showProgressBar: false
                           }
                         });
+
+                        setTimeout(function () {
+                          $(".snotify-rightTop").find(".snotifyToast").each(function() {
+                            $(this).fadeOut(2000, "swing");
+                          });
+                        }, 2000);
+
                       })
                .catch(error => {
                  console.log(error);
                  reject({
                    title: 'Oops',
-                   body: 'Sorry, an error occured, picture couldn\'t be updated',
+                   body: "Sorry, an error occured, picture couldn\'t be updated",
                    config: {
-                     timeout: 2000,
                      closeOnClick: true,
                      showProgressBar: false
                    }
                  });
+
+                 setTimeout(function () {
+                   $(".snotify-rightTop").find(".snotifyToast").each(function() {
+                     $(this).fadeOut(2000, "swing");
+                   });
+                 }, 2000);
+
                });
              }));
         },

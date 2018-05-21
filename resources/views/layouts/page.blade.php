@@ -33,7 +33,7 @@
 {{-- end page header --}}
 
 {{-- start content wrapper --}}
-<div class="row wrapper wrapper-content">
+<div class="row wrapper">
     {{-- start flash messages --}}
     <div class="row">
         <div class="col-md-12">

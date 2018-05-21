@@ -1,7 +1,7 @@
 <template lang="html">
 
   <!--the file image -->
-  <div class="flex flex-column flex-horizontal-center">
+  <div class="flex flex-column flex-horizontal-center m-l-sm">
 
     <div class="attachment-container m-b-sm"><!--start container-->
 
