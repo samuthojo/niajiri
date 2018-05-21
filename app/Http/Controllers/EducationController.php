@@ -131,7 +131,8 @@ class EducationController extends SecureController {
 			$education->clearMediaCollection('attachments');
 			//attach new attachment
 			$education->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+								->usingFileName(uniqid())
+								->toMediaCollection('attachments');
 		}
 
 		return [
@@ -216,7 +217,7 @@ class EducationController extends SecureController {
 		//obtain all education form inputs
 		$body = $request->all();
 		$body['project_id'] = $request->session()->get('project_id');
-		
+
 		//find existing education
 		$education = Education::findOrFail($id);
 
@@ -280,7 +281,8 @@ class EducationController extends SecureController {
 			$education->clearMediaCollection('attachments');
 			//attach new attachment
 			$education->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+								->usingFileName(uniqid())
+								->toMediaCollection('attachments');
 		}
 
 		return [
@@ -299,7 +301,8 @@ class EducationController extends SecureController {
 			$education->clearMediaCollection('attachments');
 			//attach new attachment
 			$education->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+								->usingFileName(uniqid())
+								->toMediaCollection('attachments');
 		}
 
 		return [

@@ -114,7 +114,8 @@ class AchievementController extends SecureController {
 			$achievement->clearMediaCollection('attachments');
 			//attach new attachment
 			$achievement->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+									->usingFileName(uniqid())
+									->toMediaCollection('attachments');
 		}
 
 		return [
@@ -247,7 +248,8 @@ class AchievementController extends SecureController {
 			$achievement->clearMediaCollection('attachments');
 			//attach new attachment
 			$achievement->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+									->usingFileName(uniqid())
+									->toMediaCollection('attachments');
 		}
 
 
@@ -267,7 +269,8 @@ class AchievementController extends SecureController {
 			$achievement->clearMediaCollection('attachments');
 			//attach new attachment
 			$achievement->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+									->usingFileName(uniqid())
+									->toMediaCollection('attachments');
 		}
 
 		return [

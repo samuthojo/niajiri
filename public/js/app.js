@@ -52080,7 +52080,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52091,10 +52091,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -52202,12 +52198,10 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "message-pad" }, [
-            _c("div", { staticClass: "flex flex-space-btn" }, [
+            _c("div", {}, [
               _c("div", { staticClass: "notify-message" }, [
                 _vm._v(_vm._s(_vm.successMessage))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "cv-icon-notify icon-success" })
+              ])
             ])
           ])
         ]
@@ -52228,12 +52222,10 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "message-pad" }, [
-            _c("div", { staticClass: "flex flex-space-btn" }, [
+            _c("div", {}, [
               _c("div", { staticClass: "notify-message" }, [
                 _vm._v(_vm._s(_vm.errorMessage))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "cv-icon-notify icon-error" })
+              ])
             ])
           ])
         ]
@@ -53696,7 +53688,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53707,6 +53699,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -53774,6 +53767,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     showAttachment: function showAttachment() {
       return this.attachmentUrl != null && this.fileName.length == 0;
+    },
+    buttonText: function buttonText() {
+      if (this.attachmentUrl == null) return 'Attach';
+      return 'Replace';
     }
   },
   methods: {
@@ -53834,10 +53831,13 @@ var render = function() {
               expression: "showFileName"
             }
           ],
-          staticClass: "file-name",
-          staticStyle: { height: "5em" }
+          staticClass: "file-name"
         },
-        [_c("p", [_vm._v(_vm._s(_vm.fileName))])]
+        [
+          _c("span", { attrs: { title: _vm.fileName } }, [
+            _vm._v(_vm._s(_vm.fileName))
+          ])
+        ]
       ),
       _vm._v(" "),
       _c("img", {
@@ -53850,7 +53850,11 @@ var render = function() {
           }
         ],
         staticClass: "img-thumbnail cv-attachment",
-        attrs: { src: _vm.attachmentUrl, alt: "Award Certificate" }
+        attrs: {
+          src: _vm.attachmentUrl,
+          alt: "Award Certificate",
+          title: _vm.attachmentName
+        }
       })
     ]),
     _vm._v(" "),
@@ -53864,16 +53868,21 @@ var render = function() {
             value: _vm.showAttachment,
             expression: "showAttachment"
           }
-        ]
+        ],
+        staticClass: "attachment-name m-b-sm"
       },
-      [_c("span", [_vm._v(_vm._s(_vm.attachmentName))])]
+      [
+        _c("span", { attrs: { title: _vm.attachmentName } }, [
+          _vm._v(_vm._s(_vm.attachmentName))
+        ])
+      ]
     ),
     _vm._v(" "),
     _c(
       "button",
       {
         staticClass: "btn btn-primary",
-        attrs: { type: "button", title: "Attach" },
+        attrs: { type: "button", title: _vm.buttonText },
         on: { click: _vm.onUpload }
       },
       [

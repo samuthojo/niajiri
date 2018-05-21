@@ -24178,6 +24178,16 @@ body.skin-3 {
 
 .file-name {
   background-color: #e7eaec;
+  width: 100px;
+  height: 5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attachment-name {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .attachment-container {

@@ -10,22 +10,23 @@
         title="No File Attached"></i>
 
       <!--show the uploaded fileName inside this div-->
-      <div class="file-name" v-show="showFileName" style="height: 5em;">
-        <p>{{ fileName }}</p>
+      <div class="file-name" v-show="showFileName">
+        <span :title="fileName">{{ fileName }}</span>
       </div>
 
       <!--the attachment-->
       <img v-show="showAttachment" :src="attachmentUrl"
-         alt="Award Certificate" class="img-thumbnail cv-attachment">
+         alt="Award Certificate" class="img-thumbnail cv-attachment"
+         :title="attachmentName">
 
     </div><!--end container-->
 
-    <div v-show="showAttachment"><!--start show attachment name-->
-      <span>{{ attachmentName }}</span>
+    <div v-show="showAttachment" class="attachment-name m-b-sm"><!--start show attachment name-->
+      <span :title="attachmentName">{{ attachmentName }}</span>
     </div><!--end show attachment name-->
 
     <button type="button" class="btn btn-primary"
-       @click="onUpload" title="Attach">
+       @click="onUpload" :title="buttonText">
       <i class="fa fa-upload"></i>
       <span v-show="attachmentUrl != null">Replace</span>
       <span v-show="attachmentUrl == null">Upload</span>
@@ -64,6 +65,11 @@ export default {
     },
     showAttachment: function () {
       return this.attachmentUrl != null && this.fileName.length == 0;
+    },
+    buttonText: function () {
+      if(this.attachmentUrl == null)
+        return 'Attach';
+      return 'Replace';
     }
   },
   methods: {

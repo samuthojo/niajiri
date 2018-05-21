@@ -118,7 +118,8 @@ class CertificateController extends SecureController {
 			$certificate->clearMediaCollection('attachments');
 			//attach new attachment
 			$certificate->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+									->usingFileName(uniqid())
+									->toMediaCollection('attachments');
 		}
 
 		return [
@@ -254,7 +255,8 @@ class CertificateController extends SecureController {
 			$certificate->clearMediaCollection('attachments');
 			//attach new attachment
 			$certificate->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+									->usingFileName(uniqid())
+									->toMediaCollection('attachments');
 		}
 
 		return [
@@ -273,7 +275,8 @@ class CertificateController extends SecureController {
 			$certificate->clearMediaCollection('attachments');
 			//attach new attachment
 			$certificate->addMediaFromRequest('attachment')
-				->toMediaCollection('attachments');
+									->usingFileName(uniqid())
+									->toMediaCollection('attachments');
 		}
 
 		return [

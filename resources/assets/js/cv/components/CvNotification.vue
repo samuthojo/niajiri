@@ -12,11 +12,9 @@
 
         <div class="message-pad">
 
-          <div class="flex flex-space-btn">
+          <div class="">
 
             <div class="notify-message">{{ successMessage }}</div>
-
-            <div class="cv-icon-notify icon-success"></div>
 
           </div>
 
@@ -28,11 +26,9 @@
 
         <div class="message-pad">
 
-          <div class="flex flex-space-btn">
+          <div class="">
 
             <div class="notify-message">{{ errorMessage }}</div>
-
-            <div class="cv-icon-notify icon-error"></div>
 
           </div>
 
