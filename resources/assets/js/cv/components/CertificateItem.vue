@@ -226,13 +226,17 @@ export default {
 
     if(this.certification) {
 
-      console.log(this.certification);
-
       let formModel = _.assign({}, this.certification,  {
         'applicant_id': this.applicantId
       });
 
+      if(_.has(formModel, 'expired_at'))
+       {
+         delete formModel.expired_at;
+       }
+
       this.form = new Form(formModel);
+
     }
     else {
       let formModel = _.assign({}, this.model,  {
@@ -350,7 +354,6 @@ export default {
         this.showAsync = true;
         var url = '/user_certifications/' + this.certification.id;
         var formData = new FormData();
-        alert(this.form.started_at + " " + this.form.finished_at);
         for(let field in this.form) {
           formData.append(field, this.form[field]);
         }
