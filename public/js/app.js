@@ -51005,7 +51005,7 @@ var render = function() {
       }
     },
     [
-      _c("div", [
+      _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "form-group flex flex-vertical-center" }, [
           _c("i", {
             class: [

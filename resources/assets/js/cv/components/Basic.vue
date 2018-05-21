@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="onSubmit"
         @keydown="form.errors.clear($event.target.name)">
-      <div>
+      <div class="col-md-8">
           <!-- TODO: To put translations -->
           <div class="form-group flex flex-vertical-center">
               <i :class="['fa fa-user cv-icon', {'has-cv-error': form.errors.has('first_name')}]"></i>
