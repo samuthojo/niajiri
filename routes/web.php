@@ -69,6 +69,7 @@ Route::resource('tests', 'TestController');
 
 // Route::post('/tests/{test}/questions', 'TestController@QuestionStore')->name("tests.questions.store");
 
+Route::get('/pdfPayload', 'PdfController@getPdfPayload');
 Route::post('/user_experiences', 'ExperienceController@storeExperience')->name('user_experiences');
 Route::patch('/user_experiences/{experience}', 'ExperienceController@updateExperience');
 Route::delete('/user_experiences/{experience}', 'ExperienceController@destroyExperience');

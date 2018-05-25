@@ -4,6 +4,7 @@
 
 {{-- start page content --}}
 <div class="row">
+
     <div class="col-md-12">
 
         {{-- start interactive cv --}}
@@ -15,6 +16,8 @@
             <div class="ibox-content" id="vue-candidate-cv">
 
                   <vue-snotify></vue-snotify>
+
+                  <download-cv-button/>
 
                   <div class="row m-t-md m-b-md">
 

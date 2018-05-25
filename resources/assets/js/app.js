@@ -76,6 +76,7 @@ Vue.component('skill-form', require('./cv/components/SkillForm.vue'));
 Vue.component('skills', require('./cv/components/Skills.vue'));
 Vue.component('extra-curriculum-form', require('./cv/components/ExtraCurriculumForm.vue'));
 Vue.component('extra-curriculum', require('./cv/components/ExtraCurriculum.vue'));
+Vue.component('download-cv-button', require('./cv/components/DownloadCvButton.vue'))
 
 $(document).ready(function($) {
 
