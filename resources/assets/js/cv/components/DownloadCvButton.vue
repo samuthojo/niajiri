@@ -4,7 +4,7 @@
 
     <button
       type="button"
-      class="btn btn-primary"
+      class="btn btn-primary pull-right"
       title="Download"
       @click="onDownloadClicked">
 
@@ -93,8 +93,6 @@ export default {
 
 <style lang="css" scoped>
 .download-cv-btn {
-  position: absolute;
-  top: -60px;
-  right: 20px;
+  margin-bottom: 15px;
 }
 </style>

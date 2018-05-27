@@ -10,91 +10,96 @@
         {{-- start interactive cv --}}
 
         {{-- start page box --}}
-        <div class="ibox">
+        <div class="ibox" id="vue-candidate-cv">
+
+          <div class="flex flex-column">
+
+            <download-cv-button></download-cv-button>
 
             {{-- start page box content --}}
-            <div class="ibox-content" id="vue-candidate-cv">
+            <div class="ibox-content">
 
-                  <vue-snotify></vue-snotify>
+              <vue-snotify></vue-snotify>
 
-                  <download-cv-button/>
 
-                  <div class="row m-t-md m-b-md">
+              <div class="row m-t-md m-b-md">
 
-                    <div class="col-md-12">
-                      <basic class="cv-major-block" :user="{{ $user }}" ref="basic"></basic>
-                    </div>
-
-                  </div>
-
-                <div class="row m-t-md m-b-md">
-
-                    <div class="col-md-6">
-                      <intern
-                        :user="{{ $user }}"
-                        :experiences=" {{ $user->experiences }}"></intern>
-                    </div>
-
-                    <div class="col-md-6">
-                      <honor
-                        :user="{{ $user }}"
-                        :honors="{{ $honors }}"></honor>
-                    </div>
-
+                <div class="col-md-12">
+                  <basic class="cv-major-block" :user="{{ $user }}" ref="basic"></basic>
                 </div>
 
-                <div class="row m-t-md m-b-md">
+              </div>
 
-                    <div class="col-md-6">
-                      <education
-                        :user="{{ $user }}"
-                        :educations="{{ $educations }}"
-                        :institutions= "{{ config('education.institutions') }}"
-                        :qualifications="{{ config('education.qualifications') }}"></education>
-                    </div>
+            <div class="row m-t-md m-b-md">
 
-                    <div class="col-md-6">
-                      <language
-                        :user="{{ $user }}"
-                        :languages="{{ $user->languages }}"></language>
-                    </div>
-
+                <div class="col-md-6">
+                  <intern
+                    :user="{{ $user }}"
+                    :experiences=" {{ $user->experiences }}"></intern>
                 </div>
 
-                <div class="row m-t-md m-b-md">
-
-                    <div class="col-md-6">
-                      <certificate
-                        :user="{{ $user }}"
-                        :certifications="{{ $certificates }}">
-                      </certificate>
-                    </div>
-
-                    <div class="col-md-6">
-                      <referee
-                        :user="{{ $user }}"
-                        :referees="{{ $user->referees }}"></referee>
-                    </div>
-
+                <div class="col-md-6">
+                  <honor
+                    :user="{{ $user }}"
+                    :honors="{{ $honors }}"></honor>
                 </div>
 
-                <div class="row m-t-md m-b-md">
+            </div>
 
-                    <div class="col-md-6">
-                      <skills
-                        :user="{{ $user }}">
-                      </skills>
-                    </div>
+            <div class="row m-t-md m-b-md">
 
-                    <div class="col-md-6">
-                      <extra-curriculum
-                        :user="{{ $user }}">
-                      </extra-curriculum>
-                    </div>
-
+                <div class="col-md-6">
+                  <education
+                    :user="{{ $user }}"
+                    :educations="{{ $educations }}"
+                    :institutions= "{{ config('education.institutions') }}"
+                    :qualifications="{{ config('education.qualifications') }}"></education>
                 </div>
 
-      </div>
+                <div class="col-md-6">
+                  <language
+                    :user="{{ $user }}"
+                    :languages="{{ $user->languages }}"></language>
+                </div>
+
+            </div>
+
+            <div class="row m-t-md m-b-md">
+
+                <div class="col-md-6">
+                  <certificate
+                    :user="{{ $user }}"
+                    :certifications="{{ $certificates }}">
+                  </certificate>
+                </div>
+
+                <div class="col-md-6">
+                  <referee
+                    :user="{{ $user }}"
+                    :referees="{{ $user->referees }}"></referee>
+                </div>
+
+            </div>
+
+            <div class="row m-t-md m-b-md">
+
+                <div class="col-md-6">
+                  <skills
+                    :user="{{ $user }}">
+                  </skills>
+                </div>
+
+                <div class="col-md-6">
+                  <extra-curriculum
+                    :user="{{ $user }}">
+                  </extra-curriculum>
+                </div>
+
+            </div>
+
+           </div>
+
+    </div>
 
     </div>
 

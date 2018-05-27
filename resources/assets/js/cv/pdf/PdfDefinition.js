@@ -1,3 +1,19 @@
+import WorkExperiencesPdf from './WorkExperiencesPdf'
+
+import AcademicQualificationsPdf from './AcademicQualificationsPdf'
+
+import TrainingsAttendedPdf from './TrainingsAttendedPdf'
+
+import AwardsReceivedPdf from './AwardsReceivedPdf'
+
+import PersonalSkillsPdf from './PersonalSkillsPdf'
+
+import LanguagePdf from './LanguagePdf'
+
+import ExtraCurricularPdf from './ExtraCurricularPdf'
+
+import RefereesPdf from './RefereesPdf'
+
 export class PdfDefinition {
 
     constructor() {
@@ -14,7 +30,34 @@ export class PdfDefinition {
         pageSize: 'A4',
 
         // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
-        pageMargins: [ 55, 60, 30, 40 ],
+        pageMargins: [ 55, 55, 30, 40 ],
+
+        footer: (currentPage, pageCount) => {
+          return {
+            margin: [55, 0, 30, 40],
+            table: {
+              widths: ['*', 'auto', '*'],
+              body: [
+                [
+                  {text: this.getApplicantName(), italics: true, alignment: 'left'},
+                  {text: currentPage.toString()},
+                  {
+                    alignment: 'right',
+                    text: [
+                      {text: 'CV By: '},
+                      {
+                        text: 'niajiri.co.tz',
+                        color: 'blue',
+                        link: 'http://www.niajiri.co.tz/'
+                      }
+                    ]
+                  }
+                ],
+              ]
+            },
+            layout: 'noBorders'
+          }
+        },
 
         styles: {
           //Start of styles
@@ -27,6 +70,9 @@ export class PdfDefinition {
           },
           niajiriTable: {
       			margin: [0, 5, 0, 15]
+      		},
+          detailsTable: {
+      			margin: [0, 2, 0, 2]
       		},
           tableHeader: {
       			bold: true,
@@ -53,10 +99,11 @@ export class PdfDefinition {
               { text: 'Email: ',
                 bold: true
               },
-              { text: this.getEmailContacts() + '\n\n\n' }
+              { text: this.getEmailContacts() + '\n\n\n'},
             ]
           },
 
+          {text: 'PERSONAL PARTICULARS:\n', style: 'tableHeader'},
           {
             //Personal particulars and image
             columns: [
@@ -64,16 +111,15 @@ export class PdfDefinition {
                 width: '*',
                 style: 'niajiriTable',
                 table: {
+                  widths: ['auto', 'auto', 'auto'],
                   heights: [0, 15, 15, 15, 15, 15, 15],
-                  headerRows: 1,
                   body: [
-                    [{text: 'PERSONAL PARTICULARS:', style: 'tableHeader'}, {text: ''}],
-                    ['Date Of Birth ', ': ' + this.getDateOfBirth()],
-                    ['Gender ', ': ' + this.payload.user.gender],
-                    ['Postal Address ', ': ' + this.payload.user.postal_address],
-                    ['Physical Address ', ': ' + this.payload.user.physical_address],
-                    ['State ', ': ' + this.payload.user.state],
-                    ['Country ', ': ' + this.payload.user.country]
+                    [{text: 'Date Of Birth'}, {text: ':'}, {text: this.getDateOfBirth()}],
+                    [{text: 'Gender'}, {text: ':'}, {text: this.payload.user.gender}],
+                    [{text: 'Postal Address'}, {text: ':'}, {text: this.payload.user.postal_address}],
+                    [{text: 'Physical Address'}, {text: ':'}, {text: this.payload.user.physical_address}],
+                    [{text: 'State/Region'}, {text: ':'}, {text: this.payload.user.state}],
+                    [{text: 'Country'}, {text: ':'}, {text: this.payload.user.country}]
                   ]
                 },
                 layout: 'noBorders'
@@ -98,24 +144,75 @@ export class PdfDefinition {
               headerRows: 1,
               body: [
                 [{text: 'PROFILE:', style: 'tableHeader'}],
-                [{text: this.payload.user.summary}],
+                [{text: this.payload.user.summary, alignment: 'justify'}],
               ]
             },
             layout: 'noBorders'
             //End of profile
           },
 
-          {
-            //Start of work experience
-            text: [
-              {
-                bold: true,
-                text: 'WORK EXPERIENCE:\n'
-              }
-            ]
+          {text: 'WORK EXPERIENCES:\n', bold: true},
 
-            //End of work experience
-          }
+          //Start Of Experience Table
+          WorkExperiencesPdf.getWorkExperiences(this.payload.experiences),
+          //End Of Experience Table
+
+          {text: 'ACADEMIC QUALIFICATIONS:\n', bold: true, margin: [0, 10, 0, 0]},
+
+          //Start Of Academic Qualifications Table
+          AcademicQualificationsPdf.getAcademic(this.payload.educations),
+          //End Of Academic Qualifications Table
+
+          {text: 'TRAININGS ATTENDED:\n', bold: true, margin: [0, 10, 0, 0]},
+
+          //Start Of Trainings Attended Table
+          TrainingsAttendedPdf.getTrainings(this.payload.certificates),
+          //End Of Trainings Attended Table
+
+          {text: 'AWARDS RECEIVED:\n', bold: true, margin: [0, 10, 0, 0]},
+
+          //Start Of Awards Table
+          AwardsReceivedPdf.getAwards(this.payload.honors),
+          //End Of Awards Table
+
+          {text: 'LANGUAGE PROFICIENCY:\n', bold: true, margin: [0, 10, 0, 5]},
+
+          //Start Of Language Table
+          {
+            style: 'detailsTable',
+            table: {
+              widths: ['*', '*', '*'],
+              body: LanguagePdf.getLanguages(this.payload.languages)
+            }
+          },
+          //End Of Language Table
+
+          {text: 'PERSONAL SKILLS:\n', bold: true, margin: [0, 20, 0, 5]},
+
+          //Start Of Personal Skills
+          {
+            type: 'square',
+            ul: PersonalSkillsPdf.getSkills(this.payload.user.skills)
+          },
+          //End Of Personal Skills
+
+          {text: 'EXTRACURRICULAR ACTIVITIES:\n', bold: true, margin: [0, 20, 0, 5]},
+
+          //Start Of ExtraCurricular Activities
+          {
+            type: 'square',
+            ul: ExtraCurricularPdf.getActivities(this.payload.user.extracurricular_activities)
+          },
+          //End Of ExtraCurricular Activities
+
+          {
+            text: 'REFEREES:\n', pageBreak: 'before',
+            bold: true
+          },
+
+          //Start Of Academic Qualifications Table
+          RefereesPdf.getReferees(this.payload.referees),
+          //End Of Academic Qualifications Table
 
          //End of content
         ]
@@ -164,9 +261,7 @@ export class PdfDefinition {
         this.payload.user.secondary_email
       ]
 
-      if(emails.indexOf(null) === -1)
-
-        return emails[0] + " or " + emails[1]
+      if(emails.indexOf(null) === -1) return emails.join(" or ")
 
       return emails[0]
 
@@ -193,4 +288,5 @@ export class PdfDefinition {
 
     }
 
+//End of PdfDefinition class
 }
