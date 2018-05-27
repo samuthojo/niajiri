@@ -205,14 +205,11 @@ export class PdfDefinition {
           },
           //End Of ExtraCurricular Activities
 
-          {
-            text: 'REFEREES:\n', pageBreak: 'before',
-            bold: true
-          },
+          {text: 'REFEREES:\n', bold: true, margin: [0, 20, 0, 5]},
 
-          //Start Of Academic Qualifications Table
+          //Start Of Referees Table
           RefereesPdf.getReferees(this.payload.referees),
-          //End Of Academic Qualifications Table
+          //End Of Referees Table
 
          //End of content
         ]

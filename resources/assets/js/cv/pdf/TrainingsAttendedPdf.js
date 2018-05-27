@@ -13,11 +13,10 @@ export default {
           table: {
             widths: [500],
             body: [
-
               [
                 {
                   table: {
-                    widths: ['auto', 'auto', 'auto', 'auto'],
+                    widths: ['auto', 495],
                     body: [
                       [
                         {
@@ -27,28 +26,35 @@ export default {
                           text: globals.getShortDate(certifications[index].started_at) +
                                 " - " + globals.getShortDate(certifications[index].finished_at),
                           bold: true
-                        },
-                        {},
-                        {}
+                        }
                       ],
                       [
                         {},
                         {
-                          text: "Title",
-                          bold: true
-                        },
-                        {text: ':'},
-                        {text: certifications[index].title}
-                      ],
-                      [
-                        {},
-                        {
-                          text: 'Institution',
-                          bold: true
-                        },
-                        {text: ':'},
-                        {text: certifications[index].institution}
-                      ],
+                          table: {
+                            widths: ['auto', 'auto', 'auto'],
+                            body: [
+                              [
+                                {
+                                  text: "Title",
+                                  bold: true
+                                },
+                                {text: ':'},
+                                {text: certifications[index].title}
+                              ],
+                              [
+                                {
+                                  text: 'Institution',
+                                  bold: true
+                                },
+                                {text: ':'},
+                                {text: certifications[index].institution}
+                              ],
+                            ]
+                          },
+                          layout: 'noBorders'
+                        }
+                      ]
                     ]
                   },
                   layout: 'noBorders'
