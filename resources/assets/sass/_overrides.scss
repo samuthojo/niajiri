@@ -1,0 +1,625 @@
+/*borders*/
+
+.no-border-top {
+    border-top: none !important;
+}
+
+.no-border-bottom {
+    border-bottom: none !important;
+}
+
+
+/*stage*/
+
+.testable-stage {
+    .project-status {
+        border-bottom: none !important;
+    }
+    .project-actions {
+        border-bottom: none !important;
+    }
+}
+
+
+/*list group*/
+
+.list-group-header {
+    margin-top: 22px;
+}
+
+.list-checkbox-item {
+    border: none !important;
+    .checkbox {
+        margin: 0 !important;
+    }
+}
+
+
+/*filestyle*/
+
+.file label {
+    margin-top: 0px !important;
+    width: 100% !important;
+    padding: 10px 20px;
+    height: 51px !important;
+}
+
+.file .input-group {
+    width: 100% !important;
+}
+
+
+/*change profile avatar*/
+
+.edit-profile-photo img {
+    border-radius: 3px;
+    max-width: 200px;
+    width: 100%;
+}
+
+.edit-profile-photo-cv img {
+    max-width: 140px !important;
+}
+
+.edit-profile-photo {
+    position: relative;
+}
+
+.change-photo-btn {
+    border-radius: 2px;
+    display: inline-block;
+    position: absolute;
+    font-size: 13px;
+    bottom: 15px;
+    left: 15px;
+    width: auto;
+    background-color: #fff;
+    color: #333;
+    transition: 0.3s;
+    cursor: pointer;
+    line-height: 28px;
+}
+
+.photoUpload {
+    position: relative;
+    overflow: hidden;
+    padding: 3px 12px;
+    cursor: pointer;
+}
+
+.photoUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.change-photo-btn:hover {
+    color: #fff;
+    background-color: $brand-primary;
+}
+
+.change-photo-btn i {
+    margin-right: 2px;
+}
+
+.change-photo-btn-cover-letter {
+    position: relative !important;
+    bottom: 0px !important;
+    margin-top: 8px !important;
+}
+
+.text-black {
+    color: #676a6c !important;
+}
+
+
+/*table*/
+
+.table-bordered>thead>tr>th,
+.table-bordered>thead>tr>td {
+    background-color: #FFFFFF !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
+
+.margin-10 {
+    margin: 10px 0;
+}
+
+// shopping cart
+.cart-position-organization-logo {
+    padding-top: 0px !important;
+    height: 80px;
+    width: 80px;
+}
+
+.cart-position-organization-logo img {
+    max-height: 80px;
+    max-width: 80px;
+}
+
+
+/* --------------------------------
+
+Triangle breadcrumb
+
+-------------------------------- */
+
+@media only screen and (min-width: 768px) {
+    .cd-breadcrumb.triangle {
+        /* reset basic style */
+        background-color: transparent;
+        padding: 0;
+        display: flex;
+    }
+    .cd-breadcrumb.triangle li {
+        position: relative;
+        padding: 0;
+        margin: 4px 4px 4px 0;
+        flex: 1;
+    }
+    .cd-breadcrumb.triangle li:last-of-type {
+        margin-right: 0;
+    }
+    .cd-breadcrumb.triangle li>* {
+        position: relative;
+        padding: 1em .8em 1em 2.5em;
+        color: #2c3f4c;
+        background-color: #edeff0;
+        /* the border color is used to style its ::after pseudo-element */
+        border-color: #edeff0;
+    }
+    .cd-breadcrumb.triangle li.active>* {
+        /* selected step */
+        color: #ffffff !important;
+        background-color: #96c03d !important;
+        border-color: #96c03d !important;
+    }
+    .cd-breadcrumb.triangle li:first-of-type>* {
+        padding-left: 1.6em;
+        border-radius: .25em 0 0 .25em;
+    }
+    .cd-breadcrumb.triangle li:last-of-type>* {
+        padding-right: 1.6em;
+        border-radius: 0 .25em .25em 0;
+    }
+    .no-touch .cd-breadcrumb.triangle a:hover {
+        /* steps already visited */
+        color: #ffffff;
+        background-color: #2c3f4c;
+        border-color: #2c3f4c;
+    }
+    .cd-breadcrumb.triangle li::after,
+    .cd-breadcrumb.triangle li>*::after {
+        /*
+    	li > *::after is the colored triangle after each item
+    	li::after is the white separator between two items
+    */
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 100%;
+        content: '';
+        height: 0;
+        width: 0;
+        /* 48px is the height of the <a> element */
+        border: 24px solid transparent;
+        border-right-width: 0;
+        border-left-width: 20px;
+    }
+    .cd-breadcrumb.triangle li::after {
+        /* this is the white separator between two items */
+        z-index: 1;
+        -webkit-transform: translateX(4px);
+        -moz-transform: translateX(4px);
+        -ms-transform: translateX(4px);
+        -o-transform: translateX(4px);
+        transform: translateX(4px);
+        border-left-color: #ffffff;
+        /* reset style */
+        margin: 0;
+    }
+    .cd-breadcrumb.triangle li>*::after {
+        /* this is the colored triangle after each element */
+        z-index: 2;
+        border-left-color: inherit;
+    }
+    .cd-breadcrumb.triangle li:last-of-type::after,
+    .cd-breadcrumb.triangle li:last-of-type>*::after {
+        /* hide the triangle after the last step */
+        display: none;
+    }
+    .cd-breadcrumb.triangle.custom-separator li::after {
+        /* reset style */
+        background-image: none;
+    }
+    .cd-breadcrumb.triangle.custom-icons li::after,
+    .cd-breadcrumb.triangle.custom-icons li>*::after {
+        /* 50px is the height of the <a> element */
+        border-top-width: 25px;
+        border-bottom-width: 25px;
+    }
+    @-moz-document url-prefix() {
+        .cd-breadcrumb.triangle li::after,
+        .cd-breadcrumb.triangle li>*::after {
+            /* fix a bug on Firefix - tooth edge on css triangle */
+            border-left-style: dashed;
+        }
+    }
+}
+
+.nav.nav-tabs.resume_ul {
+    /* reset basic style */
+    background-color: #ddd;
+    padding: 0;
+    display: flex;
+}
+
+.nav.nav-tabs.resume_ul li.resume_li {
+    flex: 1;
+}
+
+.nav.nav-tabs.resume_ul li.resume_li a {
+    color: black;
+}
+
+.nav.nav-tabs.resume_ul li.active.resume_li a {
+    background: #19aa8d;
+}
+
+.dis-flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+
+/*question display*/
+
+.question-img {
+    height: auto;
+    width: auto;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.question-label {
+    font-weight: normal !important;
+}
+
+
+/*countdowntimer*/
+
+.style {
+    font-family: Lato !important;
+    font-weight: normal !important;
+    border-style: none !important;
+}
+
+
+/* Login -- Signup page */
+
+.register-wrapper {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+}
+
+.middle-box {
+    max-width: 1000px;
+}
+
+.loginscreen.middle-box {
+    width: 80%;
+    background-color: #fff;
+    padding: 0 20px;
+    height: 600px;
+}
+
+.signup-container {
+    height: 100%;
+    margin-left: -20px;
+    width: calc(33.333% + 20px);
+    background-image: url('../../../public/images/landing/registerbanner.png');
+    background-size: cover;
+    overflow: hidden;
+}
+
+.signup-container:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.signup-container {
+    #logo {
+        position: relative;
+        background: #fff;
+        margin-top: -160px;
+        padding-top: 140px;
+        width: 100px;
+        height: 220px;
+    }
+    #logo img {
+        z-index: 1;
+        position: relative;
+        top: 20px;
+    }
+    #logo::after {
+        content: '';
+        position: absolute;
+        left: -99.8px;
+        top: 10%;
+        width: 300px;
+        height: 160%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 120px;
+        background-image: url('../../../public/images/landing/tags.png');
+    }
+    h1,
+    h2,
+    a {
+        z-index: 1;
+        position: relative;
+    }
+    h1 {
+        font-size: 3.1em;
+        color: white;
+        text-align: center;
+        margin-top: 180px;
+        letter-spacing: -1px;
+    }
+    h2 {
+        font-size: 1.1em;
+        color: white;
+        line-height: 1.4;
+        margin-bottom: 30px;
+    }
+    .btn {
+        border-radius: 30px;
+        max-width: 200px;
+        margin: 15px auto;
+        padding: 0.8em 0;
+        transition: all ease-in 0.3s;
+        background-color: #fbb843;
+        border-color: #fbb843;
+        color: black;
+    }
+}
+
+.middle-box form {
+    padding: 20px 15%;
+}
+
+.middle-box form {
+    h1 {
+        font-size: 3.1em;
+        text-align: center;
+        color: #000;
+        font-weight: bold;
+        margin-bottom: 50px;
+    }
+    input {
+        border: 0;
+        border-bottom: solid 1px #e5e6e7;
+        text-align: center;
+    }
+    .btn {
+        border-radius: 30px;
+        max-width: 300px;
+        margin: 15px auto;
+        padding: 0.8em 0;
+        transition: all ease-in 0.3s;
+    }
+    .btn-google {
+        background: none;
+        border: solid 1px #db4437;
+        color: #db4437;
+    }
+    .btn-google:hover {
+        background: #db4437;
+        border: solid 1px #db4437;
+        color: #fff;
+    }
+    .btn-twitter {
+        background: none;
+        border: solid 1px #1da1f2;
+        color: #1da1f2;
+    }
+    .btn-twitter:hover {
+        background: #1da1f2;
+        border: solid 1px #1da1f2;
+        color: #fff;
+    }
+    .btn-linkedin {
+        background: none;
+        border: solid 1px #007bb5;
+        color: #007bb5;
+    }
+    .btn-linkedin:hover {
+        background: #007bb5;
+        border: solid 1px #007bb5;
+        color: #fff;
+    }
+}
+
+.btn-primary {
+    background-color: rgb(75, 152, 134);
+    border-color: rgb(75, 152, 134);
+}
+
+
+/*Panel Poslishing */
+
+.skin-3 .metismenu>li>a {
+    color: #000;
+    font-size: 1.2em;
+}
+
+.skin-3 .nav>li.active {
+    border-left: 4px solid #449384;
+    background: #f5f5f5;
+    color: #000;
+}
+
+.skin-3 .nav>li.active>a {
+    color: #449384;
+}
+
+.skin-3 .nav>li:hover {
+    background: #f5f5f5;
+}
+
+.skin-3 .navbar-default .nav>li>a:hover,
+.skin-3 .navbar-default .nav>li>a:focus {
+    background: #f5f5f5;
+    color: #449384;
+}
+
+.fixed-nav.skin-3 .navbar-fixed-top {
+    background: #449384;
+    color: black;
+}
+
+.navbar-fixed-top li span {
+    color: #000;
+}
+
+body.skin-3 {
+    background: #fff;
+    border-right: solid 1px gray;
+}
+
+.navbar-default {
+    border-right: 1px solid #e7eaec;
+    background: #fff;
+}
+
+.navbar-header a {
+    width: 220px;
+    background-color: #fff;
+    height: 63px;
+    display: block;
+    margin-left: 0;
+    padding-left: 66px;
+    border-right: 1px solid #e7eaec;
+}
+
+.skin-3 .nav-header {
+    background-color: #fff;
+    background-image: none;
+}
+
+.skin-3 .nav-header a.dropdown-toggle {
+    color: #000000;
+}
+
+.navbar-top-links {
+    color: #000;
+}
+
+.skin-3 .navbar-top-links>li>a {
+    color: #fff;
+}
+
+.nav>li>a {
+    font-weight: 400;
+}
+
+
+/*End Panel Polishing */
+
+
+/*Middle content Polishing */
+
+.page_title {
+    font-weight: 900;
+    color: #f2af44;
+    font-size: 3em;
+    text-transform: uppercase;
+}
+
+.ibox-content:first-child {
+    border-top: solid 4px #f2af44!important;
+}
+
+
+/* Niajiri UI Elements */
+
+.niajiri-label {
+    background-color: #f2af44;
+    color: black;
+    text-shadow: none;
+    letter-spacing: 0;
+    font-size: 1em;
+    font-weight: 100;
+}
+
+.niajiri-orange-color-text {
+    color: #f2af44;
+}
+
+.niajiri-black-text {
+    color: #000;
+}
+
+.niajiri-white-card {
+    border: 0 solid rgba(0, 0, 0, 0)!important;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05) !important;
+    background: #f5f5f5;
+    color: #000;
+}
+
+.niajiri-green-card {
+    // border: 0 solid rgba(0, 0, 0, 0)!important;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05) !important;
+    // background-color: #449384;
+    border: solid 1px #449384;
+    color: #449384;
+}
+
+.niajiri-green-bg {
+    // border: solid 1px #449384;
+    background-color: #449384;
+}
+
+.niajiri-white-card a {
+    color: #000;
+}
+
+.niajiri-green-card a {
+    color: #449384;
+}
+
+.skin-3 .nav-tabs>li.active {
+    border-left: 0 solid #449384;
+}
+
+.triangl>li.active {
+    background-color: #449384;
+}
+

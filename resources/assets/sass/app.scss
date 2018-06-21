@@ -1,0 +1,24 @@
+//lato font family
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900');
+//simple-line-icons
+@import "node_modules/simple-line-icons/scss/simple-line-icons";
+//font-awesome
+@import "node_modules/font-awesome/scss/font-awesome";
+// Variables
+@import "variables";
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+//bootstrap datepicker css
+@import "node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3";
+//import jquery countdowntimer css
+@import "node_modules/countdowntimer/dist/css/jQuery.countdownTimer";
+//import icons
+@import "icons";
+//import theme
+@import "theme/style";
+//import clients
+@import "clients";
+//import overrides
+@import "overrides";
+//import cv styles
+@import "cv";

@@ -1,0 +1,9 @@
+[program:niajiri-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/html/niajiri/artisan queue:work --tries=3 --daemon
+autostart=true
+autorestart=true
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/var/www/html/niajiri/niajiri_worker.log
+stderr_logfile=/var/www/html/niajiri/niajiri_worker.err.log
