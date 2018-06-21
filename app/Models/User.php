@@ -281,7 +281,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 			if (property_exists($this, 'avatar')) {
 				$avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.svg');
 			} else {
-				$avatar = url('/images/avatar.svg');
+				$avatar = url('/images/avatar.png');
 			}
 		}
 
