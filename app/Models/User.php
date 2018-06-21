@@ -268,23 +268,22 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 
 	public function avatar() {
 		//generate user avatar
-		$avatar = url('/images/avatar.png');
+		$avatar = url('/images/avatar.svg');
 
 		//try obtain custom uploaded avatar
 		$media = $this->getMedia('avatars')->first();
 		if ($media) {
 			$avatar = asset('storage/' . $media->id . '/' . $media->file_name);
 		}
-		// $avatar = url('/images/avatar.png');
 
 		//use social media or default avatar
-		// if (!is_set($avatar)) {
-		// 	if (property_exists($this, 'avatar')) {
-		// 		$avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.png');
-		// 	} else {
-		// 		$avatar = url('/images/avatar.png');
-		// 	}
-		// }
+		if (!is_set($avatar)) {
+			if (property_exists($this, 'avatar')) {
+				$avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.svg');
+			} else {
+				$avatar = url('/images/avatar.svg');
+			}
+		}
 
 		return $avatar;
 	}
