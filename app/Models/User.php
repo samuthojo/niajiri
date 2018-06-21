@@ -275,7 +275,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		if ($media) {
 			$avatar = asset('storage/' . $media->id . '/' . $media->file_name);
 		}
-		$avatar = url('/images/avatar.png');
+		// $avatar = url('/images/avatar.png');
 
 		//use social media or default avatar
 		// if (!is_set($avatar)) {
