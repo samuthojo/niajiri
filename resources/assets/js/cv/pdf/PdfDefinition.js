@@ -8,6 +8,8 @@ import AwardsReceivedPdf from './AwardsReceivedPdf'
 
 import PersonalSkillsPdf from './PersonalSkillsPdf'
 
+import PersonalInterestsPdf from './PersonalInterestsPdf'
+
 import LanguagePdf from './LanguagePdf'
 
 import ExtraCurricularPdf from './ExtraCurricularPdf'
@@ -47,7 +49,7 @@ export class PdfDefinition {
                       {text: 'CV By: '},
                       {
                         text: 'niajiri.co.tz',
-                        color: 'blue',
+                        color: 'green',
                         link: 'http://www.niajiri.co.tz/'
                       }
                     ]
@@ -195,6 +197,15 @@ export class PdfDefinition {
             ul: PersonalSkillsPdf.getSkills(this.payload.user.skills)
           },
           //End Of Personal Skills
+          
+          {text: 'PERSONAL INTERESTS:\n', bold: true, margin: [0, 20, 0, 5]},
+
+          //Start Of Personal Interests
+          {
+            type: 'square',
+            ul: PersonalInterestsPdf.getInterests(this.payload.user.interests)
+          },
+          //End Of Personal Interests
 
           {text: 'EXTRACURRICULAR ACTIVITIES:\n', bold: true, margin: [0, 20, 0, 5]},
 
