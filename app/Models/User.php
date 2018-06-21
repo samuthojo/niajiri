@@ -268,7 +268,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 
 	public function avatar() {
 		//generate user avatar
-		$avatar = url('/images/avatar.svg');
+		$avatar = '';
 
 		//try obtain custom uploaded avatar
 		$media = $this->getMedia('avatars')->first();
