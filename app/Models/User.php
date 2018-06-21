@@ -268,7 +268,7 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 
 	public function avatar() {
 		//generate user avatar
-		$avatar = '';
+		$avatar = url('/images/avatar.png');
 
 		//try obtain custom uploaded avatar
 		$media = $this->getMedia('avatars')->first();
@@ -277,13 +277,13 @@ class User extends Authenticatable implements AuditableContract, HasMedia {
 		}
 
 		//use social media or default avatar
-		if (!is_set($avatar)) {
-			if (property_exists($this, 'avatar')) {
-				$avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.png');
-			} else {
-				$avatar = url('/images/avatar.png');
-			}
-		}
+		// if (!is_set($avatar)) {
+		// 	if (property_exists($this, 'avatar')) {
+		// 		$avatar = is_set($this->avatar) ? $this->avatar : url('/images/avatar.png');
+		// 	} else {
+		// 		$avatar = url('/images/avatar.png');
+		// 	}
+		// }
 
 		return $avatar;
 	}
